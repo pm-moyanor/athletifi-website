@@ -1,0 +1,31 @@
+{
+  "name": "athletifi-website",
+  "version": "1.0.0",
+  "description": "Official website for AthletiFi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server/index.js",
+    "build": "webpack --mode production",
+    "server-dev": "nodemon ./server/index.js",
+    "react-dev": "webpack -d --watch",
+    "react-dev2": "webpack-dev-server --open --mode development",
+    "dev": "concurrently \"npm run react-dev\" \"npm run server-dev\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://qisforq: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@github.com/AthletiFi/athletifi-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AthletiFi/athletifi-website/issues"
+  },
+  "homepage": "https://github.com/AthletiFi/athletifi-website#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
+    "webpack": "^5.80.0"
+  }
+}
