@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./server/index.js",
-    "build": "webpack --mode production",
-    "server-dev": "nodemon ./server/index.js",
-    "react-dev": "webpack -d --watch",
-    "react-dev2": "webpack-dev-server --open --mode development",
-    "dev": "concurrently \"npm run react-dev\" \"npm run server-dev\""
+    "start-legacy": "node ./server/index.js",
+    "build-legacy": "webpack --mode production",
+    "server-dev-legacy": "nodemon ./server/index.js",
+    "react-dev-legacy": "webpack -d --watch",
+    "react-dev2-legacy": "webpack-dev-server --open --mode development",
+    "dev-legacy": "concurrently \"npm run react-dev\" \"npm run server-dev\""
   },
   "repository": {
     "type": "git",
@@ -24,16 +24,8 @@
   },
   "homepage": "https://github.com/AthletiFi/athletifi-website#readme",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "antd": "^5.4.4",
     "axios": "^1.3.6",
-    "express": "^4.18.2",
     "nodemon": "^2.0.22",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
