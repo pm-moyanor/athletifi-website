@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Official website for AthletiFi",
   "main": "index.js",
-  "proxy": "http://localhost:3001",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./server/index.js",
@@ -15,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://qisforq: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@github.com/AthletiFi/athletifi-website.git"
+    "url": "git+https://github.com/AthletiFi/athletifi-website.git"
   },
   "keywords": [],
   "author": "",
@@ -28,7 +27,6 @@
     "antd": "^5.4.4",
     "express": "^4.18.2",
     "nodemon": "^2.0.22",
-    "webpack": "^5.80.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -37,23 +35,5 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }
