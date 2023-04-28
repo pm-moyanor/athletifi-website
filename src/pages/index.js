@@ -1,11 +1,10 @@
-import Header from "@/components/shared/header";
+import BaseLayout from "@/components/layouts/BaseLayout";
 
 const Home = () => {
   return (
-    <>
-      <Header />
+    <BaseLayout>
       <h1>AthletiFi Home Page!</h1>
-    </>
+    </BaseLayout>
   )
 }
 

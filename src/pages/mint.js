@@ -1,12 +1,11 @@
-import Header from "@/components/shared/header";
+import BaseLayout from "@/components/layouts/BaseLayout";
 
 const Mint = () => {
-    return (
-      <>
-        <Header />
-        <h1>AthletiFi Mint Page!</h1>
-      </>
-    )
-  }
-  
+  return (
+    <BaseLayout>
+      <h1>AthletiFi Mint Page!</h1>
+    </BaseLayout>
+  )
+}
+
   export default Mint;
