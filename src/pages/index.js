@@ -1,6 +1,12 @@
+import Header from "@/components/shared/header";
 
-export default function Home() {
+const Home = () => {
   return (
-    <h1>AthletiFi!</h1>
+    <>
+      <Header />
+      <h1>AthletiFi Home Page!</h1>
+    </>
   )
 }
+
+export default Home;
