@@ -1,12 +1,19 @@
 //This page does NOT have Automatic Static Optimization, since it has getInitialProps present (https://nextjs.org/docs/advanced-features/automatic-static-optimization)
 import axios from "axios";
 import BaseLayout from "@/components/layouts/BaseLayout";
+import Link from "next/link";
 
 const Marketplace = ({ availableNFTs }) => {
 
 
   const renderNFTs = () => {
-    return availableNFTs.map(({id, title, url, thumbnailUrl}) => <li key={id}>{title + url}</li>) 
+    return availableNFTs.map(({id, title, url, thumbnailUrl}) => 
+      <li key={id}>
+        <Link href={`/marketplace/${id}`}>
+          {title}
+        </Link>
+      </li>
+    ) 
   }
 
   return (
