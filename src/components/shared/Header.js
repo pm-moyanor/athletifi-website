@@ -13,6 +13,9 @@ const Header = () => {
       <Link href="/mint">
         Mint
       </Link>
+      <Link href="/marketplace">
+        Marketplace
+      </Link>
     </>
   )
 }
