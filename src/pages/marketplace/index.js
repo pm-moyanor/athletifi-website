@@ -28,7 +28,7 @@ const Marketplace = ({ availableNFTs }) => {
 
 Marketplace.getInitialProps = async () => {
   let availableNFTs = [];
-  
+  debugger;
   for (let id = 1; id < 10; id++) {
     try {
       const res = await axios.get(`https://jsonplaceholder.typicode.com/photos/${id}`);
