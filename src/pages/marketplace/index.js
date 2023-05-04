@@ -7,44 +7,7 @@ import { Container, Row, Col, CardGroup, Card, CardImg, CardBody, CardSubtitle, 
 import Image from 'next/image';
 
 const Marketplace = ({ availableNFTs }) => {
-  const Square = (imageUrl = "", placeholderText = "") => (
-    <div
-      style={{
-        height: '150px',
-        width: '150px',
-        border: '1px solid black',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '10px'
-      }}
-    >
-      <Image src="https://via.placeholder.com/100" alt="placeholder" width={100} height={100} />
-      <p>Placeholder text</p>
-    </div>
-  );
   
-  const GridPlaceholder = () => (
-    <Container>
-      <Row>
-        <Col><Square /></Col>
-        <Col><Square /></Col>
-        <Col><Square /></Col>
-      </Row>
-      <Row>
-        <Col><Square /></Col>
-        <Col><Square /></Col>
-        <Col><Square /></Col>
-      </Row>
-      <Row>
-        <Col><Square /></Col>
-        <Col><Square /></Col>
-        <Col><Square /></Col>
-      </Row>
-    </Container>
-  );
-
   const renderNFTs = () => {
     const cardifiedNFTs = availableNFTs.map(({id, title, url, thumbnailUrl}) => 
       <Col key={id} xs={12} md={4} lg={3}>

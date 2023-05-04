@@ -1,22 +1,28 @@
-import Link from "next/link";
-
+import React from 'react';
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+// import '../styles/header.scss';
 
 const Header = () => {
   return (
-    <>
-      <Link href="/">
-        Home
-      </Link>
-      <Link href="/about">
-        About
-      </Link>
-      <Link href="/mint">
-        Mint
-      </Link>
-      <Link href="/marketplace">
-        Marketplace
-      </Link>
-    </>
+<>
+  <Navbar color="dark" dark expand="md">
+    <NavbarBrand href="/">AthletiFi</NavbarBrand>
+    <Nav className="mr-auto" navbar>
+      <NavItem>
+        <NavLink href="/">Home</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="/about">About</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="/marketplace">Marketplace</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="/mint">Mint</NavLink>
+      </NavItem>
+    </Nav>
+  </Navbar>
+</>
   )
 }
 

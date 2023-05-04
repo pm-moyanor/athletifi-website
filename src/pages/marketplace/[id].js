@@ -3,7 +3,6 @@ import axios from "axios";
 import Image from "next/image";
 
 const NFTDetail = ({ nftDetails }) => {
-  console.log(nftDetails);
   let title = nftDetails.title.slice(0, 10);
   let description = nftDetails.title;
   return (
