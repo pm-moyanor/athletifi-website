@@ -1,5 +1,10 @@
 @import "@/styles/shared/fonts";
 
+// Pages
+@import '@/styles/index';
+
 html, body {
+  width: 100%;
+  height: 100%;
   font-family: "Montserrat", "Helvetica";
 }
