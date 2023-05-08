@@ -1,7 +1,15 @@
 @import "@/styles/shared/fonts";
 
+// Components
+@import "@/styles/components/header";
+
 // Pages
 @import '@/styles/index';
+
+
+.absolute {
+  position: absolute;
+}
 
 html, body {
   width: 100%;
