@@ -3,7 +3,7 @@ import React from "react";
 
 const StatsReimagined = () => {
   return (
-    <section className="py-10 mb-6 sm:mb-10 md:mb-20 lg:mb-[125px] relative">
+    <section className="py-14 sm:mb-10 lg:mb-20 xl:mb-[125px] relative">
       <div className="absolute sm:-bottom-[100px] -bottom-8 start-0 lg:w-[230px] lg:h-[286px] -z-10 opacity-30">
         <Image
           className="xl:max-w-[240px]  sm:max-w-[180px] max-w-[130px] "
@@ -21,14 +21,14 @@ const StatsReimagined = () => {
         alt="shadow"
       />
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
-        <div className="blue_Linear_Gradient pb-6 md:pb-12 relative after:absolute flex justify-center flex-col items-center">
+        <div className="blue_Linear_Gradient pb-6 md:pb- lg:pb-12 relative after:absolute flex justify-center flex-col items-center">
           <h2 className="md:text-5xl sm:text-4xl text-[24px] min-[375px]:text-[26px]  text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-[539px] mx-auto text-center md:pt-9 pt-6 px-3 md:px-0 lg:pt-[72px] leading-8 sm:leading-[45px] md:leading-[60px]">
             <span className="relative after:content after:absolute after:bottom-[-4px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
               Stats Reimagined.
             </span>{" "}
             Exposure elevated.
           </h2>
-          <p className="font-Segoe font-normal text-md text-center text-[#FDFEFF] leading-7 px-4 md:px-0 md:max-w-[769px] mx-auto md:mt-4 mt-2 relative z-20">
+          <p className="font-Segoe font-normal text-md text-center text-[#FDFEFF] leading-7 px-4 md:px-0 max-w-[700px] lg:max-w-[769px] mx-auto md:mt-4 mt-2 relative z-20">
             Experience the future of sports collectibles as we integrate dynamic
             statistics into every card, taking your passion for the game to new
             heights. Every goal, pass, and block is updated on the digital
