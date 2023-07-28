@@ -9,7 +9,14 @@ const SoccerExpensive = () => {
     <>
       <div className="relative xl:min-h-screen flex items-center md:mt-10 lg:bg-soccer-expensive-bg bg-no-repeat bg-cover justify-center flex-col lg:flex-row lg:mb-14 sm:mb-20 md:mb-5 lg:py-14 xl:py-0">
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
-          <div className="max-w-[623px] mx-auto lg:mx-0">
+          <div
+            className="max-w-[623px] mx-auto lg:mx-0"
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-easing="linear"
+            data-aos-delay="200"
+            data-aos-offset="200"
+          >
             <h2 className="font-HelveticaNeueMedium text-primary xl:text-xl lg:text-[43px] md:text-[40px] font-medium mb-4 text-[25px] sm:text-[35px] text-center lg:text-start leading-[120%] xl:leading-[60px]">
               <span className="relative after:content after:absolute after:bottom-[-2px] after:left-0 md:after:w-[220px] after:w-[120px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
                 Soccer is{" "}
@@ -34,7 +41,9 @@ const SoccerExpensive = () => {
             </div>
           </div>
         </div>
-        <div className="absolute right-0 lg:top-1/2 lg:-translate-y-1/2 xl:w-[700px] xl:h-[1000px] w-[300px] sm:w-[450px] lg:w-[500px] hidden lg:inline-block">
+        <div
+          className="absolute right-0 lg:top-1/2 lg:-translate-y-1/2 xl:w-[700px] xl:h-[1000px] w-[300px] sm:w-[450px] lg:w-[500px] hidden lg:inline-block"
+        >
           <Image
             className="w-full "
             src="/assets/img/png/expensive_football.png"

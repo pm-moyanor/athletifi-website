@@ -22,13 +22,14 @@ const LatestNews = () => {
           </h2>
           {MatchNews.map((val, index) => {
             return (
-<<<<<<< HEAD
               <div
-                className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6. sm:mt-5"
+                className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-5"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-easing="linear"
+                data-aos-delay="500"
+                data-aos-offset="200"
               >
-=======
-              <div className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-5">
->>>>>>> d07926d3e729cb24abc392eb969ad3e3f19d742b
                 <Image
                   className="rounded-[10px] object-cover md:w-[315px] w-full"
                   src={val.matchimage}

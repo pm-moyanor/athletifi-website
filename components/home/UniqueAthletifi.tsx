@@ -23,11 +23,16 @@ const UniqueAthletifi = () => {
               </span>
             </p>
             <Image
+              data-aos="fade-in"
+              data-aos-duration="1000"
+              data-aos-easing="linear"
+              data-aos-delay="500"
+              data-aos-offset="200"
               className="mb-[1px] sm:max-w-[267px] max-w-[180px]"
               src="/assets/img/png/portrait-young.png"
               width={267}
               height={519}
-              alt={""}
+              alt={"football palyer"}
             />
           </div>
         </div>
@@ -36,7 +41,7 @@ const UniqueAthletifi = () => {
           src="/assets/img/png/unique-football.png"
           width={220}
           height={286}
-          alt={"football palyer"}
+          alt={"football"}
         />
       </section>
     </div>
