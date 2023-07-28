@@ -27,7 +27,7 @@ const WhatWeDo = () => {
                 data-aos-offset="200"
                 className="flex flex-col justify-center h-full lg:pe-6 xl:p-0 text-center lg:text-start lg:mt-20"
               >
-                <h2 className="font-HelveticaNeueMedium font-medium text-[24px]  md:text-5xl sm:text-4xl leading-[60px] text-[#FDFEFF] md:mb-4">
+                <h2 className="font-HelveticaNeueMedium font-medium text-[26px]  md:text-5xl sm:text-4xl leading-[60px] text-[#FDFEFF] md:mb-4">
                   <span className="relative">
                     What we do
                     <span className="absolute -bottom-2 left-0">
