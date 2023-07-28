@@ -36,14 +36,12 @@ const SoccerExpensive = () => {
               </span>
               <ButtonArrow />
             </button> */}
-            <div className="flex lg:justify-start justify-center items-center mt-10 sm:pb-14 md:mb-10">
+            <div className="flex lg:justify-start justify-center items-center mt-10 lg:pb-14 lg:mb-10">
               <BlueButton text="Read more" />
             </div>
           </div>
         </div>
-        <div
-          className="absolute right-0 lg:top-1/2 lg:-translate-y-1/2 xl:w-[700px] xl:h-[1000px] w-[300px] sm:w-[450px] lg:w-[500px] hidden lg:inline-block"
-        >
+        <div className="absolute right-0 lg:top-1/2 lg:-translate-y-1/2 xl:w-[700px] xl:h-[1000px] w-[300px] sm:w-[450px] lg:w-[500px] hidden lg:inline-block">
           <Image
             className="w-full "
             src="/assets/img/png/expensive_football.png"

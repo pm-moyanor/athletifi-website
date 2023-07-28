@@ -41,7 +41,7 @@ export default function Home() {
       <div className="overflow_hidden">
         <div className="hero_homepage_bg min-h-screen bg-no-repeat bg-cover flex flex-col justify-center bg-center">
           <Header />
-          <div className="flex lg:items-center lg:flex-row flex-col flex-grow relative   ">
+          <div className="flex lg:items-center lg:flex-row flex-col flex-grow relative">
             <HeroHomepage />
             <Image
               className="absolute right-0 top-2/3 lg:top-1/3 -z-10 hidden lg:block w-[450px] xl:w-[700px]"

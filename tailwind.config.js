@@ -41,6 +41,9 @@ module.exports = {
           "url('/assets/img/png/sm_Unique-section-bg.png')",
         shadow_blue: "linear-gradient(151deg, #11568C 0%, #00C5F4 100%)",
       },
+      boxShadow: {
+        'coach-shadow': '0 50px 60px 0px rgba(88, 133, 249, 0.10)',
+      }
     },
   },
   plugins: [],

@@ -24,7 +24,7 @@ const HeroHomepage = () => {
               </span>
               <ButtonArrow />
             </button>  */}
-            <div className="flex lg:justify-start justify-center sm:mt-10 mt-7 sm:pb-14 md:mb-10">
+            <div className="flex lg:justify-start justify-center lg:mt-10 mt-7 lg:pb-14 lg:mb-10">
               <BlueButton text=" Join now" />
             </div>
           </div>
