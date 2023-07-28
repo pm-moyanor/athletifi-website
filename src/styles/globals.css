@@ -57,3 +57,6 @@ body {
   pointer-events: auto;
   z-index: 0 !important;
 }
+.bg-about-hero{
+  background-image:url('/assets/img/webp/about-hero-img.webp');
+}

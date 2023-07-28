@@ -5,20 +5,17 @@ import CommonHero from "../../components/common/CommonHero";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header";
 
-
 const aboutUs = () => {
   const hero = {
     heading: "About Us",
   };
   return (
-    <div className="overflow-hidden">
-      <div className="bg-about-hero-image bg-no-repeat bg-cover">
-      <Header/>
-    
-        <CommonHero  hero={hero} />
-        
+    <div className="overflow_hidden">
+      <div className=" bg-about-hero bg-no-repeat bg-cover">
+        <Header />
+        <CommonHero hero={hero} />
       </div>
-      <WhatWeDo/>
+      <WhatWeDo />
       <OurMIssion />
       <WhoweAre />
       <Footer />

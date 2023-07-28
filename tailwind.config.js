@@ -36,7 +36,7 @@ module.exports = {
         "strategic-advisor": "url('/assets/img/png/meet_our_strategic_bg.png')",
         "playground-unique": "url('/assets/img/png/Unique-section-bg.png')",
         "stats-reimagined": "url('/assets/img/svg/bg_stats_reimagined.svg')",
-        "about-hero-image": "url('/assets/img/webp/about-hero-img.webp')",
+        "about-hero": "url('/assets/img/webp/about-hero-img.webp')",
         "playground-unique-sm":
           "url('/assets/img/png/sm_Unique-section-bg.png')",
         shadow_blue: "linear-gradient(151deg, #11568C 0%, #00C5F4 100%)",
