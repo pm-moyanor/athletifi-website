@@ -4,8 +4,11 @@ import { ArrowButton } from "./Icon";
 const BlueButton = (props) => {
   return (
     <>
-      <button className=" px-[24px] py-[14.5px] flex bg-skyblue text-base font-semibold text-black font-Segoe leading-6 gap-[6px]">
-        {props.text} <ArrowButton />
+      <button className=" sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-black font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black hover:text-skyblue join_now_btn transition duration-300 ease-in-out">
+        {props.text}
+        <span className="group-hover:translate-x-3 transition duration-300 ease-out">
+          <ArrowButton />
+        </span>
       </button>
     </>
   );
