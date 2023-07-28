@@ -6,23 +6,23 @@ import football_net from "../../public/assets/img/png/football_net.png";
 const SoccerExpensive = () => {
   return (
     <>
-      <div className="relative xl:min-h-screen flex items-center mt-20 lg:bg-soccer-expensive-bg bg-no-repeat bg-cover justify-center flex-col lg:flex-row mb-32 sm:mb-20 py-28 xl:py-0">
+      <div className="relative xl:min-h-screen flex items-center mt-20 lg:bg-soccer-expensive-bg bg-no-repeat bg-cover justify-center flex-col lg:flex-row lg:mb-32 sm:mb-20 lg:py-28 xl:py-0">
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
-          <div className="max-w-[623px]">
-            <h1 className="font-HelveticaNeueMedium text-primary xl:text-xl font-medium md:leading-[60px] mb-4 text-[25px] sm:text-[35px]">
+          <div className="max-w-[623px] mx-auto lg:mx-0">
+            <h2 className="font-HelveticaNeueMedium text-primary xl:text-xl font-medium md:leading-[60px] mb-4 text-[25px] sm:text-[35px] text-center lg:text-start">
               <span className="relative after:content after:absolute after:bottom-[-2px] after:left-0 md:after:w-[220px] after:w-[120px] after:h-1 after:bg-blue-underline after:bg-cover after:bg-no-repeat">
                 Soccer is{" "}
               </span>
               Expensive & Reduces Accessibility
-            </h1>
-            <p className="font-Segoe font-normal text-md text-primary opacity-80">
+            </h2>
+            <p className="font-Segoe font-normal text-md text-primary opacity-80 text-center lg:text-start">
               There is an unfortunate contradiction at the heart of club soccer
               — a sport renowned for its global unity, yet hindered by
               prohibitive costs that reduce accessibility and limit
               participation. Club soccer is creating a system that excludes
               potential players from less privileged backgrounds.
             </p>
-            <button className="flex items-center bg-skyblue py-[10px] px-[20px] sm:py-[14px] sm:px-[27px] mt-[40px] border border-skyblue hover:bg-transparent duration-300 join_now_btn">
+            <button className="flex items-center bg-skyblue py-[10px] px-[20px] sm:py-[14px] sm:px-[27px] mt-[40px] border border-skyblue hover:bg-transparent duration-300 join_now_btn mx-auto lg:mx-0">
               <span className="text-black duration-300 font-Segoe text-sm sm:text-base font-semibold">
                 Read more
               </span>
@@ -39,13 +39,13 @@ const SoccerExpensive = () => {
             height={700}
           />
         </div>
-        <div className="lg:hidden relative h-[450px] w-full">
+        <div className="lg:hidden relative w-full sm:w-[60%] mx-auto mt-10">
           <Image
-            className="absolute right-0 top-0 sm:top-[60%] sm:-translate-y-1/2"
-            src="/assets/img/png/expensive_football.png"
+            className="mx-auto"
+            src="/assets/img/png/expensive_football_ipad.png"
             alt="football"
-            width={500}
-            height={500}
+            width={700}
+            height={400}
           />
         </div>
       </div>

@@ -50,7 +50,7 @@ const Header = () => {
           <div className="flex items-center justify-between">
             <Link href="/">
               <NavLogo />
-            </Link> 
+            </Link>
             <button
               onClick={() => setOpen(!open)}
               className="flex flex-col sm:hidden bg-transparent border-0 relative z-50"
