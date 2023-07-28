@@ -6,7 +6,7 @@ import football_net from "../../public/assets/img/png/football_net.png";
 const SoccerExpensive = () => {
   return (
     <>
-      <div className="relative xl:min-h-screen flex items-center mt-10 lg:bg-soccer-expensive-bg bg-no-repeat bg-cover justify-center flex-col lg:flex-row lg:mb-32 sm:mb-20 lg:py-28 xl:py-0">
+      <div className="relative xl:min-h-screen flex items-center md:mt-10 lg:bg-soccer-expensive-bg bg-no-repeat bg-cover justify-center flex-col lg:flex-row lg:mb-14 sm:mb-20 md:mb-5 lg:py-14 xl:py-0">
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
           <div className="max-w-[623px] mx-auto lg:mx-0">
             <h2 className="font-HelveticaNeueMedium text-primary xl:text-xl lg:text-[43px] md:text-[40px] font-medium mb-4 text-[25px] sm:text-[35px] text-center lg:text-start leading-[120%] xl:leading-[60px]">
@@ -39,7 +39,7 @@ const SoccerExpensive = () => {
             height={700}
           />
         </div>
-        <div className="lg:hidden relative w-full sm:w-[60%] mx-auto mt-10">
+        <div className="lg:hidden relative w-full sm:w-[60%] mx-auto mt-5">
           <Image
             className="mx-auto"
             src="/assets/img/png/expensive_football_ipad.png"
