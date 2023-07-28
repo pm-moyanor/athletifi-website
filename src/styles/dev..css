@@ -1,0 +1,43 @@
+/* ================================================ NAV BAR ================================================== */
+.overflow_hidden {
+    overflow: hidden;
+}
+
+.nav_open {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    background-color: #000B13;
+    transition: all 0.3s linear;
+}
+
+.slideUp {
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+    transition: transform 0.4s ease-out;
+}
+
+.slideDown {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    transition: transform 0.4s ease-out;
+}
+
+/* ================================================ MEET OUR STRATEGIC ADVISOR ================================================ */
+.join_now_btn:hover span {
+    color: #00C5F4;
+}
+
+.join_now_btn:hover svg path {
+    fill: #00C5F4;
+}
+
+/* ====================================== sats_reimagined================================== */
+
+@media (min-width:640px) {
+    .nav_open {
+        all: unset;
+    }
+}
