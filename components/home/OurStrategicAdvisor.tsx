@@ -17,7 +17,7 @@ const OurStrategicAdvisor = () => {
               height={430}
             />
             <div className="lg:max-w-[555px]">
-              <h3 className="text-primary font-HelveticaNeueMedium text-[26px] sm:text-[36px] md:text-[43px] xl:text-xl font-medium lg:leading-[60px] sm:leading-[45px] leading-[36px] text-center lg:text-start">
+              <h3 className="text-primary font-HelveticaNeueMedium text-[26px] sm:text-[36px] xl:text-5xl lg:text-[43px] md:text-[40px] font-medium lg:leading-[60px] sm:leading-[45px] leading-[36px] text-center lg:text-start">
                 <span className="relative after:absolute after:bottom-[-5px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
                   Meet our
                 </span>{" "}

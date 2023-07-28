@@ -15,7 +15,7 @@ const TrustedPartners = () => {
     <>
       <section>
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto xl:px-0 px-5">
-          <h2 className="text-center font-HelveticaNeueMedium font-medium md:text-5xl sm:text-4xl text-[26px] text-primary sm:py-10 py-5 leading-[120%]">
+          <h2 className="text-center font-HelveticaNeueMedium font-medium lg:text-5xl md:text-[40px] sm:text-4xl text-[26px] text-primary sm:py-10 py-5 leading-[120%]">
             <span className="relative after:content after:absolute after:bottom-[-2px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
               Our trusted
             </span>{" "}
@@ -37,7 +37,7 @@ const TrustedPartners = () => {
             <span className=" lg:max-w-[183px] max-w-[120px]">
               <KelloggsIcon />
             </span>
-            <span className=" lg:max-w-[311px] max-w-[170px]">  
+            <span className=" lg:max-w-[311px] max-w-[170px]">
               <KayakIcon />
             </span>
             <span className=" lg:max-w-[159px] max-w-[115px]">
