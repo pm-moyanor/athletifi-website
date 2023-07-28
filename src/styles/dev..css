@@ -40,6 +40,21 @@
     overflow: hidden;
 }
 
+.preloader {
+    background-color: black;
+    animation: preloader_img 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes preloader_img {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.2);
+    }
+}
+
 @media (min-width:640px) {
     .nav_open {
         all: unset;
