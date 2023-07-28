@@ -6,9 +6,6 @@
 .nav_open {
     height: 100%;
     width: 100%;
-    position: absolute;
-    top: 0%;
-    left: 0%;
     background-color: #000B13;
     transition: all 0.3s linear;
 }
@@ -17,12 +14,16 @@
     -webkit-transform: translateY(-100px);
     transform: translateY(-100px);
     transition: transform 0.4s ease-out;
+    -webkit-backdrop-filter: blur(13px);
+    backdrop-filter: blur(13px);
 }
 
 .slideDown {
     -webkit-transform: translateY(0);
     transform: translateY(0);
     transition: transform 0.4s ease-out;
+    -webkit-backdrop-filter: blur(13px);
+    backdrop-filter: blur(13px);
 }
 
 /* ================================================ MEET OUR STRATEGIC ADVISOR ================================================ */
@@ -34,7 +35,10 @@
     fill: #00C5F4;
 }
 
-/* ====================================== sats_reimagined================================== */
+/* ======================================================================== */
+.overflow_hidden {
+    overflow: hidden;
+}
 
 @media (min-width:640px) {
     .nav_open {

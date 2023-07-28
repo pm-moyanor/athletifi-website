@@ -1,11 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import { BlueShodow, UnderLIneText } from "../common/Icon";
+import { UnderLIneText } from "../common/Icon";
 
 const StatsReimagined = () => {
   return (
     <section className="py-10 min-h-screen mb-6 sm:mb-10 md:mb-20 lg:mb-[125px] relative">
-      <div className="absolute -bottom-[100px] start-0 lg:w-[230px] lg:h-[286px] -z-10 opacity-30">
+      <div className="absolute bottom-0 md:-bottom-[100px] start-0 lg:w-[230px] lg:h-[286px] -z-10 opacity-30">
         <Image
           className="h-full w-full"
           src="/assets/img/png/left-ball.png"
@@ -22,15 +22,15 @@ const StatsReimagined = () => {
         alt="shadow"
       />
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
-        <div className="blue_Linear_Gradient pb-6 md:pb-12 overflow-hidden relative after:absolute flex justify-center flex-col items-center">
-          <h2 className="md:text-5xl text-4xl text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-[539px] mx-auto text-center md:pt-9 pt-6 px-4 lg:pt-[72px]">
+        <div className="blue_Linear_Gradient pb-6 md:pb-12 relative after:absolute flex justify-center flex-col items-center">
+          <h2 className="md:text-5xl text-4xl text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-[539px] mx-auto text-center md:pt-9 pt-6 px-4 md:px-0 lg:pt-[72px] leading-[45px] md:leading-[60px]">
             <span className="relative">
-              Stats
-              <span className="absolute -bottom-2 w-full hidden md:flex left-0">
+              Stats Reimagined.
+              <span className="absolute -bottom-1 -md:bottom-[-2px] w-full hidden sm:flex left-0">
                 <UnderLIneText />
               </span>
             </span>{" "}
-            Reimagined. Exposure elevated.
+            Exposure elevated.
           </h2>
           <p className="font-Segoe font-normal text-md text-center text-[#FDFEFF] leading-7 px-4 md:px-0 md:max-w-[769px] mx-auto md:mt-4 mt-2 relative z-20">
             {" "}
@@ -43,15 +43,16 @@ const StatsReimagined = () => {
               soccer more accessible and empowering dreams to flourish.
             </span>
           </p>
-          <div className="flex flex-wrap lg:grid grid-cols-3 w-full justify-between mt-[18px] items-center max-w-[917px] mx-auto lg:justify-center relative z-20">
-            <Image
-              className="-translate-x-1/2 absolute -bottom-[250px] lg:w-[350px] lg:top-0 lg:-translate-y-1/2 start-1/2 rotate-90 -z-10"
-              src="/assets/img/png/what-we-do-shadow.png"
-              width={917}
-              height={280}
-              alt="shadow"
-            />
-
+          <div className="flex flex-wrap gap-3 lg:grid grid-cols-3 w-full justify-between mt-[18px] items-center max-w-[917px] mx-auto lg:justify-center relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:-top-20 before:left-1/2 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/2 before:-z-10 before:rounded-full">
+            <div className="w-full lg:w-[409px] lg:h-[409px] lg:hidden flex justify-center relative z-10 lg:-translate-x-14">
+              <Image
+                className=""
+                src="/assets/img/webp/space.webp"
+                width={409}
+                height={409}
+                alt="space-image"
+              />
+            </div>{" "}
             <div className="sm:w-1/2 w-full lg:w-auto flex justify-center lg:justify-start">
               <Image
                 className="mx-auto"
@@ -70,8 +71,7 @@ const StatsReimagined = () => {
                 alt="phoenix-image"
               />
             </div>
-
-            <div className="w-full lg:w-[409px] lg:h-[409px] flex justify-center relative z-10 lg:-translate-x-14">
+            <div className="w-full lg:w-[409px] lg:h-[409px] hidden lg:flex justify-center relative z-10 lg:-translate-x-14">
               <Image
                 className=""
                 src="/assets/img/webp/space.webp"
@@ -80,7 +80,6 @@ const StatsReimagined = () => {
                 alt="space-image"
               />
             </div>
-
             <div className="sm:w-1/2 lg:w-auto hidden lg:flex">
               {" "}
               <Image
