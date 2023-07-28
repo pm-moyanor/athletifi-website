@@ -23,7 +23,7 @@ const StatsReimagined = () => {
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
         <div className="blue_Linear_Gradient pb-6 md:pb- lg:pb-12 relative after:absolute flex justify-center flex-col items-center">
           <h2 className="lg:text-5xl md:text-[40px] sm:text-4xl text-[24px]   text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-[539px] mx-auto text-center md:pt-9 pt-6 px-3 md:px-0 lg:pt-[72px] sm:leading-[45px] md:!leading-[60px]">
-            <span className="relative after:content after:absolute after:bottom-[-4px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
+            <span className="relative after:content after:absolute after:bottom-[-8px] sm:after:bottom-[-4px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
               Stats Reimagined.
             </span>{" "}
             Exposure elevated.

@@ -30,7 +30,7 @@ const OurStrategicAdvisor = () => {
               data-aos-offset="200"
             >
               <h3 className="text-primary font-HelveticaNeueMedium text-[26px] sm:text-[36px] xl:text-5xl lg:text-[43px] md:text-[40px] font-medium lg:!leading-[60px] sm:leading-[45px] md:leading-[58px] leading-[36px] text-center lg:text-start">
-                <span className="relative after:absolute after:bottom-[-5px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
+                <span className="relative after:absolute after:bottom-[-8px] sm:after:bottom-[-5px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
                   Meet our
                 </span>{" "}
                 strategic advisor Darren John
