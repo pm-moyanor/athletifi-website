@@ -25,12 +25,12 @@ const HeroHomepage = () => {
             </button>
           </div>
           <div className="pt-3 sm:pt-10 lg:pt-0">
-            <span className="absolute right-0 top-[70%] -translate-y-1/2 max-w-[400px] xl:max-w-[500px] hidden lg:inline-block">
+            <span className="absolute right-0 top-[70%] -translate-y-1/2 max-w-[450px] xl:max-w-[500px] hidden lg:inline-block">
               <Image
                 src="/assets/img/png/hero_female_player.png"
                 alt="female-player"
-                width={500}
-                height={500}
+                width={550}
+                height={600}
               />
             </span>
           </div>

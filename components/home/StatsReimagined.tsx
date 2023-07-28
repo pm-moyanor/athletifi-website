@@ -3,10 +3,10 @@ import React from "react";
 
 const StatsReimagined = () => {
   return (
-    <section className="py-14 sm:mb-10 lg:mb-20 xl:mb-[125px] relative">
+    <section className="py-14 sm:mb-10 lg:mb-20 xl:mb-[125px] relative lg:mt-10 sl:mt-0">
       <div className="absolute sm:-bottom-[100px] -bottom-8 start-0 lg:w-[230px] lg:h-[286px] -z-10 opacity-30">
         <Image
-          className="xl:max-w-[240px]  sm:max-w-[180px] max-w-[130px] "
+          className="xl:max-w-[240px] sm:max-w-[180px] max-w-[130px]"
           src="/assets/img/png/left-ball.png"
           width={240}
           height={286}
