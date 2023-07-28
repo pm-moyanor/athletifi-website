@@ -31,8 +31,7 @@ export default function Home() {
     <>
       {preloader && (
         <div
-          className={`
-          } preloader fixed min-h-screen top-0 left-0 w-full z-50 flex justify-center items-center`}
+          className={`preloader fixed min-h-screen top-0 left-0 w-full z-50 flex justify-center items-center`}
         >
           <span>
             <NavLogo />
@@ -45,7 +44,7 @@ export default function Home() {
           <div className="flex lg:items-center lg:flex-row flex-col flex-grow relative pt-32">
             <HeroHomepage />
             <Image
-              className="absolute h-100 right-0 top-2/3 lg:top-1/3 -z-10 hidden lg:block w-[450px] xl:w-[700px]"
+              className="absolute right-0 top-2/3 lg:top-1/3 -z-10 hidden lg:block w-[450px] xl:w-[700px]"
               src="/assets/img/svg/hero_grid.svg"
               alt="grid-lines"
               width={700}
