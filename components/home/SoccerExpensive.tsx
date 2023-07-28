@@ -6,7 +6,7 @@ import football_net from "../../public/assets/img/png/football_net.png";
 const SoccerExpensive = () => {
   return (
     <>
-      <div className="relative xl:min-h-screen flex items-center mt-20 lg:bg-soccer-expensive-bg bg-no-repeat bg-cover justify-center flex-col lg:flex-row lg:mb-32 sm:mb-20 lg:py-28 xl:py-0">
+      <div className="relative xl:min-h-screen flex items-center mt-10 lg:bg-soccer-expensive-bg bg-no-repeat bg-cover justify-center flex-col lg:flex-row lg:mb-32 sm:mb-20 lg:py-28 xl:py-0">
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
           <div className="max-w-[623px] mx-auto lg:mx-0">
             <h2 className="font-HelveticaNeueMedium text-primary xl:text-xl font-medium md:leading-[60px] mb-4 text-[25px] sm:text-[35px] text-center lg:text-start">
