@@ -22,7 +22,7 @@ const StatsReimagined = () => {
       />
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
         <div className="blue_Linear_Gradient pb-6 md:pb- lg:pb-12 relative after:absolute flex justify-center flex-col items-center">
-          <h2 className="md:text-5xl sm:text-4xl text-[24px] min-[375px]:text-[26px]  text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-[539px] mx-auto text-center md:pt-9 pt-6 px-3 md:px-0 lg:pt-[72px] leading-8 sm:leading-[45px] md:leading-[60px]">
+          <h2 className="lg:text-5xl md:text-[40px] sm:text-4xl text-[24px]   text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-[539px] mx-auto text-center md:pt-9 pt-6 px-3 md:px-0 lg:pt-[72px] leading-8 sm:leading-[45px] md:leading-[60px]">
             <span className="relative after:content after:absolute after:bottom-[-4px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
               Stats Reimagined.
             </span>{" "}
@@ -41,6 +41,11 @@ const StatsReimagined = () => {
           <div className="flex flex-wrap lg:grid grid-cols-3 w-full justify-between mt-[18px] items-center max-w-[917px] mx-auto lg:justify-center relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:-top-20 before:left-1/2 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/2 before:-z-10 before:rounded-full">
             <div className="w-full lg:w-[409px] lg:h-[409px] lg:hidden flex justify-center relative z-10 lg:-translate-x-14">
               <Image
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-easing="linear"
+                data-aos-delay="200"
+                data-aos-offset="200"
                 className=""
                 src="/assets/img/webp/space.webp"
                 width={409}
@@ -50,6 +55,11 @@ const StatsReimagined = () => {
             </div>{" "}
             <div className="sm:w-1/2 w-full lg:w-auto flex justify-center lg:justify-start">
               <Image
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-easing="linear"
+                data-aos-delay="500"
+                data-aos-offset="200"
                 className="mx-auto"
                 src="/assets/img/webp/castle.webp"
                 width={280}
@@ -59,6 +69,11 @@ const StatsReimagined = () => {
             </div>
             <div className="sm:w-1/2 w-full lg:hidden flex justify-center">
               <Image
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-easing="linear"
+                data-aos-delay="800"
+                data-aos-offset="200"
                 className="md:-translate-x-6"
                 src="/assets/img/webp/phoenix.webp"
                 width={280}
@@ -68,6 +83,11 @@ const StatsReimagined = () => {
             </div>
             <div className="w-full lg:w-[409px] lg:h-[409px] hidden lg:flex justify-center relative z-10 lg:-translate-x-14">
               <Image
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-easing="linear"
+                data-aos-delay="200"
+                data-aos-offset="200"
                 className=""
                 src="/assets/img/webp/space.webp"
                 width={409}
@@ -78,6 +98,11 @@ const StatsReimagined = () => {
             <div className="sm:w-1/2 lg:w-auto hidden lg:flex">
               {" "}
               <Image
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-easing="linear"
+                data-aos-delay="800"
+                data-aos-offset="200"
                 className=""
                 src="/assets/img/webp/phoenix.webp"
                 width={280}

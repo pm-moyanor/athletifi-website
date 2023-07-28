@@ -2,15 +2,23 @@ import React from "react";
 import { ButtonArrow } from "../common/Icon";
 import Image from "next/image";
 import football_net from "../../public/assets/img/png/football_net.png";
+import BlueButton from "../common/BlueButton";
 
 const SoccerExpensive = () => {
   return (
     <>
       <div className="relative flex items-center md:mt-10 lg:bg-soccer-expensive-bg bg-no-repeat bg-cover justify-center flex-col lg:flex-row lg:mb-14 md:mb-5 xl:py-20 xl:pb-44">
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
-          <div className="max-w-[623px] mx-auto lg:mx-0">
-            <h2 className="font-HelveticaNeueMedium text-primary xl:text-xl font-medium md:leading-[60px] mb-4 text-[25px] sm:text-[35px] text-center lg:text-start">
-              <span className="relative after:content after:absolute after:bottom-[-2px] after:left-0 md:after:w-[220px] after:w-[120px] after:h-1 after:bg-blue-underline after:bg-cover after:bg-no-repeat">
+          <div
+            className="max-w-[623px] mx-auto lg:mx-0"
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-easing="linear"
+            data-aos-delay="200"
+            data-aos-offset="200"
+          >
+            <h2 className="font-HelveticaNeueMedium text-primary xl:text-xl lg:text-[43px] md:text-[40px] font-medium mb-4 text-[25px] sm:text-[35px] text-center lg:text-start leading-[120%] xl:leading-[60px]">
+              <span className="relative after:content after:absolute after:bottom-[-2px] after:left-0 md:after:w-[220px] after:w-[120px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
                 Soccer is{" "}
               </span>
               Expensive & Reduces Accessibility
@@ -22,15 +30,20 @@ const SoccerExpensive = () => {
               participation. Club soccer is creating a system that excludes
               potential players from less privileged backgrounds.
             </p>
-            <button className="flex items-center bg-skyblue py-[10px] px-[20px] sm:py-[14px] sm:px-[27px] mt-[40px] border border-skyblue hover:bg-transparent duration-300 join_now_btn mx-auto lg:mx-0">
+            {/* <button className="flex items-center bg-skyblue py-[10px] px-[20px] sm:py-[14px] sm:px-[27px] mt-[40px] border border-skyblue hover:bg-transparent duration-300 join_now_btn mx-auto lg:mx-0">
               <span className="text-black duration-300 font-Segoe text-sm sm:text-base font-semibold">
                 Read more
               </span>
               <ButtonArrow />
-            </button>
+            </button> */}
+            <div className="flex lg:justify-start justify-center items-center mt-10 sm:pb-14 md:mb-10">
+              <BlueButton text="Read more" />
+            </div>
           </div>
         </div>
-        <div className="absolute right-0 lg:top-1/2 lg:-translate-y-1/2 xl:w-[700px] xl:h-[1000px] w-[300px] sm:w-[450px] lg:w-[500px] hidden lg:inline-block">
+        <div
+          className="absolute right-0 lg:top-1/2 lg:-translate-y-1/2 xl:w-[700px] xl:h-[1000px] w-[300px] sm:w-[450px] lg:w-[500px] hidden lg:inline-block"
+        >
           <Image
             className="w-full "
             src="/assets/img/png/expensive_football.png"

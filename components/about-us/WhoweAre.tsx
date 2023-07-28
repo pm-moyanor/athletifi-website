@@ -33,7 +33,7 @@ const WhoweAre = () => {
             data-aos-delay="300"
             data-aos-offset="100"
           >
-            <h2 className="font-HelveticaNeueMedium md:text-5xl text-[24px] sm:text-4xl text-[#FDFEFF] font-medium leading-[60px] relative z-20 text-center md:mb-4">
+            <h2 className="font-HelveticaNeueMedium md:text-5xl text-[26px] sm:text-4xl text-[#FDFEFF] font-medium leading-[60px] relative z-20 text-center md:mb-4">
               <span className="relative ">
                 Who we Are
                 <span className="absolute -bottom-2 left-0 z-0">

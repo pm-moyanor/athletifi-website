@@ -7,7 +7,7 @@ const UniqueAthletifi = () => {
       <section className="relative lg:before:content-[''] before:absolute lg:before:w-[448px] before:h-[448px] before:-top-20 before:left-0 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/3 before:-z-10 before:rounded-full after:content-[''] after:absolute after:w-[448px] after:h-[448px] after:-bottom-20 after:right-0 after:bg-shadow_blue after:blur-[111px] after:opacity-25 after:translate-x-1/3 after:-z-10 after:rounded-full lg:pb-24 sm:pb-12">
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto pt-14 relative z-10">
           <div className="lg:px-14 lg:pt-14 sm:px-8 px-4 pt-6 sm:bg-playground-unique bg-playground-unique-sm bg-opacity-50 bg-[length:100%_100%] bg-center bg-no-repeat flex flex-col items-center ">
-            <h2 className="md:text-xl text-3xl text-primary font-HelveticaNeueMedium text-center py-4 ">
+            <h2 className="lg:text-5xl md:text-[40px] sm:text-4xl text-[26px] text-primary font-HelveticaNeueMedium text-center py-4 ">
               <span className="relative after:content after:absolute after:bottom-[-2px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat mb-4 lg:leading-[60px] leading-[120%]">
                 What Makes
               </span>{" "}
@@ -23,11 +23,16 @@ const UniqueAthletifi = () => {
               </span>
             </p>
             <Image
+              data-aos="fade-in"
+              data-aos-duration="1000"
+              data-aos-easing="linear"
+              data-aos-delay="500"
+              data-aos-offset="200"
               className="mb-[1px] sm:max-w-[267px] max-w-[180px]"
               src="/assets/img/png/portrait-young.png"
               width={267}
               height={519}
-              alt={""}
+              alt={"football palyer"}
             />
           </div>
         </div>
@@ -36,7 +41,7 @@ const UniqueAthletifi = () => {
           src="/assets/img/png/unique-football.png"
           width={220}
           height={286}
-          alt={""}
+          alt={"football"}
         />
       </section>
     </div>

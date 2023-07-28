@@ -29,7 +29,7 @@ const OurMIssion = () => {
         <div className="flex lg:flex-row flex-col-reverse justify-between">
           <div className="lg:w-5/12 xl:w-[531px] min-[1530px]:w-1/2 w-9/12 sm:w-3/5 mx-auto lg:ms-0  mt-6 sm:mt-8 lg:mt-0">
             <div
-              data-aos="fade-rigth"
+              data-aos="fade-right"
               data-aos-duration="1000"
               data-aos-easing="linear"
               data-aos-delay="500"
@@ -54,7 +54,7 @@ const OurMIssion = () => {
               data-aos-offset="100"
               className="flex flex-col justify-center h-full text-center min-[1530px]:items-end lg:text-start"
             >
-              <h2 className="font-HelveticaNeueMedium md:text-5xl sm:text-4xl text-[24px] min-[1530px]:w-[506px] sm:mt-6 text-[#FDFEFF] font-medium leading-[60px] md:mb-4">
+              <h2 className="font-HelveticaNeueMedium md:text-5xl sm:text-4xl text-[26px] min-[1530px]:w-[506px] sm:mt-6 text-[#FDFEFF] font-medium leading-[60px] md:mb-4">
                 <span className="relative">
                   Our Mission{" "}
                   <span className="absolute -bottom-2 left-0">

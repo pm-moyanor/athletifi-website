@@ -25,7 +25,7 @@ const Backtotop = () => {
     <>
       {scrollPosition > 200 ? (
         <div
-          className="fixed  backtotop sm:bottom-7 bottom-14 right-7 z-50 md:max-h-12 md:max-w-[48px] max-h-9 max-w-[36px]  cursor-pointer bg-skyblue rounded-lg"
+          className="fixed  backtotop sm:bottom-20 bottom-14 right-7 z-50 md:max-h-12 md:max-w-[48px] max-h-9 max-w-[36px]  cursor-pointer bg-skyblue rounded-lg"
           onClick={() => scrollToTop()}
         >
           <div className="w-full h-full flex justify-center items-center">

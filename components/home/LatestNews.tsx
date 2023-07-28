@@ -15,14 +15,21 @@ const LatestNews = () => {
     <>
       <section className="py-14 md:py-0 relative before:content-[''] before:absolute sm:before:w-[448px] before:w-[248px] sm:before:h-[448px] before:h-[248px] before:top-0 before:left-0 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/4 before:z-0 before:rounded-full after:content-[''] after:absolute sm:after:w-[448px] sm:after:h-[448px] after:w-[248px] after:h-[248px] after:bottom-20 after:right-0 after:bg-shadow_blue after:blur-[111px] after:opacity-25 after:translate-x-1/4 after:z-0 after:rounded-full">
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto relative z-10">
-          <h2 className="text-center font-HelveticaNeueMedium font-medium md:text-5xl text-[26px] text-primary md:py-10 pb-5">
+          <h2 className="text-center font-HelveticaNeueMedium font-medium lg:text-5xl md:text-[40px] text-[26px] text-primary md:py-10 pb-5">
             <span className="relative after:content after:absolute after:bottom-[-2px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
               Latest News
             </span>
           </h2>
           {MatchNews.map((val, index) => {
             return (
-              <div className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-5">
+              <div
+                className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-5"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-easing="linear"
+                data-aos-delay="500"
+                data-aos-offset="200"
+              >
                 <Image
                   className="rounded-[10px] object-cover md:w-[315px] w-full"
                   src={val.matchimage}

@@ -71,7 +71,7 @@ const Header = () => {
                   <Link
                     href="/"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
-                      path == "/" ? "opacity-100" : ""
+                      path == "/" ? "!opacity-100" : ""
                     }`}
                   >
                     Home
@@ -81,7 +81,7 @@ const Header = () => {
                   <Link
                     href="/about-us"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
-                      path == "/about-us" ? "opacity-100" : ""
+                      path == "/about-us" ? "!opacity-100 " : ""
                     }`}
                   >
                     About us
