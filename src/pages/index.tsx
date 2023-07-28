@@ -9,7 +9,7 @@ import TrustedPartners from "../../components/home/TrustedPartners";
 import SoccerExpensive from "../../components/home/SoccerExpensive";
 import UniqueAthletifi from "../../components/home/UniqueAthletifi";
 import HeroHomepage from "../../components/home/HeroHomepage";
-
+import Backtotop from "../../components/common/Backtotop";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -36,6 +36,7 @@ export default function Home() {
         <TrustedPartners />
         <LatestNews />
         <Footer />
+        <Backtotop />
       </div>
     </>
   );

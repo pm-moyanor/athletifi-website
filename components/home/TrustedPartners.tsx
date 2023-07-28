@@ -15,7 +15,7 @@ const TrustedPartners = () => {
     <>
       <section>
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto xl:px-0 px-5">
-          <h2 className="text-center font-HelveticaNeueMedium font-medium md:text-5xl text-4xl text-primary py-10">
+          <h2 className="text-center font-HelveticaNeueMedium font-medium md:text-5xl sm:text-4xl text-[26px] text-primary sm:py-10 py-5 leading-[120%]">
             <span className="relative after:content after:absolute after:bottom-[-2px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
               Our trusted
             </span>{" "}
@@ -30,7 +30,7 @@ const TrustedPartners = () => {
               Mid-Atlantic region to bring sports technology to new heights.
             </h4>
           </div>
-          <div className="flex lg:justify-between justify-center md:py-12 pt-5 pb-10 flex-wrap md:gap-x-24 lg:gap-10 xl:gap-x-14  gap-x-5 gap-y-3">
+          <div className="flex lg:justify-between justify-center md:py-12 pt-5 sm:pb-10 flex-wrap md:gap-x-24 lg:gap-[38px] xl:gap-x-14  gap-x-5 gap-y-3">
             <span className=" lg:max-w-[214px] max-w-[130px]">
               <MerckIcon />
             </span>

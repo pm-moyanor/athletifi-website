@@ -9,6 +9,8 @@ import {
 import Link from "next/link";
 
 const Footer = () => {
+   const today = new Date();
+   const year = today.getFullYear();
   return (
     <>
       <footer className="border-t border-[#00C7FF]">
@@ -48,22 +50,47 @@ const Footer = () => {
             </li>
           </ul>
           <p className=" text-white text-sm font-Segoe opacity-70">
-            @2023 Athletifi
+            @{year} Athletifi
           </p>
           <div className="flex gap-4">
-            <Link className="hover:-translate-y-2 transition duration-300 ease-out" href="#" target="_blank" rel="noopener noreferrer">
+            <Link
+              className="hover:-translate-y-2 transition duration-300 ease-out"
+              href="https://www.tiktok.com/about"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <TiktokIcon />
             </Link>
-            <Link className="hover:-translate-y-2 transition duration-300 ease-out" href="#" target="_blank" rel="noopener noreferrer">
+            <Link
+              className="hover:-translate-y-2 transition duration-300 ease-out"
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FacebookIcon />
             </Link>
-            <Link className="hover:-translate-y-2 transition duration-300 ease-out" href="#" target="_blank" rel="noopener noreferrer">
+            <Link
+              className="hover:-translate-y-2 transition duration-300 ease-out"
+              href="https://twitter.com/login"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <TwitterIcon />
             </Link>
-            <Link className="hover:-translate-y-2 transition duration-300 ease-out" href="#" target="_blank" rel="noopener noreferrer">
+            <Link
+              className="hover:-translate-y-2 transition duration-300 ease-out"
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <InstaIcon />
             </Link>
-            <Link className="hover:-translate-y-2 transition duration-300 ease-out" href="#" target="_blank" rel="noopener noreferrer">
+            <Link
+              className="hover:-translate-y-2 transition duration-300 ease-out"
+              href="https://in.linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <LinkedInIcon />
             </Link>
           </div>
