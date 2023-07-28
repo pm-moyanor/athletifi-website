@@ -36,7 +36,7 @@ const UniqueAthletifi = () => {
           src="/assets/img/png/unique-football.png"
           width={220}
           height={286}
-          alt={""}
+          alt={"football palyer"}
         />
       </section>
     </div>
