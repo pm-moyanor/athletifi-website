@@ -6,9 +6,9 @@ const StatsReimagined = () => {
     <section className="py-10 mb-6 sm:mb-10 md:mb-20 lg:mb-[125px] relative">
       <div className="absolute sm:-bottom-[100px] -bottom-8 start-0 lg:w-[230px] lg:h-[286px] -z-10 opacity-30">
         <Image
-          className="xl:max-w-[286px]  sm:max-w-[200px] max-w-[130px] "
+          className="xl:max-w-[240px]  sm:max-w-[180px] max-w-[130px] "
           src="/assets/img/png/left-ball.png"
-          width={286}
+          width={240}
           height={286}
           alt="what we do foot ball image"
         />
