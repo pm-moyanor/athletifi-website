@@ -22,7 +22,9 @@ const LatestNews = () => {
           </h2>
           {MatchNews.map((val, index) => {
             return (
-              <div className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-10 sm:mt-5">
+              <div
+                className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6. sm:mt-5"
+              >
                 <Image
                   className="rounded-[10px] object-cover md:w-[315px] w-full"
                   src={val.matchimage}

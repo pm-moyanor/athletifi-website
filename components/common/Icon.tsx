@@ -604,7 +604,8 @@ export const EuropcarIcon = () => {
 export const UnderLIneText = () => {
   return (
     <svg
-      width="209"
+      className="sm:w-[209px]"
+      width="150"
       height="10"
       viewBox="0 0 211 10"
       fill="none"
