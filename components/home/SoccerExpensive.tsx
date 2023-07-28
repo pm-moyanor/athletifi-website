@@ -30,12 +30,12 @@ const SoccerExpensive = () => {
             </button>
           </div>
         </div>
-        <div className="absolute right-0 lg:top-1/2 lg:-translate-y-1/2 xl:w-[600px] xl:h-[800px] w-[300px] sm:w-[450px] lg:w-[500px] hidden lg:inline-block">
+        <div className="absolute right-0 lg:top-1/2 lg:-translate-y-1/2 xl:w-[700px] xl:h-[1000px] w-[300px] sm:w-[450px] lg:w-[500px] hidden lg:inline-block">
           <Image
             className="w-full "
-            src="/assets/img/png/football.png"
+            src="/assets/img/png/expensive_football.png"
             alt="football"
-            width={600}
+            width={700}
             height={700}
           />
         </div>
