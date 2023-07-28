@@ -25,7 +25,7 @@ const HeroHomepage = () => {
             </button>
           </div>
           <div className="pt-10 lg:pt-0">
-            <span className="absolute right-0 top-1/2 -translate-y-1/2 max-w-[400px] xl:max-w-[500px] hidden lg:inline-block">
+            <span className="absolute right-0 top-[70%] -translate-y-1/2 max-w-[400px] xl:max-w-[500px] hidden lg:inline-block">
               <Image
                 src="/assets/img/png/hero_female_player.png"
                 alt="female-player"
@@ -45,7 +45,7 @@ const HeroHomepage = () => {
           height={500}
         />
       </div>
-      <div className="pt-10 lg:pt-0 ">
+      <div className="pt-10 lg:pt-0">
         <span className=" right-0 top-1/2 -translate-y-1/2 max-w-[400px] sm:hidden">
           <Image
             className="ml-auto"
