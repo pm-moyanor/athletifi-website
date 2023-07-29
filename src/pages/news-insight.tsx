@@ -8,6 +8,8 @@ import RecentNewsInsights from "../../components/news-insights/RecentNewsInsight
 const newsinsight = () => {
   const hero = {
     heading: "News and Insights",
+         title: "Your Title Here", // Add the 'title' property
+    subtitle: "Your Subtitle Here", 
   };
   return (
     <>
