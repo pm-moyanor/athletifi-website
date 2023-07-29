@@ -12,6 +12,7 @@ import HeroHomepage from "../../components/home/HeroHomepage";
 import Backtotop from "../../components/common/Backtotop";
 import { useEffect, useState } from "react";
 import { NavLogo } from "../../components/common/Icon";
+import Seo from "../../components/home/Seo";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -27,8 +28,23 @@ export default function Home() {
       document.body.classList.remove("overflow_hidden");
     }
   });
+  const pageSEO = {
+    // SEO TITLE
+    title: "Make club soccer more affordable",
+
+    // SEO DESCRIPTION
+    description:
+      "Unlocking opportunities for aspiring young athletes. Connecting all talent, no matter where they are from, with top-tier coaches, scholarships, and unparalledled resources. Welcome to the future of sports... for everyone!",
+
+    // SEO WEBSITE URL
+    websiteURL: "https://zoplenti-next.vercel.app",
+
+    // SEO IMAGE
+    image: "/lending_meta_img.webp",
+  };
   return (
     <>
+      <Seo pageSEO={pageSEO} />
       {preloader && (
         <div
           className={`preloader fixed min-h-screen top-0 left-0 w-full z-50 flex justify-center items-center`}
@@ -44,7 +60,7 @@ export default function Home() {
           <div className="flex lg:items-center lg:flex-row flex-col flex-grow relative">
             <HeroHomepage />
             <Image
-              className="absolute right-0 top-2/3 lg:top-1/3 -z-10 hidden lg:block w-[450px] xl:w-[700px]"
+              className="absolute right-0 hero_grid_position -z-10 hidden lg:block w-[450px] xl:w-[700px]"
               src="/assets/img/svg/hero_grid.svg"
               alt="grid-lines"
               width={700}
