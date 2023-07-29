@@ -5,7 +5,7 @@ const MasteringGame = () => {
   return (
     <section className="lg:pb-12 relative">
       <Image
-        className="lg:w-[462px] lg:h-[441px] w-40 h-40 lg:-top-28 lg:-left-10 absolute -z-20 opacity-50"
+        className="lg:w-[462px] lg:h-[441px] w-40 lg:-top-28 lg:-left-10 absolute -z-20 opacity-50"
         src="/assets/img/svg/news-grid-line.svg"
         width={400}
         height={448}

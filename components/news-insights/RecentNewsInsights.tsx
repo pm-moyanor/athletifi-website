@@ -8,7 +8,7 @@ const RecentNewsInsights = () => {
   return (
     <section className="lg:py-14 py-10 mt-1 md:mb-1 lg:mb-14 xl:mb-[75px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:-top-28 before:-left-24 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full">
       <Image
-        className="lg:w-[462px] lg:h-[541px] w-full -top-8 -left-20 absolute opacity-60"
+        className="lg:w-[462px] lg:h-[541px] w-[150px] -top-8 sm:-left-20 -left-5 absolute opacity-60"
         src="/assets/img/svg/news-grid-line.svg"
         width={362}
         height={241}
@@ -27,14 +27,14 @@ const RecentNewsInsights = () => {
             Recent News
             <span className="absolute -bottom-2 -md:bottom-[-2px] w-full left-0">
               <UnderLIneText />
-            </span>{" "}
-          </span>{" "}
+            </span>
+          </span>
           and Insights
         </h2>
-        <div className="flex flex-wrap grid-cols-3 sm:mt-4 md:mt-0 lg:mt-11 xl:mt-[73px] justify-center relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:top-0 before:-end-56 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full">
+        <div className="flex flex-wrap sm:mt-4 md:mt-0 lg:mt-11 xl:mt-[73px] justify-center relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:top-0 before:-end-56 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full">
           {RecentNews.map((data, i) => {
             return (
-              <div className="lg:w-1/3 sm:w-1/2 w-full lg:px-3 mt-6 md:mt-12 lg:mt-0">
+              <div className="lg:w-1/3 sm:w-1/2 w-full lg:px-3 px-5 mt-6 md:mt-12 lg:mt-0">
                 <div
                   data-aos="flip-right"
                   data-aos-duration="800"
