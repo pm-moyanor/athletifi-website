@@ -32,7 +32,7 @@ const MasteringGame = () => {
               data-aos-easing="linear"
               data-aos-delay="200"
               data-aos-offset="200"
-              className="font-HelveticaNeueMedium text-[#FDFEFF]  font-medium text-[22px] sm:text-lg leading-8 md:leading-[39px]"
+              className="font-HelveticaNeueMedium text-[#FDFEFF]  font-medium text-[22px] sm:text-lg leading-8 md:leading-[39px] sm:text-start text-center"
             >
               "Mastering the Game: A Coach's Guide to Unlocking Football
               Strategies"
@@ -43,7 +43,7 @@ const MasteringGame = () => {
               data-aos-easing="linear"
               data-aos-delay="200"
               data-aos-offset="200"
-              className="font-Segoe text-[#B1B5B8] mt-2 font-normal text-base"
+              className="font-Segoe text-[#B1B5B8] mt-2 font-normal text-base sm:text-start text-center"
             >
               by: Graham Clark.23 June 2023
             </p>
@@ -53,7 +53,7 @@ const MasteringGame = () => {
               data-aos-easing="linear"
               data-aos-delay="200"
               data-aos-offset="200"
-              className="font-Segoe font-normal text-md lg:mt-4 mt-2 leading-7 text-[#B1B5B8]"
+              className="font-Segoe font-normal text-md lg:mt-4 mt-2 leading-7 text-[#B1B5B8] sm:text-start text-center"
             >
               Football strategies are the tactical blueprints that coaches
               devise to guide their teams to success on the field. These
@@ -72,7 +72,7 @@ const MasteringGame = () => {
               data-aos-easing="linear"
               data-aos-delay="200"
               data-aos-offset="200"
-              className="font-HelveticaNeueMedium text-[#FDFEFF] font-medium text-[22px] sm:text-basemd leading-8 md:leading-[39px] m-0"
+              className="font-HelveticaNeueMedium text-[#FDFEFF] font-medium text-[22px] sm:text-basemd leading-8 md:leading-[39px] m-0 sm:text-start text-center"
             >
               "Elevate your game, ignite your passion, and conquer the field!"
             </h3>
@@ -82,7 +82,7 @@ const MasteringGame = () => {
               data-aos-easing="linear"
               data-aos-delay="200"
               data-aos-offset="200"
-              className="font-Segoe font-normal text-md leading-7 text-[#B1B5B8] mt-2 lg:scroll-pt-0.5 lg:max-w-[1140px]"
+              className="font-Segoe font-normal text-md leading-7 text-[#B1B5B8] mt-2 lg:scroll-pt-0.5 lg:max-w-[1140px] sm:text-start text-center"
             >
               Are you ready to unlock your full potential and leave your mark on
               the football field? Join us on a journey of inspiration and
@@ -102,7 +102,7 @@ const MasteringGame = () => {
             data-aos-offset="200"
             className="mt-6"
           >
-            <h3 className="font-HelveticaNeueMedium text-[#FDFEFF] font-medium text-[22px] sm:text-basemd leading-8 md:leading-[39px] m-0">
+            <h3 className="font-HelveticaNeueMedium text-[#FDFEFF] font-medium text-[22px] sm:text-basemd leading-8 md:leading-[39px] m-0 sm:text-start text-center">
               "Unveiling the Winning Formula: Where Strategy Meets Victory!"
             </h3>
             <p
@@ -111,7 +111,7 @@ const MasteringGame = () => {
               data-aos-easing="linear"
               data-aos-delay="200"
               data-aos-offset="200"
-              className="font-Segoe font-normal text-md leading-7 text-[#B1B5B8] mt-2 lg:pt-0.5 lg:max-w-[1024px]"
+              className="font-Segoe font-normal text-md leading-7 text-[#B1B5B8] mt-2 lg:pt-0.5 lg:max-w-[1024px] sm:text-start text-center"
             >
               Welcome to the realm of strategic mastery on the football field.
               Our coach is your guiding light, unveiling the secrets behind a

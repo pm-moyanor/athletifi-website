@@ -36,7 +36,7 @@ const CommonHero: React.FC<{ hero: HeroProps }> = ({ hero }) => {
           height={1494}
         />
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative z-10">
-          <div className="md:pb-16 md:pt-[160px] xl:pb-24 xl:pt-[189px] pb-14 pt-36">
+          <div className="sm:pb-16 sm:pt-[160px] xl:pb-24 xl:pt-[189px] pb-16 pt-36">
             <h2
               data-aos="zoom-in"
               data-aos-duration="600"
