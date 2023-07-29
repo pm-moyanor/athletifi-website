@@ -12,8 +12,10 @@ const signup = () => {
   };
   return (
     <>
-      <Header />
-      <CommonHero hero={hero} />
+      <div className="bg-signup-hero-img bg-no-repeat bg-cover overflow-hidden">
+        <Header />
+        <CommonHero hero={hero} />
+      </div>
       <SignUpForm />
       <Footer />
     </>
