@@ -5,7 +5,7 @@ import { ButtonWhiteArrow, UnderLIneText } from "../common/Icon";
 const SignUpForm = () => {
   const [checked, setChecked] = useState(false);
   return (
-    <section className="py-8 sm:py-[64px] lg:pt-[100px] xl:pt-[145px] lg:pb-[100px] xl:pb-[139px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:top-2 before:-left-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full">
+    <section className="py-8 sm:py-[64px] lg:pt-[100px] xl:pt-[145px] lg:pb-[100px] xl:pb-[139px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:top-2 before:-left-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full overflow-hidden">
       <Image
         className="lg:w-[462px] lg:h-[452px] w-40 h-40 lg:top-10 lg:-left-10 absolute -z-20 opacity-40"
         src="/assets/img/svg/news-grid-line.svg"
@@ -38,29 +38,31 @@ const SignUpForm = () => {
               <form action="submit" className="w-full sm:w-3/4">
                 <div className="flex flex-col mt-6">
                   <label
-                    className="font-Segoe font-normal text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px]"
+                    className="font-Segoe font-normal group text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px]"
                     htmlFor="email"
                   >
                     Email
                   </label>
                   <input
+                    required
                     type="email"
                     placeholder="Email"
-                    className="font-Sugoe font-normal text-base text-[#FDFEFF] leading-6 py-5 px-4 bg-transparent w-full lg:max-w-[400px] mt-[5px] border border-1 border-[#FFFFFF40] outline-none"
+                    className="font-Sugoe font-normal input:-webkit-autofill focus:border-[white] autofill:none text-base text-[#FDFEFF] leading-6 py-5 px-4 bg-transparent w-full lg:max-w-[400px] mt-[5px] border border-1 border-[#FFFFFF40] outline-none"
                     id="email"
                   />
                 </div>
                 <div className="flex flex-col mt-4">
                   <label
-                    className="font-Segoe font-normal text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px]"
+                    className="font-Segoe font-normal input:-webkit-autofill text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px]"
                     htmlFor="Password"
                   >
                     Password
                   </label>
                   <input
+                    required
                     type="Password"
                     placeholder="Password"
-                    className="font-Sugoe font-normal text-base text-[#FDFEFF] leading-6 py-5 px-4 bg-transparent w-full lg:max-w-[400px] mt-[5px] border border-1 border-[#FFFFFF40] outline-none"
+                    className="font-Sugoe font-normal text-base focus:border-[white] text-[#FDFEFF] leading-6 py-5 px-4 bg-transparent w-full lg:max-w-[400px] mt-[5px] border border-1 border-[#FFFFFF40] outline-none"
                     id="Password"
                   />
                 </div>
@@ -97,14 +99,14 @@ const SignUpForm = () => {
                   </div>
 
                   <span className="font-Segoe font-normal sm:pt-1 text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px] ">
-                    I agree to all Term, Privacy Policy amd Fees
+                    I agree to all Term, Privacy Policy and Fees
                   </span>
                 </div>
 
                 <div className="flex mt-6 md:mt-8 lg:max-w-[400px]">
                   <button
                     type="submit"
-                    className="w-full justify-center text-center sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black hover:text-skyblue join_now_btn transition duration-300 ease-in-out"
+                    className="sm:w-full justify-center text-center sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black hover:text-skyblue join_now_btn transition duration-300 ease-in-out"
                   >
                     Sign Up
                     <span className="group-hover:translate-x-3 transition duration-300 ease-out">
