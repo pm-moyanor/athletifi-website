@@ -10,6 +10,8 @@ import Seo from "../../components/home/Seo";
 const aboutUs = () => {
   const hero = {
     heading: "About us",
+     title: "Your Title Here", // Add the 'title' property
+    subtitle: "Your Subtitle Here", 
   };
   const pageSEO = {
     // SEO TITLE

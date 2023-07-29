@@ -7,6 +7,8 @@ import SignUpForm from "../../components/sign-up/SignUpForm";
 const signup = () => {
   const hero = {
     heading: "Sign Up for Exclusive Access!",
+         title: "Your Title Here", // Add the 'title' property
+    subtitle: "Your Subtitle Here", 
   };
   return (
     <>
