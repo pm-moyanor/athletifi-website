@@ -46,7 +46,7 @@
 }
 
 .preloader {
-    background-color: black;
+    background-color: #000B13;
     animation: preloader_img 1.2s ease-in-out infinite alternate;
 }
 
