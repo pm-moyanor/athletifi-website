@@ -37,13 +37,14 @@ module.exports = {
         "playground-unique": "url('/assets/img/png/Unique-section-bg.png')",
         "stats-reimagined": "url('/assets/img/svg/bg_stats_reimagined.svg')",
         "about-hero": "url('/assets/img/webp/about-hero-img.webp')",
+        "new-hero-img": "url('/assets/img/webp/news-hero-img.webp')",
         "playground-unique-sm":
           "url('/assets/img/png/sm_Unique-section-bg.png')",
         shadow_blue: "linear-gradient(151deg, #11568C 0%, #00C5F4 100%)",
       },
       boxShadow: {
-        'coach-shadow': '0 50px 60px 0px rgba(88, 133, 249, 0.10)',
-      }
+        "coach-shadow": "0 50px 60px 0px rgba(88, 133, 249, 0.10)",
+      },
     },
   },
   plugins: [],

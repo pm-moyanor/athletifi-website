@@ -60,6 +60,9 @@ body {
 .bg-about-hero {
   background-image: url("/assets/img/webp/about-hero-img.webp");
 }
+.bg-new-hero-img{
+  background-image: url("/assets/img/webp/news-hero-img.webp");
+}
 ::-webkit-scrollbar {
   width: 6px;
 }
