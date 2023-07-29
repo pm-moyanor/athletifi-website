@@ -91,7 +91,7 @@ const Header = () => {
                   <Link
                     href="/news-insight"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
-                      path == "/news" ? "opacity-100" : ""
+                      path == "/news-insight" ? "!opacity-100" : ""
                     }`}
                   >
                     News
@@ -101,7 +101,7 @@ const Header = () => {
                   <Link
                     href="/socials"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
-                      path == "/socials" ? "opacity-100" : ""
+                      path == "/socials" ? "!opacity-100" : ""
                     }`}
                   >
                     Socials
