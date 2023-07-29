@@ -14,7 +14,7 @@ const RecentNews = [
     pera: "we delve into the realm of player practices, designed. Witness the captivating drama unfold as these formidable opponents ",
   },
   {
-    TrainingImg: "/assets/img/webp/news-playing-image.webp",
+    TrainingImg: "/assets/img/webp/news3.webp",
     heading: "Training for Triumph: Intense Player Practice Regimens",
     date: "23 June 2023",
     pera: "we delve into the realm of player practices, designed. Witness the captivating drama unfold as these formidable opponents ",
