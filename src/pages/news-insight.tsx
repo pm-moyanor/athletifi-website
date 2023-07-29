@@ -1,3 +1,4 @@
+import Backtotop from "../../components/common/Backtotop";
 import CommonHero from "../../components/common/CommonHero";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header";
@@ -18,6 +19,7 @@ const newsinsight = () => {
         <MasteringGame />
         <RecentNewsInsights />
         <Footer />
+        <Backtotop />
       </div>
     </>
   );
