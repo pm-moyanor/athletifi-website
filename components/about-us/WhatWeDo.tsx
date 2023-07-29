@@ -35,7 +35,7 @@ const WhatWeDo = () => {
                     </span>
                   </span>
                 </h2>
-                <p className="font-Segoe font-normal text-md md:max-w-[530px] text-[#FDFEFF] mx-auto lg:ms-0 opacity-80 leading-7">
+                <p className="font-Segoe font-normal text-md md:max-w-[530px] text-[#FDFEFF] mx-auto lg:ms-0 opacity-80 leading-7 sm:pt-4">
                   We are a sports technology app that makes travel soccer teams
                   more accessible for all players. Our mission is to level the
                   playing field for enrollment in travel teams and club soccer

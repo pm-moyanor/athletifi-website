@@ -30,7 +30,7 @@ const newsinsight = () => {
     <>
     <Seo pageSEO={pageSEO} />
       <div className="overflow_hidden">
-        <div className="bg-new-hero-img bg-no-repeat bg-cover">
+        <div className="bg-new-hero-img bg-center bg-no-repeat bg-cover">
           <Header />
           <CommonHero hero={hero} />
         </div>

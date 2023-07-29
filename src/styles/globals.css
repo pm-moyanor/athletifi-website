@@ -2,7 +2,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: white !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
 @layer base {
   @font-face {
     font-family: "HelveticaNeueMedium";
@@ -52,32 +64,35 @@ body {
   border-radius: 30px;
   background: rgba(255, 255, 255, 0.03);
   box-shadow: 0px 0px 150px -30px rgba(0, 0, 0, 0.05) inset;
-  -webkit-backdrop-filter: blur(17.5px); 
-  backdrop-filter: blur(17.5px);  
+  -webkit-backdrop-filter: blur(17.5px);
+  backdrop-filter: blur(17.5px);
   pointer-events: auto;
   z-index: 0 !important;
 }
 .bg-about-hero {
   background-image: url("/assets/img/webp/about-hero-img.webp");
 }
-.bg-new-hero-img{
+.bg-new-hero-img {
   background-image: url("/assets/img/webp/news-hero-img.webp");
+}
+.bg-signup-hero-img {
+  background-image: url("/assets/img/webp/sing-up-hero-img.webp");
 }
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #000B13;
+  background-color: #000b13;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #00C5F4;
+  background-color: #00c5f4;
 }
 
 /* Custom scrollbar for Firefox */
 /* You can adjust the color and width as needed */
 html {
-  scrollbar-color: #00C5F4 #00C5F4;
+  scrollbar-color: #00c5f4 #00c5f4;
   scrollbar-width: thin;
 }
