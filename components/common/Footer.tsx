@@ -35,7 +35,7 @@ const Footer = () => {
             <li>
               <Link
                 className=" text-white text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out"
-                href="/news"
+                href="/news-insight"
               >
                 News
               </Link>

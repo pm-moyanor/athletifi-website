@@ -89,7 +89,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    href="/news"
+                    href="/news-insight"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
                       path == "/news" ? "opacity-100" : ""
                     }`}
