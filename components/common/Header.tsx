@@ -69,6 +69,7 @@ const Header = () => {
               <ul className="flex items-center gap-[40px] flex-col sm:flex-row h-full justify-center ">
                 <li>
                   <Link
+                    onClick={() => setOpen(false)}
                     href="/"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
                       path == "/" ? "!opacity-100" : ""
@@ -79,6 +80,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
+                    onClick={() => setOpen(false)}
                     href="/about-us"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
                       path == "/about-us" ? "!opacity-100 " : ""
@@ -89,6 +91,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
+                    onClick={() => setOpen(false)}
                     href="/news-insight"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
                       path == "/news" ? "opacity-100" : ""
@@ -99,6 +102,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
+                    onClick={() => setOpen(false)}
                     href="/socials"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
                       path == "/socials" ? "opacity-100" : ""
@@ -108,13 +112,19 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <button className="py-[10px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white sm:hidden">
+                  <button
+                    onClick={() => setOpen(false)}
+                    className="py-[10px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white sm:hidden"
+                  >
                     Sign up
                   </button>
                 </li>
               </ul>
             </div>
-            <button className="py-[10px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden sm:inline-block">
+            <button
+              onClick={() => setOpen(false)}
+              className="py-[10px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden sm:inline-block"
+            >
               Sign up
             </button>
           </div>

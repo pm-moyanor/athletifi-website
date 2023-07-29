@@ -45,8 +45,8 @@ const HeroHomepage = () => {
           className="mx-auto"
           src="/assets/img/png/hero_female_player_2.png"
           alt="female-player"
-          width={500}
-          height={500}
+          width={350}
+          height={350}
         />
       </div>
       <div className="pt-6 lg:pt-0 sm:hidden">

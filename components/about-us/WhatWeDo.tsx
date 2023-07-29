@@ -21,7 +21,7 @@ const WhatWeDo = () => {
             <div className="lg:w-1/2">
               <div
                 data-aos="fade-right"
-                data-aos-duration="500"
+                data-aos-duration="600"
                 data-aos-easing="linear"
                 data-aos-delay="200"
                 data-aos-offset="200"
@@ -47,7 +47,7 @@ const WhatWeDo = () => {
             <div className="lg:w-5/12 w-9/12 sm:w-3/5 mx-auto lg:me-0 mt-8">
               <div
                 data-aos="fade-left"
-                data-aos-duration="500"
+                data-aos-duration="600"
                 data-aos-easing="linear"
                 data-aos-delay="400"
                 data-aos-offset="100"

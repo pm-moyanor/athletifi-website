@@ -30,7 +30,7 @@ const CommonHero = ({ hero }) => {
           <div className="md:pb-24 md:pt-[189px] pb-12 pt-32">
             <h2
               data-aos="zoom-in"
-              data-aos-duration="500"
+              data-aos-duration="600"
               data-aos-easing="linear"
               data-aos-offset="100"
               className="font-HelveticaNeueMedium font-medium text-[30px] sm:text-[45px] lg:text-[50px] xl:text-xxl text-white leading-[66px] text-center md:pb-14"
