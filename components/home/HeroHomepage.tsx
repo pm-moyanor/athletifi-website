@@ -3,6 +3,7 @@ import React from "react";
 import { ButtonArrow } from "../common/Icon";
 import BlueButton from "../common/BlueButton";
 
+
 const HeroHomepage = () => {
   return (
     <>
@@ -25,7 +26,7 @@ const HeroHomepage = () => {
               <ButtonArrow />
             </button>  */}
             <div className="flex lg:justify-start justify-center lg:mt-10 mt-7 lg:pb-14 lg:mb-10">
-              <BlueButton text=" Join now" />
+              <BlueButton text=" Join now"  onClick={() => {}} />
             </div>
           </div>
           <div className="pt-3 sm:pt-10 lg:pt-0">

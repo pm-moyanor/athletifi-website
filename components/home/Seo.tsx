@@ -1,6 +1,15 @@
 import Head from "next/head";
+interface PageSEO {
+  // Define the properties of the 'pageSEO' object
+  // For example:
+  title: string;
+  description: string;
+    websiteURL: string;
+     image: string;
+  // Add more properties if necessary
+}
 
-const Seo = ({ pageSEO }) => {
+const Seo: React.FC<{ pageSEO: PageSEO }> = ({ pageSEO }) => {
   return (
     <>
       <Head>

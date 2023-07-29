@@ -1,7 +1,16 @@
 import Image from "next/image";
 import React from "react";
 
-const CommonHero = ({ hero }) => {
+interface HeroProps {
+  // Define the properties of the 'hero' object
+  // For example:
+  title: string;
+  subtitle: string;
+  heading: string;
+  // Add more properties if necessary
+}
+
+const CommonHero: React.FC<{ hero: HeroProps }> = ({ hero }) => {
   return (
     <>
       <section className="relative">

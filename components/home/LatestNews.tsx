@@ -71,7 +71,7 @@ const LatestNews = () => {
             );
           })}
           <div className="flex justify-center items-center pt-4 md:pb-14 lg:mb-10">
-            <BlueButton text="View all" />
+            <BlueButton text="View all" onClick={() => {}} />
           </div>
         </div>
         <Image

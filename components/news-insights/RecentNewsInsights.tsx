@@ -61,7 +61,7 @@ const RecentNewsInsights = () => {
                     {data.pera}
                   </p>
                   <span className="inline-block mt-2 md:mt-8">
-                    <BlueButton text="View all" />
+                    <BlueButton text="View all" onClick={() => {}}/>
                   </span>
                 </div>
               </div>

@@ -44,7 +44,7 @@ const OurStrategicAdvisor = () => {
                 technical director of the Villanova Soccer Academy.
               </p>
               <div className="flex justify-center lg:justify-start pt-5 lg:pt-10">
-                <BlueButton text="Join now" />
+                <BlueButton text="Join now" onClick={() => {}} />
               </div>
             </div>
           </div>

@@ -37,7 +37,7 @@ const SoccerExpensive = () => {
               <ButtonArrow />
             </button> */}
             <div className="flex lg:justify-start justify-center items-center mt-10 lg:pb-14 lg:mb-10">
-              <BlueButton text="Read more" />
+              <BlueButton text="Read more" onClick={() => {}} />
             </div>
           </div>
         </div>
