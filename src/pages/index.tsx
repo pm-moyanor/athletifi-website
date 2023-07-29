@@ -37,7 +37,7 @@ export default function Home() {
       "Unlocking opportunities for aspiring young athletes. Connecting all talent, no matter where they are from, with top-tier coaches, scholarships, and unparalledled resources. Welcome to the future of sports... for everyone!",
 
     // SEO WEBSITE URL
-    websiteURL: "https://zoplenti-next.vercel.app",
+    websiteURL: "https://athletifi-web.vercel.app/",
 
     // SEO IMAGE
     image: "/lending_meta_img.webp",

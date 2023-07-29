@@ -103,7 +103,7 @@ const [scrollPosition, setScrollPosition] = useState<number>(0);
                 <li>
                   <Link
                     onClick={() => setOpen(false)}
-                    href="/socials"
+                    href="/"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
                       path == "/socials" ? "!opacity-100" : ""
                     }`}
@@ -112,21 +112,23 @@ const [scrollPosition, setScrollPosition] = useState<number>(0);
                   </Link>
                 </li>
                 <li>
-                  <button
+                  <Link
+                  href="/sign-up"
                     onClick={() => setOpen(false)}
                     className="py-[10px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white sm:hidden"
                   >
                     Sign up
-                  </button>
+                  </Link>
                 </li>
               </ul>
             </div>
-            <button
+            <Link
+            href="/sign-up"
               onClick={() => setOpen(false)}
               className="py-[10px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden sm:inline-block"
             >
               Sign up
-            </button>
+            </Link>
           </div>
         </div>
       </div>
