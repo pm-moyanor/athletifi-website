@@ -19,22 +19,16 @@ const HeroHomepage = () => {
               scholarships, and unparalledled resources. Welcome to the future
               of sports... for everyone!
             </p>
-            {/* <button className="flex items-center bg-skyblue py-[10px] px-[20px] sm:py-[14px] sm:px-[27px] mt-7 sm:mt-[40px] border border-skyblue hover:bg-transparent duration-300 join_now_btn mx-auto lg:mx-0">
-              <span className="text-black duration-300 font-Segoe text-sm sm:text-base font-semibold">
-                Join now
-              </span>
-              <ButtonArrow />
-            </button>  */}
             <div className="flex lg:justify-start justify-center lg:mt-10 mt-7 lg:pb-14 lg:mb-10">
               <BlueButton text=" Join now"  onClick={() => {}} />
             </div>
           </div>
           <div className="pt-3 sm:pt-10 lg:pt-0">
-            <span className="absolute right-0 top-[70%] -translate-y-1/2 max-w-[450px] xl:max-w-[500px] hidden lg:inline-block">
+            <span className="absolute right-0 top-[65%] -translate-y-1/2 max-w-[500px] xl:max-w-[600px] hidden lg:inline-block">
               <Image
                 src="/assets/img/png/hero_female_player.png"
                 alt="female-player"
-                width={550}
+                width={600}
                 height={600}
               />
             </span>
