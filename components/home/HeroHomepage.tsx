@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import { ButtonArrow } from "../common/Icon";
 import BlueButton from "../common/BlueButton";
 
 

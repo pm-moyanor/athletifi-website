@@ -93,6 +93,6 @@ body {
 /* Custom scrollbar for Firefox */
 /* You can adjust the color and width as needed */
 html {
-  scrollbar-color: #00c5f4 #00c5f4;
+  scrollbar-color: #000b13 #00c5f4;
   scrollbar-width: thin;
 }
