@@ -1,8 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 const StatsReimagined = () => {
   const settings = {
     arrows: false,
@@ -84,9 +83,9 @@ const StatsReimagined = () => {
             <div
               className=" md:py-20 pt-15 sm:pb-10"
               data-aos="fade-up"
-              data-aos-duration="400"
+              data-aos-duration="500"
               data-aos-easing="ease"
-              data-aos-delay="800"
+              data-aos-delay="400"
             >
               <Image
                 className="mx-auto w-full max-w-[350px]"
@@ -99,9 +98,9 @@ const StatsReimagined = () => {
             <div
               className=" md:py-20 pt-15 sm:pb-10 relative z-10 "
               data-aos="fade-up"
-              data-aos-duration="400"
+              data-aos-duration="500"
               data-aos-easing="ease"
-              data-aos-delay="400"
+              data-aos-delay="800"
             >
               <Image
                 className="mx-auto md:scale-125 w-full max-w-[350px]"
@@ -114,7 +113,7 @@ const StatsReimagined = () => {
             <div
               className=" md:py-20 pt-15 sm:pb-10 "
               data-aos="fade-up"
-              data-aos-duration="400"
+              data-aos-duration="500"
               data-aos-easing="ease"
               data-aos-delay="1200"
             >
