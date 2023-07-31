@@ -20,6 +20,7 @@ const RecentNewsInsights = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+          
         },
       },
       {
