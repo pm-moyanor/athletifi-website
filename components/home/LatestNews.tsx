@@ -6,9 +6,11 @@ const LatestNews = () => {
   const MatchNews = [
     {
       matchimage: "/assets/img/png/news1-match.png",
+      delay: "100",
     },
     {
       matchimage: "/assets/img/png/news2-match.png",
+      delay: "400",
     },
   ];
   return (
@@ -32,10 +34,9 @@ const LatestNews = () => {
               <div
                 className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-5"
                 data-aos="fade-up"
-                data-aos-duration="600"
-                data-aos-easing="linear"
-                data-aos-delay="300"
-                data-aos-offset="200"
+                data-aos-duration="400"
+                data-aos-easing="ease"
+                data-aos-delay={val.delay}
                 key={index}
               >
                 <Image
