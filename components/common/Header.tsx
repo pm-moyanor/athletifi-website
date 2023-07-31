@@ -72,7 +72,7 @@ const Header = () => {
       >
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
           <div className="flex items-center justify-between">
-            <Link aria-label="home page" href="/">
+            <Link href="/">
               <NavLogo />
             </Link>
             <button
@@ -93,7 +93,6 @@ const Header = () => {
               <ul className="flex items-center gap-[40px] flex-col sm:flex-row h-full justify-center ">
                 <li>
                   <Link
-                    aria-label="home page"
                     onClick={() => setOpen(false)}
                     href="/"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:left-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out ${
@@ -105,7 +104,6 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    aria-label="About us page"
                     onClick={() => setOpen(false)}
                     href="/about-us"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:left-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out ${
@@ -117,7 +115,6 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    aria-label="News page"
                     onClick={() => setOpen(false)}
                     href="/news-insight"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:left-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out ${
@@ -139,7 +136,6 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    aria-label="sign-up page"
                     href="/sign-up"
                     onClick={() => setOpen(false)}
                     className="pt-[10px] pb-[14px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white sm:hidden"
