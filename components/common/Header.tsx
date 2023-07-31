@@ -18,9 +18,9 @@ const Header = () => {
   }, [open]);
 
   // ==============================================
- const navbarRef = useRef<HTMLDivElement | null>(null);
+  const navbarRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(true);
-const [scrollPosition, setScrollPosition] = useState<number>(0);
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
 
   useEffect(() => {
     let prevScrollPos = window.scrollY;
@@ -113,7 +113,7 @@ const [scrollPosition, setScrollPosition] = useState<number>(0);
                 </li>
                 <li>
                   <Link
-                  href="/sign-up"
+                    href="/sign-up"
                     onClick={() => setOpen(false)}
                     className="py-[10px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white sm:hidden"
                   >
@@ -123,7 +123,7 @@ const [scrollPosition, setScrollPosition] = useState<number>(0);
               </ul>
             </div>
             <Link
-            href="/sign-up"
+              href="/sign-up"
               onClick={() => setOpen(false)}
               className="py-[10px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden sm:inline-block"
             >
