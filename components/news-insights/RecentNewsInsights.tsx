@@ -20,7 +20,6 @@ const RecentNewsInsights = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          
         },
       },
       {
@@ -62,7 +61,10 @@ const RecentNewsInsights = () => {
           <Slider {...settings}>
             {RecentNews.map((data, i) => {
               return (
-                <div className="lg:w-1/3 sm:w-1/2 w-full lg:px-3 md:px-5 mt-8 sm:mt-12 lg:mt-0 flex justify-center rounded-2xl">
+                <div
+                  className="lg:w-1/3 sm:w-1/2 w-full lg:px-3 md:px-5 mt-8 sm:mt-12 lg:mt-0 flex justify-center rounded-2xl"
+                  key={i}
+                >
                   <div
                     data-aos="flip-right"
                     data-aos-duration="800"
