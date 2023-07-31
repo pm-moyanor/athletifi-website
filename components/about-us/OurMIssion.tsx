@@ -29,10 +29,10 @@ const OurMIssion = () => {
         <div className="flex lg:flex-row flex-col-reverse justify-between">
           <div className="lg:w-5/12 xl:w-[531px] min-[1530px]:w-1/2 w-9/12 sm:w-3/5 mx-auto lg:ms-0  mt-6 sm:mt-8 lg:mt-0">
             <div
-              data-aos="fade-right"
-              data-aos-duration="1000"
+              data-aos="fade-up"
+              data-aos-duration="400"
               data-aos-easing="linear"
-              data-aos-delay="500"
+              data-aos-delay="100"
               data-aos-offset="200"
               className="flex justify-center lg:justify-start"
             >
@@ -47,8 +47,8 @@ const OurMIssion = () => {
           </div>
           <div className="lg:w-1/2 xl:w-[506px] min-[1530px]:w-1/2 ">
             <div
-              data-aos="fade-left"
-              data-aos-duration="1000"
+              data-aos="fade-up"
+              data-aos-duration="400"
               data-aos-easing="linear"
               data-aos-delay="600"
               data-aos-offset="100"
