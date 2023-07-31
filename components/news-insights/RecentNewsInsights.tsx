@@ -11,12 +11,11 @@ const RecentNewsInsights = () => {
   const settings = {
     arrows: false,
     infinite: true,
-    speed: 2000,
+    dots: true,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    cssEase: "linear",
+    autoplay: false,
+    autoplaySpeed: 3000,
     responsive: [
       {
         breakpoint: 1024,
@@ -60,12 +59,12 @@ const RecentNewsInsights = () => {
           </span>{" "}
           and Insights
         </h2>
-        <div className="md:mt-0 lg:mt-11 xl:mt-[73px] relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:top-0 before:-end-56 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full ">
+        <div className="md:mt-0 lg:mt-11 xl:mt-[73px] relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:top-0 before:-end-56 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full news_nsights_slider h-full">
           <Slider {...settings}>
             {RecentNews.map((data, i) => {
               return (
                 <div
-                  className="lg:w-1/3 sm:w-1/2 w-full lg:px-3 md:px-5 mt-8 sm:mt-12 lg:mt-0 flex justify-center rounded-2xl group overflow-hidden"
+                  className="lg:w-1/3 sm:w-1/2 w-full lg:px-3 md:px-5 mt-8 sm:mt-12 lg:mt-0 flex justify-center rounded-2xl group overflow-hidden h-full"
                   key={i}
                 >
                   <div
@@ -76,13 +75,16 @@ const RecentNewsInsights = () => {
                     data-aos-offset="200"
                     className=" justify-center flex flex-col lg:items-start sm:px-3 px-2 lg:px-0 "
                   >
-                   <div className="rounded-2xl lg:w-[362px] lg:h-[241px] overflow-hidden"> <Image
-                      className="lg:w-[362px] lg:h-[241px] w-full group-hover:scale-110 transition-all "
-                      src={data.TrainingImg}
-                      width={362}
-                      height={241}
-                      alt="players-image"
-                    /></div>
+                    <div className="rounded-2xl lg:w-[362px] lg:h-[241px] overflow-hidden">
+                      {" "}
+                      <Image
+                        className="lg:w-[362px] lg:h-[241px] w-full group-hover:scale-110 transition-all "
+                        src={data.TrainingImg}
+                        width={362}
+                        height={241}
+                        alt="players-image"
+                      />
+                    </div>
 
                     <h3 className="font-Segoe font-normal lg:max-w-[358px] md:text-2xl text-[20px] mt-2 sm:mt-4 leading-8 text-[#FDFEFF] lg:text-start">
                       {data.heading}
