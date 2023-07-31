@@ -51,9 +51,6 @@ const OurStrategicAdvisor = () => {
               </p>
               <div
                 className="flex justify-center lg:justify-start pt-5 lg:pt-10"
-                data-aos="fade-left"
-                data-aos-duration="600"
-                data-aos-easing="linear"
               >
                 <Link href="/sign-up">
                   <BlueButton text="Join now" onClick={() => {}} />
