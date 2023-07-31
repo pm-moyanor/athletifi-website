@@ -13,6 +13,7 @@ import Backtotop from "../../components/common/Backtotop";
 import { useEffect, useState } from "react";
 import { NavLogo } from "../../components/common/Icon";
 import Seo from "../../components/home/Seo";
+import SocialIcon from "../../components/common/SocialPopUp";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -20,7 +21,7 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setpreloader(false);
-    }, 2500);
+    }, 2000);
     document.body.classList.add("overflow_anchor");
     if (preloader) {
       document.body.classList.add("overflow_hidden");
@@ -68,6 +69,7 @@ export default function Home() {
             />
           </div>
         </div>
+        <SocialIcon />
         <StatsReimagined />
         <SoccerExpensive />
         <UniqueAthletifi />

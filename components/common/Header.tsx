@@ -1,7 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { NavLogo } from "./Icon";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import {
+  NavLogo,
+  ArrowButton,
+  FacebookIcon,
+  InstaIcon,
+  LinkedInIcon,
+  TiktokIcon,
+  TwitterIcon,
+  CancleIcon,
+} from "./Icon";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -36,6 +45,21 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  // ====================================================== nav-social-icon
+  const [navSocialIcon, setNavSocialIcon] = useState(true);
+  const SocialIcon = () => {
+    setOpen(false);
+    setNavSocialIcon(!navSocialIcon);
+  };
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (navSocialIcon) {
+        document.body.classList.remove("overflow_hidden");
+      } else {
+        document.body.classList.add("overflow_hidden");
+      }
+    }
+  }, [navSocialIcon]);
   return (
     <>
       <div
@@ -100,15 +124,14 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    onClick={() => setOpen(false)}
-                    href="/"
+                  <button
+                    onClick={SocialIcon}
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:left-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out ${
-                      path == "/socials" ? "!opacity-100" : ""
+                      path == "/SocialIcons" ? "!opacity-100" : ""
                     }`}
                   >
                     Socials
-                  </Link>
+                  </button>
                 </li>
                 <li>
                   <Link
@@ -128,6 +151,73 @@ const Header = () => {
             >
               Sign up
             </Link>
+          </div>
+        </div>
+      </div>
+      {/* ================================================= */}
+      <div className={navSocialIcon ? "hidden" : "block"}>
+        <div
+          onClick={() => setNavSocialIcon(true)}
+          className="relative h-full z-50"
+        >
+          <span
+            className="absolute z-30 right-[10px] top-[10px] lg:top-0 cursor-pointer"
+            onClick={() => setNavSocialIcon(true)}
+          >
+            <CancleIcon />
+          </span>
+          <div className="min-h-screen bg_social_icon flex items-center justify-center gap-[20px] flex-col-reverse sm:flex-row fixed top-0 left-0 w-full z-20">
+            <Link
+              href="/sign-up"
+              className="sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black hover:text-skyblue join_now_btn transition duration-300 ease-in-out social_btn_contact_us"
+            >
+              Contact Us
+              <span className="group-hover:translate-x-3 transition duration-300 ease-out">
+                <ArrowButton />
+              </span>
+            </Link>
+            <div className="flex gap-4">
+              <Link
+                className="hover:-translate-y-2 transition duration-300 ease-out"
+                href="https://www.tiktok.com/about"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <TiktokIcon />
+              </Link>
+              <Link
+                className="hover:-translate-y-2 transition duration-300 ease-out"
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FacebookIcon />
+              </Link>
+              <Link
+                className="hover:-translate-y-2 transition duration-300 ease-out"
+                href="https://twitter.com/login"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <TwitterIcon />
+              </Link>
+              <Link
+                className="hover:-translate-y-2 transition duration-300 ease-out"
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <InstaIcon />
+              </Link>
+              <Link
+                className="hover:-translate-y-2 transition duration-300 ease-out"
+                href="https://in.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LinkedInIcon />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
