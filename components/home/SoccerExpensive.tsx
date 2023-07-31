@@ -1,7 +1,5 @@
 import React from "react";
-import { ButtonArrow } from "../common/Icon";
 import Image from "next/image";
-import football_net from "../../public/assets/img/png/football_net.png";
 import BlueButton from "../common/BlueButton";
 import Link from "next/link";
 
@@ -78,10 +76,10 @@ const SoccerExpensive = () => {
             data-aos-delay="200"
             data-aos-offset="200"
         >
-          <div className="lg:hidden relative w-full sm:w-[60%] mx-auto mt-5">
+          <div className="lg:hidden relative w-full sm:w-[80%] mx-auto mt-5">
             <Image
               className="mx-auto"
-              src="/assets/img/webp/expensive_football_ipad.webp"
+              src="/assets/img/png/football_img_2.png"
               alt="football"
               width={700}
               height={400}
