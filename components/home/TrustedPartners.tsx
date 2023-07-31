@@ -10,10 +10,10 @@ import {
   SpotifyIcon,
   StripeIcon,
 } from "../common/Icon";
-import Slider from "react-slick";
+import Slider, { Settings, ResponsiveObject } from 'react-slick';
 
-const TrustedPartners = () => {
-  const settings = {
+const TrustedPartners: React.FC = () => {
+  const settings: Settings = {
     arrows: false,
     infinite: true,
     slidesToShow: 4,
