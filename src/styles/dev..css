@@ -61,6 +61,16 @@
     fill: white;
 }
 
+.news_nsights_slider .slick-dots li.slick-active button:before {
+    color: white !important;
+}
+
+.news_nsights_slider .slick-dots li button:before {
+    color: white !important;
+    font-size: 10px;
+}
+
+
 @keyframes preloader_img {
     0% {
         transform: scale(1);
