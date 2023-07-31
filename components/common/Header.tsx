@@ -8,7 +8,6 @@ const Header = () => {
   const path = useRouter().pathname;
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Code that references 'document' can be safely placed here
       if (open) {
         document.body.classList.add("overflow_hidden");
       } else {
@@ -71,7 +70,7 @@ const Header = () => {
                   <Link
                     onClick={() => setOpen(false)}
                     href="/"
-                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
+                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:left-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out ${
                       path == "/" ? "!opacity-100" : ""
                     }`}
                   >
@@ -82,7 +81,7 @@ const Header = () => {
                   <Link
                     onClick={() => setOpen(false)}
                     href="/about-us"
-                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
+                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:left-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out ${
                       path == "/about-us" ? "!opacity-100 " : ""
                     }`}
                   >
@@ -93,7 +92,7 @@ const Header = () => {
                   <Link
                     onClick={() => setOpen(false)}
                     href="/news-insight"
-                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
+                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:left-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out ${
                       path == "/news-insight" ? "!opacity-100" : ""
                     }`}
                   >
@@ -104,7 +103,7 @@ const Header = () => {
                   <Link
                     onClick={() => setOpen(false)}
                     href="/"
-                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 ${
+                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:left-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out ${
                       path == "/socials" ? "!opacity-100" : ""
                     }`}
                   >
@@ -115,7 +114,7 @@ const Header = () => {
                   <Link
                     href="/sign-up"
                     onClick={() => setOpen(false)}
-                    className="py-[10px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white sm:hidden"
+                    className="pt-[10px] pb-[14px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white sm:hidden"
                   >
                     Sign up
                   </Link>
@@ -125,7 +124,7 @@ const Header = () => {
             <Link
               href="/sign-up"
               onClick={() => setOpen(false)}
-              className="py-[10px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden sm:inline-block"
+              className="pt-[10px] pb-[14px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden sm:inline-block"
             >
               Sign up
             </Link>
