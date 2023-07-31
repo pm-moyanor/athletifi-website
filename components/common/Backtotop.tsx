@@ -30,6 +30,7 @@ const Backtotop = () => {
         >
           <div className="w-full h-full flex justify-center items-center">
             <Image
+              alt="up-arrow"
               src="/assets/img/svg/back_to_top.svg"
               width={48}
               height={48}
