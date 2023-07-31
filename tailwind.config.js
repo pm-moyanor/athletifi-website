@@ -33,13 +33,13 @@ module.exports = {
       backgroundImage: {
         "header-bg": "url('/assets/img/png/hero_bg.png')",
         "blue-underline": "url('/assets/img/svg/blue-underline.svg')",
-        "strategic-advisor": "url('/assets/img/png/meet_our_strategic_bg.png')",
-        "playground-unique": "url('/assets/img/png/Unique-section-bg.png')",
+        "strategic-advisor": "url('/assets/img/webp/meet_our_strategic_bg.webp')",
+        "playground-unique": "url('/assets/img/webp/Unique-section-bg.webp')",
         "stats-reimagined": "url('/assets/img/svg/bg_stats_reimagined.svg')",
         "about-hero": "url('/assets/img/webp/about-hero-img.webp')",
         "new-hero-img": "url('/assets/img/webp/news-hero-img.webp')",
         "playground-unique-sm":
-          "url('/assets/img/png/sm_Unique-section-bg.png')",
+          "url('/assets/img/webp/sm_Unique-section-bg.webp')",
         shadow_blue: "linear-gradient(151deg, #11568C 0%, #00C5F4 100%)",
       },
       boxShadow: {

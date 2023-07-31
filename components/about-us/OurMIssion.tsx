@@ -37,7 +37,7 @@ const OurMIssion = () => {
               className="flex justify-center lg:justify-start"
             >
               <Image
-                src="/assets/img/png/ourMission-img.png"
+                src="/assets/img/webp/ourMission-img.webp"
                 className=" xl:h-[486px] xl:w-[531px] min-[1530px]:w-full"
                 width={496}
                 height={486}
