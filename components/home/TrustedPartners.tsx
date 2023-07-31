@@ -42,32 +42,36 @@ const TrustedPartners = () => {
               Mid-Atlantic region to bring sports technology to new heights.
             </h4>
           </div>
-          <div className="flex lg:justify-between justify-center md:py-12 pt-5 sm:pb-10 flex-wrap md:gap-x-24 lg:gap-[38px] xl:gap-x-14  gap-x-5 gap-y-3">
-            <span className=" lg:max-w-[214px] max-w-[130px]">
+         <div  data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-easing="linear"
+            data-aos-delay="200"
+            data-aos-offset="200"> <div className="flex lg:justify-between justify-center md:py-12 pt-5 sm:pb-10 flex-wrap md:gap-x-24 lg:gap-[38px] xl:gap-x-14  gap-x-5 gap-y-3">
+            <span  className="lg:max-w-[214px] max-w-[130px] grayscale">
               <MerckIcon />
             </span>
-            <span className=" lg:max-w-[183px] max-w-[120px]">
+            <span  className="lg:max-w-[183px] max-w-[120px] grayscale">
               <KelloggsIcon />
             </span>
-            <span className=" lg:max-w-[311px] max-w-[170px]">
+            <span  className="lg:max-w-[311px] max-w-[170px] grayscale">
               <KayakIcon />
             </span>
-            <span className=" lg:max-w-[159px] max-w-[115px]">
+            <span  className="lg:max-w-[159px] max-w-[115px] grayscale">
               <DisealIcon />
             </span>
-            <span className=" lg:max-w-[238px] max-w-[150px]">
+            <span  className="lg:max-w-[238px] max-w-[150px] grayscale">
               <HsbcIcon />
             </span>
-            <span className=" lg:max-w-[135px] max-w-[100px]">
+            <span  className="lg:max-w-[135px] max-w-[100px] grayscale">
               <StripeIcon />
             </span>
-            <span className=" lg:max-w-[211px] max-w-[140px]">
+            <span  className="lg:max-w-[211px] max-w-[140px] grayscale">
               <SpotifyIcon />
             </span>
-            <span className=" lg:max-w-[185px] max-w-[130px]">
+            <span  className="lg:max-w-[185px] max-w-[130px] grayscale">
               <EuropcarIcon />
             </span>
-          </div>
+          </div> </div>
         </div>
       </section>
     </>

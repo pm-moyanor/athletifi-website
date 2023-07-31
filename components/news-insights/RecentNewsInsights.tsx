@@ -42,10 +42,10 @@ const RecentNewsInsights = () => {
       />
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative z-10">
         <h2
-          data-aos="fade-left"
+          data-aos="fade-up"
           data-aos-duration="500"
           data-aos-easing="linear"
-          data-aos-delay="200"
+          data-aos-delay="50"
           data-aos-offset="200"
           className="font-HelveticaNeueMedium text-center lg:text-start font-medium text-[24px]  md:text-5xl sm:text-4xl lg:leading-[60px] text-[#FDFEFF]"
         >
@@ -62,7 +62,7 @@ const RecentNewsInsights = () => {
             {RecentNews.map((data, i) => {
               return (
                 <div
-                  className="lg:w-1/3 sm:w-1/2 w-full lg:px-3 md:px-5 mt-8 sm:mt-12 lg:mt-0 flex justify-center rounded-2xl"
+                  className="lg:w-1/3 sm:w-1/2 w-full lg:px-3 md:px-5 mt-8 sm:mt-12 lg:mt-0 flex justify-center rounded-2xl group overflow-hidden"
                   key={i}
                 >
                   <div
@@ -71,15 +71,15 @@ const RecentNewsInsights = () => {
                     data-aos-easing="linear"
                     data-aos-delay={data.delay}
                     data-aos-offset="200"
-                    className=" justify-center flex flex-col lg:items-start sm:px-3 px-2   lg:px-0 "
+                    className=" justify-center flex flex-col lg:items-start sm:px-3 px-2 lg:px-0 "
                   >
-                    <Image
-                      className="lg:w-[362px] lg:h-[241px] w-full"
+                   <div className="rounded-2xl lg:w-[362px] lg:h-[241px] overflow-hidden"> <Image
+                      className="lg:w-[362px] lg:h-[241px] w-full group-hover:scale-110 transition-all "
                       src={data.TrainingImg}
                       width={362}
                       height={241}
-                      alt="what we do shadow"
-                    />
+                      alt="players-image"
+                    /></div>
 
                     <h3 className="font-Segoe font-normal lg:max-w-[358px] md:text-2xl text-[20px] mt-2 sm:mt-4 leading-8 text-[#FDFEFF] lg:text-start">
                       {data.heading}
