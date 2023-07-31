@@ -64,7 +64,7 @@ const SoccerExpensive = () => {
           <div className="absolute right-0 lg:top-[40%] lg:-translate-y-1/2 xl:w-[700px] xl:h-[1000px] w-[300px] sm:w-[450px] lg:w-[500px] hidden lg:inline-block">
             <Image
               className="w-full "
-              src="/assets/img/png/expensive_football.png"
+              src="/assets/img/webp/expensive_football.webp"
               alt="football"
               width={700}
               height={700}
@@ -81,7 +81,7 @@ const SoccerExpensive = () => {
           <div className="lg:hidden relative w-full sm:w-[60%] mx-auto mt-5">
             <Image
               className="mx-auto"
-              src="/assets/img/png/expensive_football_ipad.png"
+              src="/assets/img/webp/expensive_football_ipad.webp"
               alt="football"
               width={700}
               height={400}

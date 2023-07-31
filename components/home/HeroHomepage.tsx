@@ -34,7 +34,7 @@ const HeroHomepage = () => {
           className="pt-3 sm:pt-10 lg:pt-0">
             <span className="absolute right-0 top-[65%] -translate-y-1/2 max-w-[500px] xl:max-w-[600px] hidden lg:inline-block">
               <Image
-                src="/assets/img/png/hero_female_player.png"
+                src="/assets/img/webp/hero_female_player.webp"
                 alt="female-player"
                 width={600}
                 height={600}
@@ -46,7 +46,7 @@ const HeroHomepage = () => {
       <div className="hidden sm:block lg:hidden w-full">
         <Image
           className="mx-auto"
-          src="/assets/img/png/hero_female_player_2.png"
+          src="/assets/img/webp/hero_female_player_2.webp"
           alt="female-player"
           width={350}
           height={350}
@@ -56,7 +56,7 @@ const HeroHomepage = () => {
         <span className=" right-0 top-1/2 -translate-y-1/2 max-w-[400px]">
           <Image
             className="ml-auto"
-            src="/assets/img/png/hero_female_player.png"
+            src="/assets/img/webp/hero_female_player.webp"
             alt="female-player"
             width={400}
             height={400}
