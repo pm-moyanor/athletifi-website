@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
     useEffect(() => {
     setInterval(() => {
       AOS.init({
-        // once: true,
+        once: true,
       });
     }, 1000);
   }, [AOS]);

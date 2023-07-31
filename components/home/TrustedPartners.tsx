@@ -18,9 +18,9 @@ const TrustedPartners = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 4000,
     cssEase: "linear",
-    speed: 2000,
+    speed: 4000,
     pauseOnHover: false,
     responsive: [
       {

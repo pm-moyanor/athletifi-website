@@ -27,8 +27,8 @@ const WhoweAre = () => {
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative">
         <div className="blue_Linear_Gradient after:absolute relative lg:py-16 py-5 md:py-10 sm:mt-6 z-0">
           <div
-            data-aos="zoom-fade-out"
-            data-aos-duration="800"
+            data-aos="fade-up"
+            data-aos-duration="400"
             data-aos-easing="ease-in-sine"
             data-aos-delay="300"
             data-aos-offset="100"

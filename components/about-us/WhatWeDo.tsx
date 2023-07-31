@@ -20,10 +20,10 @@ const WhatWeDo = () => {
           <div className="flex flex-col lg:flex-row justify-between">
             <div className="lg:w-1/2">
               <div
-                data-aos="fade-right"
-                data-aos-duration="600"
+                data-aos="fade-up"
+                data-aos-duration="400"
                 data-aos-easing="linear"
-                data-aos-delay="200"
+                data-aos-delay="100"
                 data-aos-offset="200"
                 className="flex flex-col justify-center h-full lg:pe-6 xl:p-0 text-center lg:text-start lg:mt-20"
               >
@@ -46,10 +46,10 @@ const WhatWeDo = () => {
             </div>
             <div className="lg:w-5/12 w-9/12 sm:w-3/5 mx-auto lg:me-0 mt-8">
               <div
-                data-aos="fade-left"
-                data-aos-duration="600"
+                data-aos="fade-up"
+                data-aos-duration="400"
                 data-aos-easing="linear"
-                data-aos-delay="400"
+                data-aos-delay="500"
                 data-aos-offset="100"
                 className="flex justify-center lg:justify-start"
               >
