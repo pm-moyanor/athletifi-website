@@ -69,7 +69,7 @@ const SignUpForm = () => {
                 <div className="mt-4 gap-3 flex items-start sm:items-center">
                   <div
                     onClick={() => setChecked(!checked)}
-                    className="mt-1 sm:mt-0"
+                    className="mt-1 sm:mt-0 cursor-pointer"
                   >
                     <span className="after:border flex justify-center items-center after:border-1 relative after:border[#FFFFFF63] after:bg-transparent after:inline-block after:left-0 after:top-0 after:rounded after:w-5 after:h-5 after:absolute z-0">
                       {checked ? (
