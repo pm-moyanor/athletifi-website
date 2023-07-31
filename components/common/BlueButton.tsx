@@ -2,8 +2,7 @@ import React from "react";
 import { ArrowButton } from "./Icon";
 
 interface BlueButtonProps {
-  // Define the expected props and their types here
-  // For example:
+
   onClick: () => void;
   text: string;
 }
