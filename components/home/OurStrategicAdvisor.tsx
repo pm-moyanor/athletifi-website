@@ -18,7 +18,7 @@ const OurStrategicAdvisor = () => {
             <Image
               className="max-w-[270px] sm:max-w-[350px] lg:max-w-[400px] xl:max-w-[475px] xl:max-h-[430px] mt-8 lg:mt-0 shadow-coach-shadow"
              
-              src="/assets/img/png/meet_our_strategic_profile.png"
+              src="/assets/img/webp/meet_our_strategic_profile.webp"
               alt="profile"
               width={475}
               height={430}

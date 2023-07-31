@@ -5,11 +5,11 @@ import BlueButton from "../common/BlueButton";
 const LatestNews = () => {
   const MatchNews = [
     {
-      matchimage: "/assets/img/png/news1-match.png",
+      matchimage: "/assets/img/webp/news1-match.webp",
       delay: "100",
     },
     {
-      matchimage: "/assets/img/png/news2-match.png",
+      matchimage: "/assets/img/webp/news2-match.webp",
       delay: "400",
     },
   ];
