@@ -9,8 +9,54 @@ import {
   SpotifyIcon,
   StripeIcon,
 } from "../common/Icon";
+import Slider from "react-slick";
 
 const TrustedPartners = () => {
+  const settings = {
+    arrows: false,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+    speed: 2000,
+    pauseOnHover: false,
+    responsive: [
+      {
+        breakpoint: 4000,
+        settings: "unslick",
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 350,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   return (
     <>
       <section>
@@ -27,7 +73,7 @@ const TrustedPartners = () => {
             partners
           </h2>
           <div
-            className="flex md:justify-between flex-col md:flex-row lg:pt-5 xl:pt-10 sm:gap-4 gap-3 md:items-start items-center"
+            className="flex md:justify-between flex-col md:flex-row lg:pt-5 sm:gap-4 gap-3 md:items-start items-center"
             data-aos="fade-up"
             data-aos-duration="600"
             data-aos-easing="linear"
@@ -42,32 +88,35 @@ const TrustedPartners = () => {
               Mid-Atlantic region to bring sports technology to new heights.
             </h4>
           </div>
-          <div className="flex lg:justify-between justify-center md:py-12 pt-5 sm:pb-10 flex-wrap md:gap-x-24 lg:gap-[38px] xl:gap-x-14  gap-x-5 gap-y-3">
-            <span className=" lg:max-w-[214px] max-w-[130px]">
+          <Slider
+            {...settings}
+            className="flex comapny_logo lg:justify-between justify-center md:py-6 lg:py-12 pt-5 sm:pb-5 flex-wrap lg:gap-[38px] xl:gap-x-14"
+          >
+            <span className="lg:max-w-[214px] max-w-[130px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <MerckIcon />
             </span>
-            <span className=" lg:max-w-[183px] max-w-[120px]">
+            <span className="lg:max-w-[183px] max-w-[120px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <KelloggsIcon />
             </span>
-            <span className=" lg:max-w-[311px] max-w-[170px]">
+            <span className="lg:max-w-[311px] max-w-[170px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <KayakIcon />
             </span>
-            <span className=" lg:max-w-[159px] max-w-[115px]">
+            <span className="lg:max-w-[159px] max-w-[115px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <DisealIcon />
             </span>
-            <span className=" lg:max-w-[238px] max-w-[150px]">
+            <span className="lg:max-w-[238px] max-w-[150px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <HsbcIcon />
             </span>
-            <span className=" lg:max-w-[135px] max-w-[100px]">
+            <span className="lg:max-w-[135px] max-w-[100px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <StripeIcon />
             </span>
-            <span className=" lg:max-w-[211px] max-w-[140px]">
+            <span className="lg:max-w-[211px] max-w-[140px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <SpotifyIcon />
             </span>
-            <span className=" lg:max-w-[185px] max-w-[130px]">
+            <span className="lg:max-w-[185px] max-w-[130px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <EuropcarIcon />
             </span>
-          </div>
+          </Slider>
         </div>
       </section>
     </>

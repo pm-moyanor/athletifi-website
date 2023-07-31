@@ -3,6 +3,7 @@ import { ButtonArrow } from "../common/Icon";
 import Image from "next/image";
 import football_net from "../../public/assets/img/png/football_net.png";
 import BlueButton from "../common/BlueButton";
+import Link from "next/link";
 
 const SoccerExpensive = () => {
   return (
@@ -47,7 +48,9 @@ const SoccerExpensive = () => {
                 data-aos-duration="600"
                 data-aos-easing="linear"
               >
-                <BlueButton text="Read more" onClick={() => {}} />
+                <Link href="/about-us">
+                  <BlueButton text="Read more" onClick={() => {}} />
+                </Link>
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
 import React from "react";
 import BlueButton from "../common/BlueButton";
 
@@ -23,11 +23,11 @@ const HeroHomepage = () => {
             </div> */}
 
             {/* convert-into-Link-tag */}
- <div className="flex lg:justify-start justify-center lg:mt-10 mt-7 lg:pb-14 lg:mb-10">
-                  <Link href="/about-us">
-             <BlueButton text="Join now"  onClick={() => {}} />
-            </Link>
- </div>
+            <div className="flex lg:justify-start justify-center lg:mt-10 mt-7 lg:pb-14 lg:mb-10">
+              <Link href="/sign-up">
+                <BlueButton text="Join now" onClick={() => {}} />
+              </Link>
+            </div>
           </div>
           <div className="pt-3 sm:pt-10 lg:pt-0">
             <span className="absolute right-0 top-[65%] -translate-y-1/2 max-w-[500px] xl:max-w-[600px] hidden lg:inline-block">
