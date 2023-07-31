@@ -3,6 +3,7 @@ import { ButtonArrow } from "../common/Icon";
 import Image from "next/image";
 import football_net from "../../public/assets/img/png/football_net.png";
 import BlueButton from "../common/BlueButton";
+import Link from "next/link";
 
 const SoccerExpensive = () => {
   return (
@@ -46,7 +47,9 @@ const SoccerExpensive = () => {
                 className="flex lg:justify-start justify-center items-center mt-10 lg:mb-10"
               
               >
-                <BlueButton text="Read more" onClick={() => {}} />
+                <Link href="/about-us">
+                  <BlueButton text="Read more" onClick={() => {}} />
+                </Link>
               </div>
             </div>
           </div>

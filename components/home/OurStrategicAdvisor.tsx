@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import BlueButton from "../common/BlueButton";
+import Link from "next/link";
 
 const OurStrategicAdvisor = () => {
   return (
@@ -48,9 +49,15 @@ const OurStrategicAdvisor = () => {
                 Philadelphia Union pre academy and FC Delco. He is also the
                 technical director of the Villanova Soccer Academy.
               </p>
-              <div className="flex justify-center lg:justify-start pt-5 lg:pt-10"
-                >
-                <BlueButton text="Join now" onClick={() => {}} />
+              <div
+                className="flex justify-center lg:justify-start pt-5 lg:pt-10"
+                data-aos="fade-left"
+                data-aos-duration="600"
+                data-aos-easing="linear"
+              >
+                <Link href="/sign-up">
+                  <BlueButton text="Join now" onClick={() => {}} />
+                </Link>
               </div>
             </div>
           </div>
