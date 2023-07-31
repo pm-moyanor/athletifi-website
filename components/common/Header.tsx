@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import {
   NavLogo,
   ArrowButton,
@@ -160,12 +161,12 @@ const Header = () => {
           onClick={() => setNavSocialIcon(true)}
           className="relative h-full z-50"
         >
-          <span
+          {/* <span
             className="absolute z-30 right-[10px] top-[10px] lg:top-0 cursor-pointer"
             onClick={() => setNavSocialIcon(true)}
           >
             <CancleIcon />
-          </span>
+          </span> */}
           <div className="min-h-screen bg_social_icon flex items-center justify-center gap-[20px] flex-col-reverse sm:flex-row fixed top-0 left-0 w-full z-20">
             <Link
               href="/sign-up"
@@ -207,7 +208,12 @@ const Header = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <InstaIcon />
+                <Image
+                  src="/assets/img/svg/Instagram.svg"
+                  alt="grid-lines"
+                  width={40}
+                  height={40}
+                />
               </Link>
               <Link
                 className="hover:-translate-y-2 transition duration-300 ease-out"

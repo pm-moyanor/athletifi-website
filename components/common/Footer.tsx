@@ -9,8 +9,8 @@ import {
 import Link from "next/link";
 
 const Footer = () => {
-   const today = new Date();
-   const year = today.getFullYear();
+  const today = new Date();
+  const year = today.getFullYear();
   return (
     <>
       <footer className="border-t border-[#00C7FF]">
