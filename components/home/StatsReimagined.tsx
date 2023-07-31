@@ -81,7 +81,13 @@ const StatsReimagined = () => {
             {...settings}
             className="w-full justify-between items-center pt-5 md:pt-0 max-w-[1000px] mx-auto lg:justify-center relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:-top-20 before:left-1/2 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/2 before:-z-10 before:rounded-full"
           >
-            <div className=" md:py-20 pt-15 sm:pb-10">
+            <div
+              className=" md:py-20 pt-15 sm:pb-10"
+              data-aos="fade-up"
+              data-aos-duration="400"
+              data-aos-easing="ease"
+              data-aos-delay="800"
+            >
               <Image
                 className="mx-auto w-full max-w-[350px]"
                 src="/assets/img/webp/castle.webp"
@@ -90,7 +96,13 @@ const StatsReimagined = () => {
                 alt="castle-img"
               />
             </div>
-            <div className=" md:py-20 pt-15 sm:pb-10 relative z-10 ">
+            <div
+              className=" md:py-20 pt-15 sm:pb-10 relative z-10 "
+              data-aos="fade-up"
+              data-aos-duration="400"
+              data-aos-easing="ease"
+              data-aos-delay="400"
+            >
               <Image
                 className="mx-auto md:scale-125 w-full max-w-[350px]"
                 src="/assets/img/webp/space.webp"
@@ -99,7 +111,13 @@ const StatsReimagined = () => {
                 alt="space-image"
               />
             </div>
-            <div className=" md:py-20 pt-15 sm:pb-10 ">
+            <div
+              className=" md:py-20 pt-15 sm:pb-10 "
+              data-aos="fade-up"
+              data-aos-duration="400"
+              data-aos-easing="ease"
+              data-aos-delay="1200"
+            >
               <Image
                 className="mx-auto w-full max-w-[300px] lg:max-w-[350px] pt-5"
                 src="/assets/img/webp/phoenix.webp"
