@@ -22,7 +22,7 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setpreloader(false);
-    }, 2000);
+    }, 1500);
     document.body.classList.add("overflow_anchor");
     if (preloader) {
       document.body.classList.add("overflow_hidden");

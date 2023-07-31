@@ -19,10 +19,6 @@ const HeroHomepage = () => {
               scholarships, and unparalledled resources. Welcome to the future
               of sports... for everyone!
             </p>
-            {/* <div className="flex lg:justify-start justify-center lg:mt-10 mt-7 lg:pb-14 lg:mb-10">
-              <BlueButton text=" Join now"  onClick={() => {}} />
-            </div> */}
-
             {/* convert-into-Link-tag */}
             <div className="flex lg:justify-start justify-center lg:mt-10 mt-7 lg:pb-14 lg:mb-10">
               <Link href="/sign-up">

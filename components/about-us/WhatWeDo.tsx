@@ -54,7 +54,7 @@ const WhatWeDo = () => {
                 className="flex justify-center lg:justify-start"
               >
                 <Image
-                  src="/assets/img/png/what-we-do-img.png"
+                  src="/assets/img/webp/what-we-do-img.webp"
                   width={496}
                   height={603}
                   alt="what we do sec img"
