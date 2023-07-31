@@ -42,7 +42,7 @@ const RecentNewsInsights = () => {
       />
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative z-10">
         <h2
-          data-aos="fade-left"
+          data-aos="fade-right"
           data-aos-duration="800"
           data-aos-easing="linear"
           data-aos-delay="200"
@@ -66,7 +66,7 @@ const RecentNewsInsights = () => {
                   key={i}
                 >
                   <div
-                    data-aos="flip-right"
+                    data-aos="fade-up"
                     data-aos-duration="800"
                     data-aos-easing="linear"
                     data-aos-delay="300"
