@@ -93,28 +93,28 @@ const TrustedPartners: React.FC = () => {
             {...settings}
             className="flex comapny_logo lg:justify-between justify-center md:py-6 lg:py-12 pt-5 sm:pb-5 flex-wrap lg:gap-[38px] xl:gap-x-14"
           >
-            <span className="lg:max-w-[214px] max-w-[130px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
+            <span className="lg:max-w-[214px] max-w-[130px] hover:mix-blend-luminosity mix-blend-luminosity lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <MerckIcon />
             </span>
-            <span className="lg:max-w-[183px] max-w-[120px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
+            <span className="lg:max-w-[183px] max-w-[120px] hover:mix-blend-luminosity mix-blend-luminosity lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <KelloggsIcon />
             </span>
-            <span className="lg:max-w-[311px] max-w-[170px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
+            <span className="lg:max-w-[311px] max-w-[170px] hover:mix-blend-luminosity mix-blend-luminosity lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <KayakIcon />
             </span>
-            <span className="lg:max-w-[159px] max-w-[115px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
+            <span className="lg:max-w-[159px] max-w-[115px] hover:mix-blend-luminosity mix-blend-luminosity lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <DisealIcon />
             </span>
-            <span className="lg:max-w-[238px] max-w-[150px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
+            <span className="lg:max-w-[238px] max-w-[150px] hover:mix-blend-luminosity mix-blend-luminosity lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <HsbcIcon />
             </span>
-            <span className="lg:max-w-[135px] max-w-[100px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
+            <span className="lg:max-w-[135px] max-w-[100px] hover:mix-blend-luminosity mix-blend-luminosity lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <StripeIcon />
             </span>
-            <span className="lg:max-w-[211px] max-w-[140px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
+            <span className="lg:max-w-[211px] max-w-[140px] hover:mix-blend-luminosity mix-blend-luminosity lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <SpotifyIcon />
             </span>
-            <span className="lg:max-w-[185px] max-w-[130px] grayscale lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
+            <span className="lg:max-w-[185px] max-w-[130px] hover:mix-blend-luminosity mix-blend-luminosity lg:filter-none contrast-50 hover:-translate-y-2 duration-300 cursor-pointer">
               <EuropcarIcon />
             </span>
           </Slider>
