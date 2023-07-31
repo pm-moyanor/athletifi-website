@@ -42,8 +42,13 @@ const RecentNewsInsights = () => {
       />
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative z-10">
         <h2
+<<<<<<< HEAD
           data-aos="fade-left"
           data-aos-duration="500"
+=======
+          data-aos="fade-right"
+          data-aos-duration="800"
+>>>>>>> 6c0d2d6a61f26e021ec873204fdef2a274689b03
           data-aos-easing="linear"
           data-aos-delay="200"
           data-aos-offset="200"
@@ -61,10 +66,17 @@ const RecentNewsInsights = () => {
           <Slider {...settings}>
             {RecentNews.map((data, i) => {
               return (
-                <div className="lg:w-1/3 sm:w-1/2 w-full lg:px-3 md:px-5 mt-8 sm:mt-12 lg:mt-0 flex justify-center rounded-2xl">
+                <div
+                  className="lg:w-1/3 sm:w-1/2 w-full lg:px-3 md:px-5 mt-8 sm:mt-12 lg:mt-0 flex justify-center rounded-2xl"
+                  key={i}
+                >
                   <div
                     data-aos="fade-up"
+<<<<<<< HEAD
                     data-aos-duration="300"
+=======
+                    data-aos-duration="800"
+>>>>>>> 6c0d2d6a61f26e021ec873204fdef2a274689b03
                     data-aos-easing="linear"
                     data-aos-delay={data.delay}
                     data-aos-offset="200"

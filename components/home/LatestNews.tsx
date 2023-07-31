@@ -36,6 +36,7 @@ const LatestNews = () => {
                 data-aos-easing="linear"
                 data-aos-delay="300"
                 data-aos-offset="200"
+                key={index}
               >
                 <Image
                   className="rounded-[10px] object-cover md:w-[315px] w-full"
