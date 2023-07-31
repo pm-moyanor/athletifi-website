@@ -2,6 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -15,6 +16,7 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
   transition: background-color 5000s ease-in-out 0s !important;
 }
+
 @layer base {
   @font-face {
     font-family: "HelveticaNeueMedium";
@@ -69,15 +71,19 @@ body {
   pointer-events: auto;
   z-index: 0 !important;
 }
+
 .bg-about-hero {
   background-image: url("/assets/img/webp/about-hero-img.webp");
 }
+
 .bg-new-hero-img {
   background-image: url("/assets/img/webp/news-hero-img.webp");
 }
+
 .bg-signup-hero-img {
   background-image: url("/assets/img/webp/sing-up-hero-img.webp");
 }
+
 ::-webkit-scrollbar {
   width: 6px;
 }
