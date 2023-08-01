@@ -67,6 +67,7 @@ const Header = () => {
       <div
         ref={navbarRef}
         id="nav_bar"
+        aria-label="logo"
         className={`navbar fixed top-0 black w-full bg-bgnav py-2 sm:py-[13px] z-40 ${
           scrollPosition > 200 ? "slideUp" : "slideDown"
         } ${isVisible ? "slideDown" : "slideUp"}`}
