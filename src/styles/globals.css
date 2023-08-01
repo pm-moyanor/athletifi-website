@@ -102,18 +102,3 @@ html {
   scrollbar-color: #000b13 #00c5f4;
   scrollbar-width: thin;
 }
-
-.comapny_logo .slick-slide~div {
-  display: flex !important;
-  justify-content: center !important;
-}
-.slick-track {
-  display: flex !important;
-}
-.slick-slide {
-  height: 100% !important;
-  display: flex !important;
-}
-.slick-slide > div {
-  display: flex;
-}
