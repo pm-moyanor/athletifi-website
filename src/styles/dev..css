@@ -62,11 +62,11 @@
 }
 
 .news_nsights_slider .slick-dots li.slick-active button:before {
-    color: white !important;
+    color: #00C5F4 !important;
 }
 
 .news_nsights_slider .slick-dots li button:before {
-    color: white !important;
+    color: #00C5F4 !important;
     font-size: 10px;
 }
 
