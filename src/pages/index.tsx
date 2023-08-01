@@ -70,7 +70,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <SocialIcon />
+        {/* <SocialIcon /> */}
         <StatsReimagined />
         <SoccerExpensive />
         <UniqueAthletifi />
