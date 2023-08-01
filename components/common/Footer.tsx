@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState , useEffect } from "react";
 import {
+  CancleIcon,
   FacebookIcon,
   InstaIcon,
   LinkedInIcon,
@@ -7,8 +8,22 @@ import {
   TwitterIcon,
 } from "./Icon";
 import Link from "next/link";
+import SocialPopUp from "./SocialPopUp";
 
 const Footer = () => {
+  const [socialIcon, setSocialIcon] = useState(true);
+  const SocialIcon = () => {
+    setSocialIcon(!socialIcon);
+  };
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (socialIcon) {
+        document.body.classList.remove("overflow_hidden");
+      } else {
+        document.body.classList.add("overflow_hidden");
+      }
+    }
+  }, [socialIcon]);
   const today = new Date();
   const year = today.getFullYear();
   return (
@@ -41,17 +56,18 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link
+              <button
+                onClick={SocialIcon}
                 className=" text-white text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out"
-                href="/socials"
               >
                 Socials
-              </Link>
+              </button>
             </li>
           </ul>
           <p className=" text-white text-sm font-Segoe opacity-70">
             @{year} Athletifi
           </p>
+          {/* social icons */}
           <div className="flex gap-4">
             <Link
               className="hover:-translate-y-2 transition duration-300 ease-out"
@@ -93,6 +109,18 @@ const Footer = () => {
             >
               <LinkedInIcon />
             </Link>
+          </div>
+        </div>
+        {/* popup social icons code */}
+        <div className={socialIcon ? "!hidden" : "block"}>
+          <div onClick={() => setSocialIcon(true)} className="h-full z-50">
+            <SocialPopUp />
+            <span
+              className="fixed z-30 right-0 top-10 sm:mt-10 sm:me-20 mt-10 me-5 lg:mt-0 cursor-pointer"
+              onClick={() => setSocialIcon(true)}
+            >
+              <CancleIcon />
+            </span>
           </div>
         </div>
       </footer>

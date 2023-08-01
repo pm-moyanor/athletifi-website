@@ -107,3 +107,13 @@ html {
   display: flex !important;
   justify-content: center !important;
 }
+.slick-track {
+  display: flex !important;
+}
+.slick-slide {
+  height: 100% !important;
+  display: flex !important;
+}
+.slick-slide > div {
+  display: flex;
+}

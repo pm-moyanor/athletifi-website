@@ -64,7 +64,7 @@ const RecentNewsInsights = () => {
             {RecentNews.map((data, i) => {
               return (
                 <div
-                  className="lg:w-1/3 sm:w-1/2 w-full lg:px-3 md:px-5 mt-8 sm:mt-12 lg:mt-0 flex justify-center rounded-2xl group overflow-hidden h-full"
+                  className="lg:w-1/3 sm:w-1/2 w-full lg:px-3 md:px-5 mt-8 sm:mt-12 lg:mt-0 flex justify-center rounded-2xl group/news_insights overflow-hidden h-full"
                   key={i}
                 >
                   <div
@@ -78,7 +78,7 @@ const RecentNewsInsights = () => {
                     <div className="rounded-2xl lg:w-[362px] lg:h-[241px] overflow-hidden">
                       {" "}
                       <Image
-                        className="lg:w-[362px] lg:h-[241px] w-full group-hover:scale-110 transition-all "
+                        className="lg:w-[362px] lg:h-[241px] w-full group-hover/news_insights:scale-110 transition-all "
                         src={data.TrainingImg}
                         width={362}
                         height={241}
@@ -98,10 +98,10 @@ const RecentNewsInsights = () => {
                     <span>
                       <button
                         type="submit"
-                        className="justify-center text-center sm:px-[24px] px-4 py-[14.5px] flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue mb-2 hover:bg-black hover:text-skyblue join_now_btn transition duration-300 ease-in-out mt-4 md:mt-8"
+                        className="justify-center text-center sm:px-[24px] px-4 py-[14.5px] flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group/read_more border border-skyblue mb-2 hover:bg-black hover:text-skyblue join_now_btn transition duration-300 ease-in-out mt-4 md:mt-8"
                       >
                         Read More
-                        <span className="group-hover:translate-x-3 transition duration-300 ease-out">
+                        <span className="group-hover/read_more:translate-x-3 transition duration-300 ease-out">
                           <ButtonWhiteArrow />
                         </span>
                       </button>
