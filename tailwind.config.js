@@ -31,9 +31,9 @@ module.exports = {
         darkgray: "#0D171F",
       },
       backgroundImage: {
-        "header-bg": "url('/assets/img/png/hero_bg.png')",
+        "header-bg": "url('/assets/img/webp/header_bg_2.webp')",
         "blue-underline": "url('/assets/img/svg/blue-underline.svg')",
-        "strategic-advisor": "url('/assets/img/webp/meet_our_strategic_bg.webp')",
+        "strategic-advisor": "url('/assets/img/webp/our_strategic_bg.webp')",
         "playground-unique": "url('/assets/img/webp/Unique-section-bg.webp')",
         "stats-reimagined": "url('/assets/img/svg/bg_stats_reimagined.svg')",
         "about-hero": "url('/assets/img/webp/about-hero-img.webp')",
