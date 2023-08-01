@@ -76,14 +76,14 @@ const Header = () => {
             <Link href="/">
               <NavLogo />
             </Link>
-            <button
+            <div
               onClick={() => setOpen(!open)}
-              className="flex flex-col sm:hidden bg-transparent border-0 relative z-50"
+              className="flex flex-col sm:hidden bg-transparent border-0 relative z-50 cursor-pointer"
             >
               <span className="h-[3px] w-[35px] bg-white inline-block rounded-sm"></span>
               <span className="my-2 h-[3px] w-[27px] bg-white inline-block rounded-sm"></span>
               <span className="h-[3px] w-[35px] bg-white inline-block rounded-sm"></span>
-            </button>
+            </div>
             <div
               className={
                 open
