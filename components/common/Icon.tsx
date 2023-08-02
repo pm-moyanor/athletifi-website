@@ -1408,12 +1408,12 @@ export const VillanovaIcon = () => {
           gradientUnits="userSpaceOnUse"
         >
           <stop />
-          <stop offset="0.0937637" stop-color="#14181A" />
-          <stop offset="0.3335" stop-color="#424F59" />
-          <stop offset="0.5525" stop-color="#677C8A" />
-          <stop offset="0.7436" stop-color="#819BAD" />
-          <stop offset="0.8992" stop-color="#91AFC3" />
-          <stop offset="1" stop-color="#97B6CB" />
+          <stop offset="0.0937637" stopColor="#14181A" />
+          <stop offset="0.3335" stopColor="#424F59" />
+          <stop offset="0.5525" stopColor="#677C8A" />
+          <stop offset="0.7436" stopColor="#819BAD" />
+          <stop offset="0.8992" stopColor="#91AFC3" />
+          <stop offset="1" stopColor="#97B6CB" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_793_796"
@@ -1424,12 +1424,12 @@ export const VillanovaIcon = () => {
           gradientUnits="userSpaceOnUse"
         >
           <stop />
-          <stop offset="0.0937637" stop-color="#14181A" />
-          <stop offset="0.3335" stop-color="#424F59" />
-          <stop offset="0.5525" stop-color="#677C8A" />
-          <stop offset="0.7436" stop-color="#819BAD" />
-          <stop offset="0.8992" stop-color="#91AFC3" />
-          <stop offset="1" stop-color="#97B6CB" />
+          <stop offset="0.0937637" stopColor="#14181A" />
+          <stop offset="0.3335" stopColor="#424F59" />
+          <stop offset="0.5525" stopColor="#677C8A" />
+          <stop offset="0.7436" stopColor="#819BAD" />
+          <stop offset="0.8992" stopColor="#91AFC3" />
+          <stop offset="1" stopColor="#97B6CB" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_793_796"
@@ -1440,12 +1440,12 @@ export const VillanovaIcon = () => {
           gradientUnits="userSpaceOnUse"
         >
           <stop />
-          <stop offset="0.0937637" stop-color="#14181A" />
-          <stop offset="0.3335" stop-color="#424F59" />
-          <stop offset="0.5525" stop-color="#677C8A" />
-          <stop offset="0.7436" stop-color="#819BAD" />
-          <stop offset="0.8992" stop-color="#91AFC3" />
-          <stop offset="1" stop-color="#97B6CB" />
+          <stop offset="0.0937637" stopColor="#14181A" />
+          <stop offset="0.3335" stopColor="#424F59" />
+          <stop offset="0.5525" stopColor="#677C8A" />
+          <stop offset="0.7436" stopColor="#819BAD" />
+          <stop offset="0.8992" stopColor="#91AFC3" />
+          <stop offset="1" stopColor="#97B6CB" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_793_796"
@@ -1456,12 +1456,12 @@ export const VillanovaIcon = () => {
           gradientUnits="userSpaceOnUse"
         >
           <stop />
-          <stop offset="0.0937637" stop-color="#14181A" />
-          <stop offset="0.3335" stop-color="#424F59" />
-          <stop offset="0.5525" stop-color="#677C8A" />
-          <stop offset="0.7436" stop-color="#819BAD" />
-          <stop offset="0.8992" stop-color="#91AFC3" />
-          <stop offset="1" stop-color="#97B6CB" />
+          <stop offset="0.0937637" stopColor="#14181A" />
+          <stop offset="0.3335" stopColor="#424F59" />
+          <stop offset="0.5525" stopColor="#677C8A" />
+          <stop offset="0.7436" stopColor="#819BAD" />
+          <stop offset="0.8992" stopColor="#91AFC3" />
+          <stop offset="1" stopColor="#97B6CB" />
         </linearGradient>
         <linearGradient
           id="paint4_linear_793_796"
@@ -1472,12 +1472,12 @@ export const VillanovaIcon = () => {
           gradientUnits="userSpaceOnUse"
         >
           <stop />
-          <stop offset="0.0937637" stop-color="#14181A" />
-          <stop offset="0.3335" stop-color="#424F59" />
-          <stop offset="0.5525" stop-color="#677C8A" />
-          <stop offset="0.7436" stop-color="#819BAD" />
-          <stop offset="0.8992" stop-color="#91AFC3" />
-          <stop offset="1" stop-color="#97B6CB" />
+          <stop offset="0.0937637" stopColor="#14181A" />
+          <stop offset="0.3335" stopColor="#424F59" />
+          <stop offset="0.5525" stopColor="#677C8A" />
+          <stop offset="0.7436" stopColor="#819BAD" />
+          <stop offset="0.8992" stopColor="#91AFC3" />
+          <stop offset="1" stopColor="#97B6CB" />
         </linearGradient>
       </defs>
     </svg>
