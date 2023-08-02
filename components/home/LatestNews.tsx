@@ -84,18 +84,18 @@ const LatestNews = () => {
           </div>
         </div>
         <Image
-          className="xl:w-[716px] lg:[550px] sm:w-[400px] w-[250px] absolute bottom-10 right-[-50px] -z-10"
+          className="xl:w-[600px] lg:[550px] sm:w-[400px] w-[250px] absolute bottom-10 right-[-50px] -z-10"
           src="/assets/img/svg/grid-lines.svg"
           width={716}
           height={692}
-          alt={""}
+          alt={"grid image"}
         />
         <Image
-          className="xl:w-[716px] lg:[550px] sm:w-[400px] w-[250px] absolute top-5 -translate-y-1/3 left-2 -z-10"
+          className="xl:w-[606px] lg:[550px] sm:w-[400px] w-[250px] absolute top-40 -translate-y-1/3 left-2 -z-10"
           src="/assets/img/svg/grid-lines.svg"
           width={716}
           height={692}
-          alt={""}
+          alt={"grid image"}
         />
       </section>
     </>
