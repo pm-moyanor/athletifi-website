@@ -29,6 +29,7 @@ module.exports = {
         bgnav: "rgba(0, 8, 15, 0.10)",
         matchtittles: "rgba(0, 197, 244, 0.05)",
         darkgray: "#0D171F",
+        offwhite: "#B1B5B8",
       },
       backgroundImage: {
         "header-bg": "url('/assets/img/webp/header_bg_2.webp')",

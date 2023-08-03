@@ -105,16 +105,16 @@ html {
 
 /* recent news slider height 100 percent  */
 @media (max-width: 1023.9px) {
-  #new_slider .slick-track {
+  #recentnews_slider .slick-track {
     display: flex !important;
   }
 
-  #new_slider .slick-slide {
+  #recentnews_slider .slick-slide {
     height: inherit !important;
     display: flex !important;
   }
 
-  #new_slider .slick-slide>div {
+  #recentnews_slider .slick-slide>div {
     display: flex;
   }
 }

@@ -1,11 +1,8 @@
 import Image from "next/image";
 import React from "react";
-import BlueButton from "../common/BlueButton";
 import { RecentNews } from "../common/Helper";
 import { ButtonWhiteArrow, UnderLIneText } from "../common/Icon";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 const RecentNewsInsights = () => {
   const settings = {
@@ -49,7 +46,7 @@ const RecentNewsInsights = () => {
           data-aos-easing="linear"
           data-aos-delay="50"
           data-aos-offset="200"
-          className="font-HelveticaNeueMedium text-center lg:text-start font-medium text-[24px]  md:text-5xl sm:text-4xl lg:leading-[60px] text-[#FDFEFF]"
+          className="font-HelveticaNeueMedium text-center lg:text-start font-medium text-[24px]  md:text-5xl sm:text-4xl lg:leading-[60px] text-primary"
         >
           <span className="relative">
             Recent News
@@ -60,7 +57,7 @@ const RecentNewsInsights = () => {
           and Insights
         </h2>
         <div
-          id="new_slider"
+          id="recentnews_slider"
           className="mt-8 sm:mt-12 lg:mt-11 xl:mt-[56px] relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:top-0 before:-end-56 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full news_nsights_slider h-full"
         >
           <Slider {...settings}>
@@ -89,15 +86,15 @@ const RecentNewsInsights = () => {
                         />
                       </div>
 
-                      <h3 className="font-Segoe font-normal lg:max-w-[358px] md:text-2xl text-[20px] mt-2 sm:mt-4 leading-8 text-[#FDFEFF] lg:text-start">
+                      <h3 className="font-Segoe font-normal lg:max-w-[358px] md:text-2xl text-[20px] mt-2 sm:mt-4 leading-8 text-primary lg:text-start">
                         {data.heading}
                       </h3>
                     </div>
                     <div>
-                      <p className="font-Segoe font-normal text-base mt-2 md:mt-4 leading-6 text-[#FDFEFF] lg:text-start opacity-70">
+                      <p className="font-Segoe font-normal text-base mt-2 md:mt-4 leading-6 text-primary lg:text-start opacity-70">
                         {data.date}
                       </p>
-                      <p className="font-Segoe lg:max-w-[358px] font-normal text-md mt-2 md:mt-4 leading-7 text-[#FDFEFF] lg:text-start opacity-70">
+                      <p className="font-Segoe lg:max-w-[358px] font-normal text-md mt-2 md:mt-4 leading-7 text-primary lg:text-start opacity-70">
                         {data.pera}
                       </p>
 
@@ -118,7 +115,7 @@ const RecentNewsInsights = () => {
               );
             })}
           </Slider>
-        </div>{" "}
+        </div>
       </div>
     </section>
   );
