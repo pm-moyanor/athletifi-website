@@ -79,7 +79,7 @@ const RecentNewsInsights = () => {
                     className="flex flex-col justify-between sm:px-3 px-2 lg:px-0 h-full"
                   >
                     <div>
-                      <div className="rounded-2xl lg:w-[362px] lg:h-[241px] overflow-hidden">
+                      <div className="rounded-2xl lg:max-w-[362px] lg:maxh-[241px] overflow-hidden">
                         <Image
                           className="lg:w-[362px] lg:h-[241px] w-full group-hover/news_insights:scale-110 transition-all "
                           src={data.TrainingImg}
@@ -92,24 +92,27 @@ const RecentNewsInsights = () => {
                       <h3 className="font-Segoe font-normal lg:max-w-[358px] md:text-2xl text-[20px] mt-2 sm:mt-4 leading-8 text-[#FDFEFF] lg:text-start">
                         {data.heading}
                       </h3>
+                    </div>
+                    <div>
                       <p className="font-Segoe font-normal text-base mt-2 md:mt-4 leading-6 text-[#FDFEFF] lg:text-start opacity-70">
                         {data.date}
                       </p>
                       <p className="font-Segoe lg:max-w-[358px] font-normal text-md mt-2 md:mt-4 leading-7 text-[#FDFEFF] lg:text-start opacity-70">
                         {data.pera}
                       </p>
+
+                      <span>
+                        <button
+                          type="submit"
+                          className="justify-center text-center sm:px-[24px] px-4 py-[14.5px] flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group/read_more border border-skyblue mb-2 hover:bg-black hover:text-skyblue join_now_btn transition duration-300 ease-in-out mt-4 md:mt-8"
+                        >
+                          Read More
+                          <span className="group-hover/read_more:translate-x-3 transition duration-300 ease-out">
+                            <ButtonWhiteArrow />
+                          </span>
+                        </button>
+                      </span>
                     </div>
-                    <span>
-                      <button
-                        type="submit"
-                        className="justify-center text-center sm:px-[24px] px-4 py-[14.5px] flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group/read_more border border-skyblue mb-2 hover:bg-black hover:text-skyblue join_now_btn transition duration-300 ease-in-out mt-4 md:mt-8"
-                      >
-                        Read More
-                        <span className="group-hover/read_more:translate-x-3 transition duration-300 ease-out">
-                          <ButtonWhiteArrow />
-                        </span>
-                      </button>
-                    </span>
                   </div>
                 </div>
               );
