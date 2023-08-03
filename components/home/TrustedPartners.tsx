@@ -1,64 +1,7 @@
 import React from "react";
 import { EyeBallIcon, VillanovaIcon } from "../common/Icon";
 
-// import {
-//   DisealIcon,
-//   EuropcarIcon,
-//   HsbcIcon,
-//   KayakIcon,
-//   KelloggsIcon,
-//   MerckIcon,
-//   SpotifyIcon,
-//   StripeIcon,
-// } from "../common/Icon";
-// import Slider, { Settings, ResponsiveObject } from 'react-slick';
-
 const TrustedPartners: React.FC = () => {
-  // const settings: Settings = {
-  //   arrows: false,
-  //   infinite: true,
-  //   slidesToShow: 4,
-  //   slidesToScroll: 1,
-  //   autoplay: true,
-  //   autoplaySpeed: 4000,
-  //   cssEase: "linear",
-  //   speed: 4000,
-  //   pauseOnHover: false,
-  //   responsive: [
-  //     {
-  //       breakpoint: 4000,
-  //       settings: "unslick",
-  //     },
-  //     {
-  //       breakpoint: 1024,
-  //       settings: {
-  //         slidesToShow: 4,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 700,
-  //       settings: {
-  //         slidesToShow: 3,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 500,
-  //       settings: {
-  //         slidesToShow: 2,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 350,
-  //       settings: {
-  //         slidesToShow: 1,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //   ],
-  // };
   return (
     <>
       <section>
@@ -90,35 +33,6 @@ const TrustedPartners: React.FC = () => {
               Mid-Atlantic region to bring sports technology to new heights.
             </h4>
           </div>
-          {/* <Slider
-            {...settings}
-            className="flex comapny_logo lg:justify-between justify-center md:py-6 lg:py-12 pt-5 sm:pb-5 flex-wrap lg:gap-[38px] xl:gap-x-14"
-          >
-            <div className="lg:max-w-[214px] max-w-[130px] hover:mix-blend-luminosity mix-blend-luminosity hover:-translate-y-2 duration-300 cursor-pointer">
-              <MerckIcon />
-            </div>
-            <div className="lg:max-w-[183px] max-w-[120px] hover:mix-blend-luminosity mix-blend-luminosity hover:-translate-y-2 duration-300 cursor-pointer">
-              <KelloggsIcon />
-            </div>
-            <div className="lg:max-w-[311px] max-w-[170px] hover:mix-blend-luminosity mix-blend-luminosity hover:-translate-y-2 duration-300 cursor-pointer">
-              <KayakIcon />
-            </div>
-            <div className="lg:max-w-[159px] max-w-[115px] hover:mix-blend-luminosity mix-blend-luminosity hover:-translate-y-2 duration-300 cursor-pointer">
-              <DisealIcon />
-            </div>
-            <div className="lg:max-w-[238px] max-w-[150px] hover:mix-blend-luminosity mix-blend-luminosity hover:-translate-y-2 duration-300 cursor-pointer">
-              <HsbcIcon />
-            </div>
-            <div className="lg:max-w-[135px] max-w-[100px] hover:mix-blend-luminosity mix-blend-luminosity hover:-translate-y-2 duration-300 cursor-pointer">
-              <StripeIcon />
-            </div>
-            <div className="lg:max-w-[211px] max-w-[140px] hover:mix-blend-luminosity mix-blend-luminosity hover:-translate-y-2 duration-300 cursor-pointer">
-              <SpotifyIcon />
-            </div>
-            <div className="lg:max-w-[185px] max-w-[130px] hover:mix-blend-luminosity mix-blend-luminosity hover:-translate-y-2 duration-300 cursor-pointer">
-              <EuropcarIcon />
-            </div>
-          </Slider> */}
           <div className="flex justify-evenly xl:mt-16 mt-10 xl:mb-28 sm:mb-14 mb-4 sm:flex-row flex-col">
             <div
               className="md:w-[43%] sm:max-w-[48%] w-full md:h-[152px] h-[120px] border border-solid border-[#49545C] hover:border-skyblue duration-300 transition-all flex justify-center items-center bg-[#000B13] rounded-lg"
