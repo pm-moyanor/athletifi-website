@@ -87,8 +87,8 @@ const Header = () => {
             <div
               className={
                 open
-                  ? "nav_open z-20 fixed top-0 left-0 w-full min-h-screen"
-                  : "sm:relative fixed min-h-screen sm:min-h-full -left-full sm:left-0 sm:ml-0 nav_open sm:mt-0 z-40 top-0"
+                  ? "nav_open h-full w-full z-20 fixed top-0 left-0 duration-500 transition-all bg-[#000b13] min-h-screen"
+                  : "sm:relative fixed min-h-screen sm:min-h-full -left-full sm:left-0 duration-500 sm:ml-0 nav_open sm:mt-0 z-40 top-0"
               }
             >
               <ul className="flex items-center gap-[40px] flex-col sm:flex-row h-full justify-center ">

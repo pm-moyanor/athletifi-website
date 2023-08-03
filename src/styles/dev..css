@@ -4,9 +4,6 @@
 }
 
 .nav_open {
-  height: 100%;
-  width: 100%;
-  background-color: #000b13;
   transition: all 0.3s linear;
 }
 
@@ -60,9 +57,11 @@
 .social_btn_contact_us svg path {
   fill: white;
 }
+
 .news_nsights_slider .slick-dots {
   bottom: -35px;
 }
+
 .news_nsights_slider .slick-dots li.slick-active button:before {
   color: #00c5f4 !important;
 }
@@ -86,6 +85,7 @@
   .nav_open {
     all: unset;
   }
+
   .news_nsights_slider .slick-dots {
     bottom: -40px;
   }

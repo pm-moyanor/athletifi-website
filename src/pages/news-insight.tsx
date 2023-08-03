@@ -2,7 +2,7 @@ import Backtotop from "../../components/common/Backtotop";
 import CommonHero from "../../components/common/CommonHero";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header";
-import Seo from "../../components/home/Seo";
+import Seo from "../../components/common/Seo";
 import MasteringGame from "../../components/news-insights/MasteringGames";
 import RecentNewsInsights from "../../components/news-insights/RecentNewsInsights";
 

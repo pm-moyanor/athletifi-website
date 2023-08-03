@@ -1,7 +1,7 @@
 import CommonHero from "../../components/common/CommonHero";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header";
-import Seo from "../../components/home/Seo";
+import Seo from "../../components/common/Seo";
 import SignUpForm from "../../components/sign-up/SignUpForm";
 
 const Signup = () => {

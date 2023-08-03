@@ -12,7 +12,7 @@ import HeroHomepage from "../../components/home/HeroHomepage";
 import Backtotop from "../../components/common/Backtotop";
 import { useEffect, useState } from "react";
 import { NavLogo } from "../../components/common/Icon";
-import Seo from "../../components/home/Seo";
+import Seo from "../../components/common/Seo";
 const inter = Inter({ subsets: ["latin"] });
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

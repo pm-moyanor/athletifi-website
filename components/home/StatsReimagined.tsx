@@ -30,13 +30,13 @@ const StatsReimagined = () => {
   };
   return (
     <section className="py-14 sm:mb-10 lg:mb-20 xl:mb-[125px] relative xl:mt-0">
-      <div className="absolute sm:-bottom-[40px] lg:-bottom-[100px`] bottom-0 start-0 lg:w-[230px] lg:h-[286px] -z-[] opacity-30">
+      <div className="absolute sm:-bottom-[40px] lg:-bottom-[100px] bottom-0 start-0 lg:w-[230px] lg:h-[286px] opacity-30">
         <Image
           className="xl:max-w-[240px] sm:max-w-[140px] max-w-[100px]"
           src="/assets/img/png/left-ball.png"
           width={240}
           height={286}
-          alt="what we do foot ball image"
+          alt="what we do foot ball"
         />
       </div>
       <Image
@@ -47,9 +47,9 @@ const StatsReimagined = () => {
         alt="shadow"
       />
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
-        <div className="blue_Linear_Gradient lg:pb-6 relative after:absolute flex justify-center flex-col items-center">
+        <div className="blue_linear_gradient lg:pb-6 relative after:absolute flex justify-center flex-col items-center">
           <h2
-            className="lg:text-5xl md:text-[40px] sm:text-4xl text-[24px]   text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-[539px] mx-auto text-center md:pt-9 pt-6 px-3 md:px-0 lg:pt-[72px] sm:leading-[45px] md:!leading-[60px]"
+            className="lg:text-5xl md:text-[40px] sm:text-4xl text-[24px] text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-[539px] mx-auto text-center md:pt-9 pt-6 px-3 md:px-0 lg:pt-[72px] sm:leading-[45px] md:!leading-[60px]"
             data-aos="fade-up"
             data-aos-duration="600"
             data-aos-easing="linear"

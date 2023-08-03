@@ -54,7 +54,7 @@ const SoccerExpensive = () => {
         >
           <div className="absolute right-0 lg:top-[40%] lg:-translate-y-[54%] xl:w-[700px] xl:h-[1000px] w-[300px] sm:w-[450px] lg:w-[500px] hidden lg:inline-block">
             <Image
-              className="w-full "
+              className="w-full"
               src="/assets/img/webp/expensive_football.webp"
               alt="football"
               width={700}
