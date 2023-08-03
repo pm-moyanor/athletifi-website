@@ -13,7 +13,6 @@ import Backtotop from "../../components/common/Backtotop";
 import { useEffect, useState } from "react";
 import { NavLogo } from "../../components/common/Icon";
 import Seo from "../../components/home/Seo";
-import SocialIcon from "../../components/common/SocialPopUp";
 const inter = Inter({ subsets: ["latin"] });
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -70,7 +69,6 @@ export default function Home() {
             />
           </div>
         </div>
-        {/* <SocialIcon /> */}
         <StatsReimagined />
         <SoccerExpensive />
         <UniqueAthletifi />

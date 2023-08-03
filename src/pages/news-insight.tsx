@@ -6,7 +6,7 @@ import Seo from "../../components/home/Seo";
 import MasteringGame from "../../components/news-insights/MasteringGames";
 import RecentNewsInsights from "../../components/news-insights/RecentNewsInsights";
 
-const newsinsight = () => {
+const Newsinsight = () => {
   const hero = {
     heading: "News and Insights",
     title: "Your Title Here", // Add the 'title' property
@@ -42,4 +42,4 @@ const newsinsight = () => {
   );
 };
 
-export default newsinsight;
+export default Newsinsight;

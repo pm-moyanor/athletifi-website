@@ -7,7 +7,7 @@ import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header";
 import Seo from "../../components/home/Seo";
 
-const aboutUs = () => {
+const AboutUs = () => {
   const hero = {
     heading: "About us",
     title: "Your Title Here", // Add the 'title' property
@@ -45,4 +45,4 @@ const aboutUs = () => {
   );
 };
 
-export default aboutUs;
+export default AboutUs;

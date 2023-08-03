@@ -34,7 +34,7 @@ const RecentNewsInsights = () => {
     ],
   };
   return (
-    <section className="lg:py-14 pb-12 md:py-14 pt-12 mt-1 md:mb-1 lg:mb-14 xl:mb-[75px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:-top-28 before:-left-24 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full">
+    <section className="lg:py-14 pb-14 md:py-16 pt-12 mt-1 md:mb-1 lg:mb-14 xl:mb-[75px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:-top-28 before:-left-24 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full">
       <Image
         className="lg:w-[462px] lg:h-[541px] w-[150px] -top-8 sm:-left-20 -left-5 absolute opacity-60"
         src="/assets/img/svg/news-grid-line.svg"
@@ -59,12 +59,15 @@ const RecentNewsInsights = () => {
           </span>{" "}
           and Insights
         </h2>
-        <div className="md:mt-0 lg:mt-11 xl:mt-[73px] relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:top-0 before:-end-56 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full news_nsights_slider h-full">
+        <div
+          id="new_slider"
+          className="mt-8 sm:mt-12 lg:mt-11 xl:mt-[56px] relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:top-0 before:-end-56 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full news_nsights_slider h-full"
+        >
           <Slider {...settings}>
             {RecentNews.map((data, i) => {
               return (
                 <div
-                  className="lg:w-1/3 sm:w-1/2 w-full lg:px-3 md:px-5 mt-8 sm:mt-12 lg:mt-0 flex justify-center rounded-2xl group/news_insights overflow-hidden h-full"
+                  className="lg:px-3 md:px-5 lg:mt-0 flex rounded-2xl group/news_insights overflow-hidden h-full"
                   key={i}
                 >
                   <div
@@ -73,28 +76,29 @@ const RecentNewsInsights = () => {
                     data-aos-easing="linear"
                     data-aos-delay={data.delay}
                     data-aos-offset="200"
-                    className=" justify-center flex flex-col lg:items-start sm:px-3 px-2 lg:px-0 "
+                    className="flex flex-col justify-between sm:px-3 px-2 lg:px-0 h-full"
                   >
-                    <div className="rounded-2xl lg:w-[362px] lg:h-[241px] overflow-hidden">
-                      {" "}
-                      <Image
-                        className="lg:w-[362px] lg:h-[241px] w-full group-hover/news_insights:scale-110 transition-all "
-                        src={data.TrainingImg}
-                        width={362}
-                        height={241}
-                        alt="players-image"
-                      />
-                    </div>
+                    <div>
+                      <div className="rounded-2xl lg:w-[362px] lg:h-[241px] overflow-hidden">
+                        <Image
+                          className="lg:w-[362px] lg:h-[241px] w-full group-hover/news_insights:scale-110 transition-all "
+                          src={data.TrainingImg}
+                          width={362}
+                          height={241}
+                          alt="players-image"
+                        />
+                      </div>
 
-                    <h3 className="font-Segoe font-normal lg:max-w-[358px] md:text-2xl text-[20px] mt-2 sm:mt-4 leading-8 text-[#FDFEFF] lg:text-start">
-                      {data.heading}
-                    </h3>
-                    <p className="font-Segoe font-normal text-base mt-2 md:mt-4 leading-6 text-[#FDFEFF] lg:text-start opacity-70">
-                      {data.date}
-                    </p>
-                    <p className="font-Segoe lg:max-w-[358px] font-normal text-md mt-2 md:mt-4 leading-7 text-[#FDFEFF] lg:text-start opacity-70">
-                      {data.pera}
-                    </p>
+                      <h3 className="font-Segoe font-normal lg:max-w-[358px] md:text-2xl text-[20px] mt-2 sm:mt-4 leading-8 text-[#FDFEFF] lg:text-start">
+                        {data.heading}
+                      </h3>
+                      <p className="font-Segoe font-normal text-base mt-2 md:mt-4 leading-6 text-[#FDFEFF] lg:text-start opacity-70">
+                        {data.date}
+                      </p>
+                      <p className="font-Segoe lg:max-w-[358px] font-normal text-md mt-2 md:mt-4 leading-7 text-[#FDFEFF] lg:text-start opacity-70">
+                        {data.pera}
+                      </p>
+                    </div>
                     <span>
                       <button
                         type="submit"

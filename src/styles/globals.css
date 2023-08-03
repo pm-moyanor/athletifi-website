@@ -102,3 +102,16 @@ html {
   scrollbar-color: #000b13 #00c5f4;
   scrollbar-width: thin;
 }
+/* recent news slider height 100 percent  */
+@media (max-width: 1023.9px) {
+  #new_slider .slick-track {
+    display: flex !important;
+  }
+  #new_slider .slick-slide {
+    height: inherit !important;
+    display: flex !important;
+  }
+  #new_slider .slick-slide > div {
+    display: flex;
+  }
+}

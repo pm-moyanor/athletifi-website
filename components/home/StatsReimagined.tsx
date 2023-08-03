@@ -11,7 +11,6 @@ const StatsReimagined = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    cssEase: "linear",
     responsive: [
       {
         breakpoint: 767,

@@ -4,7 +4,7 @@ import Header from "../../components/common/Header";
 import Seo from "../../components/home/Seo";
 import SignUpForm from "../../components/sign-up/SignUpForm";
 
-const signup = () => {
+const Signup = () => {
   const hero = {
     heading: "Sign Up for Exclusive Access!",
     title: "Your Title Here", // Add the 'title' property
@@ -37,4 +37,4 @@ const signup = () => {
   );
 };
 
-export default signup;
+export default Signup;
