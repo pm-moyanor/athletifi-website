@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import BlueButton from "../common/BlueButton";
-import RecentNews from "../common/Helper";
+import { RecentNews } from "../common/Helper";
 import { ButtonWhiteArrow, UnderLIneText } from "../common/Icon";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";

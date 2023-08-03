@@ -51,7 +51,7 @@ body {
   font-family: "HelveticaNeueMedium";
 }
 
-.blue_Linear_Gradient::after {
+.blue_linear_gradient::after {
   content: "";
   inset: 0;
   padding: 1px;
@@ -62,7 +62,7 @@ body {
   border-radius: 30px;
 }
 
-.blue_Linear_Gradient {
+.blue_linear_gradient {
   border-radius: 30px;
   background: rgba(255, 255, 255, 0.03);
   box-shadow: 0px 0px 150px -30px rgba(0, 0, 0, 0.05) inset;
@@ -102,16 +102,19 @@ html {
   scrollbar-color: #000b13 #00c5f4;
   scrollbar-width: thin;
 }
+
 /* recent news slider height 100 percent  */
 @media (max-width: 1023.9px) {
   #new_slider .slick-track {
     display: flex !important;
   }
+
   #new_slider .slick-slide {
     height: inherit !important;
     display: flex !important;
   }
-  #new_slider .slick-slide > div {
+
+  #new_slider .slick-slide>div {
     display: flex;
   }
 }
