@@ -80,7 +80,7 @@ body {
   background-image: url("/assets/img/webp/sing-up-hero-img.webp");
 }
 
-/* CUSTOM SCROLLBAR */
+/* CUSTOM SCROLLBAR  */
 ::-webkit-scrollbar {
   width: 6px;
 }
