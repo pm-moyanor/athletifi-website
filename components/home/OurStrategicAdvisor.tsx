@@ -7,7 +7,7 @@ const OurStrategicAdvisor = () => {
   return (
     <>
       <div className="bg-strategic-advisor bg-no-repeat bg-cover">
-        <div className="container">
+        <div className="container xl:pb-14">
           <div
             data-aos="fade-in"
             data-aos-duration="600"
