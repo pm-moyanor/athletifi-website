@@ -52,7 +52,7 @@ const SoccerExpensive = () => {
           data-aos-delay="200"
           data-aos-offset="200"
         >
-          <div className="absolute right-0 lg:top-[40%] lg:-translate-y-[54%] xl:w-[700px] xl:h-[1000px] w-[300px] sm:w-[450px] lg:w-[500px] hidden lg:inline-block">
+          <div className="absolute right-0 lg:top-[40%] lg:-translate-y-[54%] xl:w-[700px] xl:h-[1000px] w-[300px] sm:w-[450px] lg:w-[500px] hidden lg:inline-block -z-10">
             <Image
               className="w-full"
               src="/assets/img/webp/expensive_football.webp"
