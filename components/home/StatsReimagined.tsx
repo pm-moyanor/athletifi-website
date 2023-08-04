@@ -47,7 +47,7 @@ const StatsReimagined = () => {
         alt="shadow"
       />
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto relative z-10">
-        <div className="blue_linear_gradient lg:pb-6 relative after:absolute flex justify-center flex-col items-center  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px]">
+        <div className="blue_linear_gradient relative after:absolute flex justify-center flex-col items-center  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px]">
           <h2
             className="lg:text-5xl md:text-[40px] sm:text-4xl text-[24px] text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-[539px] mx-auto text-center md:pt-9 pt-6 px-3 md:px-0 lg:pt-[72px] sm:leading-[45px] md:!leading-[60px]"
             data-aos="fade-up"
@@ -78,12 +78,13 @@ const StatsReimagined = () => {
               soccer more accessible and empowering dreams to flourish.
             </span>
           </p>
+          {/* CARD SLIDER SAMLL SCREEN */}
           <Slider
             {...settings}
             className="w-full justify-between items-center pt-5 md:pt-0 max-w-[1000px] mx-auto lg:justify-center relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:-top-20 before:left-1/2 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/2 before:-z-10 before:rounded-full"
           >
             <div
-              className=" md:py-20 pt-15 sm:pb-10"
+              className=" md:py-16 sm:pb-8"
               data-aos="fade-up"
               data-aos-duration="500"
               data-aos-easing="ease"
@@ -98,7 +99,7 @@ const StatsReimagined = () => {
               />
             </div>
             <div
-              className=" md:py-20 pt-15 sm:pb-10 relative z-10 "
+              className=" md:py-16 sm:pb-8 relative z-10 "
               data-aos="fade-up"
               data-aos-duration="500"
               data-aos-easing="ease"
@@ -113,7 +114,7 @@ const StatsReimagined = () => {
               />
             </div>
             <div
-              className=" md:py-20 pt-15 sm:pb-10 "
+              className=" md:py-16 sm:pb-8 "
               data-aos="fade-up"
               data-aos-duration="500"
               data-aos-easing="ease"
