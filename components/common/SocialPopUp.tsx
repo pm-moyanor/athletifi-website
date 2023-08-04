@@ -4,11 +4,9 @@ import Image from "next/image";
 import {
   ArrowButton,
   FacebookIcon,
-  InstaIcon,
   LinkedInIcon,
   TiktokIcon,
   TwitterIcon,
-  CancelIcon,
 } from "./Icon";
 
 const SocialPopUp = () => {
