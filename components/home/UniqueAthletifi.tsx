@@ -37,6 +37,7 @@ const UniqueAthletifi = () => {
                 </span>
               </p>
             </div>
+            {/* FOOTBALL PLAYER IMAGE */}
             <Image
               data-aos="fade-in"
               data-aos-duration="600"
@@ -51,6 +52,7 @@ const UniqueAthletifi = () => {
             />
           </div>
         </div>
+        {/* FOOTBALL IMAGE CORNOR*/}
         <Image
           className="absolute lg:w-[220px] sm:w-[150px] w-[100px] -bottom-8 right-0 z-0"
           src="/assets/img/png/unique-football.png"

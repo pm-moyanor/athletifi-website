@@ -70,6 +70,7 @@ const SoccerExpensive = () => {
           data-aos-delay="200"
           data-aos-offset="200"
         >
+          {/* SMALL FOOTBALL CORNOR */}
           <div className="lg:hidden relative w-full sm:w-[80%] mx-auto mt-5">
             <Image
               className="mx-auto"
