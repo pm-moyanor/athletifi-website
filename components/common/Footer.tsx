@@ -11,7 +11,7 @@ import Link from "next/link";
 import SocialPopUp from "./SocialPopUp";
 
 const Footer = () => {
-  // SOCIAL-ICON
+  // SOCIAL-ICON POPUP
   const [socialIcon, setSocialIcon] = useState(true);
   const SocialIcon = () => {
     setSocialIcon(!socialIcon);
@@ -32,6 +32,7 @@ const Footer = () => {
     <>
       <footer className="border-t border-[#00C7FF]">
         <div className=" container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto  flex flex-col md:flex-row gap-5 items-center justify-between py-7">
+          {/* PAGE LINKS */}
           <ul className=" flex gap-lg-10 gap-5">
             <li>
               <Link
