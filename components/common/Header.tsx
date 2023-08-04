@@ -1,15 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-// import Image from "next/image";
 import {
   NavLogo,
-  // ArrowButton,
-  // FacebookIcon,
-  // InstaIcon,
-  // LinkedInIcon,
-  // TiktokIcon,
-  // TwitterIcon,
   CancleIcon,
 } from "./Icon";
 import SocialPopUp from "./SocialPopUp";

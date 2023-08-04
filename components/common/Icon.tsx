@@ -1,3 +1,4 @@
+// TIKTOK ICON
 export const TiktokIcon = () => {
   return (
     <svg
@@ -28,6 +29,7 @@ export const TiktokIcon = () => {
     </svg>
   );
 };
+// FACEBOOK ICON
 export const FacebookIcon = () => {
   return (
     <svg
@@ -62,6 +64,7 @@ export const FacebookIcon = () => {
     </svg>
   );
 };
+// TWITTER ICON
 export const TwitterIcon = () => {
   return (
     <svg
@@ -88,6 +91,7 @@ export const TwitterIcon = () => {
     </svg>
   );
 };
+// INSTAGRAM ICON
 export const InstaIcon = () => {
   return (
     <svg
@@ -143,6 +147,7 @@ export const InstaIcon = () => {
     </svg>
   );
 };
+// LINKEDIN ICON
 export const LinkedInIcon = () => {
   return (
     <svg
@@ -179,7 +184,7 @@ export const LinkedInIcon = () => {
     </svg>
   );
 };
-
+// ATHLETIFI LOGO
 export const NavLogo = () => {
   return (
     <svg
@@ -246,6 +251,7 @@ export const NavLogo = () => {
     </svg>
   );
 };
+// BLUE UNDERLINE
 export const UnderLIneText = () => {
   return (
     <svg
@@ -263,6 +269,7 @@ export const UnderLIneText = () => {
     </svg>
   );
 };
+// BLUE SHADOW BACKGROUND
 export const BlueShodow = () => {
   return (
     <svg
@@ -317,6 +324,7 @@ export const BlueShodow = () => {
     </svg>
   );
 };
+// BLUE SHADOW CENTER
 export const CenterBlueShadow = () => {
   return (
     <svg
@@ -372,6 +380,7 @@ export const CenterBlueShadow = () => {
     </svg>
   );
 };
+
 export const ArrowButton = () => {
   return (
     <svg
@@ -642,6 +651,7 @@ export const ButtonWhiteArrow = () => {
 export const CancleIcon = () => {
   return (
     <svg
+      className="sm:w-[36px] w-6"
       width="36"
       height="36"
       viewBox="0 0 36 36"
@@ -1139,4 +1149,4 @@ export const VillanovaIcon = () => {
       </defs>
     </svg>
   );
-}
+};
