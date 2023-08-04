@@ -5,7 +5,8 @@ import { BlueShodow, UnderLIneText } from "../common/Icon";
 const WhatWeDo = () => {
   return (
     <>
-      <section className="relative py-6 lg:pt-10 sm:pt-20 pt-14">
+      <div className="relative py-6 lg:pt-10 sm:pt-20 pt-14">
+        {/* SHADOW IMG */}
         <Image
           className="absolute top-[30%] -translate-y-24 end-0"
           src="/assets/img/png/what-we-do-shadow.png"
@@ -63,7 +64,7 @@ const WhatWeDo = () => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 };

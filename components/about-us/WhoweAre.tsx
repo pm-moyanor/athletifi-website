@@ -6,6 +6,7 @@ const WhoweAre = () => {
   return (
     <section className="pt-10 pb-16 sm:mb-14 sm:pb-12 lg:mb-20 relative">
       <div className="absolute -top-[40px] am:top-0 xl:-top-[150px] -end-[40px] lg:-end-10 xl:w-[250px] xl:h-[380px] z-0">
+        {/* RIGHT FOOTBALL IMG */}
         <Image
           className="h-full w-full"
           src="/assets/img/png/football.png"
@@ -14,6 +15,7 @@ const WhoweAre = () => {
           alt="what we do foot ball image"
         />
       </div>
+      {/* SHADOW IMG */}
       <Image
         className="absolute -top-[250px] end-0 z-0"
         src="/assets/img/png/what-we-do-shadow.png"
@@ -25,7 +27,7 @@ const WhoweAre = () => {
         <BlueShodow />
       </span>
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative">
-        <div className="blue_linear_gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 sm:mt-6 z-0 after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px]">
+        <div className="blue_linear_gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 sm:mt-6 z-0  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px]">
           <div
             data-aos="fade-up"
             data-aos-duration="400"

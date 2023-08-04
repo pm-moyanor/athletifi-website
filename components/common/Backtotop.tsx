@@ -28,6 +28,7 @@ const Backtotop = () => {
           className="fixed  backtotop sm:bottom-20 bottom-14 right-7 z-40 md:max-h-12 md:max-w-[48px] max-h-9 max-w-[36px]  cursor-pointer bg-skyblue rounded-lg border-[2px] border-skyblue hover:border-white duration-300"
           onClick={() => scrollToTop()}
         >
+          {/* UP-ARROW-IMG */}
           <div className="w-full h-full flex justify-center items-center">
             <Image
               alt="up-arrow"

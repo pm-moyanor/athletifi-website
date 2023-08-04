@@ -7,6 +7,7 @@ const OurMIssion = () => {
   return (
     <section className="sm:py-10 py-8 lg:mt-14 relative">
       <div className="lg:w-[600px] lg:h-[700px] w-1/4 absolute -end-20 top-10 z-0">
+        {/* GRID IMG */}
         <Image
           src="/assets/img/png/our-mission-grid-img.png"
           width={692}
@@ -14,7 +15,8 @@ const OurMIssion = () => {
           alt="grid-image"
           className="w-full h-full"
         />
-      </div>  
+      </div>
+      {/* SHADOW IMG */}
       <Image
         className="absolute top-100 end-0 z-0"
         src="/assets/img/png/what-we-do-shadow.png"

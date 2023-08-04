@@ -7,9 +7,10 @@ import MasteringGame from "../../components/news-insights/MasteringGames";
 import RecentNewsInsights from "../../components/news-insights/RecentNewsInsights";
 
 const Newsinsight = () => {
+  // SEO
   const hero = {
     heading: "News and Insights",
-    title: "Your Title Here", // Add the 'title' property
+    title: "Your Title Here",
     subtitle: "Your Subtitle Here",
   };
   const pageSEO = {
@@ -27,6 +28,7 @@ const Newsinsight = () => {
   };
   return (
     <>
+      {/* SEO */}
       <Seo pageSEO={pageSEO} />
       <div className="overflow_hidden">
         <div className="bg-new-hero-img bg-center bg-no-repeat bg-cover">

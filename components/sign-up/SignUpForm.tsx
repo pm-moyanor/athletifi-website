@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import { ButtonWhiteArrow, UnderLIneText } from "../common/Icon";
 
 const SignUpForm = () => {
+  // CUSTOM INPUT-CHECK
   const [checked, setChecked] = useState(false);
   return (
     <section className="py-8 sm:py-[64px] lg:pt-[100px] xl:pt-[145px] lg:pb-[100px] xl:pb-[139px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:top-2 before:-left-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full overflow-hidden">
+      {/* GRID-LINE IMG */}
       <Image
         className="lg:w-[462px] lg:h-[452px] w-40 h-40 lg:top-10 lg:-left-10 absolute -z-20 opacity-40"
         src="/assets/img/svg/news-grid-line.svg"
@@ -67,6 +69,7 @@ const SignUpForm = () => {
                   />
                 </div>
                 <div className="mt-4 gap-3 flex items-start sm:items-center">
+                  {/* CUSTOM CHECKED BTN */}
                   <div
                     onClick={() => setChecked(!checked)}
                     className="mt-1 sm:mt-0 cursor-pointer"

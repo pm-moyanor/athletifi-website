@@ -8,9 +8,10 @@ import Header from "../../components/common/Header";
 import Seo from "../../components/common/Seo";
 
 const AboutUs = () => {
+  // SEO
   const hero = {
     heading: "About us",
-    title: "Your Title Here", // Add the 'title' property
+    title: "Your Title Here",
     subtitle: "Your Subtitle Here",
   };
   const pageSEO = {
@@ -29,6 +30,7 @@ const AboutUs = () => {
   };
   return (
     <>
+      {/* SEO */}
       <Seo pageSEO={pageSEO} />
       <div className="overflow_hidden">
         <div className=" bg-about-hero bg-no-repeat bg-cover">

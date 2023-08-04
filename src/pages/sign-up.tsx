@@ -5,9 +5,10 @@ import Seo from "../../components/common/Seo";
 import SignUpForm from "../../components/sign-up/SignUpForm";
 
 const Signup = () => {
+  // SEO
   const hero = {
     heading: "Sign Up for Exclusive Access!",
-    title: "Your Title Here", // Add the 'title' property
+    title: "Your Title Here",
     subtitle: "Your Subtitle Here",
   };
   const pageSEO = {
@@ -26,6 +27,7 @@ const Signup = () => {
   };
   return (
     <>
+      {/* SEO */}
       <Seo pageSEO={pageSEO} />
       <div className="bg-signup-hero-img bg-no-repeat bg-cover overflow-hidden">
         <Header />

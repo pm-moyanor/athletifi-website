@@ -5,6 +5,7 @@ import { ButtonWhiteArrow, UnderLIneText } from "../common/Icon";
 import Slider from "react-slick";
 
 const RecentNewsInsights = () => {
+  // SLIDER SETTINGS
   const settings = {
     arrows: false,
     infinite: true,
@@ -60,6 +61,7 @@ const RecentNewsInsights = () => {
           id="recentnews_slider"
           className="mt-8 sm:mt-12 lg:mt-11 xl:mt-[56px] relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:top-0 before:-end-56 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full news_nsights_slider h-full"
         >
+          {/* SLIDER CARDS */}
           <Slider {...settings}>
             {RecentNews.map((data, i) => {
               return (
