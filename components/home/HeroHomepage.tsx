@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+// BLUE BUTTON COMMON
 import BlueButton from "../common/BlueButton";
 
 const HeroHomepage = () => {
@@ -18,13 +19,14 @@ const HeroHomepage = () => {
               scholarships, and unparalledled resources. Welcome to the future
               of sports... for everyone!
             </p>
-            {/* convert-into-Link-tag */}
+            {/* CONVERT-INTO-LINK-TAG */}
             <div className="flex lg:justify-start justify-center lg:mt-10 mt-7 lg:pb-14 lg:mb-10">
               <Link href="/sign-up">
                 <BlueButton text="Join now" onClick={() => {}} />
               </Link>
             </div>
           </div>
+          {/*  LAPTOP IMG */}
           <div className="pt-3 sm:pt-10 lg:pt-0">
             <span className="absolute right-0 top-[65%] -translate-y-1/2 max-w-[500px] xl:max-w-[600px] hidden lg:inline-block">
               <Image
@@ -37,6 +39,7 @@ const HeroHomepage = () => {
           </div>
         </div>
       </div>
+      {/*  IPAD IMG */}
       <div className="hidden sm:block lg:hidden w-full">
         <Image
           className="mx-auto"
@@ -46,6 +49,7 @@ const HeroHomepage = () => {
           height={350}
         />
       </div>
+      {/*  PHONE IMG */}
       <div className="pt-6 sm:hidden">
         <span className="right-0 top-1/2 -translate-y-1/2 max-w-[400px]">
           <Image
