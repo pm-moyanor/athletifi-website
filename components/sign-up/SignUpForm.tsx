@@ -39,6 +39,7 @@ const SignUpForm = () => {
               </p>
               <form action="submit" className="w-full sm:w-3/4">
                 <div className="flex flex-col mt-6">
+                  {/* EMAIL INPUT */}
                   <label
                     className="font-Segoe font-normal group text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px]"
                     htmlFor="email"
@@ -54,6 +55,7 @@ const SignUpForm = () => {
                   />
                 </div>
                 <div className="flex flex-col mt-4">
+                  {/* PASSWORD INPUT */}
                   <label
                     className="font-Segoe font-normal input:-webkit-autofill text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px]"
                     htmlFor="Password"
@@ -105,7 +107,7 @@ const SignUpForm = () => {
                     I agree to all Term, Privacy Policy and Fees
                   </span>
                 </div>
-
+                {/* SIGN UP BUTTON */}
                 <div className="flex mt-6 md:mt-8 lg:max-w-[400px]">
                   <button
                     type="submit"
@@ -121,6 +123,7 @@ const SignUpForm = () => {
             </div>
           </div>
           <div className="lg:w-1/2 sm:w-3/5 mx-auto w-full relative flex justify-center items-center z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:-bottom-28 before:-right-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full">
+            {/* FOOTBALL PLAYER IMAGE */}
             <Image
               className="xl:max-w-[658px] xl:h-[610px] lg:absolute lg:right-0 mt-10 lg:mt-0"
               src="/assets/img/webp/signup-img.webp"

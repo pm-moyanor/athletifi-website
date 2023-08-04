@@ -4,17 +4,16 @@ import Image from "next/image";
 import {
   ArrowButton,
   FacebookIcon,
-  InstaIcon,
   LinkedInIcon,
   TiktokIcon,
   TwitterIcon,
-  CancelIcon,
 } from "./Icon";
 
 const SocialPopUp = () => {
   return (
     <>
       <div className="min-h-screen bg_social_icon flex items-center justify-center gap-[20px] flex-col-reverse sm:flex-row fixed top-0 left-0 w-full z-20">
+        {/* CONTACT US BUTTON */}
         <Link
           href="/sign-up"
           className="sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black hover:text-skyblue join_now_btn transition duration-300 ease-in-out social_btn_contact_us"
@@ -25,6 +24,7 @@ const SocialPopUp = () => {
           </span>
         </Link>
         <div className="flex gap-4">
+          {/* SOCIAL ICONS LINKS */}
           <Link
             className="hover:-translate-y-2 transition duration-300 ease-out"
             href="https://www.tiktok.com/about"

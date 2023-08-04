@@ -66,6 +66,7 @@ const Header = () => {
             <Link href="/">
               <PageLogo />
             </Link>
+            {/* SAMLL SREEN MENUICONS */}
             <div
               onClick={() => setOpen(!open)}
               className="flex flex-col sm:hidden bg-transparent border-0 relative z-50 cursor-pointer"
@@ -81,6 +82,7 @@ const Header = () => {
                   : "sm:relative fixed min-h-screen sm:min-h-full -left-full sm:left-0 duration-500 sm:ml-0 nav_open sm:mt-0 z-40 top-0"
               }
             >
+              {/* NAV PAGE LINKS */}
               <ul className="flex items-center gap-[40px] flex-col sm:flex-row h-full justify-center ">
                 <li>
                   <Link
@@ -146,7 +148,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {/* ================================================= */}
+      {/* SOCIAL ICONS POPUP */}
       <div className={navSocialIcon ? "!hidden" : "block"}>
         <div
           onClick={() => setNavSocialIcon(true)}
