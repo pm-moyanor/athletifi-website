@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { PageLogo, CancleIcon } from "./Icon";
+import { PageLogo, CancelIcon } from "./Icon";
 import SocialPopUp from "./SocialPopUp";
 
 const Header = () => {
@@ -157,7 +157,7 @@ const Header = () => {
             className="fixed z-30 right-0 top-10 sm:mt-10 sm:me-20 mt-10 me-5 lg:mt-0 cursor-pointer"
             onClick={() => setNavSocialIcon(true)}
           >
-            <CancleIcon />
+            <CancelIcon />
           </span>
         </div>
       </div>

@@ -1,3 +1,4 @@
+// RECENT NEWS COMPONENT MAP
 export const RecentNews = [
   {
     TrainingImg: "/assets/img/webp/traning.webp",
@@ -21,7 +22,7 @@ export const RecentNews = [
     delay: "800",
   },
 ];
-
+// LATEST NEWS MAP
 export const MatchNews = [
   {
     matchimage: "/assets/img/webp/news1-match.webp",

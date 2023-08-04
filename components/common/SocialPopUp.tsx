@@ -8,7 +8,7 @@ import {
   LinkedInIcon,
   TiktokIcon,
   TwitterIcon,
-  CancleIcon,
+  CancelIcon,
 } from "./Icon";
 
 const SocialPopUp = () => {

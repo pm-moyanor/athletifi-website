@@ -1,6 +1,6 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  CancleIcon,
+  CancelIcon,
   FacebookIcon,
   InstaIcon,
   LinkedInIcon,
@@ -59,7 +59,7 @@ const Footer = () => {
             </li>
             <li>
               <button
-                 aria-label="socials"
+                aria-label="socials"
                 onClick={SocialIcon}
                 className=" text-white text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out"
               >
@@ -127,7 +127,7 @@ const Footer = () => {
               className="fixed z-30 right-0 top-10 sm:mt-10 sm:me-20 mt-10 me-5 lg:mt-0 cursor-pointer"
               onClick={() => setSocialIcon(true)}
             >
-              <CancleIcon />
+              <CancelIcon />
             </span>
           </div>
         </div>

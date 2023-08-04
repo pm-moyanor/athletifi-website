@@ -380,7 +380,7 @@ export const CenterBlueShadow = () => {
     </svg>
   );
 };
-
+// BUTTON ARROW BLACK
 export const ArrowButton = () => {
   return (
     <svg
@@ -409,217 +409,7 @@ export const ArrowButton = () => {
     </svg>
   );
 };
-export const ButtonArrow = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="25"
-      height="24"
-      viewBox="0 0 25 24"
-      fill="none"
-    >
-      <g clipPath="url(#clip0_422_368)">
-        <path
-          className="duration-300"
-          d="M7.02241 17.4697C6.72951 17.7626 6.72951 18.2374 7.02241 18.5303C7.3153 18.8232 7.79017 18.8232 8.08307 18.5303L7.02241 17.4697ZM19.3027 7C19.3027 6.58579 18.9669 6.25 18.5527 6.25L11.8027 6.25C11.3885 6.25 11.0527 6.58579 11.0527 7C11.0527 7.41422 11.3885 7.75 11.8027 7.75L17.8027 7.75L17.8027 13.75C17.8027 14.1642 18.1385 14.5 18.5527 14.5C18.9669 14.5 19.3027 14.1642 19.3027 13.75L19.3027 7ZM8.08307 18.5303L19.0831 7.53033L18.0224 6.46967L7.02241 17.4697L8.08307 18.5303Z"
-          fill="black"
-        />
-      </g>
-      <defs>
-        <clipPath id="clip0_422_368">
-          <rect
-            width="24"
-            height="24"
-            fill="white"
-            transform="matrix(-1 0 0 -1 24.5527 24)"
-          />
-        </clipPath>
-      </defs>
-    </svg>
-  );
-};
-export const GridLines = () => {
-  return (
-    <svg
-      width="693"
-      height="717"
-      viewBox="0 0 693 717"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <line
-        opacity="0.2"
-        y1="-0.814957"
-        x2="716.347"
-        y2="-0.814957"
-        transform="matrix(4.37114e-08 1 1 -4.37114e-08 526.374 0)"
-        stroke="url(#paint0_linear_515_658)"
-        stroke-width="1.62991"
-      />
-      <line
-        opacity="0.2"
-        y1="-0.814957"
-        x2="716.347"
-        y2="-0.814957"
-        transform="matrix(4.37114e-08 1 1 -4.37114e-08 386.374 0)"
-        stroke="url(#paint1_linear_515_658)"
-        stroke-width="1.62991"
-      />
-      <line
-        opacity="0.2"
-        y1="-0.814957"
-        x2="716.347"
-        y2="-0.814957"
-        transform="matrix(4.37114e-08 1 1 -4.37114e-08 246.374 0)"
-        stroke="url(#paint2_linear_515_658)"
-        stroke-width="1.62991"
-      />
-      <line
-        opacity="0.2"
-        y1="-0.814957"
-        x2="716.347"
-        y2="-0.814957"
-        transform="matrix(4.37114e-08 1 1 -4.37114e-08 106.374 0)"
-        stroke="url(#paint3_linear_515_658)"
-        stroke-width="1.62991"
-      />
-      <line
-        opacity="0.2"
-        y1="-0.814957"
-        x2="692.747"
-        y2="-0.814957"
-        transform="matrix(-1 4.37114e-08 4.37114e-08 1 692.747 557.117)"
-        stroke="url(#paint4_linear_515_658)"
-        stroke-width="1.62991"
-      />
-      <line
-        opacity="0.2"
-        y1="-0.814957"
-        x2="692.747"
-        y2="-0.814957"
-        transform="matrix(-1 4.37114e-08 4.37114e-08 1 692.747 417.117)"
-        stroke="url(#paint5_linear_515_658)"
-        stroke-width="1.62991"
-      />
-      <line
-        opacity="0.2"
-        y1="-0.814957"
-        x2="692.747"
-        y2="-0.814957"
-        transform="matrix(-1 4.37114e-08 4.37114e-08 1 692.747 277.117)"
-        stroke="url(#paint6_linear_515_658)"
-        stroke-width="1.62991"
-      />
-      <line
-        opacity="0.2"
-        y1="-0.814957"
-        x2="692.747"
-        y2="-0.814957"
-        transform="matrix(-1 4.37114e-08 4.37114e-08 1 692.747 137.117)"
-        stroke="url(#paint7_linear_515_658)"
-        stroke-width="1.62991"
-      />
-      <defs>
-        <linearGradient
-          id="paint0_linear_515_658"
-          x1="716.347"
-          y1="-1.77031e-05"
-          x2="0"
-          y2="3.76811e-05"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#000B13" />
-          <stop offset="0.496645" stopColor="white" />
-          <stop offset="1" stopColor="#000B13" />
-        </linearGradient>
-        <linearGradient
-          id="paint1_linear_515_658"
-          x1="716.347"
-          y1="-1.77031e-05"
-          x2="0"
-          y2="3.76811e-05"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#000B13" />
-          <stop offset="0.496645" stopColor="white" />
-          <stop offset="1" stopColor="#000B13" />
-        </linearGradient>
-        <linearGradient
-          id="paint2_linear_515_658"
-          x1="716.347"
-          y1="-1.77031e-05"
-          x2="0"
-          y2="3.76811e-05"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#000B13" />
-          <stop offset="0.496645" stopColor="white" />
-          <stop offset="1" stopColor="#000B13" />
-        </linearGradient>
-        <linearGradient
-          id="paint3_linear_515_658"
-          x1="716.347"
-          y1="-1.77031e-05"
-          x2="0"
-          y2="3.76811e-05"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#000B13" />
-          <stop offset="0.496645" stopColor="white" />
-          <stop offset="1" stopColor="#000B13" />
-        </linearGradient>
-        <linearGradient
-          id="paint4_linear_515_658"
-          x1="692.747"
-          y1="-1.77031e-05"
-          x2="0"
-          y2="3.4092e-05"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#000B13" />
-          <stop offset="0.496645" stopColor="white" />
-          <stop offset="1" stopColor="#000B13" />
-        </linearGradient>
-        <linearGradient
-          id="paint5_linear_515_658"
-          x1="692.747"
-          y1="-1.77031e-05"
-          x2="0"
-          y2="3.4092e-05"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#000B13" />
-          <stop offset="0.496645" stopColor="white" />
-          <stop offset="1" stopColor="#000B13" />
-        </linearGradient>
-        <linearGradient
-          id="paint6_linear_515_658"
-          x1="692.747"
-          y1="-1.77031e-05"
-          x2="0"
-          y2="3.4092e-05"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#000B13" />
-          <stop offset="0.496645" stopColor="white" />
-          <stop offset="1" stopColor="#000B13" />
-        </linearGradient>
-        <linearGradient
-          id="paint7_linear_515_658"
-          x1="692.747"
-          y1="-1.77031e-05"
-          x2="0"
-          y2="3.4092e-05"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#000B13" />
-          <stop offset="0.496645" stopColor="white" />
-          <stop offset="1" stopColor="#000B13" />
-        </linearGradient>
-      </defs>
-    </svg>
-  );
-};
+// WHITE ARROW BUTTON
 export const ButtonWhiteArrow = () => {
   return (
     <svg
@@ -648,7 +438,8 @@ export const ButtonWhiteArrow = () => {
     </svg>
   );
 };
-export const CancleIcon = () => {
+// CROSS OR CANCEL ICON
+export const CancelIcon = () => {
   return (
     <svg
       className="sm:w-[36px] w-6"
@@ -666,6 +457,7 @@ export const CancleIcon = () => {
   );
 };
 // Trusted Partners
+// EYEBALL ICON
 export const EyeBallIcon = () => {
   return (
     <svg
@@ -719,6 +511,7 @@ export const EyeBallIcon = () => {
     </svg>
   );
 };
+// VILLANOVA ICON
 export const VillanovaIcon = () => {
   return (
     <svg

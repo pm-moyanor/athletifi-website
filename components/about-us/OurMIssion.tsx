@@ -14,7 +14,7 @@ const OurMIssion = () => {
           alt="grid-image"
           className="w-full h-full"
         />
-      </div>  
+      </div>
       <Image
         className="absolute top-100 end-0 z-0"
         src="/assets/img/png/what-we-do-shadow.png"
