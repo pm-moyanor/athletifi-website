@@ -1,19 +1,18 @@
 import Image from "next/image";
 import React from "react";
 
+// COMMON HEADING
 interface HeroProps {
-  // Define the properties of the 'hero' object
-  // For example:
   title: string;
   subtitle: string;
   heading: string;
-  // Add more properties if necessary
 }
 
 const CommonHero: React.FC<{ hero: HeroProps }> = ({ hero }) => {
   return (
     <>
       <section className="relative">
+        {/* HERO SHADOW */}
         <Image
           className="absolute start-1/2 -top-28 -z-10 -translate-x-1/2"
           src="/assets/img/png/about-hero-center-shadow.png"

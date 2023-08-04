@@ -11,6 +11,7 @@ import Link from "next/link";
 import SocialPopUp from "./SocialPopUp";
 
 const Footer = () => {
+  // SOCIAL-ICON
   const [socialIcon, setSocialIcon] = useState(true);
   const SocialIcon = () => {
     setSocialIcon(!socialIcon);
@@ -24,6 +25,7 @@ const Footer = () => {
       }
     }
   }, [socialIcon]);
+  // UPDATE DATE-YEAR
   const today = new Date();
   const year = today.getFullYear();
   return (
@@ -70,7 +72,7 @@ const Footer = () => {
           <p className=" text-white text-sm font-Segoe opacity-70">
             @{year} Athletifi
           </p>
-          {/* social icons */}
+          {/* SOCIAL-ICON */}
           <div className="flex gap-4">
             <Link
               aria-label="Tik-Tok"
@@ -119,7 +121,7 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-        {/* popup social icons code */}
+        {/* POPUP SOCAIL ICONS CODE */}
         <div className={socialIcon ? "!hidden" : "block"}>
           <div onClick={() => setSocialIcon(true)} className="h-full z-50">
             <SocialPopUp />
