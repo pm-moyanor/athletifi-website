@@ -11,7 +11,7 @@ const Backtotop = () => {
   };
 
   const handleScroll = () => {
-    const position = window.pageYOffset;
+    const position = window.scrollY;
     setScrollPosition(position);
   };
 

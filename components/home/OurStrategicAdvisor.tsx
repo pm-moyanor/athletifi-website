@@ -7,6 +7,7 @@ const OurStrategicAdvisor = () => {
   return (
     <>
       <div className=" bg-no-repeat bg-cover relative">
+        {/* BACKGROUND GRID IMAGE */}
         <Image
           className="absolute top-0 -right-0 w-[40%] lg:block hidden z-0  h-[100%] opacity-70"
           src="/assets/img/png/football_net.png"
@@ -23,6 +24,7 @@ const OurStrategicAdvisor = () => {
             data-aos-offset="200"
             className="flex items-center justify-center lg:gap-8 xl:gap-[114px] flex-col-reverse lg:flex-row pt-14 pb-14 xl:pt-[95px] xlpb-[150px]"
           >
+            {/* ADVISOR IMAGE */}
             <Image
               className="max-w-[270px] sm:max-w-[350px] lg:max-w-[400px] xl:max-w-[475px] xl:max-h-[430px] mt-8 lg:mt-0 shadow-coach-shadow"
               src="/assets/img/webp/meet_our_strategic_profile.webp"

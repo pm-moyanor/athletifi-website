@@ -33,6 +33,7 @@ const RecentNewsInsights = () => {
   };
   return (
     <section className="lg:py-14 pb-14 md:py-16 pt-12 mt-1 md:mb-1 lg:mb-14 xl:mb-[75px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:-top-28 before:-left-24 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full">
+    {/* BLUE SHADOW */}
       <Image
         className="lg:w-[462px] lg:h-[541px] w-[150px] -top-8 sm:-left-20 -left-5 absolute opacity-60"
         src="/assets/img/svg/news-grid-line.svg"
@@ -61,7 +62,7 @@ const RecentNewsInsights = () => {
           id="recentnews_slider"
           className="mt-8 sm:mt-12 lg:mt-11 xl:mt-[56px] relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:top-0 before:-end-56 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full news_nsights_slider h-full"
         >
-          {/* SLIDER CARDS */}
+          {/* SLIDER CARDS WITH MAPS */}
           <Slider {...settings}>
             {RecentNews.map((data, i) => {
               return (
@@ -87,20 +88,23 @@ const RecentNewsInsights = () => {
                           alt="players-image"
                         />
                       </div>
-
+                      {/* NEWS HEADING */}
                       <h3 className="font-Segoe font-normal lg:max-w-[358px] md:text-2xl text-[20px] mt-2 sm:mt-4 leading-8 text-primary lg:text-start">
                         {data.heading}
                       </h3>
                     </div>
                     <div>
+                      {/* NEWS DATE */}
                       <p className="font-Segoe font-normal text-base mt-2 md:mt-4 leading-6 text-primary lg:text-start opacity-70">
                         {data.date}
                       </p>
+                      {/* NEWS INFO */}
                       <p className="font-Segoe lg:max-w-[358px] font-normal text-md mt-2 md:mt-4 leading-7 text-primary lg:text-start opacity-70">
                         {data.pera}
                       </p>
 
                       <span>
+                        {/* READ MORE BUTTON */}
                         <button
                           type="submit"
                           className="justify-center text-center sm:px-[24px] px-4 py-[14.5px] flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group/read_more border border-skyblue mb-2 hover:bg-black hover:text-skyblue join_now_btn transition duration-300 ease-in-out mt-4 md:mt-8"

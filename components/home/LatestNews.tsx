@@ -38,6 +38,7 @@ const LatestNews = () => {
                   alt="football match"
                 />
                 <div className="sm:pt-0 pt-3">
+                  {/* NEWS HEADING */}
                   <h3 className="sm:text-basemd text-[18px] text-primary font-HelveticaNeueMedium leading-[140%]">
                     Rivals Meet in Thrilling Soccer Match
                   </h3>
@@ -50,6 +51,7 @@ const LatestNews = () => {
                         Graham Clark
                       </span>
                     </h4>
+                    {/* NEWS CATEGORY */}
                     <span className="flex gap-x-3">
                       <button className="lg:text-base md:text-[13px] text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-[10px] sm:px-[18px] bg-matchtittles rounded-full leading-[150%] duration-300 hover:text-white">
                         Most popular
@@ -59,6 +61,7 @@ const LatestNews = () => {
                       </button>
                     </span>
                   </div>
+                  {/* NEWS DATA */}
                   <p className="sm:text-md text:base text-primary opacity-80 font-Segoe leading-[150%] sm:pt-6 pt-3 lg:pe-14 sm:pe-4">
                     In a highly anticipated soccer match, two arch-rivals
                     clashed on the pitch, setting the stage for an exhilarating
@@ -74,6 +77,7 @@ const LatestNews = () => {
             <BlueButton text="View all" onClick={() => {}} />
           </div>
         </div>
+        {/* BACKGROUND RIGHT GRID */}
         <Image
           className="xl:w-[600px] lg:[550px] sm:w-[400px] w-[250px] absolute bottom-10 right-[-50px] -z-10"
           src="/assets/img/svg/grid-lines.svg"
@@ -81,6 +85,7 @@ const LatestNews = () => {
           height={692}
           alt={"grid image"}
         />
+        {/* BACKGROUND LEFT GRID */}
         <Image
           className="xl:w-[606px] lg:[550px] sm:w-[400px] w-[250px] absolute top-40 -translate-y-1/3 left-2 -z-10"
           src="/assets/img/svg/grid-lines.svg"

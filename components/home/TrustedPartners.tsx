@@ -34,6 +34,7 @@ const TrustedPartners: React.FC = () => {
             </h4>
           </div>
           <div className="flex justify-evenly xl:mt-16 mt-10 xl:mb-28 sm:mb-14 mb-4 sm:flex-row flex-col">
+            {/* EYEBALL LOGO */}
             <div
               className="md:w-[43%] sm:max-w-[48%] w-full md:h-[152px] h-[120px] border border-solid border-[#49545C] hover:border-skyblue duration-300 transition-all flex justify-center items-center bg-[#000B13] rounded-lg"
               data-aos="fade-up"
@@ -44,6 +45,7 @@ const TrustedPartners: React.FC = () => {
             >
               <EyeBallIcon />
             </div>
+            {/* VILLANOVA LOGO */}
             <div
               className="md:w-[43%] sm:max-w-[48%] w-full mt-4 sm:mt-0 md:h-[152px] h-[120px] border border-solid border-[#49545C] hover:border-skyblue duration-300 transition-all flex justify-center items-center bg-[#000B13] rounded-lg"
               data-aos="fade-up"
