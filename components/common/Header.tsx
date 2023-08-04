@@ -1,10 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {
-  NavLogo,
-  CancleIcon,
-} from "./Icon";
+import { PageLogo, CancleIcon } from "./Icon";
 import SocialPopUp from "./SocialPopUp";
 
 const Header = () => {
@@ -67,7 +64,7 @@ const Header = () => {
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
           <div className="flex items-center justify-between">
             <Link href="/">
-              <NavLogo />
+              <PageLogo />
             </Link>
             <div
               onClick={() => setOpen(!open)}

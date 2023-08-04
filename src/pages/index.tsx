@@ -11,7 +11,7 @@ import UniqueAthletifi from "../../components/home/UniqueAthletifi";
 import HeroHomepage from "../../components/home/HeroHomepage";
 import Backtotop from "../../components/common/Backtotop";
 import { useEffect, useState } from "react";
-import { NavLogo } from "../../components/common/Icon";
+import { PageLogo } from "../../components/common/Icon";
 import Seo from "../../components/common/Seo";
 const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
@@ -53,7 +53,7 @@ export default function Home() {
           className={`preloader fixed min-h-screen top-0 left-0 w-full z-50 flex justify-center items-center`}
         >
           <span>
-            <NavLogo />
+            <PageLogo />
           </span>
         </div>
       )}

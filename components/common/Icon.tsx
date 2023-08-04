@@ -185,7 +185,7 @@ export const LinkedInIcon = () => {
   );
 };
 // ATHLETIFI LOGO
-export const NavLogo = () => {
+export const PageLogo = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
