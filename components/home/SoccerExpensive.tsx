@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import BlueButton from "../common/BlueButton";
 import Link from "next/link";
+import { ArrowButton } from "../common/Icon";
 
 const SoccerExpensive = () => {
   return (
@@ -39,7 +40,7 @@ const SoccerExpensive = () => {
               </p>
               <div className="flex lg:justify-start justify-center items-center mt-10 lg:mb-10">
                 <Link href="/about-us">
-                  <BlueButton text="Read more" onClick={() => {}} />
+                  <BlueButton text="Read&nbsp;more" onClick={() => {}} />
                 </Link>
               </div>
             </div>
