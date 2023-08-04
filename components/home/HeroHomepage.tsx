@@ -26,18 +26,19 @@ const HeroHomepage = () => {
               </Link>
             </div>
           </div>
-          {/*  LAPTOP IMG */}
-          <div className="pt-3 sm:pt-10 lg:pt-0">
-            <span className="absolute right-0 top-[65%] -translate-y-1/2 max-w-[500px] xl:max-w-[600px] hidden lg:inline-block">
-              <Image
-                src="/assets/img/webp/hero_female_player.webp"
-                alt="female-player"
-                width={600}
-                height={600}
-              />
-            </span>
-          </div>
         </div>
+      </div>
+      {/*  LAPTOP IMG */}
+      <div className="pt-3 sm:pt-10 lg:pt-0">
+        <span className="sm:absolute right-0 top-[65%] -translate-y-1/2 mr-auto max-w-[400px] sm:max-w-[500px] xl:max-w-[600px] sm:hidden lg:inline-block">
+          <Image
+            className="w-full"
+            src="/assets/img/webp/hero_female_player.webp"
+            alt="female-player"
+            width={600}
+            height={600}
+          />
+        </span>
       </div>
       {/*  IPAD IMG */}
       <div className="hidden sm:block lg:hidden w-full">
@@ -50,8 +51,8 @@ const HeroHomepage = () => {
         />
       </div>
       {/*  PHONE IMG */}
-      <div className="pt-6 sm:hidden">
-        <span className="right-0 top-1/2 -translate-y-1/2 max-w-[400px]">
+      {/* <div className="pt-6 sm:hidden">
+        <span className="max-w-[400px]">
           <Image
             className="ml-auto"
             src="/assets/img/webp/hero_female_player.webp"
@@ -60,7 +61,7 @@ const HeroHomepage = () => {
             height={400}
           />
         </span>
-      </div>
+      </div> */}
     </>
   );
 };
