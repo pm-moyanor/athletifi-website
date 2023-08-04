@@ -25,7 +25,7 @@ const WhoweAre = () => {
         <BlueShodow />
       </span>
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative">
-        <div className="blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 sm:mt-6 z-0">
+        <div className="blue_linear_gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 sm:mt-6 z-0 after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px]">
           <div
             data-aos="fade-up"
             data-aos-duration="400"
