@@ -5,12 +5,12 @@ import Image from "next/image";
 const WhoweAre = () => {
   return (
     <section className="pt-10 pb-16 sm:mb-14 sm:pb-12 lg:mb-20 relative">
-      <div className="absolute -top-[40px] am:top-0 xl:-top-[150px] -end-[40px] lg:-end-10 xl:w-[250px] xl:h-[380px] z-0">
+      <div className="absolute top-0 xl:-top-[70px] -end-[80px]  xl:w-[250px] xl:h-[380px] z-0">
         {/* RIGHT FOOTBALL IMG */}
         <Image
-          className="h-full w-full"
+          className="max-w-[176px] me-0"
           src="/assets/img/png/football.png"
-          width={286}
+          width={176}
           height={286}
           alt="what we do foot ball image"
         />
