@@ -2,7 +2,6 @@ import React from "react";
 import { ArrowButton } from "./Icon";
 
 interface BlueButtonProps {
-
   onClick: () => void;
   text: string;
 }
@@ -17,7 +16,7 @@ const BlueButton: React.FC<BlueButtonProps> = (props) => {
         onClick={props.onClick}
       >
         {props.text}
-        <span className="hidden">jldjfkjfl</span>
+        
         <span className="group-hover:translate-x-3 transition duration-300 ease-out">
           <ArrowButton />
         </span>
