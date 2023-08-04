@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-// BLUE BUTTON COMMON
 import BlueButton from "../common/BlueButton";
 
 const HeroHomepage = () => {
