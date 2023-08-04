@@ -29,8 +29,8 @@ const StatsReimagined = () => {
     ],
   };
   return (
-    <section className="py-14 sm:mb-10 lg:mb-20 xl:mb-[125px] relative xl:mt-0">
-      <div className="absolute sm:-bottom-[40px] lg:-bottom-[100px] bottom-0 start-0 lg:w-[230px] lg:h-[286px] opacity-30">
+    <section className="py-14 sm:mb-10 lg:mb-20 xl:mb-[125px] relative xl:mt-0 z-[1]">
+      <div className="absolute sm:-bottom-[40px] lg:-bottom-[80px] bottom-0 start-0 lg:w-[230px] lg:h-[286px] opacity-30">
         <Image
           className="xl:max-w-[240px] sm:max-w-[140px] max-w-[100px]"
           src="/assets/img/png/left-ball.png"

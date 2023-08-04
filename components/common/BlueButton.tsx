@@ -2,14 +2,11 @@ import React from "react";
 import { ArrowButton } from "./Icon";
 
 interface BlueButtonProps {
-
   onClick: () => void;
   text: string;
 }
 
 const BlueButton: React.FC<BlueButtonProps> = (props) => {
-  // Now, you can safely use the props with their specified types
-  // For example:
   return (
     <>
       <span
