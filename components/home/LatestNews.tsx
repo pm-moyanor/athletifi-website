@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import BlueButton from "../common/BlueButton";
-import { MatchNews} from "../common/Helper";
+import { MatchNews } from "../common/Helper";
 
 const LatestNews = () => {
   return (
@@ -74,7 +74,7 @@ const LatestNews = () => {
             );
           })}
           <div className="flex justify-center items-center pt-4 md:pb-14 lg:mb-10">
-            <BlueButton text="View all" onClick={() => {}} />
+            <BlueButton text="View all" />
           </div>
         </div>
         {/* BACKGROUND RIGHT GRID */}

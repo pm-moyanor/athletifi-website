@@ -1,3 +1,4 @@
+
 import OurMission from "../../components/about-us/OurMIssion";
 import WhatWeDo from "../../components/about-us/WhatWeDo";
 import WhoweAre from "../../components/about-us/WhoweAre";
@@ -38,7 +39,7 @@ const AboutUs = () => {
           <CommonHero hero={hero} />
         </div>
         <WhatWeDo />
-        <OurMission />
+        <OurMission/>
         <WhoweAre />
         <Footer />
         <Backtotop />

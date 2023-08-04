@@ -57,7 +57,7 @@ const OurStrategicAdvisor = () => {
                 </p>
                 <div className="flex justify-center lg:justify-start pt-5 lg:pt-10">
                   <Link href="/sign-up">
-                    <BlueButton text="Join now" onClick={() => {}} />
+                    <BlueButton text="Join now" />
                   </Link>
                 </div>
               </div>

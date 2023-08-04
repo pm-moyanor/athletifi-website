@@ -3,7 +3,7 @@ import Image from "next/image";
 import { UnderLIneText } from "../common/Icon";
 import { CenterBlueShadow } from "../common/Icon";
 
-const OurMission = () => {
+const OurMIssion = () => {
   return (
     <section className="sm:py-10 py-8 lg:mt-14 relative">
       <div className="lg:w-[600px] lg:h-[700px] w-1/4 absolute -end-20 top-10 z-0">
@@ -79,4 +79,4 @@ const OurMission = () => {
   );
 };
 
-export default OurMission;
+export default OurMIssion;

@@ -21,7 +21,7 @@ const HeroHomepage = () => {
             {/* CONVERT-INTO-LINK-TAG */}
             <div className="flex lg:justify-start justify-center lg:mt-10 mt-7 lg:pb-14 lg:mb-10">
               <Link href="/sign-up">
-                <BlueButton text="Join now" onClick={() => {}} />
+                <BlueButton text="Join now" />
               </Link>
             </div>
           </div>

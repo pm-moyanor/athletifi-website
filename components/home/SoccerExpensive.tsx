@@ -40,7 +40,7 @@ const SoccerExpensive = () => {
               </p>
               <div className="flex lg:justify-start justify-center items-center mt-10">
                 <Link href="/about-us">
-                  <BlueButton text="Read&nbsp;more" onClick={() => {}} />
+                  <BlueButton text="Read&nbsp;more" />
                 </Link>
               </div>
             </div>
