@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { UnderLIneText } from "../common/Icon";
-import { CenterBlueShadow } from "./../common/Icon";
+import { CenterBlueShadow } from "../common/Icon";
 
 const OurMIssion = () => {
   return (

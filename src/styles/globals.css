@@ -50,8 +50,6 @@ body {
   background-color: #000b13 !important;
 }
 
-
-
 /* BLUE-BORDER GRADIENT */
 .blue_linear_gradient::after {
   background: linear-gradient(148.79deg, #11568c 17.97%, #00c5f4 91.1%);

@@ -1,4 +1,4 @@
-import OurMIssion from "../../components/about-us/OurMIssion";
+import OurMIssion from "../../components/about-us/OurMission";
 import WhatWeDo from "../../components/about-us/WhatWeDo";
 import WhoweAre from "../../components/about-us/WhoweAre";
 import Backtotop from "../../components/common/Backtotop";
