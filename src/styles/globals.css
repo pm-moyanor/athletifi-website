@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CUSTOM INPUT AUTO-FILL */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -17,6 +18,7 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s !important;
 }
 
+/* FONT-FAMILY HELVETICAMED */
 @layer base {
   @font-face {
     font-family: "HelveticaNeueMedium";
@@ -26,6 +28,11 @@ select:-webkit-autofill:focus {
     font-style: normal;
   }
 
+  .font-HelveticaNeueMedium {
+    font-family: "HelveticaNeueMedium";
+  }
+
+  /* FONT-FAMILY SEGOE-UI */
   @font-face {
     font-family: "SegoeUI";
     src: url("../../public/assets/fonts/SegoeUI.ttf");
@@ -35,22 +42,17 @@ select:-webkit-autofill:focus {
   }
 }
 
-body {
-  background-color: #000b13 !important;
-}
-
-.hero_homepage_bg {
-  background-image: url("/assets/img/webp/header_bg.webp");
-}
-
 .font-Segoe {
   font-family: "SegoeUI";
 }
 
-.font-HelveticaNeueMedium {
-  font-family: "HelveticaNeueMedium";
+body {
+  background-color: #000b13 !important;
 }
 
+
+
+/* BLUE-BORDER GRADIENT */
 .blue_linear_gradient::after {
   background: linear-gradient(148.79deg, #11568c 17.97%, #00c5f4 91.1%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -61,6 +63,11 @@ body {
 .blue_linear_gradient {
   -webkit-backdrop-filter: blur(17.5px);
   backdrop-filter: blur(17.5px);
+}
+
+/* BACKGROUDN-IMG */
+.hero_homepage_bg {
+  background-image: url("/assets/img/webp/header_bg.webp");
 }
 
 .bg-about-hero {
@@ -75,6 +82,7 @@ body {
   background-image: url("/assets/img/webp/sing-up-hero-img.webp");
 }
 
+/* CUSTOM SCROLLBAR */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -87,14 +95,13 @@ body {
   background-color: #00c5f4;
 }
 
-/* Custom scrollbar for Firefox */
-/* You can adjust the color and width as needed */
+/* CUSTOM SCROLLBAR FOR FIREFOX */
 html {
   scrollbar-color: #000b13 #00c5f4;
   scrollbar-width: thin;
 }
 
-/* recent news slider height 100 percent  */
+/* RECENT NEWS SLIDER HEIGHT  */
 @media (max-width: 1023.9px) {
   #recentnews_slider .slick-track {
     display: flex !important;

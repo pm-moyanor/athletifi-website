@@ -15,6 +15,7 @@ import { NavLogo } from "../../components/common/Icon";
 import Seo from "../../components/common/Seo";
 const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
+  // PRELOADER
   const [preloader, setpreloader] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -27,6 +28,7 @@ export default function Home() {
       document.body.classList.remove("overflow_hidden");
     }
   });
+  // SEO
   const pageSEO = {
     // SEO TITLE
     title: "Make club soccer more affordable",
@@ -43,7 +45,9 @@ export default function Home() {
   };
   return (
     <>
+      {/* SEO */}
       <Seo pageSEO={pageSEO} />
+      {/* PRELOADER */}
       {preloader && (
         <div
           className={`preloader fixed min-h-screen top-0 left-0 w-full z-50 flex justify-center items-center`}
