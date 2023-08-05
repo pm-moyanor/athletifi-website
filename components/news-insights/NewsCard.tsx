@@ -4,7 +4,8 @@ import BlueButton from "../common/BlueButton";
 import Image from "next/image";
 
 const NewsCard = () => {
-    const textHeading="Mastering-the-Game-A-Coach's-Guide-to-Unlocking-Football-Strategies"
+  const textHeading =
+    "Mastering-the-Game-A-Coach's-Guide-to-Unlocking-Football-Strategies";
   return (
     <>
       <div className="blue_linear_gradient relative after:absolute flex justify-center flex-col items-center  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px] mx-3 sm:mx-10 md:mx-16 after:blur-[75px] blue_linear_gradient mt-[56px] lg:mt-[100px] xl:mt-[154px] sm:mb-[30px] lg:mb-[70px] xl:mb-[156px]">
@@ -54,7 +55,7 @@ const NewsCard = () => {
               </div>
             </div>
             <div
-              className="sm:w-[70%] lg:max-w-[47%] mb-4 md:mb-7 lg:mb-10 xl:mt-0"
+              className="sm:w-[70%] lg:max-w-[47%] mb-4 md:mb-7 lg:mb-10 xl:mb-0"
               data-aos="fade-up"
               data-aos-duration="400"
               data-aos-easing="linear"
