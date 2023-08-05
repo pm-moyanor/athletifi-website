@@ -16,15 +16,15 @@ const Footer = () => {
   const SocialIcon = () => {
     setSocialIcon(!socialIcon);
   };
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (socialIcon) {
-        document.body.classList.remove("overflow_hidden");
-      } else {
-        document.body.classList.add("overflow_hidden");
-      }
-    }
-  }, [socialIcon]);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     if (socialIcon) {
+  //       document.body.classList.remove("overflow_hidden");
+  //     } else {
+  //       document.body.classList.add("overflow_hidden");
+  //     }
+  //   }
+  // }, [socialIcon]);
   // UPDATE DATE-YEAR
   const today = new Date();
   const year = today.getFullYear();
@@ -123,7 +123,7 @@ const Footer = () => {
           </div>
         </div>
         {/* POPUP SOCAIL ICONS CODE */}
-        <div className={socialIcon ? "!hidden" : "block"}>
+        {/* <div className="hidden hover:block">
           <div onClick={() => setSocialIcon(true)} className="h-full z-50">
             <SocialPopUp />
             <span
@@ -133,7 +133,7 @@ const Footer = () => {
               <CancelIcon />
             </span>
           </div>
-        </div>
+        </div> */}
       </footer>
     </>
   );

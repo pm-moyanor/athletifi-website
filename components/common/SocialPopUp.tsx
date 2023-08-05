@@ -12,7 +12,7 @@ import {
 const SocialPopUp = () => {
   return (
     <>
-      <div className="min-h-screen bg_social_icon flex items-center justify-center gap-[20px] flex-col-reverse sm:flex-row fixed top-0 left-0 w-full z-20">
+      <div className="bg_social_icon flex items-start justify-center gap-[20px] fixed top-[90px] left-1/2 z-20 flex-col-reverse p-6">
         {/* CONTACT US BUTTON */}
         <Link
           href="/sign-up"
@@ -23,34 +23,43 @@ const SocialPopUp = () => {
             <ArrowButton />
           </span>
         </Link>
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-col">
           {/* SOCIAL ICONS LINKS */}
           <Link
-            className="hover:-translate-y-2 transition duration-300 ease-out"
+            className="hover:-translate-y-2 transition duration-300 ease-out flex items-center"
             href="https://www.tiktok.com/about"
             target="_blank"
             rel="noopener noreferrer"
           >
             <TiktokIcon />
+            <span className="text-white opacity-70 ms-4 text-md font-Segoe font-normal">
+              Tiktok
+            </span>
           </Link>
           <Link
-            className="hover:-translate-y-2 transition duration-300 ease-out"
+            className="hover:-translate-y-2 transition duration-300  flex items-center"
             href="https://www.facebook.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FacebookIcon />
+            <span className="text-white opacity-70 ms-4 text-md font-Segoe font-normal">
+              Facebook
+            </span>
           </Link>
           <Link
-            className="hover:-translate-y-2 transition duration-300 ease-out"
+            className="hover:-translate-y-2 transition duration-300  flex items-center"
             href="https://twitter.com/login"
             target="_blank"
             rel="noopener noreferrer"
           >
             <TwitterIcon />
+            <span className="text-white opacity-70 ms-4 text-md font-Segoe font-normal">
+              Twitter
+            </span>
           </Link>
           <Link
-            className="hover:-translate-y-2 transition duration-300 ease-out"
+            className="hover:-translate-y-2 transition duration-300  flex items-center"
             href="https://www.instagram.com/"
             target="_blank"
             rel="noopener noreferrer"
@@ -61,14 +70,20 @@ const SocialPopUp = () => {
               width={32}
               height={32}
             />
+            <span className="text-white opacity-70 ms-4 text-md font-Segoe font-normal">
+              Instagram
+            </span>
           </Link>
           <Link
-            className="hover:-translate-y-2 transition duration-300 ease-out"
+            className="hover:-translate-y-2 transition duration-300  flex items-center"
             href="https://in.linkedin.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
             <LinkedInIcon />
+            <span className="text-white opacity-70 ms-4 text-md font-Segoe font-normal">
+              Linkedin
+            </span>
           </Link>
         </div>
       </div>

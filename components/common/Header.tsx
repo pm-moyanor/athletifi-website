@@ -43,15 +43,15 @@ const Header = () => {
     setOpen(false);
     setNavSocialIcon(!navSocialIcon);
   };
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (navSocialIcon) {
-        document.body.classList.remove("overflow_hidden");
-      } else {
-        document.body.classList.add("overflow_hidden");
-      }
-    }
-  }, [navSocialIcon]);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     if (navSocialIcon) {
+  //       document.body.classList.remove("overflow_hidden");
+  //     } else {
+  //       document.body.classList.add("overflow_hidden");
+  //     }
+  //   }
+  // }, [navSocialIcon]);
   return (
     <>
       <div
@@ -149,18 +149,18 @@ const Header = () => {
         </div>
       </div>
       {/* SOCIAL ICONS POPUP */}
-      <div className={navSocialIcon ? "!hidden" : "block"}>
+      <div className={`${navSocialIcon ? "!hidden" : "block"}`}>
         <div
           onClick={() => setNavSocialIcon(true)}
           className="relative h-full z-50"
         >
           <SocialPopUp />
-          <span
+          {/* <span
             className="fixed z-30 right-0 top-10 sm:mt-10 sm:me-20 mt-10 me-5 lg:mt-0 cursor-pointer"
             onClick={() => setNavSocialIcon(true)}
           >
             <CancelIcon />
-          </span>
+          </span> */}
         </div>
       </div>
     </>

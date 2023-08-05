@@ -29,7 +29,7 @@ const OurMIssion = () => {
       </span>
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 sm:py-2 z-10 relative">
         <div className="flex lg:flex-row flex-col-reverse justify-between">
-          <div className="lg:w-5/12 xl:w-[531px] min-[1530px]:w-1/2 w-9/12 sm:w-3/5 mx-auto lg:ms-0  mt-6 sm:mt-8 lg:mt-0">
+          <div className="lg:w-5/12 xl:w-[531px] min-[1530px]:w-[40%] w-9/12 sm:w-3/5 mx-auto lg:ms-0  mt-6 sm:mt-8 lg:mt-0">
             <div
               data-aos="fade-up"
               data-aos-duration="400"
@@ -39,10 +39,10 @@ const OurMIssion = () => {
               className="flex justify-center lg:justify-start"
             >
               <Image
-                src="/assets/img/webp/OurMission-img.webp"
-                className=" xl:h-[486px] xl:w-[531px] min-[1530px]:w-full"
-                width={496}
-                height={486}
+                src="/assets/img/webp/Our-mission-nft-img.webp"
+                className="xl:h-[603px] xl:w-[505px] min-[1530px]:w-full"
+                width={505}
+                height={603}
                 alt="our misssion sec image"
               />
             </div>

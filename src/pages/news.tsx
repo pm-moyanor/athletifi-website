@@ -4,6 +4,7 @@ import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header";
 import Seo from "../../components/common/Seo";
 import MasteringGame from "../../components/news-insights/MasteringGames";
+import NewsCard from "../../components/news-insights/NewsCard";
 import RecentNewsInsights from "../../components/news-insights/RecentNewsInsights";
 
 const Newsinsight = () => {
@@ -35,7 +36,8 @@ const Newsinsight = () => {
           <Header />
           <CommonHero hero={hero} />
         </div>
-        <MasteringGame />
+        {/* <MasteringGame /> */}
+        <NewsCard />
         <RecentNewsInsights />
         <Footer />
         <Backtotop />

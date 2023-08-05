@@ -26,7 +26,7 @@ const WhatWeDo = () => {
                 data-aos-easing="linear"
                 data-aos-delay="100"
                 data-aos-offset="200"
-                className="flex flex-col justify-center h-full lg:pe-6 xl:p-0 text-center lg:text-start lg:mt-20"
+                className="flex flex-col justify-center h-full lg:pe-6 xl:p-0 text-center lg:text-start lg:mt-14"
               >
                 <h2 className="font-HelveticaNeueMedium font-medium text-[26px]  md:text-5xl sm:text-4xl leading-[60px] text-[#FDFEFF] md:mb-4">
                   <span className="relative">
@@ -55,7 +55,7 @@ const WhatWeDo = () => {
                 className="flex justify-center lg:justify-start"
               >
                 <Image
-                  src="/assets/img/webp/what-we-do-img.webp"
+                  src="/assets/img/webp/what-we-do-nft-img.webp"
                   width={496}
                   height={603}
                   alt="what we do sec img"

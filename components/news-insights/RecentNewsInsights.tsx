@@ -33,7 +33,7 @@ const RecentNewsInsights = () => {
   };
   return (
     <section className="lg:py-14 pb-14 md:py-16 pt-12 mt-1 md:mb-1 lg:mb-14 xl:mb-[75px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:-top-28 before:-left-24 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full">
-    {/* BLUE SHADOW */}
+      {/* BLUE SHADOW */}
       <Image
         className="lg:w-[462px] lg:h-[541px] w-[150px] -top-8 sm:-left-20 -left-5 absolute opacity-60"
         src="/assets/img/svg/news-grid-line.svg"

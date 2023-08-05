@@ -10,7 +10,7 @@ const StatsReimagined = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3000,
     responsive: [
       {
@@ -82,7 +82,7 @@ const StatsReimagined = () => {
           {/* CARD SLIDER SAMLL SCREEN */}
           <Slider
             {...settings}
-            className="w-full justify-between items-center pt-5 md:pt-0 max-w-[1000px] mx-auto lg:justify-center relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:-top-20 before:left-1/2 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/2 before:-z-10 before:rounded-full"
+            className="w-full justify-between items-center pt-5 md:pt-0 max-w-[1000px] mx-auto lg:justify-center relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:-top-20 before:left-1/2 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/2 before:-z-10 before:rounded-full pb-6 sm:pb-0"
           >
             <div
               className=" md:py-16 sm:pb-8"
@@ -93,7 +93,7 @@ const StatsReimagined = () => {
             >
               <Image
                 className="mx-auto w-full max-w-[350px]"
-                src="/assets/img/webp/castle.webp"
+                src="/assets/img/webp/anderson-nft-img.webp"
                 width={280}
                 height={280}
                 alt="castle-img"
@@ -108,7 +108,7 @@ const StatsReimagined = () => {
             >
               <Image
                 className="mx-auto md:scale-125 w-full max-w-[350px]"
-                src="/assets/img/webp/space.webp"
+                src="/assets/img/webp/jude-nft-img.webp"
                 width={409}
                 height={409}
                 alt="space-image"
@@ -122,8 +122,8 @@ const StatsReimagined = () => {
               data-aos-delay="1200"
             >
               <Image
-                className="mx-auto w-full max-w-[300px] lg:max-w-[350px] pt-5"
-                src="/assets/img/webp/phoenix.webp"
+                className="mx-auto w-full max-w-[350px] lg:max-w-[350px]"
+                src="/assets/img/webp/colin-nft-img.webp"
                 width={280}
                 height={280}
                 alt="phonix-image"
