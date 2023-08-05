@@ -12,7 +12,7 @@ import {
 const SocialPopUp = () => {
   return (
     <>
-      <div className="bg_social_icon flex items-start justify-center gap-[20px] fixed top-[90px] left-1/2 z-20 flex-col-reverse p-6">
+      <div className="bg_social_icon flex items-start justify-center gap-[20px] sm:fixed sm:top-[90px] top-[100%] left-[20%] sm:left-1/2 z-20 flex-col-reverse p-6">
         {/* CONTACT US BUTTON */}
         <Link
           href="/sign-up"
@@ -26,7 +26,7 @@ const SocialPopUp = () => {
         <div className="flex gap-4 flex-col">
           {/* SOCIAL ICONS LINKS */}
           <Link
-            className="hover:-translate-y-2 transition duration-300 ease-out flex items-center"
+            className="hover:-translate-y-1 transition duration-300 ease-out flex items-center"
             href="https://www.tiktok.com/about"
             target="_blank"
             rel="noopener noreferrer"
@@ -37,7 +37,7 @@ const SocialPopUp = () => {
             </span>
           </Link>
           <Link
-            className="hover:-translate-y-2 transition duration-300  flex items-center"
+            className="hover:-translate-y-1 transition duration-300  flex items-center"
             href="https://www.facebook.com/"
             target="_blank"
             rel="noopener noreferrer"
@@ -48,7 +48,7 @@ const SocialPopUp = () => {
             </span>
           </Link>
           <Link
-            className="hover:-translate-y-2 transition duration-300  flex items-center"
+            className="hover:-translate-y-1 transition duration-300  flex items-center"
             href="https://twitter.com/login"
             target="_blank"
             rel="noopener noreferrer"
@@ -59,7 +59,7 @@ const SocialPopUp = () => {
             </span>
           </Link>
           <Link
-            className="hover:-translate-y-2 transition duration-300  flex items-center"
+            className="hover:-translate-y-1 transition duration-300  flex items-center"
             href="https://www.instagram.com/"
             target="_blank"
             rel="noopener noreferrer"
@@ -75,7 +75,7 @@ const SocialPopUp = () => {
             </span>
           </Link>
           <Link
-            className="hover:-translate-y-2 transition duration-300  flex items-center"
+            className="hover:-translate-y-1 transition duration-300  flex items-center"
             href="https://in.linkedin.com/"
             target="_blank"
             rel="noopener noreferrer"

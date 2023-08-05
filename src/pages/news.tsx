@@ -3,9 +3,11 @@ import CommonHero from "../../components/common/CommonHero";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header";
 import Seo from "../../components/common/Seo";
+import LatestNews from "../../components/home/LatestNews";
 import MasteringGame from "../../components/news-insights/MasteringGames";
 import NewsCard from "../../components/news-insights/NewsCard";
 import RecentNewsInsights from "../../components/news-insights/RecentNewsInsights";
+import NewsInsightsCards from "../../components/news-insights/NewsInsightsCards";
 
 const Newsinsight = () => {
   // SEO
@@ -38,7 +40,8 @@ const Newsinsight = () => {
         </div>
         {/* <MasteringGame /> */}
         <NewsCard />
-        <RecentNewsInsights />
+        {/* <RecentNewsInsights /> */}
+        <NewsInsightsCards />
         <Footer />
         <Backtotop />
       </div>

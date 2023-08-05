@@ -73,9 +73,13 @@
   font-size: 10px;
 }
 
-/* .social_icons_show:hover .social_btns {
+.social_icons_show:hover .social_btns {
   display: block;
-} */
+}
+
+.scroll_bar_hidden::-webkit-scrollbar {
+  width: 0;
+}
 
 /* PRELOADER ANIMATION */
 @keyframes preloader_img {

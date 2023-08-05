@@ -3,6 +3,7 @@ import CommonHero from "../../../components/common/CommonHero";
 import Footer from "../../../components/common/Footer";
 import Header from "../../../components/common/Header";
 import Seo from "../../../components/common/Seo";
+import NewsInsightsCards from "../../../components/news-insights/NewsInsightsCards";
 import MasteringGame from "../../../components/news-insights/MasteringGames";
 import RecentNewsInsights from "../../../components/news-insights/RecentNewsInsights";
 
@@ -36,7 +37,9 @@ const Newsinsight = () => {
                     <CommonHero hero={hero} />
                 </div>
                 <MasteringGame />
-                <RecentNewsInsights />
+                {/* <RecentNewsInsights /> */}
+                
+                <NewsInsightsCards/>
                 <Footer />
                 <Backtotop />
             </div>

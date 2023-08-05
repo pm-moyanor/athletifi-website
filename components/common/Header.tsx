@@ -1,8 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import {
+  ArrowButton,
+  FacebookIcon,
+  LinkedInIcon,
+  TiktokIcon,
+  TwitterIcon,
+} from "./Icon";
 import { PageLogo, CancelIcon } from "./Icon";
 import SocialPopUp from "./SocialPopUp";
+import Image from "next/image";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -43,6 +51,9 @@ const Header = () => {
     setOpen(false);
     setNavSocialIcon(!navSocialIcon);
   };
+  const SocialIconDropDown = () => {
+    setNavSocialIcon(!navSocialIcon);
+  };
   // useEffect(() => {
   //   if (typeof window !== "undefined") {
   //     if (navSocialIcon) {
@@ -57,7 +68,7 @@ const Header = () => {
       <div
         ref={navbarRef}
         id="nav_bar"
-        className={`navbar fixed top-0 black w-full bg-bgnav py-2 sm:py-[13px] z-40 ${
+        className={`navbar fixed top-0 black w-full bg-bgnav py-2 z-40 ${
           scrollPosition > 200 ? "slideUp" : "slideDown"
         } ${isVisible ? "slideDown" : "slideUp"}`}
       >
@@ -83,7 +94,7 @@ const Header = () => {
               }
             >
               {/* NAV PAGE LINKS */}
-              <ul className="flex items-center gap-[40px] flex-col sm:flex-row h-full justify-center ">
+              <ul className="flex items-center gap-[25px] sm:gap-[40px] flex-col sm:flex-row h-full justify-center ">
                 <li>
                   <Link
                     onClick={() => setOpen(false)}
@@ -117,7 +128,7 @@ const Header = () => {
                     News
                   </Link>
                 </li>
-                <li>
+                <li className="social_icons_show sm:mt-7 sm:pb-7 hidden sm:block">
                   <button
                     onClick={SocialIcon}
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
@@ -126,6 +137,101 @@ const Header = () => {
                   >
                     Socials
                   </button>
+                  <div className="hidden social_btns">
+                    <div className="relative h-full z-50">
+                      <SocialPopUp />
+                    </div>
+                  </div>
+                </li>
+                <li
+                  className="sm:hidden text-center"
+                  onClick={SocialIconDropDown}
+                >
+                  <button
+                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
+                      path == "/SocialIcons" ? "!opacity-100" : ""
+                    }`}
+                  >
+                    Socials
+                  </button>
+                  <div
+                    className={` mt-3 h-[180px] overflow-scroll scroll_bar_hidden ${
+                      navSocialIcon ? "!hidden" : "block"
+                    }`}
+                  >
+                    <div className="flex gap-4 flex-col">
+                      {/* SOCIAL ICONS LINKS */}
+                      <Link
+                        className="hover:-translate-y-1 transition duration-300 ease-out flex items-center"
+                        href="https://www.tiktok.com/about"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <TiktokIcon />
+                        <span className="text-white opacity-70 ms-4 text-md font-Segoe font-normal">
+                          Tiktok
+                        </span>
+                      </Link>
+                      <Link
+                        className="hover:-translate-y-1 transition duration-300  flex items-center"
+                        href="https://www.facebook.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FacebookIcon />
+                        <span className="text-white opacity-70 ms-4 text-md font-Segoe font-normal">
+                          Facebook
+                        </span>
+                      </Link>
+                      <Link
+                        className="hover:-translate-y-1 transition duration-300  flex items-center"
+                        href="https://twitter.com/login"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <TwitterIcon />
+                        <span className="text-white opacity-70 ms-4 text-md font-Segoe font-normal">
+                          Twitter
+                        </span>
+                      </Link>
+                      <Link
+                        className="hover:-translate-y-1 transition duration-300  flex items-center"
+                        href="https://www.instagram.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          src="/assets/img/svg/Instagram.svg"
+                          alt="grid-lines"
+                          width={32}
+                          height={32}
+                        />
+                        <span className="text-white opacity-70 ms-4 text-md font-Segoe font-normal">
+                          Instagram
+                        </span>
+                      </Link>
+                      <Link
+                        className="hover:-translate-y-1 transition duration-300  flex items-center"
+                        href="https://in.linkedin.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <LinkedInIcon />
+                        <span className="text-white opacity-70 ms-4 text-md font-Segoe font-normal">
+                          Linkedin
+                        </span>
+                      </Link>
+                      <Link
+                        href="/sign-up"
+                        className="sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black hover:text-skyblue join_now_btn transition duration-300 ease-in-out social_btn_contact_us"
+                      >
+                        Contact Us
+                        <span className="group-hover:translate-x-3 transition duration-300 ease-out">
+                          <ArrowButton />
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
                 </li>
                 <li>
                   <Link
@@ -149,20 +255,19 @@ const Header = () => {
         </div>
       </div>
       {/* SOCIAL ICONS POPUP */}
-      <div className={`${navSocialIcon ? "!hidden" : "block"}`}>
+      {/* <div
+        className={`fixed min-h-screen z-20 w-full ${
+          navSocialIcon ? "!hidden" : "block"
+        }`}
+        onClick={() => setNavSocialIcon(true)}
+      >
         <div
           onClick={() => setNavSocialIcon(true)}
           className="relative h-full z-50"
         >
           <SocialPopUp />
-          {/* <span
-            className="fixed z-30 right-0 top-10 sm:mt-10 sm:me-20 mt-10 me-5 lg:mt-0 cursor-pointer"
-            onClick={() => setNavSocialIcon(true)}
-          >
-            <CancelIcon />
-          </span> */}
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
