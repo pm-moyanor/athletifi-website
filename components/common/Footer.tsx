@@ -77,7 +77,7 @@ const Footer = () => {
           <div className="flex gap-4">
             <Link
               aria-label="Tik-Tok"
-              className="hover:-translate-y-2 transition duration-300 ease-out"
+              className="hover:-translate-y-1 transition duration-300 ease-out"
               href="https://www.tiktok.com/about"
               target="_blank"
               rel="noopener noreferrer"
@@ -86,7 +86,7 @@ const Footer = () => {
             </Link>
             <Link
               aria-label="facebook"
-              className="hover:-translate-y-2 transition duration-300 ease-out"
+              className="hover:-translate-y-1 transition duration-300 ease-out"
               href="https://www.facebook.com/"
               target="_blank"
               rel="noopener noreferrer"
@@ -95,7 +95,7 @@ const Footer = () => {
             </Link>
             <Link
               aria-label="twitter"
-              className="hover:-translate-y-2 transition duration-300 ease-out"
+              className="hover:-translate-y-1 transition duration-300 ease-out"
               href="https://twitter.com/login"
               target="_blank"
               rel="noopener noreferrer"
@@ -104,7 +104,7 @@ const Footer = () => {
             </Link>
             <Link
               aria-label="instagram"
-              className="hover:-translate-y-2 transition duration-300 ease-out"
+              className="hover:-translate-y-1 transition duration-300 ease-out"
               href="https://www.instagram.com/"
               target="_blank"
               rel="noopener noreferrer"
@@ -113,7 +113,7 @@ const Footer = () => {
             </Link>
             <Link
               aria-label="linkedin"
-              className="hover:-translate-y-2 transition duration-300 ease-out"
+              className="hover:-translate-y-1 transition duration-300 ease-out"
               href="https://in.linkedin.com/"
               target="_blank"
               rel="noopener noreferrer"

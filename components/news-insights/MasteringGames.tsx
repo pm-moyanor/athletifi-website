@@ -21,7 +21,7 @@ const MasteringGame = () => {
               data-aos-easing="linear"
               data-aos-delay="200"
               data-aos-offset="100"
-              src="/assets/img/webp/news-playing-image.webp"
+              src="/assets/img/webp/news-insights.webp"
               width={1140}
               height={556}
               alt="players"
@@ -47,7 +47,7 @@ const MasteringGame = () => {
                 data-aos-offset="200"
                 className="font-Segoe text-offwhite mt-2 font-normal text-base sm:text-start text-center"
               >
-                by: Graham Clark.23 June 2023
+                by: Graham Clark &bull; 23 June 2023
               </p>
               <p
                 data-aos="fade-up"

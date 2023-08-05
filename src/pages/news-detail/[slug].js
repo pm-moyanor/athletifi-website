@@ -38,8 +38,8 @@ const Newsinsight = () => {
                 </div>
                 <MasteringGame />
                 {/* <RecentNewsInsights /> */}
-                
-                <NewsInsightsCards/>
+
+                <NewsInsightsCards />
                 <Footer />
                 <Backtotop />
             </div>

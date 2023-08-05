@@ -48,7 +48,7 @@ const NewsCard = () => {
                   Trending
                 </button>
               </div>
-              <div className="flex xl:justify-start justify-center items-center mt-10">
+              <div className="flex xl:justify-start justify-center items-center mt-4 sm:mt-10">
                 <Link href={`/news-detail/${textHeading}`}>
                   <BlueButton text="Read&nbsp;more" />
                 </Link>
