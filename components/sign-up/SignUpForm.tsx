@@ -54,8 +54,8 @@ const SignUpForm = () => {
                     id="email"
                   />
                 </div>
-                <div className="flex flex-col mt-4">
-                  {/* PASSWORD INPUT */}
+                {/* <div className="flex flex-col mt-4">
+                  PASSWORD INPUT
                   <label
                     className="font-Segoe font-normal input:-webkit-autofill text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px]"
                     htmlFor="Password"
@@ -69,7 +69,7 @@ const SignUpForm = () => {
                     className="font-Sugoe font-normal text-base focus:border-[white] text-[#FDFEFF] leading-6 py-5 px-4 bg-transparent w-full lg:max-w-[400px] mt-[5px] border border-1 border-[#FFFFFF40] outline-none"
                     id="Password"
                   />
-                </div>
+                </div> */}
                 <div className="mt-4 gap-3 flex items-start sm:items-center">
                   {/* CUSTOM CHECKED BTN */}
                   <div

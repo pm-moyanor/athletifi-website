@@ -21,7 +21,7 @@ module.exports = {
         basemd: "24px",
         lg: "28px",
         xl: "48px",
-        xxl: "56px",
+        xxl: "50px",
       },
       colors: {
         skyblue: "#00C5F4",
