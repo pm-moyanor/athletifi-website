@@ -17,7 +17,9 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   // PRELOADER
   const [preloader, setpreloader] = useState(true);
+
   useEffect(() => {
+   
     setTimeout(() => {
       setpreloader(false);
     }, 1500);
@@ -27,7 +29,9 @@ export default function Home() {
     } else {
       document.body.classList.remove("overflow_hidden");
     }
+
   });
+
   // SEO
   const pageSEO = {
     // SEO TITLE
@@ -83,3 +87,4 @@ export default function Home() {
     </>
   );
 }
+

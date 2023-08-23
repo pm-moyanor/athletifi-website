@@ -3,6 +3,8 @@ import Link from "next/link";
 import React from "react";
 import BlueButton from "../common/BlueButton";
 
+
+
 const HeroHomepage = () => {
   return (
     <>
@@ -52,5 +54,6 @@ const HeroHomepage = () => {
     </>
   );
 };
+
 
 export default HeroHomepage;
