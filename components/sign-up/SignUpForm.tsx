@@ -1,10 +1,28 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { ButtonWhiteArrow, UnderLIneText } from "../common/Icon";
+import { PostRequestHandler } from "../common/api/Api";
+import { PostNewsLetterHandler } from "../common/api/ApiUrls";
 
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
   const [checked, setChecked] = useState(false);
+  const intialState={
+    email:""
+  }
+  const [data, setData] = useState(intialState);
+  const formHandler = async (e: any) => {
+    e.preventDefault();
+    const formDetails = { data };
+    const response = await PostRequestHandler(PostNewsLetterHandler(),(formDetails))
+    if(response.data){
+      setData({
+        ...data,
+        email:""
+      })
+    }
+  
+  };
   return (
     <section className="py-8 sm:py-[64px] lg:pt-[100px] xl:pt-[145px] lg:pb-[100px] xl:pb-[139px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:top-2 before:-left-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full overflow-hidden">
       {/* GRID-LINE IMG */}
@@ -37,7 +55,11 @@ const SignUpForm = () => {
                 the world of access to sports as we know them today-- a future
                 of sports where anyone can get exposure to scouts.
               </p>
-              <form action="submit" className="w-full sm:w-3/4">
+              <form
+                action="submit"
+                onSubmit={(e) => formHandler(e)}
+                className="w-full sm:w-3/4"
+              >
                 <div className="flex flex-col mt-6">
                   {/* EMAIL INPUT */}
                   <label
@@ -48,28 +70,17 @@ const SignUpForm = () => {
                   </label>
                   <input
                     required
+                    value={data.email}
                     type="email"
                     placeholder="Email"
                     className="font-Sugoe font-normal input:-webkit-autofill focus:border-[white] autofill:none text-base text-[#FDFEFF] leading-6 py-5 px-4 bg-transparent w-full lg:max-w-[400px] mt-[5px] border border-1 border-[#FFFFFF40] outline-none"
                     id="email"
+                    onChange={(e)=>setData({
+                      ...data,
+                      email:e.target.value
+                    })}
                   />
-                </div>
-                {/* <div className="flex flex-col mt-4">
-                  PASSWORD INPUT
-                  <label
-                    className="font-Segoe font-normal input:-webkit-autofill text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px]"
-                    htmlFor="Password"
-                  >
-                    Password
-                  </label>
-                  <input
-                    required
-                    type="Password"
-                    placeholder="Password"
-                    className="font-Sugoe font-normal text-base focus:border-[white] text-[#FDFEFF] leading-6 py-5 px-4 bg-transparent w-full lg:max-w-[400px] mt-[5px] border border-1 border-[#FFFFFF40] outline-none"
-                    id="Password"
-                  />
-                </div> */}
+                </div> 
                 <div className="mt-4 gap-3 flex items-start sm:items-center">
                   {/* CUSTOM CHECKED BTN */}
                   <div
