@@ -18,7 +18,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
             data-aos-easing="linear"
             data-aos-delay="100"
             data-aos-offset="200"
-            className="text-center md:text-start font-HelveticaNeueMedium font-medium lg:text-5xl md:text-[40px] text-[26px] text-primary md:py-10 pb-5"
+            className="text-center md:text-start font-HelveticaNeueMedium font-medium lg:text-5xl md:text-[40px] text-[26px] text-primary md:pt-10 md:pb-[25px] pb-5"
           >
             <span className="relative after:content after:absolute after:bottom-[-6px] md:after:bottom-[-12px] after:left-0 md:after:w-[290px] after:h-[15px] after:bg-blue-underline after:bg-contain after:bg-no-repeat">
               Recent News and Insights
@@ -38,7 +38,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
               return (
                 <div
                   key={index}
-                  className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-5"
+                  className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-[30px]"
                   data-aos="fade-up"
                   data-aos-duration="400"
                   data-aos-easing="ease"
@@ -53,8 +53,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
                       alt="football match"
                     />
                   )}
-
-                  <div className="sm:pt-0 pt-3">
+                  <div className="sm:pt-0 pt-3 max-w-[617px]">
                     {/* NEWS HEADING */}
                     <h3 className="sm:text-basemd text-[18px] text-primary font-HelveticaNeueMedium leading-[140%]">
                       {item.attributes.text}

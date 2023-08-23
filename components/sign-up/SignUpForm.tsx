@@ -6,7 +6,7 @@ import { PostNewsLetterHandler } from "../common/api/ApiUrls";
 
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
-  const [checked, setChecked] = useState("");
+  const [checked, setChecked] = useState(false);
   const intialState = {
     email: "",
   };
@@ -131,8 +131,7 @@ const SignUpForm = () => {
                   <input
                     type="checkbox"
                     id="Privacy-Policy"
-                    value={checked}
-                    onChange={(e) => setChecked(e.target.value)}
+                    onChange={(event) => setChecked(event.target.checked)}
                   />
                   <label
                     htmlFor="Privacy-Policy"
