@@ -10,7 +10,7 @@ export const NewsListFilterApiHandler=()=>{
 
 // NEWS DETAIL API URL
 export const NewsDetailApiHandler=(slug:any)=>{
-    return `/news-lists/?populate=image&filters[slug][$eq]=${slug}`;
+    return `/news-lists/?populate=image&populate=content&filters[slug][$eq]=${slug}`;
 }
 
 // POST CREATE API
