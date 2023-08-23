@@ -6,29 +6,30 @@ import { PostNewsLetterHandler } from "../common/api/ApiUrls";
 
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
-  const [checked, setChecked] = useState("");
+  const [checked, setChecked] = useState(false);
   const intialState = {
     email: "",
   };
   const [data, setData] = useState(intialState);
   const formHandler = async (e: any) => {
     e.preventDefault();
- 
+
     const formDetails = { data };
-    const response = await PostRequestHandler(PostNewsLetterHandler(),(formDetails))
-    console.log("responseresponse",response)
-    if(response.data){
+    const response = await PostRequestHandler(
+      PostNewsLetterHandler(),
+      formDetails
+    );
+    console.log("responseresponse", response);
+    if (response.data) {
       setData({
         ...data,
         email: "",
       });
+    } else {
+      alert(`This attribute must be unique`);
     }
-    else{
-      alert(`This attribute must be unique`) 
-    }
-   
- console.log("checkedchecked",checked)
-  
+
+    console.log("checkedchecked", checked);
   };
   return (
     <section className="py-8 sm:py-[64px] lg:pt-[100px] xl:pt-[145px] lg:pb-[100px] xl:pb-[139px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:top-2 before:-left-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full overflow-hidden">
@@ -130,8 +131,7 @@ const SignUpForm = () => {
                   <input
                     type="checkbox"
                     id="Privacy-Policy"
-                    value={checked}
-                    onChange={(e) => setChecked(e.target.value)}
+                    onChange={(event) => setChecked(event.target.checked)}
                   />
                   <label
                     htmlFor="Privacy-Policy"
