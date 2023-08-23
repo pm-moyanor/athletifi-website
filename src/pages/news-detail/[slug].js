@@ -12,6 +12,7 @@ import {
 } from "./../../../components/common/api/ApiUrls";
 
 const Newsinsight = ({newsDetailData,allNewsData}) => {
+  console.log("newsDetailDatanewsDetailDatanewsDetailData",newsDetailData)
   // SEO
   const hero = {
     heading: "News and Insights",

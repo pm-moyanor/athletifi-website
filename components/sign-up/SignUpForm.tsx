@@ -13,14 +13,21 @@ const SignUpForm = () => {
   const [data, setData] = useState(intialState);
   const formHandler = async (e: any) => {
     e.preventDefault();
+ 
     const formDetails = { data };
     const response = await PostRequestHandler(PostNewsLetterHandler(),(formDetails))
+    console.log("responseresponse",response)
     if(response.data){
       setData({
         ...data,
         email:""
       })
     }
+    else{
+      alert(`This attribute must be unique`) 
+    }
+   
+ console.log("checkedchecked",checked)
   
   };
   return (
@@ -100,7 +107,7 @@ const SignUpForm = () => {
                         </>
                       ) : (
                         <>
-                          <>
+                        
                             <Image
                               className="invisible pt-1 ps-1"
                               src="/assets/img/png/check-icon.png"
@@ -108,7 +115,7 @@ const SignUpForm = () => {
                               height={15}
                               alt="checked-image"
                             />
-                          </>
+                         
                         </>
                       )}
                     </span>
