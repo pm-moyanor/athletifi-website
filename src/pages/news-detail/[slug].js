@@ -11,7 +11,7 @@ import {
   NewsListApiHandler,
 } from "./../../../components/common/api/ApiUrls";
 
-const Newsinsight = ({newsDetailData,allNewsData}) => {
+const Newsinsight = ({ newsDetailData, allNewsData }) => {
   // SEO
   const hero = {
     heading: "News and Insights",
@@ -55,7 +55,7 @@ export async function getServerSideProps(context) {
   try {
     const response = await GetRequestHandler(NewsDetailApiHandler(slug));
     const newsresponse = await GetRequestHandler(NewsListApiHandler());
-   
+
     return {
       props: {
         newsDetailData: response,

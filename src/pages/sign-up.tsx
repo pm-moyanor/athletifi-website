@@ -35,7 +35,7 @@ const Signup = () => {
       </div>
       <SignUpForm />
       <Footer />
-    </>
+    </> 
   );
 };
 

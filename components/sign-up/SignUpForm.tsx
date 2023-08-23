@@ -6,22 +6,24 @@ import { PostNewsLetterHandler } from "../common/api/ApiUrls";
 
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
-  const [checked, setChecked] = useState(false);
-  const intialState={
-    email:""
-  }
+  const [checked, setChecked] = useState("");
+  const intialState = {
+    email: "",
+  };
   const [data, setData] = useState(intialState);
   const formHandler = async (e: any) => {
     e.preventDefault();
     const formDetails = { data };
-    const response = await PostRequestHandler(PostNewsLetterHandler(),(formDetails))
-    if(response.data){
+    const response = await PostRequestHandler(
+      PostNewsLetterHandler(),
+      formDetails
+    );
+    if (response.data) {
       setData({
         ...data,
-        email:""
-      })
+        email: "",
+      });
     }
-  
   };
   return (
     <section className="py-8 sm:py-[64px] lg:pt-[100px] xl:pt-[145px] lg:pb-[100px] xl:pb-[139px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:top-2 before:-left-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full overflow-hidden">
@@ -75,14 +77,15 @@ const SignUpForm = () => {
                     placeholder="Email"
                     className="font-Sugoe font-normal input:-webkit-autofill focus:border-[white] autofill:none text-base text-[#FDFEFF] leading-6 py-5 px-4 bg-transparent w-full lg:max-w-[400px] mt-[5px] border border-1 border-[#FFFFFF40] outline-none"
                     id="email"
-                    onChange={(e)=>setData({
-                      ...data,
-                      email:e.target.value
-                    })}
+                    onChange={(e) =>
+                      setData({
+                        ...data,
+                        email: e.target.value,
+                      })
+                    }
                   />
-                </div> 
-                <div className="mt-4 gap-3 flex items-start sm:items-center">
-                  {/* CUSTOM CHECKED BTN */}
+                </div>
+                {/* <div className="mt-4 gap-3 flex items-start sm:items-center">
                   <div
                     onClick={() => setChecked(!checked)}
                     className="mt-1 sm:mt-0 cursor-pointer"
@@ -116,13 +119,32 @@ const SignUpForm = () => {
 
                   <span className="font-Segoe font-normal sm:pt-1 text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px] ">
                     I agree to all Term, Privacy Policy and Fees
-                  </span>
+                  </span>        
+                </div> */}
+                <div className="flex items-center gap-2 mt-4 sign_up_checkbox">
+                  <input
+                    type="checkbox"
+                    id="Privacy-Policy"
+                    value={checked}
+                    onChange={(e) => setChecked(e.target.value)}
+                  />
+                  <label
+                    htmlFor="Privacy-Policy"
+                    className="font-Segoe font-normal text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px] "
+                  >
+                    I agree to all Term, Privacy Policy and Fees
+                  </label>
                 </div>
                 {/* SIGN UP BUTTON */}
                 <div className="flex mt-6 md:mt-8 lg:max-w-[400px]">
                   <button
+                    disabled={data.email.length === 0}
                     type="submit"
-                    className="sm:w-full justify-center text-center sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black hover:text-skyblue join_now_btn transition duration-300 ease-in-out"
+                    className={`sm:w-full justify-center text-center sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black  join_now_btn transition duration-300 ease-in-out ${
+                      data.email.length === 0
+                        ? " bg-black cursor-not-allowed"
+                        : "bg-skyblue"
+                    }`}
                   >
                     Sign Up
                     <span className="group-hover:translate-x-3 transition duration-300 ease-out">
