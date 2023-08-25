@@ -28,13 +28,8 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
             allNewsList.data &&
             allNewsList.data.map((item: any, index: any) => {
               const imagePath = "http://127.0.0.1:1337";
-              const url =
-                item.attributes.image.data &&
-                item.attributes.image.data.attributes &&
-                item.attributes.image.data.attributes.url;
+              const url = item.image.url;
               const combinedUrl = url ? `${imagePath}${url}` : null;
-
-
               return (
                 <div
                   key={index}
@@ -56,7 +51,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
                   <div className="sm:pt-0 pt-3 max-w-[617px]">
                     {/* NEWS HEADING */}
                     <h3 className="sm:text-basemd text-[18px] text-primary font-HelveticaNeueMedium leading-[140%]">
-                      {item.attributes.text}
+                      {item.text}
                     </h3>
                     <div className="flex sm:items-center sm:flex-row flex-col sm:gap-3 gap-2 pt-2">
                       <h4 className="lg:pe-3 ">
@@ -64,22 +59,26 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
                           by
                         </span>{" "}
                         <span className="lg:text-base text-sm text-primary font-Segoe font-semibold">
-                          {item.attributes.by}
+                          {item.author.fullName}
                         </span>
                       </h4>
                       {/* NEWS CATEGORY */}
                       <span className="flex gap-x-3">
-                        <button className="lg:text-base md:text-[13px] text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-[10px] sm:px-[18px] bg-matchtittles rounded-full leading-[150%] duration-300 hover:text-white">
-                          Most popular
-                        </button>
-                        <button className="lg:text-base text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-[10px] sm:px-[18px] bg-matchtittles rounded-full leading-[150%] duration-300 hover:text-white">
-                          Trending
-                        </button>
+                        {item.categories.map((val:any, i:any) => {
+                          return (
+                            <button
+                              key={i}
+                              className="lg:text-base md:text-[13px] text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-[10px] sm:px-[18px] bg-matchtittles rounded-full leading-[150%] duration-300 hover:text-white"
+                            >
+                              {val.title}
+                            </button>
+                          );
+                        })}
                       </span>
                     </div>
                     {/* NEWS DATA */}
                     <p className="sm:text-md text:base text-primary opacity-80 font-Segoe leading-[150%] sm:pt-6 pt-3 lg:pe-14 sm:pe-4">
-                      {item.attributes.description}
+                      {item.description}
                     </p>
                   </div>
                 </div>
