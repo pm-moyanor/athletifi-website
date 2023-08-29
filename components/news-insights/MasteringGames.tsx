@@ -3,7 +3,7 @@ import React from "react";
 import moment from "moment";
 
 interface NewsProps {
-  newsDetailData: string;
+  newsDetailData: any;
 }
 const MasteringGame: React.FC<NewsProps> = (props) => {
   const { newsDetailData } = props;

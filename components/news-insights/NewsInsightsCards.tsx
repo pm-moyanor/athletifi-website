@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 interface NewsListProps {
-  allNewsList: string;
+  allNewsList: any;
 }
 
 const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
