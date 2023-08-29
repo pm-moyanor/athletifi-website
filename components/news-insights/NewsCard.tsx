@@ -35,7 +35,7 @@ const NewsCard: React.FC<NewsProps> = (props) => {
                 {newsListData[0].title}
               </h3>
               <p className="text-base text-primary opacity-70 font-Segoe font-normal mt-2">
-                by: {newsListData[0].author.fullName} &bull;{" "}
+                by : {newsListData[0].author.fullName} &bull;{" "}
                 {moment(newsListData[0].createdAt).format("DD MMM YY")}
               </p>
               <p className="text-base sm:text-md text-primary opacity-70 font-Segoe font-normal mt-3 sm:mt-4">

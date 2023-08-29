@@ -56,8 +56,8 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
                     <div className="flex sm:items-center sm:flex-row flex-col sm:gap-3 gap-2 pt-2">
                       <h4 className="lg:pe-3 ">
                         <span className="lg:text-md text-base text-primary font-Segoe opacity-80 font-normal lg:pe-2 pe-1">
-                          by
-                        </span>{" "}
+                          by :
+                        </span>
                         <span className="lg:text-base text-sm text-primary font-Segoe font-semibold">
                           {item.author.fullName}
                         </span>
