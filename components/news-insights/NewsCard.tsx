@@ -5,23 +5,23 @@ import Image from "next/image";
 import moment from "moment";
 
 interface NewsProps {
-  newsListData: string;
+  newsListData: any;
 }
 const NewsCard: React.FC<NewsProps> = (props) => {
   const { newsListData } = props;
-
+console.log("newsListDatanewsListData",newsListData)
   // const sortarray=newsListData.sort()
   const sortedNewsListData = newsListData.sort(
     (a: any, b: any) =>
       moment(b.createdAt).valueOf() - moment(a.createdAt).valueOf()
   );
-  const imagePath = "http:127.0.0.1:1337" + sortedNewsListData[0].image.url;
+  const imagePath = "http:127.0.0.1:1337" + newsListData[0].image.url;
 
   return (
     <>
       <div className="blue_linear_gradient relative after:absolute flex justify-center flex-col items-center  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px] mx-3 sm:mx-10 md:mx-16 after:blur-[75px] blue_linear_gradient mt-[56px] lg:mt-[100px] xl:mt-[154px] sm:mb-[30px] lg:mb-[70px] xl:mb-[156px]">
         <Image
-          className="lg:w-[462px] lg:h-[541px] w-[150px] -top-[160px] sm:-left-20 -left-5 absolute opacity-50 -z-20"
+          className="lg:w-[462px] lg:h-[541px] w-[150px] -top-[160px] sm:-left-20  -left-5 absolute opacity-50 -z-20"
           src="/assets/img/svg/news-grid-line.svg"
           width={362}
           height={241}
@@ -38,17 +38,17 @@ const NewsCard: React.FC<NewsProps> = (props) => {
               data-aos-offset="400"
             >
               <h3 className="font-medium text-[20px] sm:text-lg text-primary font-HelveticaNeueMedium xl:max-w-[447px] mx-auto xl:mx-0">
-                {sortedNewsListData[0].text}
+                {newsListData[0].title}
               </h3>
               <p className="text-base text-primary opacity-70 font-Segoe font-normal mt-2">
-                by: {sortedNewsListData[0].author.fullName} &bull;{" "}
-                {moment(sortedNewsListData[0].author.createdAt).format("DD MMM YY")}
+                by: {newsListData[0].author.fullName} &bull;{" "}
+                {moment(newsListData[0].createdAt).format("DD MMM YY")}
               </p>
               <p className="text-base sm:text-md text-primary opacity-70 font-Segoe font-normal mt-3 sm:mt-4">
-                {sortedNewsListData[0].description}
+                {newsListData[0].description}
               </p>
               <div className="mt-4 flex items-center gap-[14px] justify-center xl:justify-start">
-                {sortedNewsListData[0].categories.map((val:any, i:any) => {
+                {newsListData[0].categories.map((val:any, i:any) => {
                   return (
                     <button
                       key={i}
@@ -60,7 +60,7 @@ const NewsCard: React.FC<NewsProps> = (props) => {
                 })}
               </div>
               <div className="flex xl:justify-start justify-center items-center mt-4 sm:mt-10">
-                <Link href={`/news-detail/${sortedNewsListData[0].slug}`}>
+                <Link href={`/news-detail/${newsListData[0].slug}`}>
                   <BlueButton text="Read&nbsp;more" />
                 </Link>
               </div>
@@ -74,7 +74,7 @@ const NewsCard: React.FC<NewsProps> = (props) => {
               data-aos-offset="400"
             >
               <Image
-                className="w-full"
+                className="w-full rounded-2xl"
                 src={imagePath}
                 alt="football"
                 width={531}

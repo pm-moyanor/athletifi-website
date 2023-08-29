@@ -51,7 +51,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
                   <div className="sm:pt-0 pt-3 max-w-[617px]">
                     {/* NEWS HEADING */}
                     <h3 className="sm:text-basemd text-[18px] text-primary font-HelveticaNeueMedium leading-[140%]">
-                      {item.text}
+                      {item.title}
                     </h3>
                     <div className="flex sm:items-center sm:flex-row flex-col sm:gap-3 gap-2 pt-2">
                       <h4 className="lg:pe-3 ">
