@@ -9,12 +9,6 @@ interface NewsProps {
 }
 const NewsCard: React.FC<NewsProps> = (props) => {
   const { newsListData } = props;
-console.log("newsListDatanewsListData",newsListData)
-  // const sortarray=newsListData.sort()
-  const sortedNewsListData = newsListData.sort(
-    (a: any, b: any) =>
-      moment(b.createdAt).valueOf() - moment(a.createdAt).valueOf()
-  );
   const imagePath = "http:127.0.0.1:1337" + newsListData[0].image.url;
 
   return (

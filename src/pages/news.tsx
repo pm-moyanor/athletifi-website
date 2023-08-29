@@ -51,7 +51,6 @@ const Newsinsight: React.FC<NewsProps> = (props) => {
         {/* <MasteringGame /> */}
         <NewsCard newsListData={newsListData} />
         {/* <RecentNewsInsights /> */}
-
         <NewsInsightsCards allNewsList={allNewsList} />
         <Footer />
         <Backtotop />

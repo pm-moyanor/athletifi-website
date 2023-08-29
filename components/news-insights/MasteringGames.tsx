@@ -81,7 +81,6 @@ const MasteringGame: React.FC<NewsProps> = (props) => {
                       {newsItem &&
                         newsItem.content.map(
                           (obj: any, index: any) => {
-                            console.log("objobjobj",obj)
                             return (
                               <>
                                 <h3
