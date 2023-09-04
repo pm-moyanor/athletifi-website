@@ -32,7 +32,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
               const url = item.image.url;
               const combinedUrl = url ? `${imagePath}${url}` : null;
               return (
-             <Link href={`/news-detail/${item.slug}`}>
+             <Link href={`/${item.slug}`}>
                 <div
                   key={index}
                   className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-[30px]"

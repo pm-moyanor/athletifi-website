@@ -1,15 +1,15 @@
-import Backtotop from "../../../components/common/Backtotop";
-import CommonHero from "../../../components/common/CommonHero";
-import Footer from "../../../components/common/Footer";
-import Header from "../../../components/common/Header";
-import Seo from "../../../components/common/Seo";
-import NewsInsightsCards from "../../../components/news-insights/NewsInsightsCards";
-import MasteringGame from "../../../components/news-insights/MasteringGames";
-import { GetRequestHandler } from "./../../../components/common/api/Api";
+import Backtotop from "../../components/common/Backtotop";
+import CommonHero from "../../components/common/CommonHero";
+import Footer from "../../components/common/Footer";
+import Header from "../../components/common/Header";
+import Seo from "../../components/common/Seo";
+import NewsInsightsCards from "../../components/news-insights/NewsInsightsCards";
+import MasteringGame from "../../components/news-insights/MasteringGames";
+import { GetRequestHandler } from "../../components/common/api/Api";
 import {
   NewsDetailApiHandler,
   NewsListApiHandler,
-} from "./../../../components/common/api/ApiUrls";
+} from "../../components/common/api/ApiUrls";
 
 const Newsinsight = ({newsDetailData,allNewsData}) => {
   // SEO
