@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
   const [checked, setChecked] = useState(false);
+  const [loading, setLoading] = useState(false);
   const intialState = {
     email: "",
   };
@@ -17,27 +18,29 @@ const SignUpForm = () => {
   const formHandler = async (e: any) => {
     e.preventDefault();
     const formDetails = { data };
-    if(checked){
-    const response = await PostRequestHandler(
-      PostNewsLetterHandler(),
-      formDetails
-    );
-    if (response.data) {
-      toast("✅ We received your message !", {
-        position: "bottom-right",
-      });
-      setData({
-        ...data,
-        email: "",
-      });
+    setLoading(true);
+    if (checked) {
+      const response = await PostRequestHandler(
+        PostNewsLetterHandler(),
+        formDetails
+      );
+      if (response.data) {
+        toast("✅ We received your message !", {
+          position: "bottom-right",
+        });
+        setLoading(false);
+        setData({
+          ...data,
+          email: "",
+        });
+      } else {
+        alert(`This attribute must be unique`);
+        setLoading(false);
+      }
     } else {
-      alert(`This attribute must be unique`);
+      alert(`Checked the condition`);
+      setLoading(false);
     }
-  }
-  else{
-    alert(`Checked the condition`);
-  }
- 
   };
   return (
     <section className="py-8 sm:py-[64px] lg:pt-[100px] xl:pt-[145px] lg:pb-[100px] xl:pb-[139px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:top-2 before:-left-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full overflow-hidden">
@@ -117,12 +120,11 @@ const SignUpForm = () => {
                   <button
                     type="submit"
                     className={`sm:w-full justify-center text-center sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black  join_now_btn transition duration-300 ease-in-out ${
-                       checked
-                        ? " bg-skyblue"
-                        : ""
+                      checked ? " bg-skyblue" : ""
                     }`}
                   >
-                    Sign Up
+                    {loading ? "Loading..." : " Sign Up"}
+
                     <span className="group-hover:translate-x-3 transition duration-300 ease-out">
                       <ButtonWhiteArrow />
                     </span>
