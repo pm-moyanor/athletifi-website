@@ -9,8 +9,7 @@ interface NewsProps {
 }
 const NewsCard: React.FC<NewsProps> = (props) => {
   const { newsListData } = props;
-  const imagePath = "http:127.0.0.1:1337" + newsListData[0].image.url;
-
+  const imagePath = "https://vidalco.in" + newsListData[0].image.url;
   return (
     <>
       <div className="blue_linear_gradient relative after:absolute flex justify-center flex-col items-center  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px] mx-3 sm:mx-10 md:mx-16 after:blur-[75px] blue_linear_gradient mt-[56px] lg:mt-[100px] xl:mt-[154px] sm:mb-[30px] lg:mb-[70px] xl:mb-[156px]">

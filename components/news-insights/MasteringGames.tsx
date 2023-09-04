@@ -12,7 +12,7 @@ const MasteringGame: React.FC<NewsProps> = (props) => {
       {newsDetailData &&
         newsDetailData.data &&
         newsDetailData.data.map((newsItem: any, i: any) => {
-          const imagePath = "http://127.0.0.1:1337";
+          const imagePath = "https://vidalco.in";
           const url =
             newsItem.image.url
           const combinedUrl = url ? `${imagePath}${url}` : null;

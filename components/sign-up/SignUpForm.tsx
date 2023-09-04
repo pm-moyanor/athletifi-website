@@ -39,7 +39,6 @@ const SignUpForm = () => {
   }
  
   };
-  console.log("checkedchecked", checked);
   return (
     <section className="py-8 sm:py-[64px] lg:pt-[100px] xl:pt-[145px] lg:pb-[100px] xl:pb-[139px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:top-2 before:-left-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full overflow-hidden">
       {/* GRID-LINE IMG */}
