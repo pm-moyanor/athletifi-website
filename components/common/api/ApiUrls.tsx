@@ -5,7 +5,7 @@ export const NewsListApiHandler=()=>{
 }
 // FILTER NEWS LIST API URL
 export const NewsListFilterApiHandler=()=>{
-    return `/news-lists?populate=image&filters[isLatest][$eq]=true&populate=author&populate=categories`;
+    return `/news-lists?populate=image&populate=author&populate=categories&sort=createdAt:desc`;
 }
 
 // NEWS DETAIL API URL

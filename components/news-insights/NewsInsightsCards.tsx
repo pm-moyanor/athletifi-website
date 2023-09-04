@@ -2,12 +2,11 @@ import Image from "next/image";
 import React from "react";
 
 interface NewsListProps {
-  allNewsList: string;
+  allNewsList: any;
 }
 
 const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
   const { allNewsList } = props;
-
   return (
     <>
       <div className="py-14 md:py-0 relative before:content-[''] before:absolute sm:before:w-[448px] before:w-[248px] sm:before:h-[448px] before:h-[248px] before:top-0 before:left-0 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/4 before:z-0 before:rounded-full after:content-[''] after:absolute sm:after:w-[448px] sm:after:h-[448px] after:w-[248px] after:h-[248px] after:bottom-20 after:right-0 after:bg-shadow_blue after:blur-[111px] after:opacity-25 after:translate-x-1/4 after:z-0 after:rounded-full">
@@ -27,7 +26,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
           {allNewsList &&
             allNewsList.data &&
             allNewsList.data.map((item: any, index: any) => {
-              const imagePath = "http://127.0.0.1:1337";
+              const imagePath = "https://vidalco.in";
               const url = item.image.url;
               const combinedUrl = url ? `${imagePath}${url}` : null;
               return (
@@ -51,15 +50,15 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
                   <div className="sm:pt-0 pt-3 max-w-[617px]">
                     {/* NEWS HEADING */}
                     <h3 className="sm:text-basemd text-[18px] text-primary font-HelveticaNeueMedium leading-[140%]">
-                      {item.text}
+                      {item.title}
                     </h3>
                     <div className="flex sm:items-center sm:flex-row flex-col sm:gap-3 gap-2 pt-2">
                       <h4 className="lg:pe-3 ">
                         <span className="lg:text-md text-base text-primary font-Segoe opacity-80 font-normal lg:pe-2 pe-1">
-                          by
-                        </span>{" "}
+                          by :
+                        </span>
                         <span className="lg:text-base text-sm text-primary font-Segoe font-semibold">
-                          {item.author.fullName}
+                         {item.author.fullName}
                         </span>
                       </h4>
                       {/* NEWS CATEGORY */}

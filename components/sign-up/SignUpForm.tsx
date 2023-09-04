@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { ButtonWhiteArrow, UnderLIneText } from "../common/Icon";
 import { PostRequestHandler } from "../common/api/Api";
 import { PostNewsLetterHandler } from "../common/api/ApiUrls";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
@@ -11,16 +13,19 @@ const SignUpForm = () => {
     email: "",
   };
   const [data, setData] = useState(intialState);
+
   const formHandler = async (e: any) => {
     e.preventDefault();
-
     const formDetails = { data };
+    if(checked){
     const response = await PostRequestHandler(
       PostNewsLetterHandler(),
       formDetails
     );
-    console.log("responseresponse", response);
     if (response.data) {
+      toast("✅ We received your message !", {
+        position: "bottom-right",
+      });
       setData({
         ...data,
         email: "",
@@ -28,8 +33,11 @@ const SignUpForm = () => {
     } else {
       alert(`This attribute must be unique`);
     }
-
-    console.log("checkedchecked", checked);
+  }
+  else{
+    alert(`Checked the condition`);
+  }
+ 
   };
   return (
     <section className="py-8 sm:py-[64px] lg:pt-[100px] xl:pt-[145px] lg:pb-[100px] xl:pb-[139px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:top-2 before:-left-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full overflow-hidden">
@@ -91,42 +99,6 @@ const SignUpForm = () => {
                     }
                   />
                 </div>
-                {/* <div className="mt-4 gap-3 flex items-start sm:items-center">
-                  <div
-                    onClick={() => setChecked(!checked)}
-                    className="mt-1 sm:mt-0 cursor-pointer"
-                  >
-                    <span className="after:border flex justify-center items-center after:border-1 relative after:border[#FFFFFF63] after:bg-transparent after:inline-block after:left-0 after:top-0 after:rounded after:w-5 after:h-5 after:absolute z-0">
-                      {checked ? (
-                        <>
-                          <Image
-                            className=" pt-1 ps-1"
-                            src="/assets/img/png/white-check-icon.png"
-                            width={15}
-                            height={15}
-                            alt="checked-image"
-                          />
-                        </>
-                      ) : (
-                        <>
-                        
-                            <Image
-                              className="invisible pt-1 ps-1"
-                              src="/assets/img/png/check-icon.png"
-                              width={15}
-                              height={15}
-                              alt="checked-image"
-                            />
-                         
-                        </>
-                      )}
-                    </span>
-                  </div>
-
-                  <span className="font-Segoe font-normal sm:pt-1 text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px] ">
-                    I agree to all Term, Privacy Policy and Fees
-                  </span>        
-                </div> */}
                 <div className="flex items-center gap-2 mt-4 sign_up_checkbox">
                   <input
                     type="checkbox"
@@ -143,12 +115,11 @@ const SignUpForm = () => {
                 {/* SIGN UP BUTTON */}
                 <div className="flex mt-6 md:mt-8 lg:max-w-[400px]">
                   <button
-                    disabled={data.email.length === 0}
                     type="submit"
                     className={`sm:w-full justify-center text-center sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black  join_now_btn transition duration-300 ease-in-out ${
-                      data.email.length === 0
-                        ? " bg-black cursor-not-allowed"
-                        : "bg-skyblue"
+                       checked
+                        ? " bg-skyblue"
+                        : ""
                     }`}
                   >
                     Sign Up
@@ -172,6 +143,7 @@ const SignUpForm = () => {
           </div>
         </div>
       </div>
+      <ToastContainer theme="dark" />
     </section>
   );
 };

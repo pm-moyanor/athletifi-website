@@ -3,17 +3,16 @@ import React from "react";
 import moment from "moment";
 
 interface NewsProps {
-  newsDetailData: string;
+  newsDetailData: any;
 }
 const MasteringGame: React.FC<NewsProps> = (props) => {
   const { newsDetailData } = props;
-console.log("newsDetailDatanewsDetailDatanewsDetailData",newsDetailData)
   return (
     <>
       {newsDetailData &&
         newsDetailData.data &&
         newsDetailData.data.map((newsItem: any, i: any) => {
-          const imagePath = "http://127.0.0.1:1337";
+          const imagePath = "https://vidalco.in";
           const url =
             newsItem.image.url
           const combinedUrl = url ? `${imagePath}${url}` : null;
@@ -41,7 +40,7 @@ console.log("newsDetailDatanewsDetailDatanewsDetailData",newsDetailData)
                       width={1140}
                       height={556}
                       alt="players"
-                      className="w-full h-full"
+                      className="w-full h-full rounded-2xl"
                     />
                     } 
                     
@@ -54,7 +53,7 @@ console.log("newsDetailDatanewsDetailDatanewsDetailData",newsDetailData)
                         data-aos-offset="200"
                         className="font-HelveticaNeueMedium text-primary font-medium text-[22px] sm:text-lg leading-8 md:leading-[39px] sm:text-start text-center"
                       >
-                        {newsItem.text}
+                        {newsItem.title}
                       </h3>
                       <p
                         data-aos="fade-up"
@@ -65,7 +64,7 @@ console.log("newsDetailDatanewsDetailDatanewsDetailData",newsDetailData)
                         className="font-Segoe text-offwhite mt-2 font-normal text-base sm:text-start text-center"
                       >
                         by: {newsItem.author.fullName} &bull;{" "}
-                        {moment(newsItem.author.createdAt).format(
+                        {moment(newsItem.createdAt).format(
                           "DD MMM YY"
                         )}
                       </p> 
@@ -95,7 +94,7 @@ console.log("newsDetailDatanewsDetailDatanewsDetailData",newsDetailData)
                                 >
                                   {obj.title}
                                 </h3>
-                                <p
+                                <div  dangerouslySetInnerHTML={{__html: obj.description}}
                                   data-aos="fade-up"
                                   data-aos-duration="800"
                                   data-aos-easing="linear"
@@ -103,8 +102,7 @@ console.log("newsDetailDatanewsDetailDatanewsDetailData",newsDetailData)
                                   data-aos-offset="200"
                                   className="font-Segoe font-normal text-md lg:mt-[10px] mt-2 leading-7 text-offwhite sm:text-start text-center"
                                 >
-                                  {obj.description}
-                                </p>
+                                </div>
                               </>
                             );
                           }
