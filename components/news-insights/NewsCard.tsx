@@ -28,7 +28,7 @@ const NewsCard: React.FC<NewsProps> = (props) => {
               data-aos-duration="400"
               data-aos-easing="linear"
               data-aos-delay="100"
-              data-aos-offset="400"
+              data-aos-offset="100"
             >
               <h3 className="font-medium text-[20px] sm:text-lg text-primary font-HelveticaNeueMedium xl:max-w-[447px] mx-auto xl:mx-0">
                 {newsListData[0].title}
@@ -41,7 +41,7 @@ const NewsCard: React.FC<NewsProps> = (props) => {
                 {newsListData[0].description}
               </p>
               <div className="mt-4 flex items-center gap-[14px] justify-center xl:justify-start">
-                {newsListData[0].categories.map((val:any, i:any) => {
+                {newsListData[0].categories.map((val: any, i: any) => {
                   return (
                     <button
                       key={i}
