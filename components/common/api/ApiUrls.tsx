@@ -1,7 +1,7 @@
 
 // ALL NEWS LIST API URL
 export const NewsListApiHandler=()=>{
-    return `/news-lists?populate=image&populate=author&populate=categories`;
+    return `/news-lists?populate=image&populate=author&populate=categories&sort=createdAt:desc`;
 }
 // FILTER NEWS LIST API URL
 export const NewsListFilterApiHandler=()=>{
