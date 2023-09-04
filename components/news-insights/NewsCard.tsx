@@ -64,7 +64,7 @@ const NewsCard: React.FC<NewsProps> = (props) => {
               data-aos-duration="400"
               data-aos-easing="linear"
               data-aos-delay="160"
-              data-aos-offset="400"
+              data-aos-offset="120"
             >
               <Image
                 className="w-full rounded-2xl"

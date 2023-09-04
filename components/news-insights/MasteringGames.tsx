@@ -122,16 +122,32 @@ const MasteringGame: React.FC<NewsProps> = (props) => {
                     data-aos-delay="200"
                     data-aos-offset="200"
                   >
-                    <Link target="_blank" href="https://www.facebook.com/">
+                    <Link
+                      target="_blank"
+                      href="https://www.facebook.com/"
+                      className="hover:-translate-y-1 duration-200"
+                    >
                       <WhiteFacebookIcon />
                     </Link>
-                    <Link target="_blank" href="https://twitter.com/">
+                    <Link
+                      target="_blank"
+                      href="https://twitter.com/"
+                      className="hover:-translate-y-1 duration-200"
+                    >
                       <WhiteTwitterIcon />
                     </Link>
-                    <Link target="_blank" href="https://www.instagram.com/">
+                    <Link
+                      target="_blank"
+                      href="https://www.instagram.com/"
+                      className="hover:-translate-y-1 duration-200"
+                    >
                       <WhiteInstaIcon />
                     </Link>
-                    <Link target="_blank" href="https://www.linkedin.com/">
+                    <Link
+                      target="_blank"
+                      href="https://www.linkedin.com/"
+                      className="hover:-translate-y-1 duration-200"
+                    >
                       <WhiteLinkedInIcon />
                     </Link>
                   </div>
