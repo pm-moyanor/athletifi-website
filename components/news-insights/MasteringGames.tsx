@@ -3,9 +3,9 @@ import React from "react";
 import moment from "moment";
 import {
   WhiteFacebookIcon,
-  WhiteInstaIcon,
   WhiteLinkedInIcon,
   WhiteTwitterIcon,
+  WhiteWhatsAppIcon,
 } from "../common/Icon";
 
 import Link from "next/link";
@@ -124,6 +124,7 @@ const MasteringGame: React.FC<NewsProps> = (props) => {
                     data-aos-offset="200"
                   >
                     <Link
+                      className="hover:-translate-y-1 duration-200"
                       target="_blank"
                       href={`https://www.facebook.com/sharer/sharer.php?u=${"https://athletifi-website.vercel.app/"}news/${
                         newsDetailData.data[0].slug
@@ -132,6 +133,7 @@ const MasteringGame: React.FC<NewsProps> = (props) => {
                       <WhiteFacebookIcon />
                     </Link>
                     <Link
+                      className="hover:-translate-y-1 duration-200"
                       target="_blank"
                       href={`https://twitter.com/intent/tweet?text=${
                         newsDetailData.data[0].slug
@@ -142,6 +144,7 @@ const MasteringGame: React.FC<NewsProps> = (props) => {
                       <WhiteTwitterIcon />
                     </Link>
                     <Link
+                      className="hover:-translate-y-1 duration-200"
                       target="_blank"
                       href={`https://api.whatsapp.com/send?text=${
                         newsDetailData.data[0].slug
@@ -149,9 +152,10 @@ const MasteringGame: React.FC<NewsProps> = (props) => {
                         newsDetailData.data[0].slug
                       }`}
                     >
-                      <WhiteInstaIcon />
+                      <WhiteWhatsAppIcon />
                     </Link>
                     <Link
+                      className="hover:-translate-y-1 duration-200"
                       target="_blank"
                       href={`https://www.linkedin.com/sharing/share-offsite/?url=https://athletifi-website.vercel.app/news${newsDetailData.data[0].slug}`}
                     >
