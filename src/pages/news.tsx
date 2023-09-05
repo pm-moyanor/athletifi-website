@@ -27,17 +27,17 @@ const Newsinsight: React.FC<NewsProps> = (props) => {
     subtitle: "Your Subtitle Here",
   };
   const pageSEO = {
-    // SEO TITLE
-    title: "News and Insights",
+     // SEO TITLE
+    title:`${newsListData.data[0].title}`,
 
     // SEO DESCRIPTION
-    description: "news_meta_img",
+    description:`${newsListData.data[0].description}`,
 
     // SEO WEBSITE URL
-    websiteURL: "https://athletifi-web.vercel.app/news-insight",
+    websiteURL:`https://athletifi-website.vercel.app`,
 
     // SEO IMAGE
-    image: "/news_meta_img.png",
+    image:`https://vidalco.in${newsListData.data[0].image.url}`,
   };
   return (
     <>

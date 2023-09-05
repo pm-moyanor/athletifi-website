@@ -15,9 +15,7 @@ interface NewsProps {
 }
 const MasteringGame: React.FC<NewsProps> = (props) => {
   const { newsDetailData } = props;
-  console.log("newsDetailDatanewsDetailData",newsDetailData.data[0].slug)
   const encodedUrl = `https://athletifi-website.vercel.app/${newsDetailData.data[0].slug}`;
-console.log("encodedUrlencodedUrl",encodedUrl)
   return (
     <>
       {newsDetailData &&
@@ -131,7 +129,7 @@ console.log("encodedUrlencodedUrl",encodedUrl)
                     <Link target="_blank" href={`https://twitter.com/intent/tweet?text=${newsDetailData.data[0].slug}&url=${"https://athletifi-website.vercel.app/"}${newsDetailData.data[0].slug}`}>
                       <WhiteTwitterIcon />
                     </Link>
-                    <Link target="_blank" href={`https://instagram.com/p?url=${encodedUrl}`}>
+                    <Link target="_blank" href={`https://instagram.com/post?url=${"https://athletifi-website.vercel.app/"}${newsDetailData.data[0].slug}`}>
                       <WhiteInstaIcon />
                     </Link>
                     <Link target="_blank" href={`https://www.linkedin.com/sharing/share-offsite/?url=https://athletifi-website.vercel.app/${newsDetailData.data[0].slug}`}>
