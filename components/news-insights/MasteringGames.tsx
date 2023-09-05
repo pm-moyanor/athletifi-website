@@ -15,6 +15,9 @@ interface NewsProps {
 }
 const MasteringGame: React.FC<NewsProps> = (props) => {
   const { newsDetailData } = props;
+  console.log("newsDetailDatanewsDetailData",newsDetailData.data[0].slug)
+  const encodedUrl = `https://athletifi-website.vercel.app/${newsDetailData.data[0].slug}`;
+console.log("encodedUrlencodedUrl",encodedUrl)
   return (
     <>
       {newsDetailData &&
@@ -122,16 +125,16 @@ const MasteringGame: React.FC<NewsProps> = (props) => {
                     data-aos-delay="200"
                     data-aos-offset="200"
                   >
-                    <Link target="_blank" href="https://www.facebook.com/">
+                    <Link target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=${"https://athletifi-website.vercel.app/"}${newsDetailData.data[0].slug}`}>
                       <WhiteFacebookIcon />
                     </Link>
-                    <Link target="_blank" href="https://twitter.com/">
+                    <Link target="_blank" href={`https://twitter.com/intent/tweet?text=${newsDetailData.data[0].slug}&url=${"https://athletifi-website.vercel.app/"}${newsDetailData.data[0].slug}`}>
                       <WhiteTwitterIcon />
                     </Link>
-                    <Link target="_blank" href="https://www.instagram.com/">
+                    <Link target="_blank" href={`https://instagram.com/p?url=${encodedUrl}`}>
                       <WhiteInstaIcon />
                     </Link>
-                    <Link target="_blank" href="https://www.linkedin.com/">
+                    <Link target="_blank" href={`https://www.linkedin.com/sharing/share-offsite/?url=https://athletifi-website.vercel.app/${newsDetailData.data[0].slug}`}>
                       <WhiteLinkedInIcon />
                     </Link>
                   </div>

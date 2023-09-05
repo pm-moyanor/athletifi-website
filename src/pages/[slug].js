@@ -12,6 +12,7 @@ import {
 } from "../../components/common/api/ApiUrls";
 
 const Newsinsight = ({newsDetailData,allNewsData}) => {
+
   // SEO
   const hero = {
     heading: "News and Insights",
@@ -20,16 +21,16 @@ const Newsinsight = ({newsDetailData,allNewsData}) => {
   };
   const pageSEO = {
     // SEO TITLE
-    title: "News and Insights",
+    title:`${newsDetailData.data[0].title}`,
 
     // SEO DESCRIPTION
-    description: "news_meta_img",
+    description:`${newsDetailData.data[0].description}`,
 
     // SEO WEBSITE URL
-    websiteURL: "https://athletifi-web.vercel.app/news-insight",
+    websiteURL:`https://athletifi-website.vercel.app`,
 
     // SEO IMAGE
-    image: "/news_meta_img.png",
+    image:`https://vidalco.in${newsDetailData.data[0].image.url}`,
   };
 
   return (
