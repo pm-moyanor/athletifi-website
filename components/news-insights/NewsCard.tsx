@@ -53,7 +53,7 @@ const NewsCard: React.FC<NewsProps> = (props) => {
                 })}
               </div>
               <div className="flex xl:justify-start justify-center items-center mt-4 sm:mt-10">
-                <Link href={`/${newsListData[0].slug}`}>
+                <Link href={`news/${newsListData[0].slug}`}>
                   <BlueButton text="Read&nbsp;more" />
                 </Link>
               </div>

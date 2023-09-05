@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import { useRouter } from 'next/router'
+
 
 
 interface NewsListProps {
@@ -8,6 +10,7 @@ interface NewsListProps {
 }
 
 const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
+  const router = useRouter()
   const { allNewsList } = props;
   return (
 
@@ -32,7 +35,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
               const url = item.image.url;
               const combinedUrl = url ? `${imagePath}${url}` : null;
               return (
-             <Link href={`/${item.slug}`}>
+             <Link href={`${router.asPath==="/news"?"news/":""}${item.slug}`}>
                 <div
                   key={index}
                   className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-[30px]"

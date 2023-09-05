@@ -1,24 +1,23 @@
-import Backtotop from "../../components/common/Backtotop";
-import CommonHero from "../../components/common/CommonHero";
-import Footer from "../../components/common/Footer";
-import Header from "../../components/common/Header";
-import Seo from "../../components/common/Seo";
-import LatestNews from "../../components/home/LatestNews";
-import NewsCard from "../../components/news-insights/NewsCard";
-import NewsInsightsCards from "../../components/news-insights/NewsInsightsCards";
+import Backtotop from "../../../components/common/Backtotop";
+import CommonHero from "../../../components/common/CommonHero";
+import Footer from "../../../components/common/Footer";
+import Header from "../../../components/common/Header";
+import Seo from "../../../components/common/Seo";
+import NewsCard from "../../../components/news-insights/NewsCard";
+import NewsInsightsCards from "../../../components/news-insights/NewsInsightsCards";
 
-import { GetRequestHandler } from "../../components/common/api/Api";
+import { GetRequestHandler } from "../../../components/common/api/Api";
 import {
   NewsListApiHandler,
   NewsListFilterApiHandler,
-} from "../../components/common/api/ApiUrls";
+} from "../../../components/common/api/ApiUrls";
 
-interface NewsProps {
-  newsListData: any;
-  allNewsList: any;
-}
-const Newsinsight: React.FC<NewsProps> = (props) => {
-  const { newsListData, allNewsList } = props;
+// interface NewsProps {
+//   newsListData: any;
+//   allNewsList: any;
+// }
+const Newsinsight =({newsListData,allNewsList}) => {
+  // const { newsListData, allNewsList } = props;
 
   // SEO
   const hero = {
@@ -28,16 +27,16 @@ const Newsinsight: React.FC<NewsProps> = (props) => {
   };
   const pageSEO = {
      // SEO TITLE
-    title:`${newsListData.data[0].title}`,
+    title:`${newsListData[0].title}`,
 
     // SEO DESCRIPTION
-    description:`${newsListData.data[0].description}`,
+    description:`${newsListData[0].description}`,
 
     // SEO WEBSITE URL
     websiteURL:`https://athletifi-website.vercel.app`,
 
     // SEO IMAGE
-    image:`https://vidalco.in${newsListData.data[0].image.url}`,
+    image:`https://vidalco.in${newsListData[0].image.url}`,
   };
   return (
     <>

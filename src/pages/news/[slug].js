@@ -1,15 +1,15 @@
-import Backtotop from "../../components/common/Backtotop";
-import CommonHero from "../../components/common/CommonHero";
-import Footer from "../../components/common/Footer";
-import Header from "../../components/common/Header";
-import Seo from "../../components/common/Seo";
-import NewsInsightsCards from "../../components/news-insights/NewsInsightsCards";
-import MasteringGame from "../../components/news-insights/MasteringGames";
-import { GetRequestHandler } from "../../components/common/api/Api";
+import Backtotop from "../../../components/common/Backtotop";
+import CommonHero from "../../../components/common/CommonHero";
+import Footer from "../../../components/common/Footer";
+import Header from "../../../components/common/Header";
+import Seo from "../../../components/common/Seo";
+import NewsInsightsCards from "../../../components/news-insights/NewsInsightsCards";
+import MasteringGame from "../../../components/news-insights/MasteringGames";
+import { GetRequestHandler } from "../../../components/common/api/Api";
 import {
   NewsDetailApiHandler,
   NewsListApiHandler,
-} from "../../components/common/api/ApiUrls";
+} from "../../../components/common/api/ApiUrls";
 
 const Newsinsight = ({newsDetailData,allNewsData}) => {
 
@@ -20,17 +20,17 @@ const Newsinsight = ({newsDetailData,allNewsData}) => {
     subtitle: "Your Subtitle Here",
   };
   const pageSEO = {
-    // SEO TITLE
+    // // SEO TITLE
     title:`${newsDetailData.data[0].title}`,
 
-    // SEO DESCRIPTION
-    description:`${newsDetailData.data[0].description}`,
+    // // SEO DESCRIPTION
+     description:`${newsDetailData.data[0].description}`,
 
-    // SEO WEBSITE URL
-    websiteURL:`https://athletifi-website.vercel.app`,
+    // // SEO WEBSITE URL
+     websiteURL:`https://athletifi-website.vercel.app`,
 
-    // SEO IMAGE
-    image:`https://vidalco.in${newsDetailData.data[0].image.url}`,
+    // // SEO IMAGE
+   image:`https://vidalco.in${newsDetailData.data[0].image.url}`,
   };
 
   return (
