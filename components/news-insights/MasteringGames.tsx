@@ -157,7 +157,7 @@ const MasteringGame: React.FC<NewsProps> = (props) => {
                     <Link
                       className="hover:-translate-y-1 duration-200"
                       target="_blank"
-                      href={`https://www.linkedin.com/sharing/share-offsite/?url=https://athletifi-website.vercel.app/news${newsDetailData.data[0].slug}`}
+                      href={`https://www.linkedin.com/sharing/share-offsite/?url=https://athletifi-website.vercel.app/news/${newsDetailData.data[0].slug}`}
                     >
                       <WhiteLinkedInIcon />
                     </Link>
