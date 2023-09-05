@@ -5,13 +5,14 @@ import Header from "../../../components/common/Header";
 import Seo from "../../../components/common/Seo";
 import NewsInsightsCards from "../../../components/news-insights/NewsInsightsCards";
 import MasteringGame from "../../../components/news-insights/MasteringGames";
-import { GetRequestHandler } from "./../../../components/common/api/Api";
+import { GetRequestHandler } from "../../../components/common/api/Api";
 import {
   NewsDetailApiHandler,
   NewsListApiHandler,
-} from "./../../../components/common/api/ApiUrls";
+} from "../../../components/common/api/ApiUrls";
 
 const Newsinsight = ({newsDetailData,allNewsData}) => {
+
   // SEO
   const hero = {
     heading: "News and Insights",
@@ -19,17 +20,17 @@ const Newsinsight = ({newsDetailData,allNewsData}) => {
     subtitle: "Your Subtitle Here",
   };
   const pageSEO = {
-    // SEO TITLE
-    title: "News and Insights",
+    // // SEO TITLE
+    title:`${newsDetailData.data[0].title}`,
 
-    // SEO DESCRIPTION
-    description: "news_meta_img",
+    // // SEO DESCRIPTION
+     description:`${newsDetailData.data[0].description}`,
 
-    // SEO WEBSITE URL
-    websiteURL: "https://athletifi-web.vercel.app/news-insight",
+    // // SEO WEBSITE URL
+     websiteURL:`https://athletifi-website.vercel.app`,
 
-    // SEO IMAGE
-    image: "/news_meta_img.png",
+    // // SEO IMAGE
+   image:`https://vidalco.in${newsDetailData.data[0].image.url}`,
   };
 
   return (

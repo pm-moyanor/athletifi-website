@@ -15,6 +15,7 @@ interface NewsProps {
 }
 const MasteringGame: React.FC<NewsProps> = (props) => {
   const { newsDetailData } = props;
+
   return (
     <>
       {newsDetailData &&
@@ -122,32 +123,16 @@ const MasteringGame: React.FC<NewsProps> = (props) => {
                     data-aos-delay="200"
                     data-aos-offset="200"
                   >
-                    <Link
-                      target="_blank"
-                      href="https://www.facebook.com/"
-                      className="hover:-translate-y-1 duration-200"
-                    >
+                    <Link target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=${"https://athletifi-website.vercel.app/"}news/${newsDetailData.data[0].slug}`}>
                       <WhiteFacebookIcon />
                     </Link>
-                    <Link
-                      target="_blank"
-                      href="https://twitter.com/"
-                      className="hover:-translate-y-1 duration-200"
-                    >
+                    <Link target="_blank" href={`https://twitter.com/intent/tweet?text=${newsDetailData.data[0].slug}&url=${"https://athletifi-website.vercel.app/"}news/${newsDetailData.data[0].slug}`}>
                       <WhiteTwitterIcon />
                     </Link>
-                    <Link
-                      target="_blank"
-                      href="https://www.instagram.com/"
-                      className="hover:-translate-y-1 duration-200"
-                    >
+                     <Link target="_blank" href={`https://api.whatsapp.com/send?text=${newsDetailData.data[0].slug}&url=${"https://athletifi-website.vercel.app/"}news/${newsDetailData.data[0].slug}`}>
                       <WhiteInstaIcon />
-                    </Link>
-                    <Link
-                      target="_blank"
-                      href="https://www.linkedin.com/"
-                      className="hover:-translate-y-1 duration-200"
-                    >
+                    </Link> 
+                    <Link target="_blank" href={`https://www.linkedin.com/sharing/share-offsite/?url=https://athletifi-website.vercel.app/news${newsDetailData.data[0].slug}`}>
                       <WhiteLinkedInIcon />
                     </Link>
                   </div>

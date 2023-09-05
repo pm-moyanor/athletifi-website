@@ -8,6 +8,7 @@ interface PageSEO {
 }
 
 const Seo: React.FC<{ pageSEO: PageSEO }> = ({ pageSEO }) => {
+
   return (
     <>
       <Head>
