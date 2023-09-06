@@ -48,7 +48,7 @@ const MasteringGame: React.FC<NewsProps> = (props) => {
                         width={1140}
                         height={556}
                         alt="players"
-                        className="w-full h-full rounded-2xl"
+                        className="w-full max-h-[850px] object-cover rounded-2xl"
                       />
                     )}
 

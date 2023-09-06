@@ -1,41 +1,40 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-import { useRouter } from 'next/router'
-
-
+import { useRouter } from "next/router";
 
 interface NewsListProps {
   allNewsList: any;
 }
 
 const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
-  const router = useRouter()
+  const router = useRouter();
   const { allNewsList } = props;
   return (
-
-      <div className="py-14 md:py-0 relative before:content-[''] before:absolute sm:before:w-[448px] before:w-[248px] sm:before:h-[448px] before:h-[248px] before:top-0 before:left-0 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/4 before:z-0 before:rounded-full after:content-[''] after:absolute sm:after:w-[448px] sm:after:h-[448px] after:w-[248px] after:h-[248px] after:bottom-20 after:right-0 after:bg-shadow_blue after:blur-[111px] after:opacity-25 after:translate-x-1/4 after:z-0 after:rounded-full">
-        <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto relative z-10 md:mb-[100px] xl:mb-[160px]">
-          <h2
-            data-aos="fade-up"
-            data-aos-duration="400"
-            data-aos-easing="linear"
-            data-aos-delay="100"
-            data-aos-offset="200"
-            className="text-center md:text-start font-HelveticaNeueMedium font-medium lg:text-5xl md:text-[40px] text-[26px] text-primary md:pt-10 md:pb-[25px] pb-5"
-          >
-            <span className="relative after:content after:absolute after:bottom-[-6px] md:after:bottom-[-12px] after:left-0 md:after:w-[290px] after:h-[15px] after:bg-blue-underline after:bg-contain after:bg-no-repeat">
-              Recent News and Insights
-            </span>
-          </h2>
-          {allNewsList &&
-            allNewsList.data &&
-            allNewsList.data.map((item: any, index: any) => {
-              const imagePath = "https://vidalco.in";
-              const url = item.image.url;
-              const combinedUrl = url ? `${imagePath}${url}` : null;
-              return (
-             <Link href={`${router.asPath==="/news"?"news/":""}${item.slug}`}>
+    <div className="py-14 md:py-0 relative before:content-[''] before:absolute sm:before:w-[448px] before:w-[248px] sm:before:h-[448px] before:h-[248px] before:top-0 before:left-0 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/4 before:z-0 before:rounded-full after:content-[''] after:absolute sm:after:w-[448px] sm:after:h-[448px] after:w-[248px] after:h-[248px] after:bottom-20 after:right-0 after:bg-shadow_blue after:blur-[111px] after:opacity-25 after:translate-x-1/4 after:z-0 after:rounded-full">
+      <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto relative z-10 md:mb-[100px] xl:mb-[160px]">
+        <h2
+          data-aos="fade-up"
+          data-aos-duration="400"
+          data-aos-easing="linear"
+          data-aos-delay="100"
+          data-aos-offset="200"
+          className="text-center md:text-start font-HelveticaNeueMedium font-medium lg:text-5xl md:text-[40px] text-[26px] text-primary md:pt-10 md:pb-[25px] pb-5"
+        >
+          <span className="relative after:content after:absolute after:bottom-[-6px] md:after:bottom-[-12px] after:left-0 md:after:w-[290px] after:h-[15px] after:bg-blue-underline after:bg-contain after:bg-no-repeat">
+            Recent News and Insights
+          </span>
+        </h2>
+        {allNewsList &&
+          allNewsList.data &&
+          allNewsList.data.map((item: any, index: any) => {
+            const imagePath = "https://vidalco.in";
+            const url = item.image.url;
+            const combinedUrl = url ? `${imagePath}${url}` : null;
+            return (
+              <Link
+                href={`${router.asPath === "/news" ? "news/" : ""}${item.slug}`}
+              >
                 <div
                   key={index}
                   className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-[30px]"
@@ -46,7 +45,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
                 >
                   {combinedUrl && (
                     <Image
-                      className="md:w-[315px] rounded-[10px] object-cover w-full"
+                      className="md:w-[315px] max-h-[244px] rounded-[10px] object-cover w-full"
                       src={combinedUrl}
                       width={315}
                       height={240}
@@ -64,12 +63,12 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
                           by :
                         </span>
                         <span className="lg:text-base text-sm text-primary font-Segoe font-semibold">
-                         {item.author.fullName}
+                          {item.author.fullName}
                         </span>
                       </h4>
                       {/* NEWS CATEGORY */}
                       <span className="flex gap-x-3">
-                        {item.categories.map((val:any, i:any) => {
+                        {item.categories.map((val: any, i: any) => {
                           return (
                             <button
                               key={i}
@@ -87,28 +86,27 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
                     </p>
                   </div>
                 </div>
-             </Link>
-              );
-            })}
-        </div>
-        {/* BACKGROUND RIGHT GRID */}
-        <Image
-          className="xl:w-[600px] lg:[550px] sm:w-[400px] w-[250px] absolute bottom-10 right-[-50px] -z-10"
-          src="/assets/img/svg/grid-lines.svg"
-          width={716}
-          height={692}
-          alt={"grid image"}
-        />
-        {/* BACKGROUND LEFT GRID */}
-        <Image
-          className="xl:w-[606px] lg:[550px] sm:w-[400px] w-[250px] absolute top-40 -translate-y-1/3 left-2 -z-10"
-          src="/assets/img/svg/grid-lines.svg"
-          width={716}
-          height={692}
-          alt={"grid image"}
-        />
+              </Link>
+            );
+          })}
       </div>
-
+      {/* BACKGROUND RIGHT GRID */}
+      <Image
+        className="xl:w-[600px] lg:[550px] sm:w-[400px] w-[250px] absolute bottom-10 right-[-50px] -z-10"
+        src="/assets/img/svg/grid-lines.svg"
+        width={716}
+        height={692}
+        alt={"grid image"}
+      />
+      {/* BACKGROUND LEFT GRID */}
+      <Image
+        className="xl:w-[606px] lg:[550px] sm:w-[400px] w-[250px] absolute top-40 -translate-y-1/3 left-2 -z-10"
+        src="/assets/img/svg/grid-lines.svg"
+        width={716}
+        height={692}
+        alt={"grid image"}
+      />
+    </div>
   );
 };
 
