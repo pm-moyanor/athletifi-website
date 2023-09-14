@@ -74,7 +74,3 @@ You can start editing the page by modifying pages/index.tsx. The page auto-updat
    npm run development
    ```
 
-## Directory Structure
-
-TBD
-
