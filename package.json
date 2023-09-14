@@ -1,12 +1,21 @@
 {
-  "name": "atheltic-next",
-  "version": "0.1.0",
+  "name": "athletifi-website",
+  "version": "0.2.0",
+  "description": "Official website for AthletiFi",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AthletiFi/athletifi-website.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AthletiFi/athletifi-website/issues"
   },
   "dependencies": {
     "@types/node": "20.4.5",
