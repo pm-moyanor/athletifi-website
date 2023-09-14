@@ -1,3 +1,9 @@
+// index.tsx
+
+// This is the main landing page of the website.
+// It includes various components to showcase the features and services offered.
+
+
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Header from "../../components/common/Header";

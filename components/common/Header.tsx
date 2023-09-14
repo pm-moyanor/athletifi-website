@@ -1,3 +1,6 @@
+// This component renders the header of the website.
+// It includes navigation links and other header elements.
+
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";

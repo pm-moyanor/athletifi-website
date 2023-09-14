@@ -1,3 +1,8 @@
+// WhatWeDo.tsx
+
+// This component renders the "What We Do" section on the "About Us" page.
+// It outlines the services and products offered by the company.
+
 import React from "react";
 import Image from "next/image";
 import { BlueShodow, UnderLIneText } from "../common/Icon";

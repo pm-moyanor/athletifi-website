@@ -1,5 +1,9 @@
+// about-us.tsx
 
-import OurMission from "../../components/about-us/OurMIssion";
+// This file renders the "About Us" page.
+// It includes various components to display information about the company.
+
+import OurMission from "../../components/about-us/OurMission";
 import WhatWeDo from "../../components/about-us/WhatWeDo";
 import WhoweAre from "../../components/about-us/WhoweAre";
 import Backtotop from "../../components/common/Backtotop";
