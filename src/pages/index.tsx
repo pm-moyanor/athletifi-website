@@ -19,16 +19,26 @@ import Backtotop from "../../components/common/Backtotop";
 import { useEffect, useState } from "react";
 import { PageLogo } from "../../components/common/Icon";
 import Seo from "../../components/common/Seo";
+
+// Importing the Inter font
 const inter = Inter({ subsets: ["latin"] });
+
+// Main functional component for the Home page
 export default function Home() {
   // PRELOADER
+    // State variable for preloader. A preloader is a visual element that appears on the screen while a webpage or a portion of a webpage is loading.
   const [preloader, setpreloader] = useState(true);
+    // The preloader state variable is initially set to true, indicating that the preloader should be displayed.
 
+  // useEffect hook to handle preloader and body overflow
   useEffect(() => {
    
+    // Delay for preloader to disappear
     setTimeout(() => {
       setpreloader(false);
     }, 1500);
+
+    // Adding CSS classes to body for overflow control
     document.body.classList.add("overflow_anchor");
     if (preloader) {
       document.body.classList.add("overflow_hidden");
@@ -57,7 +67,7 @@ export default function Home() {
     <>
       {/* SEO */}
       <Seo pageSEO={pageSEO} />
-      {/* PRELOADER */}
+      {/* PRELOADER is conditionally rendered based on the value of the preloader state variable. */}
       {preloader && (
         <div
           className={`preloader fixed min-h-screen top-0 left-0 w-full z-50 flex justify-center items-center`}
