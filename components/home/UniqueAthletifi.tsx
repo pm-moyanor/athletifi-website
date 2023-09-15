@@ -38,18 +38,22 @@ const UniqueAthletifi = () => {
               </p>
             </div>
             {/* FOOTBALL PLAYER IMAGE */}
-            <Image
-              data-aos="fade-in"
-              data-aos-duration="600"
-              data-aos-easing="linear"
-              data-aos-delay="200"
-              data-aos-offset="200"
-              className="mb-[1px] lg:max-w-[267px] max-w-[180px] sm:max-w-[220px]"
-              src="/assets/img/png/portrait-young.png"
-              width={267}
-              height={519}
-              alt={"football palyer"}
-            />
+            <div className="opacity-88">
+              <Image
+                data-aos="fade-in"
+                data-aos-duration="600"
+                data-aos-easing="linear"
+                data-aos-delay="200"
+                data-aos-offset="200"
+                // className="mb-[1px] lg:max-w-[267px] max-w-[180px] sm:max-w-[220px]"
+                className="mb-[1px] lg:max-w-[652px] max-w-[326px] sm:max-w-[300px] opacity-1"
+                // src="/assets/img/png/portrait-young.png"
+                src="/assets/img/webp/gen-soccer-player.webp"
+                width={652}
+                height={512}
+                alt={"football palyer"}
+              />
+            </div>
           </div>
         </div>
         {/* FOOTBALL IMAGE CORNOR*/}

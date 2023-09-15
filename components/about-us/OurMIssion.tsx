@@ -9,6 +9,7 @@ import { UnderLIneText } from "../common/Icon";
 import { CenterBlueShadow } from "../common/Icon";
 
 const OurMission = () => {
+  const playerImageMission = "stebi-nft-mission";
   return (
     <section className="sm:py-10 py-8 lg:mt-14 relative">
       <div className="lg:w-[600px] lg:h-[700px] w-1/4 absolute -end-20 top-10 z-0">
@@ -44,7 +45,7 @@ const OurMission = () => {
               className="flex justify-center lg:justify-start"
             >
               <Image
-                src="/assets/img/webp/our_mission_nft_img.webp"
+                src={`/assets/img/webp/${playerImageMission}.webp`}
                 className="xl:h-[603px] xl:w-[505px] min-[1530px]:w-full"
                 width={505}
                 height={603}

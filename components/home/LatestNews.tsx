@@ -45,7 +45,7 @@ const LatestNews = () => {
                 <div className="sm:pt-0 pt-3">
                   {/* NEWS HEADING */}
                   <h3 className="sm:text-basemd text-[18px] text-primary font-HelveticaNeueMedium leading-[140%]">
-                    Rivals Meet in Thrilling Soccer Match
+                    Rivals Meet in Thrilling Soccer Match?
                   </h3>
                   <div className="flex sm:items-center sm:flex-row flex-col sm:gap-3 gap-2 pt-2">
                     <h4 className="lg:pe-3 ">
@@ -53,7 +53,7 @@ const LatestNews = () => {
                         by
                       </span>{" "}
                       <span className="lg:text-base text-sm text-primary font-Segoe font-semibold">
-                        Graham Clark
+                        Barney Clark
                       </span>
                     </h4>
                     {/* NEWS CATEGORY */}
@@ -68,7 +68,7 @@ const LatestNews = () => {
                   </div>
                   {/* NEWS DATA */}
                   <p className="sm:text-md text:base text-primary opacity-80 font-Segoe leading-[150%] sm:pt-6 pt-3 lg:pe-14 sm:pe-4">
-                    In a highly anticipated soccer match, two arch-rivals
+                    In a highly anticipated soccer match?, two arch-rivals
                     clashed on the pitch, setting the stage for an exhilarating
                     spectacle that had fans on the edge of their seats. The
                     tension was palpable as the teams, known for their fierce
