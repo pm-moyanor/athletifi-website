@@ -13,13 +13,19 @@ import Backtotop from "../../components/common/Backtotop";
 import { useEffect, useState } from "react";
 import { PageLogo } from "../../components/common/Icon";
 import Seo from "../../components/common/Seo";
+import { GetRequestHandler } from "../../components/common/api/Api";
+import { NewsListApiHandler } from "../../components/common/api/ApiUrls";
 const inter = Inter({ subsets: ["latin"] });
-export default function Home() {
+
+interface NewsProps {
+  allNewsList: any;
+}
+const Home: React.FC<NewsProps> = (props) => {
+  const { allNewsList } = props;
   // PRELOADER
   const [preloader, setpreloader] = useState(true);
 
   useEffect(() => {
-   
     setTimeout(() => {
       setpreloader(false);
     }, 1500);
@@ -29,7 +35,6 @@ export default function Home() {
     } else {
       document.body.classList.remove("overflow_hidden");
     }
-
   });
 
   // SEO
@@ -54,8 +59,7 @@ export default function Home() {
       {/* PRELOADER */}
       {preloader && (
         <div
-          className={`preloader fixed min-h-screen top-0 left-0 w-full z-50 flex justify-center items-center`}
-        >
+          className={`preloader fixed min-h-screen top-0 left-0 w-full z-50 flex justify-center items-center`}>
           <span>
             <PageLogo />
           </span>
@@ -80,11 +84,30 @@ export default function Home() {
         <UniqueAthletifi />
         <OurStrategicAdvisor />
         <TrustedPartners />
-        <LatestNews />
+        <LatestNews allNewsList={allNewsList} />
         <Footer />
         <Backtotop />
       </div>
     </>
   );
-}
+};
 
+export async function getServerSideProps() {
+  try {
+    const response = await GetRequestHandler(NewsListApiHandler());
+
+    return {
+      props: {
+        allNewsList: response,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        allNewsList: null,
+      },
+    };
+  }
+}
+export default Home;
