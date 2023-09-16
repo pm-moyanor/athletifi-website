@@ -12,13 +12,7 @@ import {
   NewsListFilterApiHandler,
 } from "../../../components/common/api/ApiUrls";
 
-// interface NewsProps {
-//   newsListData: any;
-//   allNewsList: any;
-// }
-const Newsinsight =({newsListData,allNewsList}) => {
-  // const { newsListData, allNewsList } = props;
-
+const Newsinsight = ({ newsListData, allNewsList }) => {
   // SEO
   const hero = {
     heading: "News and Insights",
@@ -26,17 +20,17 @@ const Newsinsight =({newsListData,allNewsList}) => {
     subtitle: "Your Subtitle Here",
   };
   const pageSEO = {
-     // SEO TITLE
-    title:`${newsListData[0].title}`,
+    // SEO TITLE
+    title: `${newsListData[0].title}`,
 
     // SEO DESCRIPTION
-    description:`${newsListData[0].description}`,
+    description: `${newsListData[0].description}`,
 
     // SEO WEBSITE URL
-    websiteURL:`https://athletifi-website.vercel.app`,
+    websiteURL: `https://athletifi-website.vercel.app`,
 
     // SEO IMAGE
-    image:`https://vidalco.in${newsListData[0].image.url}`,
+    image: `https://vidalco.in${newsListData[0].image.url}`,
   };
   return (
     <>
