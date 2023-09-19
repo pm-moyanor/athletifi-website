@@ -16,7 +16,7 @@ const LatestNews: React.FC<NewsProps> = (props) => {
     allNewsList.meta.pagination.pageCount
   );
 
-  console.log("currentPagecurrentPagecurrentPage", allNewsList);
+
   // Calculate the start and end indexes of the current page
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -94,59 +94,30 @@ const LatestNews: React.FC<NewsProps> = (props) => {
               </Link>
             );
           })}
-          <div className="pagination">
+
+          <div className="flex justify-between lg:max-w-[150px] py-3 sm:max-w-[300px] max-w-[300px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
             <button
-              className="text-white"
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
+              className={`${
+                currentPage === 1 ? " opacity-70 cursor-not-allowed" : ""
+              } -rotate-90 hover:-translate-x-1 duration-200`}
             >
-              Previous
+              <PaginationArrow />
             </button>
-            <span className="text-white">
-              {currentPage} of {totalPages}
-            </span>
             <button
-              className="text-white"
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
+              className={`${
+                currentPage === totalPages
+                  ? " opacity-70 cursor-not-allowed"
+                  : ""
+              } rotate-90 hover:translate-x-1 duration-200 `}
             >
-              Next
+              <PaginationArrow />
             </button>
-            <div className="flex justify-between lg:max-w-[400px] sm:max-w-[350px] max-w-[300px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
-              <button className="-rotate-90 hover:-translate-x-1 duration-200 cursor-pointer ">
-                <PaginationArrow />
-              </button>
-              <div className="flex gap-5 max-w-[168px] overflow-x-scroll ">
-                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
-                  1
-                </button>
-                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
-                  2
-                </button>
-                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
-                  3
-                </button>
-                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
-                  4
-                </button>
-                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
-                  5
-                </button>
-                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
-                  6
-                </button>
-                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
-                  7
-                </button>
-                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
-                  8
-                </button>
-              </div>
-              <button className="rotate-90 hover:translate-x-1 duration-200 cursor-pointer">
-                <PaginationArrow />
-              </button>
-            </div>
           </div>
+
           <div className="flex justify-center items-center pt-10 md:pb-14 lg:mb-10 ">
             <Link href="/news">
               <BlueButton text="View all" />

@@ -1,7 +1,8 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { PaginationArrow } from "../common/Icon";
 
 interface NewsListProps {
   allNewsList: any;
@@ -10,6 +11,21 @@ interface NewsListProps {
 const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
   const router = useRouter();
   const { allNewsList } = props;
+  const DataArray = allNewsList.data;
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(
+    allNewsList.meta.pagination.pageCount
+  );
+    // Calculate the start and end indexes of the current page
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const displayedItems = DataArray.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(DataArray.length / itemsPerPage);
+  
+    const handlePageChange = (newPage: any) => {
+      setCurrentPage(newPage);
+    };
+
   return (
     <div className="py-14 md:py-0 relative before:content-[''] before:absolute sm:before:w-[448px] before:w-[248px] sm:before:h-[448px] before:h-[248px] before:top-0 before:left-0 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/4 before:z-0 before:rounded-full after:content-[''] after:absolute sm:after:w-[448px] sm:after:h-[448px] after:w-[248px] after:h-[248px] after:bottom-20 after:right-0 after:bg-shadow_blue after:blur-[111px] after:opacity-25 after:translate-x-1/4 after:z-0 after:rounded-full">
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto relative z-10 md:mb-[100px] xl:mb-[160px]">
@@ -25,9 +41,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
             Recent News and Insights
           </span>
         </h2>
-        {allNewsList &&
-          allNewsList.data &&
-          allNewsList.data.map((item: any, index: any) => {
+        {displayedItems.map((item: any, index: any) => {
             const imagePath = "https://vidalco.in";
             const url = item.image.url;
             const combinedUrl = url ? `${imagePath}${url}` : null;
@@ -89,6 +103,28 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
               </Link>
             );
           })}
+             <div className="flex justify-between lg:max-w-[150px] py-3 sm:max-w-[300px] max-w-[300px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className={`${
+                currentPage === 1 ? " opacity-70 cursor-not-allowed" : ""
+              } -rotate-90 hover:-translate-x-1 duration-200`}
+            >
+              <PaginationArrow />
+            </button>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className={`${
+                currentPage === totalPages
+                  ? " opacity-70 cursor-not-allowed"
+                  : ""
+              } rotate-90 hover:translate-x-1 duration-200 `}
+            >
+              <PaginationArrow />
+            </button>
+          </div>
       </div>
       {/* BACKGROUND RIGHT GRID */}
       <Image
