@@ -21,6 +21,7 @@ const MasteringGame: React.FC<NewsProps> = (props) => {
       {newsDetailData &&
         newsDetailData.data &&
         newsDetailData.data.map((newsItem: any, i: any) => {
+          console.log("newsDetailDatanewsDetailData",newsDetailData)
           const imagePath = "https://vidalco.in";
           const url = newsItem.image.url;
           const combinedUrl = url ? `${imagePath}${url}` : null;
