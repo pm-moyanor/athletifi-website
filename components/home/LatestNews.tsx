@@ -11,11 +11,10 @@ interface NewsProps {
 const LatestNews: React.FC<NewsProps> = (props) => {
   const { allNewsList } = props;
   const DataArray = allNewsList.data;
-  const itemsPerPage = 10;
+  const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(
     allNewsList.meta.pagination.pageCount
   );
-
 
   // Calculate the start and end indexes of the current page
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -95,7 +94,7 @@ const LatestNews: React.FC<NewsProps> = (props) => {
             );
           })}
 
-          <div className="flex justify-between lg:max-w-[150px] py-3 sm:max-w-[300px] max-w-[300px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
+          <div className="flex justify-between lg:max-w-[210px] py-3  max-w-[230px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
@@ -105,6 +104,11 @@ const LatestNews: React.FC<NewsProps> = (props) => {
             >
               <PaginationArrow />
             </button>
+            <div className="text-white">
+              <span>{currentPage}</span>
+              <span className="text-white px-3">of</span>
+              <span>{totalPages}</span>
+            </div>
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
