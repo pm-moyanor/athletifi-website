@@ -100,6 +100,9 @@ const LatestNews: React.FC<NewsProps> = (props) => {
         >
           Previous
         </button>
+        <span className="text-white">
+          {currentPage} of {totalPages} 
+        </span>
         <button className="text-white"
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
