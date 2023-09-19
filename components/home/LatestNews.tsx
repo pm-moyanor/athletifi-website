@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import BlueButton from "../common/BlueButton";
+import { PaginationArrow } from "../common/Icon";
 
 interface NewsProps {
   allNewsList: any;
@@ -9,7 +10,7 @@ interface NewsProps {
 
 const LatestNews: React.FC<NewsProps> = (props) => {
   const { allNewsList } = props;
-  const DataArray=allNewsList.data
+  const DataArray = allNewsList.data;
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(
     allNewsList.meta.pagination.pageCount
@@ -22,7 +23,7 @@ const LatestNews: React.FC<NewsProps> = (props) => {
   const displayedItems = DataArray.slice(startIndex, endIndex);
   const totalPages = Math.ceil(DataArray.length / itemsPerPage);
 
-  const handlePageChange = (newPage:any) => {
+  const handlePageChange = (newPage: any) => {
     setCurrentPage(newPage);
   };
   return (
@@ -93,25 +94,60 @@ const LatestNews: React.FC<NewsProps> = (props) => {
               </Link>
             );
           })}
-           <div className="pagination">
-        <button className="text-white"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <span className="text-white">
-          {currentPage} of {totalPages} 
-        </span>
-        <button className="text-white"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
-       
-      </div>
-          <div className="flex justify-center items-center pt-4 md:pb-14 lg:mb-10">
+          <div className="pagination">
+            <button
+              className="text-white"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            <span className="text-white">
+              {currentPage} of {totalPages}
+            </span>
+            <button
+              className="text-white"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+            <div className="flex justify-between lg:max-w-[400px] sm:max-w-[350px] max-w-[300px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
+              <button className="-rotate-90 hover:-translate-x-1 duration-200 cursor-pointer">
+                <PaginationArrow />
+              </button>
+              <div className="flex gap-5 max-w-[168px] overflow-x-scroll ">
+                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
+                  1
+                </button>
+                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
+                  2
+                </button>
+                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
+                  3
+                </button>
+                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
+                  4
+                </button>
+                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
+                  5
+                </button>
+                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
+                  6
+                </button>
+                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
+                  7
+                </button>
+                <button className="font-Segoe font-medium md:text-[20px] text-[18px] text-white py-3 px-2 hover:opacity-100 opacity-50 duration-200 outline-none">
+                  8
+                </button>
+              </div>
+              <button className="rotate-90 hover:translate-x-1 duration-200 cursor-pointer">
+                <PaginationArrow />
+              </button>
+            </div>
+          </div>
+          <div className="flex justify-center items-center pt-10 md:pb-14 lg:mb-10 ">
             <Link href="/news">
               <BlueButton text="View all" />
             </Link>

@@ -98,6 +98,10 @@ html {
   scrollbar-color: #000b13 #00c5f4;
   scrollbar-width: thin;
 }
+.scrollmodify ::-webkit-scrollbar {
+  width: 0px !important;
+  height: 0 !important;
+}
 
 /* RECENT NEWS SLIDER HEIGHT  */
 @media (max-width: 1023.9px) {
@@ -110,7 +114,7 @@ html {
     display: flex !important;
   }
 
-  #recentnews_slider .slick-slide>div {
+  #recentnews_slider .slick-slide > div {
     display: flex;
   }
 }
