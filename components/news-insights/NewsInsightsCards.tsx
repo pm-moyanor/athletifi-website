@@ -59,7 +59,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
                 >
                   {combinedUrl && (
                     <Image
-                      className="md:w-[315px] max-h-[244px] rounded-[10px] object-cover w-full"
+                      className="lg:w-[315px] max-h-[244px] rounded-[10px] object-cover w-full lg:min-w-[315px] md:w-[224px]"
                       src={combinedUrl}
                       width={315}
                       height={240}
