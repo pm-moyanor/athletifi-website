@@ -51,7 +51,7 @@ const LatestNews: React.FC<NewsProps> = (props) => {
                   key={index}
                 >
                   <Image
-                    className="md:w-[315px] rounded-[10px] object-cover w-full"
+                  className="md:w-[315px] max-h-[244px] rounded-[10px] object-cover w-full"
                     src={`https://vidalco.in${val.image.url}`}
                     width={315}
                     height={240}
