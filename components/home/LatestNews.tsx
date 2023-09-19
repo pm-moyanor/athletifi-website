@@ -20,11 +20,9 @@ const LatestNews: React.FC<NewsProps> = (props) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const displayedItems = DataArray.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(DataArray.length / itemsPerPage);
 
-  const handlePageChange = (newPage: any) => {
-    setCurrentPage(newPage);
-  };
+
+ 
   return (
     <>
       <div className="py-14 md:py-0 relative before:content-[''] before:absolute sm:before:w-[448px] before:w-[248px] sm:before:h-[448px] before:h-[248px] before:top-0 before:left-0 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/4 before:z-0 before:rounded-full after:content-[''] after:absolute sm:after:w-[448px] sm:after:h-[448px] after:w-[248px] after:h-[248px] after:bottom-20 after:right-0 after:bg-shadow_blue after:blur-[111px] after:opacity-25 after:translate-x-1/4 after:z-0 after:rounded-full">
@@ -94,7 +92,7 @@ const LatestNews: React.FC<NewsProps> = (props) => {
             );
           })}
 
-          <div className="flex justify-between lg:max-w-[210px] py-3  max-w-[230px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
+          {/* <div className="flex justify-between lg:max-w-[210px] py-3  max-w-[230px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
@@ -120,7 +118,7 @@ const LatestNews: React.FC<NewsProps> = (props) => {
             >
               <PaginationArrow />
             </button>
-          </div>
+          </div> */}
 
           <div className="flex justify-center items-center pt-10 md:pb-14 lg:mb-10 ">
             <Link href="/news">
