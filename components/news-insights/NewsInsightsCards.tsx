@@ -59,7 +59,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
                 >
                   {combinedUrl && (
                     <Image
-                      className="lg:w-[315px] max-h-[244px] rounded-[10px] object-cover w-full lg:min-w-[315px] md:w-[224px]"
+                      className="lg:w-[315px] !min-h-full rounded-[10px] object-cover w-full lg:min-w-[315px] md:w-[224px]"
                       src={combinedUrl}
                       width={315}
                       height={240}
@@ -95,7 +95,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
                       </span>
                     </div>
                     {/* NEWS DATA */}
-                    <p className="sm:text-md text:base text-primary opacity-80 font-Segoe leading-[150%] sm:pt-6 pt-3 lg:pe-14 sm:pe-4">
+                    <p className="sm:text-md text:base text-primary opacity-80 font-Segoe leading-[150%] sm:pt-4 pt-3 lg:pe-14 sm:pe-4">
                       {item.description}
                     </p>
                   </div>
