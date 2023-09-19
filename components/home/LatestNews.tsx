@@ -113,7 +113,7 @@ const LatestNews: React.FC<NewsProps> = (props) => {
               Next
             </button>
             <div className="flex justify-between lg:max-w-[400px] sm:max-w-[350px] max-w-[300px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
-              <button className="-rotate-90 hover:-translate-x-1 duration-200 cursor-pointer">
+              <button className="-rotate-90 hover:-translate-x-1 duration-200 cursor-pointer ">
                 <PaginationArrow />
               </button>
               <div className="flex gap-5 max-w-[168px] overflow-x-scroll ">
