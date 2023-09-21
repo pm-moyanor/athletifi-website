@@ -59,6 +59,8 @@ const handleChange = () => {
             Recent News and Insights
           </span>
         </h2>
+        
+
         <NewsInsightsLoader/>
         {displayedItems.map((item: any, index: any) => {
           const imagePath = "https://vidalco.in";
