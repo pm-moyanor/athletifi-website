@@ -3,12 +3,23 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { PaginationArrow } from "../common/Icon";
+import Skeleton from "react-loading-skeleton";
+import NewsInsightsLoader from "./NewsInsightsLoader";
 
 interface NewsListProps {
   allNewsList: any;
 }
 
 const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
+
+// ==== SKELETON LOADER START ====
+const [checked, setChecked] = React.useState(false);
+
+const handleChange = () => {
+  setChecked(!checked);
+};
+// ==== SKELETON LOADER END ====
+
   const router = useRouter();
   const { allNewsList } = props;
   const DataArray = allNewsList.data;
@@ -48,6 +59,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
             Recent News and Insights
           </span>
         </h2>
+        <NewsInsightsLoader/>
         {displayedItems.map((item: any, index: any) => {
           const imagePath = "https://vidalco.in";
           const url = item.image.url;
@@ -66,7 +78,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
               >
                 {combinedUrl && (
                   <Image
-                    className="lg:w-[315px] !min-h-full rounded-[10px] object-cover w-full lg:min-w-[315px] md:w-[224px]"
+                    className="lg:w-[315px] h-[200px] min-[375px]:h-[300px] min-[500px]:h-[400px] md:h-[150px] lg:!h-[220px] rounded-[10px] object-cover w-full md:min-w-[225px] lg:min-w-[315px] md:w-[224px]"
                     src={combinedUrl}
                     width={315}
                     height={240}
