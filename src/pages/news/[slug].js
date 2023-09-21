@@ -21,7 +21,7 @@ const Newsinsight = ({newsDetailData,allNewsData}) => {
   };
   const pageSEO = {
     // // SEO TITLE
-    title:`${newsDetailData.data[0].title}`,
+    title:`${newsDetailData&&newsDetailData.data[0].title}`,
 
     // // SEO DESCRIPTION
      description:`${newsDetailData.data[0].description}`,

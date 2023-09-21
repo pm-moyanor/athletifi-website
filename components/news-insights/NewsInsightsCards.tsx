@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { PaginationArrow } from "../common/Icon";
 import Skeleton from "react-loading-skeleton";
 import NewsInsightsLoader from "./NewsInsightsLoader";
+import { GetRequestHandler } from "../common/api/Api";
+import { NewsListApiHandler } from "../common/api/ApiUrls";
 
 interface NewsListProps {
   allNewsList: any;
@@ -14,6 +16,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
 
 // ==== SKELETON LOADER START ====
 const [checked, setChecked] = React.useState(false);
+const [loading, setLoading] = React.useState(false);
 
 const handleChange = () => {
   setChecked(!checked);
@@ -21,6 +24,7 @@ const handleChange = () => {
 // ==== SKELETON LOADER END ====
 
   const router = useRouter();
+  console.log('routerrouter',router)
   const { allNewsList } = props;
   const DataArray = allNewsList.data;
   const itemsPerPage = 10;
@@ -33,14 +37,25 @@ const handleChange = () => {
   const displayedItems = DataArray.slice(startIndex, endIndex);
   const totalPages = Math.ceil(DataArray.length / itemsPerPage);
 
-  const handlePageChange = (newPage: any) => {
-    setCurrentPage(newPage);
+  const handlePageChange =async (newPage: any) => {
+    setLoading(true)
+    try{
+      const response = await GetRequestHandler(NewsListApiHandler());
+    //  if(response){
+      setLoading(false)
+    //  }
+      setCurrentPage(newPage);
+    }
+    catch(error){
+      console.log("error")
+    }
   };
+  
   useEffect(() => {
     if (currentPage === 1) {
-      router.push(`${router.pathname}?page=1`);
+      router.push(`${router.pathname}?page=1`, undefined,{ scroll: false });
     } else {
-      router.push({ pathname: router.pathname, query: { page: currentPage } });
+      router.push({ pathname: router.pathname, query: { page: currentPage } } ,undefined,{ scroll: false });
     }
   }, [currentPage, router.pathname]);
 
@@ -61,14 +76,22 @@ const handleChange = () => {
         </h2>
         
 
-        <NewsInsightsLoader/>
+        {/* <NewsInsightsLoader/> */}
         {displayedItems.map((item: any, index: any) => {
           const imagePath = "https://vidalco.in";
           const url = item.image.url;
           const combinedUrl = url ? `${imagePath}${url}` : null;
           return (
-            <Link
-              href={`${router.asPath === "/news" ? "news/" : ""}${item.slug}`}
+            <>{
+              loading?<NewsInsightsLoader/>:
+              <Link
+              href={`news/news-list-4?page=${currentPage}`}
+              // href={{
+              //   pathname: router.pathname+"/"+item.slug,
+              //   query: { page: currentPage  },
+              // }}
+            
+            
             >
               <div
                 key={index}
@@ -122,6 +145,8 @@ const handleChange = () => {
                 </div>
               </div>
             </Link>
+            }</>
+            
           );
         })}
         <div className="flex justify-between lg:max-w-[210px] py-3  max-w-[230px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
@@ -130,7 +155,7 @@ const handleChange = () => {
               <PaginationArrow />
             </div>
           ) : (
-            <Link
+            <Link scroll={false}
               href={{
                 pathname: router.pathname,
                 query: { page: currentPage - 1 },
@@ -152,7 +177,7 @@ const handleChange = () => {
               <PaginationArrow />
             </div>
           ) : (
-            <Link
+            <Link scroll={false}
               href={{
                 pathname: router.pathname,
                 query: { page: currentPage + 1 },
