@@ -11,7 +11,7 @@ import {
   NewsListApiHandler,
 } from "../../../components/common/api/ApiUrls";
 
-const Newsinsight = ({newsDetailData,allNewsData}) => {
+const Newsinsight = ({ newsDetailData, allNewsData }) => {
 
   // SEO
   const hero = {
@@ -21,18 +21,19 @@ const Newsinsight = ({newsDetailData,allNewsData}) => {
   };
   const pageSEO = {
     // // SEO TITLE
-    title:`${newsDetailData&&newsDetailData.data[0].title}`,
+    title: `${newsDetailData && newsDetailData.data[0].title}`,
 
     // // SEO DESCRIPTION
-     description:`${newsDetailData.data[0].description}`,
+    description: `${newsDetailData.data[0].description}`,
 
     // // SEO WEBSITE URL
-     websiteURL:`https://athletifi-website.vercel.app`,
+    websiteURL: `https://athletifi-website.vercel.app`,
 
     // // SEO IMAGE
-   image:`https://vidalco.in${newsDetailData.data[0].image.url}`,
+    image: `https://vidalco.in${newsDetailData.data[0].image.url}`,
   };
 
+  console.log(allNewsData, "allNewsData")
   return (
     <>
       {/* SEO */}
@@ -53,7 +54,7 @@ const Newsinsight = ({newsDetailData,allNewsData}) => {
 };
 export async function getServerSideProps(context) {
   const { slug } = context.query;
-  console.log("slugslugslug",slug)
+  console.log("slugslugslug", slug)
   try {
     const response = await GetRequestHandler(NewsDetailApiHandler(slug));
     const newsresponse = await GetRequestHandler(NewsListApiHandler());
