@@ -47,19 +47,6 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
     }
   };
 
-  useEffect(() => {
-    if (currentPage === 1) {
-      console.log("router", router);
-      router.push(`${router.asPath}`, undefined, { scroll: false });
-    } else {
-      router.push(
-        { pathname: router.pathname, query: { page: currentPage } },
-        undefined,
-        { scroll: false }
-      );
-    }
-  }, [currentPage, router.pathname]);
-
   return (
     <div className="py-14 md:py-0 relative before:content-[''] before:absolute sm:before:w-[448px] before:w-[248px] sm:before:h-[448px] before:h-[248px] before:top-0 before:left-0 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/4 before:z-0 before:rounded-full after:content-[''] after:absolute sm:after:w-[448px] sm:after:h-[448px] after:w-[248px] after:h-[248px] after:bottom-20 after:right-0 after:bg-shadow_blue after:blur-[111px] after:opacity-25 after:translate-x-1/4 after:z-0 after:rounded-full">
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto relative z-10 md:mb-[100px] xl:mb-[160px]">
@@ -90,10 +77,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
               ) : (
                 <Link
                   // href={`/news/${item.slug}?page=${currentPage}`}
-                  href={{
-                    pathname: "/news/[slug]",
-                    query: { page: currentPage, slug: item.slug },
-                  }}
+                  href={`/news/${item.slug}?page=1`}
                   passHref
                 >
                   <div
@@ -160,10 +144,11 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
           ) : (
             <Link
               scroll={false}
-              href={{
-                pathname: router.pathname,
-                query: { page: currentPage - 1 },
-              }}
+              href={
+                router.pathname === "/news"
+                  ? `/news?page=${currentPage - 1}`
+                  : `/news/${router.query.slug}?page=${currentPage - 1}`
+              }
               onClick={() => handlePageChange(currentPage - 1)}
               className="-rotate-90 hover:-translate-x-1 duration-200 inline-block"
             >
@@ -183,11 +168,12 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
           ) : (
             <Link
               scroll={false}
-              href={{
-                pathname: router.pathname,
-                query: { page: currentPage + 1 },
-              }}
               onClick={() => handlePageChange(currentPage + 1)}
+              href={
+                router.pathname === "/news"
+                  ? `/news?page=${currentPage + 1}`
+                  : `/news/${router.query.slug}?page=${currentPage + 1}`
+              }
               className=" rotate-90 hover:translate-x-1 duration-200"
             >
               <PaginationArrow />
