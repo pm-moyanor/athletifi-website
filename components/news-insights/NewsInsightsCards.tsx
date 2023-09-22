@@ -76,7 +76,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
           </span>
         </h2>
 
-        {/* <NewsInsightsLoader/> */}
+        {/*  <NewsInsightsLoader/>  */}
         {displayedItems.map((item: any, index: any) => {
           // console.log("itemitem",item)
           const imagePath = "https://vidalco.in";
