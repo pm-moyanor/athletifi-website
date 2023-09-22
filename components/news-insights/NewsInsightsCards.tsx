@@ -27,9 +27,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
   const { allNewsList } = props;
   const DataArray = allNewsList.data;
   const itemsPerPage = 10;
-  const [currentPage, setCurrentPage] = useState(
-    allNewsList.meta.pagination.pageCount
-  );
+  const [currentPage, setCurrentPage] = useState(Number(router.query.page));
   // Calculate the start and end indexes of the current page
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
