@@ -24,7 +24,7 @@ const handleChange = () => {
 // ==== SKELETON LOADER END ====
 
   const router = useRouter();
-  console.log('routerrouter',router)
+  console.log('routerrouter',router.query.slug)
   const { allNewsList } = props;
   const DataArray = allNewsList.data;
   const itemsPerPage = 10;
@@ -41,9 +41,7 @@ const handleChange = () => {
     setLoading(true)
     try{
       const response = await GetRequestHandler(NewsListApiHandler());
-    //  if(response){
       setLoading(false)
-    //  }
       setCurrentPage(newPage);
     }
     catch(error){
@@ -78,20 +76,18 @@ const handleChange = () => {
 
         {/* <NewsInsightsLoader/> */}
         {displayedItems.map((item: any, index: any) => {
+          // console.log("itemitem",item)
           const imagePath = "https://vidalco.in";
           const url = item.image.url;
           const combinedUrl = url ? `${imagePath}${url}` : null;
+       
           return (
             <>{
               loading?<NewsInsightsLoader/>:
               <Link
-              href={`news/news-list-4?page=${currentPage}`}
-              // href={{
-              //   pathname: router.pathname+"/"+item.slug,
-              //   query: { page: currentPage  },
-              // }}
-            
-            
+              // href={`/news/${item.slug}?page=${currentPage}`}
+              href={{ pathname: '/news/[slug]', query: { page: currentPage, slug: item.slug } }}
+              passHref
             >
               <div
                 key={index}
@@ -148,6 +144,7 @@ const handleChange = () => {
             }</>
             
           );
+        
         })}
         <div className="flex justify-between lg:max-w-[210px] py-3  max-w-[230px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
           {currentPage === 1 ? (

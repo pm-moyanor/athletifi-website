@@ -53,6 +53,7 @@ const Newsinsight = ({newsDetailData,allNewsData}) => {
 };
 export async function getServerSideProps(context) {
   const { slug } = context.query;
+  console.log("slugslugslug",slug)
   try {
     const response = await GetRequestHandler(NewsDetailApiHandler(slug));
     const newsresponse = await GetRequestHandler(NewsListApiHandler());
