@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import BlueButton from "../common/BlueButton";
-import { PaginationArrow } from "../common/Icon";
 
 interface NewsProps {
   allNewsList: any;
@@ -41,7 +40,7 @@ const LatestNews: React.FC<NewsProps> = (props) => {
           </h2>
           {displayedItems.map((val: any, index: any) => {
             return (
-              <Link href={`/news/${val.slug}`}>
+              <Link href={`/news/${val.slug}?page=1`}>
                 <div
                   className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-5  "
                   data-aos="fade-up"
@@ -121,7 +120,7 @@ const LatestNews: React.FC<NewsProps> = (props) => {
           </div> */}
 
           <div className="flex justify-center items-center pt-10 md:pb-14 lg:mb-10 ">
-            <Link href="/news">
+            <Link href="/news?page=1">
               <BlueButton text="View all" />
             </Link>
           </div>
