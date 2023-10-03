@@ -1,3 +1,6 @@
+// This is the main application file for the Next.js project.
+// It wraps around all pages and can be used to include global styles or components.
+
 import "@/styles/globals.css";
 import AOS from "aos";
 import "aos/dist/aos.css";

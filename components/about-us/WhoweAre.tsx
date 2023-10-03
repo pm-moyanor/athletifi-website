@@ -1,3 +1,8 @@
+// WhoWeAre.tsx
+
+// This component renders the "Who We Are" section on the "About Us" page.
+// It provides background information about the company and its team.
+
 import React from "react";
 import { BlueShodow, UnderLIneText } from "../common/Icon";
 import Image from "next/image";

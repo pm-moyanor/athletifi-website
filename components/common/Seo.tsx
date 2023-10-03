@@ -1,12 +1,17 @@
+// Importing the Head component from Next.js for handling the head of the page
+
 import Head from "next/head";
+
+// Interface to define the properties of the 'pageSEO' object
 interface PageSEO {
   // Define the properties of the 'pageSEO'
-  title: string;
-  description: string;
-  websiteURL: string;
-  image: string;
+  title: string;        // Title of the page
+  description: string;  // Description of the page
+  websiteURL: string;   // URL of the website
+  image: string;        // Image URL for SEO
 }
 
+// Functional component to handle SEO settings
 const Seo: React.FC<{ pageSEO: PageSEO }> = ({ pageSEO }) => {
 
   return (

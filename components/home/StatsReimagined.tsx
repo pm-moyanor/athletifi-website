@@ -3,6 +3,12 @@ import React from "react";
 import Slider from "react-slick";
 
 const StatsReimagined = () => {
+  // const playerImageCenter = "jude-nft-img";
+  // const playerImageRight = "colin-nft-img";
+  const playerImageCenter = "jose-nft-img";
+  const playerImageRight = "stebi-nft-img";
+  const playerImageLeft = "anderson-nft-img-new";
+  
   // SLIDER
   const settings = {
     arrows: false,
@@ -84,21 +90,25 @@ const StatsReimagined = () => {
             {...settings}
             className="w-full justify-between items-center pt-5 md:pt-0 max-w-[1000px] mx-auto lg:justify-center relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:-top-20 before:left-1/2 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/2 before:-z-10 before:rounded-full pb-6 sm:pb-0"
           >
-            <div
-              className=" md:py-16 sm:pb-8"
+            {/* Left Image */}
+            <div 
+              className="md:py-16 sm:pb-8" //ml-[-20px]"
               data-aos="fade-up"
               data-aos-duration="500"
               data-aos-easing="ease"
               data-aos-delay="400"
             >
-              <Image
-                className="mx-auto w-full max-w-[350px]"
-                src="/assets/img/webp/anderson-nft-img.webp"
-                width={280}
-                height={280}
-                alt="castle-img"
-              />
+              <div style={{ transform: 'translateX(-20px)' }}>
+                <Image
+                  className="mx-auto w-full max-w-[350px]"
+                  src={`/assets/img/webp/${playerImageLeft}.webp`}
+                  width={280}
+                  height={280}
+                  alt="left-nft-img"
+                />
+              </div>
             </div>
+            {/* Center Image */}
             <div
               className=" md:py-16 sm:pb-8 relative z-10 "
               data-aos="fade-up"
@@ -106,28 +116,33 @@ const StatsReimagined = () => {
               data-aos-easing="ease"
               data-aos-delay="800"
             >
-              <Image
-                className="mx-auto md:scale-125 w-full max-w-[350px]"
-                src="/assets/img/webp/jude-nft-img.webp"
-                width={409}
-                height={409}
-                alt="space-image"
-              />
+              <div>
+                <Image
+                  className="mx-auto md:scale-125 w-full max-w-[350px]"
+                  src={`/assets/img/webp/${playerImageCenter}.webp`}
+                  width={409}
+                  height={409}
+                  alt="center-nft-image"
+                />
+              </div>
             </div>
+            {/* Right Image */}
             <div
-              className=" md:py-16 sm:pb-8 "
+              className="md:py-16 sm:pb-8" // mr-[2000px]"
               data-aos="fade-up"
               data-aos-duration="500"
               data-aos-easing="ease"
               data-aos-delay="1200"
             >
-              <Image
-                className="mx-auto w-full max-w-[350px] lg:max-w-[350px]"
-                src="/assets/img/webp/colin-nft-img.webp"
-                width={280}
-                height={280}
-                alt="phonix-image"
-              />
+              <div style={{ transform: 'translateX(20px)' }}>
+                <Image
+                  className="mx-auto w-full max-w-[350px] lg:max-w-[350px]"
+                  src={`/assets/img/webp/${playerImageRight}.webp`}
+                  width={280}
+                  height={280}
+                  alt="right-nft-image"
+                />
+              </div>
             </div>
           </Slider>
         </div>

@@ -1,3 +1,8 @@
+// LatestNews.tsx
+
+// This component displays the latest news articles on the homepage.
+// It fetches data from the Strapi CMS and renders it in a list format.
+
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";

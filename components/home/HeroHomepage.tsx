@@ -1,3 +1,7 @@
+// HeroHomepage.tsx
+
+// This component renders the hero section on the homepage, which is the top section below the menu with a big image and a call to action.
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";

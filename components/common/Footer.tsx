@@ -1,3 +1,6 @@
+// This component renders the footer of the website.
+// It includes copyright information and footer links.
+
 import React, { useState, useEffect } from "react";
 import {
   CancelIcon,

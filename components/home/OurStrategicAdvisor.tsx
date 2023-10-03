@@ -1,3 +1,7 @@
+// OurStrategicAdvisor.tsx
+
+// This component showcases the strategic advisors associated with the company.
+
 import Image from "next/image";
 import React from "react";
 import BlueButton from "../common/BlueButton";
