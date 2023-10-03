@@ -45,7 +45,7 @@ const LatestNews: React.FC<NewsProps> = (props) => {
           </h2>
           {displayedItems.map((val: any, index: any) => {
             return (
-              <Link href={`/news/${val.slug}?page=1`}>
+              <Link href={`/news/${val.slug}?page=1`} key={val.id}>
                 <div
                   className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-5  "
                   data-aos="fade-up"
