@@ -7,6 +7,7 @@ import Skeleton from "react-loading-skeleton";
 import NewsInsightsLoader from "./NewsInsightsLoader";
 import { GetRequestHandler } from "../common/api/Api";
 import { NewsListApiHandler } from "../common/api/ApiUrls";
+import { log } from "console";
 
 interface NewsListProps {
   allNewsList: any;
@@ -28,6 +29,10 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
   const itemsPerPage = 5; //change this to change the number of articles displayed on one page
   const [currentPage, setCurrentPage] = useState(Number(router.query.page));
   // Calculate the start and end indexes of the current page
+  console.log("THE Fudge is this");
+  console.log(router.query)
+  
+  
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const displayedItems = DataArray.slice(startIndex, endIndex);
@@ -56,13 +61,13 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
           className="text-center md:text-start font-HelveticaNeueMedium font-medium lg:text-5xl md:text-[40px] text-[26px] text-primary md:pt-10 md:pb-[25px] pb-5"
         >
           <span className="relative after:content after:absolute after:bottom-[-6px] md:after:bottom-[-12px] after:left-0 md:after:w-[290px] after:h-[15px] after:bg-blue-underline after:bg-contain after:bg-no-repeat">
-            Recent News and Insights
+            More Recent News
           </span>
         </h2>
 
         {/*  <NewsInsightsLoader/>  */}
         {displayedItems.map((item: any, index: any) => {
-          // console.log("itemitem",item)
+          console.log("WHAT IS THIS",item)
           const imagePath = "https://vidalco.in";
           const url = item.image.url;
           const combinedUrl = url ? `${imagePath}${url}` : null;

@@ -1,3 +1,5 @@
+// This is the content of the article that displays when clicking on a news article.
+
 import Image from "next/image";
 import React from "react";
 import moment from "moment";
@@ -13,7 +15,8 @@ import Link from "next/link";
 interface NewsProps {
   newsDetailData: any;
 }
-const TargetArticle: React.FC<NewsProps> = (props) => {
+
+const TargetArticleContent: React.FC<NewsProps> = (props) => {
   const { newsDetailData } = props;
 
   return (
@@ -172,4 +175,4 @@ const TargetArticle: React.FC<NewsProps> = (props) => {
   );
 };
 
-export default TargetArticle;
+export default TargetArticleContent;

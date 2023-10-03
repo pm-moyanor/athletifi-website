@@ -4,18 +4,18 @@ import Footer from "../../../components/common/Footer";
 import Header from "../../../components/common/Header";
 import Seo from "../../../components/common/Seo";
 import NewsInsightsCards from "../../../components/news-insights/NewsInsightsCards";
-import TargetArticle from "../../../components/news-insights/TargetArticleDisplay.tsx";
+import TargetArticleContent from "../../../components/news-insights/TargetArticleContent";
 import { GetRequestHandler } from "../../../components/common/api/Api";
 import {
   NewsDetailApiHandler,
   NewsListApiHandler,
 } from "../../../components/common/api/ApiUrls";
 
-const Newsinsight = ({ newsDetailData, allNewsData }) => {
+const NewsInsight = ({ newsDetailData, allNewsData }) => {
 
   // SEO
   const hero = {
-    heading: "News and Insights",
+    heading: "News and InsightsSLUGSLUGSLUG",
     title: "News and Insights for AthletiFi Sports Cards",
     subtitle: "Here you can find all the latest news and developments from AthletiFi!",
   };
@@ -35,7 +35,7 @@ const Newsinsight = ({ newsDetailData, allNewsData }) => {
   // };
 
   // console.log(newsDetailData, "newsDetailData")
-  console.log(allNewsData, "FUCK BITCH")
+  console.log(allNewsData, "ALL NEWS DATA")
   return (
     <>
       {/* SEO */}
@@ -45,7 +45,7 @@ const Newsinsight = ({ newsDetailData, allNewsData }) => {
           <Header />
           <CommonHero hero={hero} />
         </div>
-        <TargetArticle newsDetailData={newsDetailData} />
+        <TargetArticleContent newsDetailData={newsDetailData} />
         {/* <RecentNewsInsights /> */}
         <NewsInsightsCards allNewsList={allNewsData} />
         <Footer />
@@ -78,4 +78,4 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default Newsinsight;
+export default NewsInsight;
