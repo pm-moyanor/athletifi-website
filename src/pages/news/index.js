@@ -3,7 +3,7 @@ import CommonHero from "../../../components/common/CommonHero";
 import Footer from "../../../components/common/Footer";
 import Header from "../../../components/common/Header";
 import Seo from "../../../components/common/Seo";
-import NewsCard from "../../../components/news-insights/NewsCard";
+import FocusArticle from "../../../components/news-insights/FocusArticle";
 import NewsInsightsCards from "../../../components/news-insights/NewsInsightsCards";
 
 // Importing API handlers for fetching news data
@@ -29,7 +29,7 @@ const Newsinsight = ({ newsListData, allNewsList }) => {
     description: `${newsListData[0].description}`,
 
     // SEO WEBSITE URL
-    websiteURL: `https://athletifi-website.vercel.app`,
+    websiteURL: `https://athletif.fi`,
 
     // SEO IMAGE
     image: `https://vidalco.in${newsListData[0].image.url}`,
@@ -43,9 +43,7 @@ const Newsinsight = ({ newsListData, allNewsList }) => {
           <Header />
           <CommonHero hero={hero} />
         </div>
-        {/* <MasteringGame /> */}
-        <NewsCard newsListData={newsListData} />
-        {/* <RecentNewsInsights /> */}
+        <FocusArticle newsListData={newsListData} />
         <NewsInsightsCards allNewsList={allNewsList} />
         <Footer />
         <Backtotop />

@@ -1,3 +1,5 @@
+// This is the article that appears in the headline section (aka Hero) on top of the News page.
+
 import Link from "next/link";
 import React from "react";
 import BlueButton from "../common/BlueButton";
@@ -7,7 +9,7 @@ import moment from "moment";
 interface NewsProps {
   newsListData: any;
 }
-const NewsCard: React.FC<NewsProps> = (props) => {
+const FocusArticle: React.FC<NewsProps> = (props) => {
   const { newsListData } = props;
   const imagePath = "https://vidalco.in" + newsListData[0].image.url;
   return (
@@ -81,4 +83,4 @@ const NewsCard: React.FC<NewsProps> = (props) => {
   );
 };
 
-export default NewsCard;
+export default FocusArticle;

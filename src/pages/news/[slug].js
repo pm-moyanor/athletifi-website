@@ -4,7 +4,7 @@ import Footer from "../../../components/common/Footer";
 import Header from "../../../components/common/Header";
 import Seo from "../../../components/common/Seo";
 import NewsInsightsCards from "../../../components/news-insights/NewsInsightsCards";
-import MasteringGame from "../../../components/news-insights/MasteringGames";
+import TargetArticle from "../../../components/news-insights/TargetArticleDisplay.tsx";
 import { GetRequestHandler } from "../../../components/common/api/Api";
 import {
   NewsDetailApiHandler,
@@ -16,11 +16,10 @@ const Newsinsight = ({ newsDetailData, allNewsData }) => {
   // SEO
   const hero = {
     heading: "News and Insights",
-    title: "Your Title Here",
-    subtitle: "Your Subtitle Here",
+    title: "News and Insights for AthletiFi Sports Cards",
+    subtitle: "Here you can find all the latest news and developments from AthletiFi!",
   };
 
-  console.log(newsDetailData, "newsDetailData")
   // const pageSEO = {
   //   // // SEO TITLE
   //   title: `${newsDetailData && newsDetailData.data[0].title}`,
@@ -35,7 +34,8 @@ const Newsinsight = ({ newsDetailData, allNewsData }) => {
   //   image: `https://vidalco.in${newsDetailData.data[0].image.url}`,
   // };
 
-  console.log(allNewsData, "allNewsData")
+  // console.log(newsDetailData, "newsDetailData")
+  console.log(allNewsData, "FUCK BITCH")
   return (
     <>
       {/* SEO */}
@@ -45,7 +45,7 @@ const Newsinsight = ({ newsDetailData, allNewsData }) => {
           <Header />
           <CommonHero hero={hero} />
         </div>
-        <MasteringGame newsDetailData={newsDetailData} />
+        <TargetArticle newsDetailData={newsDetailData} />
         {/* <RecentNewsInsights /> */}
         <NewsInsightsCards allNewsList={allNewsData} />
         <Footer />
@@ -56,7 +56,7 @@ const Newsinsight = ({ newsDetailData, allNewsData }) => {
 };
 export async function getServerSideProps(context) {
   const { slug } = context.query;
-  console.log("slugslugslug", slug)
+  // console.log("slugslugslug", slug)
   try {
     const response = await GetRequestHandler(NewsDetailApiHandler(slug));
     const newsresponse = await GetRequestHandler(NewsListApiHandler());

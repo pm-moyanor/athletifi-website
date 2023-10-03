@@ -13,7 +13,7 @@ import Link from "next/link";
 interface NewsProps {
   newsDetailData: any;
 }
-const MasteringGame: React.FC<NewsProps> = (props) => {
+const TargetArticle: React.FC<NewsProps> = (props) => {
   const { newsDetailData } = props;
 
   return (
@@ -172,4 +172,4 @@ const MasteringGame: React.FC<NewsProps> = (props) => {
   );
 };
 
-export default MasteringGame;
+export default TargetArticle;
