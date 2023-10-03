@@ -1,4 +1,3 @@
-// Importing essential components and functions for this page
 import Backtotop from "../../../components/common/Backtotop";
 import CommonHero from "../../../components/common/CommonHero";
 import Footer from "../../../components/common/Footer";
@@ -14,17 +13,7 @@ import {
   NewsListFilterApiHandler,
 } from "../../../components/common/api/ApiUrls";
 
-// interface NewsProps {
-//   newsListData: any;
-//   allNewsList: any;
-// }
-
 // The main functional component for the News and Insights page
-const Newsinsight =({newsListData,allNewsList}) => {
-  // const { newsListData, allNewsList } = props;
-
-  // SEO metadata setup
-
 const Newsinsight = ({ newsListData, allNewsList }) => {
   // SEO
   const hero = {
@@ -45,7 +34,6 @@ const Newsinsight = ({ newsListData, allNewsList }) => {
     // SEO IMAGE
     image: `https://vidalco.in${newsListData[0].image.url}`,
   };
-  // Main render function
   return (
     <>
       {/* SEO */}
@@ -69,7 +57,7 @@ const Newsinsight = ({ newsListData, allNewsList }) => {
 // Server-side data fetching for the News and Insights page
 export async function getServerSideProps() {
   try {
-    // Fetching news list and filter data
+        // Fetching news list and filter data
     const response = await GetRequestHandler(NewsListApiHandler());
     const responseFilter = await GetRequestHandler(NewsListFilterApiHandler());
     const NewsData = responseFilter && responseFilter.data;
