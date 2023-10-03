@@ -14,7 +14,7 @@ import {
 } from "../../../components/common/api/ApiUrls";
 
 // The main functional component for the News and Insights page
-const NewsInsight = ({ newsListData, allNewsList }) => {
+const NewsPage = ({ newsListData, allNewsList }) => {
   // SEO
   const hero = {
     heading: "News and Insights1111",
@@ -77,4 +77,4 @@ export async function getServerSideProps() {
   }
 }
 
-export default NewsInsight;
+export default NewsPage;

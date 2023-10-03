@@ -29,10 +29,6 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
   const itemsPerPage = 5; //change this to change the number of articles displayed on one page
   const [currentPage, setCurrentPage] = useState(Number(router.query.page));
   // Calculate the start and end indexes of the current page
-  console.log("THE Fudge is this");
-  console.log(router.query)
-  
-  
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const displayedItems = DataArray.slice(startIndex, endIndex);
@@ -67,7 +63,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
 
         {/*  <NewsInsightsLoader/>  */}
         {displayedItems.map((item: any, index: any) => {
-          console.log("WHAT IS THIS",item)
+          // console.log("WHAT IS THIS",item)
           const imagePath = "https://vidalco.in";
           const url = item.image.url;
           const combinedUrl = url ? `${imagePath}${url}` : null;

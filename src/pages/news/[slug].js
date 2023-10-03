@@ -11,11 +11,16 @@ import {
   NewsListApiHandler,
 } from "../../../components/common/api/ApiUrls";
 
-const NewsInsight = ({ newsDetailData, allNewsData }) => {
-
+const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
+  console.log(newsDetailData, "newsDetailDataCKKKKKK");
+  let targetArticle = null;
+  if (newsDetailData && newsDetailData.data && newsDetailData.data.length > 0) {
+    targetArticle = newsDetailData.data[0];
+  }
   // SEO
   const hero = {
-    heading: "News and InsightsSLUGSLUGSLUG",
+    // heading: "News and InsightsSLUGSLUGSLUG",
+    heading: targetArticle.title || `Article not found`,
     title: "News and Insights for AthletiFi Sports Cards",
     subtitle: "Here you can find all the latest news and developments from AthletiFi!",
   };
@@ -78,4 +83,4 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default NewsInsight;
+export default NewsArticleSlugPage;

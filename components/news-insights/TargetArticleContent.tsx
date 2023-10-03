@@ -18,6 +18,7 @@ interface NewsProps {
 
 const TargetArticleContent: React.FC<NewsProps> = (props) => {
   const { newsDetailData } = props;
+  
 
   return (
     <>
@@ -25,12 +26,13 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
         newsDetailData.data &&
         newsDetailData.data.map((newsItem: any, i: any) => {
           console.log("newsDetailDatanewsDetailData",newsDetailData)
+          
           const imagePath = "https://vidalco.in";
           const url = newsItem.image.url;
           const combinedUrl = url ? `${imagePath}${url}` : null;
           return (
-            <>
-              <section className="lg:pb-12 xl:pb-[117px] relative" key={i}>
+            <div key={i}>
+              <section className="lg:pb-12 xl:pb-[117px] relative">
                 {/* GRID-LINE IMG */}
                 <Image
                   className="lg:w-[462px] lg:h-[441px] w-40 lg:-top-28 lg:-left-10 absolute -z-20 opacity-50"
@@ -65,7 +67,8 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
                         data-aos-offset="200"
                         className="font-HelveticaNeueMedium text-primary font-medium text-[22px] sm:text-lg leading-8 md:leading-[39px] sm:text-start text-center"
                       >
-                        {newsItem.title}
+                        {/* {newsItem.title} */}
+                        {/* ^^^^^^WE DONT NEED THIS NO MORE BECAUSE WE PUT THE TITLE IN [slug].js in the heading property for hero */}
                       </h3>
                       <p
                         data-aos="fade-up"
@@ -91,7 +94,7 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
                       {newsItem &&
                         newsItem.content.map((obj: any, index: any) => {
                           return (
-                            <>
+                            <div key={index}>
                               <h3
                                 key={index}
                                 data-aos="fade-up"
@@ -114,7 +117,7 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
                                 data-aos-offset="200"
                                 className="font-Segoe font-normal text-md lg:mt-[10px] mt-2 leading-7 text-offwhite sm:text-start text-center"
                               ></div>
-                            </>
+                            </div>
                           );
                         })}
                     </div>
@@ -168,7 +171,7 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
                   </div>
                 </div>
               </section>
-            </>
+            </div>
           );
         })}
     </>
