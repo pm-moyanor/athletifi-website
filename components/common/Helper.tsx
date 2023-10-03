@@ -36,3 +36,58 @@ export const MatchNews = [
     delay: "400",
   },
 ];
+
+// ==== SKELETON LOADER ====
+
+export const placeholderData = [
+  {
+    heading:"",
+    para:"",
+    btn:"",
+  },
+  {
+    heading:"",
+    para:"",
+    btn:"",
+  },
+  {
+    heading:"",
+    para:"",
+    btn:"",
+  },
+  {
+    heading:"",
+    para:"",
+    btn:"",
+  },
+  {
+    heading:"",
+    para:"",
+    btn:"",
+  },
+  {
+    heading:"",
+    para:"",
+    btn:"",
+  },
+  {
+    heading:"",
+    para:"",
+    btn:"",
+  },
+  {
+    heading:"",
+    para:"",
+    btn:"",
+  },
+  {
+    heading:"",
+    para:"",
+    btn:"",
+  },
+  {
+    heading:"",
+    para:"",
+    btn:"",
+  },
+];

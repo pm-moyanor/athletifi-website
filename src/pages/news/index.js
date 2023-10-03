@@ -18,29 +18,32 @@ import {
 //   newsListData: any;
 //   allNewsList: any;
 // }
+
 // The main functional component for the News and Insights page
 const Newsinsight =({newsListData,allNewsList}) => {
   // const { newsListData, allNewsList } = props;
 
   // SEO metadata setup
 
+const Newsinsight = ({ newsListData, allNewsList }) => {
+  // SEO
   const hero = {
     heading: "News and Insights",
     title: "Your Title Here",
     subtitle: "Your Subtitle Here",
   };
   const pageSEO = {
-     // SEO TITLE
-    title:`${newsListData[0].title}`,
+    // SEO TITLE
+    title: `${newsListData[0].title}`,
 
     // SEO DESCRIPTION
-    description:`${newsListData[0].description}`,
+    description: `${newsListData[0].description}`,
 
     // SEO WEBSITE URL
-    websiteURL:`https://athletifi-website.vercel.app`,
+    websiteURL: `https://athletifi-website.vercel.app`,
 
     // SEO IMAGE
-    image:`https://vidalco.in${newsListData[0].image.url}`,
+    image: `https://vidalco.in${newsListData[0].image.url}`,
   };
   // Main render function
   return (

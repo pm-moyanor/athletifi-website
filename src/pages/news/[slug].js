@@ -11,7 +11,7 @@ import {
   NewsListApiHandler,
 } from "../../../components/common/api/ApiUrls";
 
-const Newsinsight = ({newsDetailData,allNewsData}) => {
+const Newsinsight = ({ newsDetailData, allNewsData }) => {
 
   // SEO
   const hero = {
@@ -19,24 +19,27 @@ const Newsinsight = ({newsDetailData,allNewsData}) => {
     title: "Your Title Here",
     subtitle: "Your Subtitle Here",
   };
-  const pageSEO = {
-    // // SEO TITLE
-    title:`${newsDetailData.data[0].title}`,
 
-    // // SEO DESCRIPTION
-     description:`${newsDetailData.data[0].description}`,
+  console.log(newsDetailData, "newsDetailData")
+  // const pageSEO = {
+  //   // // SEO TITLE
+  //   title: `${newsDetailData && newsDetailData.data[0].title}`,
 
-    // // SEO WEBSITE URL
-     websiteURL:`https://athletifi-website.vercel.app`,
+  //   // // SEO DESCRIPTION
+  //   description: `${newsDetailData.data[0].description}`,
 
-    // // SEO IMAGE
-   image:`https://vidalco.in${newsDetailData.data[0].image.url}`,
-  };
+  //   // // SEO WEBSITE URL
+  //   websiteURL: `https://athletifi-website.vercel.app`,
 
+  //   // // SEO IMAGE
+  //   image: `https://vidalco.in${newsDetailData.data[0].image.url}`,
+  // };
+
+  console.log(allNewsData, "allNewsData")
   return (
     <>
       {/* SEO */}
-      <Seo pageSEO={pageSEO} />
+      {/* <Seo pageSEO={pageSEO} /> */}
       <div className="overflow_hidden">
         <div className="bg-new-hero-img bg-center bg-no-repeat bg-cover">
           <Header />
@@ -53,6 +56,7 @@ const Newsinsight = ({newsDetailData,allNewsData}) => {
 };
 export async function getServerSideProps(context) {
   const { slug } = context.query;
+  console.log("slugslugslug", slug)
   try {
     const response = await GetRequestHandler(NewsDetailApiHandler(slug));
     const newsresponse = await GetRequestHandler(NewsListApiHandler());

@@ -19,16 +19,7 @@ const Footer = () => {
   const SocialIcon = () => {
     setSocialIcon(!socialIcon);
   };
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     if (socialIcon) {
-  //       document.body.classList.remove("overflow_hidden");
-  //     } else {
-  //       document.body.classList.add("overflow_hidden");
-  //     }
-  //   }
-  // }, [socialIcon]);
-  // UPDATE DATE-YEAR
+  
   const today = new Date();
   const year = today.getFullYear();
   return (
@@ -58,7 +49,7 @@ const Footer = () => {
               <Link
                 aria-label="news"
                 className=" text-white text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto"
-                href="/news-insight"
+                href="/news?page=1"
               >
                 News
               </Link>
@@ -125,18 +116,7 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-        {/* POPUP SOCAIL ICONS CODE */}
-        {/* <div className="hidden hover:block">
-          <div onClick={() => setSocialIcon(true)} className="h-full z-50">
-            <SocialPopUp />
-            <span
-              className="fixed z-30 right-0 top-10 sm:mt-10 sm:me-20 mt-10 me-5 lg:mt-0 cursor-pointer"
-              onClick={() => setSocialIcon(true)}
-            >
-              <CancelIcon />
-            </span>
-          </div>
-        </div> */}
+   
       </footer>
     </>
   );

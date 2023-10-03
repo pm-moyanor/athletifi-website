@@ -98,6 +98,34 @@ html {
   scrollbar-color: #000b13 #00c5f4;
   scrollbar-width: thin;
 }
+.scrollmodify ::-webkit-scrollbar {
+  width: 0px !important;
+  height: 0 !important;
+}
+
+/* ==== ==== */
+.loading-animation{
+  overflow: hidden;
+  background: #d0d0d0;
+}
+
+.loading-animation::before{
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  animation: loading 3s infinite;
+  background: linear-gradient(to right, transparent,#807b7baf,transparent);
+}
+
+@keyframes loading {
+  0%{
+      transform: translateX(-100%);
+  }
+  100%{
+      transform: translateX(100%);
+  }
+}
 
 /* RECENT NEWS SLIDER HEIGHT  */
 @media (max-width: 1023.9px) {
@@ -110,7 +138,7 @@ html {
     display: flex !important;
   }
 
-  #recentnews_slider .slick-slide>div {
+  #recentnews_slider .slick-slide > div {
     display: flex;
   }
 }
