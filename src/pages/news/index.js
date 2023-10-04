@@ -30,16 +30,16 @@ const NewsPage = ({ newsListData, allNewsList }) => {
   };
   const pageSEO = {
     // SEO TITLE
-    title: `${targetArticle.title}`,
+    title: `${targetArticle && targetArticle.title}`,
 
     // SEO DESCRIPTION
-    description: `${targetArticle.description}`,
+    description: `${targetArticle && targetArticle.description}`,
 
     // SEO WEBSITE URL
     websiteURL: `https://athletif.fi`,
 
     // SEO IMAGE
-    image: `https://vidalco.in${targetArticle.image.url}`,
+    image: `https://vidalco.in${targetArticle && targetArticle.image.url}`,
   };
   return (
     <>

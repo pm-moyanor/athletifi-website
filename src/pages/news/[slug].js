@@ -12,6 +12,8 @@ import {
 } from "../../../components/common/api/ApiUrls";
 import { filterTargetArticle } from "../../../src/utils/helpers";
 
+// This is the main content of the news article page, which contains the news article itself and the sidebar with the other news articles.
+
 const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
   let targetArticle = null;
   if (newsDetailData && newsDetailData.data && newsDetailData.data.length > 0) targetArticle = newsDetailData.data[0];
@@ -21,28 +23,13 @@ const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
   
   // SEO
   const hero = {
-    // heading: "News and InsightsSLUGSLUGSLUG",
-    heading: targetArticle.title || `Article not found`,
+    heading: targetArticle ? targetArticle.title : `Article not found`,
     title: "News and Insights for AthletiFi Sports Cards",
     subtitle: "Here you can find all the latest news and developments from AthletiFi!",
   };
 
-  // const pageSEO = {
-  //   // // SEO TITLE
-  //   title: `${newsDetailData && newsDetailData.data[0].title}`,
+  // const pageSEO = { title: `${newsDetailData && newsDetailData.data[0].title}`, description: `${newsDetailData.data[0].description}`, websiteURL: `https://athletifi-website.vercel.app`, image: `https://vidalco.in${newsDetailData.data[0].image.url}`,};
 
-  //   // // SEO DESCRIPTION
-  //   description: `${newsDetailData.data[0].description}`,
-
-  //   // // SEO WEBSITE URL
-  //   websiteURL: `https://athletifi-website.vercel.app`,
-
-  //   // // SEO IMAGE
-  //   image: `https://vidalco.in${newsDetailData.data[0].image.url}`,
-  // };
-
-  // console.log(newsDetailData, "newsDetailData")
-  console.log(allNewsData, "ALL NEWS DATA")
   return (
     <>
       {/* SEO */}
@@ -61,6 +48,7 @@ const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
     </>
   );
 };
+
 export async function getServerSideProps(context) {
   const { slug } = context.query;
   // console.log("slugslugslug", slug)
