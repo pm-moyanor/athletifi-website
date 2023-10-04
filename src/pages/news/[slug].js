@@ -10,13 +10,15 @@ import {
   NewsDetailApiHandler,
   NewsListApiHandler,
 } from "../../../components/common/api/ApiUrls";
+import { filterTargetArticle } from "../../../src/utils/helpers";
 
 const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
-  console.log(newsDetailData, "newsDetailDataCKKKKKK");
   let targetArticle = null;
-  if (newsDetailData && newsDetailData.data && newsDetailData.data.length > 0) {
-    targetArticle = newsDetailData.data[0];
-  }
+  if (newsDetailData && newsDetailData.data && newsDetailData.data.length > 0) targetArticle = newsDetailData.data[0];
+  
+  // Filter out the target article from the allNewsList data
+  const everyOtherArticle = filterTargetArticle(allNewsData, targetArticle);
+  
   // SEO
   const hero = {
     // heading: "News and InsightsSLUGSLUGSLUG",
@@ -52,7 +54,7 @@ const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
         </div>
         <TargetArticleContent newsDetailData={newsDetailData} />
         {/* <RecentNewsInsights /> */}
-        <NewsInsightsCards allNewsList={allNewsData} />
+        <NewsInsightsCards allNewsList={everyOtherArticle} />
         <Footer />
         <Backtotop />
       </div>

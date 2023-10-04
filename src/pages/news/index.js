@@ -5,6 +5,7 @@ import Header from "../../../components/common/Header";
 import Seo from "../../../components/common/Seo";
 import FocusArticle from "../../../components/news-insights/FocusArticle";
 import NewsInsightsCards from "../../../components/news-insights/NewsInsightsCards";
+import { filterTargetArticle } from "../../../src/utils/helpers"; 
 
 // Importing API handlers for fetching news data
 import { GetRequestHandler } from "../../../components/common/api/Api";
@@ -15,24 +16,30 @@ import {
 
 // The main functional component for the News and Insights page
 const NewsPage = ({ newsListData, allNewsList }) => {
+  let targetArticle = null;
+  let everyOtherArticle = null;
+  if (newsListData && newsListData.length > 0) targetArticle = newsListData[0];
+  // Filter out the target article from the allNewsList data
+  const filteredNewsList = filterTargetArticle(allNewsList, targetArticle);
+
   // SEO
   const hero = {
-    heading: "News and Insights1111",
-    title: "Your Title Here",
-    subtitle: "Your Subtitle Here",
+    heading: "News and Insights",
+    // title: "Your Title Here",
+    // subtitle: "Your Subtitle Here",
   };
   const pageSEO = {
     // SEO TITLE
-    title: `${newsListData[0].title}`,
+    title: `${targetArticle.title}`,
 
     // SEO DESCRIPTION
-    description: `${newsListData[0].description}`,
+    description: `${targetArticle.description}`,
 
     // SEO WEBSITE URL
     websiteURL: `https://athletif.fi`,
 
     // SEO IMAGE
-    image: `https://vidalco.in${newsListData[0].image.url}`,
+    image: `https://vidalco.in${targetArticle.image.url}`,
   };
   return (
     <>
@@ -44,7 +51,7 @@ const NewsPage = ({ newsListData, allNewsList }) => {
           <CommonHero hero={hero} />
         </div>
         <FocusArticle newsListData={newsListData} />
-        <NewsInsightsCards allNewsList={allNewsList} />
+        <NewsInsightsCards allNewsList={filteredNewsList} />
         <Footer />
         <Backtotop />
       </div>
