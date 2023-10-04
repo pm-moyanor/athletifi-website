@@ -32,7 +32,7 @@ const NewsPage = ({ newsListData, allNewsList }) => {
     // Update dynamic parts of the SEO properties
     const newsPageSEO = {
       ...SEO_CONFIG.news, // Spread the static properties
-      description: `${targetArticle && targetArticle.description}`, // Update the dynamic description
+      description: `${targetArticle && targetArticle.shortDescription}`, // Update the dynamic description
       image: `https://vidalco.in${targetArticle && targetArticle.image.url}`, // Update the dynamic image URL
     };
 

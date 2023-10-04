@@ -40,7 +40,7 @@ const FocusArticle: React.FC<NewsProps> = (props) => {
                 {moment(newsListData[0].createdAt).format("DD MMM YY")}
               </p>
               <p className="text-base sm:text-md text-primary opacity-70 font-Segoe font-normal mt-3 sm:mt-4">
-                {newsListData[0].description}
+                {newsListData[0].shortDescription}
               </p>
               <div className="mt-4 flex items-center gap-[14px] justify-center xl:justify-start">
                 {newsListData[0].categories.map((val: any, i: any) => {

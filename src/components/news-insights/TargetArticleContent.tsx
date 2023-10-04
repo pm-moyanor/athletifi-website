@@ -25,8 +25,7 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
       {newsDetailData &&
         newsDetailData.data &&
         newsDetailData.data.map((newsItem: any, i: any) => {
-          console.log("newsDetailDatanewsDetailData",newsDetailData)
-          
+          console.log("newsItem!!!!", newsItem)          
           const imagePath = "https://vidalco.in";
           const url = newsItem.image.url;
           const combinedUrl = url ? `${imagePath}${url}` : null;
@@ -89,7 +88,7 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
                         data-aos-offset="200"
                         className="font-Segoe font-normal text-md lg:mt-4 mt-2 leading-7 text-offwhite sm:text-start text-center"
                       >
-                        {newsItem.description}
+                        {newsItem.shortDescription}
                       </p>
                       {newsItem &&
                         newsItem.content.map((obj: any, index: any) => {
@@ -104,11 +103,11 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
                                 data-aos-offset="200"
                                 className="font-HelveticaNeueMedium text-primary font-medium text-[22px] mt-[20px] sm:mt-6 sm:text-lg leading-8 md:leading-[39px] sm:text-start text-center"
                               >
-                                {obj.title}
+                                {obj.subheading}
                               </h3>
                               <div
                                 dangerouslySetInnerHTML={{
-                                  __html: obj.description,
+                                  __html: obj.body,
                                 }}
                                 data-aos="fade-up"
                                 data-aos-duration="800"
