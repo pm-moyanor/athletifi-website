@@ -1,18 +1,19 @@
-import Backtotop from "../../../components/common/Backtotop";
-import CommonHero from "../../../components/common/CommonHero";
-import Footer from "../../../components/common/Footer";
-import Header from "../../../components/common/Header";
-import Seo from "../../../components/common/Seo";
-import FocusArticle from "../../../components/news-insights/FocusArticle";
-import NewsInsightsCards from "../../../components/news-insights/NewsInsightsCards";
-import { filterTargetArticle } from "../../../src/utils/helpers"; 
+import Backtotop from "@/components/common/Backtotop";
+import CommonHero from "@/components/common/CommonHero";
+import Footer from "@/components/common/Footer";
+import Header from "@/components/common/Header";
+import Seo from "@/components/common/Seo";
+import FocusArticle from "@/components/news-insights/FocusArticle";
+import NewsInsightsCards from "@/components/news-insights/NewsInsightsCards";
+import { filterTargetArticle } from "@/utils/helpers"; 
+import { SEO_CONFIG } from "@/utils/seoConfig";
 
 // Importing API handlers for fetching news data
-import { GetRequestHandler } from "../../../components/common/api/Api";
+import { GetRequestHandler } from "@/components/common/api/Api";
 import {
   NewsListApiHandler,
   NewsListFilterApiHandler,
-} from "../../../components/common/api/ApiUrls";
+} from "@/components/common/api/ApiUrls";
 
 // The main functional component for the News and Insights page
 const NewsPage = ({ newsListData, allNewsList }) => {
@@ -24,27 +25,21 @@ const NewsPage = ({ newsListData, allNewsList }) => {
 
   // SEO
   const hero = {
-    heading: "News and Insights",
+    heading: "Latest Updates & Announcements",
     // title: "Your Title Here",
     // subtitle: "Your Subtitle Here",
   };
-  const pageSEO = {
-    // SEO TITLE
-    title: `${targetArticle && targetArticle.title}`,
+    // Update dynamic parts of the SEO properties
+    const newsPageSEO = {
+      ...SEO_CONFIG.news, // Spread the static properties
+      description: `${targetArticle && targetArticle.description}`, // Update the dynamic description
+      image: `https://vidalco.in${targetArticle && targetArticle.image.url}`, // Update the dynamic image URL
+    };
 
-    // SEO DESCRIPTION
-    description: `${targetArticle && targetArticle.description}`,
-
-    // SEO WEBSITE URL
-    websiteURL: `https://athletif.fi`,
-
-    // SEO IMAGE
-    image: `https://vidalco.in${targetArticle && targetArticle.image.url}`,
-  };
   return (
     <>
       {/* SEO */}
-      <Seo pageSEO={pageSEO} />
+      <Seo pageSEO={newsPageSEO} />
       <div className="overflow_hidden">
         <div className="bg-new-hero-img bg-center bg-no-repeat bg-cover">
           <Header />

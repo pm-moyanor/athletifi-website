@@ -6,21 +6,23 @@
 
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import Header from "../../components/common/Header";
-import Footer from "../../components/common/Footer";
-import LatestNews from "../../components/home/LatestNews";
-import OurStrategicAdvisor from "../../components/home/OurStrategicAdvisor";
-import StatsReimagined from "../../components/home/StatsReimagined";
-import TrustedPartners from "../../components/home/TrustedPartners";
-import SoccerExpensive from "../../components/home/SoccerExpensive";
-import UniqueAthletifi from "../../components/home/UniqueAthletifi";
-import HeroHomepage from "../../components/home/HeroHomepage";
-import Backtotop from "../../components/common/Backtotop";
+import Header from "@/components/common/Header";
+import Footer from "@/components/common/Footer";
+import LatestNews from "@/components/home/LatestNews";
+import OurStrategicAdvisor from "@/components/home/OurStrategicAdvisor";
+import StatsReimagined from "@/components/home/StatsReimagined";
+import TrustedPartners from "@/components/home/TrustedPartners";
+import SoccerExpensive from "@/components/home/SoccerExpensive";
+import UniqueAthletifi from "@/components/home/UniqueAthletifi";
+import HeroHomepage from "@/components/home/HeroHomepage";
+import Backtotop from "@/components/common/Backtotop";
 import { useEffect, useState } from "react";
-import { PageLogo } from "../../components/common/Icon";
-import Seo from "../../components/common/Seo";
-import { GetRequestHandler } from "../../components/common/api/Api";
-import { NewsListApiHandler } from "../../components/common/api/ApiUrls";
+import { PageLogo } from "@/components/common/Icon";
+import Seo from "@/components/common/Seo";
+import { GetRequestHandler } from "@/components/common/api/Api";
+import { NewsListApiHandler } from "@/components/common/api/ApiUrls";
+import { SEO_CONFIG } from "@/utils/seoConfig";
+
 //Importing the Inter font
 const inter = Inter({ subsets: ["latin"] });
 
@@ -53,25 +55,10 @@ const Home: React.FC<NewsProps> = (props) => {
     }
   });
 
-  // SEO
-  const pageSEO = {
-    // SEO TITLE
-    title: "Make club soccer more affordable",
-
-    // SEO DESCRIPTION
-    description:
-      "Unlocking opportunities for aspiring young athletes. Connecting all talent, no matter where they are from, with top-tier coaches, scholarships, and unparalledled resources. Welcome to the future of sports... for everyone!",
-
-    // SEO WEBSITE URL
-    websiteURL: "https://athletifi-web.vercel.app/",
-
-    // SEO IMAGE
-    image: "/lending_meta_img.webp",
-  };
   return (
     <>
       {/* SEO */}
-      <Seo pageSEO={pageSEO} />
+      <Seo pageSEO={SEO_CONFIG.home} />
       {/* PRELOADER is conditionally rendered based on the value of the preloader state variable. */}
       {preloader && (
         <div
