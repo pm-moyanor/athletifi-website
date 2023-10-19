@@ -88,7 +88,7 @@ const LatestNews: React.FC<NewsProps> = (props) => {
                     </div>
                     {/* NEWS DATA */}
                     <p className="sm:text-md text:base text-primary opacity-80 font-Segoe leading-[150%] sm:pt-6 pt-3 lg:pe-14 sm:pe-4">
-                      {val.shortDescription}
+                      {val.previewSummary}
                     </p>
                   </div>
                 </div>
