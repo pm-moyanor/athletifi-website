@@ -28,10 +28,34 @@ select:-webkit-autofill:focus {
     font-style: normal;
   }
 
+  @font-face {
+    font-family: "HelveticaNeueLight";
+    src: url("../../public/assets/fonts/HelveticaNeueLight.ttf"); 
+    font-weight: 300; 
+    font-display: swap;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "HelveticaNeueRegular";
+    src: url("../../public/assets/fonts/HelveticaNeueRegular.ttf"); 
+    font-weight: 400; 
+    font-display: swap;
+    font-style: normal;
+  }
+
   .font-HelveticaNeueMedium {
     font-family: "HelveticaNeueMedium";
   }
+  
+  .font-HelveticaNeueRegular {
+    font-family: "HelveticaNeueRegular";
+  }
 
+  .font-HelveticaNeueLight {
+    font-family: "HelveticaNeueLight";
+  }
+  
   /* FONT-FAMILY SEGOE-UI */
   @font-face {
     font-family: "SegoeUI";

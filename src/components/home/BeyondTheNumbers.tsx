@@ -8,7 +8,7 @@ const UniqueAthletifi = () => {
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto lg:pt-14 relative z-10 lg:mt-14 xl:mt-0">
           <div className="lg:px-14 lg:pt-14 sm:px-8 px-4 pt-6 sm:bg-playground-unique bg-playground-unique-sm bg-opacity-50 bg-[length:100%_100%] bg-center bg-no-repeat flex flex-col items-center ">
             <h2
-              className="lg:text-5xl md:text-[40px] sm:text-4xl text-[26px] text-primary font-HelveticaNeueMedium text-center py-4 "
+              className="lg:text-5xl md:text-[40px] sm:text-4xl text-[26px] text-primary font-HelveticaNeueMedium text-center py-2"
               data-aos="fade-up"
               data-aos-duration="600"
               data-aos-easing="linear"
@@ -16,24 +16,44 @@ const UniqueAthletifi = () => {
               data-aos-offset="200"
             >
               <span className="relative after:content after:absolute after:bottom-[-7px] sm:after:bottom-[-2px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat mb-4 lg:leading-[60px] leading-[120%]">
-                What Makes
+                {/* What Makes */}
+                Beyond the Numbers: 
               </span>{" "}
-              AthletiFi Unique
+              {/* AthletiFi Unique */}
+              True Player Insights
             </h2>
+            <span 
+              className="text-primary text-lgxl font-HelveticaNeueRegular leading-normal"
+              data-aos="fade-up"
+              data-aos-duration="600"
+              data-aos-easing="linear"
+              data-aos-delay="300" 
+              data-aos-offset="200"
+            >
+              {/* Empowering Tomorrow's Soccer Stars */}
+              Decoding the Game with AI
+            </span>
             <div
               data-aos="fade-up"
               data-aos-duration="600"
               data-aos-easing="linear"
-              data-aos-delay="200"
+              data-aos-delay="400"
               data-aos-offset="200"
             >
-              <p className="font-Segoe text-md opacity-80 text-primary text-center md:pb-10 pb-5">
-                Stats allow friends, family, and fans to easily support and
-                follow their favorite players or players in their community{" "}
-                <span className="lg:block">
-                  On the other hand, stats allow coaches and scouts to make
+              <p className="font-Segoe text-md opacity-80 text-primary text-center md:pb-10 pb-5 mt-4">
+                {/* Stats allow friends, family, and fans to easily support and
+                follow their favorite players or players in their community */}
+                Soccer is an intricate dance of strategy, skill, and raw athleticism. While objective game statistics provide a glimpse into a player's contribution, they barely scratch the surface.
+                {" "}
+                <span className="block md:mt-4 mt-2">
+                {/* <span className="lg:block"> */}
+                  Every single game includes thousands of interactions – goals, passes, shots, assists, etc. This makes monitoring a player’s skill progression challenging.
+                </span>
+                <span className="block md:mt-4 mt-2">
+                  {/* On the other hand, stats allow coaches and scouts to make
                   data-driven choices when building their roster and in-game
-                  strategy
+                  strategy */}
+                AthletiFi's proprietary algorithm translates raw data into comprehensive player ratings, offering a precise perspective of a player's on-field impact.
                 </span>
               </p>
             </div>
