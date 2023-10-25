@@ -27,16 +27,19 @@ const SoccerExpensive = () => {
             >
               <h2 className="font-HelveticaNeueMedium text-primary xl:text-xl lg:text-[43px] md:text-[40px] font-medium mb-4 text-[25px] sm:text-[35px] text-center lg:text-start leading-[120%] xl:leading-[60px] pt-10">
                 <span className="relative after:content after:absolute after:bottom-[-4px] sm:after:bottom-[-2px] after:left-0 md:after:w-[220px] after:w-[120px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
-                  Soccer is{" "}
+                  {/* Soccer is{" "} */}
+                  Passive Engagement,{" "}
                 </span>
-                Expensive & Reduces Accessibility
+                {/* Expensive & Reduces Accessibility */}
+                Active Impact
               </h2>
               <p className="font-Segoe font-normal text-md text-primary opacity-80 text-center lg:text-start">
-                There is an unfortunate contradiction at the heart of club
+                {/* There is an unfortunate contradiction at the heart of club
                 soccer — a sport renowned for its global unity, yet hindered by
                 prohibitive costs that reduce accessibility and limit
                 participation. Club soccer is creating a system that excludes
-                potential players from less privileged backgrounds.
+                potential players from less privileged backgrounds. */}
+                AthletiFi’s player cards keep the thrill of soccer at your fingertips. With dynamically updating performance stats and thrilling highlight clips, you will never miss a moment of your favorite player's progression. All the while knowing that their journey is made possible by your support. 
               </p>
               <div className="flex lg:justify-start justify-center items-center mt-10">
                 <Link href="/about-us">

@@ -25,7 +25,7 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
       {newsDetailData &&
         newsDetailData.data &&
         newsDetailData.data.map((newsItem: any, i: any) => {
-          console.log("newsItem!!!!", newsItem)          
+          // console.log("newsItem!!!!", newsItem)          
           const imagePath = "https://vidalco.in";
           const url = newsItem.image.url;
           const combinedUrl = url ? `${imagePath}${url}` : null;
@@ -88,7 +88,7 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
                         data-aos-offset="200"
                         className="font-Segoe font-normal text-md lg:mt-4 mt-2 leading-7 text-offwhite sm:text-start text-center"
                       >
-                        {newsItem.shortDescription}
+                        {/* {newsItem.previewSummary} */}
                       </p>
                       {newsItem &&
                         newsItem.content.map((obj: any, index: any) => {

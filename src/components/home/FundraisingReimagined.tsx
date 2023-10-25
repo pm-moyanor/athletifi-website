@@ -56,7 +56,7 @@ const StatsReimagined = () => {
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto relative z-10">
         <div className="blue_linear_gradient relative after:absolute flex justify-center flex-col items-center  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px]">
           <h2
-            className="lg:text-5xl md:text-[40px] sm:text-4xl text-[24px] text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-[539px] mx-auto text-center md:pt-9 pt-6 px-3 md:px-0 lg:pt-[72px] sm:leading-[45px] md:!leading-[60px]"
+            className="lg:text-5xl md:text-[40px] sm:text-4xl text-[24px] text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-[670px] mx-auto text-center md:pt-9 pt-6 px-3 md:px-0 lg:pt-[72px] sm:leading-[45px] md:!leading-[60px]"
             data-aos="fade-up"
             data-aos-duration="600"
             data-aos-easing="linear"
@@ -64,10 +64,21 @@ const StatsReimagined = () => {
             data-aos-offset="200"
           >
             <span className="relative after:content after:absolute after:bottom-[-8px] sm:after:bottom-[-4px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
-              Stats Reimagined.
+              {/* Stats Reimagined. */}
+              Fundraising Reimagined.
             </span>{" "}
-            Exposure elevated.
+            {/* Exposure elevated. */}
           </h2>
+          <span 
+            className="text-primary text-lgxl font-HelveticaNeueRegular leading-normal mt-4"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-easing="linear"
+            data-aos-delay="300" 
+            data-aos-offset="200"
+          >
+            Empowering Tomorrow's Soccer Stars
+          </span>
           <p
             className="font-Segoe font-normal text-md text-center text-[#FDFEFF] leading-7 px-4 md:px-0 max-w-[700px] lg:max-w-[769px] mx-auto md:mt-4 mt-2 relative z-20"
             data-aos="fade-up"
@@ -76,13 +87,16 @@ const StatsReimagined = () => {
             data-aos-delay="400"
             data-aos-offset="200"
           >
-            Experience the future of sports collectibles as we integrate dynamic
+            {/* Experience the future of sports collectibles as we integrate dynamic
             statistics into every card, taking your passion for the game to new
             heights. Every goal, pass, and block is updated on the digital
-            trading card within 48 hours after every game.{" "}
+            trading card within 48 hours after every game. */}
+            Every young soccer star harbors dreams that pulse with potential. At AthletiFi, we're reshaping and nurturing dreams through a fundraising paradigm tailored exclusively for youth soccer. We are the GoFundMe for young soccer players. 
+            {" "}
             <span className="block md:mt-4 mt-2">
-              Each purchase directly supports underserved athletes, making club
-              soccer more accessible and empowering dreams to flourish.
+              {/* Each purchase directly supports underserved athletes, making club
+              soccer more accessible and empowering dreams to flourish. */}
+              Our platform is not just about funds— it bridges the gap to foster connections. Supporters become part of an athlete's journey, receiving captivating updates and witnessing their contributions’ ripple effect on both players and their clubs.
             </span>
           </p>
           {/* CARD SLIDER SAMLL SCREEN */}

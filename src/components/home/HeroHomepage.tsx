@@ -16,13 +16,20 @@ const HeroHomepage = () => {
         <div className="flex items-center flex-col lg:flex-row">
           <div className="max-w-[490px] lg:max-w-[520px] xl:max-w-[608px]">
             <h1 className="font-HelveticaNeueMedium text-white text-center lg:text-start text-[30px] sm:text-[45px] lg:text-[50px] xl:text-xxl font-medium leading-[35px] sm:leading-[45px] md:leading-[50px] lg:leading-[66px]">
-              Make club soccer more affordable
+              {/* Make club soccer more affordable */}
+              Digital Club Fundraising
             </h1>
             <p className="font-Segoe text-white text-[16px] sm:text-md font-normal mt-4 opacity-80 text-center lg:text-start">
-              Unlocking opportunities for aspiring young athletes. Connecting
-              all talent, no matter where they are from, with top-tier coaches,
-              scholarships, and unparalledled resources. Welcome to the future
-              of sports... for everyone!
+              AthletiFi is revolutionizing the soccer community through digital player cards, intertwining passion for the game with the promise of the future. 
+            </p>
+            <p className="font-Segoe text-white text-[16px] sm:text-md font-normal mt-4 opacity-80 text-center lg:text-start">
+              By seamlessly fusing fundraising with fan engagement, we offer an opportunity for soccer fans to support, celebrate, and engage with promising young athletes. 
+            </p>
+            <p className="font-Segoe text-white text-[16px] sm:text-md font-normal mt-4 opacity-80 text-center lg:text-start">
+              Every digital player card becomes a journey of potential, showcasing dynamically updated stats and spotlighting critical plays.
+            </p>
+            <p className="font-Segoe text-white text-[16px] sm:text-md font-normal mt-4 opacity-80 text-center lg:text-start">
+              AthletiFi’s proprietary player ratings offer fans a front-row seat to the future of soccer. Together, we empower aspiring players by providing an innovative fundraising tool.
             </p>
             {/* CONVERT-INTO-LINK-TAG */}
             <div className="flex lg:justify-start justify-center lg:mt-10 mt-7 lg:pb-14 lg:mb-10">

@@ -8,12 +8,12 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
-import LatestNews from "@/components/home/LatestNews";
-import OurStrategicAdvisor from "@/components/home/OurStrategicAdvisor";
-import StatsReimagined from "@/components/home/StatsReimagined";
+// import LatestNews from "@/components/home/LatestNews"; //Add this back if you want to have the news section
+// import OurStrategicAdvisor from "@/components/home/OurStrategicAdvisor"; //Add this back if you want to have the Darren section
+import StatsReimagined from "@/components/home/FundraisingReimagined";
 import TrustedPartners from "@/components/home/TrustedPartners";
-import SoccerExpensive from "@/components/home/SoccerExpensive";
-import UniqueAthletifi from "@/components/home/UniqueAthletifi";
+import SoccerExpensive from "@/components/home/PassiveEngagement";
+import UniqueAthletifi from "@/components/home/BeyondTheNumbers";
 import HeroHomepage from "@/components/home/HeroHomepage";
 import Backtotop from "@/components/common/Backtotop";
 import { useEffect, useState } from "react";
@@ -85,9 +85,9 @@ const Home: React.FC<NewsProps> = (props) => {
         <StatsReimagined />
         <SoccerExpensive />
         <UniqueAthletifi />
-        <OurStrategicAdvisor />
+        {/* <OurStrategicAdvisor /> */} 
         <TrustedPartners />
-        <LatestNews allNewsList={allNewsList} />
+        {/* <LatestNews allNewsList={allNewsList} /> */}
         <Footer />
         <Backtotop />
       </div>
