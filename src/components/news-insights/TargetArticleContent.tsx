@@ -25,7 +25,7 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
       {newsDetailData &&
         newsDetailData.data &&
         newsDetailData.data.map((newsItem: any, i: any) => {
-          console.log("newsItem!!!!", newsItem)          
+          // console.log("newsItem!!!!", newsItem)          
           const imagePath = "https://vidalco.in";
           const url = newsItem.image.url;
           const combinedUrl = url ? `${imagePath}${url}` : null;

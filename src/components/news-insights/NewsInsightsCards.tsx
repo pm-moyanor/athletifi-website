@@ -31,7 +31,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const displayedItems = moreArticles.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(moreArticles.length / itemsPerPage);
+  const totalPages = Math.ceil(moreArticles.length / itemsPerPage) || 1;
 
   const handlePageChange = async (newPage: any) => {
     setLoading(true);
@@ -61,124 +61,131 @@ const NewsInsightsCards: React.FC<NewsListProps> = (props) => {
         </h2>
 
         {/*  <NewsInsightsLoader/>  */}
-        {displayedItems.map((item: any, index: any) => {
-          // console.log("WHAT IS THIS",item)
-          const imagePath = "https://vidalco.in";
-          const url = item.image.url;
-          const combinedUrl = url ? `${imagePath}${url}` : null;
+                {moreArticles.length === 0 ? (
+          <p className="text-center text-gray-500">This is the only article right now. Check back later for new Articles!</p>
+        ) : (
+          <div>
+            {displayedItems.map((item: any, index: any) => {
+              // console.log("WHAT IS THIS",item)
+              const imagePath = "https://vidalco.in";
+              const url = item.image.url;
+              const combinedUrl = url ? `${imagePath}${url}` : null;
 
-          return (
-            // <>
-              <div key={item.slug}>
-                {loading ? (
-                  <NewsInsightsLoader />
-                ) : (
-                  <Link
-                    // href={`/news/${item.slug}?page=${currentPage}`}
-                    href={`/news/${item.slug}?page=1`}
-                    passHref
-                  >
-                    <div
-                      key={index}
-                      className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-[30px]"
-                      data-aos="fade-up"
-                      data-aos-duration="400"
-                      data-aos-easing="ease"
-                      data-aos-delay={item.delay}
-                    >
-                      {combinedUrl && (
-                        <Image
-                          className="lg:w-[315px] h-[200px] min-[375px]:h-[300px] min-[500px]:h-[400px] md:h-[150px] lg:!h-[220px] rounded-[10px] object-cover w-full md:min-w-[225px] lg:min-w-[315px] md:w-[224px]"
-                          src={combinedUrl}
-                          width={315}
-                          height={240}
-                          alt="football match"
-                        />
-                      )}
-                      <div className="sm:pt-0 pt-3 max-w-[617px]">
-                        {/* NEWS HEADING */}
-                        <h3 className="sm:text-basemd text-[18px] text-primary font-HelveticaNeueMedium leading-[140%]">
-                          {item.title}
-                        </h3>
-                        <div className="flex sm:items-center sm:flex-row flex-col sm:gap-3 gap-2 pt-2">
-                          <h4 className="lg:pe-3 ">
-                            <span className="lg:text-md text-base text-primary font-Segoe opacity-80 font-normal lg:pe-2 pe-1">
-                              by :
-                            </span>
-                            <span className="lg:text-base text-sm text-primary font-Segoe font-semibold">
-                              {item.author.fullName}
-                            </span>
-                          </h4>
-                          {/* NEWS CATEGORY */}
-                          <span className="flex gap-x-3">
-                            {item.categories.map((val: any, i: any) => {
-                              return (
-                                <button
-                                  key={i}
-                                  className="lg:text-base md:text-[13px] text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-[10px] sm:px-[18px] bg-matchtittles rounded-full leading-[150%] duration-300 hover:text-white"
-                                >
-                                  {val.title}
-                                </button>
-                              );
-                            })}
-                          </span>
+              return (
+                // <>
+                  <div key={item.slug}>
+                    {loading ? (
+                      <NewsInsightsLoader />
+                    ) : (
+                      <Link
+                        // href={`/news/${item.slug}?page=${currentPage}`}
+                        href={`/news/${item.slug}?page=1`}
+                        passHref
+                      >
+                        <div
+                          key={index}
+                          className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-[30px]"
+                          data-aos="fade-up"
+                          data-aos-duration="400"
+                          data-aos-easing="ease"
+                          data-aos-delay={item.delay}
+                        >
+                          {combinedUrl && (
+                            <Image
+                              className="lg:w-[315px] h-[200px] min-[375px]:h-[300px] min-[500px]:h-[400px] md:h-[150px] lg:!h-[220px] rounded-[10px] object-cover w-full md:min-w-[225px] lg:min-w-[315px] md:w-[224px]"
+                              src={combinedUrl}
+                              width={315}
+                              height={240}
+                              alt="football match"
+                            />
+                          )}
+                          <div className="sm:pt-0 pt-3 max-w-[617px]">
+                            {/* NEWS HEADING */}
+                            <h3 className="sm:text-basemd text-[18px] text-primary font-HelveticaNeueMedium leading-[140%]">
+                              {item.title}
+                            </h3>
+                            <div className="flex sm:items-center sm:flex-row flex-col sm:gap-3 gap-2 pt-2">
+                              <h4 className="lg:pe-3 ">
+                                <span className="lg:text-md text-base text-primary font-Segoe opacity-80 font-normal lg:pe-2 pe-1">
+                                  by :
+                                </span>
+                                <span className="lg:text-base text-sm text-primary font-Segoe font-semibold">
+                                  {item.author.fullName}
+                                </span>
+                              </h4>
+                              {/* NEWS CATEGORY */}
+                              <span className="flex gap-x-3">
+                                {item.categories.map((val: any, i: any) => {
+                                  return (
+                                    <button
+                                      key={i}
+                                      className="lg:text-base md:text-[13px] text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-[10px] sm:px-[18px] bg-matchtittles rounded-full leading-[150%] duration-300 hover:text-white"
+                                    >
+                                      {val.title}
+                                    </button>
+                                  );
+                                })}
+                              </span>
+                            </div>
+                            {/* NEWS DATA */}
+                            <p className="sm:text-md text:base text-primary opacity-80 font-Segoe leading-[150%] sm:pt-4 pt-3 lg:pe-14 sm:pe-4">
+                              {item.previewSummary}
+                            </p>
+                          </div>
                         </div>
-                        {/* NEWS DATA */}
-                        <p className="sm:text-md text:base text-primary opacity-80 font-Segoe leading-[150%] sm:pt-4 pt-3 lg:pe-14 sm:pe-4">
-                          {item.previewSummary}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                )}
-              </div>
-            // </>
-          );
-        })}
-        <div className="flex justify-between lg:max-w-[210px] py-3  max-w-[230px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
-          {currentPage === 1 ? (
-            <div className="opacity-70 -rotate-90 cursor-not-allowed inline-block">
-              <PaginationArrow />
-            </div>
-          ) : (
-            <Link
-              scroll={false}
-              href={
-                router.pathname === "/news"
-                  ? `/news?page=${currentPage - 1}`
-                  : `/news/${router.query.slug}?page=${currentPage - 1}`
-              }
-              onClick={() => handlePageChange(currentPage - 1)}
-              className="-rotate-90 hover:-translate-x-1 duration-200 inline-block"
-            >
-              <PaginationArrow />
-            </Link>
-          )}
+                      </Link>
+                    )}
+                  </div>
+                // </>
+              );
+            })}
 
-          <div className="text-white">
-            <span>{currentPage}</span>
-            <span className="text-white px-3">of</span>
-            <span>{totalPages}</span>
-          </div>
-          {currentPage === totalPages ? (
-            <div className="opacity-70 rotate-90 cursor-not-allowed inline-block">
-              <PaginationArrow />
+            <div className="flex justify-between lg:max-w-[210px] py-3  max-w-[230px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
+              {currentPage === 1 ? (
+                <div className="opacity-70 -rotate-90 cursor-not-allowed inline-block">
+                  <PaginationArrow />
+                </div>
+              ) : (
+                <Link
+                  scroll={false}
+                  href={
+                    router.pathname === "/news"
+                      ? `/news?page=${currentPage - 1}`
+                      : `/news/${router.query.slug}?page=${currentPage - 1}`
+                  }
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  className="-rotate-90 hover:-translate-x-1 duration-200 inline-block"
+                >
+                  <PaginationArrow />
+                </Link>
+              )}
+
+              <div className="text-white">
+                <span>{currentPage}</span>
+                <span className="text-white px-3">of</span>
+                <span>{totalPages}</span>
+              </div>
+              {currentPage === totalPages ? (
+                <div className="opacity-70 rotate-90 cursor-not-allowed inline-block">
+                  <PaginationArrow />
+                </div>
+              ) : (
+                <Link
+                  scroll={false}
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  href={
+                    router.pathname === "/news"
+                      ? `/news?page=${currentPage + 1}`
+                      : `/news/${router.query.slug}?page=${currentPage + 1}`
+                  }
+                  className=" rotate-90 hover:translate-x-1 duration-200"
+                >
+                  <PaginationArrow />
+                </Link>
+              )}
             </div>
-          ) : (
-            <Link
-              scroll={false}
-              onClick={() => handlePageChange(currentPage + 1)}
-              href={
-                router.pathname === "/news"
-                  ? `/news?page=${currentPage + 1}`
-                  : `/news/${router.query.slug}?page=${currentPage + 1}`
-              }
-              className=" rotate-90 hover:translate-x-1 duration-200"
-            >
-              <PaginationArrow />
-            </Link>
-          )}
-        </div>
+          </div>
+        )}
       </div>
       {/* BACKGROUND RIGHT GRID */}
       <Image

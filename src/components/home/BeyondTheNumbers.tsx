@@ -47,7 +47,7 @@ const UniqueAthletifi = () => {
                 {" "}
                 <span className="block md:mt-4 mt-2">
                 {/* <span className="lg:block"> */}
-                  Every single game includes thousands of interactions – goals, passes, shots, assists, etc. This makes monitoring a player’s skill progression challenging.
+                  Every single game includes thousands of interactions – goals, passes, shots, assists, etc. This complexity makes monitoring a player’s skill progression challenging.
                 </span>
                 <span className="block md:mt-4 mt-2">
                   {/* On the other hand, stats allow coaches and scouts to make

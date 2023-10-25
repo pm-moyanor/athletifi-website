@@ -29,7 +29,7 @@ const HeroHomepage = () => {
               Every digital player card becomes a journey of potential, showcasing dynamically updated stats and spotlighting critical plays.
             </p>
             <p className="font-Segoe text-white text-[16px] sm:text-md font-normal mt-4 opacity-80 text-center lg:text-start">
-              AthletiFi’s proprietary player ratings offer fans a front-row seat to the future of soccer. Together, we empower aspiring players by offering an innovative fundraising tool.
+              AthletiFi’s proprietary player ratings offer fans a front-row seat to the future of soccer. Together, we empower aspiring players by providing an innovative fundraising tool.
             </p>
             {/* CONVERT-INTO-LINK-TAG */}
             <div className="flex lg:justify-start justify-center lg:mt-10 mt-7 lg:pb-14 lg:mb-10">

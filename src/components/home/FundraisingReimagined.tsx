@@ -91,12 +91,12 @@ const StatsReimagined = () => {
             statistics into every card, taking your passion for the game to new
             heights. Every goal, pass, and block is updated on the digital
             trading card within 48 hours after every game. */}
-            Every young soccer star harbors dreams that pulse with potential. At AthletiFi, we're reshaping how these dreams are nurtured through a fundraising paradigm exclusively tailored for youth soccer. We are the GoFundMe for young soccer players. 
+            Every young soccer star harbors dreams that pulse with potential. At AthletiFi, we're reshaping and nurturing dreams through a fundraising paradigm tailored exclusively for youth soccer. We are the GoFundMe for young soccer players. 
             {" "}
             <span className="block md:mt-4 mt-2">
               {/* Each purchase directly supports underserved athletes, making club
               soccer more accessible and empowering dreams to flourish. */}
-              It's not just about funds— it's about fostering connections. Supporters become part of an athlete's journey, receiving captivating updates and witnessing the ripple effect of their contributions on both players and their clubs.
+              Our platform is not just about funds— it bridges the gap to foster connections. Supporters become part of an athlete's journey, receiving captivating updates and witnessing their contributions’ ripple effect on both players and their clubs.
             </span>
           </p>
           {/* CARD SLIDER SAMLL SCREEN */}
