@@ -72,7 +72,7 @@ const Footer = () => {
             <Link
               aria-label="Tik-Tok"
               className="hover:-translate-y-1 transition duration-300 ease-out"
-              href="https://www.tiktok.com/about"
+              href="https://www.tiktok.com/@athletifi"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -81,7 +81,7 @@ const Footer = () => {
             <Link
               aria-label="facebook"
               className="hover:-translate-y-1 transition duration-300 ease-out"
-              href="https://www.facebook.com/"
+              href="https://www.facebook.com/athletifi"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -90,7 +90,7 @@ const Footer = () => {
             <Link
               aria-label="twitter"
               className="hover:-translate-y-1 transition duration-300 ease-out"
-              href="https://twitter.com/login"
+              href="https://twitter.com/Athletifi"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -99,7 +99,7 @@ const Footer = () => {
             <Link
               aria-label="instagram"
               className="hover:-translate-y-1 transition duration-300 ease-out"
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/athletifi/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -108,7 +108,7 @@ const Footer = () => {
             <Link
               aria-label="linkedin"
               className="hover:-translate-y-1 transition duration-300 ease-out"
-              href="https://in.linkedin.com/"
+              href="https://www.linkedin.com/company/athletifi/"
               target="_blank"
               rel="noopener noreferrer"
             >
