@@ -18,7 +18,7 @@ const SocialPopUp = () => {
           {/* SOCIAL ICONS LINKS */}
           <Link
             className="hover:-translate-y-1 transition duration-300 ease-out flex items-center"
-            href="https://www.tiktok.com/about"
+            href="https://www.tiktok.com/@athletifi"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -29,7 +29,7 @@ const SocialPopUp = () => {
           </Link>
           <Link
             className="hover:-translate-y-1 transition duration-300  flex items-center"
-            href="https://www.facebook.com/"
+            href="https://www.facebook.com/athletifi"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -40,7 +40,7 @@ const SocialPopUp = () => {
           </Link>
           <Link
             className="hover:-translate-y-1 transition duration-300  flex items-center"
-            href="https://twitter.com/login"
+            href="https://twitter.com/Athletifi"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -51,7 +51,7 @@ const SocialPopUp = () => {
           </Link>
           <Link
             className="hover:-translate-y-1 transition duration-300  flex items-center"
-            href="https://www.instagram.com/"
+            href="https://www.instagram.com/athletifi/"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -67,7 +67,7 @@ const SocialPopUp = () => {
           </Link>
           <Link
             className="hover:-translate-y-1 transition duration-300  flex items-center"
-            href="https://in.linkedin.com/"
+            href="https://www.linkedin.com/company/athletifi/"
             target="_blank"
             rel="noopener noreferrer"
           >

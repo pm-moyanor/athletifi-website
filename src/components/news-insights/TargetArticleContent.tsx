@@ -132,7 +132,7 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
                     <Link
                       className="hover:-translate-y-1 duration-200"
                       target="_blank"
-                      href={`https://www.facebook.com/sharer/sharer.php?u=${"https://athletifi-website.vercel.app/"}news/${
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${"https://athleti.fi/"}news/${
                         newsDetailData.data[0].slug
                       }`}
                     >
@@ -143,7 +143,7 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
                       target="_blank"
                       href={`https://twitter.com/intent/tweet?text=${
                         newsDetailData.data[0].slug
-                      }&url=${"https://athletifi-website.vercel.app/"}news/${
+                      }&url=${"https://athleti.fi/"}news/${
                         newsDetailData.data[0].slug
                       }`}
                     >
@@ -154,7 +154,7 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
                       target="_blank"
                       href={`https://api.whatsapp.com/send?text=${
                         newsDetailData.data[0].slug
-                      }&url=${"https://athletifi-website.vercel.app/"}news/${
+                      }&url=${"https://athleti.fi/"}news/${
                         newsDetailData.data[0].slug
                       }`}
                     >
@@ -163,7 +163,7 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
                     <Link
                       className="hover:-translate-y-1 duration-200"
                       target="_blank"
-                      href={`https://www.linkedin.com/sharing/share-offsite/?url=https://athletifi-website.vercel.app/news/${newsDetailData.data[0].slug}`}
+                      href={`https://www.linkedin.com/sharing/share-offsite/?url=https://athleti.fi/news/${newsDetailData.data[0].slug}`}
                     >
                       <WhiteLinkedInIcon />
                     </Link>
