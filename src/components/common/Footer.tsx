@@ -81,7 +81,7 @@ const Footer = () => {
             <Link
               aria-label="facebook"
               className="hover:-translate-y-1 transition duration-300 ease-out"
-              href="https://www.facebook.com/athletifi"
+              href="https://www.facebook.com/profile.php?id=61553263775533"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -216,7 +216,7 @@ const Header = () => {
                       </Link>
                       <Link
                         className="hover:-translate-y-1 transition duration-300  flex items-center"
-                        href="https://www.linkedin.com/company/athletifi/"
+                        href="https://in.linkedin.com/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
