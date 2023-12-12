@@ -25,5 +25,11 @@ export const SEO_CONFIG = {
     websiteURL: "https://athletif.fi",
     image: "(dynamically generated", 
   },
+  dashboard: {
+    title: "Dashboard | Athletifi",
+    description: "Write something about the dashboard.",
+    websiteURL: "https://athleti.fi/dashboard",
+    image: "/about_us_meta.png",
+  },
 };
 
