@@ -1,6 +1,6 @@
 // index.tsx
 
-// This is the main landing page of the website.
+// This is the HOME PAGE - the main landing page of the website.
 // It includes various components to showcase the features and services offered.
 
 
