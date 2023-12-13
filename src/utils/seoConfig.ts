@@ -23,13 +23,13 @@ export const SEO_CONFIG = {
     title: "AthletiFi News: Latest Updates & Announcements",
     description: "(dynamically generated)", 
     websiteURL: "https://athletif.fi",
-    image: "(dynamically generated", 
+    image: "(dynamically generated)", 
   },
   dashboard: {
     title: "Dashboard | Athletifi",
     description: "Write something about the dashboard.",
     websiteURL: "https://athleti.fi/dashboard",
-    image: "/about_us_meta.png",
+    image: "TBD",
   },
 };
 
