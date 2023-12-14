@@ -11,8 +11,8 @@ const PlayerInformation = {
 
 const PlayerInfo = () => {
     return (
-        <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3">
-            <div className="blue_linear_gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 sm:mt-6 z-0  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px]">
+        <div className="container max-w-xs md:max-w-[400px] mx-auto px-3">
+            <div className="blue_linear_gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 z-0  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px]">
                 <div className="flex flex-col justify-center items-center relative z-20"
                     data-aos="fade-up"
                     data-aos-duration="400"
@@ -31,8 +31,8 @@ const PlayerInfo = () => {
                     <div className="flex flex-col">
                         {Object.entries(PlayerInformation).map(([key, value]) => (
                             <div key={key} className="my-2">
-                                <span className="font-bold font-Segoe text-md leading-7 text-center pb-0.5 text-[#FDFEFF] opacity-80 m-0 sm:pt-4 lg:max-w-[769px] mx-auto sm:px-6 px-3 xl:px-0 relative z-20">{key}: </span>
-                                <span className="font-Segoe font-normal text-md leading-7 text-center pb-0.5 text-[#FDFEFF] opacity-80 m-0 sm:pt-4 lg:max-w-[769px] mx-auto sm:px-6 px-3 xl:px-0 relative z-20">{value}</span>
+                                <span className="font-bold font-Segoe text-md leading-7 text-center pb-0.5 text-[#FDFEFF] opacity-80 m-0 sm:pt-4 lg:max-w-[769px] mx-auto sm:px-0.5 px-0.5 xl:px-0.5 relative z-20">{key}: </span>
+                                <span className="font-Segoe font-normal text-md leading-7 text-center pb-0.5 text-[#FDFEFF] opacity-80 m-0 sm:pt-4 lg:max-w-[769px] mx-auto sm:px-0.5 px-0.5 xl:px-0.5 relative z-20">{value}</span>
                             </div>
                         ))}
                     </div>
