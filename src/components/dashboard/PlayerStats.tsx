@@ -38,9 +38,11 @@ const PlayerStats = () => {
               )
                 return null;
               return (
-                <div className='flex justify-center items-center gap-4'>
+                <div
+                  key={stat}
+                  className='flex justify-center items-center gap-4'
+                >
                   <div
-                    key={stat}
                     className='w-full md:w-[240px] h-[30px] bg-gray-200 rounded-[30px] overflow-hidden my-2'
                   >
                     <div
