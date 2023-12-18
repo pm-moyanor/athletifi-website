@@ -4,6 +4,7 @@ import Seo from "@/components/common/Seo";
 import { SEO_CONFIG } from "@/utils/seoConfig";
 import CommonHero from "@/components/common/CommonHero";
 
+import Highlights from "@/components/dashboard/Highlights";
 import Teammates from "@/components/dashboard/Teammates";
 import PlayerStats from "@/components/dashboard/PlayerStats";
 import PlayerInfo from "@/components/dashboard/PlayerInfo";
@@ -23,6 +24,7 @@ const Dashboard = () => {
               <Header />
               <CommonHero hero={hero} />
             </div>
+            <Highlights/>
             <Teammates/>
             <PlayerStats />
             <PlayerInfo/>
