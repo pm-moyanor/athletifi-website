@@ -38,15 +38,20 @@ const PlayerStats = () => {
               )
                 return null;
               return (
-                <div
-                  key={stat}
-                  className='w-full md:w-[240px] h-[30px] bg-gray-200 rounded-[30px] overflow-hidden my-2'
-                >
+                <div className='flex justify-center items-center gap-4'>
                   <div
-                    className='h-full font-Segoe bg-shadow_blue flex items-center justify-start text-black font-semibold px-4'
-                    style={{ width: `${value}%` }}
+                    key={stat}
+                    className='w-full md:w-[240px] h-[30px] bg-gray-200 rounded-[30px] overflow-hidden my-2'
                   >
-                    {stat}
+                    <div
+                      className='h-full font-Segoe bg-shadow_blue flex items-center justify-start text-black font-semibold px-4'
+                      style={{ width: `${value}%` }}
+                    >
+                      {stat}
+                    </div>
+                  </div>
+                  <div>
+                    <p className='font-Segoe font-semibold text-[#FDFEFF]'>{value}</p>
                   </div>
                 </div>
               );
