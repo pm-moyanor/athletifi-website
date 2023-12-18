@@ -3,10 +3,10 @@ import { BlueShodow, UnderLIneText } from '../common/Icon';
 import Image from 'next/image';
 
 const videos = [
-  { src: './iStock-1468858511.mov', thumbnail: 'path-to-thumbnail-1.jpg' },
-  { src: './iStock-1468858511.mov', thumbnail: 'path-to-thumbnail-2.jpg' },
-  { src: './iStock-1468858511.mov', thumbnail: 'path-to-thumbnail-3.jpg' },
-  { src: './iStock-1468858511.mov', thumbnail: 'path-to-thumbnail-4.jpg' },
+  { src: '/video3.mp4', thumbnail: '/poster2.png' },
+  { src: '/video2.mp4', thumbnail: '/poster3.png' },
+  { src: '/video2.mp4', thumbnail: '/poster3.png' },
+  { src: '/video3.mp4', thumbnail: '/poster2.png' },
 ];
 
 const Highlights = () => {
