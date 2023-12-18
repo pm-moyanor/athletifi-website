@@ -3,7 +3,10 @@ import Header from "@/components/common/Header";
 import Seo from "@/components/common/Seo";
 import { SEO_CONFIG } from "@/utils/seoConfig";
 import CommonHero from "@/components/common/CommonHero";
+
+import PlayerStats from "@/components/dashboard/PlayerStats";
 import PlayerInfo from "@/components/dashboard/PlayerInfo";
+
 
 const Dashboard = () => {
     const hero = {
@@ -19,6 +22,7 @@ const Dashboard = () => {
               <Header />
               <CommonHero hero={hero} />
             </div>
+            <PlayerStats />
             <PlayerInfo/>
            <Footer/>
           </div>
