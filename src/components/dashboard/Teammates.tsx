@@ -12,7 +12,7 @@ const players = [
   'Luis Diaz',
   'Andrea Pirlo',
   'Andres Iniesta',
-  'Lucas Paqueta',
+
 ];
 
 const Teammates = () => {
@@ -30,7 +30,7 @@ const Teammates = () => {
         >
           <h2 className='font-HelveticaNeueMedium md:text-4xl text-[26px] text-[#FDFEFF] font-medium leading-[60px] relative z-20 text-center md:mb-4'>
             <span className='relative '>
-              Player Info
+              Teammates
               <span className='absolute -bottom-2 left-0 z-0'>
                 <UnderLIneText />
               </span>
