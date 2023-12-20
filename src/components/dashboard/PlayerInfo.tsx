@@ -11,8 +11,8 @@ const PlayerInformation = {
 
 const PlayerInfo = () => {
     return (
-        <div className="container max-w-xs md:max-w-[400px] mx-auto px-3">
-            <div className="blue_linear_gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 z-0  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px]">
+        <div className="px-3 w-full lg:w-3/4 xl:w-1/2 2xl:w-1/2 min-h-full">
+            <div className="blue_linear_gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 z-0  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px] h-full">
                 <div className="flex flex-col justify-center items-center relative z-20"
                     data-aos="fade-up"
                     data-aos-duration="400"
