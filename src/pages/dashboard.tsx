@@ -23,13 +23,13 @@ const Dashboard = () => {
           <Header />
           <CommonHero hero={hero} />
         </div>
-        <main className='container'>
-          <section className='flex justify-center items-stretch h-full'>
+        <main className='flex flex-col px-3 min-h-full gap-5 m-10 sm:max-w-md md:max-w-2xl lg:max-w-5xl xl:max-w-7xl  mx-auto'>
+          <section className='flex flex-col justify-center items-stretch lg:flex-row h-full gap-5'>
             <PlayerStats />
             <PlayerInfo />
             <PlayerInfo />
           </section>
-          <section className='flex justify-center items-stretch h-full'>
+          <section className='flex flex-col xl:flex-row justify-center items-stretch flex-grow h-full gap-5 '>
             <Teammates />
             <Highlights />
           </section>
