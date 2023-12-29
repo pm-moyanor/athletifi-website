@@ -18,10 +18,10 @@ const players = [
 const Teammates = () => {
     const handlePlayerClick = (player: string) => {console.log(player)} 
   return (
-    <div className='container max-w-xs md:max-w-[600px] mx-auto px-3'>
-      <div className="blue_linear_gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 z-0  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px]">
+    <div className='w-full xl:w-1/3 2xl:w-1/3 min-h-full'>
+      <div className="blue_linear_gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 z-0  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px] h-full flex items-center justify-center">
         <div
-          className='flex flex-col justify-center items-center relative z-20 gap-4'
+          className='flex flex-col justify-center items-center z-20 gap-4'
           data-aos='fade-up'
           data-aos-duration='400'
           data-aos-easing='ease-in-sine'
@@ -36,7 +36,7 @@ const Teammates = () => {
               </span>
             </span>
           </h2>
-          <div className='flex flex-wrap justify-center items-center gap-5'>
+          <div className='flex flex-wrap justify-center items-center gap-5 max-w-sm p-5'>
             {players.map((player, index) => (
               <button key={index} onClick={()=> handlePlayerClick(player)} className='flex flex-col items-center mb-4'>
                 <img className='w-[100px] h-[70px]' src={portrait.src} />
