@@ -31,7 +31,7 @@ const UniqueAthletifi = () => {
               data-aos-offset="200"
             >
               {/* Empowering Tomorrow's Soccer Stars */}
-              Decoding the Game with AI
+              Decoding the game for passive followers
             </span>
             <div
               data-aos="fade-up"
@@ -53,7 +53,7 @@ const UniqueAthletifi = () => {
                   {/* On the other hand, stats allow coaches and scouts to make
                   data-driven choices when building their roster and in-game
                   strategy */}
-                AthletiFi's proprietary algorithm translates raw data into comprehensive player ratings, offering a precise perspective of a player's on-field impact.
+                  AthletiFi translates raw data into easy-to-follow player ratings, giving you the insights you need without requiring you to pull hourslong study sessions.
                 </span>
               </p>
             </div>

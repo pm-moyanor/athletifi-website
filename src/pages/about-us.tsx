@@ -3,9 +3,9 @@
 // This file renders the "About Us" page.
 // It includes various components to display information about the company.
 
+import WhoWeAre from "@/components/about-us/WhoWeAre";
 import OurMission from "@/components/about-us/OurMission";
-import WhatWeDo from "@/components/about-us/WhatWeDo";
-import WhoweAre from "@/components/about-us/WhoweAre";
+import LookingForward from "@/components/about-us/LookingForward";
 import Backtotop from "@/components/common/Backtotop";
 import CommonHero from "@/components/common/CommonHero";
 import Footer from "@/components/common/Footer";
@@ -29,9 +29,9 @@ const AboutUs = () => {
           <Header />
           <CommonHero hero={hero} />
         </div>
-        <WhatWeDo />
-        <OurMission/>
-        <WhoweAre />
+        <OurMission />
+        <WhoWeAre/>
+        <LookingForward />
         <Footer />
         <Backtotop />
       </div>
