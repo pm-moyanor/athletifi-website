@@ -91,12 +91,12 @@ const StatsReimagined = () => {
             statistics into every card, taking your passion for the game to new
             heights. Every goal, pass, and block is updated on the digital
             trading card within 48 hours after every game. */}
-            Every young soccer star harbors dreams that pulse with potential. At AthletiFi, we believe the more support they receive on this journey will help them reach their potential.
+            Every young soccer star harbors dreams that pulse with potential. At AthletiFi, we believe the more support young players receive the more likely they are to succeed.
             {" "}
             <span className="block md:mt-4 mt-2">
               {/* Each purchase directly supports underserved athletes, making club
               soccer more accessible and empowering dreams to flourish. */}
-              AthletiFi gives you the tools to follow their journey at whatever commitment level you can afford. Don’t have time to watch a full game? Catch up with highlight videos of the best plays for each player. Only have a glance to spare? The easy-to-follow player stats will catch you up on their latest performance.
+              AthletiFi gives you the tools to follow their journey at whatever time-commitment level you can afford. Don’t have time to watch a full game? Catch up with highlight videos of the best plays for each player. Only have a glance to spare? The easy-to-follow player stats will catch you up on their latest performance.
             </span>
           </p>
           {/* CARD SLIDER SAMLL SCREEN */}
