@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { RecentNews } from "../common/Helper";
-import { ButtonWhiteArrow, UnderLIneText } from "../common/Icon";
+import { ButtonWhiteArrow, UnderLineText } from "../common/Icon";
 import Slider from "react-slick";
 
 const RecentNewsInsights = () => {
@@ -53,7 +53,7 @@ const RecentNewsInsights = () => {
           <span className="relative">
             Recent News
             <span className="absolute -bottom-2 -md:bottom-[-2px] w-full left-0">
-              <UnderLIneText />
+              <UnderLineText />
             </span>
           </span>{" "}
           and Insights

@@ -5,7 +5,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { BlueShodow, UnderLIneText } from "../common/Icon";
+import { BlueShadow, UnderLineText } from "../common/Icon";
 
 const WhatWeDo = () => {
   return (
@@ -20,7 +20,7 @@ const WhatWeDo = () => {
           alt="what we do shadow"
         />
         <span className="absolute top-50 -start-10">
-          <BlueShodow />
+          <BlueShadow />
         </span>
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative z-10">
           <div className="flex flex-col lg:flex-row justify-between">
@@ -37,7 +37,7 @@ const WhatWeDo = () => {
                   <span className="relative">
                     What we do
                     <span className="absolute -bottom-2 left-0">
-                      <UnderLIneText />
+                      <UnderLineText />
                     </span>
                   </span>
                 </h2>
@@ -60,7 +60,7 @@ const WhatWeDo = () => {
                 className="flex justify-center lg:justify-start"
               >
                 <Image
-                  src="/assets/img/webp/what-we-do-nft-img.webp"
+                  src="/assets/img/webp/what-we-do-card-img.webp"
                   width={496}
                   height={603}
                   alt="what we do sec img"

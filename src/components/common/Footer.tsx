@@ -7,7 +7,7 @@ import {
   FacebookIcon,
   InstaIcon,
   LinkedInIcon,
-  TiktokIcon,
+  TikTokIcon,
   TwitterIcon,
 } from "./Icon";
 import Link from "next/link";
@@ -19,7 +19,7 @@ const Footer = () => {
   const SocialIcon = () => {
     setSocialIcon(!socialIcon);
   };
-  
+
   const today = new Date();
   const year = today.getFullYear();
   return (
@@ -76,7 +76,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <TiktokIcon />
+              <TikTokIcon />
             </Link>
             <Link
               aria-label="facebook"
@@ -116,7 +116,6 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-   
       </footer>
     </>
   );

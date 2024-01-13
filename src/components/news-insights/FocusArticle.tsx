@@ -9,7 +9,7 @@ interface NewsProps {
   newsListData: any;
 }
 
-const FocusArticle: React.FC<NewsProps> = (props) => {
+const FocusArticle: React.FC<NewsProps> = props => {
   const { newsListData } = props;
 
   const focusArticleData = newsListData[0] || {};
@@ -55,7 +55,7 @@ const FocusArticle: React.FC<NewsProps> = (props) => {
                   return (
                     <button
                       key={i}
-                      className="lg:text-base md:text-[13px] text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-[10px] sm:px-[18px] bg-matchtittles rounded-full leading-[150%] duration-300 hover:text-white"
+                      className="lg:text-base md:text-[13px] text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-[10px] sm:px-[18px] bg-matchtitles rounded-full leading-[150%] duration-300 hover:text-white"
                     >
                       {val.title}
                     </button>

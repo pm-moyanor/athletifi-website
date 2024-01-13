@@ -3,12 +3,10 @@ import React from "react";
 import Slider from "react-slick";
 
 const StatsReimagined = () => {
-  // const playerImageCenter = "jude-nft-img";
-  // const playerImageRight = "colin-nft-img";
-  const playerImageCenter = "jose-nft-img";
-  const playerImageRight = "stebi-nft-img";
-  const playerImageLeft = "anderson-nft-img-new";
-  
+  const playerImageCenter = "jose-card-img";
+  const playerImageRight = "stebi-card-img";
+  const playerImageLeft = "anderson-card-img-new";
+
   // SLIDER
   const settings = {
     arrows: false,
@@ -69,12 +67,12 @@ const StatsReimagined = () => {
             </span>{" "}
             {/* Exposure elevated. */}
           </h2>
-          <span 
+          <span
             className="text-primary text-lgxl font-HelveticaNeueRegular leading-normal mt-4"
             data-aos="fade-up"
             data-aos-duration="600"
             data-aos-easing="linear"
-            data-aos-delay="300" 
+            data-aos-delay="300"
             data-aos-offset="200"
           >
             Empowering Tomorrow's Soccer Stars
@@ -91,34 +89,39 @@ const StatsReimagined = () => {
             statistics into every card, taking your passion for the game to new
             heights. Every goal, pass, and block is updated on the digital
             trading card within 48 hours after every game. */}
-            Every young soccer star harbors dreams that pulse with potential. At AthletiFi, we're reshaping and nurturing dreams through a fundraising paradigm tailored exclusively for youth soccer. We are the GoFundMe for young soccer players. 
-            {" "}
+            Every young soccer star harbors dreams that pulse with potential. At
+            AthletiFi, we're reshaping and nurturing dreams through a
+            fundraising paradigm tailored exclusively for youth soccer. We are
+            the GoFundMe for young soccer players.{" "}
             <span className="block md:mt-4 mt-2">
               {/* Each purchase directly supports underserved athletes, making club
               soccer more accessible and empowering dreams to flourish. */}
-              Our platform is not just about funds— it bridges the gap to foster connections. Supporters become part of an athlete's journey, receiving captivating updates and witnessing their contributions’ ripple effect on both players and their clubs.
+              Our platform is not just about funds— it bridges the gap to foster
+              connections. Supporters become part of an athlete's journey,
+              receiving captivating updates and witnessing their contributions’
+              ripple effect on both players and their clubs.
             </span>
           </p>
-          {/* CARD SLIDER SAMLL SCREEN */}
+          {/* CARD SLIDER SMALL SCREEN */}
           <Slider
             {...settings}
             className="w-full justify-between items-center pt-5 md:pt-0 max-w-[1000px] mx-auto lg:justify-center relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:-top-20 before:left-1/2 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/2 before:-z-10 before:rounded-full pb-6 sm:pb-0"
           >
             {/* Left Image */}
-            <div 
+            <div
               className="md:py-16 sm:pb-8" //ml-[-20px]"
               data-aos="fade-up"
               data-aos-duration="500"
               data-aos-easing="ease"
               data-aos-delay="400"
             >
-              <div style={{ transform: 'translateX(-20px)' }}>
+              <div style={{ transform: "translateX(-20px)" }}>
                 <Image
                   className="mx-auto w-full max-w-[350px]"
                   src={`/assets/img/webp/${playerImageLeft}.webp`}
                   width={280}
                   height={280}
-                  alt="left-nft-img"
+                  alt="left-card-img"
                 />
               </div>
             </div>
@@ -136,7 +139,7 @@ const StatsReimagined = () => {
                   src={`/assets/img/webp/${playerImageCenter}.webp`}
                   width={409}
                   height={409}
-                  alt="center-nft-image"
+                  alt="center-card-image"
                 />
               </div>
             </div>
@@ -148,13 +151,13 @@ const StatsReimagined = () => {
               data-aos-easing="ease"
               data-aos-delay="1200"
             >
-              <div style={{ transform: 'translateX(20px)' }}>
+              <div style={{ transform: "translateX(20px)" }}>
                 <Image
                   className="mx-auto w-full max-w-[350px] lg:max-w-[350px]"
                   src={`/assets/img/webp/${playerImageRight}.webp`}
                   width={280}
                   height={280}
-                  alt="right-nft-image"
+                  alt="right-card-image"
                 />
               </div>
             </div>

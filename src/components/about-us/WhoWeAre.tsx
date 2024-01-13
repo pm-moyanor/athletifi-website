@@ -4,10 +4,10 @@
 // It provides background information about the company and its team.
 
 import React from "react";
-import { BlueShodow, UnderLIneText } from "../common/Icon";
+import { BlueShadow, UnderLineText } from "../common/Icon";
 import Image from "next/image";
 
-const WhoweAre = () => {
+const WhoWeAre = () => {
   return (
     <section className="pt-10 pb-16 sm:mb-14 sm:pb-12 lg:mb-20 relative">
       <div className="absolute top-0 xl:-top-[70px] -end-[80px]  xl:w-[250px] xl:h-[380px] z-0">
@@ -29,7 +29,7 @@ const WhoweAre = () => {
         alt="shadow"
       />
       <span className="absolute top-50 start-0 z-0">
-        <BlueShodow />
+        <BlueShadow />
       </span>
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative">
         <div className="blue_linear_gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 sm:mt-6 z-0  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px]">
@@ -44,7 +44,7 @@ const WhoweAre = () => {
               <span className="relative ">
                 Who we Are
                 <span className="absolute -bottom-2 left-0 z-0">
-                  <UnderLIneText />
+                  <UnderLineText />
                 </span>
               </span>
             </h2>
@@ -70,4 +70,4 @@ const WhoweAre = () => {
   );
 };
 
-export default WhoweAre;
+export default WhoWeAre;

@@ -8,7 +8,7 @@ import {
   ArrowButton,
   FacebookIcon,
   LinkedInIcon,
-  TiktokIcon,
+  TikTokIcon,
   TwitterIcon,
 } from "./Icon";
 import { PageLogo, CancelIcon } from "./Icon";
@@ -57,15 +57,6 @@ const Header = () => {
   const SocialIconDropDown = () => {
     setNavSocialIcon(!navSocialIcon);
   };
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     if (navSocialIcon) {
-  //       document.body.classList.remove("overflow_hidden");
-  //     } else {
-  //       document.body.classList.add("overflow_hidden");
-  //     }
-  //   }
-  // }, [navSocialIcon]);
 
   return (
     <>
@@ -81,7 +72,7 @@ const Header = () => {
             <Link href="/">
               <PageLogo />
             </Link>
-            {/* SAMLL SREEN MENUICONS */}
+            {/* SMALL SCREEN MENU ICONS */}
             <div
               onClick={() => setOpen(!open)}
               className="flex flex-col sm:hidden bg-transparent border-0 relative z-50 cursor-pointer"
@@ -182,9 +173,9 @@ const Header = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <TiktokIcon />
+                        <TikTokIcon />
                         <span className="text-white opacity-70 ms-4 text-md font-Segoe font-normal">
-                          Tiktok
+                          TikTok
                         </span>
                       </Link>
                       <Link
@@ -269,20 +260,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {/* SOCIAL ICONS POPUP */}
-      {/* <div
-        className={`fixed min-h-screen z-20 w-full ${
-          navSocialIcon ? "!hidden" : "block"
-        }`}
-        onClick={() => setNavSocialIcon(true)}
-      >
-        <div
-          onClick={() => setNavSocialIcon(true)}
-          className="relative h-full z-50"
-        >
-          <SocialPopUp />
-        </div>
-      </div> */}
     </>
   );
 };

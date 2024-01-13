@@ -5,11 +5,11 @@
 
 import React from "react";
 import Image from "next/image";
-import { UnderLIneText } from "../common/Icon";
+import { UnderLineText } from "../common/Icon";
 import { CenterBlueShadow } from "../common/Icon";
 
 const OurMission = () => {
-  const playerImageMission = "stebi-nft-mission";
+  const playerImageMission = "stebi-card-mission";
   return (
     <section className="sm:py-10 py-8 lg:mt-14 relative">
       <div className="lg:w-[600px] lg:h-[700px] w-1/4 absolute -end-20 top-10 z-0">
@@ -66,7 +66,7 @@ const OurMission = () => {
                 <span className="relative">
                   Our Mission{" "}
                   <span className="absolute -bottom-2 left-0">
-                    <UnderLIneText />
+                    <UnderLineText />
                   </span>
                 </span>
               </h2>

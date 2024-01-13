@@ -17,17 +17,17 @@ const UniqueAthletifi = () => {
             >
               <span className="relative after:content after:absolute after:bottom-[-7px] sm:after:bottom-[-2px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat mb-4 lg:leading-[60px] leading-[120%]">
                 {/* What Makes */}
-                Beyond the Numbers: 
+                Beyond the Numbers:
               </span>{" "}
               {/* AthletiFi Unique */}
               True Player Insights
             </h2>
-            <span 
+            <span
               className="text-primary text-lgxl font-HelveticaNeueRegular leading-normal"
               data-aos="fade-up"
               data-aos-duration="600"
               data-aos-easing="linear"
-              data-aos-delay="300" 
+              data-aos-delay="300"
               data-aos-offset="200"
             >
               {/* Empowering Tomorrow's Soccer Stars */}
@@ -43,17 +43,22 @@ const UniqueAthletifi = () => {
               <p className="font-Segoe text-md opacity-80 text-primary text-center md:pb-10 pb-5 mt-4">
                 {/* Stats allow friends, family, and fans to easily support and
                 follow their favorite players or players in their community */}
-                Soccer is an intricate dance of strategy, skill, and raw athleticism. While objective game statistics provide a glimpse into a player's contribution, they barely scratch the surface.
-                {" "}
+                Soccer is an intricate dance of strategy, skill, and raw
+                athleticism. While objective game statistics provide a glimpse
+                into a player's contribution, they barely scratch the surface.{" "}
                 <span className="block md:mt-4 mt-2">
-                {/* <span className="lg:block"> */}
-                  Every single game includes thousands of interactions – goals, passes, shots, assists, etc. This complexity makes monitoring a player’s skill progression challenging.
+                  {/* <span className="lg:block"> */}
+                  Every single game includes thousands of interactions – goals,
+                  passes, shots, assists, etc. This complexity makes monitoring
+                  a player’s skill progression challenging.
                 </span>
                 <span className="block md:mt-4 mt-2">
                   {/* On the other hand, stats allow coaches and scouts to make
                   data-driven choices when building their roster and in-game
                   strategy */}
-                AthletiFi's proprietary algorithm translates raw data into comprehensive player ratings, offering a precise perspective of a player's on-field impact.
+                  AthletiFi's proprietary algorithm translates raw data into
+                  comprehensive player ratings, offering a precise perspective
+                  of a player's on-field impact.
                 </span>
               </p>
             </div>
@@ -76,7 +81,7 @@ const UniqueAthletifi = () => {
             </div>
           </div>
         </div>
-        {/* FOOTBALL IMAGE CORNOR*/}
+        {/* FOOTBALL IMAGE CORNER*/}
         <Image
           className="absolute lg:w-[220px] sm:w-[150px] w-[100px] -bottom-8 right-0 z-0"
           src="/assets/img/png/unique-football.png"
