@@ -39,7 +39,7 @@ const SoccerExpensive = () => {
                 prohibitive costs that reduce accessibility and limit
                 participation. Club soccer is creating a system that excludes
                 potential players from less privileged backgrounds. */}
-                AthletiFi’s player cards keep the thrill of soccer at your fingertips. With dynamically updating performance stats and thrilling highlight clips, you will never miss a moment of your favorite player's progression. All the while knowing that their journey is made possible by your support. 
+                AthletiFi’s player cards keep the thrill of soccer at your fingertips. With dynamically updating performance stats and thrilling highlight clips, you will never miss a moment of your favorite player's progression. All the while knowing that their journey is just the beginning. 
               </p>
               <div className="flex lg:justify-start justify-center items-center mt-10">
                 <Link href="/about-us">

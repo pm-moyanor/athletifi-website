@@ -1,4 +1,4 @@
-// WhoWeAre.tsx
+// LookingForward.tsx
 
 // This component renders the "Who We Are" section on the "About Us" page.
 // It provides background information about the company and its team.
@@ -7,7 +7,7 @@ import React from "react";
 import { BlueShodow, UnderLIneText } from "../common/Icon";
 import Image from "next/image";
 
-const WhoweAre = () => {
+const LookingForward = () => {
   return (
     <section className="pt-10 pb-16 sm:mb-14 sm:pb-12 lg:mb-20 relative">
       <div className="absolute top-0 xl:-top-[70px] -end-[80px]  xl:w-[250px] xl:h-[380px] z-0">
@@ -42,25 +42,18 @@ const WhoweAre = () => {
           >
             <h2 className="font-HelveticaNeueMedium md:text-5xl text-[26px] sm:text-4xl text-[#FDFEFF] font-medium leading-[60px] relative z-20 text-center md:mb-4">
               <span className="relative ">
-                Who we Are
+                Looking Forward
                 <span className="absolute -bottom-2 left-0 z-0">
                   <UnderLIneText />
                 </span>
               </span>
             </h2>
             <p className="font-Segoe font-normal text-md leading-7 text-center pb-0.5 text-[#FDFEFF] opacity-80 m-0 sm:pt-4 lg:max-w-[769px] mx-auto sm:px-6 px-3 xl:px-0 relative z-20">
-              Welcome to the future of sports collectibles! We've revolutionized
-              the world of trading cards by integrating dynamic statistics into
-              every card. Now, every goal, pass, and block is updated on the
-              digital trading card within 48 hours after every game.
+              Our mission is to create tools that help keep parents, friends, and community members connected with the next generation of soccer players, to make sure they never miss a goal, pass or tackle again.
+              As we continue to grow, we plan to introduce new features and capabilities to our platform, always aiming to enhance user engagement and to celebrate the achievements of young soccer talents.
               <span className="block pb-2">
                 {" "}
-                But we're not just about collectibles. Every purchase you make
-                directly supports underserved athletes, making club soccer more
-                accessible and empowering dreams to flourish. Join us in this
-                incredible journey to elevate the world of sports collectibles
-                and make a positive impact on the lives of aspiring athletes.
-                The future of sports collectibles starts now!
+                Looking ahead, AthletiFi is committed to broadening our impact on the global soccer landscape. We envision a world where technology becomes an integral part of the youth soccer experience, helping to discover and nurture emerging talents. We aim to be a catalyst for positive change, contributing to the growth and popularity of the sport we love. AthletiFi is excited to be part of this journey, driving innovation in youth soccer and building a lasting legacy in the sport.
               </span>
             </p>
           </div>
@@ -70,4 +63,4 @@ const WhoweAre = () => {
   );
 };
 
-export default WhoweAre;
+export default LookingForward;
