@@ -5,7 +5,7 @@ import {
   ArrowButton,
   FacebookIcon,
   LinkedInIcon,
-  TiktokIcon,
+  TikTokIcon,
   TwitterIcon,
 } from "./Icon";
 
@@ -22,9 +22,9 @@ const SocialPopUp = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <TiktokIcon />
+            <TikTokIcon />
             <span className="text-white opacity-70 ms-4 text-md font-Segoe font-normal">
-              Tiktok
+              TikTok
             </span>
           </Link>
           <Link

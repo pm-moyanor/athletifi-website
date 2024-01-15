@@ -3,12 +3,10 @@ import React from "react";
 import Slider from "react-slick";
 
 const StatsReimagined = () => {
-  // const playerImageCenter = "jude-nft-img";
-  // const playerImageRight = "colin-nft-img";
-  const playerImageCenter = "jose-nft-img";
-  const playerImageRight = "stebi-nft-img";
-  const playerImageLeft = "anderson-nft-img-new";
-  
+  const playerImageCenter = "jose-card-img";
+  const playerImageRight = "stebi-card-img";
+  const playerImageLeft = "anderson-card-img-new";
+
   // SLIDER
   const settings = {
     arrows: false,
@@ -69,12 +67,12 @@ const StatsReimagined = () => {
             </span>{" "}
             {/* Exposure elevated. */}
           </h2>
-          <span 
+          <span
             className="text-primary text-lgxl font-HelveticaNeueRegular leading-normal mt-4"
             data-aos="fade-up"
             data-aos-duration="600"
             data-aos-easing="linear"
-            data-aos-delay="300" 
+            data-aos-delay="300"
             data-aos-offset="200"
           >
             Never fall behind on their progress
@@ -99,26 +97,26 @@ const StatsReimagined = () => {
               AthletiFi gives you the tools to follow their journey at whatever time-commitment level you can afford. Don’t have time to watch a full game? Catch up with highlight videos of the best plays for each player. Only have a glance to spare? The easy-to-follow player stats will catch you up on their latest performance.
             </span>
           </p>
-          {/* CARD SLIDER SAMLL SCREEN */}
+          {/* CARD SLIDER SMALL SCREEN */}
           <Slider
             {...settings}
             className="w-full justify-between items-center pt-5 md:pt-0 max-w-[1000px] mx-auto lg:justify-center relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:-top-20 before:left-1/2 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/2 before:-z-10 before:rounded-full pb-6 sm:pb-0"
           >
             {/* Left Image */}
-            <div 
+            <div
               className="md:py-16 sm:pb-8" //ml-[-20px]"
               data-aos="fade-up"
               data-aos-duration="500"
               data-aos-easing="ease"
               data-aos-delay="400"
             >
-              <div style={{ transform: 'translateX(-20px)' }}>
+              <div style={{ transform: "translateX(-20px)" }}>
                 <Image
                   className="mx-auto w-full max-w-[350px]"
                   src={`/assets/img/webp/${playerImageLeft}.webp`}
                   width={280}
                   height={280}
-                  alt="left-nft-img"
+                  alt="left-card-img"
                 />
               </div>
             </div>
@@ -136,7 +134,7 @@ const StatsReimagined = () => {
                   src={`/assets/img/webp/${playerImageCenter}.webp`}
                   width={409}
                   height={409}
-                  alt="center-nft-image"
+                  alt="center-card-image"
                 />
               </div>
             </div>
@@ -148,13 +146,13 @@ const StatsReimagined = () => {
               data-aos-easing="ease"
               data-aos-delay="1200"
             >
-              <div style={{ transform: 'translateX(20px)' }}>
+              <div style={{ transform: "translateX(20px)" }}>
                 <Image
                   className="mx-auto w-full max-w-[350px] lg:max-w-[350px]"
                   src={`/assets/img/webp/${playerImageRight}.webp`}
                   width={280}
                   height={280}
-                  alt="right-nft-image"
+                  alt="right-card-image"
                 />
               </div>
             </div>

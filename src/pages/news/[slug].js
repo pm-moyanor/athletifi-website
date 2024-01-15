@@ -1,4 +1,4 @@
-import Backtotop from "../../components/common/Backtotop";
+import BackToTop from "../../components/common/BackToTop";
 import CommonHero from "../../components/common/CommonHero";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header";
@@ -16,16 +16,18 @@ import { filterTargetArticle } from "../../../src/utils/helpers";
 
 const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
   let targetArticle = null;
-  if (newsDetailData && newsDetailData.data && newsDetailData.data.length > 0) targetArticle = newsDetailData.data[0];
-  
+  if (newsDetailData && newsDetailData.data && newsDetailData.data.length > 0)
+    targetArticle = newsDetailData.data[0];
+
   // Filter out the target article from the allNewsList data
   const everyOtherArticle = filterTargetArticle(allNewsData, targetArticle);
-  
+
   // SEO
   const hero = {
     heading: targetArticle ? targetArticle.title : `Article not found`,
     title: "News and Updates for AthletiFi Sports Cards",
-    subtitle: "Here you can find all the latest news and developments from AthletiFi!",
+    subtitle:
+      "Here you can find all the latest news and developments from AthletiFi!",
   };
 
   // const pageSEO = { title: `${newsDetailData && newsDetailData.data[0].title}`, description: `${newsDetailData.data[0].description}`, websiteURL: `https://athletifi-website.vercel.app`, image: `https://vidalco.in${newsDetailData.data[0].image.url}`,};
@@ -40,10 +42,9 @@ const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
           <CommonHero hero={hero} />
         </div>
         <TargetArticleContent newsDetailData={newsDetailData} />
-        {/* <RecentNewsInsights /> */}
         <NewsInsightsCards allNewsList={everyOtherArticle} />
         <Footer />
-        <Backtotop />
+        <BackToTop />
       </div>
     </>
   );
@@ -51,7 +52,6 @@ const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
 
 export async function getServerSideProps(context) {
   const { slug } = context.query;
-  // console.log("slugslugslug", slug)
   try {
     const response = await GetRequestHandler(NewsDetailApiHandler(slug));
     const newsresponse = await GetRequestHandler(NewsListApiHandler());

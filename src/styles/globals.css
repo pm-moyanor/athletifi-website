@@ -30,16 +30,16 @@ select:-webkit-autofill:focus {
 
   @font-face {
     font-family: "HelveticaNeueLight";
-    src: url("../../public/assets/fonts/HelveticaNeueLight.ttf"); 
-    font-weight: 300; 
+    src: url("../../public/assets/fonts/HelveticaNeueLight.ttf");
+    font-weight: 300;
     font-display: swap;
     font-style: normal;
   }
-  
+
   @font-face {
     font-family: "HelveticaNeueRegular";
-    src: url("../../public/assets/fonts/HelveticaNeueRegular.ttf"); 
-    font-weight: 400; 
+    src: url("../../public/assets/fonts/HelveticaNeueRegular.ttf");
+    font-weight: 400;
     font-display: swap;
     font-style: normal;
   }
@@ -47,7 +47,7 @@ select:-webkit-autofill:focus {
   .font-HelveticaNeueMedium {
     font-family: "HelveticaNeueMedium";
   }
-  
+
   .font-HelveticaNeueRegular {
     font-family: "HelveticaNeueRegular";
   }
@@ -55,7 +55,7 @@ select:-webkit-autofill:focus {
   .font-HelveticaNeueLight {
     font-family: "HelveticaNeueLight";
   }
-  
+
   /* FONT-FAMILY SEGOE-UI */
   @font-face {
     font-family: "SegoeUI";
@@ -128,41 +128,25 @@ html {
 }
 
 /* ==== ==== */
-.loading-animation{
+.loading-animation {
   overflow: hidden;
   background: #d0d0d0;
 }
 
-.loading-animation::before{
+.loading-animation::before {
   content: "";
   display: block;
   height: 100%;
   width: 100%;
   animation: loading 3s infinite;
-  background: linear-gradient(to right, transparent,#807b7baf,transparent);
+  background: linear-gradient(to right, transparent, #807b7baf, transparent);
 }
 
 @keyframes loading {
-  0%{
-      transform: translateX(-100%);
+  0% {
+    transform: translateX(-100%);
   }
-  100%{
-      transform: translateX(100%);
-  }
-}
-
-/* RECENT NEWS SLIDER HEIGHT  */
-@media (max-width: 1023.9px) {
-  #recentnews_slider .slick-track {
-    display: flex !important;
-  }
-
-  #recentnews_slider .slick-slide {
-    height: inherit !important;
-    display: flex !important;
-  }
-
-  #recentnews_slider .slick-slide > div {
-    display: flex;
+  100% {
+    transform: translateX(100%);
   }
 }

@@ -1,11 +1,11 @@
-import Backtotop from "@/components/common/Backtotop";
+import BackToTop from "@/components/common/BackToTop";
 import CommonHero from "@/components/common/CommonHero";
 import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
 import Seo from "@/components/common/Seo";
 import FocusArticle from "@/components/news-insights/FocusArticle";
 import NewsInsightsCards from "@/components/news-insights/NewsInsightsCards";
-import { filterTargetArticle } from "@/utils/helpers"; 
+import { filterTargetArticle } from "@/utils/helpers";
 import { SEO_CONFIG } from "@/utils/seoConfig";
 
 // Importing API handlers for fetching news data
@@ -29,12 +29,12 @@ const NewsPage = ({ newsListData, allNewsList }) => {
     // title: "Your Title Here",
     // subtitle: "Your Subtitle Here",
   };
-    // Update dynamic parts of the SEO properties
-    const newsPageSEO = {
-      ...SEO_CONFIG.news, // Spread the static properties
-      description: `${targetArticle && targetArticle.previewSummary}`, // Update the dynamic description
-      image: `https://vidalco.in${targetArticle && targetArticle.image.url}`, // Update the dynamic image URL
-    };
+  // Update dynamic parts of the SEO properties
+  const newsPageSEO = {
+    ...SEO_CONFIG.news, // Spread the static properties
+    description: `${targetArticle && targetArticle.previewSummary}`, // Update the dynamic description
+    image: `https://vidalco.in${targetArticle && targetArticle.image.url}`, // Update the dynamic image URL
+  };
 
   return (
     <>
@@ -48,7 +48,7 @@ const NewsPage = ({ newsListData, allNewsList }) => {
         <FocusArticle newsListData={newsListData} />
         <NewsInsightsCards allNewsList={filteredNewsList} />
         <Footer />
-        <Backtotop />
+        <BackToTop />
       </div>
     </>
   );
@@ -57,7 +57,7 @@ const NewsPage = ({ newsListData, allNewsList }) => {
 // Server-side data fetching for the News and Insights page
 export async function getServerSideProps() {
   try {
-        // Fetching news list and filter data
+    // Fetching news list and filter data
     const response = await GetRequestHandler(NewsListApiHandler());
     const responseFilter = await GetRequestHandler(NewsListFilterApiHandler());
     const NewsData = responseFilter && responseFilter.data;

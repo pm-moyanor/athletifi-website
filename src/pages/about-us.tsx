@@ -6,7 +6,7 @@
 import WhoWeAre from "@/components/about-us/WhoWeAre";
 import OurMission from "@/components/about-us/OurMission";
 import LookingForward from "@/components/about-us/LookingForward";
-import Backtotop from "@/components/common/Backtotop";
+import BackToTop from "@/components/common/BackToTop";
 import CommonHero from "@/components/common/CommonHero";
 import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
@@ -30,10 +30,10 @@ const AboutUs = () => {
           <CommonHero hero={hero} />
         </div>
         <OurMission />
-        <WhoWeAre/>
+        <WhoWeAre />
         <LookingForward />
         <Footer />
-        <Backtotop />
+        <BackToTop />
       </div>
     </>
   );

@@ -12,7 +12,7 @@ interface NewsProps {
   allNewsList: any;
 }
 
-const LatestNews: React.FC<NewsProps> = (props) => {
+const LatestNews: React.FC<NewsProps> = props => {
   const { allNewsList } = props;
   const DataArray = allNewsList.data;
   const itemsPerPage = 3;
@@ -25,8 +25,6 @@ const LatestNews: React.FC<NewsProps> = (props) => {
   const endIndex = startIndex + itemsPerPage;
   const displayedItems = DataArray.slice(startIndex, endIndex);
 
-
- 
   return (
     <>
       <div className="py-14 md:py-0 relative before:content-[''] before:absolute sm:before:w-[448px] before:w-[248px] sm:before:h-[448px] before:h-[248px] before:top-0 before:left-0 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/4 before:z-0 before:rounded-full after:content-[''] after:absolute sm:after:w-[448px] sm:after:h-[448px] after:w-[248px] after:h-[248px] after:bottom-20 after:right-0 after:bg-shadow_blue after:blur-[111px] after:opacity-25 after:translate-x-1/4 after:z-0 after:rounded-full">
@@ -55,7 +53,7 @@ const LatestNews: React.FC<NewsProps> = (props) => {
                   key={index}
                 >
                   <Image
-                  className="md:w-[315px] max-h-[244px] rounded-[10px] object-cover w-full"
+                    className="md:w-[315px] max-h-[244px] rounded-[10px] object-cover w-full"
                     src={`https://vidalco.in${val.image.url}`}
                     width={315}
                     height={240}
@@ -79,7 +77,7 @@ const LatestNews: React.FC<NewsProps> = (props) => {
                       {val.categories.map((obj: any, i: any) => {
                         return (
                           <span key={i} className="flex gap-x-3">
-                            <button className="lg:text-base md:text-[13px] text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-[10px] sm:px-[18px] bg-matchtittles rounded-full leading-[150%] duration-300 hover:text-white">
+                            <button className="lg:text-base md:text-[13px] text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-[10px] sm:px-[18px] bg-matchtitles rounded-full leading-[150%] duration-300 hover:text-white">
                               {obj.title}
                             </button>
                           </span>
