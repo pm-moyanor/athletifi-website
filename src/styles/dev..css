@@ -89,7 +89,7 @@
   -moz-appearance: none;
   width: 18px;
   height: 18px;
-  border: 2px solid #60666B;
+  border: 2px solid #60666b;
   background: transparent;
   border-radius: 4px;
   outline: none;
@@ -114,6 +114,20 @@
   opacity: 1;
 }
 
+/* ============================ Custom 404 - Not Found Page ================================= */
+
+.not-found__container {
+  min-height: 50vh;
+}
+
+.not-found__link {
+  color: #00c5f4;
+  font-weight: bold;
+}
+
+.not-found__link:hover {
+  text-decoration: underline;
+}
 
 /* PRELOADER ANIMATION */
 @keyframes preloader_img {
