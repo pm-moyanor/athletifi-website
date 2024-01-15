@@ -22,6 +22,12 @@ Our project is about more than just player cards - it's about building a sustain
 
 - **CMS**: Strapi
 
+## ESLint and Prettier Setup for VS Code
+
+For maintaining consistent code quality and formatting, we use `@ijsto/eslint-config`, which is intended for use with VS Code.
+
+For detailed setup instructions, please refer to the [`@ijsto/eslint-config` README](https://github.com/ijsto/eslint-config).
+
 ## Getting Started
 
 1. Clone the repository and navigate to the project directory.
