@@ -63,7 +63,7 @@ const StatsReimagined = () => {
           >
             <span className="relative after:content after:absolute after:bottom-[-8px] sm:after:bottom-[-4px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
               {/* Stats Reimagined. */}
-              Fundraising Reimagined.
+              Follow Tomorrow’s Soccer Stars Today
             </span>{" "}
             {/* Exposure elevated. */}
           </h2>
@@ -75,7 +75,7 @@ const StatsReimagined = () => {
             data-aos-delay="300"
             data-aos-offset="200"
           >
-            Empowering Tomorrow's Soccer Stars
+            Never fall behind on their progress
           </span>
           <p
             className="font-Segoe font-normal text-md text-center text-[#FDFEFF] leading-7 px-4 md:px-0 max-w-[700px] lg:max-w-[769px] mx-auto md:mt-4 mt-2 relative z-20"
@@ -89,17 +89,12 @@ const StatsReimagined = () => {
             statistics into every card, taking your passion for the game to new
             heights. Every goal, pass, and block is updated on the digital
             trading card within 48 hours after every game. */}
-            Every young soccer star harbors dreams that pulse with potential. At
-            AthletiFi, we're reshaping and nurturing dreams through a
-            fundraising paradigm tailored exclusively for youth soccer. We are
-            the GoFundMe for young soccer players.{" "}
+            Every young soccer star harbors dreams that pulse with potential. At AthletiFi, we believe the more support young players receive the more likely they are to succeed.
+            {" "}
             <span className="block md:mt-4 mt-2">
               {/* Each purchase directly supports underserved athletes, making club
               soccer more accessible and empowering dreams to flourish. */}
-              Our platform is not just about funds— it bridges the gap to foster
-              connections. Supporters become part of an athlete's journey,
-              receiving captivating updates and witnessing their contributions’
-              ripple effect on both players and their clubs.
+              AthletiFi gives you the tools to follow their journey at whatever time-commitment level you can afford. Don’t have time to watch a full game? Catch up with highlight videos of the best plays for each player. Only have a glance to spare? The easy-to-follow player stats will catch you up on their latest performance.
             </span>
           </p>
           {/* CARD SLIDER SMALL SCREEN */}

@@ -1,12 +1,12 @@
 # AthletiFi Website
 
-This is the repository for the www.athleti.fi website.
+This is the repository for the athleti.fi website.
 
-Our mission at AthletiFi is to redefine the way soccer fans engage with and support emerging talent in the world of soccer. We do this by creating physical sports trading cards that dynamically display a player's latest performance stats using AI-assisted video recognition technology.
+Our mission at AthletiFi is to redefine the way soccer fans engage with and support emerging talent in the world of soccer. We do this by creating digital sports trading cards that dynamically display a player's latest performance stats using AI-assisted video recognition technology.
 
-Each card represents a young player from elite soccer academies with whom we've partnered. By acquiring these trading cards, fans can invest in promising young athletes and follow their journey in a unique and engaging way. Additionally, the cards will be usable in an upcoming Web3 game, adding an extra layer of interactivity and fun.
+Each card represents a young player from elite soccer academies with whom we've partnered. By acquiring these player cards, fans can follow and support promising young athletes and follow their journey in a unique and engaging way. Additionally, the cards will be usable in an upcoming Web3 game, adding an extra layer of interactivity and fun.
 
-Our project is about more than just soccer and trading cards - it's about building a sustainable ecosystem that benefits players, academies, and communities. AthletiFi employs a revenue-sharing model where proceeds from the platform go directly back to supporting the young players.
+Our project is about more than just player cards - it's about building a sustainable ecosystem that benefits players, academies, and communities. AthletiFi employs a revenue-sharing model where proceeds from the platform go directly back to supporting the young players.
 
 ## Technology Stack
 
