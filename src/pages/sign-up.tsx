@@ -5,7 +5,7 @@ import Seo from "@/components/common/Seo";
 import SignUpForm from "@/components/sign-up/SignUpForm";
 import { SEO_CONFIG } from "@/utils/seoConfig";
 
-const Signup = () => {
+const SignUp = () => {
   // SEO
   const hero = {
     heading: "Start Your Digital Soccer Card Collection Journey",
@@ -23,8 +23,8 @@ const Signup = () => {
       </div>
       <SignUpForm />
       <Footer />
-    </> 
+    </>
   );
 };
 
-export default Signup;
+export default SignUp;

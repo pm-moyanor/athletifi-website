@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import { ButtonWhiteArrow, UnderLIneText } from "../common/Icon";
+import { ButtonWhiteArrow, UnderLineText } from "../common/Icon";
 import { PostRequestHandler } from "../common/api/Api";
 import { PostNewsLetterHandler } from "../common/api/ApiUrls";
 import { ToastContainer, toast } from "react-toastify";
@@ -60,12 +60,12 @@ const SignUpForm = () => {
                 <span className="relative">
                   Sign Up!
                   <span className="absolute -bottom-3 left-0">
-                    <UnderLIneText />
+                    <UnderLineText />
                   </span>
                 </span>
               </h2>
               <p className="font-Segoe font-normal text-md md:max-w-[365px] text-center lg:text-start text-[#FDFEFF] mx-auto lg:ms-0 leading-[27px] sm:pt-4 md:pt-3">
-                Signup for exclusive updates! Become part of the sport's
+                Sign-up for exclusive updates! Become part of the sport's
                 revolution.
               </p>
               <p className="font-Segoe font-normal text-md md:max-w-[600px] lg:max-w-[543px] text-center lg:text-start text-white mx-auto lg:ms-0 opacity-70 mt-2 sm:pt-0.5 leading-[27px]">
@@ -76,7 +76,7 @@ const SignUpForm = () => {
               </p>
               <form
                 action="submit"
-                onSubmit={(e) => formHandler(e)}
+                onSubmit={e => formHandler(e)}
                 className="w-full sm:w-3/4"
               >
                 <div className="flex flex-col mt-6">
@@ -94,7 +94,7 @@ const SignUpForm = () => {
                     placeholder="Email"
                     className="font-Sugoe font-normal input:-webkit-autofill focus:border-[white] autofill:none text-base text-[#FDFEFF] leading-6 py-5 px-4 bg-transparent w-full lg:max-w-[400px] mt-[5px] border border-1 border-[#FFFFFF40] outline-none"
                     id="email"
-                    onChange={(e) =>
+                    onChange={e =>
                       setData({
                         ...data,
                         email: e.target.value,
@@ -106,7 +106,7 @@ const SignUpForm = () => {
                   <input
                     type="checkbox"
                     id="Privacy-Policy"
-                    onChange={(event) => setChecked(event.target.checked)}
+                    onChange={event => setChecked(event.target.checked)}
                   />
                   <label
                     htmlFor="Privacy-Policy"

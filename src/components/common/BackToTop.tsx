@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-const Backtotop = () => {
+const BackToTop = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const scrollToTop = () => {
@@ -44,4 +44,4 @@ const Backtotop = () => {
     </>
   );
 };
-export default Backtotop;
+export default BackToTop;
