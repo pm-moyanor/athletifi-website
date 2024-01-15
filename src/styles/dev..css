@@ -122,7 +122,7 @@
 
 .not-found__link {
   color: #00c5f4;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .not-found__link:hover {
