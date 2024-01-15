@@ -1,29 +1,29 @@
 // This component renders the header of the website.
 // It includes navigation links and other header elements.
 
-import React, { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import React, { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
   ArrowButton,
   FacebookIcon,
   LinkedInIcon,
   TikTokIcon,
   TwitterIcon,
-} from "./Icon";
-import { PageLogo, CancelIcon } from "./Icon";
-import SocialPopUp from "./SocialPopUp";
-import Image from "next/image";
+} from './Icon';
+import { PageLogo } from './Icon';
+import SocialPopUp from './SocialPopUp';
+import Image from 'next/image';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const path = useRouter().pathname;
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       if (open) {
-        document.body.classList.add("overflow_hidden");
+        document.body.classList.add('overflow_hidden');
       } else {
-        document.body.classList.remove("overflow_hidden");
+        document.body.classList.remove('overflow_hidden');
       }
     }
   }, [open]);
@@ -43,9 +43,9 @@ const Header = () => {
       setIsVisible(isVisible);
       prevScrollPos = currentScrollPos;
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
   // ====================================================== nav-social-icon
@@ -64,8 +64,8 @@ const Header = () => {
         ref={navbarRef}
         id="nav_bar"
         className={`navbar fixed top-0 black w-full bg-bgnav py-2 z-40 ${
-          scrollPosition > 200 ? "slideUp" : "slideDown"
-        } ${isVisible ? "slideDown" : "slideUp"}`}
+          scrollPosition > 200 ? 'slideUp' : 'slideDown'
+        } ${isVisible ? 'slideDown' : 'slideUp'}`}
       >
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
           <div className="flex items-center justify-between">
@@ -84,8 +84,8 @@ const Header = () => {
             <div
               className={
                 open
-                  ? "nav_open h-full w-full z-20 fixed top-0 left-0 duration-500 transition-all bg-[#000b13] min-h-screen"
-                  : "sm:relative fixed min-h-screen sm:min-h-full -left-full sm:left-0 duration-500 sm:ml-0 nav_open sm:mt-0 z-40 top-0"
+                  ? 'nav_open h-full w-full z-20 fixed top-0 left-0 duration-500 transition-all bg-[#000b13] min-h-screen'
+                  : 'sm:relative fixed min-h-screen sm:min-h-full -left-full sm:left-0 duration-500 sm:ml-0 nav_open sm:mt-0 z-40 top-0'
               }
             >
               {/* NAV PAGE LINKS */}
@@ -95,7 +95,7 @@ const Header = () => {
                     onClick={() => setOpen(false)}
                     href="/"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                      path == "/" ? "!opacity-100" : ""
+                      path == '/' ? '!opacity-100' : ''
                     }`}
                   >
                     Home
@@ -106,7 +106,7 @@ const Header = () => {
                     onClick={() => setOpen(false)}
                     href="/about-us"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                      path == "/about-us" ? "!opacity-100 " : ""
+                      path == '/about-us' ? '!opacity-100 ' : ''
                     }`}
                   >
                     About us
@@ -117,7 +117,7 @@ const Header = () => {
                     onClick={() => setOpen(false)}
                     href="/news?page=1"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                      path == "/news" ? "!opacity-100" : ""
+                      path == '/news' ? '!opacity-100' : ''
                     }`}
                   >
                     News
@@ -128,7 +128,7 @@ const Header = () => {
                     onClick={() => setOpen(false)}
                     href="/dashboard"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                      path == "/dashboard" ? "!opacity-100" : ""
+                      path == '/dashboard' ? '!opacity-100' : ''
                     }`}
                   >
                     Dashboard
@@ -138,7 +138,7 @@ const Header = () => {
                   <button
                     onClick={SocialIcon}
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                      path == "/SocialIcons" ? "!opacity-100" : ""
+                      path == '/SocialIcons' ? '!opacity-100' : ''
                     }`}
                   >
                     Socials
@@ -155,14 +155,14 @@ const Header = () => {
                 >
                   <button
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                      path == "/SocialIcons" ? "!opacity-100" : ""
+                      path == '/SocialIcons' ? '!opacity-100' : ''
                     }`}
                   >
                     Socials
                   </button>
                   <div
                     className={` mt-3 h-[180px] overflow-scroll scroll_bar_hidden ${
-                      navSocialIcon ? "!hidden" : "block"
+                      navSocialIcon ? '!hidden' : 'block'
                     }`}
                   >
                     <div className="flex gap-4 flex-col">

@@ -3,10 +3,10 @@
 // This component displays the latest news articles on the homepage.
 // It fetches data from the Strapi CMS and renders it in a list format.
 
-import Image from "next/image";
-import Link from "next/link";
-import React, { useState } from "react";
-import BlueButton from "../common/BlueButton";
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import BlueButton from '../common/BlueButton';
 
 interface NewsProps {
   allNewsList: any;
@@ -62,13 +62,13 @@ const LatestNews: React.FC<NewsProps> = props => {
                   <div className="sm:pt-0 pt-3">
                     {/* NEWS HEADING */}
                     <h3 className="sm:text-basemd text-[18px] text-primary font-HelveticaNeueMedium leading-[140%]">
-                      {val.title}{" "}
+                      {val.title}{' '}
                     </h3>
                     <div className="flex sm:items-center sm:flex-row flex-col sm:gap-3 gap-2 pt-2">
                       <h4 className="lg:pe-3 ">
                         <span className="lg:text-md text-base text-primary font-Segoe opacity-80 font-normal lg:pe-2 pe-1">
                           by
-                        </span>{" "}
+                        </span>{' '}
                         <span className="lg:text-base text-sm text-primary font-Segoe font-semibold">
                           {val.author.fullName}
                         </span>
@@ -134,7 +134,7 @@ const LatestNews: React.FC<NewsProps> = props => {
           src="/assets/img/svg/grid-lines.svg"
           width={716}
           height={692}
-          alt={"grid image"}
+          alt={'grid image'}
         />
         {/* BACKGROUND LEFT GRID */}
         <Image
@@ -142,7 +142,7 @@ const LatestNews: React.FC<NewsProps> = props => {
           src="/assets/img/svg/grid-lines.svg"
           width={716}
           height={692}
-          alt={"grid image"}
+          alt={'grid image'}
         />
       </div>
     </>

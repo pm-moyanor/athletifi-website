@@ -1,13 +1,13 @@
-import React from "react";
-import { BlueShadow, UnderLineText } from "../common/Icon";
-import Image from "next/image";
+import React from 'react';
+import { BlueShadow, UnderLineText } from '../common/Icon';
+import Image from 'next/image';
 
 const playerStats = {
   Attacking: 0,
-  Goalkeeping: 90,
-  Physical: 90,
-  Mentality: 20,
   Defending: 50,
+  Goalkeeping: 90,
+  Mentality: 20,
+  Physical: 90,
 };
 
 const PlayerStats = () => {
@@ -33,7 +33,7 @@ const PlayerStats = () => {
           <div className="flex flex-col p-5">
             {Object.entries(playerStats).map(([stat, value]) => {
               if (
-                (stat === "Goalkeeping" || stat === "Attacking") &&
+                (stat === 'Goalkeeping' || stat === 'Attacking') &&
                 value === 0
               )
                 return null;

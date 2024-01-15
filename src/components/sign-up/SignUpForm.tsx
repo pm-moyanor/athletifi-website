@@ -1,17 +1,17 @@
-import Image from "next/image";
-import React, { useState } from "react";
-import { ButtonWhiteArrow, UnderLineText } from "../common/Icon";
-import { PostRequestHandler } from "../common/api/Api";
-import { PostNewsLetterHandler } from "../common/api/ApiUrls";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Image from 'next/image';
+import React, { useState } from 'react';
+import { ButtonWhiteArrow, UnderLineText } from '../common/Icon';
+import { PostRequestHandler } from '../common/api/Api';
+import { PostNewsLetterHandler } from '../common/api/ApiUrls';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
   const intialState = {
-    email: "",
+    email: '',
   };
   const [data, setData] = useState(intialState);
 
@@ -25,13 +25,13 @@ const SignUpForm = () => {
         formDetails
       );
       if (response.data) {
-        toast("✅ We received your message !", {
-          position: "bottom-right",
+        toast('✅ We received your message !', {
+          position: 'bottom-right',
         });
         setLoading(false);
         setData({
           ...data,
-          email: "",
+          email: '',
         });
       } else {
         alert(`This attribute must be unique`);
@@ -65,14 +65,14 @@ const SignUpForm = () => {
                 </span>
               </h2>
               <p className="font-Segoe font-normal text-md md:max-w-[365px] text-center lg:text-start text-[#FDFEFF] mx-auto lg:ms-0 leading-[27px] sm:pt-4 md:pt-3">
-                Sign-up for exclusive updates! Become part of the sport's
+                Sign-up for exclusive updates! Become part of the sport&apos;s
                 revolution.
               </p>
               <p className="font-Segoe font-normal text-md md:max-w-[600px] lg:max-w-[543px] text-center lg:text-start text-white mx-auto lg:ms-0 opacity-70 mt-2 sm:pt-0.5 leading-[27px]">
-                By subscribing, you're not only embracing the future of sports
-                collectibles, but you're also at the ground floor of changing
-                the world of access to sports as we know them today-- a future
-                of sports where anyone can get exposure to scouts.
+                By subscribing, you&apos;re not only embracing the future of
+                sports collectibles, but you&apos;re also at the ground floor of
+                changing the world of access to sports as we know them today-- a
+                future of sports where anyone can get exposure to scouts.
               </p>
               <form
                 action="submit"
@@ -120,10 +120,10 @@ const SignUpForm = () => {
                   <button
                     type="submit"
                     className={`sm:w-full justify-center text-center sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black  join_now_btn transition duration-300 ease-in-out ${
-                      checked ? " bg-skyblue" : ""
+                      checked ? ' bg-skyblue' : ''
                     }`}
                   >
-                    {loading ? "Loading..." : " Sign Up"}
+                    {loading ? 'Loading...' : ' Sign Up'}
 
                     <span className="group-hover:translate-x-3 transition duration-300 ease-out">
                       <ButtonWhiteArrow />
