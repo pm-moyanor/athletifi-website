@@ -42,7 +42,6 @@ const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
           <CommonHero hero={hero} />
         </div>
         <TargetArticleContent newsDetailData={newsDetailData} />
-        {/* <RecentNewsInsights /> */}
         <NewsInsightsCards allNewsList={everyOtherArticle} />
         <Footer />
         <BackToTop />
