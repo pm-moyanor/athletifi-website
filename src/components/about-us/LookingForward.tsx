@@ -49,11 +49,23 @@ const LookingForward = () => {
               </span>
             </h2>
             <p className="font-Segoe font-normal text-md leading-7 text-center pb-0.5 text-[#FDFEFF] opacity-80 m-0 sm:pt-4 lg:max-w-[769px] mx-auto sm:px-6 px-3 xl:px-0 relative z-20">
-              Our mission is to create tools that help keep parents, friends, and community members connected with the next generation of soccer players, to make sure they never miss a goal, pass or tackle again.
-              As we continue to grow, we plan to introduce new features and capabilities to our platform, always aiming to enhance user engagement and to celebrate the achievements of young soccer talents.
+              Our mission is to create tools that help keep parents, friends,
+              and community members connected with the next generation of soccer
+              players, to make sure they never miss a goal, pass or tackle
+              again. As we continue to grow, we plan to introduce new features
+              and capabilities to our platform, always aiming to enhance user
+              engagement and to celebrate the achievements of young soccer
+              talents.
               <span className="block pb-2">
                 {" "}
-                Looking ahead, AthletiFi is committed to broadening our impact on the global soccer landscape. We envision a world where technology becomes an integral part of the youth soccer experience, helping to discover and nurture emerging talents. We aim to be a catalyst for positive change, contributing to the growth and popularity of the sport we love. AthletiFi is excited to be part of this journey, driving innovation in youth soccer and building a lasting legacy in the sport.
+                Looking ahead, AthletiFi is committed to broadening our impact
+                on the global soccer landscape. We envision a world where
+                technology becomes an integral part of the youth soccer
+                experience, helping to discover and nurture emerging talents. We
+                aim to be a catalyst for positive change, contributing to the
+                growth and popularity of the sport we love. AthletiFi is excited
+                to be part of this journey, driving innovation in youth soccer
+                and building a lasting legacy in the sport.
               </span>
             </p>
           </div>
@@ -63,8 +75,4 @@ const LookingForward = () => {
   );
 };
 
-<<<<<<< HEAD:src/components/about-us/WhoWeAre.tsx
-export default WhoWeAre;
-=======
 export default LookingForward;
->>>>>>> dev:src/components/about-us/LookingForward.tsx

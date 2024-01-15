@@ -70,7 +70,7 @@ const OurMission = () => {
                 className="flex justify-center lg:justify-start"
               >
                 <Image
-                  src="/assets/img/webp/what-we-do-nft-img.webp"
+                  src="/assets/img/webp/what-we-do-card-img.webp"
                   width={496}
                   height={603}
                   alt="what we do sec img"
