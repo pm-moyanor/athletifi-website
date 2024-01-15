@@ -3,44 +3,54 @@ import React, { useState } from "react";
 import { ButtonWhiteArrow, UnderLIneText } from "../common/Icon";
 import { PostRequestHandler } from "../common/api/Api";
 import { PostNewsLetterHandler } from "../common/api/ApiUrls";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast, ToastOptions } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
-  const intialState = {
+  const initialState = {
     email: "",
   };
-  const [data, setData] = useState(intialState);
+  const [data, setData] = useState(initialState);
 
   const formHandler = async (e: any) => {
     e.preventDefault();
     const formDetails = { data };
+    const toastOptions: ToastOptions = {
+      position: "bottom-right",
+      draggable: false,
+    };
+
     setLoading(true);
     if (checked) {
-      const response = await PostRequestHandler(
-        PostNewsLetterHandler(),
-        formDetails
-      );
-      if (response.data) {
-        toast("✅ We received your message !", {
-          position: "bottom-right",
-        });
-        setLoading(false);
-        setData({
-          ...data,
-          email: "",
-        });
-      } else {
-        alert(`This attribute must be unique`);
-        setLoading(false);
+      try {
+        const response = await PostRequestHandler(
+          PostNewsLetterHandler(),
+          formDetails
+        );
+        console.log(response);
+        if (response.data) {
+          toast("✅ You have successfully signed-up!", toastOptions);
+          setData({
+            ...data,
+            email: "",
+          });
+        } else if (response.response.status === 400) {
+          toast("This email has already been used to sign-up", toastOptions);
+        }
+      } catch (err) {
+        console.log(err);
+        toast("Hit an unknown error", toastOptions);
       }
     } else {
-      alert(`Checked the condition`);
-      setLoading(false);
+      toast(
+        "Please review and agree to the Terms and Privacy Policy",
+        toastOptions
+      );
     }
+    setLoading(false);
   };
   return (
     <section className="py-8 sm:py-[64px] lg:pt-[100px] xl:pt-[145px] lg:pb-[100px] xl:pb-[139px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:top-2 before:-left-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full overflow-hidden">
@@ -65,7 +75,7 @@ const SignUpForm = () => {
                 </span>
               </h2>
               <p className="font-Segoe font-normal text-md md:max-w-[365px] text-center lg:text-start text-[#FDFEFF] mx-auto lg:ms-0 leading-[27px] sm:pt-4 md:pt-3">
-                Signup for exclusive updates! Become part of the sport's
+                Sign-up for exclusive updates! Become part of the sport's
                 revolution.
               </p>
               <p className="font-Segoe font-normal text-md md:max-w-[600px] lg:max-w-[543px] text-center lg:text-start text-white mx-auto lg:ms-0 opacity-70 mt-2 sm:pt-0.5 leading-[27px]">
@@ -76,7 +86,7 @@ const SignUpForm = () => {
               </p>
               <form
                 action="submit"
-                onSubmit={(e) => formHandler(e)}
+                onSubmit={e => formHandler(e)}
                 className="w-full sm:w-3/4"
               >
                 <div className="flex flex-col mt-6">
@@ -94,7 +104,7 @@ const SignUpForm = () => {
                     placeholder="Email"
                     className="font-Sugoe font-normal input:-webkit-autofill focus:border-[white] autofill:none text-base text-[#FDFEFF] leading-6 py-5 px-4 bg-transparent w-full lg:max-w-[400px] mt-[5px] border border-1 border-[#FFFFFF40] outline-none"
                     id="email"
-                    onChange={(e) =>
+                    onChange={e =>
                       setData({
                         ...data,
                         email: e.target.value,
@@ -106,13 +116,26 @@ const SignUpForm = () => {
                   <input
                     type="checkbox"
                     id="Privacy-Policy"
-                    onChange={(event) => setChecked(event.target.checked)}
+                    onChange={event => setChecked(event.target.checked)}
                   />
                   <label
                     htmlFor="Privacy-Policy"
                     className="font-Segoe font-normal text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px] "
                   >
-                    I agree to all Term, Privacy Policy and Fees
+                    I agree to the{" "}
+                    <a
+                      href="#_NEEDS_UPDATE_TO_LIVE_LINK"
+                      className="sign-up__legal-link"
+                    >
+                      Terms of Use
+                    </a>{" "}
+                    and{" "}
+                    <a
+                      href="#_NEEDS_UPDATE_TO_LIVE_LINK"
+                      className="sign-up__legal-link"
+                    >
+                      Privacy Policy
+                    </a>
                   </label>
                 </div>
                 {/* SIGN UP BUTTON */}
