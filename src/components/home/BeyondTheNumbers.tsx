@@ -1,5 +1,5 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image';
+import React from 'react';
 
 const UniqueAthletifi = () => {
   return (
@@ -18,7 +18,7 @@ const UniqueAthletifi = () => {
               <span className="relative after:content after:absolute after:bottom-[-7px] sm:after:bottom-[-2px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat mb-4 lg:leading-[60px] leading-[120%]">
                 {/* What Makes */}
                 Beyond the Numbers:
-              </span>{" "}
+              </span>{' '}
               {/* AthletiFi Unique */}
               True Player Insights
             </h2>
@@ -45,7 +45,8 @@ const UniqueAthletifi = () => {
                 follow their favorite players or players in their community */}
                 Soccer is an intricate dance of strategy, skill, and raw
                 athleticism. While objective game statistics provide a glimpse
-                into a player's contribution, they barely scratch the surface.{" "}
+                into a player&apos;s contribution, they barely scratch the
+                surface.{' '}
                 <span className="block md:mt-4 mt-2">
                   {/* <span className="lg:block"> */}
                   Every single game includes thousands of interactions – goals,
@@ -76,7 +77,7 @@ const UniqueAthletifi = () => {
                 src="/assets/img/webp/gen-soccer-player.webp"
                 width={652}
                 height={512}
-                alt={"football palyer"}
+                alt={'football palyer'}
               />
             </div>
           </div>
@@ -87,7 +88,7 @@ const UniqueAthletifi = () => {
           src="/assets/img/png/unique-football.png"
           width={220}
           height={286}
-          alt={"football"}
+          alt={'football'}
         />
       </section>
     </>

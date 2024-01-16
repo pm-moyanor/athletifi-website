@@ -1,12 +1,12 @@
-import React from "react";
-import { BlueShadow, UnderLineText } from "../common/Icon";
-import Image from "next/image";
+import React from 'react';
+import { BlueShadow, UnderLineText } from '../common/Icon';
+import Image from 'next/image';
 
 const PlayerInformation = {
-  name: "Leo Messi",
-  club: "FC Barcelona",
-  team: "2009s",
-  Number: "10",
+  club: 'FC Barcelona',
+  name: 'Leo Messi',
+  number: '10',
+  team: '2009s',
 };
 
 const PlayerInfo = () => {
@@ -33,7 +33,7 @@ const PlayerInfo = () => {
             {Object.entries(PlayerInformation).map(([key, value]) => (
               <div key={key} className="my-2">
                 <span className="font-bold font-Segoe text-md leading-7 text-center pb-0.5 text-[#FDFEFF] opacity-80 m-0 sm:pt-4 lg:max-w-[769px] mx-auto sm:px-0.5 px-0.5 xl:px-0.5 relative z-20">
-                  {key}:{" "}
+                  {key}:{' '}
                 </span>
                 <span className="font-Segoe font-normal text-md leading-7 text-center pb-0.5 text-[#FDFEFF] opacity-80 m-0 sm:pt-4 lg:max-w-[769px] mx-auto sm:px-0.5 px-0.5 xl:px-0.5 relative z-20">
                   {value}

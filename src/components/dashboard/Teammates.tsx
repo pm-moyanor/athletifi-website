@@ -1,17 +1,17 @@
-import React from "react";
-import { BlueShadow, UnderLineText } from "../common/Icon";
-import Image from "next/image";
-import portrait from "./portrait.jpg";
+import React from 'react';
+import { BlueShadow, UnderLineText } from '../common/Icon';
+import Image from 'next/image';
+import portrait from './portrait.jpg';
 
 const players = [
-  "Paul smith",
-  "Carlos Fuentes",
-  "Leo Messi",
-  "Paul Sanders",
-  "Frank Lampard",
-  "Luis Diaz",
-  "Andrea Pirlo",
-  "Andres Iniesta",
+  'Paul smith',
+  'Carlos Fuentes',
+  'Leo Messi',
+  'Paul Sanders',
+  'Frank Lampard',
+  'Luis Diaz',
+  'Andrea Pirlo',
+  'Andres Iniesta',
 ];
 
 const Teammates = () => {

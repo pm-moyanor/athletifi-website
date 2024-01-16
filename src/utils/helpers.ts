@@ -12,6 +12,11 @@ interface NewsArticle {
   categories: Record<string, unknown>[];
 }
 
-export function filterTargetArticle(allNewsData: { data: NewsArticle[] }, targetArticle: NewsArticle): NewsArticle[] {
-  return allNewsData.data.filter((article) => article.slug !== targetArticle.slug);
+export function filterTargetArticle(
+  allNewsData: { data: NewsArticle[] },
+  targetArticle: NewsArticle
+): NewsArticle[] {
+  return allNewsData.data.filter(
+    article => article.slug !== targetArticle.slug
+  );
 }

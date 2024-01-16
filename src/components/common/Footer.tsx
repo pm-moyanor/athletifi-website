@@ -1,17 +1,15 @@
 // This component renders the footer of the website.
 // It includes copyright information and footer links.
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 import {
-  CancelIcon,
   FacebookIcon,
   InstaIcon,
   LinkedInIcon,
   TikTokIcon,
   TwitterIcon,
-} from "./Icon";
-import Link from "next/link";
-import SocialPopUp from "./SocialPopUp";
+} from './Icon';
+import Link from 'next/link';
 
 const Footer = () => {
   // SOCIAL-ICON POPUP

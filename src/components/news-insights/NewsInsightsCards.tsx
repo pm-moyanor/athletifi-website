@@ -1,13 +1,13 @@
-import Image from "next/image";
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { PaginationArrow } from "../common/Icon";
-import Skeleton from "react-loading-skeleton";
-import NewsInsightsLoader from "./NewsInsightsLoader";
-import { GetRequestHandler } from "../common/api/Api";
-import { NewsListApiHandler } from "../common/api/ApiUrls";
-import { log } from "console";
+import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { PaginationArrow } from '../common/Icon';
+import Skeleton from 'react-loading-skeleton';
+import NewsInsightsLoader from './NewsInsightsLoader';
+import { GetRequestHandler } from '../common/api/Api';
+import { NewsListApiHandler } from '../common/api/ApiUrls';
+import { log } from 'console';
 
 interface NewsListProps {
   allNewsList: any;
@@ -38,7 +38,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
       setLoading(false);
       setCurrentPage(newPage);
     } catch (error) {
-      console.log("error");
+      console.log('error');
     }
   };
 
@@ -68,7 +68,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
           <div>
             {displayedItems.map((item: any, index: any) => {
               // console.log("WHAT IS THIS",item)
-              const imagePath = "https://vidalco.in";
+              const imagePath = 'https://vidalco.in';
               const url = item.image.url;
               const combinedUrl = url ? `${imagePath}${url}` : null;
 
@@ -150,7 +150,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
                 <Link
                   scroll={false}
                   href={
-                    router.pathname === "/news"
+                    router.pathname === '/news'
                       ? `/news?page=${currentPage - 1}`
                       : `/news/${router.query.slug}?page=${currentPage - 1}`
                   }
@@ -175,7 +175,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
                   scroll={false}
                   onClick={() => handlePageChange(currentPage + 1)}
                   href={
-                    router.pathname === "/news"
+                    router.pathname === '/news'
                       ? `/news?page=${currentPage + 1}`
                       : `/news/${router.query.slug}?page=${currentPage + 1}`
                   }
@@ -194,7 +194,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
         src="/assets/img/svg/grid-lines.svg"
         width={716}
         height={692}
-        alt={"grid image"}
+        alt={'grid image'}
       />
       {/* BACKGROUND LEFT GRID */}
       <Image
@@ -202,7 +202,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
         src="/assets/img/svg/grid-lines.svg"
         width={716}
         height={692}
-        alt={"grid image"}
+        alt={'grid image'}
       />
     </div>
   );

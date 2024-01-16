@@ -3,27 +3,27 @@
 // This is the HOME PAGE - the main landing page of the website.
 // It includes various components to showcase the features and services offered.
 
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import Header from "@/components/common/Header";
-import Footer from "@/components/common/Footer";
+import Image from 'next/image';
+import { Inter } from 'next/font/google';
+import Header from '@/components/common/Header';
+import Footer from '@/components/common/Footer';
 // import LatestNews from "@/components/home/LatestNews"; //Add this back if you want to have the news section
 // import OurStrategicAdvisor from "@/components/home/OurStrategicAdvisor"; //Add this back if you want to have the Darren section
-import StatsReimagined from "@/components/home/FundraisingReimagined";
-import TrustedPartners from "@/components/home/TrustedPartners";
-import SoccerExpensive from "@/components/home/PassiveEngagement";
-import UniqueAthletifi from "@/components/home/BeyondTheNumbers";
-import HeroHomepage from "@/components/home/HeroHomepage";
-import BackToTop from "@/components/common/BackToTop";
-import { useEffect, useState } from "react";
-import { PageLogo } from "@/components/common/Icon";
-import Seo from "@/components/common/Seo";
-import { GetRequestHandler } from "@/components/common/api/Api";
-import { NewsListApiHandler } from "@/components/common/api/ApiUrls";
-import { SEO_CONFIG } from "@/utils/seoConfig";
+import StatsReimagined from '@/components/home/FundraisingReimagined';
+import TrustedPartners from '@/components/home/TrustedPartners';
+import SoccerExpensive from '@/components/home/PassiveEngagement';
+import UniqueAthletifi from '@/components/home/BeyondTheNumbers';
+import HeroHomepage from '@/components/home/HeroHomepage';
+import BackToTop from '@/components/common/BackToTop';
+import { useEffect, useState } from 'react';
+import { PageLogo } from '@/components/common/Icon';
+import Seo from '@/components/common/Seo';
+import { GetRequestHandler } from '@/components/common/api/Api';
+import { NewsListApiHandler } from '@/components/common/api/ApiUrls';
+import { SEO_CONFIG } from '@/utils/seoConfig';
 
 //Importing the Inter font
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 interface NewsProps {
   allNewsList: any;
@@ -46,9 +46,9 @@ const Home: React.FC<NewsProps> = props => {
 
     // Adding CSS classes to body for overflow control
     if (preloader) {
-      document.body.classList.add("overflow_hidden");
+      document.body.classList.add('overflow_hidden');
     } else {
-      document.body.classList.remove("overflow_hidden");
+      document.body.classList.remove('overflow_hidden');
     }
   });
 
@@ -103,7 +103,7 @@ export async function getServerSideProps() {
       },
     };
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error('Error fetching data:', error);
     return {
       props: {
         allNewsList: null,
