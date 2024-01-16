@@ -3,9 +3,9 @@
 // This component renders the "Who We Are" section on the "About Us" page.
 // It provides background information about the company and its team.
 
-import React from "react";
-import { BlueShadow, UnderLineText } from "../common/Icon";
-import Image from "next/image";
+import React from 'react';
+import { BlueShadow, UnderLineText } from '../common/Icon';
+import Image from 'next/image';
 
 const LookingForward = () => {
   return (
@@ -57,7 +57,7 @@ const LookingForward = () => {
               engagement and to celebrate the achievements of young soccer
               talents.
               <span className="block pb-2">
-                {" "}
+                {' '}
                 Looking ahead, AthletiFi is committed to broadening our impact
                 on the global soccer landscape. We envision a world where
                 technology becomes an integral part of the youth soccer

@@ -1,13 +1,13 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowButton,
   FacebookIcon,
   LinkedInIcon,
   TikTokIcon,
   TwitterIcon,
-} from "./Icon";
+} from './Icon';
 
 const SocialPopUp = () => {
   return (

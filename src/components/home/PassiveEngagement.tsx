@@ -1,8 +1,7 @@
-import React from "react";
-import Image from "next/image";
-import BlueButton from "../common/BlueButton";
-import Link from "next/link";
-import { ArrowButton } from "../common/Icon";
+import React from 'react';
+import Image from 'next/image';
+import BlueButton from '../common/BlueButton';
+import Link from 'next/link';
 
 const SoccerExpensive = () => {
   return (
@@ -28,7 +27,7 @@ const SoccerExpensive = () => {
               <h2 className="font-HelveticaNeueMedium text-primary xl:text-xl lg:text-[43px] md:text-[40px] font-medium mb-4 text-[25px] sm:text-[35px] text-center lg:text-start leading-[120%] xl:leading-[60px] pt-10">
                 <span className="relative after:content after:absolute after:bottom-[-4px] sm:after:bottom-[-2px] after:left-0 md:after:w-[220px] after:w-[120px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
                   {/* Soccer is{" "} */}
-                  Passive Engagement,{" "}
+                  Passive Engagement,{' '}
                 </span>
                 {/* Expensive & Reduces Accessibility */}
                 Active Impact
@@ -39,11 +38,11 @@ const SoccerExpensive = () => {
                 prohibitive costs that reduce accessibility and limit
                 participation. Club soccer is creating a system that excludes
                 potential players from less privileged backgrounds. */}
-                AthletiFi’s player cards keep the thrill of soccer at your
+                AthletiFi&apos;s player cards keep the thrill of soccer at your
                 fingertips. With dynamically updating performance stats and
                 thrilling highlight clips, you will never miss a moment of your
-                favorite player's progression. All the while knowing that their
-                journey is just the beginning.
+                favorite player&apos;s progression. All the while knowing that
+                their journey is just the beginning.
               </p>
               <div className="flex lg:justify-start justify-center items-center mt-10">
                 <Link href="/about-us">

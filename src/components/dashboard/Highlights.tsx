@@ -1,12 +1,12 @@
-import React from "react";
-import { BlueShadow, UnderLineText } from "../common/Icon";
-import Image from "next/image";
+import React from 'react';
+import { BlueShadow, UnderLineText } from '../common/Icon';
+import Image from 'next/image';
 
 const videos = [
-  { src: "/video3.mp4", thumbnail: "/poster2.png" },
-  { src: "/video2.mp4", thumbnail: "/poster3.png" },
-  { src: "/video2.mp4", thumbnail: "/poster3.png" },
-  { src: "/video3.mp4", thumbnail: "/poster2.png" },
+  { src: '/video3.mp4', thumbnail: '/poster2.png' },
+  { src: '/video2.mp4', thumbnail: '/poster3.png' },
+  { src: '/video2.mp4', thumbnail: '/poster3.png' },
+  { src: '/video3.mp4', thumbnail: '/poster2.png' },
 ];
 
 const Highlights = () => {

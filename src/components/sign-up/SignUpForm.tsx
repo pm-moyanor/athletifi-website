@@ -1,46 +1,59 @@
-import Image from "next/image";
-import React, { useState } from "react";
-import { ButtonWhiteArrow, UnderLineText } from "../common/Icon";
-import { PostRequestHandler } from "../common/api/Api";
-import { PostNewsLetterHandler } from "../common/api/ApiUrls";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Image from 'next/image';
+import React, { useState } from 'react';
+import { ButtonWhiteArrow, UnderLineText } from '../common/Icon';
+import { PostRequestHandler } from '../common/api/Api';
+import { PostNewsLetterHandler } from '../common/api/ApiUrls';
+import { ToastContainer, toast, ToastOptions } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
-  const intialState = {
-    email: "",
+  const initialState = {
+    email: '',
   };
-  const [data, setData] = useState(intialState);
+  const [data, setData] = useState(initialState);
 
-  const formHandler = async (e: any) => {
+  const formHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formDetails = { data };
+    const toastOptions: ToastOptions = {
+      draggable: false,
+      position: toast.POSITION.BOTTOM_RIGHT,
+    };
+
     setLoading(true);
     if (checked) {
-      const response = await PostRequestHandler(
-        PostNewsLetterHandler(),
-        formDetails
-      );
-      if (response.data) {
-        toast("✅ We received your message !", {
-          position: "bottom-right",
-        });
-        setLoading(false);
-        setData({
-          ...data,
-          email: "",
-        });
-      } else {
-        alert(`This attribute must be unique`);
-        setLoading(false);
+      try {
+        const response = await PostRequestHandler(
+          PostNewsLetterHandler(),
+          formDetails
+        );
+        console.log(response);
+        if (response.data) {
+          toast.success('You have successfully signed-up!', toastOptions);
+          setData({
+            ...data,
+            email: '',
+          });
+        } else if (response.response.status === 400) {
+          toast.error(
+            'This email has already been used to sign-up',
+            toastOptions
+          );
+        }
+      } catch (err) {
+        console.log(err);
+        toast.error('Hit an unknown error', toastOptions);
       }
     } else {
-      alert(`Checked the condition`);
-      setLoading(false);
+      toast.warning(
+        'Please review and agree to the Terms and Privacy Policy',
+        toastOptions
+      );
     }
+    setLoading(false);
   };
   return (
     <section className="py-8 sm:py-[64px] lg:pt-[100px] xl:pt-[145px] lg:pb-[100px] xl:pb-[139px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:top-2 before:-left-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full overflow-hidden">
@@ -65,18 +78,20 @@ const SignUpForm = () => {
                 </span>
               </h2>
               <p className="font-Segoe font-normal text-md md:max-w-[365px] text-center lg:text-start text-[#FDFEFF] mx-auto lg:ms-0 leading-[27px] sm:pt-4 md:pt-3">
-                Sign-up for exclusive updates! Become part of the sport's
+                Sign-up for exclusive updates! Become part of the sport&apos;s
                 revolution.
               </p>
               <p className="font-Segoe font-normal text-md md:max-w-[600px] lg:max-w-[543px] text-center lg:text-start text-white mx-auto lg:ms-0 opacity-70 mt-2 sm:pt-0.5 leading-[27px]">
-                By subscribing, you're not only embracing the future of sports
-                collectibles, but you're also at the ground floor of changing
-                the world of access to sports as we know them today-- a future
-                of sports where anyone can get exposure to scouts.
+                By subscribing, you&apos;re not only embracing the future of
+                sports collectibles, but you&apos;re also at the ground floor of
+                changing the world of access to sports as we know them today-- a
+                future of sports where anyone can get exposure to scouts.
               </p>
               <form
                 action="submit"
-                onSubmit={e => formHandler(e)}
+                onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
+                  formHandler(e)
+                }
                 className="w-full sm:w-3/4"
               >
                 <div className="flex flex-col mt-6">
@@ -112,7 +127,20 @@ const SignUpForm = () => {
                     htmlFor="Privacy-Policy"
                     className="font-Segoe font-normal text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px] "
                   >
-                    I agree to all Term, Privacy Policy and Fees
+                    I agree to the{' '}
+                    <a
+                      href="#_NEEDS_UPDATE_TO_LIVE_LINK"
+                      className="sign-up__legal-link"
+                    >
+                      Terms of Use
+                    </a>{' '}
+                    and{' '}
+                    <a
+                      href="#_NEEDS_UPDATE_TO_LIVE_LINK"
+                      className="sign-up__legal-link"
+                    >
+                      Privacy Policy
+                    </a>
                   </label>
                 </div>
                 {/* SIGN UP BUTTON */}
@@ -120,10 +148,10 @@ const SignUpForm = () => {
                   <button
                     type="submit"
                     className={`sm:w-full justify-center text-center sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black  join_now_btn transition duration-300 ease-in-out ${
-                      checked ? " bg-skyblue" : ""
+                      checked ? ' bg-skyblue' : ''
                     }`}
                   >
-                    {loading ? "Loading..." : " Sign Up"}
+                    {loading ? 'Loading...' : ' Sign Up'}
 
                     <span className="group-hover:translate-x-3 transition duration-300 ease-out">
                       <ButtonWhiteArrow />

@@ -1,7 +1,7 @@
-import React from "react";
-import { BlueShadow, UnderLineText } from "../common/Icon";
-import Image from "next/image";
-import cardImage from "../../../public/assets/img/png/anderson-card-img.png";
+import React from 'react';
+import { BlueShadow, UnderLineText } from '../common/Icon';
+import Image from 'next/image';
+import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
 
 const PlayerCard = () => {
   return (

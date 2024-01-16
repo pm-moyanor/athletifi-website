@@ -129,6 +129,11 @@
   text-decoration: underline;
 }
 
+.sign-up__legal-link:hover {
+  color: #00c5f4;
+  text-decoration: underline;
+}
+
 /* PRELOADER ANIMATION */
 @keyframes preloader_img {
   0% {

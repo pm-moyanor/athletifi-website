@@ -1,12 +1,12 @@
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
 const BackToTop = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const scrollToTop = () => {
     window.scrollTo({
+      behavior: 'smooth',
       top: 0,
-      behavior: "smooth",
     });
   };
 
@@ -16,9 +16,9 @@ const BackToTop = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
   return (
@@ -39,7 +39,7 @@ const BackToTop = () => {
           </div>
         </div>
       ) : (
-        ""
+        ''
       )}
     </>
   );

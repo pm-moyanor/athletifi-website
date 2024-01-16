@@ -3,9 +3,9 @@
 // This component renders the "What We Do" section on the "About Us" page.
 // It outlines the services and products offered by the company.
 
-import React from "react";
-import Image from "next/image";
-import { BlueShadow, UnderLineText } from "../common/Icon";
+import React from 'react';
+import Image from 'next/image';
+import { BlueShadow, UnderLineText } from '../common/Icon';
 
 const OurMission = () => {
   return (
@@ -53,10 +53,10 @@ const OurMission = () => {
                   families, and the broader soccer community.
                 </p>
                 <p className="font-Segoe font-normal text-md md:max-w-[530px] text-[#FDFEFF] mx-auto lg:ms-0 opacity-80 leading-7 sm:pt-4">
-                  We understand that soccer is more than just a game; it's a
-                  community. AthletiFi's platform encourages engagement by
-                  providing a fun and informative way for families and community
-                  members to connect with young athletes.
+                  We understand that soccer is more than just a game; it&apos;s
+                  a community. AthletiFi&apos;s platform encourages engagement
+                  by providing a fun and informative way for families and
+                  community members to connect with young athletes.
                 </p>
               </div>
             </div>

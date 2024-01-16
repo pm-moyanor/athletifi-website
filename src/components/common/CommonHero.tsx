@@ -1,5 +1,5 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image';
+import React from 'react';
 
 // COMMON HEADING
 interface HeroProps {
@@ -42,7 +42,7 @@ const CommonHero: React.FC<{ hero: HeroProps }> = ({ hero }) => {
               data-aos-easing="linear"
               data-aos-offset="100"
               className="font-HelveticaNeueMedium font-medium text-[30px] sm:text-[45px] lg:text-[50px] xl:text-xxl text-white sm:leading-[66px] text-center leading-[110%]"
-            > 
+            >
               {hero.heading}
             </h2>
           </div>
