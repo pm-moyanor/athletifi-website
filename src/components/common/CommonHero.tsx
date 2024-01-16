@@ -3,9 +3,9 @@ import React from 'react';
 
 // COMMON HEADING
 interface HeroProps {
-  title: string;
-  subtitle: string;
   heading: string;
+  title?: string;
+  subtitle?: string;
 }
 
 const CommonHero: React.FC<{ hero: HeroProps }> = ({ hero }) => {
