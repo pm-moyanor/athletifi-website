@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { ButtonWhiteArrow, UnderLineText } from '../common/Icon';
 import { PostRequestHandler } from '../common/api/Api';
@@ -128,13 +129,23 @@ const SignUpForm = () => {
                     className="font-Segoe font-normal text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px] "
                   >
                     I agree to the{' '}
-                    <a href="/terms-of-use" className="sign-up__legal-link">
+                    <Link
+                      href="/terms-of-use"
+                      className="sign-up__legal-link"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
                       Terms of Use
-                    </a>{' '}
+                    </Link>{' '}
                     and{' '}
-                    <a href="/privacy-policy" className="sign-up__legal-link">
+                    <Link
+                      href="/privacy-policy"
+                      className="sign-up__legal-link"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
                       Privacy Policy
-                    </a>
+                    </Link>
                   </label>
                 </div>
                 {/* SIGN UP BUTTON */}

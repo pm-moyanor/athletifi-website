@@ -135,8 +135,11 @@
   opacity: 1;
 }
 
-.sign-up__legal-link:hover {
+.sign-up__legal-link {
   color: #00c5f4;
+}
+
+.sign-up__legal-link:hover {
   text-decoration: underline;
 }
 
