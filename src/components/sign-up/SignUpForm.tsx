@@ -15,12 +15,12 @@ const SignUpForm = () => {
   };
   const [data, setData] = useState(initialState);
 
-  const formHandler = async (e: React.SyntheticEvent) => {
+  const formHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formDetails = { data };
     const toastOptions: ToastOptions = {
       draggable: false,
-      position: 'bottom-right',
+      position: toast.POSITION.BOTTOM_RIGHT,
     };
 
     setLoading(true);
@@ -32,20 +32,23 @@ const SignUpForm = () => {
         );
         console.log(response);
         if (response.data) {
-          toast('✅ You have successfully signed-up!', toastOptions);
+          toast.success('You have successfully signed-up!', toastOptions);
           setData({
             ...data,
             email: '',
           });
         } else if (response.response.status === 400) {
-          toast('This email has already been used to sign-up', toastOptions);
+          toast.error(
+            'This email has already been used to sign-up',
+            toastOptions
+          );
         }
       } catch (err) {
         console.log(err);
-        toast('Hit an unknown error', toastOptions);
+        toast.error('Hit an unknown error', toastOptions);
       }
     } else {
-      toast(
+      toast.warning(
         'Please review and agree to the Terms and Privacy Policy',
         toastOptions
       );
@@ -86,7 +89,9 @@ const SignUpForm = () => {
               </p>
               <form
                 action="submit"
-                onSubmit={(e: React.SyntheticEvent) => formHandler(e)}
+                onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
+                  formHandler(e)
+                }
                 className="w-full sm:w-3/4"
               >
                 <div className="flex flex-col mt-6">
