@@ -1,22 +1,22 @@
 // This is the article that appears in the headline section (aka Hero) on top of the News page.
-import Link from "next/link";
-import React from "react";
-import BlueButton from "../common/BlueButton";
-import Image from "next/image";
-import moment from "moment";
+import Link from 'next/link';
+import React from 'react';
+import BlueButton from '../common/BlueButton';
+import Image from 'next/image';
+import moment from 'moment';
 
 interface NewsProps {
   newsListData: any;
 }
 
-const FocusArticle: React.FC<NewsProps> = (props) => {
+const FocusArticle: React.FC<NewsProps> = props => {
   const { newsListData } = props;
 
   const focusArticleData = newsListData[0] || {};
 
   const imagePath = focusArticleData.image?.url
-    ? "https://vidalco.in" + focusArticleData.image.url
-    : "";
+    ? 'https://vidalco.in' + focusArticleData.image.url
+    : '';
 
   return (
     <>
@@ -42,8 +42,8 @@ const FocusArticle: React.FC<NewsProps> = (props) => {
                 {focusArticleData.title}
               </h3>
               <p className="text-base text-primary opacity-70 font-Segoe font-normal mt-2">
-                by : {focusArticleData.author?.fullName} &bull;{" "}
-                {moment(focusArticleData.createdAt).format("DD MMM YY")}
+                by : {focusArticleData.author?.fullName} &bull;{' '}
+                {moment(focusArticleData.createdAt).format('DD MMM YY')}
               </p>
               <p className="text-base sm:text-md text-primary opacity-70 font-Segoe font-normal mt-3 sm:mt-4">
                 {focusArticleData.previewSummary}
@@ -55,7 +55,7 @@ const FocusArticle: React.FC<NewsProps> = (props) => {
                   return (
                     <button
                       key={i}
-                      className="lg:text-base md:text-[13px] text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-[10px] sm:px-[18px] bg-matchtittles rounded-full leading-[150%] duration-300 hover:text-white"
+                      className="lg:text-base md:text-[13px] text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-[10px] sm:px-[18px] bg-matchtitles rounded-full leading-[150%] duration-300 hover:text-white"
                     >
                       {val.title}
                     </button>

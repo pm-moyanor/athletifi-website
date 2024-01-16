@@ -1,17 +1,15 @@
 // This component renders the footer of the website.
 // It includes copyright information and footer links.
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 import {
-  CancelIcon,
   FacebookIcon,
   InstaIcon,
   LinkedInIcon,
-  TiktokIcon,
+  TikTokIcon,
   TwitterIcon,
-} from "./Icon";
-import Link from "next/link";
-import SocialPopUp from "./SocialPopUp";
+} from './Icon';
+import Link from 'next/link';
 
 const Footer = () => {
   // SOCIAL-ICON POPUP
@@ -19,7 +17,7 @@ const Footer = () => {
   const SocialIcon = () => {
     setSocialIcon(!socialIcon);
   };
-  
+
   const today = new Date();
   const year = today.getFullYear();
   return (
@@ -76,7 +74,7 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <TiktokIcon />
+              <TikTokIcon />
             </Link>
             <Link
               aria-label="facebook"
@@ -116,7 +114,6 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-   
       </footer>
     </>
   );

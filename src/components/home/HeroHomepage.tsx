@@ -2,12 +2,10 @@
 
 // This component renders the hero section on the homepage, which is the top section below the menu with a big image and a call to action.
 
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import BlueButton from "../common/BlueButton";
-
-
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+import BlueButton from '../common/BlueButton';
 
 const HeroHomepage = () => {
   return (
@@ -22,8 +20,8 @@ const HeroHomepage = () => {
             <p className="font-Segoe text-white text-[16px] sm:text-md font-normal mt-4 opacity-80 text-center lg:text-start">
               AthletiFi is the youth soccer portal to the digital world. We
               create commemorative physical player cards that you can collect to
-              follow a young soccer player’s journey through tournaments and
-              matches, no matter where they occur.
+              follow a young soccer player&apos;s journey through tournaments
+              and matches, no matter where they occur.
             </p>
             <p className="font-Segoe text-white text-[16px] sm:text-md font-normal mt-4 mb-12 opacity-80 text-center lg:text-start">
               Every player card becomes a journey of potential, with a scannable
@@ -32,10 +30,11 @@ const HeroHomepage = () => {
               plays.
             </p>
             <h4 className="font-HelveticaNeueMedium text-white text-center lg:text-start text-md font-medium leading-[25px]">
-             Looking for a Summer Select program in Eastern Pennsylvania?
+              Looking for a Summer Select program in Eastern Pennsylvania?
             </h4>
             <p className="font-Segoe text-white text-[16px] sm:text-md font-normal mt-4 opacity-80 text-center lg:text-start">
-              AthletiFi has teamed up with Eastern Pennsylvania’s top coaches to create a first-of-its-kind Summer Select program! 
+              AthletiFi has teamed up with Eastern Pennsylvania&apos;s top
+              coaches to create a first-of-its-kind Summer Select program!
             </p>
             {/* CONVERT-INTO-LINK-TAG */}
             <div className="flex lg:justify-start justify-center lg:mt-10 mt-7 lg:pb-14 lg:mb-10">
@@ -75,6 +74,5 @@ const HeroHomepage = () => {
     </>
   );
 };
-
 
 export default HeroHomepage;

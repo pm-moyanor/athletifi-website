@@ -1,13 +1,13 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowButton,
   FacebookIcon,
   LinkedInIcon,
-  TiktokIcon,
+  TikTokIcon,
   TwitterIcon,
-} from "./Icon";
+} from './Icon';
 
 const SocialPopUp = () => {
   return (
@@ -22,9 +22,9 @@ const SocialPopUp = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <TiktokIcon />
+            <TikTokIcon />
             <span className="text-white opacity-70 ms-4 text-md font-Segoe font-normal">
-              Tiktok
+              TikTok
             </span>
           </Link>
           <Link

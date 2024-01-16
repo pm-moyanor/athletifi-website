@@ -1,32 +1,31 @@
 // This is the content of the article that displays when clicking on a news article.
 
-import Image from "next/image";
-import React from "react";
-import moment from "moment";
+import Image from 'next/image';
+import React from 'react';
+import moment from 'moment';
 import {
   WhiteFacebookIcon,
   WhiteLinkedInIcon,
   WhiteTwitterIcon,
   WhiteWhatsAppIcon,
-} from "../common/Icon";
+} from '../common/Icon';
 
-import Link from "next/link";
+import Link from 'next/link';
 
 interface NewsProps {
   newsDetailData: any;
 }
 
-const TargetArticleContent: React.FC<NewsProps> = (props) => {
+const TargetArticleContent: React.FC<NewsProps> = props => {
   const { newsDetailData } = props;
-  
 
   return (
     <>
       {newsDetailData &&
         newsDetailData.data &&
         newsDetailData.data.map((newsItem: any, i: any) => {
-          // console.log("newsItem!!!!", newsItem)          
-          const imagePath = "https://vidalco.in";
+          // console.log("newsItem!!!!", newsItem)
+          const imagePath = 'https://vidalco.in';
           const url = newsItem.image.url;
           const combinedUrl = url ? `${imagePath}${url}` : null;
           return (
@@ -77,8 +76,8 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
                         data-aos-offset="200"
                         className="font-Segoe text-offwhite mt-2 font-normal text-base sm:text-start text-center"
                       >
-                        by: {newsItem.author.fullName} &bull;{" "}
-                        {moment(newsItem.createdAt).format("DD MMM YY")}
+                        by: {newsItem.author.fullName} &bull;{' '}
+                        {moment(newsItem.createdAt).format('DD MMM YY')}
                       </p>
                       <p
                         data-aos="fade-up"
@@ -132,31 +131,21 @@ const TargetArticleContent: React.FC<NewsProps> = (props) => {
                     <Link
                       className="hover:-translate-y-1 duration-200"
                       target="_blank"
-                      href={`https://www.facebook.com/sharer/sharer.php?u=${"https://athleti.fi/"}news/${
-                        newsDetailData.data[0].slug
-                      }`}
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${'https://athleti.fi/'}news/${newsDetailData.data[0].slug}`}
                     >
                       <WhiteFacebookIcon />
                     </Link>
                     <Link
                       className="hover:-translate-y-1 duration-200"
                       target="_blank"
-                      href={`https://twitter.com/intent/tweet?text=${
-                        newsDetailData.data[0].slug
-                      }&url=${"https://athleti.fi/"}news/${
-                        newsDetailData.data[0].slug
-                      }`}
+                      href={`https://twitter.com/intent/tweet?text=${newsDetailData.data[0].slug}&url=${'https://athleti.fi/'}news/${newsDetailData.data[0].slug}`}
                     >
                       <WhiteTwitterIcon />
                     </Link>
                     <Link
                       className="hover:-translate-y-1 duration-200"
                       target="_blank"
-                      href={`https://api.whatsapp.com/send?text=${
-                        newsDetailData.data[0].slug
-                      }&url=${"https://athleti.fi/"}news/${
-                        newsDetailData.data[0].slug
-                      }`}
+                      href={`https://api.whatsapp.com/send?text=${newsDetailData.data[0].slug}&url=${'https://athleti.fi/'}news/${newsDetailData.data[0].slug}`}
                     >
                       <WhiteWhatsAppIcon />
                     </Link>

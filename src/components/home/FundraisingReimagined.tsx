@@ -1,39 +1,37 @@
-import Image from "next/image";
-import React from "react";
-import Slider from "react-slick";
+import Image from 'next/image';
+import React from 'react';
+import Slider from 'react-slick';
 
 const StatsReimagined = () => {
-  // const playerImageCenter = "jude-nft-img";
-  // const playerImageRight = "colin-nft-img";
-  const playerImageCenter = "jose-nft-img";
-  const playerImageRight = "stebi-nft-img";
-  const playerImageLeft = "anderson-nft-img-new";
-  
+  const playerImageCenter = 'jose-card-img';
+  const playerImageRight = 'stebi-card-img';
+  const playerImageLeft = 'anderson-card-img-new';
+
   // SLIDER
   const settings = {
     arrows: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
     autoplay: false,
     autoplaySpeed: 3000,
+    infinite: true,
     responsive: [
       {
         breakpoint: 767,
         settings: {
-          slidesToShow: 2,
           slidesToScroll: 1,
+          slidesToShow: 2,
         },
       },
       {
         breakpoint: 576,
         settings: {
-          slidesToShow: 1,
           slidesToScroll: 1,
+          slidesToShow: 1,
         },
       },
     ],
+    slidesToScroll: 1,
+    slidesToShow: 3,
+    speed: 500,
   };
   return (
     <section className="py-14 sm:mb-10 lg:mb-20 xl:mb-[125px] relative xl:mt-0 z-[1]">
@@ -65,16 +63,16 @@ const StatsReimagined = () => {
           >
             <span className="relative after:content after:absolute after:bottom-[-8px] sm:after:bottom-[-4px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
               {/* Stats Reimagined. */}
-              Follow Tomorrow’s Soccer Stars Today
-            </span>{" "}
+              Follow Tomorrow&apos;s Soccer Stars Today
+            </span>{' '}
             {/* Exposure elevated. */}
           </h2>
-          <span 
+          <span
             className="text-primary text-lgxl font-HelveticaNeueRegular leading-normal mt-4"
             data-aos="fade-up"
             data-aos-duration="600"
             data-aos-easing="linear"
-            data-aos-delay="300" 
+            data-aos-delay="300"
             data-aos-offset="200"
           >
             Never fall behind on their progress
@@ -91,21 +89,27 @@ const StatsReimagined = () => {
             statistics into every card, taking your passion for the game to new
             heights. Every goal, pass, and block is updated on the digital
             trading card within 48 hours after every game. */}
-            Every young soccer star harbors dreams that pulse with potential. At AthletiFi, we believe the more support young players receive the more likely they are to succeed.
-            {" "}
+            Every young soccer star harbors dreams that pulse with potential. At
+            AthletiFi, we believe the more support young players receive the
+            more likely they are to succeed.{' '}
             <span className="block md:mt-4 mt-2">
               {/* Each purchase directly supports underserved athletes, making club
               soccer more accessible and empowering dreams to flourish. */}
-              AthletiFi gives you the tools to follow their journey at whatever time-commitment level you can afford. Don’t have time to watch a full game? Catch up with highlight videos of the best plays for each player. Only have a glance to spare? The easy-to-follow player stats will catch you up on their latest performance.
+              AthletiFi gives you the tools to follow their journey at whatever
+              time-commitment level you can afford. Don&apos;t have time to
+              watch a full game? Catch up with highlight videos of the best
+              plays for each player. Only have a glance to spare? The
+              easy-to-follow player stats will catch you up on their latest
+              performance.
             </span>
           </p>
-          {/* CARD SLIDER SAMLL SCREEN */}
+          {/* CARD SLIDER SMALL SCREEN */}
           <Slider
             {...settings}
             className="w-full justify-between items-center pt-5 md:pt-0 max-w-[1000px] mx-auto lg:justify-center relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:-top-20 before:left-1/2 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/2 before:-z-10 before:rounded-full pb-6 sm:pb-0"
           >
             {/* Left Image */}
-            <div 
+            <div
               className="md:py-16 sm:pb-8" //ml-[-20px]"
               data-aos="fade-up"
               data-aos-duration="500"
@@ -118,7 +122,7 @@ const StatsReimagined = () => {
                   src={`/assets/img/webp/${playerImageLeft}.webp`}
                   width={280}
                   height={280}
-                  alt="left-nft-img"
+                  alt="left-card-img"
                 />
               </div>
             </div>
@@ -136,7 +140,7 @@ const StatsReimagined = () => {
                   src={`/assets/img/webp/${playerImageCenter}.webp`}
                   width={409}
                   height={409}
-                  alt="center-nft-image"
+                  alt="center-card-image"
                 />
               </div>
             </div>
@@ -154,7 +158,7 @@ const StatsReimagined = () => {
                   src={`/assets/img/webp/${playerImageRight}.webp`}
                   width={280}
                   height={280}
-                  alt="right-nft-image"
+                  alt="right-card-image"
                 />
               </div>
             </div>

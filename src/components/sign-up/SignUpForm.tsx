@@ -1,26 +1,26 @@
-import Image from "next/image";
-import React, { useState } from "react";
-import { ButtonWhiteArrow, UnderLIneText } from "../common/Icon";
-import { PostRequestHandler } from "../common/api/Api";
-import { PostNewsLetterHandler } from "../common/api/ApiUrls";
-import { ToastContainer, toast, ToastOptions } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Image from 'next/image';
+import React, { useState } from 'react';
+import { ButtonWhiteArrow, UnderLineText } from '../common/Icon';
+import { PostRequestHandler } from '../common/api/Api';
+import { PostNewsLetterHandler } from '../common/api/ApiUrls';
+import { ToastContainer, toast, ToastOptions } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
   const initialState = {
-    email: "",
+    email: '',
   };
   const [data, setData] = useState(initialState);
 
-  const formHandler = async (e: any) => {
+  const formHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     const formDetails = { data };
     const toastOptions: ToastOptions = {
-      position: "bottom-right",
       draggable: false,
+      position: 'bottom-right',
     };
 
     setLoading(true);
@@ -32,21 +32,21 @@ const SignUpForm = () => {
         );
         console.log(response);
         if (response.data) {
-          toast("✅ You have successfully signed-up!", toastOptions);
+          toast('✅ You have successfully signed-up!', toastOptions);
           setData({
             ...data,
-            email: "",
+            email: '',
           });
         } else if (response.response.status === 400) {
-          toast("This email has already been used to sign-up", toastOptions);
+          toast('This email has already been used to sign-up', toastOptions);
         }
       } catch (err) {
         console.log(err);
-        toast("Hit an unknown error", toastOptions);
+        toast('Hit an unknown error', toastOptions);
       }
     } else {
       toast(
-        "Please review and agree to the Terms and Privacy Policy",
+        'Please review and agree to the Terms and Privacy Policy',
         toastOptions
       );
     }
@@ -70,23 +70,23 @@ const SignUpForm = () => {
                 <span className="relative">
                   Sign Up!
                   <span className="absolute -bottom-3 left-0">
-                    <UnderLIneText />
+                    <UnderLineText />
                   </span>
                 </span>
               </h2>
               <p className="font-Segoe font-normal text-md md:max-w-[365px] text-center lg:text-start text-[#FDFEFF] mx-auto lg:ms-0 leading-[27px] sm:pt-4 md:pt-3">
-                Sign-up for exclusive updates! Become part of the sport's
+                Sign-up for exclusive updates! Become part of the sport&apos;s
                 revolution.
               </p>
               <p className="font-Segoe font-normal text-md md:max-w-[600px] lg:max-w-[543px] text-center lg:text-start text-white mx-auto lg:ms-0 opacity-70 mt-2 sm:pt-0.5 leading-[27px]">
-                By subscribing, you're not only embracing the future of sports
-                collectibles, but you're also at the ground floor of changing
-                the world of access to sports as we know them today-- a future
-                of sports where anyone can get exposure to scouts.
+                By subscribing, you&apos;re not only embracing the future of
+                sports collectibles, but you&apos;re also at the ground floor of
+                changing the world of access to sports as we know them today-- a
+                future of sports where anyone can get exposure to scouts.
               </p>
               <form
                 action="submit"
-                onSubmit={e => formHandler(e)}
+                onSubmit={(e: React.SyntheticEvent) => formHandler(e)}
                 className="w-full sm:w-3/4"
               >
                 <div className="flex flex-col mt-6">
@@ -122,14 +122,14 @@ const SignUpForm = () => {
                     htmlFor="Privacy-Policy"
                     className="font-Segoe font-normal text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px] "
                   >
-                    I agree to the{" "}
+                    I agree to the{' '}
                     <a
                       href="#_NEEDS_UPDATE_TO_LIVE_LINK"
                       className="sign-up__legal-link"
                     >
                       Terms of Use
-                    </a>{" "}
-                    and{" "}
+                    </a>{' '}
+                    and{' '}
                     <a
                       href="#_NEEDS_UPDATE_TO_LIVE_LINK"
                       className="sign-up__legal-link"
@@ -143,10 +143,10 @@ const SignUpForm = () => {
                   <button
                     type="submit"
                     className={`sm:w-full justify-center text-center sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black  join_now_btn transition duration-300 ease-in-out ${
-                      checked ? " bg-skyblue" : ""
+                      checked ? ' bg-skyblue' : ''
                     }`}
                   >
-                    {loading ? "Loading..." : " Sign Up"}
+                    {loading ? 'Loading...' : ' Sign Up'}
 
                     <span className="group-hover:translate-x-3 transition duration-300 ease-out">
                       <ButtonWhiteArrow />

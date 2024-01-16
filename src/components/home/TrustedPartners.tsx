@@ -1,5 +1,5 @@
-import React from "react";
-import { EyeBallIcon, VillanovaIcon } from "../common/Icon";
+import React from 'react';
+import { EyeBallIcon, VillanovaIcon } from '../common/Icon';
 
 const TrustedPartners: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const TrustedPartners: React.FC = () => {
           >
             <span className="relative after:content after:absolute after:bottom-[-10px] sm:after:bottom-[-4px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
               Our trusted
-            </span>{" "}
+            </span>{' '}
             partners
           </h2>
           <div

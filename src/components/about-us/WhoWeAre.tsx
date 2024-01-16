@@ -3,13 +3,13 @@
 // This component renders the "Our Mission" section on the "About Us" page.
 // It provides information about the company's mission and objectives.
 
-import React from "react";
-import Image from "next/image";
-import { UnderLIneText } from "../common/Icon";
-import { CenterBlueShadow } from "../common/Icon";
+import React from 'react';
+import Image from 'next/image';
+import { UnderLineText } from '../common/Icon';
+import { CenterBlueShadow } from '../common/Icon';
 
 const WhoWeAre = () => {
-  const playerImageMission = "stebi-nft-mission";
+  const playerImageMission = 'stebi-card-mission';
   return (
     <section className="sm:py-10 py-8 lg:mt-14 relative">
       <div className="lg:w-[600px] lg:h-[700px] w-1/4 absolute -end-20 top-10 z-0">
@@ -64,17 +64,25 @@ const WhoWeAre = () => {
             >
               <h2 className="font-HelveticaNeueMedium md:text-5xl sm:text-4xl text-[26px] min-[1530px]:w-[506px] sm:mt-6 text-[#FDFEFF] font-medium leading-[60px] md:mb-4">
                 <span className="relative">
-                  Who We Are{" "}
+                  Who We Are
                   <span className="absolute -bottom-2 left-0">
-                    <UnderLIneText />
+                    <UnderLineText />
                   </span>
                 </span>
               </h2>
               <p className="font-normal font-Segoe text-md leading-7 text-[#FDFEFF] text-center mx-auto lg:ms-0 min-[1530px]:me-0 lg:text-start md:max-w-[506px] xl:w-auto opacity-80 m-0 font-sans sm:pt-4">
-                AthletiFi is a team of innovators, technology experts, soccer coaches and former professional players united by a shared love for the game and a commitment to youth sports development. We bring together extensive experience in technology, sports analytics, and community engagement, making us uniquely equipped to bring our vision to life.
+                AthletiFi is a team of innovators, technology experts, soccer
+                coaches and former professional players united by a shared love
+                for the game and a commitment to youth sports development. We
+                bring together extensive experience in technology, sports
+                analytics, and community engagement, making us uniquely equipped
+                to bring our vision to life.
               </p>
               <p className="font-normal font-Segoe text-md leading-7 text-[#FDFEFF] text-center mx-auto lg:ms-0 min-[1530px]:me-0 lg:text-start md:max-w-[506px] xl:w-auto opacity-80 m-0 font-sans sm:pt-4">
-                We are parents, coaches, and fans ourselves, deeply rooted in the soccer community. This personal connection to the sport drives our dedication to creating a platform that resonates with players and their supporters.
+                We are parents, coaches, and fans ourselves, deeply rooted in
+                the soccer community. This personal connection to the sport
+                drives our dedication to creating a platform that resonates with
+                players and their supporters.
               </p>
             </div>
           </div>
