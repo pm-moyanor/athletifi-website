@@ -3,9 +3,12 @@
   "plugins": [
     "@typescript-eslint"
   ],
-    "extends": [ 
-      "@ijsto", 
-      "plugin:@typescript-eslint/eslint-recommended", 
-      "plugin:@typescript-eslint/recommended" 
-    ]
+  "extends": [ 
+    "@ijsto", 
+    "plugin:@typescript-eslint/eslint-recommended", 
+    "plugin:@typescript-eslint/recommended" 
+  ],
+  "rules": {
+    "no-console": "off"
+  }
 }
