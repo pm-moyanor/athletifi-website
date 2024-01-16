@@ -12,12 +12,10 @@ import { GoogleAnalytics } from 'nextjs-google-analytics';
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    setInterval(() => {
-      AOS.init({
-        once: true,
-      });
-    }, 1000);
-  }, [AOS]);
+    AOS.init({
+      once: true,
+    });
+  }, []);
 
   return (
     <>
