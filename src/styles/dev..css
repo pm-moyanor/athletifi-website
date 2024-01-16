@@ -89,7 +89,7 @@
   -moz-appearance: none;
   width: 18px;
   height: 18px;
-  border: 2px solid #60666B;
+  border: 2px solid #60666b;
   background: transparent;
   border-radius: 4px;
   outline: none;
@@ -114,6 +114,10 @@
   opacity: 1;
 }
 
+.sign-up__legal-link:hover {
+  color: #00c5f4;
+  text-decoration: underline;
+}
 
 /* PRELOADER ANIMATION */
 @keyframes preloader_img {

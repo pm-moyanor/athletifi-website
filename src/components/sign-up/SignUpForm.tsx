@@ -3,44 +3,57 @@ import React, { useState } from 'react';
 import { ButtonWhiteArrow, UnderLineText } from '../common/Icon';
 import { PostRequestHandler } from '../common/api/Api';
 import { PostNewsLetterHandler } from '../common/api/ApiUrls';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
-  const intialState = {
+  const initialState = {
     email: '',
   };
-  const [data, setData] = useState(intialState);
+  const [data, setData] = useState(initialState);
 
-  const formHandler = async (e: any) => {
+  const formHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formDetails = { data };
+    const toastOptions: ToastOptions = {
+      draggable: false,
+      position: toast.POSITION.BOTTOM_RIGHT,
+    };
+
     setLoading(true);
     if (checked) {
-      const response = await PostRequestHandler(
-        PostNewsLetterHandler(),
-        formDetails
-      );
-      if (response.data) {
-        toast('✅ We received your message !', {
-          position: 'bottom-right',
-        });
-        setLoading(false);
-        setData({
-          ...data,
-          email: '',
-        });
-      } else {
-        alert(`This attribute must be unique`);
-        setLoading(false);
+      try {
+        const response = await PostRequestHandler(
+          PostNewsLetterHandler(),
+          formDetails
+        );
+        console.log(response);
+        if (response.data) {
+          toast.success('You have successfully signed-up!', toastOptions);
+          setData({
+            ...data,
+            email: '',
+          });
+        } else if (response.response.status === 400) {
+          toast.error(
+            'This email has already been used to sign-up',
+            toastOptions
+          );
+        }
+      } catch (err) {
+        console.log(err);
+        toast.error('Hit an unknown error', toastOptions);
       }
     } else {
-      alert(`Checked the condition`);
-      setLoading(false);
+      toast.warning(
+        'Please review and agree to the Terms and Privacy Policy',
+        toastOptions
+      );
     }
+    setLoading(false);
   };
   return (
     <section className="py-8 sm:py-[64px] lg:pt-[100px] xl:pt-[145px] lg:pb-[100px] xl:pb-[139px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:top-2 before:-left-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full overflow-hidden">
@@ -76,7 +89,9 @@ const SignUpForm = () => {
               </p>
               <form
                 action="submit"
-                onSubmit={e => formHandler(e)}
+                onSubmit={(e: React.FormEvent<HTMLFormElement>) =>
+                  formHandler(e)
+                }
                 className="w-full sm:w-3/4"
               >
                 <div className="flex flex-col mt-6">
@@ -112,7 +127,20 @@ const SignUpForm = () => {
                     htmlFor="Privacy-Policy"
                     className="font-Segoe font-normal text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px] "
                   >
-                    I agree to all Term, Privacy Policy and Fees
+                    I agree to the{' '}
+                    <a
+                      href="#_NEEDS_UPDATE_TO_LIVE_LINK"
+                      className="sign-up__legal-link"
+                    >
+                      Terms of Use
+                    </a>{' '}
+                    and{' '}
+                    <a
+                      href="#_NEEDS_UPDATE_TO_LIVE_LINK"
+                      className="sign-up__legal-link"
+                    >
+                      Privacy Policy
+                    </a>
                   </label>
                 </div>
                 {/* SIGN UP BUTTON */}
