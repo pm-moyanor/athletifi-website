@@ -128,17 +128,11 @@ const SignUpForm = () => {
                     className="font-Segoe font-normal text-md md:max-w-[365px] text-[#FDFEFF] opacity-80 leading-[27px] "
                   >
                     I agree to the{' '}
-                    <a
-                      href="#_NEEDS_UPDATE_TO_LIVE_LINK"
-                      className="sign-up__legal-link"
-                    >
+                    <a href="/terms-of-use" className="sign-up__legal-link">
                       Terms of Use
                     </a>{' '}
                     and{' '}
-                    <a
-                      href="#_NEEDS_UPDATE_TO_LIVE_LINK"
-                      className="sign-up__legal-link"
-                    >
+                    <a href="/privacy-policy" className="sign-up__legal-link">
                       Privacy Policy
                     </a>
                   </label>

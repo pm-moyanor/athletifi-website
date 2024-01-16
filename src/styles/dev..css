@@ -81,6 +81,27 @@
   width: 0;
 }
 
+/* ============================ legal pages ================================= */
+
+.legal-heading {
+  font-weight: bold;
+  margin-top: 2rem; 
+  margin-bottom: 1rem; 
+}
+
+.legal-paragraph {
+  text-align: justify;
+  margin-bottom: 1rem; 
+}
+
+.legal-list {
+  margin-bottom: 1rem;
+  list-style-type: lower-alpha;
+  list-style-position: outside;
+  padding-left: 1.5rem;
+}
+
+
 /* ============================ sign up ================================= */
 
 .sign_up_checkbox input[type="checkbox"] {
