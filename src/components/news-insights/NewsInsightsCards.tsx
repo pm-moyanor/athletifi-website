@@ -61,9 +61,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
           data-aos-offset={AOS_OFFSET}
           className="text-center md:text-start font-HelveticaNeueMedium font-medium text-lg md:text-5xl sm:text-4xl text-primary md:pt-10 md:pb-25 pb-5"
         >
-          <span className="relative">
-            More Recent News
-          </span>
+          <span className="relative">More Recent News</span>
         </h2>
         {moreArticles.length === 0 ? (
           <p className="text-center text-gray-500">
@@ -200,7 +198,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
         src="/assets/img/svg/grid-lines.svg"
         width={IMAGE_WIDTH_GRID}
         height={IMAGE_HEIGHT_GRID}
-        alt={'grid image'}
+        alt=""
       />
       {/* BACKGROUND LEFT GRID */}
       <Image
@@ -208,7 +206,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
         src="/assets/img/svg/grid-lines.svg"
         width={IMAGE_WIDTH_GRID}
         height={IMAGE_HEIGHT_GRID}
-        alt={'grid image'}
+        alt=""
       />
     </div>
   );

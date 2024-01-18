@@ -10,7 +10,7 @@ const IMAGE_HEIGHT_GRID = 241;
 const IMAGE_WIDTH_ARTICLE = 531;
 const IMAGE_HEIGHT_ARTICLE = 486;
 const AOS_DURATION = 400;
-const AOS_DELAY = [100,200];
+const AOS_DELAY = [100, 200];
 const AOS_OFFSET = 100;
 
 interface NewsProps {
@@ -34,7 +34,7 @@ const FocusArticle: React.FC<NewsProps> = props => {
           src="/assets/img/svg/news-grid-line.svg"
           width={IMAGE_WIDTH_GRID}
           height={IMAGE_HEIGHT_GRID}
-          alt="grid-line"
+          alt=""
         />
         <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto py-15 lg:py-25 xl:py-43 relative z-10 after:contents-[''] after:w-207 after:h-207 after:absolute after:top-0 after:-left-50 after:bg-extraDarkBlue after:blur-111 after:-z-10 before:contents-[''] before:w-207 before:h-207 before:absolute before:bottom-0 before:-right-50 before:bg-extraDarkBlue before:blur-111 before:-z-10">
           <div className="flex flex-wrap justify-between flex-col-reverse xl:flex-row items-center">

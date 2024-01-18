@@ -53,17 +53,17 @@ const StatsReimagined = () => {
         <Image
           className="xl:max-w-240 sm:max-w-140 max-w-100"
           src="/assets/img/png/left-ball.png"
-          width={ LEFT_BALL_IMAGE_WIDTH}
-          height={ LEFT_BALL_IMAGE_HEIGHT}
-          alt="what we do foot ball"
+          width={LEFT_BALL_IMAGE_WIDTH}
+          height={LEFT_BALL_IMAGE_HEIGHT}
+          alt=""
         />
       </div>
       <Image
         className="absolute -bottom-300 start-0 z-0"
         src="/assets/img/png/left-shadow.png"
-        width={ LEFT_SHADOW_IMAGE_WIDTH}
-        height={ LEFT_SHADOW_IMAGE_HEIGHT}
-        alt="shadow"
+        width={LEFT_SHADOW_IMAGE_WIDTH}
+        height={LEFT_SHADOW_IMAGE_HEIGHT}
+        alt=""
       />
       <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto relative z-10">
         <div className="container__border--blue-gradient relative after:absolute flex justify-center flex-col items-center  after:contents-[''] after:inset-0 after:p-1 after:rounded-30 rounded-30">
@@ -87,7 +87,7 @@ const StatsReimagined = () => {
             data-aos-duration={AOS_DURATION[1]}
             data-aos-easing="linear"
             data-aos-delay={AOS_DELAY[1]}
-            data-aos-offset={ AOS_OFFSET}
+            data-aos-offset={AOS_OFFSET}
           >
             Never fall behind on their progress
           </span>
@@ -97,7 +97,7 @@ const StatsReimagined = () => {
             data-aos-duration={AOS_DURATION[1]}
             data-aos-easing="linear"
             data-aos-delay={AOS_DELAY[2]}
-            data-aos-offset={ AOS_OFFSET}
+            data-aos-offset={AOS_OFFSET}
           >
             {/* Experience the future of sports collectibles as we integrate dynamic
             statistics into every card, taking your passion for the game to new
@@ -136,7 +136,7 @@ const StatsReimagined = () => {
                   src={`/assets/img/webp/${playerImageLeft}.webp`}
                   width={SOCCER_PLAYER_IMAGE_WIDTH_LEFT}
                   height={SOCCER_PLAYER_IMAGE_HEIGHT_LEFT}
-                  alt="left-card-img"
+                  alt="Player card of Anderson Rodriguez from Villanova Soccer Academy"
                 />
               </div>
             </div>
@@ -154,7 +154,7 @@ const StatsReimagined = () => {
                   src={`/assets/img/webp/${playerImageCenter}.webp`}
                   width={SOCCER_PLAYER_IMAGE_WIDTH_CENTER}
                   height={SOCCER_PLAYER_IMAGE_HEIGHT_CENTER}
-                  alt="center-card-image"
+                  alt="Player card of Jose Hernandez from Villanova Soccer Academy"
                 />
               </div>
             </div>
@@ -172,7 +172,7 @@ const StatsReimagined = () => {
                   src={`/assets/img/webp/${playerImageRight}.webp`}
                   width={SOCCER_PLAYER_IMAGE_WIDTH_RIGHT}
                   height={SOCCER_PLAYER_IMAGE_HEIGHT_RIGHT}
-                  alt="right-card-image"
+                  alt="Player card of Stebi Vidal from Villanova Soccer Academy"
                 />
               </div>
             </div>

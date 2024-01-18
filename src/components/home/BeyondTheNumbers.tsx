@@ -85,7 +85,7 @@ const UniqueAthletifi = () => {
                 src="/assets/img/webp/gen-soccer-player.webp"
                 width={SOCCER_PLAYER_IMAGE_WIDTH}
                 height={SOCCER_PLAYER_IMAGE_HEIGHT}
-                alt={'football palyer'}
+                alt="Player jumping through the air chasing after the ball"
               />
             </div>
           </div>
@@ -96,7 +96,7 @@ const UniqueAthletifi = () => {
           src="/assets/img/png/unique-football.png"
           width={UNIQUE_FOOTBALL_IMAGE_WIDTH}
           height={UNIQUE_FOOTBALL_IMAGE_HEIGHT}
-          alt={'football'}
+          alt=""
         />
       </section>
     </>

@@ -77,7 +77,7 @@ const Home: React.FC<NewsProps> = props => {
             <Image
               className="absolute right-0 hero__grid-position -z-10 hidden lg:block w-450 xl:w-700"
               src="/assets/img/svg/hero_grid.svg"
-              alt="grid-lines"
+              alt=""
               width={IMAGE_WIDTH_HERO_GRID}
               height={IMAGE_HEIGHT_HERO_GRID}
             />

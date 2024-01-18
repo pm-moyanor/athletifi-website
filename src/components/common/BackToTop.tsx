@@ -36,7 +36,7 @@ const BackToTop = () => {
           {/* UP-ARROW-IMG */}
           <div className="w-full h-full flex justify-center items-center">
             <Image
-              alt="up-arrow"
+              alt="Back to top icon"
               src="/assets/img/svg/back_to_top.svg"
               width={ARROW_IMAGE_WIDTH}
               height={ARROW_IMAGE_HEIGHT}

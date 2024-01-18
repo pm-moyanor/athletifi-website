@@ -12,7 +12,7 @@ const PlayerCard = () => {
       <Image
         className=""
         src={cardImage}
-        alt="Player Card"
+        alt="Player card"
         width={CARD_IMAGE_WIDTH}
         height={CARD_IMAGE_HEIGHT}
       />
