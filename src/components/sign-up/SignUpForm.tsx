@@ -64,7 +64,7 @@ const SignUpForm = () => {
         src="/assets/img/svg/news-grid-line.svg"
         width={400}
         height={448}
-        alt="grid-line"
+        alt=""
       />
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative z-10">
         <div className="flex justify-between flex-wrap grid-cols-2 w-full">
@@ -173,7 +173,7 @@ const SignUpForm = () => {
               src="/assets/img/webp/signup-img.webp"
               width={658}
               height={598}
-              alt="signUp-image"
+              alt="Player shoots the ball in front of a defender and a goalkeeper"
             />
           </div>
         </div>

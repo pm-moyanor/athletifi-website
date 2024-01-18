@@ -55,7 +55,7 @@ const HeroHomepage = () => {
           <Image
             className="w-full"
             src="/assets/img/webp/hero_female_player.webp"
-            alt="female-player"
+            alt="Female player leaping to kick the ball with her left foot"
             width={600}
             height={600}
           />
@@ -66,7 +66,7 @@ const HeroHomepage = () => {
         <Image
           className="mx-auto"
           src="/assets/img/webp/hero_female_player_2.webp"
-          alt="female-player"
+          alt="Female player leaping to kick the ball with her left foot"
           width={350}
           height={350}
         />

@@ -16,21 +16,21 @@ const CommonHero: React.FC<{ hero: HeroProps }> = ({ hero }) => {
         <Image
           className="absolute start-1/2 -top-28 -z-10 -translate-x-1/2"
           src="/assets/img/png/about-hero-center-shadow.png"
-          alt="about-hero-shadow"
+          alt=""
           width={1494}
           height={1494}
         />
         <Image
           className="absolute end-0 md-top-28 -z-10 -translate-x-0"
           src="/assets/img/png/yellow-shadow-hero.png"
-          alt="about-hero-shadow"
+          alt=""
           width={1494}
           height={1494}
         />
         <Image
           className="absolute start-0 md-top-28 -z-10 translate-x-0"
           src="/assets/img/png/left-shadow-about-hero.png"
-          alt="about-hero-shadow"
+          alt=""
           width={1494}
           height={1494}
         />

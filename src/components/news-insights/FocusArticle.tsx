@@ -26,7 +26,7 @@ const FocusArticle: React.FC<NewsProps> = props => {
           src="/assets/img/svg/news-grid-line.svg"
           width={362}
           height={241}
-          alt="grid-line"
+          alt=""
         />
         <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto py-[15px] lg:py-[25px] xl:py-[43px] relative z-10 after:contents-[''] after:w-[207px] after:h-[207px] after:absolute after:top-0 after:-left-[50px] after:bg-[#00c3f47b] after:blur-[111px] after:-z-10 before:contents-[''] before:w-[207px] before:h-[207px] before:absolute before:bottom-0 before:-right-[50px] before:bg-[#00c3f47b] before:blur-[111px] before:-z-10">
           <div className="flex flex-wrap justify-between flex-col-reverse xl:flex-row items-center">

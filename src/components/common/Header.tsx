@@ -208,7 +208,7 @@ const Header = () => {
                       >
                         <Image
                           src="/assets/img/svg/Instagram.svg"
-                          alt="grid-lines"
+                          alt="Instagram icon"
                           width={32}
                           height={32}
                         />
