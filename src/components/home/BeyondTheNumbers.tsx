@@ -22,7 +22,7 @@ const UniqueAthletifi = () => {
               {/* AthletiFi Unique */}
               True Player Insights
             </h2>
-            <span
+            <h3
               className="text-primary text-lgxl font-HelveticaNeueRegular leading-normal"
               data-aos="fade-up"
               data-aos-duration="600"
@@ -32,7 +32,7 @@ const UniqueAthletifi = () => {
             >
               {/* Empowering Tomorrow's Soccer Stars */}
               Decoding the game for passive followers
-            </span>
+            </h3>
             <div
               data-aos="fade-up"
               data-aos-duration="600"

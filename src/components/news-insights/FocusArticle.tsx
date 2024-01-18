@@ -38,9 +38,9 @@ const FocusArticle: React.FC<NewsProps> = props => {
               data-aos-delay="100"
               data-aos-offset="100"
             >
-              <h3 className="font-medium text-[20px] sm:text-lg text-primary font-HelveticaNeueMedium xl:max-w-[447px] mx-auto xl:mx-0">
+              <h2 className="font-medium text-[20px] sm:text-lg text-primary font-HelveticaNeueMedium xl:max-w-[447px] mx-auto xl:mx-0">
                 {focusArticleData.title}
-              </h3>
+              </h2>
               <p className="text-base text-primary opacity-70 font-Segoe font-normal mt-2">
                 by : {focusArticleData.author?.fullName} &bull;{' '}
                 {moment(focusArticleData.createdAt).format('DD MMM YY')}

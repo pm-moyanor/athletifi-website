@@ -67,7 +67,7 @@ const StatsReimagined = () => {
             </span>{' '}
             {/* Exposure elevated. */}
           </h2>
-          <span
+          <h3
             className="text-primary text-lgxl font-HelveticaNeueRegular leading-normal mt-4"
             data-aos="fade-up"
             data-aos-duration="600"
@@ -76,7 +76,7 @@ const StatsReimagined = () => {
             data-aos-offset="200"
           >
             Never fall behind on their progress
-          </span>
+          </h3>
           <p
             className="font-Segoe font-normal text-md text-center text-[#FDFEFF] leading-7 px-4 md:px-0 max-w-[700px] lg:max-w-[769px] mx-auto md:mt-4 mt-2 relative z-20"
             data-aos="fade-up"
