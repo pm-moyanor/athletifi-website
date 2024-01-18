@@ -20,7 +20,7 @@ const FocusArticle: React.FC<NewsProps> = props => {
 
   return (
     <>
-      <div className="blue_linear_gradient relative after:absolute flex justify-center flex-col items-center after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px] mx-3 sm:mx-10 md:mx-16 after:blur-[75px] blue_linear_gradient mt-[45px] lg:mt-[80px] xl:mt-[123px] sm:mb-[24px] lg:mb-[56px] xl:mb-[125px]">
+      <div className="container__border--blue-gradient relative after:absolute flex justify-center flex-col items-center after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px] mx-3 sm:mx-10 md:mx-16 after:blur-[75px] mt-[45px] lg:mt-[80px] xl:mt-[123px] sm:mb-[24px] lg:mb-[56px] xl:mb-[125px]">
         <Image
           className="lg:w-[462px] lg:h-[541px] w-[150px] -top-[160px] sm:-left-20  -left-5 absolute opacity-50 -z-20"
           src="/assets/img/svg/news-grid-line.svg"

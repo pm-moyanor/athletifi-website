@@ -118,7 +118,7 @@ const SignUpForm = () => {
                     }
                   />
                 </div>
-                <div className="flex items-center gap-2 mt-4 sign_up_checkbox">
+                <div className="flex items-center gap-2 mt-4 sign-up__checkbox">
                   <input
                     type="checkbox"
                     id="Privacy-Policy"
@@ -131,7 +131,7 @@ const SignUpForm = () => {
                     I agree to the{' '}
                     <Link
                       href="/terms-of-use"
-                      className="sign-up__legal-link"
+                      className="sign-up__link"
                       rel="noopener noreferrer"
                       target="_blank"
                     >
@@ -140,7 +140,7 @@ const SignUpForm = () => {
                     and{' '}
                     <Link
                       href="/privacy-policy"
-                      className="sign-up__legal-link"
+                      className="sign-up__link"
                       rel="noopener noreferrer"
                       target="_blank"
                     >
@@ -152,7 +152,7 @@ const SignUpForm = () => {
                 <div className="flex mt-6 md:mt-8 lg:max-w-[400px]">
                   <button
                     type="submit"
-                    className={`sm:w-full justify-center text-center sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black  join_now_btn transition duration-300 ease-in-out ${
+                    className={`sm:w-full justify-center text-center sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black btn__cta transition duration-300 ease-in-out ${
                       checked ? ' bg-skyblue' : ''
                     }`}
                   >

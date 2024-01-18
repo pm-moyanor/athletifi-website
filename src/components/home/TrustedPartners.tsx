@@ -25,7 +25,7 @@ const TrustedPartners: React.FC = () => {
             data-aos-delay="400"
             data-aos-offset="200"
           >
-            <h3 className=" max-w-[396px] text-primary sm:text-2xl text-md font-HelveticaNeueMedium md:text-start text-center">
+            <h3 className="max-w-[396px] text-primary sm:text-2xl text-md font-HelveticaNeueMedium md:text-start text-center">
               Stats for the next generation of soccer superstars
             </h3>
             <p className="font-Segoe text-primary opacity-80 max-w-md md:text-start text-center">
