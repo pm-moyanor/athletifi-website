@@ -21,7 +21,9 @@ const SignUp = () => {
         <Header />
         <CommonHero hero={hero} />
       </div>
-      <SignUpForm />
+      <main>
+        <SignUpForm />
+      </main>
       <Footer />
     </>
   );

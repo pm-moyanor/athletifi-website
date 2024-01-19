@@ -80,12 +80,14 @@ const Home: React.FC<NewsProps> = props => {
             />
           </div>
         </div>
-        <StatsReimagined />
-        <SoccerExpensive />
-        <UniqueAthletifi />
-        {/* <OurStrategicAdvisor /> */}
-        <TrustedPartners />
-        {/* <LatestNews allNewsList={allNewsList} /> */}
+        <main>
+          <StatsReimagined />
+          <SoccerExpensive />
+          <UniqueAthletifi />
+          {/* <OurStrategicAdvisor /> */}
+          <TrustedPartners />
+          {/* <LatestNews allNewsList={allNewsList} /> */}
+        </main>
         <Footer />
         <BackToTop />
       </div>

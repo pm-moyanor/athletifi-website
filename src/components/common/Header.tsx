@@ -59,7 +59,7 @@ const Header = () => {
   };
 
   return (
-    <>
+    <header>
       <div
         ref={navbarRef}
         id="nav_bar"
@@ -89,7 +89,11 @@ const Header = () => {
               }
             >
               {/* NAV PAGE LINKS */}
-              <ul className="flex items-center gap-[25px] sm:gap-[40px] flex-col sm:flex-row h-full justify-center ">
+              <ul
+                className="flex items-center gap-[25px] sm:gap-[40px] flex-col sm:flex-row h-full justify-center"
+                role="navigation"
+                aria-label="Main"
+              >
                 <li>
                   <Link
                     onClick={() => setOpen(false)}
@@ -165,7 +169,11 @@ const Header = () => {
                       navSocialIcon ? '!hidden' : 'block'
                     }`}
                   >
-                    <div className="flex gap-4 flex-col">
+                    <div
+                      className="flex gap-4 flex-col"
+                      role="navigation"
+                      aria-label="Socials"
+                    >
                       {/* SOCIAL ICONS LINKS */}
                       <Link
                         className="hover:-translate-y-1 transition duration-300 ease-out flex items-center"
@@ -260,7 +268,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </>
+    </header>
   );
 };
 
