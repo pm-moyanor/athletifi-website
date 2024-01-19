@@ -61,12 +61,14 @@ const Header = () => {
   };
 
   return (
-    <>
+    <header>
       <div
         ref={navbarRef}
         id="nav_bar"
         className={`navbar fixed top-0 black w-full bg-bgnav py-2 z-40 ${
-          scrollPosition > SCROLL_THRESHOLD ? 'header--slide-up' : 'header--slide-down'
+          scrollPosition > SCROLL_THRESHOLD
+            ? 'header--slide-up'
+            : 'header--slide-down'
         } ${isVisible ? 'header--slide-down' : 'header--slide-up'}`}
       >
         <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto">
@@ -91,7 +93,11 @@ const Header = () => {
               }
             >
               {/* NAV PAGE LINKS */}
-              <ul className="flex items-center gap-25 md:gap-40pixel flex-col md:flex-row h-full justify-center ">
+              <ul
+                className="flex items-center gap-25 md:gap-40pixel flex-col md:flex-row h-full justify-center"
+                role="navigation"
+                aria-label="Main"
+              >
                 <li>
                   <Link
                     onClick={() => setOpen(false)}
@@ -167,7 +173,11 @@ const Header = () => {
                       navSocialIcon ? '!hidden' : 'block'
                     }`}
                   >
-                    <div className="flex gap-4 flex-col">
+                    <div
+                      className="flex gap-4 flex-col"
+                      role="navigation"
+                      aria-label="Socials"
+                    >
                       {/* SOCIAL ICONS LINKS */}
                       <Link
                         className="hover:-translate-y-1 transition duration-300 ease-out flex items-center"
@@ -262,7 +272,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </>
+    </header>
   );
 };
 
