@@ -43,17 +43,17 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
   };
 
   return (
-    <div className="py-14 md:py-0 relative before:content-[''] before:absolute sm:before:w-[448px] before:w-[248px] sm:before:h-[448px] before:h-[248px] before:top-0 before:left-0 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/4 before:z-0 before:rounded-full after:content-[''] after:absolute sm:after:w-[448px] sm:after:h-[448px] after:w-[248px] after:h-[248px] after:bottom-20 after:right-0 after:bg-shadow_blue after:blur-[111px] after:opacity-25 after:translate-x-1/4 after:z-0 after:rounded-full">
-      <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto relative z-10 md:mb-[100px] xl:mb-[160px]">
+    <div className="py-14 md:py-0 relative before:content-[''] before:absolute sm:before:w-448 before:w-248 sm:before:h-448 before:h-248 before:top-0 before:left-0 before:bg-shadow_blue before:blur-111 before:opacity-25 before:-translate-x-1/4 before:z-0 before:rounded-full after:content-[''] after:absolute sm:after:w-448 sm:after:h-448 after:w-248 after:h-248 after:bottom-20 after:right-0 after:bg-shadow_blue after:blur-111 after:opacity-25 after:translate-x-1/4 after:z-0 after:rounded-full">
+      <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto relative z-10 md:mb-100 xl:mb-160">
         <h2
           data-aos="fade-up"
           data-aos-duration="400"
           data-aos-easing="linear"
           data-aos-delay="100"
           data-aos-offset="200"
-          className="text-center md:text-start font-HelveticaNeueMedium font-medium lg:text-5xl md:text-[40px] text-[26px] text-primary md:pt-10 md:pb-[25px] pb-5"
+          className="text-center md:text-start font-HelveticaNeueMedium font-medium text-lg md:text-5xl sm:text-4xl text-primary md:pt-10 md:pb-25 pb-5"
         >
-          <span className="relative after:content after:absolute after:bottom-[-6px] md:after:bottom-[-12px] after:left-0 md:after:w-[290px] after:h-[15px] after:bg-blue-underline after:bg-contain after:bg-no-repeat">
+          <span className="relative">
             More Recent News
           </span>
         </h2>
@@ -85,7 +85,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
                     >
                       <div
                         key={index}
-                        className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-[20px] mb-6 sm:mt-[30px]"
+                        className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-20 mb-6 sm:mt-30pixel"
                         data-aos="fade-up"
                         data-aos-duration="400"
                         data-aos-easing="ease"
@@ -93,16 +93,16 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
                       >
                         {combinedUrl && (
                           <Image
-                            className="lg:w-[315px] h-[200px] min-[375px]:h-[300px] min-[500px]:h-[400px] md:h-[150px] lg:!h-[220px] rounded-[10px] object-cover w-full md:min-w-[225px] lg:min-w-[315px] md:w-[224px]"
+                            className="lg:w-315 h-200 375:h-300 500:h-400 md:h-150 lg:!h-220 rounded-10 object-cover w-full md:min-w-225 lg:min-w-315 md:w-224"
                             src={combinedUrl}
                             width={315}
                             height={240}
                             alt="football match"
                           />
                         )}
-                        <div className="sm:pt-0 pt-3 max-w-[617px]">
+                        <div className="sm:pt-0 pt-3 max-w-617">
                           {/* NEWS HEADING */}
-                          <h3 className="sm:text-basemd text-[18px] text-primary font-HelveticaNeueMedium leading-[140%]">
+                          <h3 className="sm:text-basemd text-md text-primary font-HelveticaNeueMedium leading-140">
                             {item.title}
                           </h3>
                           <div className="flex sm:items-center sm:flex-row flex-col sm:gap-3 gap-2 pt-2">
@@ -120,7 +120,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
                                 return (
                                   <button
                                     key={i}
-                                    className="lg:text-base md:text-[13px] text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-[10px] sm:px-[18px] bg-matchtitles rounded-full leading-[150%] duration-300 hover:text-white"
+                                    className="lg:text-base md:text-xxs text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-10pixel sm:px-18pixel bg-matchtitles rounded-full leading-150 duration-300 hover:text-white"
                                   >
                                     {val.title}
                                   </button>
@@ -129,7 +129,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
                             </span>
                           </div>
                           {/* NEWS DATA */}
-                          <p className="sm:text-md text:base text-primary opacity-80 font-Segoe leading-[150%] sm:pt-4 pt-3 lg:pe-14 sm:pe-4">
+                          <p className="sm:text-md text:base text-primary opacity-80 font-Segoe leading-150 sm:pt-4 pt-3 lg:pe-14 sm:pe-4">
                             {item.previewSummary}
                           </p>
                         </div>
@@ -141,7 +141,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
               );
             })}
 
-            <div className="flex justify-between lg:max-w-[210px] py-3  max-w-[230px] mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
+            <div className="flex justify-between lg:max-w-210 py-3  max-w-230 mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
               {currentPage === 1 ? (
                 <div className="opacity-70 -rotate-90 cursor-not-allowed inline-block">
                   <PaginationArrow />
@@ -190,7 +190,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
       </div>
       {/* BACKGROUND RIGHT GRID */}
       <Image
-        className="xl:w-[600px] lg:[550px] sm:w-[400px] w-[250px] absolute bottom-10 right-[-50px] -z-10"
+        className="xl:w-600 lg:w-550 sm:w-400 w-250 absolute bottom-10 right--50 -z-10"
         src="/assets/img/svg/grid-lines.svg"
         width={716}
         height={692}
@@ -198,7 +198,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
       />
       {/* BACKGROUND LEFT GRID */}
       <Image
-        className="xl:w-[606px] lg:[550px] sm:w-[400px] w-[250px] absolute top-40 -translate-y-1/3 left-2 -z-10"
+        className="xl:w-600 lg:550 sm:w-400 w-250 absolute top-40 -translate-y-1/3 left-2 -z-10"
         src="/assets/img/svg/grid-lines.svg"
         width={716}
         height={692}

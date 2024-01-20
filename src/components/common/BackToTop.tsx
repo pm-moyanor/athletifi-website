@@ -25,7 +25,7 @@ const BackToTop = () => {
     <>
       {scrollPosition > 200 ? (
         <div
-          className="fixed  backtotop sm:bottom-20 bottom-14 right-7 z-40 md:max-h-12 md:max-w-[48px] max-h-9 max-w-[36px]  cursor-pointer bg-skyblue rounded-lg border-[2px] border-skyblue hover:border-white duration-300"
+          className="fixed  backtotop sm:bottom-20 bottom-14 right-7 z-40 md:max-h-12 md:max-w-48 max-h-9 max-w-36  cursor-pointer bg-skyblue rounded-lg border-2 border-skyblue hover:border-white duration-300"
           onClick={() => scrollToTop()}
         >
           {/* UP-ARROW-IMG */}

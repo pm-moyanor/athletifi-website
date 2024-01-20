@@ -21,7 +21,7 @@ const PlayerInfo = () => {
           data-aos-delay="300"
           data-aos-offset="100"
         >
-          <h2 className="font-HelveticaNeueMedium md:text-4xl text-[26px] text-[#FDFEFF] font-medium leading-[60px] relative z-20 text-center md:mb-4">
+          <h2 className="font-HelveticaNeueMedium md:text-4xl text-basemd text-primary font-medium leading-60 relative z-20 text-center md:mb-4">
             <span className="relative ">
               Player Info
               <span className="absolute -bottom-2 left-0 z-0">
@@ -32,10 +32,10 @@ const PlayerInfo = () => {
           <div className="flex flex-col justify-center p-5">
             {Object.entries(PlayerInformation).map(([key, value]) => (
               <div key={key} className="my-2">
-                <span className="font-bold font-Segoe text-md leading-7 text-center pb-0.5 text-[#FDFEFF] opacity-80 m-0 sm:pt-4 lg:max-w-[769px] mx-auto sm:px-0.5 px-0.5 xl:px-0.5 relative z-20">
+                <span className="font-bold font-Segoe text-md leading-7 text-center pb-0.5 text-primary opacity-80 m-0 sm:pt-4 lg:max-w-769 mx-auto sm:px-0.5 px-0.5 xl:px-0.5 relative z-20">
                   {key}:{' '}
                 </span>
-                <span className="font-Segoe font-normal text-md leading-7 text-center pb-0.5 text-[#FDFEFF] opacity-80 m-0 sm:pt-4 lg:max-w-[769px] mx-auto sm:px-0.5 px-0.5 xl:px-0.5 relative z-20">
+                <span className="font-Segoe font-normal text-md leading-7 text-center pb-0.5 text-primary opacity-80 m-0 sm:pt-4 lg:max-w-769 mx-auto sm:px-0.5 px-0.5 xl:px-0.5 relative z-20">
                   {value}
                 </span>
               </div>

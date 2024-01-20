@@ -30,17 +30,17 @@ const TargetArticleContent: React.FC<NewsProps> = props => {
           const combinedUrl = url ? `${imagePath}${url}` : null;
           return (
             <div key={i}>
-              <section className="lg:pb-12 xl:pb-[117px] relative">
+              <section className="lg:pb-12 xl:pb-117 relative">
                 {/* GRID-LINE IMG */}
                 <Image
-                  className="lg:w-[462px] lg:h-[441px] w-40 lg:-top-28 lg:-left-10 absolute -z-20 opacity-50"
+                  className="lg:w-462 lg:h-441 w-40 lg:-top-28 lg:-left-10 absolute -z-20 opacity-50"
                   src="/assets/img/svg/news-grid-line.svg"
                   width={400}
                   height={448}
                   alt="grid-line"
                 />
-                <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative z-10">
-                  <div className="xl:mt-[190px] lg:mt-[108px] md:mt-[60px] mt-[48px] relative z-20 before:content-[''] before:absolute before:w-[457px] before:h-[457px] before:-top-24 before:-left-40 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full">
+                <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto px-3 relative z-10">
+                  <div className="xl:mt-190 lg:mt-108 md:mt-60 mt-48pixel relative z-20 before:content-[''] before:absolute before:w-457 before:h-457 before:-top-24 before:-left-40 before:bg-shadow_blue before:blur-111 before:opacity-25 before:-z-10 before:rounded-full">
                     {combinedUrl && (
                       <Image
                         data-aos="zoom-in"
@@ -52,18 +52,18 @@ const TargetArticleContent: React.FC<NewsProps> = props => {
                         width={1140}
                         height={556}
                         alt="players"
-                        className="w-full max-h-[850px] object-cover rounded-2xl"
+                        className="w-full max-h-850 object-cover rounded-2xl"
                       />
                     )}
 
-                    <div className="lg:mt-12 md:mt-7 mt-5 relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:-top-20 before:-end-60 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-z-10 before:rounded-full">
+                    <div className="lg:mt-12 md:mt-7 mt-5 relative z-20 before:content-[''] before:absolute before:w-448 before:h-448 before:-top-20 before:-end-60 before:bg-shadow_blue before:blur-111 before:opacity-25 before:-z-10 before:rounded-full">
                       <h3
                         data-aos="fade-up"
                         data-aos-duration="800"
                         data-aos-easing="linear"
                         data-aos-delay="200"
                         data-aos-offset="200"
-                        className="font-HelveticaNeueMedium text-primary font-medium text-[22px] sm:text-lg leading-8 md:leading-[39px] sm:text-start text-center"
+                        className="font-HelveticaNeueMedium text-primary font-medium text-basemd sm:text-lg leading-8 md:leading-39 sm:text-start text-center"
                       >
                         {/* {newsItem.title} */}
                         {/* ^^^^^^WE DONT NEED THIS NO MORE BECAUSE WE PUT THE TITLE IN [slug].js in the heading property for hero */}
@@ -100,7 +100,7 @@ const TargetArticleContent: React.FC<NewsProps> = props => {
                                 data-aos-easing="linear"
                                 data-aos-delay="200"
                                 data-aos-offset="200"
-                                className="font-HelveticaNeueMedium text-primary font-medium text-[22px] mt-[20px] sm:mt-6 sm:text-lg leading-8 md:leading-[39px] sm:text-start text-center"
+                                className="font-HelveticaNeueMedium text-primary font-medium text-basemd mt-20pixel sm:mt-6 sm:text-lg leading-8 md:leading-39 sm:text-start text-center"
                               >
                                 {obj.subheading}
                               </h3>
@@ -113,7 +113,7 @@ const TargetArticleContent: React.FC<NewsProps> = props => {
                                 data-aos-easing="linear"
                                 data-aos-delay="200"
                                 data-aos-offset="200"
-                                className="font-Segoe font-normal text-md lg:mt-[10px] mt-2 leading-7 text-offwhite sm:text-start text-center"
+                                className="font-Segoe font-normal text-md lg:mt-10pixel mt-2 leading-7 text-offwhite sm:text-start text-center"
                               ></div>
                             </div>
                           );
@@ -121,7 +121,7 @@ const TargetArticleContent: React.FC<NewsProps> = props => {
                     </div>
                   </div>
                   <div
-                    className="flex items-center gap-[14px] mt-5 sm:mt-8 justify-center sm:justify-start"
+                    className="flex items-center gap-14 mt-5 sm:mt-8 justify-center sm:justify-start"
                     data-aos="fade-up"
                     data-aos-duration="800"
                     data-aos-easing="linear"

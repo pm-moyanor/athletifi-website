@@ -17,13 +17,13 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="border-t border-[#00C7FF]">
-        <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto  flex flex-col md:flex-row gap-5 items-center justify-between py-7">
+      <footer className="border-t border-darkerSkyBlue">
+        <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto  flex flex-col md:flex-row gap-5 items-center justify-between py-7">
           {/* PAGE LINKS */}
           <ul className=" flex gap-lg-10 gap-5">
             <li>
               <Link
-                className="text-white text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto "
+                className="text-primary text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto "
                 aria-label="privacy-policy"
                 href="/privacy-policy"
               >
@@ -32,7 +32,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                className="text-white text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto "
+                className="text-white text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto "
                 aria-label="terms-of-use"
                 href="/terms-of-use"
               >

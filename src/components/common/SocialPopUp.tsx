@@ -12,7 +12,7 @@ import {
 const SocialPopUp = () => {
   return (
     <>
-      <div className="bg_social_icon flex items-start justify-center gap-[20px] sm:fixed sm:top-[90px] top-[100%] left-[20%] sm:left-1/2 z-20 flex-col-reverse p-6 ">
+      <div className="bg_social_icon flex items-start justify-center gap-20pixel sm:fixed sm:top-90 top-full left-20/100 sm:left-1/2 z-20 flex-col-reverse p-6 ">
         {/* CONTACT US BUTTON */}
         <div className="flex gap-4 flex-col">
           {/* SOCIAL ICONS LINKS */}

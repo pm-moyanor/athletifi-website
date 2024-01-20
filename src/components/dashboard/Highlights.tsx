@@ -12,7 +12,7 @@ const videos = [
 const Highlights = () => {
   return (
     <div className="w-full xl:w-3/4 2xl:w-3/4 min-h-full">
-      <div className="blue_linear_gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 z-0  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px] h-full flex items-center justify-center">
+      <div className="blue_linear_gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 z-0  after:contents-[''] after:inset-0 after:p-1 after:rounded-30 rounded-30 h-full flex items-center justify-center">
         <div
           className="flex flex-col justify-center items-stretch relative z-20"
           data-aos="fade-up"
@@ -21,7 +21,7 @@ const Highlights = () => {
           data-aos-delay="300"
           data-aos-offset="100"
         >
-          <h2 className="font-HelveticaNeueMedium md:text-4xl text-[26px] text-[#FDFEFF] font-medium leading-[60px] relative z-20 text-center md:mb-4">
+          <h2 className="font-HelveticaNeueMedium md:text-4xl text-basemd text-primary font-medium leading-60 relative z-20 text-center md:mb-4">
             <span className="relative ">
               Highlights
               <span className="absolute -bottom-2 left-0 z-0">

@@ -72,7 +72,7 @@ const Home: React.FC<NewsProps> = props => {
           <div className="flex lg:items-center lg:flex-row flex-col flex-grow relative">
             <HeroHomepage />
             <Image
-              className="absolute right-0 hero_grid_position -z-10 hidden lg:block w-[450px] xl:w-[700px]"
+              className="absolute right-0 hero_grid_position -z-10 hidden lg:block w-450 xl:w-700"
               src="/assets/img/svg/hero_grid.svg"
               alt="grid-lines"
               width={700}
