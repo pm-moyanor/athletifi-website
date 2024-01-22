@@ -17,7 +17,7 @@ const LookingForward = () => {
           src="/assets/img/png/football.png"
           width={176}
           height={286}
-          alt="what we do foot ball image"
+          alt=""
         />
       </div>
       {/* SHADOW IMG */}
@@ -26,7 +26,7 @@ const LookingForward = () => {
         src="/assets/img/png/what-we-do-shadow.png"
         width={448}
         height={448}
-        alt="shadow"
+        alt=""
       />
       <span className="absolute top-50 start-0 z-0">
         <BlueShadow />

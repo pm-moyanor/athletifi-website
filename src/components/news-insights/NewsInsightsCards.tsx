@@ -192,7 +192,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
         src="/assets/img/svg/grid-lines.svg"
         width={716}
         height={692}
-        alt={'grid image'}
+        alt=""
       />
       {/* BACKGROUND LEFT GRID */}
       <Image
@@ -200,7 +200,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
         src="/assets/img/svg/grid-lines.svg"
         width={716}
         height={692}
-        alt={'grid image'}
+        alt=""
       />
     </div>
   );

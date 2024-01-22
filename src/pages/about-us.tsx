@@ -29,9 +29,11 @@ const AboutUs = () => {
           <Header />
           <CommonHero hero={hero} />
         </div>
-        <OurMission />
-        <WhoWeAre />
-        <LookingForward />
+        <main>
+          <OurMission />
+          <WhoWeAre />
+          <LookingForward />
+        </main>
         <Footer />
         <BackToTop />
       </div>
