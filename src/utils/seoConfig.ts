@@ -30,7 +30,7 @@ export const SEO_CONFIG = {
   signUp: {
     description:
       "Sign-up for exclusive updates! Become part of the sport's revolution.",
-    image: '/sign_up_meta',
+    image: '/sign_up_meta.jpg',
     title: 'Start Your Journey | Join AthletiFi',
     websiteURL: 'https://athleti.fi/sign-up',
   },
