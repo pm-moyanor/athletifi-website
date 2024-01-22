@@ -12,6 +12,13 @@ import {
 
 import Link from 'next/link';
 
+const IMAGE_WIDTH_GRID = 400;
+const IMAGE_HEIGHT_GRID = 448;
+const IMAGE_WIDTH_ARTICLE = 1140;
+const IMAGE_HEIGHT_ARTICLE = 556;
+const AOS_DURATION = 800;
+const AOS_DELAY = 200;
+const AOS_OFFSET = [100, 200];
 interface NewsProps {
   newsDetailData: any;
 }
@@ -35,8 +42,8 @@ const TargetArticleContent: React.FC<NewsProps> = props => {
                 <Image
                   className="lg:w-462 lg:h-441 w-40 lg:-top-28 lg:-left-10 absolute -z-20 opacity-50"
                   src="/assets/img/svg/news-grid-line.svg"
-                  width={400}
-                  height={448}
+                  width={IMAGE_WIDTH_GRID}
+                  height={IMAGE_HEIGHT_GRID}
                   alt="grid-line"
                 />
                 <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto px-3 relative z-10">
@@ -44,13 +51,13 @@ const TargetArticleContent: React.FC<NewsProps> = props => {
                     {combinedUrl && (
                       <Image
                         data-aos="zoom-in"
-                        data-aos-duration="800"
+                        data-aos-duration={AOS_DURATION}
                         data-aos-easing="linear"
-                        data-aos-delay="200"
-                        data-aos-offset="100"
+                        data-aos-delay={AOS_DELAY}
+                        data-aos-offset={AOS_OFFSET[0]}
                         src={combinedUrl}
-                        width={1140}
-                        height={556}
+                        width={IMAGE_WIDTH_ARTICLE}
+                        height={IMAGE_HEIGHT_ARTICLE}
                         alt="players"
                         className="w-full max-h-850 object-cover rounded-2xl"
                       />
@@ -59,10 +66,10 @@ const TargetArticleContent: React.FC<NewsProps> = props => {
                     <div className="lg:mt-12 md:mt-7 mt-5 relative z-20 before:content-[''] before:absolute before:w-448 before:h-448 before:-top-20 before:-end-60 before:bg-shadow_blue before:blur-111 before:opacity-25 before:-z-10 before:rounded-full">
                       <h3
                         data-aos="fade-up"
-                        data-aos-duration="800"
+                        data-aos-duration={AOS_DURATION}
                         data-aos-easing="linear"
-                        data-aos-delay="200"
-                        data-aos-offset="200"
+                        data-aos-delay={AOS_DELAY}
+                        data-aos-offset={AOS_OFFSET[1]}
                         className="font-HelveticaNeueMedium text-primary font-medium text-basemd sm:text-lg leading-8 md:leading-39 sm:text-start text-center"
                       >
                         {/* {newsItem.title} */}
@@ -70,10 +77,10 @@ const TargetArticleContent: React.FC<NewsProps> = props => {
                       </h3>
                       <p
                         data-aos="fade-up"
-                        data-aos-duration="800"
+                        data-aos-duration={AOS_DURATION}
                         data-aos-easing="linear"
-                        data-aos-delay="200"
-                        data-aos-offset="200"
+                        data-aos-delay={AOS_DELAY}
+                        data-aos-offset={AOS_OFFSET[1]}
                         className="font-Segoe text-offwhite mt-2 font-normal text-base sm:text-start text-center"
                       >
                         by: {newsItem.author.fullName} &bull;{' '}
@@ -81,10 +88,10 @@ const TargetArticleContent: React.FC<NewsProps> = props => {
                       </p>
                       <p
                         data-aos="fade-up"
-                        data-aos-duration="800"
+                        data-aos-duration={AOS_DURATION}
                         data-aos-easing="linear"
-                        data-aos-delay="200"
-                        data-aos-offset="200"
+                        data-aos-delay={AOS_DELAY}
+                        data-aos-offset={AOS_OFFSET[1]}
                         className="font-Segoe font-normal text-md lg:mt-4 mt-2 leading-7 text-offwhite sm:text-start text-center"
                       >
                         {/* {newsItem.previewSummary} */}
@@ -96,10 +103,10 @@ const TargetArticleContent: React.FC<NewsProps> = props => {
                               <h3
                                 key={index}
                                 data-aos="fade-up"
-                                data-aos-duration="800"
+                                data-aos-duration={AOS_DURATION}
                                 data-aos-easing="linear"
-                                data-aos-delay="200"
-                                data-aos-offset="200"
+                                data-aos-delay={AOS_DELAY}
+                                data-aos-offset={AOS_OFFSET[1]}
                                 className="font-HelveticaNeueMedium text-primary font-medium text-basemd mt-20pixel sm:mt-6 sm:text-lg leading-8 md:leading-39 sm:text-start text-center"
                               >
                                 {obj.subheading}
@@ -109,10 +116,10 @@ const TargetArticleContent: React.FC<NewsProps> = props => {
                                   __html: obj.body,
                                 }}
                                 data-aos="fade-up"
-                                data-aos-duration="800"
+                                data-aos-duration={AOS_DURATION}
                                 data-aos-easing="linear"
-                                data-aos-delay="200"
-                                data-aos-offset="200"
+                                data-aos-delay={AOS_DELAY}
+                                data-aos-offset={AOS_OFFSET[1]}
                                 className="font-Segoe font-normal text-md lg:mt-10pixel mt-2 leading-7 text-offwhite sm:text-start text-center"
                               ></div>
                             </div>
@@ -123,10 +130,10 @@ const TargetArticleContent: React.FC<NewsProps> = props => {
                   <div
                     className="flex items-center gap-14 mt-5 sm:mt-8 justify-center sm:justify-start"
                     data-aos="fade-up"
-                    data-aos-duration="800"
+                    data-aos-duration={AOS_DURATION}
                     data-aos-easing="linear"
-                    data-aos-delay="200"
-                    data-aos-offset="200"
+                    data-aos-delay={AOS_DELAY}
+                    data-aos-offset={AOS_OFFSET[1]}
                   >
                     <Link
                       className="hover:-translate-y-1 duration-200"

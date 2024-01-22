@@ -3,6 +3,16 @@ import Image from 'next/image';
 import BlueButton from '../common/BlueButton';
 import Link from 'next/link';
 
+const FOOTBALL_NET_IMAGE_WIDTH = 996;
+const FOOTBALL_NET_IMAGE_HEIGHT = 768;
+const AOS_DURATION = 600;
+const AOS_DELAY = 200;
+const AOS_OFFSET = 200;
+const EXPENSIVE_FOOTBALL_IMAGE_WIDTH = 700;
+const EXPENSIVE_FOOTBALL_IMAGE_HEIGHT = 700;
+const FOOTBALL_IMAGE_WIDTH = 700;
+const FOOTBALL_IMAGE_HEIGHT = 400;
+
 const SoccerExpensive = () => {
   return (
     <>
@@ -10,18 +20,18 @@ const SoccerExpensive = () => {
         <Image
           className="absolute -top-20 -left-0 w-40/100 lg:block hidden z-0  h-120"
           src="/assets/img/png/football_net.png"
-          width={996}
-          height={768}
+          width={FOOTBALL_NET_IMAGE_WIDTH}
+          height={FOOTBALL_NET_IMAGE_HEIGHT}
           alt="football net"
         />
         <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto">
           <div className="max-w-623 mx-auto lg:mx-0 relative after:content after:absolute lg:after:w-690 lg:after:h-420 lg:after:bg-blackBG after:blur-55 after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:z-0">
             <div
               data-aos="fade-up"
-              data-aos-duration="600"
+              data-aos-duration={AOS_DURATION}
               data-aos-easing="linear"
-              data-aos-delay="200"
-              data-aos-offset="200"
+              data-aos-delay={AOS_DELAY}
+              data-aos-offset={AOS_OFFSET}
               className=" relative z-10"
             >
               <h2 className="font-HelveticaNeueMedium text-lg md:text-5xl sm:text-4xl text-primary font-medium mb-4 text-center lg:text-start leading-[120%] xl:leading-60 pt-10">
@@ -54,27 +64,27 @@ const SoccerExpensive = () => {
         </div>
         <div
           data-aos="fade-up"
-          data-aos-duration="600"
+          data-aos-duration={AOS_DURATION}
           data-aos-easing="linear"
-          data-aos-delay="200"
-          data-aos-offset="200"
+          data-aos-delay={AOS_DELAY}
+          data-aos-offset={AOS_OFFSET}
         >
           <div className="absolute right-0 lg:top-[40%] lg:-translate-y-[50%] xl:w-700 xl:h-1000 w-300 sm:w-450 lg:w-500 hidden lg:inline-block -z-10">
             <Image
               className="w-full"
               src="/assets/img/webp/expensive_football.webp"
               alt="football"
-              width={700}
-              height={700}
+              width={EXPENSIVE_FOOTBALL_IMAGE_WIDTH}
+              height={EXPENSIVE_FOOTBALL_IMAGE_HEIGHT}
             />
           </div>
         </div>
         <div
           data-aos="fade-up"
-          data-aos-duration="600"
+          data-aos-duration={AOS_DURATION}
           data-aos-easing="linear"
-          data-aos-delay="200"
-          data-aos-offset="200"
+          data-aos-delay={AOS_DELAY}
+          data-aos-offset={AOS_OFFSET}
         >
           {/* SMALL FOOTBALL CORNER */}
           <div className="lg:hidden relative w-full sm:w-80/100 mx-auto mt-5">
@@ -82,8 +92,8 @@ const SoccerExpensive = () => {
               className="mx-auto"
               src="/assets/img/png/football_img_2.png"
               alt="football"
-              width={700}
-              height={400}
+              width={FOOTBALL_IMAGE_WIDTH}
+              height={FOOTBALL_IMAGE_HEIGHT}
             />
           </div>
         </div>

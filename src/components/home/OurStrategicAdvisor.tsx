@@ -7,6 +7,14 @@ import React from 'react';
 import BlueButton from '../common/BlueButton';
 import Link from 'next/link';
 
+const NET_IMAGE_WIDTH = 996;
+const NET_IMAGE_HEIGHT = 768;
+const STRATEGIC_IMAGE_WIDTH = 475;
+const STRATEGIC_IMAGE_HEIGHT = 430;
+const AOS_DURATION = 600;
+const AOS_DELAY = 200;
+const AOS_OFFSET = 200;
+
 const OurStrategicAdvisor = () => {
   return (
     <>
@@ -15,17 +23,17 @@ const OurStrategicAdvisor = () => {
         <Image
           className="absolute top-0 -right-0 w-40/100 lg:block hidden z-0  h-full opacity-70"
           src="/assets/img/png/football_net.png"
-          width={996}
-          height={768}
+          width={NET_IMAGE_WIDTH}
+          height={NET_IMAGE_HEIGHT}
           alt="football net"
         />
         <div className="container xl:pb-14">
           <div
             data-aos="fade-in"
-            data-aos-duration="600"
+            data-aos-duration={AOS_DURATION}
             data-aos-easing="linear"
-            data-aos-delay="200"
-            data-aos-offset="200"
+            data-aos-delay={AOS_DELAY}
+            data-aos-offset={AOS_OFFSET}
             className="flex items-center justify-center lg:gap-8 xl:gap-114 flex-col-reverse lg:flex-row pt-14 pb-14 xl:pt-95 xl:pb-150"
           >
             {/* ADVISOR IMAGE */}
@@ -33,15 +41,15 @@ const OurStrategicAdvisor = () => {
               className="max-w-270 sm:max-w-350 lg:max-w-400 xl:max-w-475 xl:max-h-430 mt-8 lg:mt-0 shadow-coach-shadow"
               src="/assets/img/webp/meet_our_strategic_profile.webp"
               alt="profile"
-              width={475}
-              height={430}
+              width={STRATEGIC_IMAGE_WIDTH}
+              height={STRATEGIC_IMAGE_HEIGHT}
             />
             <div
               data-aos="fade-up"
-              data-aos-duration="600"
+              data-aos-duration={AOS_DURATION}
               data-aos-easing="linear"
-              data-aos-delay="200"
-              data-aos-offset="200"
+              data-aos-delay={AOS_DELAY}
+              data-aos-offset={AOS_OFFSET}
               className="lg:max-w-555 lg:after:w-690 relative after:absolute after:content-[''] after:lg:h-420 lg:after:bg-blackBG after:blur-55 after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:z-0"
             >
               <div className="relative z-10">

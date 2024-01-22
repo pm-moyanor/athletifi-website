@@ -7,6 +7,11 @@ import { PostNewsLetterHandler } from '../common/api/ApiUrls';
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const IMAGE_WIDTH_GRID = 400;
+const IMAGE_HEIGHT_GRID = 448;
+const IMAGE_WIDTH_PLAYER = 658;
+const IMAGE_HEIGHT_PLAYER = 598;
+
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
   const [checked, setChecked] = useState(false);
@@ -62,8 +67,8 @@ const SignUpForm = () => {
       <Image
         className="lg:w-462 lg:h-452 w-40 h-40 lg:top-10 lg:-left-10 absolute -z-20 opacity-40"
         src="/assets/img/svg/news-grid-line.svg"
-        width={400}
-        height={448}
+        width={IMAGE_WIDTH_GRID}
+        height={IMAGE_HEIGHT_GRID}
         alt="grid-line"
       />
       <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto px-3 relative z-10">
@@ -171,8 +176,8 @@ const SignUpForm = () => {
             <Image
               className="xl:max-w-658 xl:h-610 lg:absolute lg:right-0 mt-10 lg:mt-0"
               src="/assets/img/webp/signup-img.webp"
-              width={658}
-              height={598}
+              width={IMAGE_WIDTH_PLAYER}
+              height={IMAGE_HEIGHT_PLAYER}
               alt="signUp-image"
             />
           </div>

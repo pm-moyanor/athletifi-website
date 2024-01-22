@@ -14,6 +14,10 @@ const players = [
   'Andres Iniesta',
 ];
 
+const AOS_DURATION = 400;
+const AOS_DELAY = 300;
+const AOS_OFFSET = 100;
+
 const Teammates = () => {
   const handlePlayerClick = (player: string) => {
     console.log(player);
@@ -24,10 +28,10 @@ const Teammates = () => {
         <div
           className="flex flex-col justify-center items-center z-20 gap-4"
           data-aos="fade-up"
-          data-aos-duration="400"
+          data-aos-duration={AOS_DURATION}
           data-aos-easing="ease-in-sine"
-          data-aos-delay="300"
-          data-aos-offset="100"
+          data-aos-delay={AOS_DELAY}
+          data-aos-offset={AOS_OFFSET}
         >
           <h2 className="font-HelveticaNeueMedium md:text-4xl text-basemd text-primary font-medium leading-60 relative z-20 text-center md:mb-4">
             <span className="relative ">

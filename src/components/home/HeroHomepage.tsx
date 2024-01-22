@@ -7,6 +7,11 @@ import Link from 'next/link';
 import React from 'react';
 import BlueButton from '../common/BlueButton';
 
+const IMAGE_WIDTH_1 = 600;
+const IMAGE_HEIGHT_1 = 600;
+const IMAGE_WIDTH_2 = 350;
+const IMAGE_HEIGHT_2 = 350;
+
 const HeroHomepage = () => {
   return (
     <>
@@ -56,8 +61,8 @@ const HeroHomepage = () => {
             className="w-full"
             src="/assets/img/webp/hero_female_player.webp"
             alt="female-player"
-            width={600}
-            height={600}
+            width={IMAGE_WIDTH_1}
+            height={IMAGE_HEIGHT_1}
           />
         </div>
       </div>
@@ -67,8 +72,8 @@ const HeroHomepage = () => {
           className="mx-auto"
           src="/assets/img/webp/hero_female_player_2.webp"
           alt="female-player"
-          width={350}
-          height={350}
+          width={IMAGE_WIDTH_2}
+          height={IMAGE_HEIGHT_2}
         />
       </div>
     </>

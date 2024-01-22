@@ -2,6 +2,20 @@ import Image from 'next/image';
 import React from 'react';
 import Slider from 'react-slick';
 
+const AOS_DURATION = [500, 600];
+const AOS_DELAY = [200, 300, 400, 800, 1200];
+const AOS_OFFSET = 200;
+const LEFT_BALL_IMAGE_WIDTH = 240;
+const LEFT_BALL_IMAGE_HEIGHT = 286;
+const LEFT_SHADOW_IMAGE_WIDTH = 448;
+const LEFT_SHADOW_IMAGE_HEIGHT = 448;
+const SOCCER_PLAYER_IMAGE_WIDTH_LEFT = 280;
+const SOCCER_PLAYER_IMAGE_HEIGHT_LEFT = 280;
+const SOCCER_PLAYER_IMAGE_WIDTH_CENTER = 409;
+const SOCCER_PLAYER_IMAGE_HEIGHT_CENTER = 409;
+const SOCCER_PLAYER_IMAGE_WIDTH_RIGHT = 280;
+const SOCCER_PLAYER_IMAGE_HEIGHT_RIGHT = 280;
+
 const StatsReimagined = () => {
   const playerImageCenter = 'jose-card-img';
   const playerImageRight = 'stebi-card-img';
@@ -39,16 +53,16 @@ const StatsReimagined = () => {
         <Image
           className="xl:max-w-240 sm:max-w-140 max-w-100"
           src="/assets/img/png/left-ball.png"
-          width={240}
-          height={286}
+          width={ LEFT_BALL_IMAGE_WIDTH}
+          height={ LEFT_BALL_IMAGE_HEIGHT}
           alt="what we do foot ball"
         />
       </div>
       <Image
         className="absolute -bottom-300 start-0 z-0"
         src="/assets/img/png/left-shadow.png"
-        width={448}
-        height={448}
+        width={ LEFT_SHADOW_IMAGE_WIDTH}
+        height={ LEFT_SHADOW_IMAGE_HEIGHT}
         alt="shadow"
       />
       <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto relative z-10">
@@ -56,10 +70,10 @@ const StatsReimagined = () => {
           <h2
             className="text-lg md:text-5xl sm:text-4xl text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-670 mx-auto text-center md:pt-9 pt-6 px-3 md:px-0 lg:pt-72pixel sm:leading-45 md:!leading-60"
             data-aos="fade-up"
-            data-aos-duration="600"
+            data-aos-duration={AOS_DURATION[1]}
             data-aos-easing="linear"
-            data-aos-delay="200"
-            data-aos-offset="200"
+            data-aos-delay={AOS_DELAY[0]}
+            data-aos-offset={AOS_OFFSET}
           >
             <span className="relative">
               {/* Stats Reimagined. */}
@@ -70,20 +84,20 @@ const StatsReimagined = () => {
           <span
             className="text-primary text-lg md:text-4xl sm:text-3xl font-HelveticaNeueRegular leading-normal mt-4 text-center"
             data-aos="fade-up"
-            data-aos-duration="600"
+            data-aos-duration={AOS_DURATION[1]}
             data-aos-easing="linear"
-            data-aos-delay="300"
-            data-aos-offset="200"
+            data-aos-delay={AOS_DELAY[1]}
+            data-aos-offset={ AOS_OFFSET}
           >
             Never fall behind on their progress
           </span>
           <p
             className="font-Segoe font-normal text-md text-center text-primary leading-7 px-4 md:px-0 max-w-700 lg:max-w-769 mx-auto md:mt-4 mt-2 relative z-20"
             data-aos="fade-up"
-            data-aos-duration="600"
+            data-aos-duration={AOS_DURATION[1]}
             data-aos-easing="linear"
-            data-aos-delay="400"
-            data-aos-offset="200"
+            data-aos-delay={AOS_DELAY[2]}
+            data-aos-offset={ AOS_OFFSET}
           >
             {/* Experience the future of sports collectibles as we integrate dynamic
             statistics into every card, taking your passion for the game to new
@@ -112,16 +126,16 @@ const StatsReimagined = () => {
             <div
               className="md:py-16 sm:pb-8" //ml-[-20px]"
               data-aos="fade-up"
-              data-aos-duration="500"
+              data-aos-duration={AOS_DURATION[0]}
               data-aos-easing="ease"
-              data-aos-delay="400"
+              data-aos-delay={AOS_DELAY[2]}
             >
               <div className="translate-x-[-20]">
                 <Image
                   className="mx-auto w-full max-w-350"
                   src={`/assets/img/webp/${playerImageLeft}.webp`}
-                  width={280}
-                  height={280}
+                  width={SOCCER_PLAYER_IMAGE_WIDTH_LEFT}
+                  height={SOCCER_PLAYER_IMAGE_HEIGHT_LEFT}
                   alt="left-card-img"
                 />
               </div>
@@ -130,16 +144,16 @@ const StatsReimagined = () => {
             <div
               className=" md:py-16 sm:pb-8 relative z-10"
               data-aos="fade-up"
-              data-aos-duration="500"
+              data-aos-duration={AOS_DURATION[0]}
               data-aos-easing="ease"
-              data-aos-delay="800"
+              data-aos-delay={AOS_DELAY[3]}
             >
               <div>
                 <Image
                   className="mx-auto md:scale-110 w-full max-w-350"
                   src={`/assets/img/webp/${playerImageCenter}.webp`}
-                  width={409}
-                  height={409}
+                  width={SOCCER_PLAYER_IMAGE_WIDTH_CENTER}
+                  height={SOCCER_PLAYER_IMAGE_HEIGHT_CENTER}
                   alt="center-card-image"
                 />
               </div>
@@ -148,16 +162,16 @@ const StatsReimagined = () => {
             <div
               className="md:py-16 sm:pb-8" // mr-[2000px]"
               data-aos="fade-up"
-              data-aos-duration="500"
+              data-aos-duration={AOS_DURATION[0]}
               data-aos-easing="ease"
-              data-aos-delay="1200"
+              data-aos-delay={AOS_DELAY[4]}
             >
               <div>
                 <Image
                   className="mx-auto w-full max-w-350 lg:max-w-350"
                   src={`/assets/img/webp/${playerImageRight}.webp`}
-                  width={280}
-                  height={280}
+                  width={SOCCER_PLAYER_IMAGE_WIDTH_RIGHT}
+                  height={SOCCER_PLAYER_IMAGE_HEIGHT_RIGHT}
                   alt="right-card-image"
                 />
               </div>

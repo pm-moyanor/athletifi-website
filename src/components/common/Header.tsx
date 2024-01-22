@@ -15,6 +15,8 @@ import { PageLogo } from './Icon';
 import SocialPopUp from './SocialPopUp';
 import Image from 'next/image';
 
+const SCROLL_THRESHOLD = 200;
+
 const Header = () => {
   const [open, setOpen] = useState(false);
   const path = useRouter().pathname;
@@ -64,7 +66,7 @@ const Header = () => {
         ref={navbarRef}
         id="nav_bar"
         className={`navbar fixed top-0 black w-full bg-bgnav py-2 z-40 ${
-          scrollPosition > 200 ? 'slideUp' : 'slideDown'
+          scrollPosition > SCROLL_THRESHOLD ? 'slideUp' : 'slideDown'
         } ${isVisible ? 'slideDown' : 'slideUp'}`}
       >
         <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto">

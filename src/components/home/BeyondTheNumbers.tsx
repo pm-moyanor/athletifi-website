@@ -1,6 +1,14 @@
 import Image from 'next/image';
 import React from 'react';
 
+const AOS_DURATION = 600;
+const AOS_DELAY = [200, 300, 400];
+const AOS_OFFSET = 200;
+const SOCCER_PLAYER_IMAGE_WIDTH = 652;
+const SOCCER_PLAYER_IMAGE_HEIGHT = 512;
+const UNIQUE_FOOTBALL_IMAGE_WIDTH = 220;
+const UNIQUE_FOOTBALL_IMAGE_HEIGHT = 286;
+
 const UniqueAthletifi = () => {
   return (
     <>
@@ -10,10 +18,10 @@ const UniqueAthletifi = () => {
             <h2
               className="text-lg md:text-5xl sm:text-4xl text-primary font-HelveticaNeueMedium text-center py-2"
               data-aos="fade-up"
-              data-aos-duration="600"
+              data-aos-duration={AOS_DURATION}
               data-aos-easing="linear"
-              data-aos-delay="200"
-              data-aos-offset="200"
+              data-aos-delay={AOS_DELAY[0]}
+              data-aos-offset={AOS_OFFSET}
             >
               <span className="relative mb-4 lg:leading-60 leading-120">
                 {/* What Makes */}
@@ -25,20 +33,20 @@ const UniqueAthletifi = () => {
             <span
               className="text-primary text-lg md:text-4xl sm:text-3xl font-HelveticaNeueRegular leading-normal text-center"
               data-aos="fade-up"
-              data-aos-duration="600"
+              data-aos-duration={AOS_DURATION}
               data-aos-easing="linear"
-              data-aos-delay="300"
-              data-aos-offset="200"
+              data-aos-delay={AOS_DELAY[1]}
+              data-aos-offset={AOS_OFFSET}
             >
               {/* Empowering Tomorrow's Soccer Stars */}
               Decoding the game for passive followers
             </span>
             <div
               data-aos="fade-up"
-              data-aos-duration="600"
+              data-aos-duration={AOS_DURATION}
               data-aos-easing="linear"
-              data-aos-delay="400"
-              data-aos-offset="200"
+              data-aos-delay={AOS_DELAY[2]}
+              data-aos-offset={AOS_OFFSET}
             >
               <p className="font-Segoe text-md opacity-80 text-primary text-center md:pb-10 pb-5 mt-4">
                 {/* Stats allow friends, family, and fans to easily support and
@@ -67,16 +75,16 @@ const UniqueAthletifi = () => {
             <div className="opacity-88">
               <Image
                 data-aos="fade-in"
-                data-aos-duration="600"
+                data-aos-duration={AOS_DURATION}
                 data-aos-easing="linear"
-                data-aos-delay="200"
-                data-aos-offset="200"
+                data-aos-delay={AOS_DELAY[0]}
+                data-aos-offset={AOS_OFFSET}
                 // className="mb-[1px] lg:max-w-[267px] max-w-[180px] sm:max-w-[220px]"
                 className="mb-1 lg:max-w-652 max-w-326 sm:max-w-300 opacity-1"
                 // src="/assets/img/png/portrait-young.png"
                 src="/assets/img/webp/gen-soccer-player.webp"
-                width={652}
-                height={512}
+                width={SOCCER_PLAYER_IMAGE_WIDTH}
+                height={SOCCER_PLAYER_IMAGE_HEIGHT}
                 alt={'football palyer'}
               />
             </div>
@@ -86,8 +94,8 @@ const UniqueAthletifi = () => {
         <Image
           className="absolute lg:w-220 sm:w-150 w-100 -bottom-8 right-0 z-0"
           src="/assets/img/png/unique-football.png"
-          width={220}
-          height={286}
+          width={UNIQUE_FOOTBALL_IMAGE_WIDTH}
+          height={UNIQUE_FOOTBALL_IMAGE_HEIGHT}
           alt={'football'}
         />
       </section>

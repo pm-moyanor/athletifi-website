@@ -22,6 +22,9 @@ import { GetRequestHandler } from '@/components/common/api/Api';
 import { NewsListApiHandler } from '@/components/common/api/ApiUrls';
 import { SEO_CONFIG } from '@/utils/seoConfig';
 
+const IMAGE_WIDTH_HERO_GRID = 700;
+const IMAGE_HEIGHT_HERO_GRID = 700;
+
 //Importing the Inter font
 const inter = Inter({ subsets: ['latin'] });
 
@@ -75,8 +78,8 @@ const Home: React.FC<NewsProps> = props => {
               className="absolute right-0 hero_grid_position -z-10 hidden lg:block w-450 xl:w-700"
               src="/assets/img/svg/hero_grid.svg"
               alt="grid-lines"
-              width={700}
-              height={700}
+              width={IMAGE_WIDTH_HERO_GRID}
+              height={IMAGE_HEIGHT_HERO_GRID}
             />
           </div>
         </div>

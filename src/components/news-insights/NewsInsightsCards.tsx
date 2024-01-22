@@ -9,6 +9,14 @@ import { GetRequestHandler } from '../common/api/Api';
 import { NewsListApiHandler } from '../common/api/ApiUrls';
 import { log } from 'console';
 
+const IMAGE_WIDTH = 315;
+const IMAGE_HEIGHT = 240;
+const AOS_DURATION = 400;
+const AOS_DELAY = 100;
+const AOS_OFFSET = 200;
+const IMAGE_WIDTH_GRID = 716;
+const IMAGE_HEIGHT_GRID = 692;
+
 interface NewsListProps {
   allNewsList: any;
 }
@@ -47,10 +55,10 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
       <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto relative z-10 md:mb-100 xl:mb-160">
         <h2
           data-aos="fade-up"
-          data-aos-duration="400"
+          data-aos-duration={AOS_DURATION}
           data-aos-easing="linear"
-          data-aos-delay="100"
-          data-aos-offset="200"
+          data-aos-delay={AOS_DELAY}
+          data-aos-offset={AOS_OFFSET}
           className="text-center md:text-start font-HelveticaNeueMedium font-medium text-lg md:text-5xl sm:text-4xl text-primary md:pt-10 md:pb-25 pb-5"
         >
           <span className="relative">
@@ -87,7 +95,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
                         key={index}
                         className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-20 mb-6 sm:mt-30pixel"
                         data-aos="fade-up"
-                        data-aos-duration="400"
+                        data-aos-duration={AOS_DURATION}
                         data-aos-easing="ease"
                         data-aos-delay={item.delay}
                       >
@@ -95,8 +103,8 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
                           <Image
                             className="lg:w-315 h-200 375:h-300 500:h-400 md:h-150 lg:!h-220 rounded-10 object-cover w-full md:min-w-225 lg:min-w-315 md:w-224"
                             src={combinedUrl}
-                            width={315}
-                            height={240}
+                            width={IMAGE_WIDTH}
+                            height={IMAGE_HEIGHT}
                             alt="football match"
                           />
                         )}
@@ -192,16 +200,16 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
       <Image
         className="xl:w-600 lg:w-550 sm:w-400 w-250 absolute bottom-10 right--50 -z-10"
         src="/assets/img/svg/grid-lines.svg"
-        width={716}
-        height={692}
+        width={IMAGE_WIDTH_GRID}
+        height={IMAGE_HEIGHT_GRID}
         alt={'grid image'}
       />
       {/* BACKGROUND LEFT GRID */}
       <Image
         className="xl:w-600 lg:550 sm:w-400 w-250 absolute top-40 -translate-y-1/3 left-2 -z-10"
         src="/assets/img/svg/grid-lines.svg"
-        width={716}
-        height={692}
+        width={IMAGE_WIDTH_GRID}
+        height={IMAGE_HEIGHT_GRID}
         alt={'grid image'}
       />
     </div>
