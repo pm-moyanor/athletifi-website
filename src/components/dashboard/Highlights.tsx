@@ -18,7 +18,7 @@ const VIDEO_HEIGHT = 240;
 const Highlights = () => {
   return (
     <div className="w-full xl:w-3/4 2xl:w-3/4 min-h-full">
-      <div className="blue_linear_gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 z-0  after:contents-[''] after:inset-0 after:p-1 after:rounded-30 rounded-30 h-full flex items-center justify-center">
+      <div className="container__border--blue-gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 z-0  after:contents-[''] after:inset-0 after:p-1 after:rounded-30 rounded-30 h-full flex items-center justify-center">
         <div
           className="flex flex-col justify-center items-stretch relative z-20"
           data-aos="fade-up"

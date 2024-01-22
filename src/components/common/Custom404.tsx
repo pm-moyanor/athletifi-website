@@ -1,5 +1,5 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
 const Custom404 = () => {
   return (
@@ -9,7 +9,7 @@ const Custom404 = () => {
       </div>
       <div className="font-Segoe font-normal text-md leading-7 text-center pb-0.5 text-primary opacity-80 m-0 sm:pt-4 lg:max-w-769 mx-auto sm:px-6 px-3 xl:px-0 relative z-20">
         We could not find the page you were looking for.
-        <br /> Go back to the{" "}
+        <br /> Go back to the{' '}
         <Link href="/" className="not-found__link">
           home page
         </Link>

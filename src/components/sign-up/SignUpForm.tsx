@@ -123,7 +123,7 @@ const SignUpForm = () => {
                     }
                   />
                 </div>
-                <div className="flex items-center gap-2 mt-4 sign_up_checkbox">
+                <div className="flex items-center gap-2 mt-4 sign-up__checkbox">
                   <input
                     type="checkbox"
                     id="Privacy-Policy"
@@ -136,7 +136,7 @@ const SignUpForm = () => {
                     I agree to the{' '}
                     <Link
                       href="/terms-of-use"
-                      className="sign-up__legal-link"
+                      className="sign-up__link"
                       rel="noopener noreferrer"
                       target="_blank"
                     >
@@ -145,7 +145,7 @@ const SignUpForm = () => {
                     and{' '}
                     <Link
                       href="/privacy-policy"
-                      className="sign-up__legal-link"
+                      className="sign-up__link"
                       rel="noopener noreferrer"
                       target="_blank"
                     >

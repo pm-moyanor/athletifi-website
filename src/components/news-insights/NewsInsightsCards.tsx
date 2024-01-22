@@ -65,8 +65,6 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
             More Recent News
           </span>
         </h2>
-
-        {/*  <NewsInsightsLoader/>  */}
         {moreArticles.length === 0 ? (
           <p className="text-center text-gray-500">
             This is the only article right now. Check back later for new
@@ -149,7 +147,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
               );
             })}
 
-            <div className="flex justify-between lg:max-w-210 py-3  max-w-230 mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scrollmodify">
+            <div className="flex justify-between lg:max-w-210 py-3  max-w-230 mx-auto bg-darkgray rounded-full lg:px-8 px-6 items-center scroll--hidden">
               {currentPage === 1 ? (
                 <div className="opacity-70 -rotate-90 cursor-not-allowed inline-block">
                   <PaginationArrow />
@@ -187,7 +185,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
                       ? `/news?page=${currentPage + 1}`
                       : `/news/${router.query.slug}?page=${currentPage + 1}`
                   }
-                  className=" rotate-90 hover:translate-x-1 duration-200"
+                  className="rotate-90 hover:translate-x-1 duration-200"
                 >
                   <PaginationArrow />
                 </Link>
