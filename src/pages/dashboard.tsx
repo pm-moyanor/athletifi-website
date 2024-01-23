@@ -2,7 +2,7 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import Seo from '@/components/common/Seo';
 import { SEO_CONFIG } from '@/utils/seoConfig';
-import CommonHero from '@/components/common/CommonHero';
+import CommonHero, { HeroProps } from '@/components/common/CommonHero';
 
 import Highlights from '@/components/dashboard/Highlights';
 import Teammates from '@/components/dashboard/Teammates';
@@ -11,7 +11,7 @@ import PlayerInfo from '@/components/dashboard/PlayerInfo';
 import PlayerCard from '@/components/dashboard/PlayerCard';
 
 const Dashboard = () => {
-  const hero = {
+  const hero: HeroProps = {
     heading: 'Dashboard',
     subtitle: 'Your Subtitle Here',
     title: 'Your Title Here',

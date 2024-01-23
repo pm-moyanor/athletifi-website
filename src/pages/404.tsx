@@ -1,13 +1,13 @@
-import CommonHero from "@/components/common/CommonHero";
-import Custom404 from "@/components/common/Custom404";
-import Footer from "@/components/common/Footer";
-import Header from "@/components/common/Header";
-import Seo from "@/components/common/Seo";
-import { SEO_CONFIG } from "@/utils/seoConfig";
+import CommonHero, { HeroProps } from '@/components/common/CommonHero';
+import Custom404 from '@/components/common/Custom404';
+import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
+import Seo from '@/components/common/Seo';
+import { SEO_CONFIG } from '@/utils/seoConfig';
 
 const NotFound = () => {
-  const hero = {
-    heading: "",
+  const hero: HeroProps = {
+    heading: '',
   };
 
   return (

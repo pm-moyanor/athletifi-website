@@ -1,19 +1,20 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+
 const BackToTop = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  const scrollToTop = () => {
+  function scrollToTop(): void {
     window.scrollTo({
       behavior: 'smooth',
       top: 0,
     });
-  };
+  }
 
-  const handleScroll = () => {
+  function handleScroll(): void {
     const position = window.scrollY;
     setScrollPosition(position);
-  };
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
