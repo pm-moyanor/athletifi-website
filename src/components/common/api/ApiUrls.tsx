@@ -12,7 +12,7 @@ export const NewsListFilterApiHandler = () => {
 // NEWS DETAIL API URL
 // Function to construct the API URL for fetching details of a specific news article from the Strapi CMS.
 // Slug: The unique identifier (slug) for the news article.
-export const NewsDetailApiHandler = (slug: any) => {
+export const NewsDetailApiHandler = (slug: string) => {
   return `/news-lists/?populate=image&populate=content&filters[slug][$eq]=${slug}&populate=author`;
 };
 
