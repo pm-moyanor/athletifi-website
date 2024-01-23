@@ -66,8 +66,8 @@ const Header = () => {
         ref={navbarRef}
         id="nav_bar"
         className={`navbar fixed top-0 black w-full bg-bgnav py-2 z-40 ${
-          scrollPosition > SCROLL_THRESHOLD ? 'slideUp' : 'slideDown'
-        } ${isVisible ? 'slideDown' : 'slideUp'}`}
+          scrollPosition > SCROLL_THRESHOLD ? 'header--slide-up' : 'header--slide-down'
+        } ${isVisible ? 'header--slide-down' : 'header--slide-up'}`}
       >
         <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto">
           <div className="flex items-center justify-between">
@@ -86,8 +86,8 @@ const Header = () => {
             <div
               className={
                 open
-                  ? 'nav_open h-full w-full z-20 fixed top-0 left-0 duration-500 transition-all bg-blackBG min-h-screen'
-                  : 'md:relative fixed min-h-screen md:min-h-full -left-full md:left-0 duration-500 md:ml-0 nav_open md:mt-0 z-40 top-0'
+                  ? 'header__nav--open h-full w-full z-20 fixed top-0 left-0 duration-500 transition-all bg-blackBG min-h-screen'
+                  : 'header__nav--open md:relative fixed min-h-screen md:min-h-full -left-full md:left-0 duration-500 md:ml-0 md:mt-0 z-40 top-0'
               }
             >
               {/* NAV PAGE LINKS */}
@@ -136,7 +136,7 @@ const Header = () => {
                     Dashboard
                   </Link>
                 </li>
-                <li className="social_icons_show sm:mt-7 sm:pb-7 hidden md:block">
+                <li className="social-popup--show sm:mt-7 sm:pb-7 hidden md:block">
                   <button
                     onClick={SocialIcon}
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
@@ -163,7 +163,7 @@ const Header = () => {
                     Socials
                   </button>
                   <div
-                    className={` mt-3 h-180 overflow-scroll scroll_bar_hidden ${
+                    className={` mt-3 h-180 overflow-scroll social-popup__scroll--hidden ${
                       navSocialIcon ? '!hidden' : 'block'
                     }`}
                   >
