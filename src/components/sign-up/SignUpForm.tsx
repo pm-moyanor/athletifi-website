@@ -64,7 +64,7 @@ const SignUpForm = () => {
         src="/assets/img/svg/news-grid-line.svg"
         width={400}
         height={448}
-        alt="grid-line"
+        alt=""
       />
       <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative z-10">
         <div className="flex justify-between flex-wrap grid-cols-2 w-full">
@@ -78,10 +78,10 @@ const SignUpForm = () => {
                   </span>
                 </span>
               </h2>
-              <p className="font-Segoe font-normal text-md md:max-w-[365px] text-center lg:text-start text-[#FDFEFF] mx-auto lg:ms-0 leading-[27px] sm:pt-4 md:pt-3">
+              <h3 className="font-Segoe font-normal text-md md:max-w-[365px] text-center lg:text-start text-[#FDFEFF] mx-auto lg:ms-0 leading-[27px] sm:pt-4 md:pt-3">
                 Sign-up for exclusive updates! Become part of the sport&apos;s
                 revolution.
-              </p>
+              </h3>
               <p className="font-Segoe font-normal text-md md:max-w-[600px] lg:max-w-[543px] text-center lg:text-start text-white mx-auto lg:ms-0 opacity-70 mt-2 sm:pt-0.5 leading-[27px]">
                 By subscribing, you&apos;re not only embracing the future of
                 sports collectibles, but you&apos;re also at the ground floor of
@@ -173,7 +173,7 @@ const SignUpForm = () => {
               src="/assets/img/webp/signup-img.webp"
               width={658}
               height={598}
-              alt="signUp-image"
+              alt="Player shoots the ball in front of a defender and a goalkeeper"
             />
           </div>
         </div>

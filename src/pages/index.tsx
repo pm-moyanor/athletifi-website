@@ -74,18 +74,20 @@ const Home: React.FC<NewsProps> = props => {
             <Image
               className="absolute right-0 hero__grid-position -z-10 hidden lg:block w-[450px] xl:w-[700px]"
               src="/assets/img/svg/hero_grid.svg"
-              alt="grid-lines"
+              alt=""
               width={700}
               height={700}
             />
           </div>
         </div>
-        <StatsReimagined />
-        <SoccerExpensive />
-        <UniqueAthletifi />
-        {/* <OurStrategicAdvisor /> */}
-        <TrustedPartners />
-        {/* <LatestNews allNewsList={allNewsList} /> */}
+        <main>
+          <StatsReimagined />
+          <SoccerExpensive />
+          <UniqueAthletifi />
+          {/* <OurStrategicAdvisor /> */}
+          <TrustedPartners />
+          {/* <LatestNews allNewsList={allNewsList} /> */}
+        </main>
         <Footer />
         <BackToTop />
       </div>

@@ -16,7 +16,7 @@ const Dashboard = () => {
     subtitle: 'Your Subtitle Here',
     title: 'Your Title Here',
   };
-  return (
+  let DashboardJSX = (
     <>
       <Seo pageSEO={SEO_CONFIG.dashboard} />
       <div className="overflow-hidden">
@@ -39,6 +39,28 @@ const Dashboard = () => {
       </div>
     </>
   );
+
+  const hideDashboardForNow = () => {
+    // This function is a temporary addition to re-render the dashboard as a Coming Soon Page
+    hero.heading = 'Coming Soon!';
+    DashboardJSX = (
+      <>
+        <Seo pageSEO={SEO_CONFIG.dashboard} />
+        <div className="overflow-hidden">
+          <div className=" about-page__hero-bg bg-no-repeat bg-cover">
+            <Header />
+            <CommonHero hero={hero} />
+          </div>
+          <Footer />
+        </div>
+      </>
+    );
+  };
+
+  // Delete the below function to reveal the dashboard
+  hideDashboardForNow();
+
+  return DashboardJSX;
 };
 
 export default Dashboard;
