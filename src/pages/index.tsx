@@ -22,17 +22,15 @@ import { GetRequestHandler } from '@/components/common/api/Api';
 import { NewsListApiHandler } from '@/components/common/api/ApiUrls';
 import { SEO_CONFIG } from '@/utils/seoConfig';
 
-//Importing the Inter font
-const inter = Inter({ subsets: ['latin'] });
-
 interface NewsProps {
   allNewsList: any;
 }
 
 // Main function component for the home page
 const Home: React.FC<NewsProps> = props => {
-  const { allNewsList } = props;
-  // PRELOADER
+  // If you want to add a news section to the home page, uncomment the below line:
+  // const { allNewsList } = props;
+
   // State variable for preloader. A preloader is a visual element that appears on the screen while a webpage or a portion of a webpage is loading.
   const [preloader, setpreloader] = useState(true);
   // The preloader state variable is initially set to true, indicating that the preloader should be displayed.
@@ -84,7 +82,6 @@ const Home: React.FC<NewsProps> = props => {
           <StatsReimagined />
           <SoccerExpensive />
           <UniqueAthletifi />
-          {/* <OurStrategicAdvisor /> */}
           <TrustedPartners />
           {/* <LatestNews allNewsList={allNewsList} /> */}
         </main>

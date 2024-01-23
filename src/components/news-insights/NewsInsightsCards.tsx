@@ -1,13 +1,12 @@
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { PaginationArrow } from '../common/Icon';
-import Skeleton from 'react-loading-skeleton';
+// import Skeleton from 'react-loading-skeleton';
 import NewsInsightsLoader from './NewsInsightsLoader';
 import { GetRequestHandler } from '../common/api/Api';
 import { NewsListApiHandler } from '../common/api/ApiUrls';
-import { log } from 'console';
 
 interface NewsListProps {
   allNewsList: any;
@@ -15,7 +14,6 @@ interface NewsListProps {
 
 const NewsInsightsCards: React.FC<NewsListProps> = props => {
   // ==== SKELETON LOADER START ====
-  const [checked, setChecked] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
   // ==== SKELETON LOADER END ====
@@ -35,6 +33,9 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
     setLoading(true);
     try {
       const response = await GetRequestHandler(NewsListApiHandler());
+      console.log('THis is the response from NewsListAPI');
+      console.log(response);
+
       setLoading(false);
       setCurrentPage(newPage);
     } catch (error) {
