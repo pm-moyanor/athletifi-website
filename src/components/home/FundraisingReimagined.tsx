@@ -2,6 +2,20 @@ import Image from 'next/image';
 import React from 'react';
 import Slider from 'react-slick';
 
+const AOS_DURATION = [500, 600];
+const AOS_DELAY = [200, 300, 400, 800, 1200];
+const AOS_OFFSET = 200;
+const LEFT_BALL_IMAGE_WIDTH = 240;
+const LEFT_BALL_IMAGE_HEIGHT = 286;
+const LEFT_SHADOW_IMAGE_WIDTH = 448;
+const LEFT_SHADOW_IMAGE_HEIGHT = 448;
+const SOCCER_PLAYER_IMAGE_WIDTH_LEFT = 280;
+const SOCCER_PLAYER_IMAGE_HEIGHT_LEFT = 280;
+const SOCCER_PLAYER_IMAGE_WIDTH_CENTER = 409;
+const SOCCER_PLAYER_IMAGE_HEIGHT_CENTER = 409;
+const SOCCER_PLAYER_IMAGE_WIDTH_RIGHT = 280;
+const SOCCER_PLAYER_IMAGE_HEIGHT_RIGHT = 280;
+
 const StatsReimagined = () => {
   const playerImageCenter = 'jose-card-img';
   const playerImageRight = 'stebi-card-img';
@@ -34,56 +48,56 @@ const StatsReimagined = () => {
     speed: 500,
   };
   return (
-    <section className="py-14 sm:mb-10 lg:mb-20 xl:mb-[125px] relative xl:mt-0 z-[1]">
-      <div className="absolute sm:-bottom-[40px] lg:-bottom-[80px] bottom-0 start-0 lg:w-[230px] lg:h-[286px] opacity-30">
+    <section className="mb-3 pb-3 mt-10 pt-10 relative z-[1]">
+      <div className="absolute sm:-bottom-40pixel lg:-bottom-80pixel bottom-0 start-0 lg:w-230 lg:h-286 opacity-30">
         <Image
-          className="xl:max-w-[240px] sm:max-w-[140px] max-w-[100px]"
+          className="xl:max-w-240 sm:max-w-140 max-w-100"
           src="/assets/img/png/left-ball.png"
-          width={240}
-          height={286}
+          width={LEFT_BALL_IMAGE_WIDTH}
+          height={LEFT_BALL_IMAGE_HEIGHT}
           alt=""
         />
       </div>
       <Image
-        className="absolute -bottom-[300px] start-0 z-0"
+        className="absolute -bottom-300 start-0 z-0"
         src="/assets/img/png/left-shadow.png"
-        width={448}
-        height={448}
+        width={LEFT_SHADOW_IMAGE_WIDTH}
+        height={LEFT_SHADOW_IMAGE_HEIGHT}
         alt=""
       />
-      <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto relative z-10">
-        <div className="container__border--blue-gradient relative after:absolute flex justify-center flex-col items-center  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px]">
+      <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto relative z-10">
+        <div className="container__border--blue-gradient relative after:absolute flex justify-center flex-col items-center  after:contents-[''] after:inset-0 after:p-1 after:rounded-30 rounded-30">
           <h2
-            className="lg:text-5xl md:text-[40px] sm:text-4xl text-[24px] text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-[670px] mx-auto text-center md:pt-9 pt-6 px-3 md:px-0 lg:pt-[72px] sm:leading-[45px] md:!leading-[60px]"
+            className="text-lg md:text-5xl sm:text-4xl text-primary font-medium font-HelveticaNeueMedium relative z-20 max-w-670 mx-auto text-center md:pt-9 pt-6 px-3 md:px-0 lg:pt-72pixel sm:leading-45 md:!leading-60"
             data-aos="fade-up"
-            data-aos-duration="600"
+            data-aos-duration={AOS_DURATION[1]}
             data-aos-easing="linear"
-            data-aos-delay="200"
-            data-aos-offset="200"
+            data-aos-delay={AOS_DELAY[0]}
+            data-aos-offset={AOS_OFFSET}
           >
-            <span className="relative after:content after:absolute after:bottom-[-8px] sm:after:bottom-[-4px] after:left-0 md:after:w-[209px] after:w-[150px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
+            <span className="relative">
               {/* Stats Reimagined. */}
               Follow Tomorrow&apos;s Soccer Stars Today
             </span>{' '}
             {/* Exposure elevated. */}
           </h2>
           <h3
-            className="text-primary text-lgxl font-HelveticaNeueRegular leading-normal mt-4"
+            className="text-primary text-lg md:text-4xl sm:text-3xl font-HelveticaNeueRegular leading-normal mt-4 text-center"
             data-aos="fade-up"
-            data-aos-duration="600"
+            data-aos-duration={AOS_DURATION[1]}
             data-aos-easing="linear"
-            data-aos-delay="300"
-            data-aos-offset="200"
+            data-aos-delay={AOS_DELAY[1]}
+            data-aos-offset={AOS_OFFSET}
           >
             Never fall behind on their progress
           </h3>
           <p
-            className="font-Segoe font-normal text-md text-center text-[#FDFEFF] leading-7 px-4 md:px-0 max-w-[700px] lg:max-w-[769px] mx-auto md:mt-4 mt-2 relative z-20"
+            className="font-Segoe font-normal text-md text-center text-primary leading-7 px-4 md:px-0 max-w-700 lg:max-w-769 mx-auto md:mt-4 mt-2 relative z-20"
             data-aos="fade-up"
-            data-aos-duration="600"
+            data-aos-duration={AOS_DURATION[1]}
             data-aos-easing="linear"
-            data-aos-delay="400"
-            data-aos-offset="200"
+            data-aos-delay={AOS_DELAY[2]}
+            data-aos-offset={AOS_OFFSET}
           >
             {/* Experience the future of sports collectibles as we integrate dynamic
             statistics into every card, taking your passion for the game to new
@@ -106,40 +120,40 @@ const StatsReimagined = () => {
           {/* CARD SLIDER SMALL SCREEN */}
           <Slider
             {...settings}
-            className="w-full justify-between items-center pt-5 md:pt-0 max-w-[1000px] mx-auto lg:justify-center relative z-20 before:content-[''] before:absolute before:w-[448px] before:h-[448px] before:-top-20 before:left-1/2 before:bg-shadow_blue before:blur-[111px] before:opacity-25 before:-translate-x-1/2 before:-z-10 before:rounded-full pb-6 sm:pb-0"
+            className="w-5/6 justify-between items-center pt-5 md:pt-0 max-w-1000 mx-auto lg:justify-center relative z-20 before:content-[''] before:absolute before:w-448 before:h-448 before:-top-20 before:left-1/2 before:bg-shadow_blue before:blur-111 before:opacity-25 before:-translate-x-1/2 before:-z-10 before:rounded-full pb-6 sm:pb-0"
           >
             {/* Left Image */}
             <div
               className="md:py-16 sm:pb-8" //ml-[-20px]"
               data-aos="fade-up"
-              data-aos-duration="500"
+              data-aos-duration={AOS_DURATION[0]}
               data-aos-easing="ease"
-              data-aos-delay="400"
+              data-aos-delay={AOS_DELAY[2]}
             >
-              <div style={{ transform: 'translateX(-20px)' }}>
+              <div className="translate-x-[-20]">
                 <Image
-                  className="mx-auto w-full max-w-[350px]"
+                  className="mx-auto w-full max-w-350"
                   src={`/assets/img/webp/${playerImageLeft}.webp`}
-                  width={280}
-                  height={280}
+                  width={SOCCER_PLAYER_IMAGE_WIDTH_LEFT}
+                  height={SOCCER_PLAYER_IMAGE_HEIGHT_LEFT}
                   alt="Player card of Anderson Rodriguez from Villanova Soccer Academy"
                 />
               </div>
             </div>
             {/* Center Image */}
             <div
-              className="md:py-16 sm:pb-8 relative z-10 "
+              className=" md:py-16 sm:pb-8 relative z-10"
               data-aos="fade-up"
-              data-aos-duration="500"
+              data-aos-duration={AOS_DURATION[0]}
               data-aos-easing="ease"
-              data-aos-delay="800"
+              data-aos-delay={AOS_DELAY[3]}
             >
               <div>
                 <Image
-                  className="mx-auto md:scale-125 w-full max-w-[350px]"
+                  className="mx-auto md:scale-110 w-full max-w-350"
                   src={`/assets/img/webp/${playerImageCenter}.webp`}
-                  width={409}
-                  height={409}
+                  width={SOCCER_PLAYER_IMAGE_WIDTH_CENTER}
+                  height={SOCCER_PLAYER_IMAGE_HEIGHT_CENTER}
                   alt="Player card of Jose Hernandez from Villanova Soccer Academy"
                 />
               </div>
@@ -148,16 +162,16 @@ const StatsReimagined = () => {
             <div
               className="md:py-16 sm:pb-8" // mr-[2000px]"
               data-aos="fade-up"
-              data-aos-duration="500"
+              data-aos-duration={AOS_DURATION[0]}
               data-aos-easing="ease"
-              data-aos-delay="1200"
+              data-aos-delay={AOS_DELAY[4]}
             >
-              <div style={{ transform: 'translateX(20px)' }}>
+              <div>
                 <Image
-                  className="mx-auto w-full max-w-[350px] lg:max-w-[350px]"
+                  className="mx-auto w-full max-w-350 lg:max-w-350"
                   src={`/assets/img/webp/${playerImageRight}.webp`}
-                  width={280}
-                  height={280}
+                  width={SOCCER_PLAYER_IMAGE_WIDTH_RIGHT}
+                  height={SOCCER_PLAYER_IMAGE_HEIGHT_RIGHT}
                   alt="Player card of Stebi Vidal from Villanova Soccer Academy"
                 />
               </div>
