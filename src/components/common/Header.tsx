@@ -15,6 +15,8 @@ import { PageLogo } from './Icon';
 import SocialPopUp from './SocialPopUp';
 import Image from 'next/image';
 
+const SCROLL_THRESHOLD = 200;
+
 const Header = () => {
   const [open, setOpen] = useState(false);
   const path = useRouter().pathname;
@@ -64,10 +66,12 @@ const Header = () => {
         ref={navbarRef}
         id="nav_bar"
         className={`navbar fixed top-0 black w-full bg-bgnav py-2 z-40 ${
-          scrollPosition > 200 ? 'header--slide-up' : 'header--slide-down'
+          scrollPosition > SCROLL_THRESHOLD
+            ? 'header--slide-up'
+            : 'header--slide-down'
         } ${isVisible ? 'header--slide-down' : 'header--slide-up'}`}
       >
-        <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
+        <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto">
           <div className="flex items-center justify-between">
             <Link href="/">
               <PageLogo />
@@ -75,22 +79,22 @@ const Header = () => {
             {/* SMALL SCREEN MENU ICONS */}
             <div
               onClick={() => setOpen(!open)}
-              className="flex flex-col sm:hidden bg-transparent border-0 relative z-50 cursor-pointer"
+              className="flex flex-col md:hidden bg-transparent border-0 relative z-50 cursor-pointer"
             >
-              <span className="h-[3px] w-[35px] bg-white inline-block rounded-sm"></span>
-              <span className="my-2 h-[3px] w-[27px] bg-white inline-block rounded-sm"></span>
-              <span className="h-[3px] w-[35px] bg-white inline-block rounded-sm"></span>
+              <span className="h-3pixel w-35 bg-white inline-block rounded-sm"></span>
+              <span className="my-2 h-3pixel w-7 bg-white inline-block rounded-sm"></span>
+              <span className="h-3pixel w-35 bg-white inline-block rounded-sm"></span>
             </div>
             <div
               className={
                 open
-                  ? 'header__nav--open h-full w-full z-20 fixed top-0 left-0 duration-500 transition-all bg-[#000b13] min-h-screen'
-                  : 'header__nav--open sm:relative fixed min-h-screen sm:min-h-full -left-full sm:left-0 duration-500 sm:ml-0 sm:mt-0 z-40 top-0'
+                  ? 'header__nav--open h-full w-full z-20 fixed top-0 left-0 duration-500 transition-all bg-blackBG min-h-screen'
+                  : 'header__nav--open md:relative fixed min-h-screen md:min-h-full -left-full md:left-0 duration-500 md:ml-0 md:mt-0 z-40 top-0'
               }
             >
               {/* NAV PAGE LINKS */}
               <ul
-                className="flex items-center gap-[25px] sm:gap-[40px] flex-col sm:flex-row h-full justify-center"
+                className="flex items-center gap-25 md:gap-40pixel flex-col md:flex-row h-full justify-center"
                 role="navigation"
                 aria-label="Main"
               >
@@ -98,7 +102,7 @@ const Header = () => {
                   <Link
                     onClick={() => setOpen(false)}
                     href="/"
-                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
+                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
                       path == '/' ? '!opacity-100' : ''
                     }`}
                   >
@@ -109,7 +113,7 @@ const Header = () => {
                   <Link
                     onClick={() => setOpen(false)}
                     href="/about-us"
-                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
+                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
                       path == '/about-us' ? '!opacity-100 ' : ''
                     }`}
                   >
@@ -120,7 +124,7 @@ const Header = () => {
                   <Link
                     onClick={() => setOpen(false)}
                     href="/news?page=1"
-                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
+                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
                       path == '/news' ? '!opacity-100' : ''
                     }`}
                   >
@@ -133,17 +137,17 @@ const Header = () => {
                   <Link
                     onClick={() => setOpen(false)}
                     href="/dashboard"
-                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
+                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
                       path == '/dashboard' ? '!opacity-100' : ''
                     }`}
                   >
                     Dashboard
                   </Link>
                 </li> */}
-                <li className="social-popup--show sm:mt-7 sm:pb-7 hidden sm:block">
+                <li className="social-popup--show sm:mt-7 sm:pb-7 hidden md:block">
                   <button
                     onClick={SocialIcon}
-                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
+                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
                       path == '/SocialIcons' ? '!opacity-100' : ''
                     }`}
                   >
@@ -156,18 +160,18 @@ const Header = () => {
                   </div>
                 </li>
                 <li
-                  className="sm:hidden text-center"
+                  className="md:hidden text-center"
                   onClick={SocialIconDropDown}
                 >
                   <button
-                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
+                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
                       path == '/SocialIcons' ? '!opacity-100' : ''
                     }`}
                   >
                     Socials
                   </button>
                   <div
-                    className={`mt-3 h-[180px] overflow-scroll social-popup__scroll--hidden ${
+                    className={` mt-3 h-180 overflow-scroll social-popup__scroll--hidden ${
                       navSocialIcon ? '!hidden' : 'block'
                     }`}
                   >
@@ -239,7 +243,7 @@ const Header = () => {
                       </Link>
                       <Link
                         href="/sign-up"
-                        className="sm:px-[24px] px-4 sm:py-[14.5px] py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-[6px] group border border-skyblue hover:bg-black hover:text-skyblue btn__cta transition duration-300 ease-in-out social-popup__btn"
+                        className="sm:px-24pixel px-4 sm:py-14.5 py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-6pixel group border border-skyblue hover:bg-black hover:text-skyblue btn__cta transition duration-300 ease-in-out social-popup__btn"
                       >
                         Contact Us
                         <span className="group-hover:translate-x-3 transition duration-300 ease-out">
@@ -253,7 +257,7 @@ const Header = () => {
                   <Link
                     href="/sign-up"
                     onClick={() => setOpen(false)}
-                    className="pt-[10px] pb-[14px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white sm:hidden"
+                    className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white md:hidden"
                   >
                     Sign up
                   </Link>
@@ -263,7 +267,7 @@ const Header = () => {
             <Link
               href="/sign-up"
               onClick={() => setOpen(false)}
-              className="pt-[10px] pb-[14px] px-[24px] text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden sm:inline-block"
+              className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden md:inline-block"
             >
               Sign up
             </Link>

@@ -9,19 +9,25 @@ const videos = [
   { src: '/video3.mp4', thumbnail: '/poster2.png' },
 ];
 
+const AOS_DURATION = 400;
+const AOS_DELAY = 300;
+const AOS_OFFSET = 100;
+const VIDEO_WIDTH = 300;
+const VIDEO_HEIGHT = 240;
+
 const Highlights = () => {
   return (
     <div className="w-full xl:w-3/4 2xl:w-3/4 min-h-full">
-      <div className="container__border--blue-gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 z-0  after:contents-[''] after:inset-0 after:p-[1px] after:rounded-[30px] rounded-[30px] h-full flex items-center justify-center">
+      <div className="container__border--blue-gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 z-0  after:contents-[''] after:inset-0 after:p-1 after:rounded-30 rounded-30 h-full flex items-center justify-center">
         <div
           className="flex flex-col justify-center items-stretch relative z-20"
           data-aos="fade-up"
-          data-aos-duration="400"
+          data-aos-duration={AOS_DURATION}
           data-aos-easing="ease-in-sine"
-          data-aos-delay="300"
-          data-aos-offset="100"
+          data-aos-delay={AOS_DELAY}
+          data-aos-offset={AOS_OFFSET}
         >
-          <h2 className="font-HelveticaNeueMedium md:text-4xl text-[26px] text-[#FDFEFF] font-medium leading-[60px] relative z-20 text-center md:mb-4">
+          <h2 className="font-HelveticaNeueMedium md:text-4xl text-basemd text-primary font-medium leading-60 relative z-20 text-center md:mb-4">
             <span className="relative ">
               Highlights
               <span className="absolute -bottom-2 left-0 z-0">
@@ -33,8 +39,8 @@ const Highlights = () => {
             {videos.map((video, index) => (
               <div key={index} className="my-2">
                 <video
-                  width="300"
-                  height="240"
+                   width={VIDEO_WIDTH}
+                   height={VIDEO_HEIGHT}
                   controls
                   poster={video.thumbnail}
                   className="mx-auto"
