@@ -1,5 +1,5 @@
 // LATEST NEWS COMPONENT MAP
-export const MatchNews = [
+export const matchNews = [
   {
     delay: '100',
     matchimage: '/assets/img/webp/space.webp',

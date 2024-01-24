@@ -19,11 +19,11 @@ const IMAGE_HEIGHT_ARTICLE = 556;
 const AOS_DURATION = 800;
 const AOS_DELAY = 200;
 const AOS_OFFSET = [100, 200];
-interface NewsProps {
+interface newsProps {
   newsDetailData: any;
 }
 
-const TargetArticleContent: React.FC<NewsProps> = props => {
+const TargetArticleContent: React.FC<newsProps> = props => {
   const { newsDetailData } = props;
 
   return (

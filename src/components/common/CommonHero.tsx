@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 // COMMON HEADING
-interface HeroProps {
+interface heroProps {
   heading: string;
   title?: string;
   subtitle?: string;
@@ -13,7 +13,7 @@ const HERO_SHADOW_IMAGE_HEIGHT = 1494;
 const AOS_DURATION = 600;
 const AOS_OFFSET = 100;
 
-const CommonHero: React.FC<{ hero: HeroProps }> = ({ hero }) => {
+const CommonHero: React.FC<{ hero: heroProps }> = ({ hero }) => {
   return (
     <>
       <section className="relative">

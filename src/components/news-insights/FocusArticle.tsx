@@ -13,11 +13,11 @@ const AOS_DURATION = 400;
 const AOS_DELAY = [100, 200];
 const AOS_OFFSET = 100;
 
-interface NewsProps {
+interface newsProps {
   newsListData: any;
 }
 
-const FocusArticle: React.FC<NewsProps> = props => {
+const FocusArticle: React.FC<newsProps> = props => {
   const { newsListData } = props;
 
   const focusArticleData = newsListData[0] || {};

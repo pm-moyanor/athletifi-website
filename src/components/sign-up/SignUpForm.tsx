@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { ButtonWhiteArrow, UnderLineText } from '../common/Icon';
-import { PostRequestHandler } from '../common/api/Api';
-import { PostNewsLetterHandler } from '../common/api/ApiUrls';
+import { postRequestHandler } from '../common/api/Api';
+import { postNewsLetterHandler } from '../common/api/ApiUrls';
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -32,8 +32,8 @@ const SignUpForm = () => {
     setLoading(true);
     if (checked) {
       try {
-        const response = await PostRequestHandler(
-          PostNewsLetterHandler(),
+        const response = await postRequestHandler(
+          postNewsLetterHandler(),
           formDetails
         );
         console.log(response);
