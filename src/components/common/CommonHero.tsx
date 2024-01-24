@@ -41,7 +41,7 @@ const CommonHero: React.FC<{ hero: HeroProps }> = ({ hero }) => {
         />
         <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto px-3 relative z-10">
           <div className="sm:pb-16 sm:pt-160 xl:pb-126 xl:pt-170 pb-16 pt-36">
-            <h2
+            <h1
               data-aos="fade-up"
               data-aos-duration={AOS_DURATION}
               data-aos-easing="linear"
@@ -49,7 +49,7 @@ const CommonHero: React.FC<{ hero: HeroProps }> = ({ hero }) => {
               className="font-HelveticaNeueMedium font-medium text-lgxl sm:text-lgxl md:text-6xl lg:text-7xl text-white sm:leading-66 text-center leading-110"
             >
               {hero.heading}
-            </h2>
+            </h1>
           </div>
         </div>
       </section>

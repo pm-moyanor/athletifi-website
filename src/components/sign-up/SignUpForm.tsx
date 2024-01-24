@@ -83,10 +83,10 @@ const SignUpForm = () => {
                   </span>
                 </span>
               </h2>
-              <p className="font-Segoe font-normal text-md md:max-w-365 text-center lg:text-start text-primary mx-auto lg:ms-0 leading- sm:pt-4 md:pt-3">
+              <h3 className="font-Segoe font-normal text-md md:max-w-365 text-center lg:text-start text-primary mx-auto lg:ms-0 leading- sm:pt-4 md:pt-3">
                 Sign-up for exclusive updates! Become part of the sport&apos;s
                 revolution.
-              </p>
+              </h3>
               <p className="font-Segoe font-normal text-md md:max-w-600 lg:max-w-543 text-center lg:text-start text-primary mx-auto lg:ms-0 opacity-70 mt-2 sm:pt-0.5 leading-27">
                 By subscribing, you&apos;re not only embracing the future of
                 sports collectibles, but you&apos;re also at the ground floor of

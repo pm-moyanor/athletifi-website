@@ -34,9 +34,9 @@ const HeroHomepage = () => {
               up-to-date stats and highlight clips of the latest and greatest
               plays.
             </p>
-            <h4 className="font-HelveticaNeueMedium text-white text-center lg:text-start text-md font-medium leading-25">
+            <h2 className="font-HelveticaNeueMedium text-white text-center lg:text-start text-md font-medium leading-25">
               Looking for a Summer Select program in Eastern Pennsylvania?
-            </h4>
+            </h2>
             <p className="font-Segoe text-primary text-base sm:text-md font-normal mt-4 opacity-80 text-center lg:text-start">
               AthletiFi has teamed up with Eastern Pennsylvania&apos;s top
               coaches to create a first-of-its-kind Summer Select program!
