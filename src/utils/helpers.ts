@@ -1,5 +1,5 @@
 // import { NewsArticle } from "../types";
-interface NewsArticle {
+interface newsArticle {
   id: number;
   title: string;
   description: string;
@@ -13,9 +13,9 @@ interface NewsArticle {
 }
 
 export function filterTargetArticle(
-  allNewsData: { data: NewsArticle[] },
-  targetArticle: NewsArticle
-): NewsArticle[] {
+  allNewsData: { data: newsArticle[] },
+  targetArticle: newsArticle
+): newsArticle[] {
   return allNewsData.data.filter(
     article => article.slug !== targetArticle.slug
   );

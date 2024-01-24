@@ -8,11 +8,11 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import BlueButton from '../common/BlueButton';
 
-interface NewsProps {
+interface newsProps {
   allNewsList: any;
 }
 
-const LatestNews: React.FC<NewsProps> = props => {
+const LatestNews: React.FC<newsProps> = props => {
   const { allNewsList } = props;
   const DataArray = allNewsList.data;
   const itemsPerPage = 3;

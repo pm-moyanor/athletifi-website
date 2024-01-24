@@ -12,11 +12,11 @@ import {
 
 import Link from 'next/link';
 
-interface NewsProps {
+interface newsProps {
   newsDetailData: any;
 }
 
-const TargetArticleContent: React.FC<NewsProps> = props => {
+const TargetArticleContent: React.FC<newsProps> = props => {
   const { newsDetailData } = props;
 
   return (

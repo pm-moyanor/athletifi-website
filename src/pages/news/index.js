@@ -9,10 +9,10 @@ import { filterTargetArticle } from '@/utils/helpers';
 import { SEO_CONFIG } from '@/utils/seoConfig';
 
 // Importing API handlers for fetching news data
-import { GetRequestHandler } from '@/components/common/api/Api';
+import { getRequestHandler } from '@/components/common/api/Api';
 import {
-  NewsListApiHandler,
-  NewsListFilterApiHandler,
+  newsListApiHandler,
+  newsListFilterApiHandler,
 } from '@/components/common/api/ApiUrls';
 
 // The main functional component for the News and Insights page
@@ -57,14 +57,14 @@ const NewsPage = ({ newsListData, allNewsList }) => {
 export async function getServerSideProps() {
   try {
     // Fetching news list and filter data
-    const response = await GetRequestHandler(NewsListApiHandler());
-    const responseFilter = await GetRequestHandler(NewsListFilterApiHandler());
-    const NewsData = responseFilter && responseFilter.data;
+    const response = await getRequestHandler(newsListApiHandler());
+    const responseFilter = await getRequestHandler(newsListFilterApiHandler());
+    const newsData = responseFilter && responseFilter.data;
 
     return {
       props: {
         allNewsList: response,
-        newsListData: NewsData,
+        newsListData: newsData,
       },
     };
   } catch (error) {

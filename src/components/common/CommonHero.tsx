@@ -2,13 +2,13 @@ import Image from 'next/image';
 import React from 'react';
 
 // COMMON HEADING
-interface HeroProps {
+interface heroProps {
   heading: string;
   title?: string;
   subtitle?: string;
 }
 
-const CommonHero: React.FC<{ hero: HeroProps }> = ({ hero }) => {
+const CommonHero: React.FC<{ hero: heroProps }> = ({ hero }) => {
   return (
     <>
       <section className="relative">

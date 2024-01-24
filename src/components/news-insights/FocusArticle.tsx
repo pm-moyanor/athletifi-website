@@ -5,11 +5,11 @@ import BlueButton from '../common/BlueButton';
 import Image from 'next/image';
 import moment from 'moment';
 
-interface NewsProps {
+interface newsProps {
   newsListData: any;
 }
 
-const FocusArticle: React.FC<NewsProps> = props => {
+const FocusArticle: React.FC<newsProps> = props => {
   const { newsListData } = props;
 
   const focusArticleData = newsListData[0] || {};
