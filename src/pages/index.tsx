@@ -22,6 +22,9 @@ import { getRequestHandler } from '@/components/common/api/Api';
 import { newsListApiHandler } from '@/components/common/api/ApiUrls';
 import { SEO_CONFIG } from '@/utils/seoConfig';
 
+const IMAGE_WIDTH_HERO_GRID = 700;
+const IMAGE_HEIGHT_HERO_GRID = 700;
+
 //Importing the Inter font
 const inter = Inter({ subsets: ['latin'] });
 
@@ -72,11 +75,11 @@ const Home: React.FC<NewsProps> = props => {
           <div className="flex lg:items-center lg:flex-row flex-col flex-grow relative">
             <HeroHomepage />
             <Image
-              className="absolute right-0 hero__grid-position -z-10 hidden lg:block w-[450px] xl:w-[700px]"
+              className="absolute right-0 hero__grid-position -z-10 hidden lg:block w-450 xl:w-700"
               src="/assets/img/svg/hero_grid.svg"
               alt=""
-              width={700}
-              height={700}
+              width={IMAGE_WIDTH_HERO_GRID}
+              height={IMAGE_HEIGHT_HERO_GRID}
             />
           </div>
         </div>

@@ -1,11 +1,11 @@
-// OurMission.tsx
-
-// This component renders the "What We Do" section on the "About Us" page.
-// It outlines the services and products offered by the company.
-
-import React from 'react';
 import Image from 'next/image';
 import { BlueShadow, UnderLineText } from '../common/Icon';
+
+const SHADOW_IMAGE_WIDTH = 500;
+const SHADOW_IMAGE_HEIGHT = 500;
+const AOS_DURATION = 400;
+const AOS_DELAY = 100;
+const AOS_OFFSET = 200;
 
 const OurMission = () => {
   return (
@@ -13,46 +13,46 @@ const OurMission = () => {
       <div className="relative py-6 lg:pt-10 sm:pt-20 pt-14">
         {/* SHADOW IMG */}
         <Image
-          className="absolute top-[30%] -translate-y-24 end-0"
+          className="absolute top-30/100 -translate-y-24 end-0"
           src="/assets/img/png/what-we-do-shadow.png"
-          width={500}
-          height={500}
+          width={SHADOW_IMAGE_WIDTH}
+          height={SHADOW_IMAGE_HEIGHT}
           alt=""
         />
         <span className="absolute top-50 -start-10">
           <BlueShadow />
         </span>
-        <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative z-10">
+        <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto px-3 relative z-10">
           <div className="flex flex-col lg:flex-row justify-between">
             <div className="lg:w-1/2">
               <div
                 data-aos="fade-up"
-                data-aos-duration="400"
+                data-aos-duration={AOS_DURATION}
                 data-aos-easing="linear"
-                data-aos-delay="100"
-                data-aos-offset="200"
+                data-aos-delay={AOS_DELAY}
+                data-aos-offset={AOS_OFFSET}
                 className="flex flex-col justify-center h-full lg:pe-6 xl:p-0 text-center lg:text-start lg:mt-14"
               >
-                <h2 className="font-HelveticaNeueMedium font-medium text-[26px]  md:text-5xl sm:text-4xl leading-[60px] text-[#FDFEFF] md:mb-4">
+                <h2 className="font-HelveticaNeueMedium font-medium text-lg md:text-5xl sm:text-4xl leading-60 text-primary md:mb-4">
                   <span className="relative">
                     Our Mission
-                    <span className="absolute -bottom-2 left-0">
+                    <span className="absolute -bottom-5 left-0">
                       <UnderLineText />
                     </span>
                   </span>
                 </h2>
-                <p className="font-Segoe font-normal text-md md:max-w-[530px] text-[#FDFEFF] mx-auto lg:ms-0 opacity-80 leading-7 sm:pt-4">
+                <p className="font-Segoe font-normal text-md md:max-w-530 text-primary mx-auto lg:ms-0 opacity-80 leading-7 sm:pt-4">
                   We are a sports technology company that are looking for ways
                   to increase engagement and bring the excitement of youth
                   soccer to a broader audience.
                 </p>
-                <p className="font-Segoe font-normal text-md md:max-w-[530px] text-[#FDFEFF] mx-auto lg:ms-0 opacity-80 leading-7 sm:pt-4">
+                <p className="font-Segoe font-normal text-md md:max-w-530 text-primary mx-auto lg:ms-0 opacity-80 leading-7 sm:pt-4">
                   Our goal is to enrich the soccer experience, not only by
                   providing valuable insights into player performance but also
                   by fostering a deeper connection between young athletes, their
                   families, and the broader soccer community.
                 </p>
-                <p className="font-Segoe font-normal text-md md:max-w-[530px] text-[#FDFEFF] mx-auto lg:ms-0 opacity-80 leading-7 sm:pt-4">
+                <p className="font-Segoe font-normal text-md md:max-w-530 text-primary mx-auto lg:ms-0 opacity-80 leading-7 sm:pt-4">
                   We understand that soccer is more than just a game; it&apos;s
                   a community. AthletiFi&apos;s platform encourages engagement
                   by providing a fun and informative way for families and

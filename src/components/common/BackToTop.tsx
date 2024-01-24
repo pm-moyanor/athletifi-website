@@ -1,5 +1,10 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+
+const SCROLL_THRESHOLD = 200;
+const ARROW_IMAGE_WIDTH = 48;
+const ARROW_IMAGE_HEIGHT = 48;
+
 const BackToTop = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -23,9 +28,9 @@ const BackToTop = () => {
   }, []);
   return (
     <>
-      {scrollPosition > 200 ? (
+      {scrollPosition > SCROLL_THRESHOLD  ? (
         <div
-          className="fixed  backtotop sm:bottom-20 bottom-14 right-7 z-40 md:max-h-12 md:max-w-[48px] max-h-9 max-w-[36px]  cursor-pointer bg-skyblue rounded-lg border-[2px] border-skyblue hover:border-white duration-300"
+          className="fixed  backtotop sm:bottom-20 bottom-14 right-7 z-40 md:max-h-12 md:max-w-48 max-h-9 max-w-36  cursor-pointer bg-skyblue rounded-lg border-2 border-skyblue hover:border-white duration-300"
           onClick={() => scrollToTop()}
         >
           {/* UP-ARROW-IMG */}
@@ -33,8 +38,8 @@ const BackToTop = () => {
             <Image
               alt="Back to top icon"
               src="/assets/img/svg/back_to_top.svg"
-              width={48}
-              height={48}
+              width={ARROW_IMAGE_WIDTH}
+              height={ARROW_IMAGE_HEIGHT}
             />
           </div>
         </div>
