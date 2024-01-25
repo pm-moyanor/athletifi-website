@@ -1,4 +1,5 @@
 # AthletiFi Website
+
 This is the repository for the athleti.fi website.
 
 Our mission at AthletiFi is to redefine the way soccer fans engage with and support emerging talent in the world of soccer. We do this by creating digital sports trading cards that dynamically display a player's latest performance stats using AI-assisted video recognition technology.
@@ -21,6 +22,12 @@ Our project is about more than just player cards - it's about building a sustain
 
 - **CMS**: Strapi
 
+## ESLint and Prettier Setup for VS Code
+
+For maintaining consistent code quality and formatting, we use `@ijsto/eslint-config`, which is intended for use with VS Code.
+
+For detailed setup instructions, please refer to the [`@ijsto/eslint-config` README](https://github.com/ijsto/eslint-config).
+
 ## Getting Started
 
 1. Clone the repository and navigate to the project directory.
@@ -37,13 +44,13 @@ Our project is about more than just player cards - it's about building a sustain
    ```
 
 3. Run the development server:
-  
+
    ```bash
    npm run dev
    ```
-  
+
    or
-  
+
    ```bash
    yarn dev
    ```
@@ -72,4 +79,3 @@ You can start editing the page by modifying pages/index.tsx. The page auto-updat
    ```bash
    npm run development
    ```
-

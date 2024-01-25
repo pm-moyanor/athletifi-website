@@ -1,5 +1,5 @@
 // TIKTOK ICON
-export const TiktokIcon = () => {
+export const TikTokIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -375,7 +375,7 @@ export const PageLogo = () => {
   );
 };
 // BLUE UNDERLINE
-export const UnderLIneText = () => {
+export const UnderLineText = () => {
   return (
     <svg
       className="sm:w-[209px]"
@@ -393,7 +393,7 @@ export const UnderLIneText = () => {
   );
 };
 // BLUE SHADOW BACKGROUND
-export const BlueShodow = () => {
+export const BlueShadow = () => {
   return (
     <svg
       width="579"

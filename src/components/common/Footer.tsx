@@ -1,72 +1,49 @@
 // This component renders the footer of the website.
 // It includes copyright information and footer links.
 
-import React, { useState, useEffect } from "react";
+import React from 'react';
 import {
-  CancelIcon,
   FacebookIcon,
   InstaIcon,
   LinkedInIcon,
-  TiktokIcon,
+  TikTokIcon,
   TwitterIcon,
-} from "./Icon";
-import Link from "next/link";
-import SocialPopUp from "./SocialPopUp";
+} from './Icon';
+import Link from 'next/link';
 
 const Footer = () => {
-  // SOCIAL-ICON POPUP
-  const [socialIcon, setSocialIcon] = useState(true);
-  const SocialIcon = () => {
-    setSocialIcon(!socialIcon);
-  };
-  
   const today = new Date();
   const year = today.getFullYear();
+
   return (
     <>
-      <footer className="border-t border-[#00C7FF]">
-        <div className=" container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto  flex flex-col md:flex-row gap-5 items-center justify-between py-7">
+      <footer className="border-t border-darkerSkyBlue">
+        <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto  flex flex-col md:flex-row gap-5 items-center justify-between py-7">
           {/* PAGE LINKS */}
           <ul className=" flex gap-lg-10 gap-5">
             <li>
               <Link
-                className=" text-white text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto "
-                href="/"
+                className="text-primary text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto "
+                aria-label="privacy-policy"
+                href="/privacy-policy"
               >
-                Home
+                Privacy Policy
               </Link>
             </li>
             <li>
               <Link
-                aria-label="about-us"
-                className="  text-white text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto"
-                href="/about-us"
+                className="text-white text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto "
+                aria-label="terms-of-use"
+                href="/terms-of-use"
               >
-                About us
+                Terms of Use
               </Link>
-            </li>
-            <li>
-              <Link
-                aria-label="news"
-                className=" text-white text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto"
-                href="/news?page=1"
-              >
-                News
-              </Link>
-            </li>
-            <li>
-              <button
-                aria-label="socials"
-                onClick={SocialIcon}
-                className=" text-white text-base font-Segoe relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto"
-              >
-                Socials
-              </button>
             </li>
           </ul>
-          <p className=" text-white text-sm font-Segoe opacity-70">
-            @{year} Athletifi
+          <p className="text-white text-sm font-Segoe opacity-70">
+            @{year} Athletifi. All rights reserved
           </p>
+
           {/* SOCIAL-ICON */}
           <div className="flex gap-4">
             <Link
@@ -76,12 +53,12 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <TiktokIcon />
+              <TikTokIcon />
             </Link>
             <Link
               aria-label="facebook"
               className="hover:-translate-y-1 transition duration-300 ease-out"
-              href="https://www.facebook.com/athletifi"
+              href="https://www.facebook.com/profile.php?id=61553263775533"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -116,7 +93,6 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-   
       </footer>
     </>
   );
