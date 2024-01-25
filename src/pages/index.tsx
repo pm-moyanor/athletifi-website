@@ -28,13 +28,8 @@ const IMAGE_HEIGHT_HERO_GRID = 700;
 //Importing the Inter font
 const inter = Inter({ subsets: ['latin'] });
 
-interface NewsProps {
-  allNewsList: any;
-}
-
 // Main function component for the home page
-const Home: React.FC<NewsProps> = props => {
-  const { allNewsList } = props;
+const Home = () => {
   // PRELOADER
   // State variable for preloader. A preloader is a visual element that appears on the screen while a webpage or a portion of a webpage is loading.
   const [preloader, setpreloader] = useState(true);
