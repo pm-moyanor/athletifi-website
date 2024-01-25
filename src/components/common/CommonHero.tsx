@@ -1,19 +1,13 @@
 import Image from 'next/image';
 import React from 'react';
-
-// COMMON HEADING
-export interface heroProps {
-  heading: string;
-  title?: string;
-  subtitle?: string;
-}
+import { HeroProps } from '@/types/CommonHero.type';
 
 const HERO_SHADOW_IMAGE_WIDTH = 1494;
 const HERO_SHADOW_IMAGE_HEIGHT = 1494;
 const AOS_DURATION = 600;
 const AOS_OFFSET = 100;
 
-const CommonHero: React.FC<{ hero: heroProps }> = ({ hero }) => {
+const CommonHero: React.FC<{ hero: HeroProps }> = ({ hero }) => {
   return (
     <>
       <section className="relative">

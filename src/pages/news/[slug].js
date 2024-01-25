@@ -48,7 +48,8 @@ const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
       </div>
     </>
   );
-};``
+};
+``;
 
 export async function getServerSideProps(context) {
   const { slug } = context.query;

@@ -1,14 +1,6 @@
-// seoConfig.ts
+import { PageSEO } from '@/types/Seo.type';
 
-export interface pageSEO {
-  // Define the properties of the 'pageSEO'
-  title: string; // Title of the page
-  description: string; // Description of the page
-  websiteURL: string; // URL of the website
-  image: string; // Image URL for SEO
-}
-
-const aboutUsConfig: pageSEO = {
+const aboutUsConfig: PageSEO = {
   description:
     "Discover AthletiFi's mission to transform the soccer world with dynamic digital trading cards. Dive into our journey, partnerships, and vision for the future of soccer.",
   image: '/about_us_meta.png',
@@ -16,14 +8,14 @@ const aboutUsConfig: pageSEO = {
   websiteURL: 'https://athleti.fi/about-us',
 };
 
-const dashboardConfig: pageSEO = {
+const dashboardConfig: PageSEO = {
   description: 'Write something about the dashboard.',
   image: 'TBD',
   title: 'Dashboard | Athletifi',
   websiteURL: 'https://athleti.fi/dashboard',
 };
 
-const homeConfig: pageSEO = {
+const homeConfig: PageSEO = {
   description:
     "Experience the future of soccer with AthletiFi's digital player card collections. Collect, follow, and interact with elite youth soccer players in engaging ways. Welcome to the future of sports.",
   image: '/lending_meta_img.webp',
@@ -31,14 +23,14 @@ const homeConfig: pageSEO = {
   websiteURL: 'https://athleti.fi',
 };
 
-const newsConfig: pageSEO = {
+const newsConfig: PageSEO = {
   description: '(dynamically generated)',
   image: '(dynamically generated)',
   title: 'AthletiFi News: Latest Updates & Announcements',
   websiteURL: 'https://athletif.fi',
 };
 
-const signUpConfig: pageSEO = {
+const signUpConfig: PageSEO = {
   description:
     "Sign-up for exclusive updates! Become part of the sport's revolution.",
   image: '/sign_up_meta',

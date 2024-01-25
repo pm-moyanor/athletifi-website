@@ -1,10 +1,10 @@
 // Importing the Head component from Next.js for handling the head of the page
 
 import Head from 'next/head';
-import { pageSEO } from '@/utils/seoConfig';
+import { PageSEO } from '@/types/Seo.type';
 
 // Functional component to handle SEO settings
-const Seo: React.FC<{ pageSEO: pageSEO }> = ({ pageSEO }) => {
+const Seo: React.FC<{ pageSEO: PageSEO }> = ({ pageSEO }) => {
   return (
     <>
       <Head>

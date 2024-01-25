@@ -85,7 +85,7 @@ const Home: React.FC<NewsProps> = props => {
         </div>
         <main>
           <FollowTomorrow />
-          < PassiveEngagement/>
+          <PassiveEngagement />
           <BeyondNumbers />
           {/* <OurStrategicAdvisor /> */}
           <TrustedPartners />
