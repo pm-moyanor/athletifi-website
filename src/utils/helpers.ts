@@ -15,7 +15,9 @@ export type NewsContent = Readonly<{
   body: string;
 }>;
 
-export interface NewsArticle {
+// export interface NewsArticle {
+// import { NewsArticle } from "../types";
+interface newsArticle {
   id: number;
   title: string;
   description: string;
@@ -30,14 +32,14 @@ export interface NewsArticle {
   categories: Category[];
 }
 
-export interface NewsProps {
-  newsListData: { data: NewsArticle[] };
-}
+// export interface NewsProps {
+//   newsListData: { data: NewsArticle[] };
+// }
 
 export function filterTargetArticle(
-  allNewsData: { data: NewsArticle[] },
-  targetArticle: NewsArticle | null
-): NewsArticle[] {
+  allNewsData: { data: newsArticle[] },
+  targetArticle: newsArticle
+): newsArticle[] {
   return allNewsData.data.filter(
     article => article.slug !== targetArticle.slug
   );

@@ -16,11 +16,11 @@ const EXTERNAL_IMG_HEIGHT = 240;
 const GRID_IMAGE_WIDTH = 716;
 const GRID_IMAGE_HEIGHT = 692;
 
-interface NewsProps {
+interface newsProps {
   allNewsList: any;
 }
 
-const LatestNews: React.FC<NewsProps> = props => {
+const LatestNews: React.FC<newsProps> = props => {
   const { allNewsList } = props;
   const DataArray = allNewsList.data;
   const itemsPerPage = 3;

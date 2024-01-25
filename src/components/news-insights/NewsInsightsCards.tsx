@@ -3,10 +3,9 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { PaginationArrow } from '../common/Icon';
-import Skeleton from 'react-loading-skeleton';
 import NewsInsightsLoader from './NewsInsightsLoader';
-import { GetRequestHandler } from '../common/api/Api';
-import { NewsListApiHandler } from '../common/api/ApiUrls';
+import { getRequestHandler } from '../common/api/Api';
+import { newsListApiHandler } from '../common/api/ApiUrls';
 import { log } from 'console';
 
 const IMAGE_WIDTH = 315;
@@ -17,11 +16,11 @@ const AOS_OFFSET = 200;
 const IMAGE_WIDTH_GRID = 716;
 const IMAGE_HEIGHT_GRID = 692;
 
-interface NewsListProps {
+interface newsListProps {
   allNewsList: any;
 }
 
-const NewsInsightsCards: React.FC<NewsListProps> = props => {
+const NewsInsightsCards: React.FC<newsListProps> = props => {
   // ==== SKELETON LOADER START ====
   const [checked, setChecked] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
@@ -42,7 +41,7 @@ const NewsInsightsCards: React.FC<NewsListProps> = props => {
   const handlePageChange = async (newPage: any) => {
     setLoading(true);
     try {
-      const response = await GetRequestHandler(NewsListApiHandler());
+      const response = await getRequestHandler(newsListApiHandler());
       setLoading(false);
       setCurrentPage(newPage);
     } catch (error) {

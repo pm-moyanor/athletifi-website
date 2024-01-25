@@ -52,11 +52,11 @@ const Header = () => {
   }, []);
   // ====================================================== nav-social-icon
   const [navSocialIcon, setNavSocialIcon] = useState(true);
-  const SocialIcon = () => {
+  const socialIcon = () => {
     setOpen(false);
     setNavSocialIcon(!navSocialIcon);
   };
-  const SocialIconDropDown = () => {
+  const socialIconDropDown = () => {
     setNavSocialIcon(!navSocialIcon);
   };
 
@@ -146,8 +146,8 @@ const Header = () => {
                 </li> */}
                 <li className="social-popup--show sm:mt-7 sm:pb-7 hidden md:block">
                   <button
-                    onClick={SocialIcon}
-                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
+                    onClick={socialIcon}
+                    className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-[2px] after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
                       path == '/SocialIcons' ? '!opacity-100' : ''
                     }`}
                   >
@@ -161,7 +161,7 @@ const Header = () => {
                 </li>
                 <li
                   className="md:hidden text-center"
-                  onClick={SocialIconDropDown}
+                  onClick={socialIconDropDown}
                 >
                   <button
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
