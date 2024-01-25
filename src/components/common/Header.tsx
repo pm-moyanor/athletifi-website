@@ -34,7 +34,7 @@ const Header = () => {
   // ==============================================
   const navbarRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(true);
-  const [scrollPosition, setScrollPosition] = useState<number>(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
     let prevScrollPos = window.scrollY;

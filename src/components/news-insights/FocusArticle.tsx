@@ -55,7 +55,7 @@ const FocusArticle = ({ newsListData }: Articles) => {
               {/*      LET'S GET RID OF THE CATEGORIES FOR NOW. UNCOMMENT THIS BLOCK TO BRING THEM BACK
 
               <div className="mt-4 flex items-center gap-[14px] justify-center xl:justify-start">
-                {focusArticleData.categories?.map((val: any, i: any) => {
+                {focusArticleData.categories?.map((val: Category, i: number) => {
                   return (
                     <button
                       key={i}

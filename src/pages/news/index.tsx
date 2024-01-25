@@ -5,7 +5,7 @@ import Header from '@/components/common/Header';
 import Seo from '@/components/common/Seo';
 import FocusArticle from '@/components/news-insights/FocusArticle';
 import NewsInsightsCards from '@/components/news-insights/NewsInsightsCards';
-import { HeroProps } from '@/types/CommonHero.type';
+import { Hero } from '@/types/CommonHero.type';
 import { NewsProps } from '@/types/News.type';
 import { PageSEO } from '@/types/Seo.type';
 import { filterTargetArticle } from '@/utils/helpers';
@@ -30,7 +30,7 @@ const NewsPage = ({ newsListData, allNewsList }: NewsProps) => {
   );
 
   // SEO
-  const hero: HeroProps = {
+  const hero: Hero = {
     heading: 'Latest Updates & Announcements',
   };
   // Update dynamic parts of the SEO properties

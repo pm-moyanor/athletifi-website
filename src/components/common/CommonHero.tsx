@@ -7,7 +7,7 @@ const HERO_SHADOW_IMAGE_HEIGHT = 1494;
 const AOS_DURATION = 600;
 const AOS_OFFSET = 100;
 
-const CommonHero: React.FC<{ hero: HeroProps }> = ({ hero }) => {
+const CommonHero = ({ hero }: HeroProps) => {
   return (
     <>
       <section className="relative">

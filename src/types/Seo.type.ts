@@ -5,3 +5,7 @@ export interface PageSEO {
   websiteURL: string; // URL of the website
   image: string; // Image URL for SEO
 }
+
+export interface PageSEOProps {
+  pageSEO: PageSEO;
+}

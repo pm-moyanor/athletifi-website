@@ -1,8 +1,8 @@
 import React from 'react';
-import { BlueShadow, UnderLineText } from '../common/Icon';
-import Image from 'next/image';
+import { UnderLineText } from '@/components/common/Icon';
+import { Player } from '@/types/Player.type';
 
-const playerInformation = {
+const playerInformation: Player = {
   club: 'FC Barcelona',
   name: 'Leo Messi',
   number: '10',

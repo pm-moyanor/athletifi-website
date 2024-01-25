@@ -25,7 +25,7 @@ const TargetArticleContent = ({ newsDetailData }: NewsDetails) => {
   return (
     <>
       {newsDetailData?.data?.map((newsItem: NewsArticle, i: number) => {
-        // console.log("newsItem!!!!", newsItem)
+        // console.log('newsItem!!!!', newsItem);
         const imagePath = 'https://vidalco.in';
         const url = newsItem.image.url;
         const combinedUrl = url ? `${imagePath}${url}` : null;

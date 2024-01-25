@@ -10,7 +10,7 @@ const AOS_DURATION = 400;
 const AOS_DELAY = [400, 600, 1000];
 const AOS_OFFSET = 200;
 
-const TrustedPartners: React.FC = () => {
+const TrustedPartners = () => {
   return (
     <>
       <section>

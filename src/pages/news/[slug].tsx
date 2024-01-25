@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 
 import BackToTop from '@/components/common/BackToTop';
 import CommonHero from '@/components/common/CommonHero';
-import { HeroProps } from '@/types/CommonHero.type';
+import { Hero } from '@/types/CommonHero.type';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 // import Seo from '@/components/common/Seo';
@@ -31,7 +31,7 @@ const NewsArticleSlugPage = ({
   );
 
   // SEO
-  const hero: HeroProps = {
+  const hero: Hero = {
     heading: targetArticle?.title || `Article not found`,
     subtitle:
       'Here you can find all the latest news and developments from AthletiFi!',
