@@ -10,8 +10,9 @@ import {
   LinkedInIcon,
   TikTokIcon,
   TwitterIcon,
+  PageLogo,
 } from './Icon';
-import { PageLogo } from './Icon';
+
 import SocialPopUp from './SocialPopUp';
 import Image from 'next/image';
 
@@ -75,6 +76,13 @@ const Header = () => {
           <div className="flex items-center justify-between">
             <Link href="/">
               <PageLogo />
+              {/* <Image
+                src="/athletifi-logo-web.svg"
+                width="75"
+                height="64"
+                className="w-[65px] sm:w-[75px]"
+                alt={''}
+              /> */}
             </Link>
             {/* SMALL SCREEN MENU ICONS */}
             <div
