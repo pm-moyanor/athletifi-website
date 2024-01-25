@@ -4,10 +4,10 @@ import Footer from '../../components/common/Footer';
 import Header from '../../components/common/Header';
 import NewsInsightsCards from '../../components/news-insights/NewsInsightsCards';
 import TargetArticleContent from '../../components/news-insights/TargetArticleContent';
-import { GetRequestHandler } from '../../components/common/api/Api';
+import { getRequestHandler } from '../../components/common/api/Api';
 import {
-  NewsDetailApiHandler,
-  NewsListApiHandler,
+  newsDetailApiHandler,
+  newsListApiHandler,
 } from '../../components/common/api/ApiUrls';
 import { filterTargetArticle } from '../../../src/utils/helpers';
 
@@ -43,17 +43,17 @@ const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
       </div>
     </>
   );
-};
+};``
 
 export async function getServerSideProps(context) {
   const { slug } = context.query;
   try {
-    const response = await GetRequestHandler(NewsDetailApiHandler(slug));
-    const newsresponse = await GetRequestHandler(NewsListApiHandler());
+    const response = await getRequestHandler(newsDetailApiHandler(slug));
+    const newsResponse = await getRequestHandler(newsListApiHandler());
 
     return {
       props: {
-        allNewsData: newsresponse,
+        allNewsData: newsResponse,
         newsDetailData: response,
       },
     };

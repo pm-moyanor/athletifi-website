@@ -9,18 +9,21 @@ import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 // import LatestNews from "@/components/home/LatestNews"; //Add this back if you want to have the news section
 // import OurStrategicAdvisor from "@/components/home/OurStrategicAdvisor"; //Add this back if you want to have the Darren section
-import StatsReimagined from '@/components/home/FundraisingReimagined';
+import FollowTomorrow from '@/components/home/FollowTomorrow';
 import TrustedPartners from '@/components/home/TrustedPartners';
-import SoccerExpensive from '@/components/home/PassiveEngagement';
-import UniqueAthletifi from '@/components/home/BeyondTheNumbers';
+import PassiveEngagement from '@/components/home/PassiveEngagement';
+import BeyondNumbers from '@/components/home/BeyondNumbers';
 import HeroHomepage from '@/components/home/HeroHomepage';
 import BackToTop from '@/components/common/BackToTop';
 import { useEffect, useState } from 'react';
 import { PageLogo } from '@/components/common/Icon';
 import Seo from '@/components/common/Seo';
-import { GetRequestHandler } from '@/components/common/api/Api';
-import { NewsListApiHandler } from '@/components/common/api/ApiUrls';
+import { getRequestHandler } from '@/components/common/api/Api';
+import { newsListApiHandler } from '@/components/common/api/ApiUrls';
 import { SEO_CONFIG } from '@/utils/seoConfig';
+
+const IMAGE_WIDTH_HERO_GRID = 700;
+const IMAGE_HEIGHT_HERO_GRID = 700;
 
 interface NewsProps {
   allNewsList: any;
@@ -70,18 +73,19 @@ const Home: React.FC<NewsProps> = props => {
           <div className="flex lg:items-center lg:flex-row flex-col flex-grow relative">
             <HeroHomepage />
             <Image
-              className="absolute right-0 hero__grid-position -z-10 hidden lg:block w-[450px] xl:w-[700px]"
+              className="absolute right-0 hero__grid-position -z-10 hidden lg:block w-450 xl:w-700"
               src="/assets/img/svg/hero_grid.svg"
               alt=""
-              width={700}
-              height={700}
+              width={IMAGE_WIDTH_HERO_GRID}
+              height={IMAGE_HEIGHT_HERO_GRID}
             />
           </div>
         </div>
         <main>
-          <StatsReimagined />
-          <SoccerExpensive />
-          <UniqueAthletifi />
+          <FollowTomorrow />
+          <PassiveEngagement />
+          <BeyondNumbers />
+          {/* <OurStrategicAdvisor /> */}
           <TrustedPartners />
           {/* <LatestNews allNewsList={allNewsList} /> */}
         </main>
@@ -94,7 +98,7 @@ const Home: React.FC<NewsProps> = props => {
 
 export async function getServerSideProps() {
   try {
-    const response = await GetRequestHandler(NewsListApiHandler());
+    const response = await getRequestHandler(newsListApiHandler());
 
     return {
       props: {

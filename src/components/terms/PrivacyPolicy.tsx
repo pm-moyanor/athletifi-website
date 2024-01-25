@@ -2,8 +2,8 @@ import React from 'react';
 
 const PrivacyPolicy = () => {
   return (
-    <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto px-3 relative z-10 text-white">
-      <section className="font-Segoe font-normal text-md leading-7 pb-0.5 text-[#FDFEFF] opacity-80 m-0 sm:pt-4 lg:max-w-[769px] mx-auto sm:px-6 px-3 xl:px-0 relative z-20">
+    <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto px-3 relative z-10 text-primary">
+      <section className="font-Segoe font-normal text-md leading-7 pb-0.5 text-primary opacity-80 m-0 sm:pt-4 lg:max-w-769 mx-auto sm:px-6 px-3 xl:px-0 relative z-20">
         <p>
           <em>Last Updated: January 16, 2024</em>
         </p>
