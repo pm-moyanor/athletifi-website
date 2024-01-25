@@ -19,7 +19,6 @@ const IMAGE_HEIGHT_GRID = 692;
 
 const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
   // ==== SKELETON LOADER START ====
-  const [checked, setChecked] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
   // ==== SKELETON LOADER END ====

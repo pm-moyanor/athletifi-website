@@ -20,8 +20,9 @@ import {
 
 // The main functional component for the News and Insights page
 const NewsPage = ({ newsListData, allNewsList }: NewsProps) => {
-  let targetArticle = null;
-  if (newsListData && newsListData.length > 0) targetArticle = newsListData[0];
+  // Use optional chaining to simplify target article assignment
+  const targetArticle = newsListData?.[0];
+
   // Filter out the target article from the allNewsList data
   const filteredNewsList = filterTargetArticle(
     allNewsList?.data,
@@ -35,8 +36,8 @@ const NewsPage = ({ newsListData, allNewsList }: NewsProps) => {
   // Update dynamic parts of the SEO properties
   const newsPageSEO: PageSEO = {
     ...SEO_CONFIG.news, // Spread the static properties
-    description: `${targetArticle && targetArticle.previewSummary}`, // Update the dynamic description
-    image: `https://vidalco.in${targetArticle && targetArticle.image.url}`, // Update the dynamic image URL
+    description: targetArticle?.previewSummary, // Dynamically update the description
+    image: `https://vidalco.in${targetArticle?.image.url}`, // Dynamically update the image URL
   };
 
   return (
@@ -63,7 +64,9 @@ export async function getServerSideProps() {
     // Fetching news list and filter data
     const response = await getRequestHandler(newsListApiHandler());
     const responseFilter = await getRequestHandler(newsListFilterApiHandler());
-    const newsData = responseFilter && responseFilter.data;
+
+    // Use optional chaining to safely access data
+    const newsData = responseFilter?.data;
 
     return {
       props: {
