@@ -1,12 +1,11 @@
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { PaginationArrow } from '../common/Icon';
 import NewsInsightsLoader from './NewsInsightsLoader';
 import { getRequestHandler } from '../common/api/Api';
 import { newsListApiHandler } from '../common/api/ApiUrls';
-import { log } from 'console';
 
 const IMAGE_WIDTH = 315;
 const IMAGE_HEIGHT = 240;
@@ -22,7 +21,6 @@ interface newsListProps {
 
 const NewsInsightsCards: React.FC<newsListProps> = props => {
   // ==== SKELETON LOADER START ====
-  const [checked, setChecked] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
   // ==== SKELETON LOADER END ====
