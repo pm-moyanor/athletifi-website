@@ -1,10 +1,10 @@
 import { NewsArticle } from '@/types/News.type';
 
 export function filterTargetArticle(
-  allNewsData: { data: NewsArticle[] },
-  targetArticle: NewsArticle
+  allNewsData: NewsArticle[],
+  targetArticle: NewsArticle | null
 ): NewsArticle[] {
-  return allNewsData.data.filter(
-    article => article.slug !== targetArticle.slug
-  );
+  return targetArticle
+    ? allNewsData.filter(article => article.slug !== targetArticle.slug)
+    : allNewsData;
 }

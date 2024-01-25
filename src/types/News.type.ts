@@ -31,5 +31,11 @@ export interface NewsArticle {
 }
 
 export interface NewsProps {
-  newsListData: { data: NewsArticle[] };
+  allNewsList: { data: NewsArticle[] };
+  newsListData?: NewsArticle[];
+}
+
+export interface NewsSlugProps {
+  allNewsData: { data: NewsArticle[] };
+  newsDetailData: { data: NewsArticle[] };
 }
