@@ -2,7 +2,8 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import Seo from '@/components/common/Seo';
 import { SEO_CONFIG } from '@/utils/seoConfig';
-import CommonHero, { HeroProps } from '@/components/common/CommonHero';
+import CommonHero from '@/components/common/CommonHero';
+import { HeroProps } from '@/types/CommonHero.type';
 
 import Highlights from '@/components/dashboard/Highlights';
 import Teammates from '@/components/dashboard/Teammates';

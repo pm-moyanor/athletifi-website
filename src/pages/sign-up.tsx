@@ -1,4 +1,5 @@
-import CommonHero, { HeroProps } from '@/components/common/CommonHero';
+import CommonHero from '@/components/common/CommonHero';
+import { HeroProps } from '@/types/CommonHero.type';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import Seo from '@/components/common/Seo';
