@@ -30,12 +30,34 @@ export interface NewsArticle {
   categories: Category[];
 }
 
-export interface NewsProps {
-  allNewsList: { data: NewsArticle[] };
+export interface PaginatedWorkflow {
+  meta: {
+    pagination: {
+      page: number;
+      pageCount: number;
+      pageSize: number;
+      total: number;
+    };
+  };
+  data: NewsArticle[];
+}
+
+export interface Articles {
   newsListData?: NewsArticle[];
 }
 
-export interface NewsSlugProps {
-  allNewsData: { data: NewsArticle[] };
-  newsDetailData: { data: NewsArticle[] };
+export interface AllArticles {
+  allNewsList: NewsArticle[] | null;
+}
+
+export interface NewsProps extends Articles {
+  allNewsList: PaginatedWorkflow;
+}
+
+export interface NewsDetails {
+  newsDetailData: PaginatedWorkflow;
+}
+
+export interface NewsSlugProps extends NewsDetails {
+  allNewsData: PaginatedWorkflow;
 }

@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import BlueButton from '../common/BlueButton';
+import { NewsProps, NewsArticle, Category } from '@/types/News.type';
 
 const AOS_DURATION = 400;
 const AOS_DELAY = 100;
@@ -16,12 +17,7 @@ const EXTERNAL_IMG_HEIGHT = 240;
 const GRID_IMAGE_WIDTH = 716;
 const GRID_IMAGE_HEIGHT = 692;
 
-interface newsProps {
-  allNewsList: any;
-}
-
-const LatestNews: React.FC<newsProps> = props => {
-  const { allNewsList } = props;
+const LatestNews = ({ allNewsList }: NewsProps) => {
   const DataArray = allNewsList.data;
   const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(
@@ -49,7 +45,7 @@ const LatestNews: React.FC<newsProps> = props => {
               Latest News
             </span>
           </h2>
-          {displayedItems.map((val: any, index: any) => {
+          {displayedItems.map((val: NewsArticle, index: number) => {
             return (
               <Link href={`/news/${val.slug}?page=1`} key={val.id}>
                 <div
@@ -57,7 +53,7 @@ const LatestNews: React.FC<newsProps> = props => {
                   data-aos="fade-up"
                   data-aos-duration={AOS_DURATION}
                   data-aos-easing="ease"
-                  data-aos-delay={val.delay}
+                  data-aos-delay="200"
                   key={index}
                 >
                   <Image
@@ -82,7 +78,7 @@ const LatestNews: React.FC<newsProps> = props => {
                         </span>
                       </h4>
                       {/* NEWS CATEGORY */}
-                      {val.categories.map((obj: any, i: any) => {
+                      {val.categories.map((obj: Category, i: number) => {
                         return (
                           <span key={i} className="flex gap-x-3">
                             <button className="lg:text-base md:text-xxs text-sm text-skyblue font-Segoe font-normal py-2 px-3 sm:py-10pixel sm:px-18pixel bg-matchtitles rounded-full leading-150 duration-300 hover:text-primary">

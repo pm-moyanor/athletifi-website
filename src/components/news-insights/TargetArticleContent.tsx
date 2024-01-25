@@ -9,6 +9,7 @@ import {
   WhiteTwitterIcon,
   WhiteWhatsAppIcon,
 } from '../common/Icon';
+import { NewsContent, NewsArticle, NewsDetails } from '@/types/News.type';
 
 import Link from 'next/link';
 
@@ -19,18 +20,13 @@ const IMAGE_HEIGHT_ARTICLE = 556;
 const AOS_DURATION = 800;
 const AOS_DELAY = 200;
 const AOS_OFFSET = [100, 200];
-interface newsProps {
-  newsDetailData: any;
-}
 
-const TargetArticleContent: React.FC<newsProps> = props => {
-  const { newsDetailData } = props;
-
+const TargetArticleContent = ({ newsDetailData }: NewsDetails) => {
   return (
     <>
       {newsDetailData &&
         newsDetailData.data &&
-        newsDetailData.data.map((newsItem: any, i: any) => {
+        newsDetailData.data.map((newsItem: NewsArticle, i: number) => {
           // console.log("newsItem!!!!", newsItem)
           const imagePath = 'https://vidalco.in';
           const url = newsItem.image.url;
@@ -97,34 +93,36 @@ const TargetArticleContent: React.FC<newsProps> = props => {
                         {/* {newsItem.previewSummary} */}
                       </p>
                       {newsItem &&
-                        newsItem.content.map((obj: any, index: any) => {
-                          return (
-                            <div key={index}>
-                              <h3
-                                key={index}
-                                data-aos="fade-up"
-                                data-aos-duration={AOS_DURATION}
-                                data-aos-easing="linear"
-                                data-aos-delay={AOS_DELAY}
-                                data-aos-offset={AOS_OFFSET[1]}
-                                className="font-HelveticaNeueMedium text-primary font-medium text-basemd mt-20pixel sm:mt-6 sm:text-lg leading-8 md:leading-39 sm:text-start text-center"
-                              >
-                                {obj.subheading}
-                              </h3>
-                              <div
-                                dangerouslySetInnerHTML={{
-                                  __html: obj.body,
-                                }}
-                                data-aos="fade-up"
-                                data-aos-duration={AOS_DURATION}
-                                data-aos-easing="linear"
-                                data-aos-delay={AOS_DELAY}
-                                data-aos-offset={AOS_OFFSET[1]}
-                                className="font-Segoe font-normal text-md lg:mt-10pixel mt-2 leading-7 text-offwhite sm:text-start text-center"
-                              ></div>
-                            </div>
-                          );
-                        })}
+                        newsItem.content.map(
+                          (obj: NewsContent, index: number) => {
+                            return (
+                              <div key={index}>
+                                <h3
+                                  key={index}
+                                  data-aos="fade-up"
+                                  data-aos-duration={AOS_DURATION}
+                                  data-aos-easing="linear"
+                                  data-aos-delay={AOS_DELAY}
+                                  data-aos-offset={AOS_OFFSET[1]}
+                                  className="font-HelveticaNeueMedium text-primary font-medium text-basemd mt-20pixel sm:mt-6 sm:text-lg leading-8 md:leading-39 sm:text-start text-center"
+                                >
+                                  {obj.subheading}
+                                </h3>
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html: obj.body,
+                                  }}
+                                  data-aos="fade-up"
+                                  data-aos-duration={AOS_DURATION}
+                                  data-aos-easing="linear"
+                                  data-aos-delay={AOS_DELAY}
+                                  data-aos-offset={AOS_OFFSET[1]}
+                                  className="font-Segoe font-normal text-md lg:mt-10pixel mt-2 leading-7 text-offwhite sm:text-start text-center"
+                                ></div>
+                              </div>
+                            );
+                          }
+                        )}
                     </div>
                   </div>
                   <div

@@ -4,6 +4,7 @@ import React from 'react';
 import BlueButton from '../common/BlueButton';
 import Image from 'next/image';
 import moment from 'moment';
+import { Articles } from '@/types/News.type';
 
 const IMAGE_WIDTH_GRID = 362;
 const IMAGE_HEIGHT_GRID = 241;
@@ -13,18 +14,13 @@ const AOS_DURATION = 400;
 const AOS_DELAY = [100, 200];
 const AOS_OFFSET = 100;
 
-interface newsProps {
-  newsListData: any;
-}
+const FocusArticle = ({ newsListData }: Articles) => {
+  const focusArticleData = newsListData ? newsListData[0] : null;
 
-const FocusArticle: React.FC<newsProps> = props => {
-  const { newsListData } = props;
-
-  const focusArticleData = newsListData[0] || {};
-
-  const imagePath = focusArticleData.image?.url
-    ? 'https://vidalco.in' + focusArticleData.image.url
-    : '';
+  const imagePath =
+    focusArticleData && focusArticleData.image?.url
+      ? 'https://vidalco.in' + focusArticleData.image.url
+      : '';
 
   return (
     <>
@@ -47,14 +43,14 @@ const FocusArticle: React.FC<newsProps> = props => {
               data-aos-offset={AOS_OFFSET}
             >
               <h2 className="font-medium text-md sm:text-lg text-primary font-HelveticaNeueMedium xl:max-w-447 mx-auto xl:mx-0">
-                {focusArticleData.title}
+                {focusArticleData?.title}
               </h2>
               <p className="text-base text-primary opacity-70 font-Segoe font-normal mt-2">
-                by : {focusArticleData.author?.fullName} &bull;{' '}
-                {moment(focusArticleData.createdAt).format('DD MMM YY')}
+                by : {focusArticleData?.author?.fullName} &bull;{' '}
+                {moment(focusArticleData?.createdAt).format('DD MMM YY')}
               </p>
               <p className="text-base sm:text-md text-primary opacity-70 font-Segoe font-normal mt-3 sm:mt-4">
-                {focusArticleData.previewSummary}
+                {focusArticleData?.previewSummary}
               </p>
               {/*      LET'S GET RID OF THE CATEGORIES FOR NOW. UNCOMMENT THIS BLOCK TO BRING THEM BACK
 
@@ -73,7 +69,7 @@ const FocusArticle: React.FC<newsProps> = props => {
               
               */}
               <div className="flex xl:justify-start justify-center items-center mt-4 sm:mt-10">
-                <Link href={`news/${focusArticleData.slug}?page=1`}>
+                <Link href={`news/${focusArticleData?.slug}?page=1`}>
                   <BlueButton text="Read&nbsp;more" />
                 </Link>
               </div>
@@ -91,7 +87,7 @@ const FocusArticle: React.FC<newsProps> = props => {
                 src={imagePath}
                 width={IMAGE_WIDTH_ARTICLE}
                 height={IMAGE_HEIGHT_ARTICLE}
-                alt={focusArticleData.title}
+                alt={focusArticleData ? focusArticleData.title : 'Unknown'}
               />
             </div>
           </div>

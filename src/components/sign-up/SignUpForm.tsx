@@ -36,7 +36,6 @@ const SignUpForm = () => {
           postNewsLetterHandler(),
           formDetails
         );
-        console.log(response);
         if (response.data) {
           toast.success('You have successfully signed-up!', toastOptions);
           setData({
