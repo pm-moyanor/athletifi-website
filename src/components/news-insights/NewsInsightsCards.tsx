@@ -11,15 +11,13 @@ import { AllArticles, Category, NewsArticle } from '@/types/News.type';
 const IMAGE_WIDTH = 315;
 const IMAGE_HEIGHT = 240;
 const AOS_DURATION = 400;
-const AOS_DELAY_100 = 100;
-const AOS_DELAY_200 = 200;
+const AOS_DELAY = [100, 200];
 const AOS_OFFSET = 200;
 const IMAGE_WIDTH_GRID = 716;
 const IMAGE_HEIGHT_GRID = 692;
 
 const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
   // ==== SKELETON LOADER START ====
-  const [checked, setChecked] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
   // ==== SKELETON LOADER END ====
@@ -53,7 +51,7 @@ const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
           data-aos="fade-up"
           data-aos-duration={AOS_DURATION}
           data-aos-easing="linear"
-          data-aos-delay={AOS_DELAY_100}
+          data-aos-delay={AOS_DELAY[0]}
           data-aos-offset={AOS_OFFSET}
           className="text-center md:text-start font-HelveticaNeueMedium font-medium text-lg md:text-5xl sm:text-4xl text-primary md:pt-10 md:pb-25 pb-5"
         >
@@ -89,7 +87,7 @@ const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
                         data-aos="fade-up"
                         data-aos-duration={AOS_DURATION}
                         data-aos-easing="ease"
-                        data-aos-delay={AOS_DELAY_200}
+                        data-aos-delay={AOS_DELAY[1]}
                       >
                         {combinedUrl && (
                           <Image

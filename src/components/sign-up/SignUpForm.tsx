@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { ButtonWhiteArrow, UnderLineText } from '../common/Icon';
-import { postRequestHandler } from '../common/api/Api';
-import { postNewsLetterHandler } from '../common/api/ApiUrls';
+import { ButtonWhiteArrow, UnderLineText } from '@/components/common/Icon';
+import { postRequestHandler } from '@/components/common/api/Api';
+import { postNewsLetterHandler } from '@/components/common/api/ApiUrls';
+import { SignUp } from '@/types/SignUp.type';
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -16,7 +17,7 @@ const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
-  const initialState = {
+  const initialState: SignUp = {
     email: '',
   };
   const [data, setData] = useState(initialState);

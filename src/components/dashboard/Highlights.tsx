@@ -1,6 +1,5 @@
 import React from 'react';
-import { BlueShadow, UnderLineText } from '../common/Icon';
-import Image from 'next/image';
+import { UnderLineText } from '@/components/common/Icon';
 
 const videos = [
   { src: '/video3.mp4', thumbnail: '/poster2.png' },
@@ -39,8 +38,8 @@ const Highlights = () => {
             {videos.map((video, index) => (
               <div key={index} className="my-2">
                 <video
-                   width={VIDEO_WIDTH}
-                   height={VIDEO_HEIGHT}
+                  width={VIDEO_WIDTH}
+                  height={VIDEO_HEIGHT}
                   controls
                   poster={video.thumbnail}
                   className="mx-auto"

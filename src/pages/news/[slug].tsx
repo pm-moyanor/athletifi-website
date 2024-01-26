@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 
 import BackToTop from '@/components/common/BackToTop';
 import CommonHero from '@/components/common/CommonHero';
-import { HeroProps } from '@/types/CommonHero.type';
+import { Hero } from '@/types/CommonHero.type';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 // import Seo from '@/components/common/Seo';
@@ -22,9 +22,7 @@ const NewsArticleSlugPage = ({
   newsDetailData,
   allNewsData,
 }: NewsSlugProps) => {
-  let targetArticle = null;
-  if (newsDetailData && newsDetailData.data && newsDetailData.data.length > 0)
-    targetArticle = newsDetailData.data[0];
+  const targetArticle = newsDetailData?.data?.[0];
 
   // Filter out the target article from the allNewsList data
   const everyOtherArticle = filterTargetArticle(
@@ -33,14 +31,12 @@ const NewsArticleSlugPage = ({
   );
 
   // SEO
-  const hero: HeroProps = {
-    heading: targetArticle ? targetArticle.title : `Article not found`,
+  const hero: Hero = {
+    heading: targetArticle?.title || `Article not found`,
     subtitle:
       'Here you can find all the latest news and developments from AthletiFi!',
     title: 'News and Updates for AthletiFi Sports Cards',
   };
-
-  // const pageSEO = { title: `${newsDetailData && newsDetailData.data[0].title}`, description: `${newsDetailData.data[0].description}`, websiteURL: `https://athletifi-website.vercel.app`, image: `https://vidalco.in${newsDetailData.data[0].image.url}`,};
 
   return (
     <>

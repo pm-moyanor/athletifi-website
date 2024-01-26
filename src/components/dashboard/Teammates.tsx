@@ -1,18 +1,10 @@
 import React from 'react';
-import { BlueShadow, UnderLineText } from '../common/Icon';
+import { UnderLineText } from '../common/Icon';
 import Image from 'next/image';
 import portrait from './portrait.jpg';
+import { samplePlayers, Player } from '@/types/Player.type';
 
-const players = [
-  'Paul smith',
-  'Carlos Fuentes',
-  'Leo Messi',
-  'Paul Sanders',
-  'Frank Lampard',
-  'Luis Diaz',
-  'Andrea Pirlo',
-  'Andres Iniesta',
-];
+const players: Player[] = samplePlayers;
 
 const AOS_DURATION = 400;
 const AOS_DELAY = 300;
@@ -45,12 +37,12 @@ const Teammates = () => {
             {players.map((player, index) => (
               <button
                 key={index}
-                onClick={() => handlePlayerClick(player)}
+                onClick={() => handlePlayerClick(player.name)}
                 className="flex flex-col items-center mb-4"
               >
                 <img className="w-100 h-70" src={portrait.src} />
                 <div className="w-full text-primary font-Segoe text-center">
-                  {player}
+                  {player.name}
                 </div>
               </button>
             ))}

@@ -2,8 +2,19 @@ export type NewsImage = {
   url: string;
 };
 
+export enum AuthorRoles {
+  'Sr. Chief Editor',
+  'Editor',
+  'Author',
+  'Founder',
+}
+
 export type Author = {
   fullName: string;
+  img?: string;
+  title: AuthorRoles;
+  order: number;
+  active: boolean;
 };
 
 export type Category = {

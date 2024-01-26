@@ -4,7 +4,6 @@
 // It includes various components to showcase the features and services offered.
 
 import Image from 'next/image';
-import { Inter } from 'next/font/google';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 // import LatestNews from "@/components/home/LatestNews"; //Add this back if you want to have the news section
@@ -24,9 +23,6 @@ import { SEO_CONFIG } from '@/utils/seoConfig';
 
 const IMAGE_WIDTH_HERO_GRID = 700;
 const IMAGE_HEIGHT_HERO_GRID = 700;
-
-//Importing the Inter font
-const inter = Inter({ subsets: ['latin'] });
 
 // Main function component for the home page
 const Home = () => {
