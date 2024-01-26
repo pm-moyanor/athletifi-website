@@ -1,11 +1,16 @@
 import React from 'react';
-import { EyeBallIcon, VillanovaIcon } from '../common/Icon';
+import {
+  VillanovaIcon,
+  MsaIcon,
+  FcSportsIcon,
+  AjFootballFactoryIcon,
+} from '../common/Icon';
 
 const AOS_DURATION = 400;
 const AOS_DELAY = [400, 600, 1000];
 const AOS_OFFSET = 200;
 
-const TrustedPartners: React.FC = () => {
+const TrustedPartners = () => {
   return (
     <>
       <section>
@@ -16,12 +21,9 @@ const TrustedPartners: React.FC = () => {
             data-aos-duration={AOS_DURATION}
             data-aos-easing="linear"
           >
-            <span className="relative">
-              Our trusted
-            </span>{' '}
-            partners
+            <span className="relative">Our trusted</span> partners
           </h2>
-          <div
+          {/* <div
             className="flex md:justify-between flex-col md:flex-row lg:pt-5 sm:gap-4 gap-3 md:items-start items-center"
             data-aos="fade-up"
             data-aos-duration={AOS_DURATION}
@@ -36,18 +38,19 @@ const TrustedPartners: React.FC = () => {
               We have partnered with some of the top soccer clubs in the
               Mid-Atlantic region to bring sports technology to new heights.
             </p>
-          </div>
+          </div> */}
           <div className="flex justify-evenly xl:mt-16 mt-10 xl:mb-28 sm:mb-14 mb-4 sm:flex-row flex-col">
-            {/* EYEBALL LOGO */}
+            {/* MSA LOGO */}
             <div
               className="md:w-43/100 sm:max-w-48/100 w-full md:h-152 h-120 border border-solid border-partnersBorders hover:border-skyblue duration-300 transition-all flex justify-center items-center bg-blackBG rounded-lg"
               data-aos="fade-up"
               data-aos-duration={AOS_DURATION}
               data-aos-easing="linear"
-              data-aos-delay={AOS_DELAY[1]}
+              data-aos-delay={AOS_DELAY[0]}
               data-aos-offset={AOS_OFFSET}
             >
-              <EyeBallIcon />
+              {/* <MSAIcon /> */}
+              <MsaIcon />
             </div>
             {/* VILLANOVA LOGO */}
             <div
@@ -55,10 +58,32 @@ const TrustedPartners: React.FC = () => {
               data-aos="fade-up"
               data-aos-duration={AOS_DURATION}
               data-aos-easing="linear"
-              data-aos-delay={AOS_DELAY[2]}
+              data-aos-delay={AOS_DELAY[0]}
               data-aos-offset={AOS_OFFSET}
             >
               <VillanovaIcon />
+            </div>
+            {/* FC Sports  LOGO */}
+            <div
+              className="md:w-43/100 sm:max-w-48/100 w-full mt-4 sm:mt-0 md:h-152 h-120 border border-solid border-partnersBorders hover:border-skyblue duration-300 transition-all flex justify-center items-center bg-blackBG rounded-lg"
+              data-aos="fade-up"
+              data-aos-duration={AOS_DURATION}
+              data-aos-easing="linear"
+              data-aos-delay={AOS_DELAY[0]}
+              data-aos-offset={AOS_OFFSET}
+            >
+              <FcSportsIcon />
+            </div>
+            {/* AJ Football Factory  LOGO */}
+            <div
+              className="md:w-43/100 sm:max-w-48/100 w-full mt-4 sm:mt-0 md:h-152 h-120 border border-solid border-partnersBorders hover:border-skyblue duration-300 transition-all flex justify-center items-center bg-blackBG rounded-lg"
+              data-aos="fade-up"
+              data-aos-duration={AOS_DURATION}
+              data-aos-easing="linear"
+              data-aos-delay={AOS_DELAY[0]}
+              data-aos-offset={AOS_OFFSET}
+            >
+              <AjFootballFactoryIcon />
             </div>
           </div>
         </div>

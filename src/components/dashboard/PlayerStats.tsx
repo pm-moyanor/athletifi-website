@@ -1,8 +1,8 @@
 import React from 'react';
-import { BlueShadow, UnderLineText } from '../common/Icon';
-import Image from 'next/image';
+import { UnderLineText } from '../common/Icon';
+import { PlayerStats } from '@/types/Player.type';
 
-const playerStats = {
+const playerStats: PlayerStats = {
   Attacking: 0,
   Defending: 50,
   Goalkeeping: 90,
