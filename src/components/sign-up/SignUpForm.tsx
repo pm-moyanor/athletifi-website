@@ -20,6 +20,8 @@ const SignUpForm = () => {
   const initialState: SignUp = {
     email: '',
   };
+
+  console.log(typeof initialState);
   const [data, setData] = useState(initialState);
 
   const formHandler = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,7 +37,7 @@ const SignUpForm = () => {
       try {
         const response = await postRequestHandler(
           postNewsLetterHandler(),
-          formDetails
+         formDetails
         );
         console.log(response)
         if (response.data) {
