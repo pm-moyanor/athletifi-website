@@ -6,11 +6,11 @@ import {
   AjFootballFactoryIcon,
 } from '../common/Icon';
 
-const AOS_DURATION = 400;
-const AOS_DELAY = [400, 600, 1000];
-const AOS_OFFSET = 200;
+const AOS_DURATION: number = 400;
+const AOS_DELAY: number[] = [400, 600, 1000];
+const AOS_OFFSET: number = 200;
 
-const TrustedPartners = () => {
+const TrustedPartners: React.FC = () => {
   return (
     <>
       <section>

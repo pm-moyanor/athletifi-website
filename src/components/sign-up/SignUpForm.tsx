@@ -15,14 +15,14 @@ const IMAGE_HEIGHT_PLAYER = 598;
 
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
-  const [checked, setChecked] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [checked, setChecked] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const initialState: SignUp = {
     email: '',
   };
 
   console.log(typeof initialState);
-  const [data, setData] = useState(initialState);
+  const [data, setData] = useState<SignUp>(initialState);
 
   const formHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

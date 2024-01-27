@@ -6,11 +6,11 @@ import { samplePlayers, Player } from '@/types/Player.type';
 
 const players: Player[] = samplePlayers;
 
-const AOS_DURATION = 400;
-const AOS_DELAY = 300;
-const AOS_OFFSET = 100;
+const AOS_DURATION: number = 400;
+const AOS_DELAY: number = 300;
+const AOS_OFFSET: number = 100;
 
-const Teammates = () => {
+const Teammates: React.FC = () => {
   const handlePlayerClick = (player: string) => {
     console.log(player);
   };

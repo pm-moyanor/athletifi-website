@@ -13,13 +13,13 @@ import { NewsContent, NewsArticle, NewsDetails } from '@/types/News.type';
 
 import Link from 'next/link';
 
-const IMAGE_WIDTH_GRID = 400;
-const IMAGE_HEIGHT_GRID = 448;
-const IMAGE_WIDTH_ARTICLE = 1140;
-const IMAGE_HEIGHT_ARTICLE = 556;
-const AOS_DURATION = 800;
-const AOS_DELAY = 200;
-const AOS_OFFSET = [100, 200];
+const IMAGE_WIDTH_GRID: number = 400;
+const IMAGE_HEIGHT_GRID: number = 448;
+const IMAGE_WIDTH_ARTICLE: number = 1140;
+const IMAGE_HEIGHT_ARTICLE: number = 556;
+const AOS_DURATION: number = 800;
+const AOS_DELAY: number = 200;
+const AOS_OFFSET: number[] = [100, 200];
 
 const TargetArticleContent = ({ newsDetailData }: NewsDetails) => {
   return (

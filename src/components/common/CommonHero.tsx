@@ -2,10 +2,10 @@ import Image from 'next/image';
 import React from 'react';
 import { HeroProps } from '@/types/CommonHero.type';
 
-const HERO_SHADOW_IMAGE_WIDTH = 1494;
-const HERO_SHADOW_IMAGE_HEIGHT = 1494;
-const AOS_DURATION = 600;
-const AOS_OFFSET = 100;
+const HERO_SHADOW_IMAGE_WIDTH: number = 1494;
+const HERO_SHADOW_IMAGE_HEIGHT: number = 1494;
+const AOS_DURATION: number = 600;
+const AOS_OFFSET: number = 100;
 
 const CommonHero = ({ hero }: HeroProps) => {
   return (

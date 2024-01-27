@@ -6,7 +6,7 @@ import Seo from '@/components/common/Seo';
 import FocusArticle from '@/components/news-insights/FocusArticle';
 import NewsInsightsCards from '@/components/news-insights/NewsInsightsCards';
 import { Hero } from '@/types/CommonHero.type';
-import { NewsProps } from '@/types/News.type';
+import { NewsArticle, NewsProps } from '@/types/News.type';
 import { PageSEO } from '@/types/Seo.type';
 import { filterTargetArticle } from '@/utils/helpers';
 import { SEO_CONFIG } from '@/utils/seoConfig';

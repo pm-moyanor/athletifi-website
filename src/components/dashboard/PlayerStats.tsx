@@ -10,11 +10,11 @@ const playerStats: PlayerStats = {
   Physical: 90,
 };
 
-const AOS_DURATION = 400;
-const AOS_DELAY = 300;
-const AOS_OFFSET = 100;
+const AOS_DURATION: number = 400;
+const AOS_DELAY: number = 300;
+const AOS_OFFSET: number = 100;
 
-const PlayerStats = () => {
+const PlayerStats: React.FC = () => {
   return (
     <div className="lg:w-3/4 xl:w-1/2 2xl:w-1/2 min-h-full order-3 lg:order-1">
       <div className="container__border--blue-gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 z-0  after:contents-[''] after:inset-0 after:p-1 after:rounded-30 rounded-30 h-full flex items-center justify-center">
