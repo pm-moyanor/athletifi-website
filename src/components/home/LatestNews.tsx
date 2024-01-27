@@ -66,6 +66,8 @@ const LatestNews: React.FC<newsProps> = props => {
                     width={EXTERNAL_IMG_WIDTH}
                     height={EXTERNAL_IMG_HEIGHT}
                     alt="football match"
+                    quality={75}
+                  loading='lazy'
                   />
                   <div className="sm:pt-0 pt-3">
                     {/* NEWS HEADING */}
@@ -143,6 +145,8 @@ const LatestNews: React.FC<newsProps> = props => {
           width={GRID_IMAGE_WIDTH}
           height={GRID_IMAGE_HEIGHT}
           alt=""
+          quality={75}
+                  loading='lazy'
         />
         {/* BACKGROUND LEFT GRID */}
         <Image
@@ -151,6 +155,8 @@ const LatestNews: React.FC<newsProps> = props => {
           width={GRID_IMAGE_WIDTH}
           height={GRID_IMAGE_HEIGHT}
           alt=""
+          quality={75}
+                  loading='lazy'
         />
       </div>
     </>

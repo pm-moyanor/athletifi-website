@@ -63,6 +63,8 @@ const HeroHomepage = () => {
             alt="Female player leaping to kick the ball with her left foot"
             width={IMAGE_WIDTH_1}
             height={IMAGE_HEIGHT_1}
+            quality={75}
+                  loading='lazy'
           />
         </div>
       </div>
@@ -74,6 +76,8 @@ const HeroHomepage = () => {
           alt="Female player leaping to kick the ball with her left foot"
           width={IMAGE_WIDTH_2}
           height={IMAGE_HEIGHT_2}
+          quality={75}
+                  loading='lazy'
         />
       </div>
     </>

@@ -56,6 +56,8 @@ const StatsReimagined = () => {
           width={LEFT_BALL_IMAGE_WIDTH}
           height={LEFT_BALL_IMAGE_HEIGHT}
           alt=""
+          quality={75}
+                  loading='lazy'
         />
       </div>
       <Image
@@ -64,6 +66,8 @@ const StatsReimagined = () => {
         width={LEFT_SHADOW_IMAGE_WIDTH}
         height={LEFT_SHADOW_IMAGE_HEIGHT}
         alt=""
+        quality={75}
+                  loading='lazy'
       />
       <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto relative z-10">
         <div className="container__border--blue-gradient relative after:absolute flex justify-center flex-col items-center  after:contents-[''] after:inset-0 after:p-1 after:rounded-30 rounded-30">
@@ -137,6 +141,8 @@ const StatsReimagined = () => {
                   width={SOCCER_PLAYER_IMAGE_WIDTH_LEFT}
                   height={SOCCER_PLAYER_IMAGE_HEIGHT_LEFT}
                   alt="Player card of Anderson Rodriguez from Villanova Soccer Academy"
+                  quality={75}
+                  loading='lazy'
                 />
               </div>
             </div>
@@ -155,6 +161,8 @@ const StatsReimagined = () => {
                   width={SOCCER_PLAYER_IMAGE_WIDTH_CENTER}
                   height={SOCCER_PLAYER_IMAGE_HEIGHT_CENTER}
                   alt="Player card of Jose Hernandez from Villanova Soccer Academy"
+                  quality={75}
+                  loading='lazy'
                 />
               </div>
             </div>
@@ -173,6 +181,8 @@ const StatsReimagined = () => {
                   width={SOCCER_PLAYER_IMAGE_WIDTH_RIGHT}
                   height={SOCCER_PLAYER_IMAGE_HEIGHT_RIGHT}
                   alt="Player card of Stebi Vidal from Villanova Soccer Academy"
+                  quality={75}
+                  loading='lazy'
                 />
               </div>
             </div>

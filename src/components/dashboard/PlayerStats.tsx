@@ -1,6 +1,6 @@
 import React from 'react';
 import { BlueShadow, UnderLineText } from '../common/Icon';
-import Image from 'next/image';
+
 
 const playerStats = {
   Attacking: 0,

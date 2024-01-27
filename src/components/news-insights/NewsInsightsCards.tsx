@@ -99,6 +99,8 @@ const NewsInsightsCards: React.FC<newsListProps> = props => {
                             width={IMAGE_WIDTH}
                             height={IMAGE_HEIGHT}
                             alt="football match"
+                            quality={75}
+                  loading='lazy'
                           />
                         )}
                         <div className="sm:pt-0 pt-3 max-w-617">
@@ -196,6 +198,8 @@ const NewsInsightsCards: React.FC<newsListProps> = props => {
         width={IMAGE_WIDTH_GRID}
         height={IMAGE_HEIGHT_GRID}
         alt=""
+        quality={75}
+                  loading='lazy'
       />
       {/* BACKGROUND LEFT GRID */}
       <Image
@@ -204,6 +208,8 @@ const NewsInsightsCards: React.FC<newsListProps> = props => {
         width={IMAGE_WIDTH_GRID}
         height={IMAGE_HEIGHT_GRID}
         alt=""
+        quality={75}
+                  loading='lazy'
       />
     </div>
   );
