@@ -1,39 +1,39 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 import { PaginationArrow } from '../common/Icon';
 import NewsInsightsLoader from './NewsInsightsLoader';
 import { getRequestHandler } from '../common/api/Api';
 import { newsListApiHandler } from '../common/api/ApiUrls';
 import { AllArticles, Category, NewsArticle } from '@/types/News.type';
 
-const IMAGE_WIDTH = 315;
+const IMAGE_WIDTH: number = 315;
 const IMAGE_HEIGHT = 240;
-const AOS_DURATION = 400;
-const AOS_DELAY = [100, 200];
-const AOS_OFFSET = 200;
-const IMAGE_WIDTH_GRID = 716;
-const IMAGE_HEIGHT_GRID = 692;
+const AOS_DURATION: number = 400;
+const AOS_DELAY: number[] = [100, 200];
+const AOS_OFFSET: number = 200;
+const IMAGE_WIDTH_GRID: number = 716;
+const IMAGE_HEIGHT_GRID: number = 692;
 
 const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
   // ==== SKELETON LOADER START ====
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // ==== SKELETON LOADER END ====
-  const router = useRouter();
-  const moreArticles = allNewsList ?? [];
+  const router: NextRouter = useRouter();
+  const moreArticles: NewsArticle[] = allNewsList ?? [];
   // Nullish coalescing (??) is used to ensure that moreArticles is always an array, even if props.allNewsList is undefined or null.
 
-  const itemsPerPage = 5; //change this to change the number of articles displayed on one page
-  const [currentPage, setCurrentPage] = useState(Number(router.query.page));
+  const itemsPerPage: number = 5; //change this to change the number of articles displayed on one page
+  const [currentPage, setCurrentPage] = useState<number>(Number(router.query.page));
   // Calculate the start and end indexes of the current page
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const displayedItems = moreArticles.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(moreArticles.length / itemsPerPage) || 1;
+  const startIndex: number = (currentPage - 1) * itemsPerPage;
+  const endIndex: number = startIndex + itemsPerPage;
+  const displayedItems: NewsArticle[] = moreArticles.slice(startIndex, endIndex);
+  const totalPages: number = Math.ceil(moreArticles.length / itemsPerPage) || 1;
 
-  const handlePageChange = async (newPage: number) => {
+  const handlePageChange = async (newPage: number):Promise<void> => {
     setLoading(true);
     try {
       const response = await getRequestHandler(newsListApiHandler());

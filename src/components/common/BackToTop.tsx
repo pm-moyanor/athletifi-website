@@ -5,7 +5,7 @@ const SCROLL_THRESHOLD = 200;
 const ARROW_IMAGE_WIDTH = 48;
 const ARROW_IMAGE_HEIGHT = 48;
 
-const BackToTop = () => {
+const BackToTop: React.FC = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   function scrollToTop(): void {
