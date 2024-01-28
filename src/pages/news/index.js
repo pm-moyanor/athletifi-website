@@ -17,8 +17,16 @@ import {
 
 // The main functional component for the News and Insights page
 const NewsPage = ({ newsListData, allNewsList }) => {
+
+  if (!newsListData || !allNewsList) {
+    return <div>Error: Data not available</div>;
+  }
   // Use optional chaining to simplify target article assignment
   const targetArticle = newsListData?.[0];
+
+  if (!targetArticle) {
+    return <div>Error: Target article not found</div>;
+  }
 
   // Filter out the target article from the allNewsList data
   const filteredNewsList = filterTargetArticle(allNewsList, targetArticle);
