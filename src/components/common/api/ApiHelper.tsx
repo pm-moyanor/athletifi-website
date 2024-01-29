@@ -23,6 +23,28 @@ export async function axiosRequest(method: any, url: any, data = null) {
     // Return the data received from the Strapi CMS.
     return await response.data;
   } catch (error) {
+    if (Axios.isAxiosError(error)) {
+      if (!error?.response || error.code === 'ECONNABORTED') {
+        console.log('No server response or request timed out. Try again later');
+      }
+
+      switch (error.response?.status) {
+        case 400:
+          console.error('Bad request error');
+          break;
+        case 401:
+          console.log('Unauthorized to make request');
+          break;
+        case 404:
+          console.log('Requested resource was not found');
+          break;
+        case 500 || 503:
+          console.log('Hit an internal server error');
+          break;
+        default:
+          console.log('Ran into a general error');
+      }
+    }
     // Handle any errors that occur during the API request.
     return error;
   }
