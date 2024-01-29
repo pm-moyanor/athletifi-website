@@ -17,7 +17,6 @@ import {
 
 // The main functional component for the News and Insights page
 const NewsPage = ({ newsListData, allNewsList }) => {
-
   if (!newsListData || !allNewsList) {
     return <div>Error: Data not available</div>;
   }

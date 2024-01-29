@@ -8,7 +8,7 @@ export const getRequestHandler = async (path: any) => {
   try {
     return await axiosRequest('GET', `${path}`);
   } catch (error) {
-    console.log(`Error ocurred while making GET request: ${error}`);
+    console.error(`Error ocurred while making GET request: ${error}`);
     throw error;
   }
 };
@@ -22,7 +22,7 @@ export const postRequestHandler = async (path: any, data: any) => {
   try {
     return await axiosRequest('Post', path, data);
   } catch (error) {
-    console.log(`Error ocurred while making POST request: ${error}`);
+    console.error(`Error ocurred while making POST request: ${error}`);
     throw error;
   }
 };
