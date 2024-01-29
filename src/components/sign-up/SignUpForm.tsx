@@ -50,7 +50,6 @@ const SignUpForm = () => {
           );
         }
       } catch (err) {
-        console.log(err);
         toast.error('Hit an unknown error', toastOptions);
       }
     } else {

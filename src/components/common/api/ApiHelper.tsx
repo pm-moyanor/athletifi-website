@@ -25,7 +25,9 @@ export async function axiosRequest(method: any, url: any, data = null) {
   } catch (error) {
     if (Axios.isAxiosError(error)) {
       if (!error?.response || error.code === 'ECONNABORTED') {
-        console.log('No server response or request timed out. Try again later');
+        console.error(
+          'No server response or request timed out. Try again later'
+        );
       }
 
       switch (error.response?.status) {
@@ -33,16 +35,16 @@ export async function axiosRequest(method: any, url: any, data = null) {
           console.error('Bad request error');
           break;
         case 401:
-          console.log('Unauthorized to make request');
+          console.error('Unauthorized to make request');
           break;
         case 404:
-          console.log('Requested resource was not found');
+          console.error('Requested resource was not found');
           break;
         case 500 || 503:
-          console.log('Hit an internal server error');
+          console.error('Hit an internal server error');
           break;
         default:
-          console.log('Ran into a general error');
+          console.error('Ran into a general error');
       }
     }
     // Handle any errors that occur during the API request.
