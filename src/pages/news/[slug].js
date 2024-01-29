@@ -14,7 +14,6 @@ import { filterTargetArticle } from '../../../src/utils/helpers';
 // This is the main content of the news article page, which contains the news article itself and the sidebar with the other news articles.
 
 const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
-
   if (!newsDetailData || !allNewsData) {
     return <div>Error: Data not available</div>;
   }
@@ -50,7 +49,7 @@ const NewsArticleSlugPage = ({ newsDetailData, allNewsData }) => {
       </div>
     </>
   );
-};``
+};
 
 export async function getServerSideProps(context) {
   const { slug } = context.query;

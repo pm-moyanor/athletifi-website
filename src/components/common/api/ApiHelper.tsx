@@ -9,12 +9,15 @@ const SERVER_URL = 'https://vidalco.in/api';
 // URL: The specific API endpoint within the Strapi CMS.
 // Data: Optional payload for POST or PUT requests.
 
+const REQUEST_TIMEOUT_MS = 5000;
+
 export async function axiosRequest(method: any, url: any, data = null) {
   try {
     // Make the API request to the Strapi CMS and await the response.
     const response = await Axios({
       data: data,
       method: method,
+      timeout: REQUEST_TIMEOUT_MS,
       url: `${SERVER_URL}${url}`,
     });
     // Return the data received from the Strapi CMS.

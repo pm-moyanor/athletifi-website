@@ -7,6 +7,9 @@ import NewsInsightsLoader from './NewsInsightsLoader';
 import { getRequestHandler } from '../common/api/Api';
 import { newsListApiHandler } from '../common/api/ApiUrls';
 
+import { ToastContainer, toast, ToastOptions } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const IMAGE_WIDTH = 315;
 const IMAGE_HEIGHT = 240;
 const AOS_DURATION = 400;
@@ -37,13 +40,19 @@ const NewsInsightsCards: React.FC<newsListProps> = props => {
   const totalPages = Math.ceil(moreArticles.length / itemsPerPage) || 1;
 
   const handlePageChange = async (newPage: any) => {
+    const toastOptions: ToastOptions = {
+      draggable: false,
+      position: toast.POSITION.BOTTOM_RIGHT,
+    };
+
     setLoading(true);
     try {
       const response = await getRequestHandler(newsListApiHandler());
       setLoading(false);
       setCurrentPage(newPage);
     } catch (error) {
-      console.log('error');
+      setLoading(false);
+      toast.error('Get request has failed. Try again later', toastOptions);
     }
   };
 
@@ -205,6 +214,7 @@ const NewsInsightsCards: React.FC<newsListProps> = props => {
         height={IMAGE_HEIGHT_GRID}
         alt=""
       />
+      <ToastContainer theme="dark" />
     </div>
   );
 };
