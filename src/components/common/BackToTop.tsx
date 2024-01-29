@@ -28,7 +28,7 @@ const BackToTop = () => {
   }, []);
   return (
     <>
-      {scrollPosition > SCROLL_THRESHOLD  ? (
+      {scrollPosition > SCROLL_THRESHOLD ? (
         <div
           className="fixed  backtotop sm:bottom-20 bottom-14 right-7 z-40 md:max-h-12 md:max-w-48 max-h-9 max-w-36  cursor-pointer bg-skyblue rounded-lg border-2 border-skyblue hover:border-white duration-300"
           onClick={() => scrollToTop()}

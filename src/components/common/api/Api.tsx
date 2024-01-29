@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { axiosRequest } from './ApiHelper';
 
 // NEWS GET REQUEST HANDLER
