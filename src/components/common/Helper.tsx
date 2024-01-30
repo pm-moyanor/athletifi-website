@@ -1,5 +1,9 @@
 // LATEST NEWS COMPONENT MAP
-export const matchNews = [
+interface NewsItem {
+  delay: string;
+  matchimage: string;
+}
+export const matchNews: NewsItem[] = [
   {
     delay: '100',
     matchimage: '/assets/img/webp/space.webp',
@@ -12,7 +16,13 @@ export const matchNews = [
 
 // ==== SKELETON LOADER ====
 
-export const placeholderData = [
+interface PlaceholderItem {
+  btn: string;
+  heading: string;
+  para: string;
+}
+
+export const placeholderData: PlaceholderItem[] = [
   {
     btn: '',
     heading: '',

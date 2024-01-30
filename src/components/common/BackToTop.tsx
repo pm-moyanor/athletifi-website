@@ -5,20 +5,20 @@ const SCROLL_THRESHOLD = 200;
 const ARROW_IMAGE_WIDTH = 48;
 const ARROW_IMAGE_HEIGHT = 48;
 
-const BackToTop = () => {
+const BackToTop: React.FC = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  const scrollToTop = () => {
+  function scrollToTop(): void {
     window.scrollTo({
       behavior: 'smooth',
       top: 0,
     });
-  };
+  }
 
-  const handleScroll = () => {
+  function handleScroll(): void {
     const position = window.scrollY;
     setScrollPosition(position);
-  };
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });

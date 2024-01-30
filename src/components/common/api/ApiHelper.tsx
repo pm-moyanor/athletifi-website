@@ -1,4 +1,16 @@
 import Axios from 'axios';
+import { SignUp } from '@/types/SignUp.type';
+
+type SignUpData = { data: SignUp };
+
+export enum RequestMethod {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  PATCH = 'PATCH',
+  DELETE = 'DELETE',
+}
+
 // const SERVER_URL = "http://127.0.0.1:1337/api";
 
 //The below Server URL is for AthletiFi's Strapi CMS implementation, which is hosted on the vidalco.in domain
@@ -9,9 +21,13 @@ const SERVER_URL = 'https://vidalco.in/api';
 // URL: The specific API endpoint within the Strapi CMS.
 // Data: Optional payload for POST or PUT requests.
 
-const REQUEST_TIMEOUT_MS = 5000;
+const REQUEST_TIMEOUT_MS: number = 5000;
 
-export async function axiosRequest(method: any, url: any, data = null) {
+export async function axiosRequest(
+  method: RequestMethod,
+  url: string,
+  data: SignUpData | null | undefined
+) {
   try {
     // Make the API request to the Strapi CMS and await the response.
     const response = await Axios({

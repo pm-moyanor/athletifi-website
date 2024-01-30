@@ -12,15 +12,16 @@ import {
   TwitterIcon,
   PageLogo,
 } from './Icon';
-
 import SocialPopUp from './SocialPopUp';
 import Image from 'next/image';
 
-const SCROLL_THRESHOLD = 200;
+const SCROLL_THRESHOLD: number = 200;
 
-const Header = () => {
-  const [open, setOpen] = useState(false);
-  const path = useRouter().pathname;
+const Header : React.FC = () => {
+ 
+
+  const [open, setOpen] = useState<boolean>(false);
+  const path : string = useRouter().pathname;
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (open) {
@@ -33,27 +34,27 @@ const Header = () => {
 
   // ==============================================
   const navbarRef = useRef<HTMLDivElement | null>(null);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
   const [scrollPosition, setScrollPosition] = useState<number>(0);
 
   useEffect(() => {
-    let prevScrollPos = window.scrollY;
+    let prevScrollPos: number = window.scrollY;
 
     const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
+      const currentScrollPos: number = window.scrollY;
       setScrollPosition(currentScrollPos);
-      const isVisible = prevScrollPos > currentScrollPos;
+      const isVisible: boolean = prevScrollPos > currentScrollPos;
       setIsVisible(isVisible);
       prevScrollPos = currentScrollPos;
     };
     window.addEventListener('scroll', handleScroll);
-    return () => {
+    return (): void => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
   // ====================================================== nav-social-icon
-  const [navSocialIcon, setNavSocialIcon] = useState(true);
-  const socialIcon = () => {
+  const [navSocialIcon, setNavSocialIcon] = useState<boolean>(true);
+  const socialIcon = (): void => {
     setOpen(false);
     setNavSocialIcon(!navSocialIcon);
   };

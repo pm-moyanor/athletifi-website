@@ -1,15 +1,15 @@
 import Image from 'next/image';
 import React from 'react';
 
-const AOS_DURATION = 600;
-const AOS_DELAY = [200, 300, 400];
-const AOS_OFFSET = 200;
-const SOCCER_PLAYER_IMAGE_WIDTH = 652;
-const SOCCER_PLAYER_IMAGE_HEIGHT = 512;
-const UNIQUE_FOOTBALL_IMAGE_WIDTH = 220;
-const UNIQUE_FOOTBALL_IMAGE_HEIGHT = 286;
+const AOS_DURATION: number = 600;
+const AOS_DELAY: number[]  = [200, 300, 400];
+const AOS_OFFSET: number = 200;
+const SOCCER_PLAYER_IMAGE_WIDTH: number = 652;
+const SOCCER_PLAYER_IMAGE_HEIGHT: number = 512;
+const UNIQUE_FOOTBALL_IMAGE_WIDTH: number = 220;
+const UNIQUE_FOOTBALL_IMAGE_HEIGHT: number = 286;
 
-const UniqueAthletifi = () => {
+const UniqueAthletifi: React.FC = () => {
   return (
     <>
       <section className="relative lg:before:content-[''] before:absolute lg:before:w-448 before:h-448 before:-top-20 before:left-0 before:bg-shadow_blue before:blur-111 before:opacity-25 before:-translate-x-1/3 before:-z-10 before:rounded-full after:content-[''] after:absolute after:w-448 after:h-448 after:-bottom-20 after:right-0 after:bg-shadow_blue after:blur-111 after:opacity-25 after:translate-x-1/3 after:-z-10 after:rounded-full mb-3 pb-3">
