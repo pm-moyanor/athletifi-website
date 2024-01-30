@@ -4,7 +4,6 @@
 // It includes various components to showcase the features and services offered.
 
 import Image from 'next/image';
-import { Inter } from 'next/font/google';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 // import LatestNews from "@/components/home/LatestNews"; //Add this back if you want to have the news section
@@ -25,15 +24,9 @@ import { SEO_CONFIG } from '@/utils/seoConfig';
 const IMAGE_WIDTH_HERO_GRID = 700;
 const IMAGE_HEIGHT_HERO_GRID = 700;
 
-interface NewsProps {
-  allNewsList: any;
-}
-
 // Main function component for the home page
-const Home: React.FC<NewsProps> = props => {
-  // If you want to add a news section to the home page, uncomment the below line:
-  // const { allNewsList } = props;
-
+const Home = () => {
+  // PRELOADER
   // State variable for preloader. A preloader is a visual element that appears on the screen while a webpage or a portion of a webpage is loading.
   const [preloader, setpreloader] = useState(true);
   // The preloader state variable is initially set to true, indicating that the preloader should be displayed.

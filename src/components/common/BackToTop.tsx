@@ -5,20 +5,20 @@ const SCROLL_THRESHOLD = 200;
 const ARROW_IMAGE_WIDTH = 48;
 const ARROW_IMAGE_HEIGHT = 48;
 
-const BackToTop = () => {
+const BackToTop: React.FC = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  const scrollToTop = () => {
+  function scrollToTop(): void {
     window.scrollTo({
       behavior: 'smooth',
       top: 0,
     });
-  };
+  }
 
-  const handleScroll = () => {
+  function handleScroll(): void {
     const position = window.scrollY;
     setScrollPosition(position);
-  };
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -28,7 +28,7 @@ const BackToTop = () => {
   }, []);
   return (
     <>
-      {scrollPosition > SCROLL_THRESHOLD  ? (
+      {scrollPosition > SCROLL_THRESHOLD ? (
         <div
           className="fixed  backtotop sm:bottom-20 bottom-14 right-7 z-40 md:max-h-12 md:max-w-48 max-h-9 max-w-36  cursor-pointer bg-skyblue rounded-lg border-2 border-skyblue hover:border-white duration-300"
           onClick={() => scrollToTop()}

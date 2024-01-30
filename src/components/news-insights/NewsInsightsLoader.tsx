@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NewsInsightsLoader = () => {
+const NewsInsightsLoader: React.FC = () => {
   return (
     <>
       {/* {placeholderData.map((item, index) => ( */}

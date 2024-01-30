@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-const Custom404 = () => {
+const Custom404: React.FC  = () => {
   return (
     <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto px-3 relative z-10 text-primary not-found__container">
       <div className="font-HelveticaNeueMedium md:text-5xl text-basemd sm:text-4xl text-primary font-medium leading-60 relative z-20 text-center md:mb-4">
