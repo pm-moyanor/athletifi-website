@@ -3,6 +3,7 @@ import Header from '@/components/common/Header';
 import Seo from '@/components/common/Seo';
 import { SEO_CONFIG } from '@/utils/seoConfig';
 import CommonHero from '@/components/common/CommonHero';
+import { Hero } from '@/types/CommonHero.type';
 
 import Highlights from '@/components/dashboard/Highlights';
 import Teammates from '@/components/dashboard/Teammates';
@@ -11,7 +12,7 @@ import PlayerInfo from '@/components/dashboard/PlayerInfo';
 import PlayerCard from '@/components/dashboard/PlayerCard';
 
 const Dashboard = () => {
-  const hero = {
+  const hero: Hero = {
     heading: 'Dashboard',
     subtitle: 'Your Subtitle Here',
     title: 'Your Title Here',

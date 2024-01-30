@@ -12,8 +12,8 @@ import {
 import Link from 'next/link';
 
 const Footer = () => {
-  const today = new Date();
-  const year = today.getFullYear();
+  const today: Date = new Date();
+  const year: number = today.getFullYear();
 
   return (
     <>
