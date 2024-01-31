@@ -26,6 +26,8 @@ const OurStrategicAdvisor: React.FC = () => {
           width={NET_IMAGE_WIDTH}
           height={NET_IMAGE_HEIGHT}
           alt=""
+          quality={75}
+                  loading='lazy'
         />
         <div className="container xl:pb-14">
           <div
@@ -43,6 +45,8 @@ const OurStrategicAdvisor: React.FC = () => {
               alt="Meet Darren John an accomplished pro-player turned coach"
               width={STRATEGIC_IMAGE_WIDTH}
               height={STRATEGIC_IMAGE_HEIGHT}
+              quality={75}
+                  loading='lazy'
             />
             <div
               data-aos="fade-up"

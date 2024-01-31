@@ -1,6 +1,6 @@
 import React from 'react';
 import { UnderLineText } from '../common/Icon';
-import { PlayerStats } from '@/types/Player.type';
+import type { PlayerStats } from '@/types/Player.type';
 
 const playerStats: PlayerStats = {
   Attacking: 0,

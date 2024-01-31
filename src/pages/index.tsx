@@ -71,6 +71,8 @@ const Home = () => {
               alt=""
               width={IMAGE_WIDTH_HERO_GRID}
               height={IMAGE_HEIGHT_HERO_GRID}
+              quality={75}
+                  loading='lazy'
             />
           </div>
         </div>

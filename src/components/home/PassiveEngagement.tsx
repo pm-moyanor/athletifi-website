@@ -23,6 +23,8 @@ const SoccerExpensive : React.FC = () => {
           width={FOOTBALL_NET_IMAGE_WIDTH}
           height={FOOTBALL_NET_IMAGE_HEIGHT}
           alt="Football net"
+          quality={75}
+                  loading='lazy'
         />
         <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto">
           <div className="max-w-623 mx-auto lg:mx-0 relative after:content after:absolute lg:after:w-690 lg:after:h-420 lg:after:bg-blackBG after:blur-55 after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:z-0">
@@ -76,6 +78,8 @@ const SoccerExpensive : React.FC = () => {
               alt="Football at the back of the net"
               width={EXPENSIVE_FOOTBALL_IMAGE_WIDTH}
               height={EXPENSIVE_FOOTBALL_IMAGE_HEIGHT}
+              quality={75}
+                  loading='lazy'
             />
           </div>
         </div>
@@ -94,6 +98,8 @@ const SoccerExpensive : React.FC = () => {
               alt="Football at the back of the net"
               width={FOOTBALL_IMAGE_WIDTH}
               height={FOOTBALL_IMAGE_HEIGHT}
+              quality={75}
+                  loading='lazy'
             />
           </div>
         </div>

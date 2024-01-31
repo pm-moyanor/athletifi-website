@@ -15,7 +15,9 @@ const AOS_DELAY: number[] = [100, 200];
 const AOS_OFFSET: number = 100;
 
 const FocusArticle = ({ newsListData }: Articles) => {
-  const focusArticleData: NewsArticle | null = newsListData ? newsListData[0] : null;
+  const focusArticleData: NewsArticle | null = newsListData
+    ? newsListData[0]
+    : null;
 
   const imagePath: string =
     focusArticleData && focusArticleData.image?.url
@@ -26,30 +28,32 @@ const FocusArticle = ({ newsListData }: Articles) => {
     <>
       <div className="container__border--blue-gradient relative after:absolute flex justify-center flex-col items-center after:contents-[''] after:inset-0 after:p-1 after:rounded-30 rounded-30 mx-3 sm:mx-10 md:mx-16 after:blur-75 blue_linear_gradient mt-45 lg:mt-80pixel xl:mt-123 sm:mb-24pixel lg:mb-56pixel xl:mb-125">
         <Image
-          className='lg:w-462 lg:h-541 w-150 -top-160 sm:-left-20  -left-5 absolute opacity-50 -z-20'
-          src='/assets/img/svg/news-grid-line.svg'
+          className="lg:w-462 lg:h-541 w-150 -top-160 sm:-left-20  -left-5 absolute opacity-50 -z-20"
+          src="/assets/img/svg/news-grid-line.svg"
           width={IMAGE_WIDTH_GRID}
           height={IMAGE_HEIGHT_GRID}
-          alt=''
+          alt=""
+          quality={75}
+          loading="lazy"
         />
         <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto py-15 lg:py-25 xl:py-43 relative z-10 after:contents-[''] after:w-207 after:h-207 after:absolute after:top-0 after:-left-50 after:bg-extraDarkBlue after:blur-111 after:-z-10 before:contents-[''] before:w-207 before:h-207 before:absolute before:bottom-0 before:-right-50 before:bg-extraDarkBlue before:blur-111 before:-z-10">
-          <div className='flex flex-wrap justify-between flex-col-reverse xl:flex-row items-center'>
+          <div className="flex flex-wrap justify-between flex-col-reverse xl:flex-row items-center">
             <div
-              className='lg:max-w-[70%] xl:max-w-[46%] text-center xl:text-start'
-              data-aos='fade-up'
+              className="lg:max-w-[70%] xl:max-w-[46%] text-center xl:text-start"
+              data-aos="fade-up"
               data-aos-duration={AOS_DURATION}
-              data-aos-easing='linear'
+              data-aos-easing="linear"
               data-aos-delay={AOS_DELAY[0]}
               data-aos-offset={AOS_OFFSET}
             >
-              <h2 className='font-medium text-md sm:text-lg text-primary font-HelveticaNeueMedium xl:max-w-447 mx-auto xl:mx-0'>
+              <h2 className="font-medium text-md sm:text-lg text-primary font-HelveticaNeueMedium xl:max-w-447 mx-auto xl:mx-0">
                 {focusArticleData?.title}
               </h2>
-              <p className='text-base text-primary opacity-70 font-Segoe font-normal mt-2'>
+              <p className="text-base text-primary opacity-70 font-Segoe font-normal mt-2">
                 by : {focusArticleData?.author?.fullName} &bull;{' '}
                 {moment(focusArticleData?.createdAt).format('DD MMM YY')}
               </p>
-              <p className='text-base sm:text-md text-primary opacity-70 font-Segoe font-normal mt-3 sm:mt-4'>
+              <p className="text-base sm:text-md text-primary opacity-70 font-Segoe font-normal mt-3 sm:mt-4">
                 {focusArticleData?.previewSummary}
               </p>
               {/*      LET'S GET RID OF THE CATEGORIES FOR NOW. UNCOMMENT THIS BLOCK TO BRING THEM BACK
@@ -68,26 +72,28 @@ const FocusArticle = ({ newsListData }: Articles) => {
               </div> 
               
               */}
-              <div className='flex xl:justify-start justify-center items-center mt-4 sm:mt-10'>
+              <div className="flex xl:justify-start justify-center items-center mt-4 sm:mt-10">
                 <Link href={`news/${focusArticleData?.slug}?page=1`}>
-                  <BlueButton text='Read&nbsp;more' />
+                  <BlueButton text="Read&nbsp;more" />
                 </Link>
               </div>
             </div>
             <div
-              className='lg:max-w-30/100 xl:max-w-1/2 relative mt-10 xl:mt-0'
-              data-aos='fade-up'
+              className="lg:max-w-30/100 xl:max-w-1/2 relative mt-10 xl:mt-0"
+              data-aos="fade-up"
               data-aos-duration={AOS_DURATION}
-              data-aos-easing='linear'
+              data-aos-easing="linear"
               data-aos-delay={AOS_DELAY[1]}
               data-aos-offset={AOS_OFFSET}
             >
               <Image
-                className='w-full rounded-2xl'
+                className="w-full rounded-2xl"
                 src={imagePath}
                 width={IMAGE_WIDTH_ARTICLE}
                 height={IMAGE_HEIGHT_ARTICLE}
                 alt={focusArticleData ? focusArticleData.title : 'Unknown'}
+                quality={75}
+                loading="lazy"
               />
             </div>
           </div>

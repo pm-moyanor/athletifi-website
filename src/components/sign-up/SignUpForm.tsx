@@ -73,6 +73,8 @@ const SignUpForm = () => {
         width={IMAGE_WIDTH_GRID}
         height={IMAGE_HEIGHT_GRID}
         alt=""
+        quality={75}
+                  loading='lazy'
       />
       <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto px-3 relative z-10">
         <div className="flex justify-between flex-wrap grid-cols-2 w-full">
@@ -182,6 +184,8 @@ const SignUpForm = () => {
               width={IMAGE_WIDTH_PLAYER}
               height={IMAGE_HEIGHT_PLAYER}
               alt="Player shoots the ball in front of a defender and a goalkeeper"
+              quality={75}
+                  loading='lazy'
             />
           </div>
         </div>
