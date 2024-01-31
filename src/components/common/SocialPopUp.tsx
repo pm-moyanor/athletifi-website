@@ -82,7 +82,7 @@ const SocialPopUp: React.FC = () => {
           </Link>
           <Link
             href="/sign-up"
-            className="sm:px-24pixel px-4 sm:py-14.5 py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-6pixel group border border-skyblue hover:bg-black hover:text-skyblue join_now_btn transition duration-300 ease-in-out social_btn_contact_us relative z-20"
+            className="sm:px-24pixel px-4 sm:py-14.5 py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-6pixel group border border-skyblue hover:bg-black hover:text-skyblue btn__cta transition duration-300 ease-in-out social_btn_contact_us relative z-20"
           >
             Contact Us
             <span className="group-hover:translate-x-3 transition duration-300 ease-out">

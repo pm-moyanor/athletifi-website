@@ -161,7 +161,7 @@ const SignUpForm = () => {
                 <div className="flex mt-6 md:mt-8 lg:max-w-400">
                   <button
                     type="submit"
-                    className={`sm:w-full justify-center text-center sm:px-24pixel px-4 sm:py-14.5 py-2 flex bg-skyblue text-base font-semibold text-primary font-Segoe leading-6 gap-6pixel group border border-skyblue hover:bg-black  join_now_btn transition duration-300 ease-in-out ${
+                    className={`sm:w-full justify-center text-center sm:px-24pixel px-4 sm:py-14.5 py-2 flex bg-skyblue text-base font-semibold text-primary font-Segoe leading-6 gap-6pixel group border border-skyblue hover:bg-black transition duration-300 ease-in-out ${
                       checked ? ' bg-skyblue' : ''
                     }`}
                   >
