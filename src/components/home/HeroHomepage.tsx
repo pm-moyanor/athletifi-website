@@ -64,7 +64,7 @@ const HeroHomepage = () => {
             width={IMAGE_WIDTH_1}
             height={IMAGE_HEIGHT_1}
             quality={75}
-                  loading='lazy'
+            loading="lazy"
           />
         </div>
       </div>
@@ -77,7 +77,7 @@ const HeroHomepage = () => {
           width={IMAGE_WIDTH_2}
           height={IMAGE_HEIGHT_2}
           quality={75}
-                  loading='lazy'
+          loading="lazy"
         />
       </div>
     </>
