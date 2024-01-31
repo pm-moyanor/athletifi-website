@@ -13,7 +13,7 @@ const EXPENSIVE_FOOTBALL_IMAGE_HEIGHT: number = 700;
 const FOOTBALL_IMAGE_WIDTH: number = 700;
 const FOOTBALL_IMAGE_HEIGHT: number = 400;
 
-const SoccerExpensive : React.FC = () => {
+const SoccerExpensive: React.FC = () => {
   return (
     <>
       <div className="relative flex items-center lg:bg-soccer-expensive-bg bg-no-repeat bg-cover justify-center flex-col lg:flex-row my:10 py:10 lg:my-20 lg:py-20">
@@ -24,7 +24,7 @@ const SoccerExpensive : React.FC = () => {
           height={FOOTBALL_NET_IMAGE_HEIGHT}
           alt="Football net"
           quality={75}
-                  loading='lazy'
+          loading="lazy"
         />
         <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto">
           <div className="max-w-623 mx-auto lg:mx-0 relative after:content after:absolute lg:after:w-690 lg:after:h-420 lg:after:bg-blackBG after:blur-55 after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:z-0">
@@ -79,7 +79,7 @@ const SoccerExpensive : React.FC = () => {
               width={EXPENSIVE_FOOTBALL_IMAGE_WIDTH}
               height={EXPENSIVE_FOOTBALL_IMAGE_HEIGHT}
               quality={75}
-                  loading='lazy'
+              loading="lazy"
             />
           </div>
         </div>
@@ -99,7 +99,7 @@ const SoccerExpensive : React.FC = () => {
               width={FOOTBALL_IMAGE_WIDTH}
               height={FOOTBALL_IMAGE_HEIGHT}
               quality={75}
-                  loading='lazy'
+              loading="lazy"
             />
           </div>
         </div>

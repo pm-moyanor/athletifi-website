@@ -1,6 +1,6 @@
 import React from 'react';
 import { UnderLineText } from '../common/Icon';
-import Image from 'next/image';
+// import Image from 'next/image';
 import portrait from './portrait.jpg';
 import { samplePlayers, Player } from '@/types/Player.type';
 
