@@ -1,17 +1,10 @@
-// import { NewsArticle } from "../types";
-interface NewsArticle {
-  id: number;
-  title: string;
-  description: string;
-  slug: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  image: Record<string, unknown>;
-  author: Record<string, unknown>;
-  categories: Record<string, unknown>[];
-}
+import { NewsArticle } from '@/types/News.type';
 
-export function filterTargetArticle(allNewsData: { data: NewsArticle[] }, targetArticle: NewsArticle): NewsArticle[] {
-  return allNewsData.data.filter((article) => article.slug !== targetArticle.slug);
+export function filterTargetArticle(
+  allNewsData: NewsArticle[],
+  targetArticle: NewsArticle | undefined
+): NewsArticle[] {
+  return targetArticle
+    ? allNewsData.filter(article => article.slug !== targetArticle.slug)
+    : allNewsData;
 }

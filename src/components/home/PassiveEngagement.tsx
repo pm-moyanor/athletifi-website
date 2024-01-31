@@ -1,34 +1,45 @@
-import React from "react";
-import Image from "next/image";
-import BlueButton from "../common/BlueButton";
-import Link from "next/link";
-import { ArrowButton } from "../common/Icon";
+import React from 'react';
+import Image from 'next/image';
+import BlueButton from '../common/BlueButton';
+import Link from 'next/link';
 
-const SoccerExpensive = () => {
+const FOOTBALL_NET_IMAGE_WIDTH: number = 996;
+const FOOTBALL_NET_IMAGE_HEIGHT: number = 768;
+const AOS_DURATION: number = 600;
+const AOS_DELAY: number = 200;
+const AOS_OFFSET: number = 200;
+const EXPENSIVE_FOOTBALL_IMAGE_WIDTH: number = 700;
+const EXPENSIVE_FOOTBALL_IMAGE_HEIGHT: number = 700;
+const FOOTBALL_IMAGE_WIDTH: number = 700;
+const FOOTBALL_IMAGE_HEIGHT: number = 400;
+
+const SoccerExpensive : React.FC = () => {
   return (
     <>
-      <div className="relative flex items-center md:mt-10 lg:bg-soccer-expensive-bg bg-no-repeat bg-cover justify-center flex-col lg:flex-row lg:mb-0 md:mb-5 xl:py-20 xl:pb-44">
+      <div className="relative flex items-center lg:bg-soccer-expensive-bg bg-no-repeat bg-cover justify-center flex-col lg:flex-row my:10 py:10 lg:my-20 lg:py-20">
         <Image
-          className="absolute -top-20 -left-0 w-[40%] lg:block hidden z-0  h-[120%]"
+          className="absolute -top-20 -left-0 w-40/100 lg:block hidden z-0  h-120"
           src="/assets/img/png/football_net.png"
-          width={996}
-          height={768}
-          alt="football net"
+          width={FOOTBALL_NET_IMAGE_WIDTH}
+          height={FOOTBALL_NET_IMAGE_HEIGHT}
+          alt="Football net"
+          quality={75}
+                  loading='lazy'
         />
-        <div className="container md:max-w-full xl:max-w-[1140px] 2xl:max-w-[1320px] mx-auto">
-          <div className="max-w-[623px] mx-auto lg:mx-0 relative after:content after:absolute lg:after:w-[690px] lg:after:h-[420px] lg:after:bg-[#040F16] after:blur-[55px] after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:z-0">
+        <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto">
+          <div className="max-w-623 mx-auto lg:mx-0 relative after:content after:absolute lg:after:w-690 lg:after:h-420 lg:after:bg-blackBG after:blur-55 after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:z-0">
             <div
               data-aos="fade-up"
-              data-aos-duration="600"
+              data-aos-duration={AOS_DURATION}
               data-aos-easing="linear"
-              data-aos-delay="200"
-              data-aos-offset="200"
+              data-aos-delay={AOS_DELAY}
+              data-aos-offset={AOS_OFFSET}
               className=" relative z-10"
             >
-              <h2 className="font-HelveticaNeueMedium text-primary xl:text-xl lg:text-[43px] md:text-[40px] font-medium mb-4 text-[25px] sm:text-[35px] text-center lg:text-start leading-[120%] xl:leading-[60px] pt-10">
-                <span className="relative after:content after:absolute after:bottom-[-4px] sm:after:bottom-[-2px] after:left-0 md:after:w-[220px] after:w-[120px] after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
+              <h2 className="font-HelveticaNeueMedium text-lg md:text-5xl sm:text-4xl text-primary font-medium mb-4 text-center lg:text-start leading-[120%] xl:leading-60 pt-10">
+                <span className="relative">
                   {/* Soccer is{" "} */}
-                  Passive Engagement,{" "}
+                  Passive Engagement,{' '}
                 </span>
                 {/* Expensive & Reduces Accessibility */}
                 Active Impact
@@ -39,7 +50,11 @@ const SoccerExpensive = () => {
                 prohibitive costs that reduce accessibility and limit
                 participation. Club soccer is creating a system that excludes
                 potential players from less privileged backgrounds. */}
-                AthletiFi’s player cards keep the thrill of soccer at your fingertips. With dynamically updating performance stats and thrilling highlight clips, you will never miss a moment of your favorite player's progression. All the while knowing that their journey is just the beginning. 
+                AthletiFi&apos;s player cards keep the thrill of soccer at your
+                fingertips. With dynamically updating performance stats and
+                thrilling highlight clips, you will never miss a moment of your
+                favorite player&apos;s progression. All the while knowing that
+                their journey is just the beginning.
               </p>
               <div className="flex lg:justify-start justify-center items-center mt-10">
                 <Link href="/about-us">
@@ -51,36 +66,40 @@ const SoccerExpensive = () => {
         </div>
         <div
           data-aos="fade-up"
-          data-aos-duration="600"
+          data-aos-duration={AOS_DURATION}
           data-aos-easing="linear"
-          data-aos-delay="200"
-          data-aos-offset="200"
+          data-aos-delay={AOS_DELAY}
+          data-aos-offset={AOS_OFFSET}
         >
-          <div className="absolute right-0 lg:top-[40%] lg:-translate-y-[50%] xl:w-[700px] xl:h-[1000px] w-[300px] sm:w-[450px] lg:w-[500px] hidden lg:inline-block -z-10">
+          <div className="absolute right-0 lg:top-[40%] lg:-translate-y-[50%] xl:w-700 xl:h-1000 w-300 sm:w-450 lg:w-500 hidden lg:inline-block -z-10">
             <Image
               className="w-full"
               src="/assets/img/webp/expensive_football.webp"
-              alt="football"
-              width={700}
-              height={700}
+              alt="Football at the back of the net"
+              width={EXPENSIVE_FOOTBALL_IMAGE_WIDTH}
+              height={EXPENSIVE_FOOTBALL_IMAGE_HEIGHT}
+              quality={75}
+                  loading='lazy'
             />
           </div>
         </div>
         <div
           data-aos="fade-up"
-          data-aos-duration="600"
+          data-aos-duration={AOS_DURATION}
           data-aos-easing="linear"
-          data-aos-delay="200"
-          data-aos-offset="200"
+          data-aos-delay={AOS_DELAY}
+          data-aos-offset={AOS_OFFSET}
         >
-          {/* SMALL FOOTBALL CORNOR */}
-          <div className="lg:hidden relative w-full sm:w-[80%] mx-auto mt-5">
+          {/* SMALL FOOTBALL CORNER */}
+          <div className="lg:hidden relative w-full sm:w-80/100 mx-auto mt-5">
             <Image
               className="mx-auto"
               src="/assets/img/png/football_img_2.png"
-              alt="football"
-              width={700}
-              height={400}
+              alt="Football at the back of the net"
+              width={FOOTBALL_IMAGE_WIDTH}
+              height={FOOTBALL_IMAGE_HEIGHT}
+              quality={75}
+                  loading='lazy'
             />
           </div>
         </div>
