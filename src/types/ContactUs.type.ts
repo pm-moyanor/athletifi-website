@@ -3,9 +3,3 @@ export type ContactUs = {
   email: string;
   message: string;
 };
-
-export type PostContactUs<T> = {
-  name: T;
-  email: T;
-  message: T;
-};

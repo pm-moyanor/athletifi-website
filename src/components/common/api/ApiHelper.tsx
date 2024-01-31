@@ -1,7 +1,5 @@
 import Axios from 'axios';
-import { SignUp } from '@/types/SignUp.type';
-
-type SignUpData = { data: SignUp };
+import { PostData } from '@/types/Api.type';
 
 export enum RequestMethod {
   GET = 'GET',
@@ -23,10 +21,10 @@ const SERVER_URL = 'https://vidalco.in/api';
 
 const REQUEST_TIMEOUT_MS: number = 5000;
 
-export async function axiosRequest(
+export async function axiosRequest<T>(
   method: RequestMethod,
   url: string,
-  data: SignUpData | null | undefined
+  data: PostData<T> | null | undefined
 ) {
   try {
     // Make the API request to the Strapi CMS and await the response.

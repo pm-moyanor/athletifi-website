@@ -34,7 +34,7 @@ const ContactUsForm = () => {
 
     setLoading(true);
     try {
-      const response = await postRequestHandler(
+      const response = await postRequestHandler<ContactUs>(
         postContactUsHandler(),
         formDetails
       );

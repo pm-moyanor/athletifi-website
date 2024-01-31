@@ -35,7 +35,7 @@ const SignUpForm = () => {
     setLoading(true);
     if (checked) {
       try {
-        const response = await postRequestHandler(
+        const response = await postRequestHandler<SignUp>(
           postNewsLetterHandler(),
           formDetails
         );
