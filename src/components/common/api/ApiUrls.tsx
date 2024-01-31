@@ -23,3 +23,8 @@ export const newsDetailApiHandler = (
 export const postNewsLetterHandler = (): string => {
   return `/join-newsletters`;
 };
+
+// Function to construct the API URL for posting to contact-messages in the Strapi CMS.
+export const postContactUsHandler = (): string => {
+  return `/contact-us-messages`;
+};

@@ -72,7 +72,7 @@ const OurStrategicAdvisor: React.FC = () => {
                   also the technical director of the Villanova Soccer Academy.
                 </p>
                 <div className="flex justify-center lg:justify-start pt-5 lg:pt-10">
-                  <Link href="/sign-up">
+                  <Link href="/contact-us">
                     <BlueButton text="Join now" />
                   </Link>
                 </div>
