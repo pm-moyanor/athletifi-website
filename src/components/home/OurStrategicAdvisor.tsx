@@ -27,7 +27,7 @@ const OurStrategicAdvisor: React.FC = () => {
           height={NET_IMAGE_HEIGHT}
           alt=""
           quality={75}
-                  loading='lazy'
+          loading="lazy"
         />
         <div className="container xl:pb-14">
           <div
@@ -46,7 +46,7 @@ const OurStrategicAdvisor: React.FC = () => {
               width={STRATEGIC_IMAGE_WIDTH}
               height={STRATEGIC_IMAGE_HEIGHT}
               quality={75}
-                  loading='lazy'
+              loading="lazy"
             />
             <div
               data-aos="fade-up"

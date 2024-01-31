@@ -17,11 +17,9 @@ import Image from 'next/image';
 
 const SCROLL_THRESHOLD: number = 200;
 
-const Header : React.FC = () => {
- 
-
+const Header: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const path : string = useRouter().pathname;
+  const path: string = useRouter().pathname;
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (open) {

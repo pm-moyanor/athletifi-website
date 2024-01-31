@@ -37,9 +37,9 @@ const SignUpForm = () => {
       try {
         const response = await postRequestHandler(
           postNewsLetterHandler(),
-         formDetails
+          formDetails
         );
-        console.log(response)
+        console.log(response);
         if (response.data) {
           toast.success('You have successfully signed-up!', toastOptions);
           setData({
@@ -73,7 +73,7 @@ const SignUpForm = () => {
         height={IMAGE_HEIGHT_GRID}
         alt=""
         quality={75}
-                  loading='lazy'
+        loading="lazy"
       />
       <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto px-3 relative z-10">
         <div className="flex justify-between flex-wrap grid-cols-2 w-full">
@@ -184,7 +184,7 @@ const SignUpForm = () => {
               height={IMAGE_HEIGHT_PLAYER}
               alt="Player shoots the ball in front of a defender and a goalkeeper"
               quality={75}
-                  loading='lazy'
+              loading="lazy"
             />
           </div>
         </div>

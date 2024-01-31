@@ -40,7 +40,7 @@ const TargetArticleContent = ({ newsDetailData }: NewsDetails) => {
                 height={IMAGE_HEIGHT_GRID}
                 alt=""
                 quality={75}
-                  loading='lazy'
+                loading="lazy"
               />
               <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto px-3 relative z-10">
                 <div className="xl:mt-190 lg:mt-108 md:mt-60pixel mt-48pixel relative z-20 before:content-[''] before:absolute before:w-457 before:h-457 before:-top-24 before:-left-40 before:bg-shadow_blue before:blur-111 before:opacity-25 before:-z-10 before:rounded-full">
@@ -57,7 +57,7 @@ const TargetArticleContent = ({ newsDetailData }: NewsDetails) => {
                       alt="players"
                       className="w-full max-h-850 object-cover rounded-2xl"
                       quality={75}
-                  loading='lazy'
+                      loading="lazy"
                     />
                   )}
 

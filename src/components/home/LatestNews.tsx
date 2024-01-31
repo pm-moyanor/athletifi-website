@@ -20,9 +20,7 @@ const GRID_IMAGE_HEIGHT: number = 692;
 const LatestNews = ({ allNewsList }: NewsProps) => {
   const DataArray = allNewsList.data;
   const itemsPerPage = 3;
-  const [currentPage, setCurrentPage] = useState<number>(
-    allNewsList.meta.pagination.pageCount
-  );
+  const [currentPage] = useState<number>(allNewsList.meta.pagination.pageCount);
 
   // Calculate the start and end indexes of the current page
   const startIndex: number = (currentPage - 1) * itemsPerPage;
@@ -63,7 +61,7 @@ const LatestNews = ({ allNewsList }: NewsProps) => {
                     height={EXTERNAL_IMG_HEIGHT}
                     alt="football match"
                     quality={75}
-                  loading='lazy'
+                    loading="lazy"
                   />
                   <div className="sm:pt-0 pt-3">
                     {/* NEWS HEADING */}
@@ -142,7 +140,7 @@ const LatestNews = ({ allNewsList }: NewsProps) => {
           height={GRID_IMAGE_HEIGHT}
           alt=""
           quality={75}
-                  loading='lazy'
+          loading="lazy"
         />
         {/* BACKGROUND LEFT GRID */}
         <Image
@@ -152,7 +150,7 @@ const LatestNews = ({ allNewsList }: NewsProps) => {
           height={GRID_IMAGE_HEIGHT}
           alt=""
           quality={75}
-                  loading='lazy'
+          loading="lazy"
         />
       </div>
     </>
