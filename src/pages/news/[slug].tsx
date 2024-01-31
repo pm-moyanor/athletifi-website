@@ -22,8 +22,14 @@ const NewsArticleSlugPage = ({
   newsDetailData,
   allNewsData,
 }: NewsSlugProps) => {
+  if (!newsDetailData || !allNewsData) {
+    return <div>Error: Data not available</div>;
+  }
   const targetArticle = newsDetailData?.data?.[0];
 
+  if (!targetArticle) {
+    return <div>Error: Target article not found</div>;
+  }
   // Filter out the target article from the allNewsList data
   const everyOtherArticle = filterTargetArticle(
     allNewsData?.data,

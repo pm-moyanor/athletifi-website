@@ -1,7 +1,7 @@
 import { SignUp } from '@/types/SignUp.type';
 import { axiosRequest, RequestMethod } from './ApiHelper';
 
-type SignUpData = {data: SignUp};
+type SignUpData = { data: SignUp };
 
 // NEWS GET REQUEST HANDLER
 // Function to handle GET requests for news articles from the Strapi CMS.
@@ -17,14 +17,13 @@ export const getRequestHandler = async (path: string) => {
 };
 
 // NEWSLETTER POST REQUEST HANDLER
-export const postRequestHandler = async (path: string, data:null | SignUpData | undefined) => {
+export const postRequestHandler = async (
+  path: string,
+  data: null | SignUpData | undefined
+) => {
   try {
     // Function to handle POST requests for newsletters to the Strapi CMS.
-    return await axiosRequest(
-      RequestMethod.POST,
-      path,
-      data
-    );
+    return await axiosRequest(RequestMethod.POST, path, data);
   } catch (error) {
     console.error(`Error occurred while making POST request: ${error}`);
     throw error;

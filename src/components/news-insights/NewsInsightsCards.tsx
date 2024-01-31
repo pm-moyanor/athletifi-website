@@ -8,8 +8,11 @@ import { getRequestHandler } from '../common/api/Api';
 import { newsListApiHandler } from '../common/api/ApiUrls';
 import { AllArticles, Category, NewsArticle } from '@/types/News.type';
 
+import { ToastContainer, toast, ToastOptions } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const IMAGE_WIDTH: number = 315;
-const IMAGE_HEIGHT = 240;
+const IMAGE_HEIGHT: number = 240;
 const AOS_DURATION: number = 400;
 const AOS_DELAY: number[] = [100, 200];
 const AOS_OFFSET: number = 200;
@@ -26,21 +29,32 @@ const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
   // Nullish coalescing (??) is used to ensure that moreArticles is always an array, even if props.allNewsList is undefined or null.
 
   const itemsPerPage: number = 5; //change this to change the number of articles displayed on one page
-  const [currentPage, setCurrentPage] = useState<number>(Number(router.query.page));
+  const [currentPage, setCurrentPage] = useState<number>(
+    Number(router.query.page)
+  );
   // Calculate the start and end indexes of the current page
   const startIndex: number = (currentPage - 1) * itemsPerPage;
   const endIndex: number = startIndex + itemsPerPage;
-  const displayedItems: NewsArticle[] = moreArticles.slice(startIndex, endIndex);
+  const displayedItems: NewsArticle[] = moreArticles.slice(
+    startIndex,
+    endIndex
+  );
   const totalPages: number = Math.ceil(moreArticles.length / itemsPerPage) || 1;
 
-  const handlePageChange = async (newPage: number):Promise<void> => {
+  const handlePageChange = async (newPage: number): Promise<void> => {
+    const toastOptions: ToastOptions = {
+      draggable: false,
+      position: toast.POSITION.BOTTOM_RIGHT,
+    };
+
     setLoading(true);
     try {
       const response = await getRequestHandler(newsListApiHandler());
       setLoading(false);
       setCurrentPage(newPage);
     } catch (error) {
-      console.log('error');
+      setLoading(false);
+      toast.error('Get request has failed. Try again later', toastOptions);
     }
   };
 
@@ -210,6 +224,7 @@ const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
         quality={75}
                   loading='lazy'
       />
+      <ToastContainer theme="dark" />
     </div>
   );
 };
