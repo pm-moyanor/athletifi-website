@@ -3,17 +3,17 @@ import Image from 'next/image';
 import BlueButton from '../common/BlueButton';
 import Link from 'next/link';
 
-const FOOTBALL_NET_IMAGE_WIDTH = 996;
-const FOOTBALL_NET_IMAGE_HEIGHT = 768;
-const AOS_DURATION = 600;
-const AOS_DELAY = 200;
-const AOS_OFFSET = 200;
-const EXPENSIVE_FOOTBALL_IMAGE_WIDTH = 700;
-const EXPENSIVE_FOOTBALL_IMAGE_HEIGHT = 700;
-const FOOTBALL_IMAGE_WIDTH = 700;
-const FOOTBALL_IMAGE_HEIGHT = 400;
+const FOOTBALL_NET_IMAGE_WIDTH: number = 996;
+const FOOTBALL_NET_IMAGE_HEIGHT: number = 768;
+const AOS_DURATION: number = 600;
+const AOS_DELAY: number = 200;
+const AOS_OFFSET: number = 200;
+const EXPENSIVE_FOOTBALL_IMAGE_WIDTH: number = 700;
+const EXPENSIVE_FOOTBALL_IMAGE_HEIGHT: number = 700;
+const FOOTBALL_IMAGE_WIDTH: number = 700;
+const FOOTBALL_IMAGE_HEIGHT: number = 400;
 
-const SoccerExpensive = () => {
+const SoccerExpensive : React.FC = () => {
   return (
     <>
       <div className="relative flex items-center lg:bg-soccer-expensive-bg bg-no-repeat bg-cover justify-center flex-col lg:flex-row my:10 py:10 lg:my-20 lg:py-20">

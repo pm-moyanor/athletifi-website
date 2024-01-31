@@ -5,6 +5,9 @@ import Header from '@/components/common/Header';
 import Seo from '@/components/common/Seo';
 import FocusArticle from '@/components/news-insights/FocusArticle';
 import NewsInsightsCards from '@/components/news-insights/NewsInsightsCards';
+import { Hero } from '@/types/CommonHero.type';
+import { NewsArticle, NewsProps } from '@/types/News.type';
+import { PageSEO } from '@/types/Seo.type';
 import { filterTargetArticle } from '@/utils/helpers';
 import { SEO_CONFIG } from '@/utils/seoConfig';
 
@@ -16,21 +19,22 @@ import {
 } from '@/components/common/api/ApiUrls';
 
 // The main functional component for the News and Insights page
-const NewsPage = ({ newsListData, allNewsList }) => {
+const NewsPage = ({ newsListData, allNewsList }: NewsProps) => {
   // Use optional chaining to simplify target article assignment
   const targetArticle = newsListData?.[0];
 
   // Filter out the target article from the allNewsList data
-  const filteredNewsList = filterTargetArticle(allNewsList, targetArticle);
+  const filteredNewsList = filterTargetArticle(
+    allNewsList?.data,
+    targetArticle
+  );
 
   // SEO
-  const hero = {
+  const hero: Hero = {
     heading: 'Latest Updates & Announcements',
-    // title: "Your Title Here",
-    // subtitle: "Your Subtitle Here",
   };
   // Update dynamic parts of the SEO properties
-  const newsPageSEO = {
+  const newsPageSEO: PageSEO = {
     ...SEO_CONFIG.news, // Spread the static properties
     description: targetArticle?.previewSummary, // Dynamically update the description
     image: `https://vidalco.in${targetArticle?.image.url}`, // Dynamically update the image URL

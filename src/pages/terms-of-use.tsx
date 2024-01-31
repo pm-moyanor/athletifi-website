@@ -1,4 +1,5 @@
 import CommonHero from '@/components/common/CommonHero';
+import { Hero } from '@/types/CommonHero.type';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import Seo from '@/components/common/Seo';
@@ -6,7 +7,7 @@ import { SEO_CONFIG } from '@/utils/seoConfig';
 import TermsOfUse from '@/components/terms/TermsOfUse';
 
 const TermsOfUsePage = () => {
-  const hero = {
+  const hero: Hero = {
     heading: 'Terms of Use',
   };
 

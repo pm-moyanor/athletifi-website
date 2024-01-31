@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import { BlueShadow, UnderLineText } from '../common/Icon';
 
-const SHADOW_IMAGE_WIDTH = 500;
-const SHADOW_IMAGE_HEIGHT = 500;
-const AOS_DURATION = 400;
-const AOS_DELAY = 100;
-const AOS_OFFSET = 200;
+const SHADOW_IMAGE_WIDTH: number = 500;
+const SHADOW_IMAGE_HEIGHT: number = 500;
+const AOS_DURATION: number = 400;
+const AOS_DELAY: number = 100;
+const AOS_OFFSET: number = 200;
 
-const OurMission = () => {
+const OurMission: React.FC = () => {
   return (
     <>
       <div className='relative py-6 lg:pt-10 sm:pt-20 pt-14'>

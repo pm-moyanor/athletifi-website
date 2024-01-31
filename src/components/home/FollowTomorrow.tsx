@@ -1,20 +1,21 @@
 import Image from 'next/image';
 import React from 'react';
 import Slider from 'react-slick';
+import { SliderSettings } from '@/types/Slider.type';
 
-const AOS_DURATION = [500, 600];
-const AOS_DELAY = [200, 300, 400, 800, 1200];
-const AOS_OFFSET = 200;
-const LEFT_BALL_IMAGE_WIDTH = 240;
-const LEFT_BALL_IMAGE_HEIGHT = 286;
-const LEFT_SHADOW_IMAGE_WIDTH = 448;
-const LEFT_SHADOW_IMAGE_HEIGHT = 448;
-const SOCCER_PLAYER_IMAGE_WIDTH_LEFT = 280;
-const SOCCER_PLAYER_IMAGE_HEIGHT_LEFT = 280;
-const SOCCER_PLAYER_IMAGE_WIDTH_CENTER = 409;
-const SOCCER_PLAYER_IMAGE_HEIGHT_CENTER = 409;
-const SOCCER_PLAYER_IMAGE_WIDTH_RIGHT = 280;
-const SOCCER_PLAYER_IMAGE_HEIGHT_RIGHT = 280;
+const AOS_DURATION: number[] = [500, 600];
+const AOS_DELAY: number[] = [200, 300, 400, 800, 1200];
+const AOS_OFFSET: number = 200;
+const LEFT_BALL_IMAGE_WIDTH: number = 240;
+const LEFT_BALL_IMAGE_HEIGHT: number = 286;
+const LEFT_SHADOW_IMAGE_WIDTH: number = 448;
+const LEFT_SHADOW_IMAGE_HEIGHT: number = 448;
+const SOCCER_PLAYER_IMAGE_WIDTH_LEFT: number = 280;
+const SOCCER_PLAYER_IMAGE_HEIGHT_LEFT: number = 280;
+const SOCCER_PLAYER_IMAGE_WIDTH_CENTER: number = 409;
+const SOCCER_PLAYER_IMAGE_HEIGHT_CENTER: number = 409;
+const SOCCER_PLAYER_IMAGE_WIDTH_RIGHT: number = 280;
+const SOCCER_PLAYER_IMAGE_HEIGHT_RIGHT: number = 280;
 
 const StatsReimagined = () => {
   const playerImageCenter = 'jose-card-img';
@@ -22,7 +23,7 @@ const StatsReimagined = () => {
   const playerImageLeft = 'anderson-card-img-new';
 
   // SLIDER
-  const settings = {
+  const settings: SliderSettings = {
     arrows: false,
     autoplay: false,
     autoplaySpeed: 3000,
@@ -57,7 +58,7 @@ const StatsReimagined = () => {
           height={LEFT_BALL_IMAGE_HEIGHT}
           alt=""
           quality={75}
-                  loading='lazy'
+          loading="lazy"
         />
       </div>
       <Image
@@ -67,7 +68,7 @@ const StatsReimagined = () => {
         height={LEFT_SHADOW_IMAGE_HEIGHT}
         alt=""
         quality={75}
-                  loading='lazy'
+        loading="lazy"
       />
       <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto relative z-10">
         <div className="container__border--blue-gradient relative after:absolute flex justify-center flex-col items-center  after:contents-[''] after:inset-0 after:p-1 after:rounded-30 rounded-30">
@@ -142,7 +143,7 @@ const StatsReimagined = () => {
                   height={SOCCER_PLAYER_IMAGE_HEIGHT_LEFT}
                   alt="Player card of Anderson Rodriguez from Villanova Soccer Academy"
                   quality={75}
-                  loading='lazy'
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -162,7 +163,7 @@ const StatsReimagined = () => {
                   height={SOCCER_PLAYER_IMAGE_HEIGHT_CENTER}
                   alt="Player card of Jose Hernandez from Villanova Soccer Academy"
                   quality={75}
-                  loading='lazy'
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -182,7 +183,7 @@ const StatsReimagined = () => {
                   height={SOCCER_PLAYER_IMAGE_HEIGHT_RIGHT}
                   alt="Player card of Stebi Vidal from Villanova Soccer Academy"
                   quality={75}
-                  loading='lazy'
+                  loading="lazy"
                 />
               </div>
             </div>

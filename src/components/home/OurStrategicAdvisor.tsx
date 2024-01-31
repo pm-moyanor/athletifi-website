@@ -7,15 +7,15 @@ import React from 'react';
 import BlueButton from '../common/BlueButton';
 import Link from 'next/link';
 
-const NET_IMAGE_WIDTH = 996;
-const NET_IMAGE_HEIGHT = 768;
-const STRATEGIC_IMAGE_WIDTH = 475;
-const STRATEGIC_IMAGE_HEIGHT = 430;
-const AOS_DURATION = 600;
-const AOS_DELAY = 200;
-const AOS_OFFSET = 200;
+const NET_IMAGE_WIDTH: number = 996;
+const NET_IMAGE_HEIGHT: number = 768;
+const STRATEGIC_IMAGE_WIDTH: number = 475;
+const STRATEGIC_IMAGE_HEIGHT: number = 430;
+const AOS_DURATION: number = 600;
+const AOS_DELAY: number = 200;
+const AOS_OFFSET: number = 200;
 
-const OurStrategicAdvisor = () => {
+const OurStrategicAdvisor: React.FC = () => {
   return (
     <>
       <div className=" bg-no-repeat bg-cover relative">

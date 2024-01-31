@@ -7,12 +7,12 @@ import Link from 'next/link';
 import React from 'react';
 import BlueButton from '../common/BlueButton';
 
-const IMAGE_WIDTH_1 = 600;
-const IMAGE_HEIGHT_1 = 600;
-const IMAGE_WIDTH_2 = 350;
-const IMAGE_HEIGHT_2 = 350;
+const IMAGE_WIDTH_1: number = 600;
+const IMAGE_HEIGHT_1: number = 600;
+const IMAGE_WIDTH_2: number = 350;
+const IMAGE_HEIGHT_2: number = 350;
 
-const HeroHomepage = () => {
+const HeroHomepage: React.FC = () => {
   return (
     <>
       <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 my-2 pb-8 pt-36 mx-auto">

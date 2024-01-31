@@ -9,9 +9,9 @@ import {
   TwitterIcon,
 } from './Icon';
 
-const INSTAGRAM_ICON_SIZE = 32;
+const INSTAGRAM_ICON_SIZE: number = 32;
 
-const SocialPopUp = () => {
+const SocialPopUp: React.FC = () => {
   return (
     <>
       <div className='social-popup__bg flex items-start justify-center gap-20pixel sm:fixed sm:top-90 top-full left-20/100 sm:left-1/2 z-20 flex-col-reverse p-6 '>
