@@ -249,7 +249,7 @@ const Header: React.FC = () => {
                         </span>
                       </Link>
                       <Link
-                        href="/sign-up"
+                        href="/contact-us"
                         className="sm:px-24pixel px-4 sm:py-14.5 py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-6pixel group border border-skyblue hover:bg-black hover:text-skyblue btn__cta transition duration-300 ease-in-out social-popup__btn"
                       >
                         Contact Us
@@ -262,21 +262,21 @@ const Header: React.FC = () => {
                 </li>
                 <li>
                   <Link
-                    href="/sign-up"
+                    href="/contact-us"
                     onClick={() => setOpen(false)}
                     className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white md:hidden"
                   >
-                    Sign up
+                    Contact Us
                   </Link>
                 </li>
               </ul>
             </div>
             <Link
-              href="/sign-up"
+              href="/contact-us"
               onClick={() => setOpen(false)}
               className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden md:inline-block"
             >
-              Sign up
+              Contact Us
             </Link>
           </div>
         </div>

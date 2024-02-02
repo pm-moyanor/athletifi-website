@@ -38,8 +38,17 @@ const signUpConfig: PageSEO = {
   websiteURL: 'https://athleti.fi/sign-up',
 };
 
+// TODO: NEEDS AN UPDATED IMAGE SPECIFIC TO CONTACT-US SEO
+const contactUsConfig: PageSEO = {
+  description: 'Get in Touch!',
+  image: '/sign_up_meta',
+  title: 'Contact the AthletiFi team',
+  websiteURL: 'https://athleti.fi/contact-us',
+};
+
 export const SEO_CONFIG = {
   aboutUs: aboutUsConfig,
+  contactUs: contactUsConfig,
   dashboard: dashboardConfig,
   home: homeConfig,
   news: newsConfig,
