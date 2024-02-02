@@ -1,12 +1,12 @@
 import CommonHero from '@/components/common/CommonHero';
 import { Hero } from '@/types/CommonHero.type';
-import Custom404 from '@/components/common/Custom404';
+import Dashboard404 from '@/components/common/Dashboard404';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 
 const NotFound = () => {
   const hero: Hero = {
-    heading: 'Player not found',
+    heading: '',
   };
 
   return (
@@ -15,7 +15,7 @@ const NotFound = () => {
         <Header />
         <CommonHero hero={hero} />
       </div>
-      <Custom404 />
+      <Dashboard404 />
       <Footer />
     </>
   );

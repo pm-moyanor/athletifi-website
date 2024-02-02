@@ -1,7 +1,8 @@
 import { NextResponse, NextRequest } from 'next/server';
 
 const MIN_PLAYER_ID = 1;
-const MAX_PLAYER_ID = 1134;
+const MAX_PLAYER_ID = 300;
+// const MAX_PLAYER_ID = 1134;
 
 export function middleware(request: NextRequest) {
   // console.log(request);
