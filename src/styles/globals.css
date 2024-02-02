@@ -100,7 +100,7 @@ body {
   background-image: url("/assets/img/webp/news-hero-img.webp");
 }
 
-.signup-page__hero-bg {
+.signup-page__hero-bg, .contact-us-page__hero-bg {
   background-image: url("/assets/img/webp/sing-up-hero-img.webp");
 }
 
