@@ -5,12 +5,15 @@ const MAX_PLAYER_ID = 300;
 // const MAX_PLAYER_ID = 1134;
 
 export function middleware(request: NextRequest) {
-  // console.log(request);
   const urlSplit = request.url.split('/');
   const playerId = parseInt(urlSplit[urlSplit.length - 1]);
 
   // If the playerId is inside of boundaries, continue as normal
-  if (playerId >= MIN_PLAYER_ID && playerId <= MAX_PLAYER_ID) {
+  if (
+    (urlSplit[urlSplit.length - 2] == 'dashboard' &&
+      urlSplit[urlSplit.length - 1] == '404') ||
+    (playerId >= MIN_PLAYER_ID && playerId <= MAX_PLAYER_ID)
+  ) {
     return NextResponse.next();
   }
 
