@@ -1,14 +1,19 @@
 {
-  "parser": "@typescript-eslint/parser", 
+  "parser": "@typescript-eslint/parser",
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "prettier"
   ],
-  "extends": [ 
-    "@ijsto", 
-    "plugin:@typescript-eslint/eslint-recommended", 
-    "plugin:@typescript-eslint/recommended" 
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended" 
   ],
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "prettier/prettier": ["error", {
+      // Add custom Prettier options here
+    }]
   }
 }

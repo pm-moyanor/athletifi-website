@@ -15,18 +15,14 @@ Our project is about more than just player cards - it's about building a sustain
 - **Framework**: Next.js
 - **Programming Language**: TypeScript
 - **CSS Framework**: Tailwind
-- **Form Validation**: Use form
 - **Code Formatting**: ESLint and Prettier
 
 ### Back-End Tools
 
 - **CMS**: Strapi
-
-## ESLint and Prettier Setup for VS Code
-
-For maintaining consistent code quality and formatting, we use `@ijsto/eslint-config`, which is intended for use with VS Code.
-
-For detailed setup instructions, please refer to the [`@ijsto/eslint-config` README](https://github.com/ijsto/eslint-config).
+- **Database**: PostgreSQL hosted on AWS RDS
+- **Serverless Functions**: AWS Lambda
+- **API Management**: AWS API Gateway
 
 ## Getting Started
 
@@ -34,22 +30,10 @@ For detailed setup instructions, please refer to the [`@ijsto/eslint-config` REA
 2. Install dependencies:
 
    ```bash
-   npm install
-   ```
-
-   or
-
-   ```bash
    yarn install
    ```
 
 3. Run the development server:
-
-   ```bash
-   npm run dev
-   ```
-
-   or
 
    ```bash
    yarn dev
@@ -74,8 +58,38 @@ You can start editing the page by modifying pages/index.tsx. The page auto-updat
    yarn run development
    ```
 
-   or
+## ESLint and Prettier Setup for VS Code
 
-   ```bash
-   npm run development
+For maintaining consistent code quality and formatting, we use `eslint-config-next` along with `prettier` for code formatting. In order for this setup to work seamlessly in VS Code, some additional setup is required.
+
+### Configuration Steps
+
+Assuming you have already run `yarn install` which installs all the dependencies listed in `package.json`, including ESLint and Prettier configurations, follow these steps to configure your VS Code:
+
+1. Please install the following extensions in VS Code:
+
+   1. ESLint (`dbaeumer.vscode-eslint`)
+   2. Prettier - Code formatter (`esbenp.prettier-vscode`)
+
+2. To automatically format and lint your code on save, add the following settings to your `settings.json` file in VS Code:
+
+   ```json
+   {
+     "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+     },
+     "editor.formatOnSave": true,
+     "[javascript]": {
+       "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+     },
+     "[javascriptreact]": {
+       "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+     },
+     "[typescript]": {
+       "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+     },
+     "[typescriptreact]": {
+       "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+     }
+   }
    ```
