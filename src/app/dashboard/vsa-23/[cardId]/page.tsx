@@ -41,7 +41,7 @@ const ButtonGroup = styled.div`
 `;
 
 interface PageProps {
-  params: { playerId: number };
+  params: { cardId: number };
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
@@ -68,9 +68,9 @@ const tabInfo = [
   }
 ];
 const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
-  const { playerId } = params;
+  const { cardId } = params;
   const [active, setActive] = useState(tabInfo[0].type);
-  if (playerId < MIN_PLAYER_ID || playerId > MAX_PLAYER_ID) {
+  if (cardId < MIN_PLAYER_ID || cardId > MAX_PLAYER_ID) {
     notFound();
   }
   // SAMPLE DATA
