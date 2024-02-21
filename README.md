@@ -76,7 +76,7 @@ Assuming you have already run `yarn install` which installs all the dependencies
    ```json
    {
      "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
+       "source.fixAll.eslint": "explicit"
      },
      "editor.formatOnSave": true,
      "[javascript]": {
