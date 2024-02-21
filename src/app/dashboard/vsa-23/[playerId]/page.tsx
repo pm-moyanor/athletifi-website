@@ -1,19 +1,40 @@
+'use client';
+
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import Seo from '@/components/common/Seo';
-import { SEO_CONFIG } from '@/utils/seoConfig';
+// import { SEO_CONFIG } from '@/utils/seoConfig';
 import CommonHero from '@/components/common/CommonHero';
 import { Hero } from '@/types/CommonHero.type';
-import { PlayerDashboardProps } from '@/types/Dashboard.type';
-
+// import { PlayerDashboardProps } from '@/types/Dashboard.type';
 import Highlights from '@/components/dashboard/Highlights';
 import Teammates from '@/components/dashboard/Teammates';
-import HeroBanner from '@/components/dashboard/HeroBanner';
-// import PlayerStats from '@/components/dashboard/PlayerStats';
-// import PlayerInfo from '@/components/dashboard/PlayerInfo';
-// import PlayerCard from '@/components/dashboard/PlayerCard';
+import PlayerStats from '@/components/dashboard/PlayerStats';
+import PlayerInfo from '@/components/dashboard/PlayerInfo';
+import PlayerCard from '@/components/dashboard/PlayerCard';
+import type { NextPage } from 'next';
+import { notFound } from 'next/navigation';
 
-const PlayerDashboardPage = ({ playerId }: PlayerDashboardProps) => {
+interface PageProps {
+  params: { playerId: number };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+const MIN_PLAYER_ID = 1;
+const MAX_PLAYER_ID = 1134;
+
+// TO DO: Implement dynamic metadata generation for SEO using generateMetadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata#dynamic-metadata
+// export const metadata = {
+//   title: 'Player Dashboard | AthletiFi',
+//   description:
+//     'Explore detailed player statistics, highlights, and more on the AthletiFi Player Dashboard.',
+// };
+
+const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
+  // const PlayerDashboardPage = ({ playerId }: PlayerDashboardProps) => {
+  const { playerId } = params;
+  if (playerId < MIN_PLAYER_ID || playerId > MAX_PLAYER_ID) {
+    notFound();
+  }
   // SAMPLE DATA
   // TODO: FETCH PLAYER DATA FROM BACKEND
   const playerProfile = {
@@ -30,7 +51,6 @@ const PlayerDashboardPage = ({ playerId }: PlayerDashboardProps) => {
 
   return (
     <>
-      <Seo pageSEO={SEO_CONFIG.dashboard} />
       <div className="overflow-hidden">
         <div className=" about-page__hero-bg bg-no-repeat bg-cover">
           <Header />

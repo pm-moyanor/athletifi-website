@@ -1,9 +1,8 @@
 // This component renders the header of the website.
 // It includes navigation links and other header elements.
-
+'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import {
   ArrowButton,
   FacebookIcon,
@@ -19,15 +18,28 @@ const SCROLL_THRESHOLD: number = 200;
 
 const Header: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const path: string = useRouter().pathname;
+  const [path, setPath] = useState<string>('');
+
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    // Set the path state to the current pathname on the client side
+    setPath(window.location.pathname);
+
+    const handleBodyOverflow = () => {
       if (open) {
         document.body.classList.add('overflow-hidden');
       } else {
         document.body.classList.remove('overflow-hidden');
       }
+    };
+
+    if (typeof window !== 'undefined') {
+      handleBodyOverflow();
     }
+
+    return () => {
+      // Clean up to remove class when component unmounts or path changes
+      document.body.classList.remove('overflow-hidden');
+    };
   }, [open]);
 
   // ==============================================
