@@ -64,13 +64,13 @@
 
 .legal__heading {
   font-weight: bold;
-  margin-top: 2rem; 
-  margin-bottom: 1rem; 
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .legal__body {
   text-align: justify;
-  margin-bottom: 1rem; 
+  margin-bottom: 1rem;
 }
 
 .legal__list {
@@ -121,6 +121,7 @@
 .sign-up__link:hover {
   text-decoration: underline;
 }
+
 /* ============================ Custom 404 - Not Found Page ================================= */
 
 .not-found__container {
@@ -134,6 +135,22 @@
 
 .not-found__link:hover {
   text-decoration: underline;
+}
+
+.stats-legend__buttons {
+  text-align: center;
+  color: white;
+  width: 8rem;
+  border-radius: 9999px;
+  padding: 0.4rem 0;
+  margin: 0.6rem 0;
+}
+
+.stats-line-chart__tooltip {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  line-height: 2rem;
 }
 
 /* PRELOADER ANIMATION */
