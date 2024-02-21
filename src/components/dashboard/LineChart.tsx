@@ -98,7 +98,7 @@ function LineExample() {
   function CustomLegend(props) {
     const { payload } = props;
     return (
-      <div className="flex flex-col">
+      <div className="stats-legend__container">
         {payload.map((entry, index) => (
           <div className="stats-legend__buttons hover:font-bold hover:cursor-pointer" style={{ background: !lineProps[entry.value] ? labels[index].color : DEFAULT_BUTTON_COLOR }} key={`line-item-${index}`} onClick={(data) => selectLine(data)}>{entry.value}</div >
         ))
@@ -142,7 +142,7 @@ function LineExample() {
   }
 
   return (
-    <ResponsiveContainer width="70%" height={350}>
+    <ResponsiveContainer width="100%" height={350}>
       <LineChart
         width={500}
         height={300}

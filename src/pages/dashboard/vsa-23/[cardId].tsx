@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Footer from '@/components/common/Footer';
 import Image from 'next/image';
 import Header from '@/components/common/Header';
@@ -16,7 +19,67 @@ import HeroBanner from '@/components/dashboard/HeroBanner';
 import SimpleBarChart from '@/components/dashboard/BarChart';
 import LineExample from '@/components/dashboard/LineChart';
 
-const PlayerDashboardPage = ({ cardId }: PlayerDashboardProps) => {
+
+// import { PlayerDashboardProps } from '@/types/Dashboard.type';
+import type { NextPage } from 'next';
+import { notFound } from 'next/navigation';
+import styled from "styled-components";
+
+const Tab = styled.button<{ $primary?: boolean }>`
+width: 100%;
+border-radius: ${props => props.$primary ? "25px 0 0 0" : "0 25px 0 0"};
+color: white;
+font-size: 16px;
+padding: 16px 60px;
+cursor: pointer;
+background: rgba(17, 52, 72);
+border: 0;
+border-bottom: 1px solid gray;
+outline: 0;
+${({ active }) =>
+    active &&
+    `
+  font-weight: bold;
+  background: rgba(17, 52, 72, 0);
+  text-decoration: underline;
+`}
+`;
+const ButtonGroup = styled.div`
+  display: flex;
+`;
+
+interface PageProps {
+  params: { cardId: number };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+const MIN_PLAYER_ID = 1;
+const MAX_PLAYER_ID = 1134;
+
+// TO DO: Implement dynamic metadata generation for SEO using generateMetadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata#dynamic-metadata
+// export const metadata = {
+//   title: 'Player Dashboard | AthletiFi',
+//   description:
+//     'Explore detailed player statistics, highlights, and more on the AthletiFi Player Dashboard.',
+// };
+
+const tabInfo = [
+  {
+    type: "latest",
+    title: "View Latest Stats",
+    icon: "/assets/img/svg/chart-simple-solid.svg"
+  },
+  {
+    type: "trend",
+    title: "View Trends",
+    icon: "/assets/img/svg/chart-line-solid.svg"
+  }
+];
+const PlayerDashboardPage: NextPage<PageProps> = ({ cardId }: PlayerDashboardProps) => {
+  const [active, setActive] = useState(tabInfo[0].type);
+  if (cardId < MIN_PLAYER_ID || cardId > MAX_PLAYER_ID) {
+    notFound();
+  }
   // SAMPLE DATA
   // TODO: FETCH PLAYER DATA FROM BACKEND
   const playerProfile = {
@@ -39,35 +102,60 @@ const PlayerDashboardPage = ({ cardId }: PlayerDashboardProps) => {
           <Header />
           <CommonHero hero={hero} />
         </div>
-        <main className="flex flex-col px-3 min-h-full gap-5 m-10 sm:max-w-md md:max-w-2xl lg:max-w-5xl xl:max-w-7xl  mx-auto">
-          <div className="flex justify-between text-white">
-            <div className="">View latest stats
-              <Image
-                alt="bar chart icon"
-                src="/assets/img/svg/chart-simple-solid.svg"
-                width={20}
-                height={20}
-                quality={75}
-                loading="lazy"
-              />
-            </div>
-            <div>View trends
-              <Image
-                alt="bar chart icon"
-                src="/assets/img/svg/chart-line-solid.svg"
-                width={20}
-                height={20}
-                quality={75}
-                loading="lazy"
-              />
-            </div>
+        <main className="flex flex-col px-3 min-h-full gap-5 m-10 sm:max-w-md md:max-w-2xl lg:max-w-5xl xl:max-w-7xl mx-auto">
+          <div className="stats-chart__container">
+            <ButtonGroup>
+              <Tab
+                $primary
+                active={active === tabInfo[0].type}
+                onClick={() => setActive(tabInfo[0].type)}
+              >
+                <div className="flex justify-center w-10">
+                  <div className="px-3">
+                    {tabInfo[0].title}
+                  </div>
+                  <Image
+                    alt="bar chart icon"
+                    src={tabInfo[0].icon}
+                    width={20}
+                    height={20}
+                    quality={75}
+                    loading="lazy"
+                    className='stats-chart__icon--white stats-chart__icon--rotate90'
+                  />
+                </div>
+              </Tab>
+              <Tab
+                active={active === tabInfo[1].type}
+                onClick={() => setActive(tabInfo[1].type)}
+              >
+                <div className="flex justify-center w-10">
+                  <div className="px-3">
+                    {tabInfo[1].title}
+                  </div>
+                  <Image
+                    alt="line chart icon"
+                    src={tabInfo[1].icon}
+                    width={20}
+                    height={20}
+                    quality={75}
+                    loading="lazy"
+                    className='stats-chart__icon--white'
+                  />
+                </div>
+              </Tab>
+            </ButtonGroup>
+            <section className="flex flex-col items-start h-full gap-5 pt-6">
+              {active === tabInfo[0].type ? <SimpleBarChart /> : <LineExample />}
+              <div className="flex items-center justify-between h-full">
+                <div className="stats-chart__rating-container">
+                  <div className="">Rating</div>
+                  <div className="stats-chart__rating">72</div>
+                </div>
+                {/* <div className="bg-white p-5">DESCRIPTION TEXT CAN GO HERE</div> */}
+              </div>
+            </section>
           </div>
-          <section className="flex flex-col justify-center items-stretch lg:flex-row h-full gap-5">
-            <SimpleBarChart />
-          </section>
-          <section className="flex flex-col xl:flex-row justify-center items-stretch flex-grow h-full gap-5 ">
-            <LineExample />
-          </section>
         </main>
         <Footer />
       </div>
