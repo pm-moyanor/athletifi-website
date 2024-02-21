@@ -46,6 +46,27 @@ const contactUsConfig: PageSEO = {
   websiteURL: 'https://athleti.fi/contact-us',
 };
 
+const notFoundConfig: PageSEO = {
+  description: "The page you're looking for doesn't exist or has been moved.",
+  image: '', // No image for the 404 page
+  title: '404 Not Found | AthletiFi',
+  websiteURL: 'https://athleti.fi/404',
+};
+
+const termsOfUseConfig: PageSEO = {
+  description: "Terms of Use for AthletiFi's platform and services.",
+  image: '', // No image for Terms of Use
+  title: 'Terms of Use | AthletiFi',
+  websiteURL: 'https://athleti.fi/terms-of-use',
+};
+
+const privacyPolicyConfig: PageSEO = {
+  description: "Privacy Policy for using AthletiFi's platform and services.",
+  image: '', // No image for Terms of Use
+  title: 'Terms of Use | AthletiFi',
+  websiteURL: 'https://athleti.fi/terms-of-use',
+};
+
 export const SEO_CONFIG = {
   aboutUs: aboutUsConfig,
   contactUs: contactUsConfig,
@@ -53,4 +74,7 @@ export const SEO_CONFIG = {
   home: homeConfig,
   news: newsConfig,
   signUp: signUpConfig,
+  notFound: notFoundConfig,
+  termsOfUse: termsOfUseConfig,
+  privacyPolicy: privacyPolicyConfig,
 };

@@ -24,7 +24,7 @@ const REQUEST_TIMEOUT_MS: number = 5000;
 export async function axiosRequest<T>(
   method: RequestMethod,
   url: string,
-  data: PostData<T> | null | undefined
+  data: PostData<T> | null | undefined,
 ) {
   try {
     // Make the API request to the Strapi CMS and await the response.
@@ -40,7 +40,7 @@ export async function axiosRequest<T>(
     if (Axios.isAxiosError(error)) {
       if (!error?.response || error.code === 'ECONNABORTED') {
         console.error(
-          'No server response or request timed out. Try again later'
+          'No server response or request timed out. Try again later',
         );
       }
 

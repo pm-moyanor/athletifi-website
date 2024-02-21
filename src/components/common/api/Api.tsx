@@ -17,7 +17,7 @@ export async function getRequestHandler(path: string) {
 // NEWSLETTER POST REQUEST HANDLER
 export async function postRequestHandler<T>(
   path: string,
-  data: PostData<T> | null | undefined
+  data: PostData<T> | null | undefined,
 ) {
   try {
     // Function to handle POST requests for newsletters to the Strapi CMS.
@@ -27,3 +27,15 @@ export async function postRequestHandler<T>(
     throw error;
   }
 }
+
+// NEW SWR Fetcher function for Next.js v14
+export const swrFetcher = async (path: string) => {
+  try {
+    // Performing the GET operation directly.
+    const response = await axiosRequest(RequestMethod.GET, path, null);
+    return response;
+  } catch (error) {
+    console.error(`Error fetching data from ${path}: ${error}`);
+    throw error;
+  }
+};

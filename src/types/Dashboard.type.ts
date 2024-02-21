@@ -1,3 +1,4 @@
 export type PlayerDashboardProps = {
-  playerId: number;
+  params: { playerId: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 };

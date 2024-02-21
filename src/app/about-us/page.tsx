@@ -1,8 +1,5 @@
-// about-us.tsx
-
 // This file renders the "About Us" page.
 // It includes various components to display information about the company.
-
 import WhoWeAre from '@/components/about-us/WhoWeAre';
 import OurMission from '@/components/about-us/OurMission';
 import LookingForward from '@/components/about-us/LookingForward';
@@ -11,8 +8,15 @@ import CommonHero from '@/components/common/CommonHero';
 import { Hero } from '@/types/CommonHero.type';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import Seo from '@/components/common/Seo';
 import { SEO_CONFIG } from '@/utils/seoConfig';
+
+export const metadata = {
+  title: SEO_CONFIG.aboutUs.title,
+  description: SEO_CONFIG.aboutUs.description,
+  openGraph: {
+    images: SEO_CONFIG.aboutUs.image,
+  },
+};
 
 const AboutUs = () => {
   // SEO
@@ -24,7 +28,6 @@ const AboutUs = () => {
 
   return (
     <>
-      <Seo pageSEO={SEO_CONFIG.aboutUs} />
       <div className="overflow-hidden">
         <div className=" about-page__hero-bg bg-no-repeat bg-cover">
           <Header />

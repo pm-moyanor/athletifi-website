@@ -1,8 +1,7 @@
+'use client';
 // This component renders the footer of the website.
 // It includes copyright information and footer links.
-
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import {
   FacebookIcon,
   InstaIcon,
@@ -18,7 +17,15 @@ const Footer = () => {
   const today: Date = new Date();
   const year: number = today.getFullYear();
 
-  const path: string = useRouter().pathname;
+  // Initialize path state with empty string
+  const [path, setPath] = useState('');
+
+  // Effect hook to set path on client-side
+  useEffect(() => {
+    // Use window.location.pathname to get the current path
+    setPath(window.location.pathname);
+  }, []);
+
   return (
     <>
       <footer className="flex flex-col border-t border-darkerSkyBlue h-541">

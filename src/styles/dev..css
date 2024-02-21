@@ -64,13 +64,13 @@
 
 .legal__heading {
   font-weight: bold;
-  margin-top: 2rem; 
-  margin-bottom: 1rem; 
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .legal__body {
   text-align: justify;
-  margin-bottom: 1rem; 
+  margin-bottom: 1rem;
 }
 
 .legal__list {
@@ -80,10 +80,9 @@
   padding-left: 1.5rem;
 }
 
-
 /* ============================ sign up ================================= */
 
-.sign-up__checkbox input[type="checkbox"] {
+.sign-up__checkbox input[type='checkbox'] {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -98,8 +97,8 @@
   padding: 7px;
 }
 
-.sign-up__checkbox input[type="checkbox"]::before {
-  content: "\2713";
+.sign-up__checkbox input[type='checkbox']::before {
+  content: '\2713';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -110,7 +109,7 @@
   padding: 7px;
 }
 
-.sign-up__checkbox input[type="checkbox"]:checked::before {
+.sign-up__checkbox input[type='checkbox']:checked::before {
   opacity: 1;
 }
 

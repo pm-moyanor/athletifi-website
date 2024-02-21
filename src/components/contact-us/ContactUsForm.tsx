@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { ButtonWhiteArrow, UnderLineText } from '@/components/common/Icon';
@@ -29,20 +30,20 @@ const ContactUsForm = () => {
     const formDetails = { data };
     const toastOptions: ToastOptions = {
       draggable: false,
-      position: toast.POSITION.BOTTOM_RIGHT,
+      position: 'bottom-right',
     };
 
     setLoading(true);
     try {
       const response = await postRequestHandler<ContactUs>(
         postContactUsHandler(),
-        formDetails
+        formDetails,
       );
       console.log(response);
       if (response.data) {
         toast.success(
           'We have received your message and will be in touch shortly',
-          toastOptions
+          toastOptions,
         );
         // setData(initialState);
       }
@@ -129,7 +130,7 @@ const ContactUsForm = () => {
                     placeholder="First and last name"
                     className="font-Sugoe font-normal input:-webkit-autofill focus:border-primary autofill:none text-base text-primary leading-6 py-5 px-4 bg-transparent w-full lg:max-w-400 mt-1.5 mb-3 border border-1 border-offwhite outline-none"
                     id="name"
-                    onChange={e =>
+                    onChange={(e) =>
                       setData({
                         ...data,
                         name: e.target.value,
@@ -151,7 +152,7 @@ const ContactUsForm = () => {
                     placeholder="Email"
                     className="font-Sugoe font-normal input:-webkit-autofill focus:border-primary autofill:none text-base text-primary leading-6 py-5 px-4 bg-transparent w-full lg:max-w-400 mt-1.5 mb-3 border border-1 border-offwhite outline-none"
                     id="email"
-                    onChange={e =>
+                    onChange={(e) =>
                       setData({
                         ...data,
                         email: e.target.value,
