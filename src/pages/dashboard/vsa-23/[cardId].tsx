@@ -1,4 +1,5 @@
 import Footer from '@/components/common/Footer';
+import Image from 'next/image';
 import Header from '@/components/common/Header';
 import Seo from '@/components/common/Seo';
 import { SEO_CONFIG } from '@/utils/seoConfig';
@@ -39,6 +40,28 @@ const PlayerDashboardPage = ({ cardId }: PlayerDashboardProps) => {
           <CommonHero hero={hero} />
         </div>
         <main className="flex flex-col px-3 min-h-full gap-5 m-10 sm:max-w-md md:max-w-2xl lg:max-w-5xl xl:max-w-7xl  mx-auto">
+          <div className="flex justify-between text-white">
+            <div className="">View latest stats
+              <Image
+                alt="bar chart icon"
+                src="/assets/img/svg/chart-simple-solid.svg"
+                width={20}
+                height={20}
+                quality={75}
+                loading="lazy"
+              />
+            </div>
+            <div>View trends
+              <Image
+                alt="bar chart icon"
+                src="/assets/img/svg/chart-line-solid.svg"
+                width={20}
+                height={20}
+                quality={75}
+                loading="lazy"
+              />
+            </div>
+          </div>
           <section className="flex flex-col justify-center items-stretch lg:flex-row h-full gap-5">
             <SimpleBarChart />
           </section>
