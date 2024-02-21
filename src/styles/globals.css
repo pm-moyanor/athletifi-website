@@ -1,4 +1,4 @@
-@import url("./dev..css");
+@import url('./dev..css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,45 +21,45 @@ select:-webkit-autofill:focus {
 /* FONT-FAMILY HELVETICAMED */
 @layer base {
   @font-face {
-    font-family: "HelveticaNeueMedium";
-    src: url("../../public/assets/fonts/HelveticaMedExt.ttf");
+    font-family: 'HelveticaNeueMedium';
+    src: url('../../public/assets/fonts/HelveticaMedExt.ttf');
     font-weight: 500;
     font-display: swap;
     font-style: normal;
   }
 
   @font-face {
-    font-family: "HelveticaNeueLight";
-    src: url("../../public/assets/fonts/HelveticaNeueLight.ttf");
+    font-family: 'HelveticaNeueLight';
+    src: url('../../public/assets/fonts/HelveticaNeueLight.ttf');
     font-weight: 300;
     font-display: swap;
     font-style: normal;
   }
 
   @font-face {
-    font-family: "HelveticaNeueRegular";
-    src: url("../../public/assets/fonts/HelveticaNeueRegular.ttf");
+    font-family: 'HelveticaNeueRegular';
+    src: url('../../public/assets/fonts/HelveticaNeueRegular.ttf');
     font-weight: 400;
     font-display: swap;
     font-style: normal;
   }
 
   .font-HelveticaNeueMedium {
-    font-family: "HelveticaNeueMedium";
+    font-family: 'HelveticaNeueMedium';
   }
 
   .font-HelveticaNeueRegular {
-    font-family: "HelveticaNeueRegular";
+    font-family: 'HelveticaNeueRegular';
   }
 
   .font-HelveticaNeueLight {
-    font-family: "HelveticaNeueLight";
+    font-family: 'HelveticaNeueLight';
   }
 
   /* FONT-FAMILY SEGOE-UI */
   @font-face {
-    font-family: "SegoeUI";
-    src: url("../../public/assets/fonts/SegoeUI.ttf");
+    font-family: 'SegoeUI';
+    src: url('../../public/assets/fonts/SegoeUI.ttf');
     font-weight: 400;
     font-display: swap;
     font-style: normal;
@@ -67,7 +67,7 @@ select:-webkit-autofill:focus {
 }
 
 .font-Segoe {
-  font-family: "SegoeUI";
+  font-family: 'SegoeUI';
 }
 
 body {
@@ -77,7 +77,9 @@ body {
 /* BLUE-BORDER GRADIENT */
 .container__border--blue-gradient::after {
   background: linear-gradient(148.79deg, #11568c 17.97%, #00c5f4 91.1%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
@@ -89,19 +91,20 @@ body {
 
 /* BACKGROUND-IMG */
 .home-page__hero-bg {
-  background-image: url("/assets/img/webp/header_bg.webp");
+  background-image: url('/assets/img/webp/header_bg.webp');
 }
 
 .about-page__hero-bg {
-  background-image: url("/assets/img/webp/about-hero-img.webp");
+  background-image: url('/assets/img/webp/about-hero-img.webp');
 }
 
 .news-page__hero-bg {
-  background-image: url("/assets/img/webp/news-hero-img.webp");
+  background-image: url('/assets/img/webp/news-hero-img.webp');
 }
 
-.signup-page__hero-bg, .contact-us-page__hero-bg {
-  background-image: url("/assets/img/webp/sing-up-hero-img.webp");
+.signup-page__hero-bg,
+.contact-us-page__hero-bg {
+  background-image: url('/assets/img/webp/sing-up-hero-img.webp');
 }
 
 /* CUSTOM SCROLLBAR  */
@@ -134,7 +137,7 @@ html {
 }
 
 .news-loader__animation::before {
-  content: "";
+  content: '';
   display: block;
   height: 100%;
   width: 100%;

@@ -2,27 +2,29 @@ import CommonHero from '@/components/common/CommonHero';
 import { Hero } from '@/types/CommonHero.type';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import Seo from '@/components/common/Seo';
 import { SEO_CONFIG } from '@/utils/seoConfig';
-import TermsOfUse from '@/components/terms/TermsOfUse';
+import PrivacyPolicy from '@/components/terms/PrivacyPolicy';
 
-const TermsOfUsePage = () => {
+export const metadata = {
+  title: SEO_CONFIG.privacyPolicy.title,
+  description: SEO_CONFIG.privacyPolicy.description,
+};
+
+const PrivacyPolicyPage = () => {
   const hero: Hero = {
-    heading: 'Terms of Use',
+    heading: 'Privacy Policy',
   };
 
   return (
     <>
-      {/* SEO */}
-      <Seo pageSEO={SEO_CONFIG.signUp} />
       <Header />
       <CommonHero hero={hero} />
       <main>
-        <TermsOfUse />
+        <PrivacyPolicy />
       </main>
       <Footer />
     </>
   );
 };
 
-export default TermsOfUsePage;
+export default PrivacyPolicyPage;

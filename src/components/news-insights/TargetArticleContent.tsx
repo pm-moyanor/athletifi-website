@@ -122,7 +122,7 @@ const TargetArticleContent = ({ newsDetailData }: NewsDetails) => {
                             ></div>
                           </div>
                         );
-                      }
+                      },
                     )}
                   </div>
                 </div>
