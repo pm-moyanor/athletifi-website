@@ -12,11 +12,15 @@ import PlayerStats from '@/components/dashboard/PlayerStats';
 import PlayerInfo from '@/components/dashboard/PlayerInfo';
 import PlayerCard from '@/components/dashboard/PlayerCard';
 import type { NextPage } from 'next';
+import { notFound } from 'next/navigation';
 
 interface PageProps {
-  params: { playerId: string };
+  params: { playerId: number };
   searchParams?: { [key: string]: string | string[] | undefined };
 }
+
+const MIN_PLAYER_ID = 1;
+const MAX_PLAYER_ID = 1134;
 
 // TO DO: Implement dynamic metadata generation for SEO using generateMetadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata#dynamic-metadata
 // export const metadata = {
@@ -28,12 +32,14 @@ interface PageProps {
 const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
   // const PlayerDashboardPage = ({ playerId }: PlayerDashboardProps) => {
   const { playerId } = params;
+  if (playerId < MIN_PLAYER_ID || playerId > MAX_PLAYER_ID) {
+    notFound();
+  }
   // SAMPLE DATA
   // TODO: FETCH PLAYER DATA FROM BACKEND
   const playerProfile = {
     name: 'Lionel Messi',
   };
-  console.log(playerId);
 
   // SEO
   const hero: Hero = {
