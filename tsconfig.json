@@ -15,12 +15,14 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": ".",
     "paths": {
       "@/components/*": ["./src/components/*"],
       "@/app/*": ["./src/app/*"],
       "@/utils/*": ["./src/app/utils/*"],
       "@/types/*": ["./src/types/*"],
-      "@/styles/*": ["./src/styles/*"]
+      "@/styles/*": ["./src/styles/*"],
+      "@/*": ["src/*"]
     },
     "plugins": [
       {
