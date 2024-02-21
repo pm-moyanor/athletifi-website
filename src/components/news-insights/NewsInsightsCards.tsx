@@ -1,7 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { NextRouter, useRouter } from 'next/router';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { PaginationArrow } from '../common/Icon';
 import NewsInsightsLoader from './NewsInsightsLoader';
 import { getRequestHandler } from '../common/api/Api';
@@ -20,38 +22,46 @@ const IMAGE_WIDTH_GRID: number = 716;
 const IMAGE_HEIGHT_GRID: number = 692;
 
 const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const currentPageParam = searchParams.get('page');
+  const currentPage = currentPageParam ? Number(currentPageParam) : 1;
+  const slug = searchParams.get('slug');
+
   // ==== SKELETON LOADER START ====
   const [loading, setLoading] = useState<boolean>(false);
 
   // ==== SKELETON LOADER END ====
-  const router: NextRouter = useRouter();
+  // const router: NextRouter = useRouter();
   const moreArticles: NewsArticle[] = allNewsList ?? [];
   // Nullish coalescing (??) is used to ensure that moreArticles is always an array, even if props.allNewsList is undefined or null.
 
   const itemsPerPage: number = 5; //change this to change the number of articles displayed on one page
-  const [currentPage, setCurrentPage] = useState<number>(
-    Number(router.query.page)
-  );
+
   // Calculate the start and end indexes of the current page
   const startIndex: number = (currentPage - 1) * itemsPerPage;
   const endIndex: number = startIndex + itemsPerPage;
   const displayedItems: NewsArticle[] = moreArticles.slice(
     startIndex,
-    endIndex
+    endIndex,
   );
   const totalPages: number = Math.ceil(moreArticles.length / itemsPerPage) || 1;
 
   const handlePageChange = async (newPage: number): Promise<void> => {
     const toastOptions: ToastOptions = {
       draggable: false,
-      position: toast.POSITION.BOTTOM_RIGHT,
+      position: 'bottom-right',
     };
 
     setLoading(true);
     try {
       await getRequestHandler(newsListApiHandler());
+
+      const newPath = `/news?page=${newPage}`;
+      // Use the push method from useRouter to navigate
+      router.push(newPath);
       setLoading(false);
-      setCurrentPage(newPage);
     } catch (error) {
       setLoading(false);
       toast.error('Get request has failed. Try again later', toastOptions);
@@ -140,7 +150,7 @@ const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
                                       {val.title}
                                     </button>
                                   );
-                                }
+                                },
                               )}
                             </span>
                           </div>
@@ -166,9 +176,9 @@ const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
                 <Link
                   scroll={false}
                   href={
-                    router.pathname === '/news'
+                    pathname === '/news'
                       ? `/news?page=${currentPage - 1}`
-                      : `/news/${router.query.slug}?page=${currentPage - 1}`
+                      : `/news/${slug}?page=${currentPage - 1}`
                   }
                   onClick={() => handlePageChange(currentPage - 1)}
                   className="-rotate-90 hover:-translate-x-1 duration-200 inline-block"
@@ -191,9 +201,9 @@ const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
                   scroll={false}
                   onClick={() => handlePageChange(currentPage + 1)}
                   href={
-                    router.pathname === '/news'
+                    pathname === '/news'
                       ? `/news?page=${currentPage + 1}`
-                      : `/news/${router.query.slug}?page=${currentPage + 1}`
+                      : `/news/${slug}?page=${currentPage + 1}`
                   }
                   className="rotate-90 hover:translate-x-1 duration-200"
                 >

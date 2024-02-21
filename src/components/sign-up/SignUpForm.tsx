@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -29,7 +31,7 @@ const SignUpForm = () => {
     const formDetails = { data };
     const toastOptions: ToastOptions = {
       draggable: false,
-      position: toast.POSITION.BOTTOM_RIGHT,
+      position: 'bottom-right',
     };
 
     setLoading(true);
@@ -37,7 +39,7 @@ const SignUpForm = () => {
       try {
         const response = await postRequestHandler<SignUp>(
           postNewsLetterHandler(),
-          formDetails
+          formDetails,
         );
         console.log(response);
         if (response.data) {
@@ -49,7 +51,7 @@ const SignUpForm = () => {
         } else if (response.response.status === 400) {
           toast.error(
             'This email has already been used to sign-up',
-            toastOptions
+            toastOptions,
           );
         }
       } catch (err) {
@@ -58,7 +60,7 @@ const SignUpForm = () => {
     } else {
       toast.warning(
         'Please review and agree to the Terms and Privacy Policy',
-        toastOptions
+        toastOptions,
       );
     }
     setLoading(false);
@@ -119,7 +121,7 @@ const SignUpForm = () => {
                     placeholder="Email"
                     className="font-Sugoe font-normal input:-webkit-autofill focus:border-primary autofill:none text-base text-primary leading-6 py-5 px-4 bg-transparent w-full lg:max-w-400 mt-1.5 border border-1 border-offwhite outline-none"
                     id="email"
-                    onChange={e =>
+                    onChange={(e) =>
                       setData({
                         ...data,
                         email: e.target.value,
@@ -131,7 +133,7 @@ const SignUpForm = () => {
                   <input
                     type="checkbox"
                     id="Privacy-Policy"
-                    onChange={event => setChecked(event.target.checked)}
+                    onChange={(event) => setChecked(event.target.checked)}
                   />
                   <label
                     htmlFor="Privacy-Policy"

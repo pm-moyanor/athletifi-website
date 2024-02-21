@@ -2,6 +2,7 @@
 
 // This component displays the latest news articles on the homepage.
 // It fetches data from the Strapi CMS and renders it in a list format.
+'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
