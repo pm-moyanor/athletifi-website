@@ -33,7 +33,7 @@ const SimpleBarChart = () => {
 
   function CustomLegend() {
     return (
-      <div className="flex flex-col">
+      <div className="stats-legend__container">
         {labels.map((entry, index) => (
           <div className="stats-legend__buttons" style={{ background: DEFAULT_BUTTON_COLOR }} key={`bar-item-${index}`}>{entry.key}</div >
         ))
@@ -43,7 +43,7 @@ const SimpleBarChart = () => {
   }
 
   return (
-    <ResponsiveContainer width={"70%"} height={55 * data.length} debounce={50}>
+    <ResponsiveContainer width={"100%"} height={350} debounce={50}>
       <BarChart data={data} layout="vertical" margin={{ left: 20, right: 30 }}>
         <XAxis hide axisLine={false} type="number" />
         {/* <YAxis yAxisId={0} dataKey={xKey} type="category" axisLine={false} tickLine={false} tick={<CustomYAxisTick />} style={{ textAnchor: "middle" }} /> */}
@@ -51,7 +51,7 @@ const SimpleBarChart = () => {
         <Legend layout="vertical" verticalAlign="middle" align="left" content={<CustomLegend />} />
         {/* <Tooltip cursor={false} content={<CustomTooltip />} position={{ x: 700, y: 0 }} /> */}
         {/* <Tooltip cursor={false} /> */}
-        <Bar dataKey={yKey} minPointSize={2} barSize={36} radius={20} background={{ fill: LAYERCOLOR, radius: 20, opacity: 0.1 }}>
+        <Bar dataKey={yKey} minPointSize={2} barSize={40} radius={20} background={{ fill: LAYERCOLOR, radius: 20, opacity: 0.1 }}>
           <LabelList dataKey={yKey} position="insideRight" offset={10} style={{ fill: LAYERCOLOR }} />
           {data.map((d, idx) => {
             return <Cell key={d[xKey]} fill={COLORS[idx]} />;
