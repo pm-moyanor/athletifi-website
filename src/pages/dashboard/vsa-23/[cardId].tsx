@@ -19,24 +19,23 @@ import HeroBanner from '@/components/dashboard/HeroBanner';
 import SimpleBarChart from '@/components/dashboard/BarChart';
 import LineExample from '@/components/dashboard/LineChart';
 
-
 // import { PlayerDashboardProps } from '@/types/Dashboard.type';
 import type { NextPage } from 'next';
 import { notFound } from 'next/navigation';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Tab = styled.button<{ $primary?: boolean }>`
-width: 100%;
-border-radius: ${props => props.$primary ? "25px 0 0 0" : "0 25px 0 0"};
-color: white;
-font-size: 16px;
-padding: 16px 60px;
-cursor: pointer;
-background: rgba(17, 52, 72);
-border: 0;
-border-bottom: 1px solid gray;
-outline: 0;
-${({ active }) =>
+  width: 100%;
+  border-radius: ${(props) => (props.$primary ? '25px 0 0 0' : '0 25px 0 0')};
+  color: white;
+  font-size: 16px;
+  padding: 16px 60px;
+  cursor: pointer;
+  background: rgba(17, 52, 72);
+  border: 0;
+  border-bottom: 1px solid gray;
+  outline: 0;
+  ${({ active }) =>
     active &&
     `
   font-weight: bold;
@@ -65,17 +64,19 @@ const MAX_PLAYER_ID = 1134;
 
 const tabInfo = [
   {
-    type: "latest",
-    title: "View Latest Stats",
-    icon: "/assets/img/svg/chart-simple-solid.svg"
+    type: 'latest',
+    title: 'View Latest Stats',
+    icon: '/assets/img/svg/chart-simple-solid.svg',
   },
   {
-    type: "trend",
-    title: "View Trends",
-    icon: "/assets/img/svg/chart-line-solid.svg"
-  }
+    type: 'trend',
+    title: 'View Trends',
+    icon: '/assets/img/svg/chart-line-solid.svg',
+  },
 ];
-const PlayerDashboardPage: NextPage<PageProps> = ({ cardId }: PlayerDashboardProps) => {
+const PlayerDashboardPage: NextPage<PageProps> = ({
+  cardId,
+}: PlayerDashboardProps) => {
   const [active, setActive] = useState(tabInfo[0].type);
   if (cardId < MIN_PLAYER_ID || cardId > MAX_PLAYER_ID) {
     notFound();
@@ -111,9 +112,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ cardId }: PlayerDashboardPro
                 onClick={() => setActive(tabInfo[0].type)}
               >
                 <div className="flex justify-center w-10">
-                  <div className="px-3">
-                    {tabInfo[0].title}
-                  </div>
+                  <div className="px-3">{tabInfo[0].title}</div>
                   <Image
                     alt="bar chart icon"
                     src={tabInfo[0].icon}
@@ -121,7 +120,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ cardId }: PlayerDashboardPro
                     height={20}
                     quality={75}
                     loading="lazy"
-                    className='stats-chart__icon--white stats-chart__icon--rotate90'
+                    className="stats-chart__icon--white stats-chart__icon--rotate90"
                   />
                 </div>
               </Tab>
@@ -130,9 +129,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ cardId }: PlayerDashboardPro
                 onClick={() => setActive(tabInfo[1].type)}
               >
                 <div className="flex justify-center w-10">
-                  <div className="px-3">
-                    {tabInfo[1].title}
-                  </div>
+                  <div className="px-3">{tabInfo[1].title}</div>
                   <Image
                     alt="line chart icon"
                     src={tabInfo[1].icon}
@@ -140,13 +137,17 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ cardId }: PlayerDashboardPro
                     height={20}
                     quality={75}
                     loading="lazy"
-                    className='stats-chart__icon--white'
+                    className="stats-chart__icon--white"
                   />
                 </div>
               </Tab>
             </ButtonGroup>
             <section className="flex flex-col items-start h-full gap-5 pt-6">
-              {active === tabInfo[0].type ? <SimpleBarChart /> : <LineExample />}
+              {active === tabInfo[0].type ? (
+                <SimpleBarChart />
+              ) : (
+                <LineExample />
+              )}
               <div className="flex items-center justify-between h-full">
                 <div className="stats-chart__rating-container">
                   <div className="">Rating</div>
