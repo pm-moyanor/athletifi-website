@@ -1,6 +1,7 @@
 import { PureComponent, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { Payload } from "recharts/types/component/DefaultLegendContent";
+import { useMediaQuery } from "@/app/utils/useMediaQuery";
 
 const DEFAULT_BUTTON_COLOR = "#113448";
 
@@ -69,6 +70,9 @@ type Key = {
 };
 
 function LineExample() {
+  // const isMobile = useMediaQuery("(max-width: 480px)");
+  const isMobile = useMediaQuery("(max-width: 850px)");
+
   const labels: Key[] = [
     { key: "attacking", color: "#DA393B" },
     { key: "skill", color: "#27B6BD" },
@@ -147,7 +151,10 @@ function LineExample() {
         width={500}
         height={300}
         data={data}
-        margin={{
+        margin={isMobile ? {
+          right: 20,
+          left: -10,
+        } : {
           top: 5,
           right: 30,
           left: 20,
@@ -157,7 +164,14 @@ function LineExample() {
         <XAxis dataKey="match" tickLine={false} />
         <YAxis axisLine={false} tickLine={false} />
         <Tooltip content={<CustomTooltip />} />
-        <Legend layout="vertical" verticalAlign="middle" align="left" content={<CustomLegend />} />
+        <Legend
+          layout="vertical"
+          verticalAlign={`${isMobile ? 'top' : 'middle'}`}
+          align={`${isMobile ? 'center' : 'left'}`}
+          content={<CustomLegend />}
+          wrapperStyle={isMobile ? {
+            paddingBottom: "40px"
+          } : {}} />
         <Line
           type="monotone"
           dataKey="attacking"
