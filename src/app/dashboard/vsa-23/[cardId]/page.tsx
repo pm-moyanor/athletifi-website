@@ -8,6 +8,8 @@ import CommonHero from '@/components/common/CommonHero';
 import { Hero } from '@/types/CommonHero.type';
 import type { NextPage } from 'next';
 import { notFound } from 'next/navigation';
+import Profile from '@/components/dashboard/ProfileCard';
+import LatestMatch from '@/components/dashboard/LatestMatchCard';
 
 import Charts from '@/components/dashboard/Charts';
 
