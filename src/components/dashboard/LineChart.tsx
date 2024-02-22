@@ -3,7 +3,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { Payload } from "recharts/types/component/DefaultLegendContent";
 import { useMediaQuery } from "@/app/utils/useMediaQuery";
 
-const DEFAULT_BUTTON_COLOR = "#113448";
+const DEFAULT_COLOR = "#113448";
 
 const data = [
   {
@@ -70,7 +70,6 @@ type Key = {
 };
 
 function LineExample() {
-  // const isMobile = useMediaQuery("(max-width: 480px)");
   const isMobile = useMediaQuery("(max-width: 850px)");
 
   const labels: Key[] = [
@@ -104,7 +103,16 @@ function LineExample() {
     return (
       <div className="stats-legend__container">
         {payload.map((entry, index) => (
-          <div className="stats-legend__buttons hover:font-bold hover:cursor-pointer" style={{ background: !lineProps[entry.value] ? labels[index].color : DEFAULT_BUTTON_COLOR }} key={`line-item-${index}`} onClick={(data) => selectLine(data)}>{entry.value}</div >
+          <div
+            className="stats-legend__buttons hover:font-bold hover:cursor-pointer"
+            style={{ background: !lineProps[entry.value] ? labels[index].color : DEFAULT_COLOR }}
+            key={`line-item-${index}`}
+            onClick={(data) => selectLine(data)}
+            onMouseEnter={(data) => handleLegendMouseEnter(data)}
+            onMouseLeave={() => handleLegendMouseLeave()}
+          >
+            {entry.value}
+          </div >
         ))
         }
       </div >
@@ -125,9 +133,9 @@ function LineExample() {
     return null;
   };
 
-  function handleLegendMouseEnter(data: Payload) {
-    if (data.dataKey && typeof data.dataKey == "string" && !lineProps[data.dataKey]) {
-      setLineProps({ ...lineProps, hover: data.dataKey });
+  function handleLegendMouseEnter(e: any) {
+    if (!lineProps[e.target.textContent] && !lineProps.hover) {
+      setLineProps({ ...lineProps, hover: e.target.textContent });
     }
   }
 
@@ -175,42 +183,42 @@ function LineExample() {
         <Line
           type="monotone"
           dataKey="attacking"
-          stroke="#DA393B"
-          strokeWidth="4"
+          stroke={`${lineProps["attacking"] ? DEFAULT_COLOR : "#DA393B"}`}
+          strokeWidth={`${lineProps["attacking"] ? '2' : lineProps.hover === "attacking" || !lineProps.hover ? '5' : '1'}`}
           dot={false}
-          hide={lineProps["attacking"] === true}
+        // hide={lineProps["attacking"] === true}
         />
         <Line
           type="monotone"
           dataKey="skill"
-          stroke="#27B6BD"
-          strokeWidth="4"
+          stroke={`${lineProps["skill"] ? DEFAULT_COLOR : "#27B6BD"}`}
+          strokeWidth={`${lineProps["skill"] ? '2' : lineProps.hover === "skill" || !lineProps.hover ? '5' : '1'}`}
           dot={false}
-          hide={lineProps["skill"] === true}
+        // hide={lineProps["skill"] === true}
         />
         <Line
           type="monotone"
           dataKey="physical"
-          stroke="#B09E03"
-          strokeWidth="4"
+          stroke={`${lineProps["physical"] ? DEFAULT_COLOR : "#B09E03"}`}
+          strokeWidth={`${lineProps["physical"] ? '2' : lineProps.hover === "physical" || !lineProps.hover ? '5' : '1'}`}
           dot={false}
-          hide={lineProps["physical"] === true}
+        // hide={lineProps["physical"] === true}
         />
         <Line
           type="monotone"
           dataKey="mentality"
-          stroke="#FC6713"
-          strokeWidth="4"
+          stroke={`${lineProps["mentality"] ? DEFAULT_COLOR : "#FC6713"}`}
+          strokeWidth={`${lineProps["mentality"] ? '2' : lineProps.hover === "mentality" || !lineProps.hover ? '5' : '1'}`}
           dot={false}
-          hide={lineProps["mentality"] === true}
+        // hide={lineProps["mentality"] === true}
         />
         <Line
           type="monotone"
           dataKey="defending"
-          stroke="#5A54A2"
-          strokeWidth="4"
+          stroke={`${lineProps["defending"] ? DEFAULT_COLOR : "#5A54A2"}`}
+          strokeWidth={`${lineProps["defending"] ? '2' : lineProps.hover === "defending" || !lineProps.hover ? '5' : '1'}`}
           dot={false}
-          hide={lineProps["defending"] === true}
+        // hide={lineProps["defending"] === true}
         />
         <CartesianGrid strokeWidth={2} horizontal={true} vertical={false} opacity={0.5} />
       </LineChart>

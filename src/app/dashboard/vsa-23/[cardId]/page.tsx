@@ -70,12 +70,11 @@ const tabInfo = [
 ];
 const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
   const { cardId } = params;
-  const [active, setActive] = useState(tabInfo[0].type);
+  const [activeTab, setActiveTab] = useState(tabInfo[0].type);
   if (cardId < MIN_PLAYER_ID || cardId > MAX_PLAYER_ID) {
     notFound();
   }
 
-  // const isMobile = useMediaQuery("(max-width: 480px)");
   const isMobile = useMediaQuery("(max-width: 850px)");
   // SAMPLE DATA
   // TODO: FETCH PLAYER DATA FROM BACKEND
@@ -103,8 +102,8 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
             <ButtonGroup>
               <Tab
                 $primary
-                active={active === tabInfo[0].type}
-                onClick={() => setActive(tabInfo[0].type)}
+                active={activeTab === tabInfo[0].type}
+                onClick={() => setActiveTab(tabInfo[0].type)}
               >
                 <div className="flex justify-center w-10">
                   <div className="px-3">
@@ -122,8 +121,8 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
                 </div>
               </Tab>
               <Tab
-                active={active === tabInfo[1].type}
-                onClick={() => setActive(tabInfo[1].type)}
+                active={activeTab === tabInfo[1].type}
+                onClick={() => setActiveTab(tabInfo[1].type)}
               >
                 <div className="flex justify-center w-10">
                   <div className="px-3">
@@ -142,7 +141,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
               </Tab>
             </ButtonGroup>
             <section className="flex flex-col items-start h-full gap-5 pt-6">
-              {active === tabInfo[0].type ? <SimpleBarChart /> : <LineExample />}
+              {activeTab === tabInfo[0].type ? <SimpleBarChart /> : <LineExample />}
               <div className="flex items-center justify-between h-full">
                 <div className="stats-chart__rating-container">
                   <div className="">Rating</div>
