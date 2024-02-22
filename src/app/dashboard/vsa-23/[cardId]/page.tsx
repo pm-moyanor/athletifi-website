@@ -1,45 +1,14 @@
 'use client';
 
-import { useState } from 'react';
 import Footer from '@/components/common/Footer';
-import Image from 'next/image';
 import Header from '@/components/common/Header';
 // import { SEO_CONFIG } from '@/utils/seoConfig';
 import CommonHero from '@/components/common/CommonHero';
 import { Hero } from '@/types/CommonHero.type';
-import { PlayerDashboardProps } from '@/types/Dashboard.type';
-
-import SimpleBarChart from '@/components/dashboard/BarChart';
-import LineExample from '@/components/dashboard/LineChart';
-
-// import { PlayerDashboardProps } from '@/types/Dashboard.type';
 import type { NextPage } from 'next';
 import { notFound } from 'next/navigation';
-import styled from "styled-components";
-import { useMediaQuery } from "@/app/utils/useMediaQuery";
 
-const Tab = styled.button<{ $primary?: boolean }>`
-width: 100%;
-border-radius: ${props => props.$primary ? "25px 0 0 0" : "0 25px 0 0"};
-color: white;
-font-size: 14px;
-padding: 16px 0px;
-cursor: pointer;
-background: rgba(17, 52, 72);
-border: 0;
-border-bottom: 1px solid gray;
-outline: 0;
-${({ active }) =>
-    active &&
-    `
-  font-weight: bold;
-  background: rgba(17, 52, 72, 0);
-  text-decoration: underline;
-`}
-`;
-const ButtonGroup = styled.div`
-  display: flex;
-`;
+import Charts from '@/components/dashboard/Charts';
 
 interface PageProps {
   params: { cardId: number };
@@ -56,26 +25,12 @@ const MAX_PLAYER_ID = 1134;
 //     'Explore detailed player statistics, highlights, and more on the AthletiFi Player Dashboard.',
 // };
 
-const tabInfo = [
-  {
-    type: "latest",
-    title: "View Latest Stats",
-    icon: "/assets/img/svg/chart-simple-solid.svg"
-  },
-  {
-    type: "trend",
-    title: "View Trends",
-    icon: "/assets/img/svg/chart-line-solid.svg"
-  }
-];
 const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
   const { cardId } = params;
-  const [activeTab, setActiveTab] = useState(tabInfo[0].type);
   if (cardId < MIN_PLAYER_ID || cardId > MAX_PLAYER_ID) {
     notFound();
   }
 
-  const isMobile = useMediaQuery("(max-width: 850px)");
   // SAMPLE DATA
   // TODO: FETCH PLAYER DATA FROM BACKEND
   const playerProfile = {
@@ -93,64 +48,12 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
   return (
     <>
       <div className="overflow-hidden">
-        <div className=" about-page__hero-bg bg-no-repeat bg-cover">
+        <div className="about-page__hero-bg bg-no-repeat bg-cover">
           <Header />
           <CommonHero hero={hero} />
         </div>
-        <main className="flex flex-col px-3 min-h-full gap-5 m-10 sm:max-w-md md:max-w-2xl lg:max-w-5xl xl:max-w-7xl mx-auto">
-          <div className="stats-chart__container">
-            <ButtonGroup>
-              <Tab
-                $primary
-                active={activeTab === tabInfo[0].type}
-                onClick={() => setActiveTab(tabInfo[0].type)}
-              >
-                <div className="flex justify-center w-10">
-                  <div className="px-3">
-                    {tabInfo[0].title}
-                  </div>
-                  <Image
-                    alt="bar chart icon"
-                    src={tabInfo[0].icon}
-                    width={isMobile ? 13 : 17}
-                    height={isMobile ? 13 : 17}
-                    quality={75}
-                    loading="lazy"
-                    className='stats-chart__icon--white stats-chart__icon--rotate90'
-                  />
-                </div>
-              </Tab>
-              <Tab
-                active={activeTab === tabInfo[1].type}
-                onClick={() => setActiveTab(tabInfo[1].type)}
-              >
-                <div className="flex justify-center w-10">
-                  <div className="px-3">
-                    {tabInfo[1].title}
-                  </div>
-                  <Image
-                    alt="line chart icon"
-                    src={tabInfo[1].icon}
-                    width={isMobile ? 13 : 17}
-                    height={isMobile ? 13 : 17}
-                    quality={75}
-                    loading="lazy"
-                    className='stats-chart__icon--white'
-                  />
-                </div>
-              </Tab>
-            </ButtonGroup>
-            <section className="flex flex-col items-start h-full gap-5 pt-6">
-              {activeTab === tabInfo[0].type ? <SimpleBarChart /> : <LineExample />}
-              <div className="flex items-center justify-between h-full">
-                <div className="stats-chart__rating-container">
-                  <div className="">Rating</div>
-                  <div className="stats-chart__rating">72</div>
-                </div>
-                {/* <div className="bg-white p-5">DESCRIPTION TEXT CAN GO HERE</div> */}
-              </div>
-            </section>
-          </div>
+        <main className="flex flex-col min-h-full max-w-full px-3 py-3">
+          <Charts />
         </main>
         <Footer />
       </div>
