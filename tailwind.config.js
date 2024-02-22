@@ -44,10 +44,17 @@ module.exports = {
         darkgray: '#0D171F',
         extraDarkBlue: '#00c3f47b',
         matchtitles: 'rgba(0, 197, 244, 0.05)',
-        offwhite: '#B1B5B8',
+        offwhite: '#B1B5B8', 
         partnersBorders: '#49545C',
         primary: '#FDFEFF',
         skyblue: '#00C5F4',
+        //dashboard
+        chartRed: '#DA393B',
+        chartBlue: '#27B6BD',
+        chartYellow: '#B09E03',
+        chartOrange: '#FC6713',
+        chartPurple: '#5A54A2',
+        cardsBackground: '#113448'
       },
       container: {
         center: true,
@@ -56,6 +63,9 @@ module.exports = {
           DEFAULT: '1rem',
           xl: '0rem',
         },
+      },
+      fontFamily: {
+        sourceSansPro: ['SourceSansPro', 'sans-serif'],
       },
       fontSize: {
         base: '16px',
