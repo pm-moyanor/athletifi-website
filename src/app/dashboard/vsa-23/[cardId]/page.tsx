@@ -7,6 +7,8 @@ import CommonHero from '@/components/common/CommonHero';
 import { Hero } from '@/types/CommonHero.type';
 import type { NextPage } from 'next';
 import { notFound } from 'next/navigation';
+import Profile from '@/components/dashboard/ProfileCard';
+import LatestMatch from '@/components/dashboard/LatestMatchCard';
 
 import Charts from '@/components/dashboard/Charts';
 
@@ -53,10 +55,20 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
           <CommonHero hero={hero} />
         </div>
         <main className="flex flex-col min-h-full max-w-full px-3 py-3">
+          <Profile
+            age={13}
+            club={"River City FC"}
+            league={"Youth Soccer Association"}
+            teamName={"River City Raptors"}
+            ageGroup={"U14"}
+            gender={"Male"}
+            coach={"Daniel Smith"}
+          />
+          <LatestMatch />
           <Charts />
-        </main>
+        </main >
         <Footer />
-      </div>
+      </div >
     </>
   );
 };
