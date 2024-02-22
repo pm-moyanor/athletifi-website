@@ -78,7 +78,6 @@ const PlayerDashboardPage: NextPage<PageProps> = ({
     notFound();
   }
 
-  // const isMobile = useMediaQuery("(max-width: 480px)");
   const isMobile = useMediaQuery('(max-width: 850px)');
   // SAMPLE DATA
   // TODO: FETCH PLAYER DATA FROM BACKEND
@@ -106,8 +105,8 @@ const PlayerDashboardPage: NextPage<PageProps> = ({
             <ButtonGroup>
               <Tab
                 $primary
-                active={active === tabInfo[0].type}
-                onClick={() => setActive(tabInfo[0].type)}
+                active={activeTab === tabInfo[0].type}
+                onClick={() => setActiveTab(tabInfo[0].type)}
               >
                 <div className="flex justify-center w-10">
                   <div className="px-3">{tabInfo[0].title}</div>
@@ -123,8 +122,8 @@ const PlayerDashboardPage: NextPage<PageProps> = ({
                 </div>
               </Tab>
               <Tab
-                active={active === tabInfo[1].type}
-                onClick={() => setActive(tabInfo[1].type)}
+                active={activeTab === tabInfo[1].type}
+                onClick={() => setActiveTab(tabInfo[1].type)}
               >
                 <div className="flex justify-center w-10">
                   <div className="px-3">{tabInfo[1].title}</div>
