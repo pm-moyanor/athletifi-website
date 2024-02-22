@@ -104,9 +104,9 @@ function LineExample() {
       <div className="stats-legend__container">
         {payload.map((entry, index) => (
           <div
-            className="stats-legend__buttons hover:font-bold hover:cursor-pointer"
-            style={{ background: !lineProps[entry.value] ? labels[index].color : DEFAULT_COLOR }}
             key={`line-item-${index}`}
+            className="stats-legend__buttons"
+            style={{ background: !lineProps[entry.value] ? labels[index].color : DEFAULT_COLOR }}
             onClick={(data) => selectLine(data)}
             onMouseEnter={(data) => handleLegendMouseEnter(data)}
             onMouseLeave={() => handleLegendMouseLeave()}
@@ -154,75 +154,80 @@ function LineExample() {
   }
 
   return (
-    <ResponsiveContainer width="100%" height={350}>
-      <LineChart
-        width={500}
-        height={300}
-        data={data}
-        margin={isMobile ? {
-          right: 20,
-          left: -10,
-        } : {
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <XAxis dataKey="match" tickLine={false} />
-        <YAxis axisLine={false} tickLine={false} />
-        <Tooltip content={<CustomTooltip />} />
-        <Legend
-          layout="vertical"
-          verticalAlign={`${isMobile ? 'top' : 'middle'}`}
-          align={`${isMobile ? 'center' : 'left'}`}
-          content={<CustomLegend />}
-          wrapperStyle={isMobile ? {
-            paddingBottom: "40px"
-          } : {}} />
-        <Line
-          type="monotone"
-          dataKey="attacking"
-          stroke={`${lineProps["attacking"] ? DEFAULT_COLOR : "#DA393B"}`}
-          strokeWidth={`${lineProps["attacking"] ? '2' : lineProps.hover === "attacking" || !lineProps.hover ? '5' : '1'}`}
-          dot={false}
-        // hide={lineProps["attacking"] === true}
-        />
-        <Line
-          type="monotone"
-          dataKey="skill"
-          stroke={`${lineProps["skill"] ? DEFAULT_COLOR : "#27B6BD"}`}
-          strokeWidth={`${lineProps["skill"] ? '2' : lineProps.hover === "skill" || !lineProps.hover ? '5' : '1'}`}
-          dot={false}
-        // hide={lineProps["skill"] === true}
-        />
-        <Line
-          type="monotone"
-          dataKey="physical"
-          stroke={`${lineProps["physical"] ? DEFAULT_COLOR : "#B09E03"}`}
-          strokeWidth={`${lineProps["physical"] ? '2' : lineProps.hover === "physical" || !lineProps.hover ? '5' : '1'}`}
-          dot={false}
-        // hide={lineProps["physical"] === true}
-        />
-        <Line
-          type="monotone"
-          dataKey="mentality"
-          stroke={`${lineProps["mentality"] ? DEFAULT_COLOR : "#FC6713"}`}
-          strokeWidth={`${lineProps["mentality"] ? '2' : lineProps.hover === "mentality" || !lineProps.hover ? '5' : '1'}`}
-          dot={false}
-        // hide={lineProps["mentality"] === true}
-        />
-        <Line
-          type="monotone"
-          dataKey="defending"
-          stroke={`${lineProps["defending"] ? DEFAULT_COLOR : "#5A54A2"}`}
-          strokeWidth={`${lineProps["defending"] ? '2' : lineProps.hover === "defending" || !lineProps.hover ? '5' : '1'}`}
-          dot={false}
-        // hide={lineProps["defending"] === true}
-        />
-        <CartesianGrid strokeWidth={2} horizontal={true} vertical={false} opacity={0.5} />
-      </LineChart>
-    </ResponsiveContainer>
+    <>
+      <ResponsiveContainer width="100%" height={350}>
+        <LineChart
+          width={500}
+          height={300}
+          data={data}
+          margin={isMobile ? {
+            right: 20,
+            left: -10,
+          } : {
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <XAxis dataKey="match" tickLine={false} />
+          <YAxis axisLine={false} tickLine={false} />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend
+            layout="vertical"
+            verticalAlign={`${isMobile ? 'top' : 'middle'}`}
+            align={`${isMobile ? 'center' : 'left'}`}
+            content={<CustomLegend />}
+            wrapperStyle={isMobile ? {
+              paddingBottom: "40px"
+            } : {}} />
+          <Line
+            type="monotone"
+            dataKey="attacking"
+            stroke={`${lineProps["attacking"] ? DEFAULT_COLOR : "#DA393B"}`}
+            strokeWidth={`${lineProps["attacking"] ? '2' : lineProps.hover === "attacking" || !lineProps.hover ? '5' : '1'}`}
+            dot={false}
+          // hide={lineProps["attacking"] === true}
+          />
+          <Line
+            type="monotone"
+            dataKey="skill"
+            stroke={`${lineProps["skill"] ? DEFAULT_COLOR : "#27B6BD"}`}
+            strokeWidth={`${lineProps["skill"] ? '2' : lineProps.hover === "skill" || !lineProps.hover ? '5' : '1'}`}
+            dot={false}
+          // hide={lineProps["skill"] === true}
+          />
+          <Line
+            type="monotone"
+            dataKey="physical"
+            stroke={`${lineProps["physical"] ? DEFAULT_COLOR : "#B09E03"}`}
+            strokeWidth={`${lineProps["physical"] ? '2' : lineProps.hover === "physical" || !lineProps.hover ? '5' : '1'}`}
+            dot={false}
+          // hide={lineProps["physical"] === true}
+          />
+          <Line
+            type="monotone"
+            dataKey="mentality"
+            stroke={`${lineProps["mentality"] ? DEFAULT_COLOR : "#FC6713"}`}
+            strokeWidth={`${lineProps["mentality"] ? '2' : lineProps.hover === "mentality" || !lineProps.hover ? '5' : '1'}`}
+            dot={false}
+          // hide={lineProps["mentality"] === true}
+          />
+          <Line
+            type="monotone"
+            dataKey="defending"
+            stroke={`${lineProps["defending"] ? DEFAULT_COLOR : "#5A54A2"}`}
+            strokeWidth={`${lineProps["defending"] ? '2' : lineProps.hover === "defending" || !lineProps.hover ? '5' : '1'}`}
+            dot={false}
+          // hide={lineProps["defending"] === true}
+          />
+          <CartesianGrid strokeWidth={2} horizontal={true} vertical={false} opacity={0.5} />
+        </LineChart>
+      </ResponsiveContainer>
+      <div className="relative">
+        {/* This is space for an information box. Even if not used, leave in for consistent spacing with BarChart component */}
+      </div>
+    </>
   );
 }
 
