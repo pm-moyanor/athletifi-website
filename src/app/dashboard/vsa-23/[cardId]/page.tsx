@@ -17,19 +17,15 @@ import HeroBanner from '@/components/dashboard/HeroBanner';
 // import PlayerCard from '@/components/dashboard/PlayerCard';
 import type { NextPage } from 'next';
 import { notFound } from 'next/navigation';
-import SeasonSection from '@/components/dashboard/SeasonSectionLayout';
-import PastMatchesLayout from '@/components/dashboard/PastMatchesLayout';
-import SimpleBarChart from '@/components/dashboard/BarChart';
-import LineExample from '@/components/dashboard/LineChart';
-// import { PlayerDashboardProps } from '@/types/Dashboard.type';
 import styled from 'styled-components';
+import { useMediaQuery } from '@/app/utils/useMediaQuery';
 
 const Tab = styled.button<{ $primary?: boolean }>`
   width: 100%;
   border-radius: ${(props) => (props.$primary ? '25px 0 0 0' : '0 25px 0 0')};
   color: white;
-  font-size: 16px;
-  padding: 16px 60px;
+  font-size: 14px;
+  padding: 16px 0px;
   cursor: pointer;
   background: rgba(17, 52, 72);
   border: 0;
@@ -81,6 +77,9 @@ const PlayerDashboardPage: NextPage<PageProps> = ({
   if (cardId < MIN_PLAYER_ID || cardId > MAX_PLAYER_ID) {
     notFound();
   }
+
+  // const isMobile = useMediaQuery("(max-width: 480px)");
+  const isMobile = useMediaQuery('(max-width: 850px)');
   // SAMPLE DATA
   // TODO: FETCH PLAYER DATA FROM BACKEND
   const playerProfile = {
@@ -115,8 +114,8 @@ const PlayerDashboardPage: NextPage<PageProps> = ({
                   <Image
                     alt="bar chart icon"
                     src={tabInfo[0].icon}
-                    width={20}
-                    height={20}
+                    width={isMobile ? 13 : 17}
+                    height={isMobile ? 13 : 17}
                     quality={75}
                     loading="lazy"
                     className="stats-chart__icon--white stats-chart__icon--rotate90"
@@ -132,8 +131,8 @@ const PlayerDashboardPage: NextPage<PageProps> = ({
                   <Image
                     alt="line chart icon"
                     src={tabInfo[1].icon}
-                    width={20}
-                    height={20}
+                    width={isMobile ? 13 : 17}
+                    height={isMobile ? 13 : 17}
                     quality={75}
                     loading="lazy"
                     className="stats-chart__icon--white"

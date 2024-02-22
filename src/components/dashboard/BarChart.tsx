@@ -1,6 +1,7 @@
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Cell, Text, LabelList, Tooltip, Legend } from "recharts";
 import CustomTooltip from "@/components/dashboard/CustomTooltip";
-import { PureComponent, useState } from "react";
+import { PureComponent, useState, useEffect } from "react";
+import { useMediaQuery } from "@/app/utils/useMediaQuery";
 
 const COLORS = ["#DA393B", "#27B6BD", "#B09E03", "#FC6713", "#5A54A2"];
 const DEFAULT_BUTTON_COLOR = "#113448";
@@ -20,6 +21,9 @@ type Key = {
 };
 
 const SimpleBarChart = () => {
+  // const isMobile = useMediaQuery("(max-width: 480px)");
+  const isMobile = useMediaQuery("(max-width: 850px)");
+
   const xKey = "attribute";
   const yKey = "rating";
 
@@ -44,14 +48,21 @@ const SimpleBarChart = () => {
 
   return (
     <ResponsiveContainer width={"100%"} height={350} debounce={50}>
-      <BarChart data={data} layout="vertical" margin={{ left: 20, right: 30 }}>
+      <BarChart data={data} layout="vertical" margin={isMobile ? { left: -40, right: 20 } : { left: 20, right: 30 }}>
         <XAxis hide axisLine={false} type="number" />
         {/* <YAxis yAxisId={0} dataKey={xKey} type="category" axisLine={false} tickLine={false} tick={<CustomYAxisTick />} style={{ textAnchor: "middle" }} /> */}
         <YAxis yAxisId={0} type="category" axisLine={false} tickLine={false} tick={false} />
-        <Legend layout="vertical" verticalAlign="middle" align="left" content={<CustomLegend />} />
+        <Legend
+          layout="vertical"
+          verticalAlign={`${isMobile ? 'top' : 'middle'}`}
+          align={`${isMobile ? 'center' : 'left'}`}
+          content={<CustomLegend />}
+          wrapperStyle={isMobile ? {
+            paddingBottom: "25px"
+          } : {}} />
         {/* <Tooltip cursor={false} content={<CustomTooltip />} position={{ x: 700, y: 0 }} /> */}
         {/* <Tooltip cursor={false} /> */}
-        <Bar dataKey={yKey} minPointSize={2} barSize={40} radius={20} background={{ fill: LAYERCOLOR, radius: 20, opacity: 0.1 }}>
+        <Bar dataKey={yKey} minPointSize={2} barSize={isMobile ? 28 : 40} radius={20} background={{ fill: LAYERCOLOR, radius: 20, opacity: 0.1 }}>
           <LabelList dataKey={yKey} position="insideRight" offset={10} style={{ fill: LAYERCOLOR }} />
           {data.map((d, idx) => {
             return <Cell key={d[xKey]} fill={COLORS[idx]} />;
