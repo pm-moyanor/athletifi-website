@@ -159,6 +159,11 @@
   margin: 0.25rem 0.5rem;
 }
 
+.stats-legend__buttons:hover {
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .stats-line-chart__tooltip {
   background-color: #fff;
   border-radius: 10px;
@@ -172,6 +177,22 @@
 
 .stats-chart__icon--rotate90 {
   transform: rotate(90deg);
+}
+
+.stats-chart__description {
+  color: white;
+  background-color: #113448;
+  position: absolute;
+  border-radius: 10px;
+}
+
+.stats-chart__desc-container {
+  font-size: 14px;
+  padding: 1rem 1.5rem;
+  bottom: -7rem;
+  left: 8rem;
+  width: 205px;
+  height: 90px;
 }
 
 .stats-chart__rating-container {
@@ -203,6 +224,15 @@
 @media (min-width: 640px) {
   .header__nav--open {
     all: unset;
+  }
+
+  .stats-chart__desc-container {
+    font-size: 14px;
+    padding: 1rem 1.5rem;
+    bottom: -6.4rem;
+    left: 9.3rem;
+    width: 605px;
+    height: 80px;
   }
 }
 
@@ -236,5 +266,14 @@
     margin-left: 1.35rem;
     border-top-width: 1px;
     border-color: #ccd1d4;
+  }
+
+  .stats-chart__desc-container {
+    font-size: 16px;
+    padding: 1rem 1.5rem;
+    bottom: -6.3rem;
+    left: 13.1rem;
+    width: 1038px;
+    height: 80px;
   }
 }
