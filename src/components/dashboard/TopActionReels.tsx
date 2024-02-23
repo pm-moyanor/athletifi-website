@@ -15,12 +15,12 @@ const ActionReel: React.FC<ActionReelProps> = ({
   console.log(videoSrc,thumbnail)
   return (
     <div className=" flex my-2 justify-start">
-      <div className="relative w-full max-w-[240px] min-w-[100px] h-[130px] sm:h-[130px] md:h-[150px]">
+      <div className="relative w-full max-w-[240px] min-w-[100px] h-[130px] sm:h-[130px] md:h-[135px]">
         <video
           className="w-full h-full object-cover rounded rounded-5"
           src={videoSrc}
           poster={thumbnail}
-          controls
+  
         />
         <time className="absolute bottom-2 right-2 bg-black text-primary px-1.5 text-sm font-light">
           00:00
@@ -44,9 +44,9 @@ interface ActionReelListProps {
 
 const ActionReelList: React.FC<ActionReelListProps> = ({ actionReels }) => {
   return (
-    <div className="flex flex-col items-center w-full md:w-1/2">
+    <div className="flex flex-col items-center w-full md:w-1/2 mx-2">
       <div className=" flex flex-col md:overflow-auto h-[500px]">
-        <h3 className="w-full text-primary pt-2 text-md font-semibold font-sourceSansPro my-2 md:py-4">
+        <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro my-2 ">
           Top Action Reels
         </h3>
         {actionReels.map((actionReel, index) => (

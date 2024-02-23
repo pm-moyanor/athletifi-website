@@ -28,8 +28,8 @@ const dummyData = [
 
 const SeasonSection: React.FC = () => {
   return (
-    <div className="bg-cardsBackground flex  justify-center items-center">
-      <div className="w-full max-w-[1000px] sm:py-6 md:py-16 px-4 flex flex-col sm:flex-col md:flex-row justify-center ">
+    <div className="bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95 flex  justify-center items-center">
+      <div className="w-full max-w-[1000px] sm:py-6 md:py-20 px-4 flex flex-col sm:flex-col md:flex-row justify-center ">
         <SeasonHighlights />
         <ActionReelList actionReels={dummyData} />
       </div>
