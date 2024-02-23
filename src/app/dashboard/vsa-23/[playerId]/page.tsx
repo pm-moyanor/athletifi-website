@@ -8,9 +8,10 @@ import { Hero } from '@/types/CommonHero.type';
 // import { PlayerDashboardProps } from '@/types/Dashboard.type';
 import Highlights from '@/components/dashboard/Highlights';
 import Teammates from '@/components/dashboard/Teammates';
-import PlayerStats from '@/components/dashboard/PlayerStats';
-import PlayerInfo from '@/components/dashboard/PlayerInfo';
-import PlayerCard from '@/components/dashboard/PlayerCard';
+import HeroBanner from '@/components/dashboard/HeroBanner';
+// import PlayerStats from '@/components/dashboard/PlayerStats';
+// import PlayerInfo from '@/components/dashboard/PlayerInfo';
+// import PlayerCard from '@/components/dashboard/PlayerCard';
 import type { NextPage } from 'next';
 import { notFound } from 'next/navigation';
 
