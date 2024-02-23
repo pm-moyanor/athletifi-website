@@ -4,21 +4,27 @@ import { ActionReelList } from './TopActionReels';
 
 const dummyData = [
   {
-    videoSrc: 'video2.mp4',
+    videoSrc: '/video2.mp4',
+    thumbnail: '/poster2.png',
     title: 'Highlight',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
   },
   {
-    videoSrc: 'video2.mp4',
+    videoSrc: '/video3.mp4',
+    thumbnail: '/poster3.png',
     title: 'Highlight',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
   },
   {
-    videoSrc: 'video3.mp4',
+    videoSrc: '/video3.mp4',
+    thumbnail: '/poster3.png',
     title: 'Highlight',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
   },
 ];
+
+
+
 
 const SeasonSection: React.FC = () => {
   return (
