@@ -125,7 +125,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
           <div className="modal-content flex flex-col py-10">
             <div className="flex flex-col-reverse sm:flex-col-reverse md:flex-row pb-16 ">
               <div className="w-full pr-2 ">
-                <h2 className="text-[24px] font-semibold mb-2">Full Recap</h2>
+                <h2 className="text-[20px] font-semibold mb-2">Full Recap</h2>
                 <div className="h-1 mb-4 bg-partnersBorders" />
                 <div className="w-full h-full  min-w-[400px] max-h-[350px]">
                   <video
@@ -137,12 +137,12 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
                 </div>
               </div>
 
-              <div className="px-0 md:px-6 my-8 md:my-0 font-sourceSansPro w-full md:w-4/6 ">
-                <h3 className="text-[24px] font-semibold">Summary</h3>
+              <div className="px-0 md:px-6 my-6 md:my-0 font-sourceSansPro w-full md:w-4/6 ">
+                <h3 className="text-[20px] font-semibold">Summary</h3>
                 {/* <div className="h-1 my-2 bg-partnersBorders" /> */}
                 <div className="text-sm text-offwhite my-4">
-                  <p className="pb-px">{date}</p>
-                  <p className="pb-px">{location}</p>
+                  <p className="pb-[2px]">{date}</p>
+                  <p className="pb-[2px]">{location}</p>
                   <div className="flex"> 
                     <div className="mr-2">
                       <FontAwesomeIcon icon={faCloud} />
@@ -166,8 +166,8 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col mt-6 w-full">
-              <h3 className="text-[24px] font-semibold mt-4 mb-2">
+            <div className="flex flex-col mt-4 w-full">
+              <h3 className="text-[20px] font-semibold mt-4 mb-2">
                 Highlights
               </h3>
               <div className="h-1 mb-4 bg-partnersBorders w-full"></div>
