@@ -49,7 +49,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
   };
 
   return (
-    // MATCH INFO
+    // MATCH basic INFO
 
     <div className="flex justify-between items-center text-primary w-full font-sourceSansPro">
       <div className="flex w-48 justify-between items-center min-w-[150px]">
@@ -72,8 +72,8 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
 
       <div className="flex flex-col md:flex-row md:items-center w-96 justify-between pl-4">
         <div className="">
-          <span className="text-base">{team1Name}</span> vs{' '}
-          <span className="text-base">{team2Name}</span>
+          <span className="text-base">{team1Name}</span>vs 
+          <span className="text-base"> {team2Name}</span>
           <div className="text-sm text-offwhite pt-px">{date}</div>
         </div>
         <button
@@ -123,7 +123,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
             </button>
           </div>
           <div className="modal-content flex flex-col py-10">
-            <div className="flex flex-col sm:flex-col md:flex-row pb-16 ">
+            <div className="flex flex-col-reverse sm:flex-col-reverse md:flex-row pb-16 ">
               <div className="w-full pr-2 ">
                 <h2 className="text-[24px] font-semibold mb-2">Full Recap</h2>
                 <div className="h-1 mb-4 bg-partnersBorders" />
@@ -143,7 +143,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
                 <div className="text-sm text-offwhite my-4">
                   <p className="pb-px">{date}</p>
                   <p className="pb-px">{location}</p>
-                  <div className="flex">
+                  <div className="flex"> 
                     <div className="mr-2">
                       <FontAwesomeIcon icon={faCloud} />
                     </div>

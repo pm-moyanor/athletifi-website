@@ -2,7 +2,7 @@ import React from 'react';
 import MatchSummary from './MatchSummary';
 
 const PastMatches: React.FC = () => {
-  // Dummy match data
+  // Dummy match data -- to be defined
   const dummyMatchData = {
     team1Badge: 'real-madrid-badge.png',
     team2Badge: 'barcelona-badge.png',
@@ -17,14 +17,16 @@ const PastMatches: React.FC = () => {
       title: 'Full Match Recap',
       url: 'full-match-recap.mp4',
       thumbnail: 'full-match-recap-thumbnail.jpg',
-      description: 'Watch the full recap of the match between Real Madrid and Barcelona.',
+      description:
+        'Watch the full recap of the match between Real Madrid and Barcelona.',
     },
-    videos: [ 
+    videos: [
       {
         title: 'Match Highlights',
         url: 'match-highlights.mp4',
         thumbnail: 'match-thumbnail.jpg',
-        description: 'Highlights from the match between Real Madrid and Barcelona.',
+        description:
+          'Highlights from the match between Real Madrid and Barcelona.',
       },
       {
         title: 'Player Interviews',
@@ -40,18 +42,31 @@ const PastMatches: React.FC = () => {
       },
     ],
   };
-  
-  
+
+  //// will depend on how past matches data is collected
+  const pastMatchesList = [
+    dummyMatchData,
+    dummyMatchData,
+    dummyMatchData,
+    dummyMatchData,
+    dummyMatchData,
+  ];
 
   return (
-    <div className='max-w-[620px]'>
-      <h2 className='text-primary font-semibold text-2xl my-8 font-sourceSansPro'>Past matches</h2>
-      <div className='flex flex-col'>
-        <MatchSummary matchData={dummyMatchData} />
-        <span className='h-px my-4 md:my-6 bg-partnersBorders'/>
-        <MatchSummary matchData={dummyMatchData} />
-        <span className='h-px my-4 md:my-6 bg-partnersBorders'/>
-        <MatchSummary matchData={dummyMatchData} />
+    <div className="max-w-[620px]">
+      <h2 className="text-primary font-semibold text-2xl my-8 font-sourceSansPro">
+        Past matches
+      </h2>
+      <div className="flex flex-col">
+        {pastMatchesList.map((match, index) => (
+          //  replace keys when data is integrated
+          <React.Fragment key={index}>
+            <MatchSummary matchData={match} />
+            {index !== pastMatchesList.length - 1 && (
+              <span className="h-px my-4 md:my-6 bg-partnersBorders" />
+            )}
+          </React.Fragment>
+        ))}
       </div>
     </div>
   );
