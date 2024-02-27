@@ -48,9 +48,9 @@ const PastMatches: React.FC = () => {
       <h2 className='text-primary font-semibold text-2xl my-8 font-sourceSansPro'>Past matches</h2>
       <div className='flex flex-col'>
         <MatchSummary matchData={dummyMatchData} />
-        <span className='h-px my-6 bg-partnersBorders'/>
+        <span className='h-px my-4 md:my-6 bg-partnersBorders'/>
         <MatchSummary matchData={dummyMatchData} />
-        <span className='h-px my-6 bg-partnersBorders'/>
+        <span className='h-px my-4 md:my-6 bg-partnersBorders'/>
         <MatchSummary matchData={dummyMatchData} />
       </div>
     </div>
