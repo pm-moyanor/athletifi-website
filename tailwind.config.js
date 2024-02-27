@@ -69,10 +69,12 @@ module.exports = {
       },
       fontSize: {
         base: '16px',
+        basesm: '18px',
         basemd: '24px',
         lg: '28px',
         lg2xl: '40px',
         lgm: '30px',
+        lgl: '32px',
         lgxl: '36px',
         md: '18px',
         sxl: '43px',
