@@ -6,10 +6,9 @@ import { Player } from '@/types/Player.type';
 import { VillanovaIcon } from '@/components/common/Icon';
 
 const playerInformation: Player = {
-  club: 'FC Barcelona',
-  name: 'Leo Messi',
-  number: '10',
-  team: '2009s',
+  club: 'Villanova Soccer Academy',
+  name: 'Salvador Carrillo',
+  team: 'team 2009',
 };
 
 const AOS_DURATION: number = 400;
@@ -35,15 +34,18 @@ const HeroBanner: React.FC = () => {
               data-aos-offset={AOS_OFFSET}
             >
               <div className="flex flex-col justify-start">
-                <h2 className="font-HelveticaNeueMedium md:text-2xl text-basemd  text-primary font-medium relative z-20 text-start">
+                <h2 className="font-SourceSansPro-Bold md:text-lgl text-lg   text-primary relative z-20 text-start">
                   {playerInformation.name}
                 </h2>
-                <p className="font-Segoe font-normal text-md leading-7 text-start  text-primary opacity-80 lg:max-w-769 relative z-20">
+                <p className="font-SourceSansPro-Semibold text-sm md:text-basesm leading-7 text-start text-primary opacity-80 lg:max-w-769 relative z-20">
                   {playerInformation.club}
                 </p>
-                <p className="font-Segoe font-normal text-md leading-7 text-start  text-primary opacity-80  lg:max-w-769   relative z-20">
+                <p className="font-SourceSansPro-Semibold text-sm md:text-basesm leading-7 text-start text-primary opacity-80 lg:max-w-769 relative z-20">
                   {`team ${playerInformation.team}`}
                 </p>
+                <div className="relative">
+                  <hr className="border-t-2 border-gray-600 absolute left-0 right-0 ml-0 -mr-36 mt-3" />
+                </div>
               </div>
             </div>
           </div>
