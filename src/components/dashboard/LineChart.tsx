@@ -3,7 +3,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { Payload } from "recharts/types/component/DefaultLegendContent";
 import { useMediaQuery } from "@/app/utils/useMediaQuery";
 
-const DEFAULT_COLOR = "#113448";
+const DEFAULT_COLOR = "rgba(128, 128, 128, 0.15)";
 
 const dummyData = [
   {
@@ -157,19 +157,19 @@ function StatsLineChart() {
 
   return (
     <>
-      <ResponsiveContainer width="100%" height={350}>
+      <ResponsiveContainer width="100%" height={295}>
         <LineChart
           width={500}
           height={300}
           data={dummyData}
           margin={isMobile ? {
-            right: 20,
-            left: -10,
+            left: 10,
+            right: 40,
           } : {
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
+            top: 16,
+            left: 40,
+            right: 50,
+            bottom: -1,
           }}
         >
           <XAxis dataKey="match" tickLine={false} />
@@ -198,8 +198,13 @@ function StatsLineChart() {
           <CartesianGrid strokeWidth={1} horizontal={true} vertical={false} opacity={0.3} />
         </LineChart>
       </ResponsiveContainer>
-      <div className="relative">
-        {/* This is space for an information box. Even if not used, leave in for consistent spacing with BarChart component */}
+      <div className="flex pl-9 lg:pl-10 w-full">
+        <div className="flex items-center justify-between h-full">
+          <div className="stats-chart__rating-container">
+            <div className="">Rating</div>
+            <div className="stats-chart__rating">72</div>
+          </div>
+        </div>
       </div>
     </>
   );

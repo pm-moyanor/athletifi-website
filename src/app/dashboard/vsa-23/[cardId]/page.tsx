@@ -11,6 +11,7 @@ import Profile from '@/components/dashboard/ProfileCard';
 import LatestMatch from '@/components/dashboard/LatestMatchCard';
 
 import Charts from '@/components/dashboard/Charts';
+import { useMediaQuery } from "@/app/utils/useMediaQuery";
 
 interface PageProps {
   params: { cardId: number };
@@ -28,6 +29,8 @@ const MAX_PLAYER_ID = 1134;
 // };
 
 const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
+  const isMobile = useMediaQuery("(max-width: 1024px)");
+
   const { cardId } = params;
   if (cardId < MIN_PLAYER_ID || cardId > MAX_PLAYER_ID) {
     notFound();
@@ -54,19 +57,44 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
           <Header />
           <CommonHero hero={hero} />
         </div>
-        <main className="flex flex-col min-h-full max-w-full px-3 py-3">
-          <Profile
-            age={13}
-            club={"River City FC"}
-            league={"Youth Soccer Association"}
-            teamName={"River City Raptors"}
-            ageGroup={"U14"}
-            gender={"Male"}
-            coach={"Daniel Smith"}
-          />
-          <LatestMatch />
-          <Charts />
-        </main >
+        {isMobile ?
+          <div className="flex flex-col py-3">
+            <div className="mx-3">
+              <Profile
+                age={13}
+                club={"River City FC"}
+                league={"Youth Soccer Association"}
+                teamName={"River City Raptors"}
+                ageGroup={"U14"}
+                gender={"Male"}
+                coach={"Daniel Smith"}
+              />
+            </div>
+            <div className="mx-3">
+              <LatestMatch />
+            </div>
+            <div className="mt-3 mx-3">
+              <Charts />
+            </div>
+          </div> : <div className="flex flex-col lg:grid md:grid-cols-11 py-3">
+            <div className="col-start-2 col-span-6 my-3 mx-3 lg:mx-6">
+              <LatestMatch />
+            </div>
+            <div className="col-start-2 col-span-6 my-3 mx-3 lg:mx-6">
+              <Charts />
+            </div>
+            <div className="col-start-8 col-span-3 my-3 mx-3 lg:mx-0">
+              <Profile
+                age={13}
+                club={"River City FC"}
+                league={"Youth Soccer Association"}
+                teamName={"River City Raptors"}
+                ageGroup={"U14"}
+                gender={"Male"}
+                coach={"Daniel Smith"}
+              />
+            </div>
+          </div>}
         <Footer />
       </div >
     </>

@@ -8,12 +8,12 @@ import StatsLineChart from '@/components/dashboard/LineChart';
 
 const Tab = styled.button<{ $primary?: boolean, $active?: boolean }>`
 width: 100%;
-border-radius: ${props => props.$primary ? "25px 0 0 0" : "0 25px 0 0"};
+border-radius: ${props => props.$primary ? "10px 0 0 0" : "0 10px 0 0"};
 color: white;
 font-size: 14px;
-padding: 16px 0px;
+padding: 14px 0px;
 cursor: pointer;
-background: rgba(17, 52, 72);
+background: rgb(3, 36, 54);
 border: 0;
 border-bottom: 1px solid gray;
 outline: 0;
@@ -45,7 +45,7 @@ const Charts = () => {
     const isMobile = useMediaQuery("(max-width: 850px)");
 
     return (
-        <div className="stats-chart__container">
+        <div className="stats-chart__container bg-cardsBackground">
             <ButtonGroup>
                 {tabInfo.map((tab, idx) => {
                     return (
@@ -75,12 +75,6 @@ const Charts = () => {
             </ButtonGroup>
             <section className="flex flex-col items-start h-full gap-5 pt-6">
                 {activeTab === tabInfo[0].type ? <StatsBarChart /> : <StatsLineChart />}
-                <div className="flex items-center justify-between h-full">
-                    <div className="stats-chart__rating-container">
-                        <div className="">Rating</div>
-                        <div className="stats-chart__rating">72</div>
-                    </div>
-                </div>
             </section>
         </div>
     );

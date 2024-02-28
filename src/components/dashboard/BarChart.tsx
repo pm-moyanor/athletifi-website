@@ -2,7 +2,7 @@ import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Cell, LabelList, Lege
 import { useState } from "react";
 import { useMediaQuery } from "@/app/utils/useMediaQuery";
 
-const DEFAULT_COLOR = "#113448";
+const DEFAULT_COLOR = "rgba(128, 128, 128, 0.15)";
 const LAYERCOLOR = "#ffffff";
 const dummyData = [
   { attribute: "attacking", rating: 80 },
@@ -89,8 +89,8 @@ function StatsBarChart() {
 
   return (
     <>
-      <ResponsiveContainer width={"100%"} height={350} debounce={50}>
-        <BarChart data={dummyData} layout="vertical" margin={isMobile ? { left: -40, right: 20 } : { left: 20, right: 30 }}>
+      <ResponsiveContainer width={"100%"} height={295} debounce={50}>
+        <BarChart data={dummyData} layout="vertical" margin={isMobile ? { left: -25, right: 30 } : { left: 40, right: 50 }}>
           <XAxis hide axisLine={false} type="number" />
           <YAxis yAxisId={0} type="category" axisLine={false} tickLine={false} tick={false} />
           <Legend
@@ -102,7 +102,7 @@ function StatsBarChart() {
               paddingBottom: "25px"
             } : {}} />
           {/* <Tooltip cursor={false} /> */}
-          <Bar dataKey={yKey} minPointSize={2} barSize={isMobile ? 28 : 40} radius={20} background={{ fill: LAYERCOLOR, radius: 20, opacity: 0.1 }}>
+          <Bar dataKey={yKey} minPointSize={2} barSize={isMobile ? 28 : 36} radius={20} background={{ fill: LAYERCOLOR, radius: 20, opacity: 0.1 }}>
             <LabelList dataKey={yKey} position="insideRight" offset={15} style={{ fill: LAYERCOLOR }} />
             {dummyData.map((d, idx) => {
               return (
@@ -115,8 +115,16 @@ function StatsBarChart() {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-      <div className="relative">
-        {barProps.click ? <div className="stats-chart__description stats-chart__desc-container">{attributeConfigs[barProps.click].description}</div> : ''}
+      <div className="flex pl-9 lg:pl-10 w-full">
+        <div className="flex items-center justify-between h-full">
+          <div className="stats-chart__rating-container">
+            <div className="">Rating</div>
+            <div className="stats-chart__rating">72</div>
+          </div>
+        </div>
+        <div className="stats-chart__desc-wrapper">
+          {barProps.click ? <div className="stats-chart__description stats-chart__desc-container text-xs md:text-sm">{attributeConfigs[barProps.click].description}</div> : ''}
+        </div>
       </div>
     </>
   );

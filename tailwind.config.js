@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -44,7 +45,7 @@ module.exports = {
         darkgray: '#0D171F',
         extraDarkBlue: '#00c3f47b',
         matchtitles: 'rgba(0, 197, 244, 0.05)',
-        offwhite: '#B1B5B8', 
+        offwhite: '#B1B5B8',
         partnersBorders: '#49545C',
         primary: '#FDFEFF',
         skyblue: '#00C5F4',

@@ -20,7 +20,7 @@ const Profile: React.FC<ProfileProps> = ({
   coach,
 }: ProfileProps) => {
   return (
-    <div className="w-[400px] lg:mx-auto h-[500px] bg-cyan-950 rounded-10 p-4 mb-4 font-sourceSansPro">
+    <div className="w-full h-[500px] bg-cardsBackground rounded-10 p-4 mb-4 font-sourceSansPro overflow-scroll">
       <h2 className="text-primary text-[24px] mb-4 font-semibold">Profile</h2>
       <table className="text-primary w-full divide-y divide-gray-200">
         <tbody className="font-extralight text-base">
@@ -55,7 +55,7 @@ const Profile: React.FC<ProfileProps> = ({
         </tbody>
       </table>
       <h3 className="text-primary text-md mt-6 mb-px">Bio</h3>
-      <p className="text-primary font-extralight text-sm ">
+      <p className="text-primary font-extralight text-sm">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
         <br />
