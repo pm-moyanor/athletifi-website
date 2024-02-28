@@ -31,7 +31,7 @@ const teammates = [
 
 const PastMatchesLayout: React.FC = () => {
   return (
-    <div className="flex justify-center items-center w-full">
+    <div className="flex justify-center items-center w-full bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95 ">
       <div className="flex flex-col md:flex-row justify-between items-center md:items-start w-full p-4 md:p-6  max-w-[1030px]">
         <PastMatches />
         <Teammates teammates={teammates} />

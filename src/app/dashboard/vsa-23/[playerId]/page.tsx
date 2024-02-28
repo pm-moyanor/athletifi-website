@@ -13,6 +13,8 @@ import PlayerInfo from '@/components/dashboard/PlayerInfo';
 import PlayerCard from '@/components/dashboard/PlayerCard';
 import type { NextPage } from 'next';
 import { notFound } from 'next/navigation';
+import PastMatchesLayout from '@/components/dashboard/PastMatchesLayout';
+import SeasonSection from '@/components/dashboard/SeasonSectionLayout';
 
 interface PageProps {
   params: { playerId: number };
@@ -51,13 +53,15 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
 
   return (
     <>
-      <div className="overflow-hidden">
-        <div className=" about-page__hero-bg bg-no-repeat bg-cover">
+      <div className="">
+        {/* <div className=" about-page__hero-bg bg-no-repeat bg-cover">
           <Header />
           <CommonHero hero={hero} />
-        </div>
-        <main className="flex flex-col px-3 min-h-full gap-5 m-10 sm:max-w-md md:max-w-2xl lg:max-w-5xl xl:max-w-7xl  mx-auto">
-          <section className="flex flex-col justify-center items-stretch lg:flex-row h-full gap-5">
+        </div> */}
+        <main className="flex flex-col min-h-full md:max-w-2xl lg:max-w-5xl xl:max-w-7xl  mx-auto relative bg-slate-100 ">
+          <SeasonSection />
+          <PastMatchesLayout />
+          {/* <section className="flex flex-col justify-center items-stretch lg:flex-row h-full gap-5">
             <PlayerStats />
             <PlayerCard />
             <PlayerInfo />
@@ -65,9 +69,9 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
           <section className="flex flex-col xl:flex-row justify-center items-stretch flex-grow h-full gap-5 ">
             <Teammates />
             <Highlights />
-          </section>
+          </section> */}
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

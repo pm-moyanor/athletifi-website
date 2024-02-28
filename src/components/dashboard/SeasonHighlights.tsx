@@ -7,7 +7,7 @@ const SeasonHighlights: React.FC = () => {
         <h2 className=" text-[24px] md:text-lg text-primary font-[600] mb-4 text-top">
         Season Highlights
       </h2>
-      <p className="text-[16px] text-primary font-extralight max-w-[450px] md:max-w-[400px]">
+      <p className="text-[16px] text-primary font-extralight max-w-[450px] md:max-w-[400px] pr-0 md:pr-4">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates
         dolores sunt accusantium officiis, nesciunt nemo voluptatem alias,
         laboriosam nihil inventore odio dicta tempore tenetur itaque non numquam
@@ -20,8 +20,7 @@ const SeasonHighlights: React.FC = () => {
         recusandae, commodi eveniet ipsa  Nesciunt
         similique ducimus et? <span className=" block h-4" /> Lorem ipsum dolor
         sit amet consectetur adipisicing elit. Porro molestias explicabo nobis
-        incidunt error repudiandae dolor nostrum, dignissimos temporibus
-        delectus quam at sed in cupiditate, harum optio beatae ex veniam?{' '}
+        incidunt error repudiandae dolor nostrum
       </p>
         </div>
   
