@@ -49,7 +49,7 @@ function StatsBarChart() {
 
   function CustomLegend() {
     return (
-      <div className="stats-legend__container">
+      <div className="flex flex-row lg:flex-col justify-center lg:items-center flex-wrap">
         {Object.keys(attributeConfigs).map((entry, index) => (
           <div
             key={`bar-item-${index}`}
@@ -117,13 +117,13 @@ function StatsBarChart() {
       </ResponsiveContainer>
       <div className="flex pl-9 lg:pl-10 w-full">
         <div className="flex items-center justify-between h-full">
-          <div className="stats-chart__rating-container">
+          <div className="text-white text-center w-20 md:w-24 lg:w-32 border-t border-[#ccd1d4] py-4">
             <div className="">Rating</div>
-            <div className="stats-chart__rating">72</div>
+            <div className="text-[36px]">72</div>
           </div>
         </div>
-        <div className="stats-chart__desc-wrapper">
-          {barProps.click ? <div className="stats-chart__description stats-chart__desc-container text-xs md:text-sm">{attributeConfigs[barProps.click].description}</div> : ''}
+        <div className="ml-5 mr-8 lg:ml-[3.75rem] lg:mr-[3.25rem] w-full">
+          {barProps.click ? <div className="text-white text-xs md:text-sm bg-gray-500/15 rounded-10 py-4 px-6 h-20 w-full">{attributeConfigs[barProps.click].description}</div> : ''}
         </div>
       </div>
     </>
