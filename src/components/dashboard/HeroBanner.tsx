@@ -44,7 +44,7 @@ const HeroBanner: React.FC = () => {
                   {`team ${playerInformation.team}`}
                 </p>
                 <div className="relative">
-                  <hr className="border-t-2 border-gray-600 absolute left-0 right-0 ml-0 -mr-36 mt-3" />
+                  <hr className="border-t-1 border-lineAtBase absolute top-3 left-0 right-0 ml-0 lg:-mr-20 xl:-mr-40 2xl:-mr-72 3xl:-mr-96 4xl:-mr-500 mt-3 hidden lg:block" />
                 </div>
               </div>
             </div>
