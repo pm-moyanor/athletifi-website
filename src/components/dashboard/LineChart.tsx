@@ -103,7 +103,7 @@ function StatsLineChart() {
   function CustomLegend(props) {
     const { payload } = props;
     return (
-      <div className="stats-legend__container">
+      <div className="flex flex-row lg:flex-col justify-center lg:items-center flex-wrap">
         {payload.map((entry, index) => (
           <div
             key={`line-item-${index}`}
@@ -124,7 +124,7 @@ function StatsLineChart() {
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="stats-line-chart__tooltip">
+        <div className="bg-white rounded-10 p-3 leading-8">
           {payload.map((entry, index) => (
             <p key={`tooltip-${index}`} style={{ color: attributeConfigs[entry.name].color }}>{`${entry.name}: ${entry.value}`}</p>
           ))}
@@ -200,9 +200,9 @@ function StatsLineChart() {
       </ResponsiveContainer>
       <div className="flex pl-9 lg:pl-10 w-full">
         <div className="flex items-center justify-between h-full">
-          <div className="stats-chart__rating-container">
+          <div className="text-white text-center w-20 md:w-24 lg:w-32 border-t border-[#ccd1d4] py-4">
             <div className="">Rating</div>
-            <div className="stats-chart__rating">72</div>
+            <div className="text-[36px]">72</div>
           </div>
         </div>
       </div>
