@@ -51,15 +51,15 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
   return (
     // MATCH basic INFO
 
-    <div className="flex justify-between items-center text-primary w-full font-sourceSansPro">
-      <div className="flex w-48 justify-between items-center min-w-[150px]">
+    <div className="flex justify-between items-center text-primary font-sourceSansPro">
+      <div className="flex w-48 justify-center items-center min-w-[160px]">
         <img
           src={team1Badge}
           alt="Crest"
           style={{ width: '55px', height: '55px' }}
           className='bg-slate-400 rounded-20'
         />
-        <div>
+        <div className='px-2'>
           <span>{team1Score}</span> - <span>{team2Score}</span>
         </div>
         <img
@@ -70,14 +70,14 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
         />
       </div>
 
-      <div className="flex flex-col md:flex-row md:items-center w-96 justify-between pl-4">
+      <div className="flex flex-col md:flex-row md:items-center w-full justify-between pl-4 min-w-min">
         <div className="">
-          <span className="text-base">{team1Name}</span>vs 
+          <span className="text-base">{team1Name} </span>vs 
           <span className="text-base"> {team2Name}</span>
           <div className="text-sm text-offwhite pt-px">{date}</div>
         </div>
         <button
-          className="w-28 h-7 bg-darkerSkyBlue text-black text-sm rounded-30 mt-4 md:mt-0"
+          className="w-28 h-[30px] px-2 bg-skyblue text-black text-sm rounded-30 mt-4 md:mt-0"
           onClick={handleSummaryClick}
         >
           summary

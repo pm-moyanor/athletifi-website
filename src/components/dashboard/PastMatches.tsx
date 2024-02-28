@@ -48,22 +48,21 @@ const PastMatches: React.FC = () => {
     dummyMatchData,
     dummyMatchData,
     dummyMatchData,
-    dummyMatchData,
-    dummyMatchData,
+
   ];
 
   return (
-    <div className="max-w-[620px]">
-      <h2 className="text-primary font-semibold text-2xl my-8 font-sourceSansPro">
+    <div className=" p-4 max-w-[620px]">
+      <h2 className="text-primary font-semibold text-2xl my-4 font-sourceSansPro">
         Past matches
       </h2>
-      <div className="flex flex-col">
+      <div className="flex flex-col pt-2">
         {pastMatchesList.map((match, index) => (
           //  replace keys when data is integrated
           <React.Fragment key={index}>
             <MatchSummary matchData={match} />
             {index !== pastMatchesList.length - 1 && (
-              <span className="h-px my-4 md:my-6 bg-partnersBorders" />
+              <span className="h-px my-4 md:my-6 bg-partnersBorders inline-block min-w-min" />
             )}
           </React.Fragment>
         ))}

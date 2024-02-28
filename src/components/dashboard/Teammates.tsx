@@ -26,19 +26,19 @@ const Teammates: React.FC<TeammatesProps> = ({ teammates }) => {
   //   console.log(player);
   // };
   return (
-    <div className="grid grid-cols-1 gap-4 bg-cardsBackground w-96 p-4 rounded-10">
-      <h2 className="text-primary font-semibold text-[20px] mt-4 font-sourceSansPro">
+    <div className="bg-cardsBackground w-[95%] md:w-[328px] p-6 m-8 md:m-4 rounded-10">
+      <h2 className="text-primary font-semibold text-[20px] font-sourceSansPro">
         Teammates
       </h2>
-      <div className="h-1 bg-partnersBorders" />
+      <div className="h-1 bg-partnersBorders my-2" />
       {teammates.map((teammate) => (
-        <div key={teammate.id} className="flex items-center gap-4 py-2">
+        <div key={teammate.id} className="flex items-center py-2">
           <img
             src={teammate.avatar}
             alt={teammate.name}
             className="w-[70px] h-[70px] rounded-full  bg-slate-500"
           />
-          <div>
+          <div className='ml-6'>
             <p className="text-base text-primary font-sourceSansPro">
               {teammate.name}
             </p>
