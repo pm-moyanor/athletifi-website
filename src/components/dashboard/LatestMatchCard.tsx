@@ -6,35 +6,60 @@ import {
   faCloudRain,
   faSnowflake,
 } from '@fortawesome/free-solid-svg-icons';
-import { useMediaQuery } from "@/app/utils/useMediaQuery";
+import Image from 'next/image';
+import { useMediaQuery } from '@/app/utils/useMediaQuery';
 
 const LatestMatch: React.FC = () => {
-  const isMobile = useMediaQuery("(max-width: 640px)");
+  const isMobile = useMediaQuery('(max-width: 640px)');
 
   return (
     <div className="bg-cardsBackground h-[310px] sm:h-[310px] md:h-56 flex flex-col justify-between p-4 relative w-full rounded-10 text-primary font-sourceSansPro">
       <h1 className="text-[24px] font-semibold">Latest Match</h1>
-      {isMobile ?
+      {isMobile ? (
         <div className="flex justify-center items-center">
           <div className="flex flex-col items-center">
             <p className="px-4">Chelsea</p>
-            <img src="chelsea_logo.png" alt="crest" className="" />
+            <Image
+              src="chelsea_logo.png"
+              alt="crest"
+              className=""
+              quality={75}
+              loading="lazy"
+            />
           </div>
           <p className="px-4">0 - 2</p>
           <div className="flex flex-col items-center">
             <p className="px-4">Liverpool</p>
-            <img src="liverpool_logo.png" alt="crest" className="" />
+            <Image
+              src="liverpool_logo.png"
+              alt="crest"
+              className=""
+              quality={75}
+              loading="lazy"
+            />
           </div>
         </div>
-        :
+      ) : (
         <div className="flex justify-center">
           <p className="px-4">Chelsea</p>
-          <img src="chelsea_logo.png" alt="crest" className="" />
+          <Image
+            src="chelsea_logo.png"
+            alt="crest"
+            className=""
+            quality={75}
+            loading="lazy"
+          />
           <p className="px-4">0 - 2</p>
-          <img src="liverpool_logo.png" alt="crest" className="" />
+          <Image
+            src="liverpool_logo.png"
+            alt="crest"
+            className=""
+            quality={75}
+            loading="lazy"
+          />
           <p className="px-4">Liverpool</p>
         </div>
-      }
+      )}
       <div className="flex flex-col justify-between h-[70px] text-center sm:relative sm:text-center md:absolute top-4 right-4 text-sm font-light">
         <p className="text-center md:text-right">
           Saturday, 14 Mar 2021 . 01.00 am
@@ -75,7 +100,7 @@ const LatestMatch: React.FC = () => {
           <p className="text-xs sm:text-sm font-light">defense</p>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
