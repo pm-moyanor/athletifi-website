@@ -1,6 +1,6 @@
 import React from 'react';
 import { UnderLineText } from '../common/Icon';
-// import Image from 'next/image';
+import Image from 'next/image';
 import portrait from './portrait.jpg';
 import { samplePlayers, Player } from '@/types/Player.type';
 
@@ -40,7 +40,13 @@ const Teammates: React.FC = () => {
                 onClick={() => handlePlayerClick(player.name)}
                 className="flex flex-col items-center mb-4"
               >
-                <img className="w-100 h-70" src={portrait.src} />
+                <Image
+                  alt="player portrait"
+                  className="w-100 h-70"
+                  src={portrait.src}
+                  quality={75}
+                  loading="lazy"
+                />
                 <div className="w-full text-primary font-Segoe text-center">
                   {player.name}
                 </div>
