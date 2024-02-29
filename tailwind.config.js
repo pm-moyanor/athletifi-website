@@ -56,6 +56,7 @@ module.exports = {
         chartOrange: '#FC6713',
         chartPurple: '#5A54A2',
         cardsBackground: '#113448',
+        lineAtBase: '#11729C',
       },
       container: {
         center: true,
@@ -70,10 +71,12 @@ module.exports = {
       },
       fontSize: {
         base: '16px',
+        basesm: '18px',
         basemd: '24px',
         lg: '28px',
         lg2xl: '40px',
         lgm: '30px',
+        lgl: '32px',
         lgxl: '36px',
         md: '18px',
         sxl: '43px',
@@ -215,6 +218,8 @@ module.exports = {
         1530: '1530px',
         375: '375px',
         500: '500px',
+        '3xl': '1920px',
+        '4xl': '2160px',
       },
       spacing: {
         1: '1px',
@@ -250,6 +255,8 @@ module.exports = {
         '80pixel': '80px',
         90: '90px',
         95: '95px',
+        400: '400px',
+        500: '500px',
       },
       translate: {
         '-20': '-20px',
