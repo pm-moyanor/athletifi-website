@@ -11,9 +11,9 @@ const playerInformation: Player = {
   team: 'team 2009',
 };
 
-const AOS_DURATION: number = 400;
-const AOS_DELAY: number = 300;
-const AOS_OFFSET: number = 100;
+// const AOS_DURATION: number = 400;
+// const AOS_DELAY: number = 300;
+// const AOS_OFFSET: number = 100;
 
 const CARD_IMAGE_WIDTH: number = 500;
 const CARD_IMAGE_HEIGHT: number = 300;
@@ -27,11 +27,11 @@ const HeroBanner: React.FC = () => {
             <VillanovaIcon />
             <div
               className="flex justify-start items-center relative z-20 "
-              data-aos="fade-up"
-              data-aos-duration={AOS_DURATION}
-              data-aos-easing="ease-in-sine"
-              data-aos-delay={AOS_DELAY}
-              data-aos-offset={AOS_OFFSET}
+              // data-aos="fade-up"
+              // data-aos-duration={AOS_DURATION}
+              // data-aos-easing="ease-in-sine"
+              // data-aos-delay={AOS_DELAY}
+              // data-aos-offset={AOS_OFFSET}
             >
               <div className="flex flex-col justify-start">
                 <h2 className="font-SourceSansPro-Bold md:text-lgl text-lg   text-primary relative z-20 text-start">
