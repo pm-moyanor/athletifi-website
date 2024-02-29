@@ -10,6 +10,8 @@ import {
 } from 'recharts';
 import { useState } from 'react';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
+import { IBarProps } from '@/types/Dashboard.type';
+import { LegendEventType, ILegendMouseEvent } from '@/types/Chart.type';
 
 const DEFAULT_COLOR = 'rgba(128, 128, 128, 0.15)';
 const LAYERCOLOR = '#ffffff';
@@ -54,7 +56,7 @@ function StatsBarChart() {
     hover: null,
   };
 
-  const [barProps, setBarProps]: [any, any] = useState(resetProps);
+  const [barProps, setBarProps] = useState<IBarProps>(resetProps);
 
   function CustomLegend() {
     return (
@@ -80,9 +82,9 @@ function StatsBarChart() {
     );
   }
 
-  function handleLegendMouseEnter(e: any) {
+  function handleLegendMouseEnter(e: ILegendMouseEvent<LegendEventType>) {
     if (!barProps.hover) {
-      setBarProps({ ...barProps, hover: e.target.textContent });
+      setBarProps({ ...barProps, hover: e?.target?.textContent });
     }
   }
 
@@ -90,8 +92,8 @@ function StatsBarChart() {
     setBarProps({ ...barProps, hover: null });
   }
 
-  function selectBar(e: any) {
-    if (e.target.textContent) {
+  function selectBar(e: ILegendMouseEvent<LegendEventType>) {
+    if (e?.target?.textContent) {
       if (barProps.click === e.target.textContent) {
         setBarProps({ ...barProps, click: null });
       } else {
@@ -143,7 +145,7 @@ function StatsBarChart() {
               offset={15}
               style={{ fill: LAYERCOLOR }}
             />
-            {dummyData.map((d, idx) => {
+            {dummyData.map((d) => {
               return (
                 <Cell
                   key={d[xKey]}

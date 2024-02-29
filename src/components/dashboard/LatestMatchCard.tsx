@@ -1,13 +1,19 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faSun,
-  faCloud,
+  // faSun,
+  // faCloud,
   faCloudRain,
-  faSnowflake,
+  // faSnowflake,
 } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
+
+const TMP_TEAM_A_URL =
+  'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/mls-next-logo.svg';
+const TMP_TEAM_B_URL =
+  'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/vsa-logo.svg';
+const LOGO_SIZE = 50;
 
 const LatestMatch: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 640px)');
@@ -20,9 +26,11 @@ const LatestMatch: React.FC = () => {
           <div className="flex flex-col items-center">
             <p className="px-4">Chelsea</p>
             <Image
-              src="chelsea_logo.png"
+              src={TMP_TEAM_A_URL}
               alt="crest"
               className=""
+              width={LOGO_SIZE}
+              height={LOGO_SIZE}
               quality={75}
               loading="lazy"
             />
@@ -31,29 +39,35 @@ const LatestMatch: React.FC = () => {
           <div className="flex flex-col items-center">
             <p className="px-4">Liverpool</p>
             <Image
-              src="liverpool_logo.png"
+              src={TMP_TEAM_B_URL}
               alt="crest"
               className=""
+              width={LOGO_SIZE}
+              height={LOGO_SIZE}
               quality={75}
               loading="lazy"
             />
           </div>
         </div>
       ) : (
-        <div className="flex justify-center">
+        <div className="flex justify-center items-center">
           <p className="px-4">Chelsea</p>
           <Image
-            src="chelsea_logo.png"
+            src={TMP_TEAM_A_URL}
             alt="crest"
             className=""
+            width={LOGO_SIZE}
+            height={LOGO_SIZE}
             quality={75}
             loading="lazy"
           />
           <p className="px-4">0 - 2</p>
           <Image
-            src="liverpool_logo.png"
+            src={TMP_TEAM_B_URL}
             alt="crest"
             className=""
+            width={LOGO_SIZE}
+            height={LOGO_SIZE}
             quality={75}
             loading="lazy"
           />
