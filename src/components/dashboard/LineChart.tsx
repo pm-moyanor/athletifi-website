@@ -9,8 +9,15 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-import { Payload } from 'recharts/types/component/DefaultLegendContent';
+// import { Payload } from 'recharts/types/component/DefaultLegendContent';
+import { ILineProps } from '@/types/Dashboard.type';
+import { LegendEventType, ILegendMouseEvent } from '@/types/Chart.type';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
+import { TooltipProps } from 'recharts';
+import {
+  ValueType,
+  NameType,
+} from 'recharts/types/component/DefaultTooltipContent';
 
 const DEFAULT_COLOR = 'rgba(128, 128, 128, 0.15)';
 
@@ -99,7 +106,7 @@ const attributeConfigs = {
 function StatsLineChart() {
   const isMobile = useMediaQuery('(max-width: 850px)');
 
-  const [lineProps, setLineProps]: [any, any] = useState(
+  const [lineProps, setLineProps] = useState<ILineProps>(
     Object.keys(attributeConfigs).reduce(
       (a, key) => {
         a[key] = false;
@@ -133,16 +140,23 @@ function StatsLineChart() {
     );
   }
 
-  const CustomTooltip = ({ active, payload, label }) => {
+  const CustomTooltip = ({
+    active,
+    payload,
+  }: TooltipProps<ValueType, NameType>) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-white rounded-10 p-3 leading-8">
-          {payload.map((entry, index) => (
-            <p
-              key={`tooltip-${index}`}
-              style={{ color: attributeConfigs[entry.name].color }}
-            >{`${entry.name}: ${entry.value}`}</p>
-          ))}
+          {payload.map(function (entry, index) {
+            if (entry?.name) {
+              return (
+                <p
+                  key={`tooltip-${index}`}
+                  style={{ color: attributeConfigs[entry.name].color }}
+                >{`${entry.name}: ${entry.value}`}</p>
+              );
+            }
+          })}
         </div>
       );
     }
@@ -150,9 +164,13 @@ function StatsLineChart() {
     return null;
   };
 
-  function handleLegendMouseEnter(e: any) {
-    if (!lineProps[e.target.textContent] && !lineProps.hover) {
-      setLineProps({ ...lineProps, hover: e.target.textContent });
+  function handleLegendMouseEnter(e: ILegendMouseEvent<LegendEventType>) {
+    if (
+      e?.target?.textContent &&
+      !lineProps[e?.target?.textContent] &&
+      !lineProps.hover
+    ) {
+      setLineProps({ ...lineProps, hover: e?.target?.textContent });
     }
   }
 
@@ -160,8 +178,8 @@ function StatsLineChart() {
     setLineProps({ ...lineProps, hover: null });
   }
 
-  function selectLine(e: any) {
-    if (e.target.textContent && e.target.textContent in lineProps) {
+  function selectLine(e: ILegendMouseEvent<LegendEventType>) {
+    if (e?.target?.textContent && e.target.textContent in lineProps) {
       setLineProps({
         ...lineProps,
         [e.target.textContent]: !lineProps[e.target.textContent],
