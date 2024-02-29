@@ -14,9 +14,12 @@ import HeroBanner from '@/components/dashboard/HeroBanner';
 // import PlayerCard from '@/components/dashboard/PlayerCard';
 import type { NextPage } from 'next';
 import { notFound } from 'next/navigation';
-
+import Profile from '@/components/dashboard/ProfileCard';
+import LatestMatch from '@/components/dashboard/LatestMatchCard';
+import Charts from '@/components/dashboard/Charts';
+import { useMediaQuery } from '@/app/utils/useMediaQuery';
 interface PageProps {
-  params: { playerId: number };
+  params: { cardId: number };
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
@@ -32,10 +35,13 @@ const MAX_PLAYER_ID = 1134;
 
 const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
   // const PlayerDashboardPage = ({ playerId }: PlayerDashboardProps) => {
-  const { playerId } = params;
-  if (playerId < MIN_PLAYER_ID || playerId > MAX_PLAYER_ID) {
+  const { cardId } = params;
+
+  if (cardId < MIN_PLAYER_ID || cardId > MAX_PLAYER_ID) {
     notFound();
   }
+  const isMobile = useMediaQuery('(max-width: 1024px)');
+
   // SAMPLE DATA
   // TODO: FETCH PLAYER DATA FROM BACKEND
   const playerProfile = {
@@ -53,22 +59,52 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
   return (
     <>
       <div className="overflow-hidden">
-        <div className=" about-page__hero-bg bg-no-repeat bg-cover">
+        <div className="about-page__hero-bg bg-no-repeat bg-cover">
           <Header />
           <CommonHero hero={hero} />
-        </div>
-        <main className="flex flex-col px-3 min-h-full gap-5 m-10 sm:max-w-md md:max-w-2xl lg:max-w-5xl xl:max-w-7xl  mx-auto">
           <HeroBanner />
-          {/* <section className="flex flex-col justify-center items-stretch lg:flex-row h-full gap-5">
-            <PlayerStats />
-            <PlayerCard />
-            <PlayerInfo />
-          </section> */}
-          <section className="flex flex-col xl:flex-row justify-center items-stretch flex-grow h-full gap-5 ">
-            <Teammates />
-            <Highlights />
-          </section>
-        </main>
+        </div>
+        {isMobile ? (
+          <div className="flex flex-col py-3">
+            <div className="mx-3">
+              <Profile
+                age={13}
+                club={'River City FC'}
+                league={'Youth Soccer Association'}
+                teamName={'River City Raptors'}
+                ageGroup={'U14'}
+                gender={'Male'}
+                coach={'Daniel Smith'}
+              />
+            </div>
+            <div className="mx-3">
+              <LatestMatch />
+            </div>
+            <div className="mt-3 mx-3">
+              <Charts />
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col lg:grid md:grid-cols-11 py-3">
+            <div className="col-start-2 col-span-6 my-3 mx-3 lg:mx-6">
+              <LatestMatch />
+            </div>
+            <div className="col-start-2 col-span-6 my-3 mx-3 lg:mx-6">
+              <Charts />
+            </div>
+            <div className="col-start-8 col-span-3 my-3 mx-3 lg:mx-0">
+              <Profile
+                age={13}
+                club={'River City FC'}
+                league={'Youth Soccer Association'}
+                teamName={'River City Raptors'}
+                ageGroup={'U14'}
+                gender={'Male'}
+                coach={'Daniel Smith'}
+              />
+            </div>
+          </div>
+        )}
         <Footer />
       </div>
     </>
