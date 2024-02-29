@@ -78,23 +78,25 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
             </div>
           </div>
         ) : (
-          <div className="flex flex-col lg:grid md:grid-cols-11 py-3">
-            <div className="col-start-2 col-span-6 my-3 mx-3 lg:mx-6">
-              <LatestMatch />
-            </div>
-            <div className="col-start-2 col-span-6 my-3 mx-3 lg:mx-6">
-              <Charts />
-            </div>
-            <div className="col-start-8 col-span-3 my-3 mx-3 lg:mx-0">
-              <Profile
-                age={13}
-                club={'River City FC'}
-                league={'Youth Soccer Association'}
-                teamName={'River City Raptors'}
-                ageGroup={'U14'}
-                gender={'Male'}
-                coach={'Daniel Smith'}
-              />
+          <div className="flex justify-center">
+            <div className="flex flex-col lg:grid md:grid-cols-11 py-3 max-w-[1030px]">
+              <div className="col-start-2 col-span-6 my-3 mx-3 lg:mx-6">
+                <LatestMatch />
+              </div>
+              <div className="col-start-2 col-span-6 my-3 mx-3 lg:mx-6">
+                <Charts />
+              </div>
+              <div className="col-start-8 col-span-3 my-3 mx-3 lg:mx-0">
+                <Profile
+                  age={13}
+                  club={'River City FC'}
+                  league={'Youth Soccer Association'}
+                  teamName={'River City Raptors'}
+                  ageGroup={'U14'}
+                  gender={'Male'}
+                  coach={'Daniel Smith'}
+                />
+              </div>
             </div>
           </div>
         )}

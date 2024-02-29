@@ -44,7 +44,7 @@ const tabInfo = [
 
 const Charts = () => {
   const [activeTab, setActiveTab] = useState(tabInfo[0].type);
-  const isMobile = useMediaQuery('(max-width: 850px)');
+  const isMobile = useMediaQuery('(max-width: 1024px)');
 
   return (
     <div className="stats-chart__container bg-cardsBackground">
