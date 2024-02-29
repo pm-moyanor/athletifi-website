@@ -6,25 +6,25 @@ const teammates = [
   {
     id: 1,
     name: 'David Rodriguez',
-    avatar: 'david-rodriguez-avatar.jpg',
+    avatar: '/david-rodriguez-avatar.jpg',
     playerNumber: 10,
   },
   {
     id: 2,
     name: 'Sophia Nguyen',
-    avatar: 'sophia-nguyen-avatar.jpg',
+    avatar: '/sophia-nguyen-avatar.jpg',
     playerNumber: 7,
   },
   {
     id: 3,
     name: 'Liam Wilson',
-    avatar: 'liam-wilson-avatar.jpg',
+    avatar: '/liam-wilson-avatar.jpg',
     playerNumber: 22,
   },
   {
     id: 4,
     name: 'Isabella Garcia',
-    avatar: 'isabella-garcia-avatar.jpg',
+    avatar: '/isabella-garcia-avatar.jpg',
     playerNumber: 14,
   },
 ];

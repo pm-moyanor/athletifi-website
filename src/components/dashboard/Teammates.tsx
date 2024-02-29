@@ -1,8 +1,8 @@
 import React from 'react';
-import { UnderLineText } from '../common/Icon';
-// import Image from 'next/image';
-import portrait from './portrait.jpg';
-import { samplePlayers, Player } from '@/types/Player.type';
+//import { UnderLineText } from '../common/Icon';
+import Image from 'next/image';
+//import portrait from './portrait.jpg';
+//import { samplePlayers, Player } from '@/types/Player.type';
 
 // const players: Player[] = samplePlayers;
 
@@ -33,12 +33,14 @@ const Teammates: React.FC<TeammatesProps> = ({ teammates }) => {
       <div className="h-1 bg-partnersBorders my-2" />
       {teammates.map((teammate) => (
         <div key={teammate.id} className="flex items-center py-2">
-          <img
+          <Image
             src={teammate.avatar}
             alt={teammate.name}
-            className="w-[70px] h-[70px] rounded-full  bg-slate-500"
+            width={70}
+            height={70}
+            className="rounded-full bg-slate-500"
           />
-          <div className='ml-6'>
+          <div className="ml-6">
             <p className="text-base text-primary font-sourceSansPro">
               {teammate.name}
             </p>
