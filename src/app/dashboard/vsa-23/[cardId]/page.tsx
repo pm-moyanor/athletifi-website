@@ -58,23 +58,25 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
           <CommonHero hero={hero} />
         </div>
         {isMobile ? (
-          <div className="flex flex-col py-3">
-            <div className="mx-3">
-              <Profile
-                age={13}
-                club={'River City FC'}
-                league={'Youth Soccer Association'}
-                teamName={'River City Raptors'}
-                ageGroup={'U14'}
-                gender={'Male'}
-                coach={'Daniel Smith'}
-              />
-            </div>
-            <div className="mx-3">
-              <LatestMatch />
-            </div>
-            <div className="mt-3 mx-3">
-              <Charts />
+          <div className="flex justify-center">
+            <div className="flex flex-col py-3 max-w-[840px]">
+              <div className="mx-3">
+                <Profile
+                  age={13}
+                  club={'River City FC'}
+                  league={'Youth Soccer Association'}
+                  teamName={'River City Raptors'}
+                  ageGroup={'U14'}
+                  gender={'Male'}
+                  coach={'Daniel Smith'}
+                />
+              </div>
+              <div className="mx-3">
+                <LatestMatch />
+              </div>
+              <div className="mt-3 mx-3">
+                <Charts />
+              </div>
             </div>
           </div>
         ) : (
