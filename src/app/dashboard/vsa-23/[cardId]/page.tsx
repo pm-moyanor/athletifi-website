@@ -5,14 +5,19 @@ import Header from '@/components/common/Header';
 // import { SEO_CONFIG } from '@/utils/seoConfig';
 import CommonHero from '@/components/common/CommonHero';
 import { Hero } from '@/types/CommonHero.type';
+// import { PlayerDashboardProps } from '@/types/Dashboard.type';
+import Highlights from '@/components/dashboard/Highlights';
+import Teammates from '@/components/dashboard/Teammates';
+import HeroBanner from '@/components/dashboard/HeroBanner';
+// import PlayerStats from '@/components/dashboard/PlayerStats';
+// import PlayerInfo from '@/components/dashboard/PlayerInfo';
+// import PlayerCard from '@/components/dashboard/PlayerCard';
 import type { NextPage } from 'next';
 import { notFound } from 'next/navigation';
 import Profile from '@/components/dashboard/ProfileCard';
 import LatestMatch from '@/components/dashboard/LatestMatchCard';
-
 import Charts from '@/components/dashboard/Charts';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
-
 interface PageProps {
   params: { cardId: number };
   searchParams?: { [key: string]: string | string[] | undefined };
@@ -29,33 +34,35 @@ const MAX_PLAYER_ID = 1134;
 // };
 
 const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
-  const isMobile = useMediaQuery('(max-width: 1024px)');
-
+  // const PlayerDashboardPage = ({ playerId }: PlayerDashboardProps) => {
   const { cardId } = params;
+
   if (cardId < MIN_PLAYER_ID || cardId > MAX_PLAYER_ID) {
     notFound();
   }
+  const isMobile = useMediaQuery('(max-width: 1024px)');
 
   // SAMPLE DATA
   // TODO: FETCH PLAYER DATA FROM BACKEND
-  const playerProfile = {
-    name: 'Lionel Messi',
-  };
+  // const playerProfile = {
+  //   name: 'Lionel Messi',
+  // };
 
   // SEO
-  const hero: Hero = {
-    heading: playerProfile?.name || `Player data not found`,
-    subtitle:
-      'Here you can find all the latest stats and highlights on a player!',
-    title: 'AthletiFi Player Dashboard',
-  };
+  // const hero: Hero = {
+  //   heading: playerProfile?.name || `Player data not found`,
+  //   subtitle:
+  //     'Here you can find all the latest stats and highlights on a player!',
+  //   title: 'AthletiFi Player Dashboard',
+  // };
 
   return (
     <>
       <div className="overflow-hidden">
         <div className="about-page__hero-bg bg-no-repeat bg-cover">
           <Header />
-          <CommonHero hero={hero} />
+          {/* <CommonHero hero={hero} /> */}
+          <HeroBanner />
         </div>
         {isMobile ? (
           <div className="flex justify-center">
