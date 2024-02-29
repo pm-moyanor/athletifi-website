@@ -4,8 +4,8 @@ import MatchSummary from './MatchSummary';
 const PastMatches: React.FC = () => {
   // Dummy match data -- to be defined
   const dummyMatchData = {
-    team1Badge: 'real-madrid-badge.png',
-    team2Badge: 'barcelona-badge.png',
+    team1Badge: '/vecteezy_crest_1204211.png',
+    team2Badge: '/vecteezy_crest_1204211.png',
     team1Name: 'Real Madrid',
     team2Name: 'Barcelona',
     team1Score: 2,
@@ -44,12 +44,7 @@ const PastMatches: React.FC = () => {
   };
 
   //// will depend on how past matches data is collected
-  const pastMatchesList = [
-    dummyMatchData,
-    dummyMatchData,
-    dummyMatchData,
-
-  ];
+  const pastMatchesList = [dummyMatchData, dummyMatchData, dummyMatchData];
 
   return (
     <div className=" p-4 max-w-[620px]">

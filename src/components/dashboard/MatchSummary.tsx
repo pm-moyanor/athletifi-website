@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faCloud } from '@fortawesome/free-solid-svg-icons';
 
@@ -53,26 +54,28 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
 
     <div className="flex justify-between items-center text-primary font-sourceSansPro">
       <div className="flex w-48 justify-center items-center min-w-[160px]">
-        <img
+        <Image
           src={team1Badge}
           alt="Crest"
-          style={{ width: '55px', height: '55px' }}
-          className='bg-slate-400 rounded-20'
+          width={55}
+          height={55}
+          className="w-auto h-auto"
         />
-        <div className='px-2'>
+        <div className="px-2">
           <span>{team1Score}</span> - <span>{team2Score}</span>
         </div>
-        <img
+        <Image
           src={team2Badge}
           alt="Crest"
-          style={{ width: '55px', height: '55px' }}
-          className='bg-slate-400 rounded-20'
+          width={55}
+          height={55}
+          className="w-auto h-auto"
         />
       </div>
 
       <div className="flex flex-col md:flex-row md:items-center w-full justify-between pl-4 min-w-min">
         <div className="">
-          <span className="text-base">{team1Name} </span>vs 
+          <span className="text-base">{team1Name} </span>vs
           <span className="text-base"> {team2Name}</span>
           <div className="text-sm text-offwhite pt-px">{date}</div>
         </div>
@@ -91,20 +94,20 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
           <div className="flex justify-between items-center m-auto text-primary w-full font-sourceSansPro pb-4">
             <div className="flex w-full justify-between items-center max-w-[450px]">
               <div className="flex w-[200px] justify-around items-center">
-                <img
+                <Image
                   src={team1Badge}
                   alt="Crest"
                   style={{ width: '55px', height: '55px' }}
-                  className='bg-slate-400 rounded-20'
+                  className="bg-slate-400 rounded-20"
                 />
                 <div className="font-semibold">
                   <span>{team1Score}</span> - <span>{team2Score}</span>
                 </div>
-                <img
+                <Image
                   src={team2Badge}
                   alt="Crest"
                   style={{ width: '55px', height: '55px' }}
-                  className='bg-slate-400 rounded-20'
+                  className="bg-slate-400 rounded-20"
                 />
               </div>
 
@@ -143,7 +146,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
                 <div className="text-sm text-offwhite my-4">
                   <p className="pb-[2px]">{date}</p>
                   <p className="pb-[2px]">{location}</p>
-                  <div className="flex"> 
+                  <div className="flex">
                     <div className="mr-2">
                       <FontAwesomeIcon icon={faCloud} />
                     </div>
@@ -173,7 +176,10 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
               <div className="h-1 mb-4 bg-partnersBorders w-full"></div>
               <div className="flex flex-col md:flex-row justify-between w-full ">
                 {videos.map((video, index) => (
-                  <div key={index} className=" w-full m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col">
+                  <div
+                    key={index}
+                    className=" w-full m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
+                  >
                     <video
                       src={video.url}
                       controls
