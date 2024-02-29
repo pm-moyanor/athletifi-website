@@ -44,24 +44,24 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
 
   // SAMPLE DATA
   // TODO: FETCH PLAYER DATA FROM BACKEND
-  const playerProfile = {
-    name: 'Lionel Messi',
-  };
+  // const playerProfile = {
+  //   name: 'Lionel Messi',
+  // };
 
   // SEO
-  const hero: Hero = {
-    heading: playerProfile?.name || `Player data not found`,
-    subtitle:
-      'Here you can find all the latest stats and highlights on a player!',
-    title: 'AthletiFi Player Dashboard',
-  };
+  // const hero: Hero = {
+  //   heading: playerProfile?.name || `Player data not found`,
+  //   subtitle:
+  //     'Here you can find all the latest stats and highlights on a player!',
+  //   title: 'AthletiFi Player Dashboard',
+  // };
 
   return (
     <>
       <div className="overflow-hidden">
         <div className="about-page__hero-bg bg-no-repeat bg-cover">
           <Header />
-          <CommonHero hero={hero} />
+          {/* <CommonHero hero={hero} /> */}
           <HeroBanner />
         </div>
         {isMobile ? (
