@@ -58,7 +58,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
           <Header />
           <CommonHero hero={hero} />
         </div>
-        <main className="flex flex-col px-3 min-h-full gap-5 m-10 sm:max-w-md md:max-w-2xl lg:max-w-5xl xl:max-w-7xl  mx-auto">
+        <main className="flex flex-col min-h-full sm:max-w-md md:max-w-2xl lg:max-w-5xl xl:max-w-7xl  mx-auto">
           <SeasonSection />
           <PastMatchesLayout />
           <section className="flex flex-col justify-center items-stretch lg:flex-row h-full gap-5">
