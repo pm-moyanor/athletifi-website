@@ -12,7 +12,7 @@ const ActionReel: React.FC<ActionReelProps> = ({
   title,
   description,
 }) => {
-  console.log(videoSrc,thumbnail)
+
   return (
     <div className=" flex my-3 justify-start">
       <div className="relative w-full max-w-[200px] min-w-[230px] h-[130px] sm:h-[130px] md:h-[135px]">
@@ -44,8 +44,8 @@ interface ActionReelListProps {
 
 const ActionReelList: React.FC<ActionReelListProps> = ({ actionReels }) => {
   return (
-    <div className="flex flex-col items-center w-full md:w-1/2 mx-2">
-      <div className=" flex flex-col md:overflow-auto h-[550px]">
+    <div className="flex flex-col items-center w-full md:w-1/2 mx-2 ">
+      <div className=" flex flex-col md:overflow-auto h-[550px] w-full">
         <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro my-2 ">
           Top Action Reels
         </h3>

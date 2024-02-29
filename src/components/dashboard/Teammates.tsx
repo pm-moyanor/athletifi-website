@@ -26,7 +26,7 @@ const Teammates: React.FC<TeammatesProps> = ({ teammates }) => {
   //   console.log(player);
   // };
   return (
-    <div className="bg-cardsBackground w-[95%] md:w-[328px] p-6 m-8 md:m-4 rounded-10">
+    <div className="bg-cardsBackground w-[95%] md:w-[328px] max-w-[380px] p-6 m-8 md:m-4 rounded-10">
       <h2 className="text-primary font-semibold text-[20px] font-sourceSansPro">
         Teammates
       </h2>
