@@ -59,7 +59,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
         </div>
         {isMobile ? (
           <div className="flex justify-center">
-            <div className="flex flex-col py-3 max-w-[840px]">
+            <div className="flex flex-col py-3">
               <div className="mx-3">
                 <Profile
                   age={13}
@@ -82,13 +82,13 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
         ) : (
           <div className="flex justify-center">
             <div className="flex flex-col lg:grid md:grid-cols-11 py-3 max-w-[1030px]">
-              <div className="col-start-2 col-span-6 my-3 mx-3 lg:mx-6">
+              <div className="col-start-1 col-span-7 my-3 mx-3 lg:mx-6">
                 <LatestMatch />
               </div>
-              <div className="col-start-2 col-span-6 my-3 mx-3 lg:mx-6">
+              <div className="col-start-1 col-span-7 my-3 mx-3 lg:mx-6">
                 <Charts />
               </div>
-              <div className="col-start-8 col-span-3 my-3 mx-3 lg:mx-0">
+              <div className="col-start-8 col-span-4 my-3 mx-3 lg:ml-0 lg:mr-6">
                 <Profile
                   age={13}
                   club={'River City FC'}
