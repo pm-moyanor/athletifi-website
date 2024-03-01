@@ -4,9 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { ButtonWhiteArrow, UnderLineText } from '@/components/common/Icon';
-import { postRequestHandler } from '@/components/common/api/Api';
-import { postNewsLetterHandler } from '@/components/common/api/ApiUrls';
-import { SignUp } from '@/types/SignUp.type';
+import { SignUp, SignUpFormDetails } from '@/types/SignUp.type';
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -15,15 +13,7 @@ const IMAGE_HEIGHT_GRID = 448;
 const IMAGE_WIDTH_PLAYER = 658;
 const IMAGE_HEIGHT_PLAYER = 598;
 
-// async function postSignupNewsletter(formDetails) {
-//   const response = await fetch(
-//     `${process.env.NEXT_PUBLIC_API_URL}/news/${slug}`,
-//   );
-//   const data = await response.json();
-//   return data;
-// }
-
-async function handleSubmit(formDetails) {
+async function handleSubmit(formDetails: SignUpFormDetails) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/signup`, {
     method: 'POST',
     headers: {
@@ -39,6 +29,7 @@ async function handleSubmit(formDetails) {
 
   const responseData = await response.json();
   console.log('Signup success:', responseData);
+  return responseData;
 }
 
 const SignUpForm = () => {
@@ -63,8 +54,6 @@ const SignUpForm = () => {
     if (checked) {
       try {
         const response = await handleSubmit(formDetails);
-        console.log('response!!');
-        console.log(response);
         if (response?.data) {
           toast.success('You have successfully signed-up!', toastOptions);
           setData({

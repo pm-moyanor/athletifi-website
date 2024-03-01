@@ -1,10 +1,10 @@
-import { axiosRequest, RequestMethod } from '@/utils/ApiHelper';
+import { axiosRequest, RequestMethod } from '@/utils/ApiHelper'; // Ensure this path is correct
 
 export async function POST(request: Request): Promise<Response> {
   try {
     const { data: dataToSendToStrapi } = await request.json();
 
-    const apiPath = '/join-newsletters';
+    const apiPath = '/contact-us-messages';
     const responseData = await axiosRequest(
       RequestMethod.POST,
       apiPath,
@@ -22,7 +22,10 @@ export async function POST(request: Request): Promise<Response> {
     console.error(`Error in sign-up Route Handler: ${error}`);
 
     return new Response(
-      JSON.stringify({ status: 'error', message: 'Failed to process sign-up' }),
+      JSON.stringify({
+        status: 'error',
+        message: 'Failed to process contact form',
+      }),
       {
         status: 500,
         headers: { 'Content-Type': 'application/json' },

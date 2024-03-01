@@ -33,22 +33,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-// export default function RootLayout({
-//   children,
-// }: {
-//   children: React.ReactNode;
-// }) {
-//   return (
-//     <Html lang="en">
-//       <Head>{/* Any site-wide meta tags, styles or scripts */}</Head>
-//       <body>
-//         {/* <GoogleAnalyticsWithNoSSR trackPageViews />
-//         <AOSInitializerWithNoSSR /> */}
-//         {children}
-//         <Main />
-//         <NextScript />
-//       </body>
-//     </Html>
-//   );
-// }

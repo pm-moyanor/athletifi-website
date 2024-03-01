@@ -86,7 +86,6 @@ const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
         ) : (
           <div>
             {displayedItems.map((item: NewsArticle, index: number) => {
-              // console.log("WHAT IS THIS",item)
               const imagePath = 'https://vidalco.in';
               const url = item.image.url;
               const combinedUrl = url ? `${imagePath}${url}` : null;
