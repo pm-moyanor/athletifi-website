@@ -1,17 +1,19 @@
 'use client';
 
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
-import Seo from '@/components/common/Seo';
-import { SEO_CONFIG } from '@/utils/seoConfig';
-import CommonHero from '@/components/common/CommonHero';
-import { Hero } from '@/types/CommonHero.type';
 import type { NextPage } from 'next';
 import { notFound } from 'next/navigation';
-import Profile from '@/components/dashboard/ProfileCard';
-import LatestMatch from '@/components/dashboard/LatestMatchCard';
 
 import Charts from '@/components/dashboard/Charts';
+// import CommonHero from '@/components/common/CommonHero';
+import Footer from '@/components/common/Footer';
+import Header from '@/components/common/Header';
+// import { Hero } from '@/types/CommonHero.type';
+import HeroBanner from '@/components/dashboard/HeroBanner';
+import LatestMatch from '@/components/dashboard/LatestMatchCard';
+import PastMatchesLayout from '@/components/dashboard/PastMatchesLayout';
+import Profile from '@/components/dashboard/ProfileCard';
+import SeasonSection from '@/components/dashboard/SeasonSectionLayout';
+
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
 
 interface PageProps {
@@ -57,7 +59,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
         <div className="about-page__hero-bg bg-no-repeat bg-cover">
           <Header />
           {/* <CommonHero hero={hero} /> */}
-          {/* <HeroBanner /> */}
+          <HeroBanner />
         </div>
         {isMobile ? (
           <div className="flex justify-center">
@@ -104,6 +106,10 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
             </div>
           </div>
         )}
+        <main className="flex flex-col min-h-full sm:max-w-md md:max-w-2xl lg:max-w-5xl xl:max-w-7xl  mx-auto">
+          <SeasonSection />
+          <PastMatchesLayout />
+        </main>
         <Footer />
       </div>
     </>
