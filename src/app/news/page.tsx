@@ -1,5 +1,3 @@
-'use client';
-
 import BackToTop from '@/components/common/BackToTop';
 import CommonHero from '@/components/common/CommonHero';
 import Footer from '@/components/common/Footer';
@@ -7,42 +5,22 @@ import Header from '@/components/common/Header';
 import FocusArticle from '@/components/news-insights/FocusArticle';
 import NewsInsightsCards from '@/components/news-insights/NewsInsightsCards';
 import { Hero } from '@/types/CommonHero.type';
-// import { NewsProps } from '@/types/News.type';
-// import { PageSEO } from '@/types/Seo.type';
 import { filterTargetArticle } from '@/utils/helpers';
+import { getNewsList } from '@/utils/ApiHelper';
 // import { SEO_CONFIG } from '@/utils/seoConfig';
-import { swrFetcher } from '@/components/common/api/Api';
-import {
-  newsListApiHandler,
-  newsListFilterApiHandler,
-} from '@/components/common/api/ApiUrls';
-import useSWR from 'swr';
 
 // TO DO: Implement dynamic metadata generation for SEO using generateMetadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata#dynamic-metadata
-// export const metadata = {
-//   title: 'AthletiFi News: Latest Updates & Announcements',
-//   description:
-//     'Stay updated with the latest news and insights from AthletiFi. Discover new updates, announcements, and in-depth articles.',
-// };
+// export const metadata = {title: 'AthletiFi News: Latest Updates & Announcements', description: 'Stay updated with the latest news and insights from AthletiFi. Discover new updates, announcements, and in-depth articles.'};
 
 // The main functional component for the News and Insights page
-const NewsPage = () => {
-  // Using SWR to fetch the news list
-  const { data: allNewsList, error: allNewsListError } = useSWR(
-    newsListApiHandler(),
-    swrFetcher,
-  );
-  // Using SWR to fetch the filtered news list
-  const { data: filteredNewsList, error: filteredNewsListError } = useSWR(
-    newsListFilterApiHandler(),
-    swrFetcher,
-  );
-  const filteredNewsListData = filteredNewsList?.data || [];
+// const NewsPage = () => {
+export default async function NewsPage() {
+  const { allNewsList, allNewsListError } = await getNewsList();
+  const filteredNewsListData = allNewsList?.data || [];
 
   // Handling loading and error states
-  if (allNewsListError || filteredNewsListError)
-    return <div>Error loading news data.</div>;
-  if (!allNewsList || !filteredNewsList) return <div>Loading news...</div>;
+  if (allNewsListError) return <div>Error loading news data.</div>;
+  if (!allNewsList) return <div>Loading news...</div>;
 
   // Assuming the first article is the focus article
   const targetArticle = allNewsList?.data?.[0];
@@ -86,6 +64,4 @@ const NewsPage = () => {
       </div>
     </>
   );
-};
-
-export default NewsPage;
+}

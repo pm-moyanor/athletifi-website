@@ -21,11 +21,10 @@ const AOS_DURATION: number = 800;
 const AOS_DELAY: number = 200;
 const AOS_OFFSET: number[] = [100, 200];
 
-const TargetArticleContent = ({ newsDetailData }: NewsDetails) => {
+const TargetArticleContent = ({ newsArticle }: NewsDetails) => {
   return (
     <>
-      {newsDetailData?.data?.map((newsItem: NewsArticle, i: number) => {
-        // console.log('newsItem!!!!', newsItem);
+      {newsArticle?.data?.map((newsItem: NewsArticle, i: number) => {
         const imagePath = 'https://vidalco.in';
         const url = newsItem.image.url;
         const combinedUrl = url ? `${imagePath}${url}` : null;
@@ -137,28 +136,28 @@ const TargetArticleContent = ({ newsDetailData }: NewsDetails) => {
                   <Link
                     className="hover:-translate-y-1 duration-200"
                     target="_blank"
-                    href={`https://www.facebook.com/sharer/sharer.php?u=${'https://athleti.fi/'}news/${newsDetailData.data[0].slug}`}
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${'https://athleti.fi/'}news/${newsArticle.data[0].slug}`}
                   >
                     <WhiteFacebookIcon />
                   </Link>
                   <Link
                     className="hover:-translate-y-1 duration-200"
                     target="_blank"
-                    href={`https://twitter.com/intent/tweet?text=${newsDetailData.data[0].slug}&url=${'https://athleti.fi/'}news/${newsDetailData.data[0].slug}`}
+                    href={`https://twitter.com/intent/tweet?text=${newsArticle.data[0].slug}&url=${'https://athleti.fi/'}news/${newsArticle.data[0].slug}`}
                   >
                     <WhiteTwitterIcon />
                   </Link>
                   <Link
                     className="hover:-translate-y-1 duration-200"
                     target="_blank"
-                    href={`https://api.whatsapp.com/send?text=${newsDetailData.data[0].slug}&url=${'https://athleti.fi/'}news/${newsDetailData.data[0].slug}`}
+                    href={`https://api.whatsapp.com/send?text=${newsArticle.data[0].slug}&url=${'https://athleti.fi/'}news/${newsArticle.data[0].slug}`}
                   >
                     <WhiteWhatsAppIcon />
                   </Link>
                   <Link
                     className="hover:-translate-y-1 duration-200"
                     target="_blank"
-                    href={`https://www.linkedin.com/sharing/share-offsite/?url=https://athleti.fi/news/${newsDetailData.data[0].slug}`}
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=https://athleti.fi/news/${newsArticle.data[0].slug}`}
                   >
                     <WhiteLinkedInIcon />
                   </Link>

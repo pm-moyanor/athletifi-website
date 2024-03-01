@@ -3,3 +3,7 @@ export type ContactUs = {
   email: string;
   message: string;
 };
+
+export type ContactFormDetails = {
+  data: ContactUs;
+};
