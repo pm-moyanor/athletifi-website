@@ -19,6 +19,8 @@ const GRID_IMAGE_WIDTH: number = 716;
 const GRID_IMAGE_HEIGHT: number = 692;
 
 const LatestNews = ({ allNewsList }: NewsProps) => {
+  console.log('KILLLLLL ME');
+  console.log(allNewsList);
   const DataArray = allNewsList.data;
   const itemsPerPage = 3;
   const [currentPage] = useState<number>(allNewsList.meta.pagination.pageCount);

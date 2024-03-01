@@ -1,5 +1,5 @@
 import { PostData } from '@/types/Api.type';
-import { axiosRequest, RequestMethod } from './ApiHelper';
+import { axiosRequest, RequestMethod } from '@/utils/ApiHelper';
 
 // NEWS GET REQUEST HANDLER
 // Function to handle GET requests for news articles from the Strapi CMS.

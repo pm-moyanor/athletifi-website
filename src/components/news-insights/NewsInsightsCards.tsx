@@ -6,10 +6,8 @@ import Link from 'next/link';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { PaginationArrow } from '../common/Icon';
 import NewsInsightsLoader from './NewsInsightsLoader';
-import { getRequestHandler } from '../common/api/Api';
-import { newsListApiHandler } from '../common/api/ApiUrls';
 import { AllArticles, Category, NewsArticle } from '@/types/News.type';
-
+import { getNewsList } from '@/utils/ApiHelper';
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -33,7 +31,6 @@ const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   // ==== SKELETON LOADER END ====
-  // const router: NextRouter = useRouter();
   const moreArticles: NewsArticle[] = allNewsList ?? [];
   // Nullish coalescing (??) is used to ensure that moreArticles is always an array, even if props.allNewsList is undefined or null.
 
@@ -56,7 +53,7 @@ const NewsInsightsCards = ({ allNewsList }: AllArticles) => {
 
     setLoading(true);
     try {
-      await getRequestHandler(newsListApiHandler());
+      await getNewsList();
 
       const newPath = `/news?page=${newPage}`;
       // Use the push method from useRouter to navigate

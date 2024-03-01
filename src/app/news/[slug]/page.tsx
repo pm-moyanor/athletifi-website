@@ -1,8 +1,3 @@
-'use client';
-
-import useSWR from 'swr';
-// import { useSearchParams } from 'next/navigation';
-import { usePathname } from 'next/navigation';
 import BackToTop from '@/components/common/BackToTop';
 import CommonHero from '@/components/common/CommonHero';
 import { Hero } from '@/types/CommonHero.type';
@@ -10,35 +5,30 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import NewsInsightsCards from '@/components/news-insights/NewsInsightsCards';
 import TargetArticleContent from '@/components/news-insights/TargetArticleContent';
-// import { NewsSlugProps } from '@/types/News.type';
-import { swrFetcher } from '@/components/common/api/Api';
-import {
-  newsDetailApiHandler,
-  newsListApiHandler,
-} from '@/components/common/api/ApiUrls';
 import { filterTargetArticle } from '@/utils/helpers';
+import { getNewsList } from '@/app/utils/ApiHelper';
+import { NewsPageContext } from '@/types/News.type';
+
+async function getNewsArticle(slug: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/news/${slug}`,
+  );
+  const data = await response.json();
+  return data;
+}
 
 // This is the main content of the news article page, which contains the news article itself and the sidebar with the other news articles.
-const NewsArticleSlugPage = () => {
-  const pathname = usePathname();
-  const slug = pathname.split('/').pop();
-
-  // SWR hooks for fetching news detail and list
-  const { data: newsDetailData, error: detailError } = useSWR(
-    slug ? newsDetailApiHandler(slug) : null,
-    swrFetcher,
-  );
-
-  const { data: allNewsData, error: listError } = useSWR(
-    newsListApiHandler(),
-    swrFetcher,
-  );
+export default async function NewsArticleSlugPage({ params }: NewsPageContext) {
+  const newsArticle = await getNewsArticle(params.slug);
+  const { allNewsList: allNewsData, allNewsListError: listError } =
+    await getNewsList();
 
   // Error handling and loading states
-  if (detailError || listError) return <div>Error: Data not available</div>;
-  if (!newsDetailData || !allNewsData) return <div>Loading...</div>;
+  // if (detailError || listError) return <div>Error: Data not available</div>;
+  if (listError) return <div>Error: Data not available</div>;
+  if (!newsArticle || !allNewsData) return <div>Loading...</div>;
 
-  const targetArticle = newsDetailData?.data?.[0];
+  const targetArticle = newsArticle?.data?.[0];
   if (!targetArticle) return <div>Error: Target article not found</div>;
 
   // Filter out the target article from the allNewsList data
@@ -62,13 +52,11 @@ const NewsArticleSlugPage = () => {
           <Header />
           <CommonHero hero={hero} />
         </div>
-        <TargetArticleContent newsDetailData={newsDetailData} />
+        <TargetArticleContent newsArticle={newsArticle} />
         <NewsInsightsCards allNewsList={everyOtherArticle} />
         <Footer />
         <BackToTop />
       </div>
     </>
   );
-};
-
-export default NewsArticleSlugPage;
+}
