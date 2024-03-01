@@ -1,10 +1,7 @@
-'use client';
 // This is the HOME PAGE - the main landing page of the website.
 // It includes various components to showcase the features and services offered.
-
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import useSWR from 'swr';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import LatestNews from '@/components/home/LatestNews'; //Add this back if you want to have the news section
@@ -14,9 +11,8 @@ import TrustedPartners from '@/components/home/TrustedPartners';
 import PassiveEngagement from '@/components/home/PassiveEngagement';
 import BeyondNumbers from '@/components/home/BeyondNumbers';
 import HeroHomepage from '@/components/home/HeroHomepage';
-import { swrFetcher } from '@/components/common/api/Api';
-import { newsListApiHandler } from '@/components/common/api/ApiUrls';
 import { SEO_CONFIG } from '@/utils/seoConfig';
+import { getNewsList } from '@/utils/ApiHelper';
 
 const BackToTop = dynamic(() => import('@/components/common/BackToTop'), {
   ssr: false,
@@ -39,9 +35,10 @@ const metadata = {
 console.log(`TODO: Implement metadata properly ${metadata}`);
 
 // Main function component for the home page
-const Home = () => {
-  const { data: allNewsList, error } = useSWR(newsListApiHandler(), swrFetcher);
-  if (error) return <div>Failed to fetch news list.</div>;
+export default async function Home() {
+  const { allNewsList, allNewsListError } = await getNewsList();
+
+  if (allNewsListError) return <div>Failed to fetch news list.</div>;
   if (!allNewsList) return <div>Loading news list...</div>;
 
   return (
@@ -76,6 +73,4 @@ const Home = () => {
       </div>
     </>
   );
-};
-
-export default Home;
+}

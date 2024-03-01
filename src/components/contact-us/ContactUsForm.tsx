@@ -2,9 +2,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { ButtonWhiteArrow, UnderLineText } from '@/components/common/Icon';
-import { postRequestHandler } from '@/components/common/api/Api';
-import { postContactUsHandler } from '@/components/common/api/ApiUrls';
-import { ContactUs } from '@/types/ContactUs.type';
+import { ContactUs, ContactFormDetails } from '@/types/ContactUs.type';
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,6 +12,22 @@ const IMAGE_WIDTH_PLAYER = 658;
 const IMAGE_HEIGHT_PLAYER = 598;
 const TEXTAREA_ROWS = 4;
 const TEXTAREA_MAX_CHAR = 1000;
+
+async function handleSubmitContactUs(formDetails: ContactFormDetails) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ data: formDetails }), // Ensure this matches the expected structure on your backend
+  });
+
+  if (!response.ok) {
+    throw new Error(`Contact submission failed: ${response.statusText}`);
+  }
+
+  return await response.json();
+}
 
 const ContactUsForm = () => {
   // CUSTOM INPUT-CHECK
@@ -35,11 +49,7 @@ const ContactUsForm = () => {
 
     setLoading(true);
     try {
-      const response = await postRequestHandler<ContactUs>(
-        postContactUsHandler(),
-        formDetails,
-      );
-      console.log(response);
+      const response = await handleSubmitContactUs(formDetails);
       if (response.data) {
         toast.success(
           'We have received your message and will be in touch shortly',

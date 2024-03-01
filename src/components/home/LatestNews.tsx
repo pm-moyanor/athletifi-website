@@ -40,7 +40,7 @@ const LatestNews = ({ allNewsList }: NewsProps) => {
             data-aos-offset={AOS_OFFSET}
             className="text-center font-HelveticaNeueMedium font-medium lg:text-5xl md:text-lg2xl text-basemd text-primary md:py-10 pb-5"
           >
-            <span className="relative after:content after:absolute after:bottom--6 md:after:bottom--2 after:left-0 md:after:w-209 after:w-150 after:h-2 after:bg-blue-underline after:bg-contain after:bg-no-repeat">
+            <span className="relative after:content after:absolute after:bottom--6 md:after:bottom--2 after:left-0 md:after:w-209 after:w-150 after:h-2 after:bg-contain after:bg-no-repeat">
               Latest News
             </span>
           </h2>

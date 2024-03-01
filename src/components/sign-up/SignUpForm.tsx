@@ -4,9 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { ButtonWhiteArrow, UnderLineText } from '@/components/common/Icon';
-import { postRequestHandler } from '@/components/common/api/Api';
-import { postNewsLetterHandler } from '@/components/common/api/ApiUrls';
-import { SignUp } from '@/types/SignUp.type';
+import { SignUp, SignUpFormDetails } from '@/types/SignUp.type';
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,6 +12,25 @@ const IMAGE_WIDTH_GRID = 400;
 const IMAGE_HEIGHT_GRID = 448;
 const IMAGE_WIDTH_PLAYER = 658;
 const IMAGE_HEIGHT_PLAYER = 598;
+
+async function handleSubmit(formDetails: SignUpFormDetails) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/signup`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ data: formDetails }), // Matching the PostData<T> type structure
+  });
+
+  if (!response.ok) {
+    console.error('Signup failed:', response.statusText);
+    return;
+  }
+
+  const responseData = await response.json();
+  console.log('Signup success:', responseData);
+  return responseData;
+}
 
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
@@ -23,7 +40,6 @@ const SignUpForm = () => {
     email: '',
   };
 
-  console.log(typeof initialState);
   const [data, setData] = useState<SignUp>(initialState);
 
   const formHandler = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,12 +53,8 @@ const SignUpForm = () => {
     setLoading(true);
     if (checked) {
       try {
-        const response = await postRequestHandler<SignUp>(
-          postNewsLetterHandler(),
-          formDetails,
-        );
-        console.log(response);
-        if (response.data) {
+        const response = await handleSubmit(formDetails);
+        if (response?.data) {
           toast.success('You have successfully signed-up!', toastOptions);
           setData({
             ...data,

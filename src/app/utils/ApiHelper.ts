@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { PostData } from '@/types/Api.type';
+import { PostData, NewsListResult } from '@/types/Api.type';
 
 export enum RequestMethod {
   GET = 'GET',
@@ -9,17 +9,34 @@ export enum RequestMethod {
   DELETE = 'DELETE',
 }
 
-// const SERVER_URL = "http://127.0.0.1:1337/api";
+const REQUEST_TIMEOUT_MS: number = 5000;
 
-//The below Server URL is for AthletiFi's Strapi CMS implementation, which is hosted on the vidalco.in domain
-const SERVER_URL = 'https://vidalco.in/api';
+export async function getNewsList(): Promise<NewsListResult> {
+  const newsListApiPath =
+    '/news-lists?populate=image&populate=author&populate=categories&sort=createdAt:desc';
+  try {
+    const data = await axiosRequest(RequestMethod.GET, newsListApiPath, null);
+
+    return {
+      allNewsList: data,
+      allNewsListError: null,
+    };
+  } catch (error) {
+    console.error('Fetching news list failed:', error);
+
+    // Return structure in case of an error, adjust as necessary
+    return {
+      allNewsList: null,
+      allNewsListError:
+        error instanceof Error ? error.message : 'An unknown error occurred',
+    };
+  }
+}
 
 // Function to make API requests to the Strapi CMS using Axios.
 // Method: The HTTP method (GET, POST, etc.) to use for the request.
 // URL: The specific API endpoint within the Strapi CMS.
 // Data: Optional payload for POST or PUT requests.
-
-const REQUEST_TIMEOUT_MS: number = 5000;
 
 export async function axiosRequest<T>(
   method: RequestMethod,
@@ -32,9 +49,8 @@ export async function axiosRequest<T>(
       data: data,
       method: method,
       timeout: REQUEST_TIMEOUT_MS,
-      url: `${SERVER_URL}${url}`,
+      url: `${process.env.STRAPI_SERVER_URL}${url}`, //Server URL for AthletiFi's Strapi CMS implementation, which is hosted on the vidalco.in domain
     });
-    // Return the data received from the Strapi CMS.
     return await response.data;
   } catch (error) {
     if (Axios.isAxiosError(error)) {
