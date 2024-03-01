@@ -90,14 +90,15 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
       {/* SUMMARY CARD */}
 
       {showRecap && (
-        <div className=" modal bg-[#032436] absolute z-10 top-0 right-0 w-full p-6 md:p-12 max-w-[1200px]">
+        <div className=" modal bg-[#032436] absolute z-10 top-0 right-0 w-full p-6 md:p-12 max-w-[1200px] z-50">
           <div className="flex justify-between items-center m-auto text-primary w-full font-sourceSansPro pb-4">
             <div className="flex w-full justify-between items-center max-w-[450px]">
               <div className="flex w-[200px] justify-around items-center">
                 <Image
                   src={team1Badge}
                   alt="Crest"
-                  style={{ width: '55px', height: '55px' }}
+                  width={50}
+                  height={50}
                   className="bg-slate-400 rounded-20"
                 />
                 <div className="font-semibold">
@@ -106,7 +107,8 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
                 <Image
                   src={team2Badge}
                   alt="Crest"
-                  style={{ width: '55px', height: '55px' }}
+                  width={50}
+                  height={50}
                   className="bg-slate-400 rounded-20"
                 />
               </div>
