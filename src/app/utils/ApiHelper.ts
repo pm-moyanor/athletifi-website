@@ -45,6 +45,7 @@ export async function axiosRequest<T>(
 ) {
   try {
     // Make the API request to the Strapi CMS and await the response.
+
     const response = await Axios({
       data: data,
       method: method,
@@ -82,3 +83,50 @@ export async function axiosRequest<T>(
     return error;
   }
 }
+
+// const SERVER_URL = 'https://vidalco.in/api'
+// export async function axiosRequest<T>(
+//   method: RequestMethod,
+//   url: string,
+//   data: PostData<T> | null | undefined
+// ) {
+//   try {
+
+//     // Make the API request to the Strapi CMS and await the response.
+//     const response = await Axios({
+//       data: data,
+//       method: method,
+//       timeout: REQUEST_TIMEOUT_MS,
+//       url: `${SERVER_URL}${url}`,
+//     });
+//     // Return the data received from the Strapi CMS.
+//     return await response.data;
+//   } catch (error) {
+//     if (Axios.isAxiosError(error)) {
+//       if (!error?.response || error.code === 'ECONNABORTED') {
+//         console.error(
+//           'No server response or request timed out. Try again later'
+//         );
+//       }
+
+//       switch (error.response?.status) {
+//         case 400:
+//           console.error('Bad request error');
+//           break;
+//         case 401:
+//           console.error('Unauthorized to make request');
+//           break;
+//         case 404:
+//           console.error('Requested resource was not found');
+//           break;
+//         case 500 || 503:
+//           console.error('Hit an internal server error');
+//           break;
+//         default:
+//           console.error('Ran into a general error');
+//       }
+//     }
+//     // Handle any errors that occur during the API request.
+//     return error;
+//   }
+// }
