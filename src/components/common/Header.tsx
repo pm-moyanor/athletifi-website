@@ -150,7 +150,6 @@ const Header: React.FC = () => {
                     News
                   </Link>
                 </li>
-                
                 {/* UNCOMMENT WHEN YOU ARE READY TO RE-ADD THE DASHBOARD TO THE MENUBAR */}
                 <li>
                   <Link

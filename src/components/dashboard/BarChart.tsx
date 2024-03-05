@@ -47,7 +47,7 @@ const attributeConfigs = {
 };
 
 function StatsBarChart() {
-  const isMobile = useMediaQuery('(max-width: 850px)');
+  const isMobile = useMediaQuery('(max-width: 1023px)');
   const xKey = 'attribute';
   const yKey = 'rating';
 

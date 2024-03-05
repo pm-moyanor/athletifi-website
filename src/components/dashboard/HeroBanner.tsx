@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
-import { UnderLineText } from '@/components/common/Icon';
 import { Player } from '@/types/Player.type';
 import { VillanovaIcon } from '@/components/common/Icon';
 

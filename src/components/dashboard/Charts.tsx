@@ -1,10 +1,23 @@
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
 
-import StatsBarChart from '@/components/dashboard/BarChart';
-import StatsLineChart from '@/components/dashboard/LineChart';
+// import StatsBarChart from '@/components/dashboard/BarChart';
+// import StatsLineChart from '@/components/dashboard/LineChart';
+
+const StatsBarChartWithNoSSR = dynamic(
+  () => import('@/components/dashboard/BarChart'),
+  {
+    ssr: false,
+  },
+);
+
+const StatsLineChartWithNoSSR = dynamic(
+  () => import('@/components/dashboard/LineChart'),
+  { ssr: false },
+);
 
 const Tab = styled.button<{ $primary?: boolean; $active?: boolean }>`
   width: 100%;
@@ -44,7 +57,7 @@ const tabInfo = [
 
 const Charts = () => {
   const [activeTab, setActiveTab] = useState(tabInfo[0].type);
-  const isMobile = useMediaQuery('(max-width: 850px)');
+  const isMobile = useMediaQuery('(max-width: 1024px)');
 
   return (
     <div className="stats-chart__container bg-cardsBackground">
@@ -74,7 +87,11 @@ const Charts = () => {
         })}
       </ButtonGroup>
       <section className="flex flex-col items-start h-full gap-5 pt-6">
-        {activeTab === tabInfo[0].type ? <StatsBarChart /> : <StatsLineChart />}
+        {activeTab === tabInfo[0].type ? (
+          <StatsBarChartWithNoSSR />
+        ) : (
+          <StatsLineChartWithNoSSR />
+        )}
       </section>
     </div>
   );

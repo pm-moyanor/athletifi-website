@@ -104,7 +104,7 @@ const attributeConfigs = {
 };
 
 function StatsLineChart() {
-  const isMobile = useMediaQuery('(max-width: 850px)');
+  const isMobile = useMediaQuery('(max-width: 1023px)');
 
   const [lineProps, setLineProps] = useState<ILineProps>(
     Object.keys(attributeConfigs).reduce(
