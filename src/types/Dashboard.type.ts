@@ -1,3 +1,5 @@
+import type { Payload } from 'recharts/types/component/DefaultLegendContent';
+
 export type PlayerDashboardProps = {
   params: { cardId: number };
   searchParams?: { [key: string]: string | string[] | undefined };
@@ -9,6 +11,29 @@ export enum Attributes {
   Physical = 'physical',
   Mental = 'mental',
   Defending = 'defending',
+}
+
+export interface IAttributeConfig {
+  attacking: {
+    color: string;
+    description: string;
+  };
+  skill: {
+    color: string;
+    description: string;
+  };
+  physical: {
+    color: string;
+    description: string;
+  };
+  mentality: {
+    color: string;
+    description: string;
+  };
+  defending: {
+    color: string;
+    description: string;
+  };
 }
 
 export interface ProfileProps {
@@ -49,4 +74,8 @@ export interface ILineProps {
   mental?: boolean;
   defending?: boolean;
   hover: Attributes | undefined | null;
+}
+
+export interface ILegendProps {
+  payload?: Payload[];
 }

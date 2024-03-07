@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
+
+const dummyDataPlayerRating: number = 72;
 
 const StatsBarChartWithNoSSR = dynamic(
   () => import('@/components/dashboard/BarChart'),
@@ -29,8 +31,16 @@ const tabInfo = [
 ];
 
 const Charts = () => {
-  const [isLatestActive, setIsLatestActive] = useState(true);
   const isMobile = useMediaQuery('(max-width: 1024px)');
+
+  const [isLatestActive, setIsLatestActive] = useState(true);
+  const [playerRating, setPlayerRating] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPlayerRating(dummyDataPlayerRating);
+    }, 1500);
+  }, []);
 
   return (
     <div className="stats-chart__container bg-cardsBackground">
@@ -68,9 +78,9 @@ const Charts = () => {
       </div>
       <section className="flex flex-col items-start h-full min-h-[450px] gap-5 pt-6">
         {isLatestActive ? (
-          <StatsBarChartWithNoSSR />
+          <StatsBarChartWithNoSSR playerRating={playerRating} />
         ) : (
-          <StatsLineChartWithNoSSR />
+          <StatsLineChartWithNoSSR playerRating={playerRating} />
         )}
       </section>
     </div>

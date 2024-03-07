@@ -10,9 +10,10 @@ import {
 } from 'recharts';
 import { useState, useEffect } from 'react';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
-import { IBarProps } from '@/types/Dashboard.type';
+import { IAttributeConfig, IBarProps } from '@/types/Dashboard.type';
 import { LegendEventType, ILegendMouseEvent } from '@/types/Chart.type';
 import Skeleton from 'react-loading-skeleton';
+import { IPlayerRatingProps } from '@/types/Dashboard.type';
 
 const DEFAULT_COLOR = 'rgba(128, 128, 128, 0.15)';
 const LAYERCOLOR = '#ffffff';
@@ -30,9 +31,7 @@ const dummyData: IRating[] = [
   { attribute: 'defending', rating: 85 },
 ];
 
-const dummyDataPlayerRating: number = 72;
-
-const attributeConfigs = {
+const attributeConfigs: IAttributeConfig = {
   attacking: {
     color: '#DA393B',
     description: 'Attacking description goes here',
@@ -55,7 +54,9 @@ const attributeConfigs = {
   },
 };
 
-function StatsBarChart() {
+const StatsBarChart: React.FC<IPlayerRatingProps> = ({
+  playerRating,
+}: IPlayerRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 1023px)');
   const xKey = 'attribute';
   const yKey = 'rating';
@@ -67,17 +68,10 @@ function StatsBarChart() {
 
   const [barProps, setBarProps] = useState<IBarProps>(resetProps);
   const [data, setData] = useState<IRating[]>([]);
-  const [playerRating, setPlayerRating] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
       setData(dummyData);
-    }, 1500);
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setPlayerRating(dummyDataPlayerRating);
     }, 1500);
   }, []);
 
@@ -91,7 +85,7 @@ function StatsBarChart() {
             style={{
               background:
                 barProps.click === entry
-                  ? attributeConfigs[entry].color
+                  ? attributeConfigs[entry as keyof IAttributeConfig].color
                   : DEFAULT_COLOR,
             }}
             onClick={(data) => selectBar(data)}
@@ -172,7 +166,9 @@ function StatsBarChart() {
               return (
                 <Cell
                   key={d[xKey]}
-                  fill={attributeConfigs[d[xKey]].color}
+                  fill={
+                    attributeConfigs[d[xKey] as keyof IAttributeConfig].color
+                  }
                   fillOpacity={`${barProps.hover === d[xKey] || !barProps.hover ? 1 : 0.4}`}
                 />
               );
@@ -190,7 +186,10 @@ function StatsBarChart() {
         <div className="ml-5 mr-8 lg:ml-[3.75rem] lg:mr-[3.25rem] w-full">
           {barProps.click ? (
             <div className="text-white text-xs md:text-sm bg-gray-500/15 rounded-10 py-4 px-6 h-20 w-full">
-              {attributeConfigs[barProps.click].description}
+              {
+                attributeConfigs[barProps.click as keyof IAttributeConfig]
+                  .description
+              }
             </div>
           ) : (
             ''
@@ -199,6 +198,6 @@ function StatsBarChart() {
       </div>
     </>
   );
-}
+};
 
 export default StatsBarChart;
