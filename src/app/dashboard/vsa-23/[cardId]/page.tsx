@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import Charts from '@/components/dashboard/Charts';
 // import CommonHero from '@/components/common/CommonHero';
 import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
+// import Header from '@/components/common/Header';
 // import { Hero } from '@/types/CommonHero.type';
 import HeroBanner from '@/components/dashboard/HeroBanner';
 import LatestMatch from '@/components/dashboard/LatestMatchCard';

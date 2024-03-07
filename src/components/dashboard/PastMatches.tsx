@@ -47,7 +47,7 @@ const PastMatches: React.FC = () => {
   const pastMatchesList = [dummyMatchData, dummyMatchData, dummyMatchData];
 
   return (
-    <div className="w-full lg:w-2/3 lg:max-w-[640px]">
+    <div className="w-full px-0 md:px-4 lg:px-0 lg:w-2/3 lg:max-w-[640px]">
       <h2 className="text-primary font-semibold text-2xl mb-6 font-sourceSansPro">
         Past matches
       </h2>
