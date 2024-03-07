@@ -53,7 +53,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
     // MATCH basic INFO
 
     <div className="w-full flex justify-around md:justify-between items-center text-primary font-sourceSansPro mr-4">
-      <div className="flex justify-between items-center w-[280px] max-w-56 mr-2">
+      <div className="flex justify-between items-center w-[250px] max-w-[220px] min-w-[172px] mr-2">
         <Image
           src={team1Badge}
           alt="Crest"
@@ -77,7 +77,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
         <div className="block max-w-full m-none md:m-auto">
           <span className="text-base font-sourceSansPro">{team1Name} </span>vs
           <span className="text-base font-sourceSansPro"> {team2Name}</span>
-          <div className="text-sm text-offwhite pt-px">{date}</div>
+          <div className="text-sm text-offwhite pt-[2px]">{date}</div>
         </div>
         <button
           className="w-28 h-[30px] px-2 bg-skyblue text-black text-sm rounded-30 mt-4 md:mt-0 "

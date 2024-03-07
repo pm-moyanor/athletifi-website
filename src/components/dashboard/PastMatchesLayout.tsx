@@ -31,7 +31,7 @@ const teammates = [
 
 const PastMatchesLayout: React.FC = () => {
   return (
-    <div className="flex flex-col lg:flex-row justify-between items-start w-11/12 max-w-[1130px]">
+    <div className="flex flex-col lg:flex-row justify-between mt-6 mb-6 items-center md:items-start w-11/12 max-w-[1130px] ">
       <PastMatches />
       <Teammates teammates={teammates} />
     </div>
