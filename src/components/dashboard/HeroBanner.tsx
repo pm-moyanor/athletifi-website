@@ -11,15 +11,15 @@ const playerInformation: Player = {
   team: '2009',
 };
 
-const CARD_IMAGE_WIDTH: number = 390;
+const CARD_IMAGE_WIDTH: number = 460;
 const CARD_IMAGE_HEIGHT: number = 400;
 
 const HeroBanner: React.FC = () => {
   return (
-    <section className="relative items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-screen md:h-[460px] lg:h-[370px] w-full max-w-[800px] lg:max-w-[980px] px-2">
-      <div className=" w-auto lg:w-8/12 flex items-center lg:items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[30px] ml-0 md:ml-10 lg:ml-0 pt-6">
+    <section className="relative px-2 items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-screen md:h-[460px] lg:h-[370px] w-full max-w-[1130px] lg:max-w-[1130px]">
+      <div className=" w-auto lg:w-2/3 flex items-center lg:items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[30px] ml-0 md:ml-10 lg:ml-4 pt-6">
         <VillanovaIcon />
-        <div className="w-full flex flex-col justify-center items-start ml-2">
+        <div className="w-full flex flex-col justify-center items-start ml-4 pr-6">
           <h2 className="font-SourceSansPro font-bold md:text-lgl text-lg   text-primary relative mb-1">
             {playerInformation.name}
           </h2>
@@ -32,10 +32,11 @@ const HeroBanner: React.FC = () => {
           <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative z-20">
             #22
           </p>
-          <span className="hidden md:block h-px w-11/12 my-4 bg-partnersBorders" />
+          <span className="hidden md:block h-px w-full my-4 bg-partnersBorders" />
         </div>
       </div>
-      <div className="relative md:absolute md:-right-0 lg:-right-14 md:top-[80px] lg:top-[180px]">
+      {/* <div className="relative md:absolute md:-right-0 lg:-right-[80px] md:top-[80px] lg:top-[150px]"> */}
+      <div className="relative -mb-[190px]">
         <Image
           className=""
           src={cardImage}
