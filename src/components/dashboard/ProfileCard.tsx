@@ -1,14 +1,6 @@
 import React from 'react';
-
-interface ProfileProps {
-  age: number;
-  club: string;
-  league: string;
-  teamName: string;
-  ageGroup: string;
-  gender: string;
-  coach: string;
-}
+import Skeleton from 'react-loading-skeleton';
+import { ProfileProps } from '@/types/Dashboard.type';
 
 const Profile: React.FC<ProfileProps> = ({
   age,
@@ -18,6 +10,7 @@ const Profile: React.FC<ProfileProps> = ({
   ageGroup,
   gender,
   coach,
+  bio,
 }: ProfileProps) => {
   return (
     <div className="w-full h-[500px] bg-cardsBackground rounded-10 p-4 mb-4 font-sourceSansPro overflow-scroll">
@@ -26,40 +19,37 @@ const Profile: React.FC<ProfileProps> = ({
         <tbody className="font-extralight text-base">
           <tr className="border-b border-partnersBorders ">
             <td className="text-left py-1.5">Age</td>
-            <td className="text-right">{age}</td>
+            <td className="text-right min-w-24">{age || <Skeleton />}</td>
           </tr>
           <tr className="border-b border-partnersBorders py-4">
             <td className="text-left py-1.5">Club</td>
-            <td className="text-right">{club}</td>
+            <td className="text-right">{club || <Skeleton />}</td>
           </tr>
           <tr className="border-b border-partnersBorders py-4">
             <td className="text-left py-1.5">League</td>
-            <td className="text-right ">{league}</td>
+            <td className="text-right ">{league || <Skeleton />}</td>
           </tr>
           <tr className="border-b border-partnersBorders">
             <td className="text-left py-1.5">Team name</td>
-            <td className="text-right">{teamName}</td>
+            <td className="text-right">{teamName || <Skeleton />}</td>
           </tr>
           <tr className="border-b border-partnersBorders">
             <td className="text-left py-1.5">Age group</td>
-            <td className="text-right">{ageGroup}</td>
+            <td className="text-right">{ageGroup || <Skeleton />}</td>
           </tr>
           <tr className="border-b border-partnersBorders">
             <td className="text-left py-1.5">Gender</td>
-            <td className="text-right">{gender}</td>
+            <td className="text-right">{gender || <Skeleton />}</td>
           </tr>
           <tr>
             <td className="text-left py-1.5">Coach</td>
-            <td className="text-right">{coach}</td>
+            <td className="text-right">{coach || <Skeleton />}</td>
           </tr>
         </tbody>
       </table>
       <h3 className="text-primary text-md mt-6 mb-px">Bio</h3>
-      <p className="text-primary font-extralight text-sm">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-        <br />
-        Volutpat est velit egestas dui id ornare arcu.
+      <p className="text-primary font-extralight text-sm min-w-[318px] md:min-w-[754px] lg:min-w-[318px]">
+        {bio || <Skeleton count={4} />}
       </p>
     </div>
   );

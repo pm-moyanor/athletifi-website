@@ -4,6 +4,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import React from 'react';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 // const GoogleAnalyticsWithNoSSR = dynamic(
 //   () => import('nextjs-google-analytics').then((mod) => mod.GoogleAnalytics),
@@ -28,7 +30,9 @@ export default function RootLayout({
       <body>
         <GoogleAnalytics gaId={gaId as string} />
         <AOSInitializerWithNoSSR />
-        {children}
+        <SkeletonTheme baseColor="#032436" highlightColor="#525252">
+          {children}
+        </SkeletonTheme>
       </body>
     </html>
   );

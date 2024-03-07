@@ -1,30 +1,23 @@
 import { useEffect, useState } from 'react';
 
-export function useMediaQuery(query: string): boolean {
-  const getMatches = (query: string): boolean => {
-    if (typeof window !== 'undefined') {
-      return window.matchMedia(query).matches;
-    }
-    return false;
-  };
-
-  const [matches, setMatches] = useState<boolean>(getMatches(query));
+/**
+ * Modified from link below
+ * @see https://observablehq.com/@werehamster/avoiding-hydration-mismatch-when-using-react-hooks
+ * @param mediaQueryString
+ * @returns {unknown}
+ */
+export function useMediaQuery(mediaQueryString: string): boolean | null {
+  const [matches, setMatches] = useState<boolean | null>(null);
 
   useEffect(() => {
-    function handleChange() {
-      setMatches(getMatches(query));
-    }
+    const mediaQueryList = window.matchMedia(mediaQueryString);
+    const listener = () => setMatches(!!mediaQueryList.matches);
 
-    const matchMedia = window.matchMedia(query);
+    listener();
 
-    handleChange();
-
-    matchMedia.addEventListener('change', handleChange);
-
-    return () => {
-      matchMedia.removeEventListener('change', handleChange);
-    };
-  }, [query]);
+    mediaQueryList.addEventListener('change', listener);
+    return () => mediaQueryList.removeEventListener('change', listener);
+  }, [mediaQueryString]);
 
   return matches;
 }

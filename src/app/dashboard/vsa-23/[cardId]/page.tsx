@@ -2,6 +2,7 @@
 
 import type { NextPage } from 'next';
 import { notFound } from 'next/navigation';
+import { useState, useEffect } from 'react';
 
 import Charts from '@/components/dashboard/Charts';
 // import CommonHero from '@/components/common/CommonHero';
@@ -13,8 +14,9 @@ import LatestMatch from '@/components/dashboard/LatestMatchCard';
 import PastMatchesLayout from '@/components/dashboard/PastMatchesLayout';
 import Profile from '@/components/dashboard/ProfileCard';
 import SeasonSection from '@/components/dashboard/SeasonSectionLayout';
-
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
+
+import { ProfileProps, emptyProfileProps } from '@/types/Dashboard.type';
 
 interface PageProps {
   params: { cardId: number };
@@ -31,8 +33,26 @@ const MAX_PLAYER_ID = 1134;
 //     'Explore detailed player statistics, highlights, and more on the AthletiFi Player Dashboard.',
 // };
 
+const dummyProfileProps: ProfileProps = {
+  age: 13,
+  club: 'River City FC',
+  league: 'Youth Soccer Association',
+  teamName: 'River City Raptors',
+  ageGroup: 'U14',
+  gender: 'Male',
+  coach: 'Daniel Smith',
+  bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat est velit egestas dui id ornare arcu.',
+};
+
 const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
   const isMobile = useMediaQuery('(max-width: 1024px)');
+  const [profile, setProfile] = useState<ProfileProps>(emptyProfileProps);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setProfile(dummyProfileProps);
+    }, 1500);
+  }, []);
 
   const { cardId } = params;
   if (cardId < MIN_PLAYER_ID || cardId > MAX_PLAYER_ID) {
@@ -66,13 +86,14 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
             <div className="flex flex-col py-3">
               <div className="mx-3">
                 <Profile
-                  age={13}
-                  club={'River City FC'}
-                  league={'Youth Soccer Association'}
-                  teamName={'River City Raptors'}
-                  ageGroup={'U14'}
-                  gender={'Male'}
-                  coach={'Daniel Smith'}
+                  age={profile.age}
+                  club={profile.club}
+                  league={profile.league}
+                  teamName={profile.teamName}
+                  ageGroup={profile.ageGroup}
+                  gender={profile.gender}
+                  coach={profile.coach}
+                  bio={profile.bio}
                 />
               </div>
               <div className="mx-3">
@@ -94,13 +115,14 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
               </div>
               <div className="col-start-8 col-span-4 my-3 mx-3 lg:ml-0 lg:mr-6">
                 <Profile
-                  age={13}
-                  club={'River City FC'}
-                  league={'Youth Soccer Association'}
-                  teamName={'River City Raptors'}
-                  ageGroup={'U14'}
-                  gender={'Male'}
-                  coach={'Daniel Smith'}
+                  age={profile.age}
+                  club={profile.club}
+                  league={profile.league}
+                  teamName={profile.teamName}
+                  ageGroup={profile.ageGroup}
+                  gender={profile.gender}
+                  coach={profile.coach}
+                  bio={profile.bio}
                 />
               </div>
             </div>

@@ -8,20 +8,29 @@ import {
   LabelList,
   Legend,
 } from 'recharts';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
 import { IBarProps } from '@/types/Dashboard.type';
 import { LegendEventType, ILegendMouseEvent } from '@/types/Chart.type';
+import Skeleton from 'react-loading-skeleton';
 
 const DEFAULT_COLOR = 'rgba(128, 128, 128, 0.15)';
 const LAYERCOLOR = '#ffffff';
-const dummyData = [
+
+interface IRating {
+  attribute?: string;
+  rating?: number;
+}
+
+const dummyData: IRating[] = [
   { attribute: 'attacking', rating: 80 },
   { attribute: 'skill', rating: 90 },
   { attribute: 'physical', rating: 75 },
   { attribute: 'mentality', rating: 95 },
   { attribute: 'defending', rating: 85 },
 ];
+
+const dummyDataPlayerRating: number = 72;
 
 const attributeConfigs = {
   attacking: {
@@ -57,6 +66,20 @@ function StatsBarChart() {
   };
 
   const [barProps, setBarProps] = useState<IBarProps>(resetProps);
+  const [data, setData] = useState<IRating[]>([]);
+  const [playerRating, setPlayerRating] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setData(dummyData);
+    }, 1500);
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPlayerRating(dummyDataPlayerRating);
+    }, 1500);
+  }, []);
 
   function CustomLegend() {
     return (
@@ -106,7 +129,7 @@ function StatsBarChart() {
     <>
       <ResponsiveContainer width={'100%'} height={295} debounce={50}>
         <BarChart
-          data={dummyData}
+          data={data}
           layout="vertical"
           margin={isMobile ? { left: -25, right: 30 } : { left: 40, right: 50 }}
         >
@@ -145,7 +168,7 @@ function StatsBarChart() {
               offset={15}
               style={{ fill: LAYERCOLOR }}
             />
-            {dummyData.map((d) => {
+            {data.map((d) => {
               return (
                 <Cell
                   key={d[xKey]}
@@ -161,7 +184,7 @@ function StatsBarChart() {
         <div className="flex items-center justify-between h-full">
           <div className="text-white text-center w-20 md:w-24 lg:w-32 border-t border-[#ccd1d4] py-4">
             <div className="">Rating</div>
-            <div className="text-[36px]">72</div>
+            <div className="text-[36px]">{playerRating || <Skeleton />}</div>
           </div>
         </div>
         <div className="ml-5 mr-8 lg:ml-[3.75rem] lg:mr-[3.25rem] w-full">
