@@ -56,14 +56,14 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
   return (
     <>
       <div className="overflow-hidden">
-        <div className="about-page__hero-bg bg-no-repeat bg-cover">
-          <Header />
+        <div className="bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] flex justify-center w-full border-collapse">
+          {/* <Header /> */}
           {/* <CommonHero hero={hero} /> */}
           <HeroBanner />
         </div>
         {isMobile ? (
-          <div className="flex justify-center">
-            <div className="flex flex-col py-3">
+          <div className="flex justify-center py-4">
+            <div className="flex flex-col py-3 mt-10 max-w-[650px]">
               <div className="mx-3">
                 <Profile
                   age={13}
@@ -85,14 +85,14 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
           </div>
         ) : (
           <div className="flex justify-center">
-            <div className="flex flex-col lg:grid md:grid-cols-11 py-3 max-w-[1030px]">
-              <div className="col-start-1 col-span-7 my-3 mx-3 lg:mx-6">
+            <div className="flex flex-col lg:grid md:grid-cols-11 py-6 max-w-[1130px]">
+              <div className="col-start-1 col-span-7 my-2 mx-2 lg:mx-4">
                 <LatestMatch />
               </div>
-              <div className="col-start-1 col-span-7 my-3 mx-3 lg:mx-6">
+              <div className="col-start-1 col-span-7 my-2 mx-2 lg:mx-4">
                 <Charts />
               </div>
-              <div className="col-start-8 col-span-4 my-3 mx-3 lg:ml-0 lg:mr-6">
+              <div className="col-start-8 col-span-4 my-2 mx-2 lg:ml-0 lg:mr-6">
                 <Profile
                   age={13}
                   club={'River City FC'}
@@ -106,8 +106,9 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
             </div>
           </div>
         )}
-        <main className="flex flex-col min-h-full sm:max-w-md md:max-w-2xl lg:max-w-5xl xl:max-w-7xl  mx-auto">
+        <main className="flex flex-col items-center bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95">
           <SeasonSection />
+          <span className="h-px bg-partnersBorders w-11/12 max-w-[1130px] my-8 md:my-4" />
           <PastMatchesLayout />
         </main>
         <Footer />

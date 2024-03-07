@@ -1,6 +1,7 @@
 import React from 'react';
 import SeasonHighlights from './SeasonHighlights';
 import { ActionReelList } from './TopActionReels';
+import { useMediaQuery } from '@/app/utils/useMediaQuery';
 
 const dummyData = [
   {
@@ -24,13 +25,15 @@ const dummyData = [
 ];
 
 const SeasonSection: React.FC = () => {
+  const isMobile = useMediaQuery('(max-width: 767px)');
+
   return (
-    <div className="bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95 flex  justify-center items-center relative">
-      <div className="w-full max-w-[900px] sm:py-6 md:py-20 px-4 flex flex-col sm:flex-col md:flex-row justify-center ">
-        <SeasonHighlights />
-        <ActionReelList actionReels={dummyData} />
-        <span className="absolute bottom-0 left-auto h-px my-4 md:my-6 mx-4 bg-partnersBorders w-full max-w-[1000px]" />
-      </div>
+    <div className="w-11/12 max-w-[1030px] sm:py-6 md:py-16 px-0 md:px-4 flex flex-col sm:flex-col md:flex-row justify-center items-center md:items-start h-full">
+      <SeasonHighlights />
+      {isMobile && (
+        <span className=" h-px bg-partnersBorders w-full max-w-[1030px] my-4" />
+      )}
+      <ActionReelList actionReels={dummyData} />
     </div>
   );
 };
