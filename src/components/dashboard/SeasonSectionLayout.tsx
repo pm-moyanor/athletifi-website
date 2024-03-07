@@ -28,7 +28,7 @@ const SeasonSection: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 767px)');
 
   return (
-    <div className="w-11/12 max-w-[1030px] sm:py-6 md:py-16 px-0 md:px-4 flex flex-col sm:flex-col md:flex-row justify-center items-center md:items-start h-full">
+    <div className="w-full max-w-[1030px] sm:py-6 md:py-16 px-4 flex flex-col sm:flex-col md:flex-row justify-center items-center md:items-start h-full">
       <SeasonHighlights />
       {isMobile && (
         <span className=" h-px bg-partnersBorders w-full max-w-[1030px] my-4" />
