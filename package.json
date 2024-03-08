@@ -4,7 +4,7 @@
   "description": "Official website for AthletiFi",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev & npx next-video sync -w",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -31,20 +31,22 @@
     "axios": "^1.6.7",
     "moment": "^2.30.1",
     "next": "^14.1.0",
+    "next-video": "^0.16.0",
     "nextjs-google-analytics": "^2.3.3",
     "postcss": "8.4.35",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-loading-skeleton": "^3.4.0",
+    "react-player": "^2.15.1",
     "react-slick": "^0.30.2",
     "react-toastify": "^10.0.4",
     "recharts": "^2.12.0",
+    "sharp": "^0.33.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.8",
     "swr": "^2.2.5",
     "tailwindcss": "3.4.1",
-    "typescript": "5.3.3",
-    "sharp": "^0.33.2"
+    "typescript": "5.3.3"
   },
   "devDependencies": {
     "@types/aos": "^3.0.7",

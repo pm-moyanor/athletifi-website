@@ -1,4 +1,5 @@
 import React from 'react';
+import Video from 'next-video';
 
 interface ActionReelProps {
   videoSrc: string;
@@ -15,14 +16,16 @@ const ActionReel: React.FC<ActionReelProps> = ({
   return (
     <div className=" flex my-3 justify-start">
       <div className="relative w-full max-w-[230px] min-w-[180px] h-[130px] sm:h-[130px] md:h-[120px]">
-        <video
+        {/* <video
           className="w-full h-full object-cover rounded rounded-5"
           src={videoSrc}
           poster={thumbnail}
         />
-        <time className="absolute bottom-2 right-2 bg-black text-primary px-1.5 text-sm font-light">
+         */}
+        <Video src={videoSrc} />
+        {/* <time className="absolute bottom-2 right-2 bg-black text-primary px-1.5 text-sm font-light">
           00:00
-        </time>
+        </time> */}
       </div>
       <div className=" ml-2 flex flex-col justify-end w-full min-w-[130px] max-w-[220px]">
         <h4 className="text-sm font-semibold mb-2 text-primary font-sourceSansPro">
