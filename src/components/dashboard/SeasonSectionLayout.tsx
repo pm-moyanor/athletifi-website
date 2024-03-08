@@ -6,25 +6,24 @@ import { useMediaQuery } from '@/app/utils/useMediaQuery';
 const dummyData = [
   {
     videoSrc:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+    // 'https://youtu.be/qv6UVOQ0F44',
     thumbnail: '/poster2.png',
     title: 'Highlight',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
   },
-  {
-    videoSrc:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-    thumbnail: '/poster3.png',
-    title: 'Highlight',
-    description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-  },
-  {
-    videoSrc:
-      'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-    thumbnail: '/poster3.png',
-    title: 'Highlight',
-    description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-  },
+  // {
+  //   videoSrc: '/video3.mp4',
+  //   thumbnail: '/poster3.png',
+  //   title: 'Highlight',
+  //   description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+  // },
+  // {
+  //   videoSrc: '/video3.mp4',
+  //   thumbnail: '/poster3.png',
+  //   title: 'Highlight',
+  //   description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+  // },
 ];
 
 const SeasonSection: React.FC = () => {

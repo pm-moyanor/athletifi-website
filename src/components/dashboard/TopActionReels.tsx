@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
 import Video from 'next-video';
+import VideoPlayer from '@/components/dashboard/VideoPlayer';
 
 interface ActionReelProps {
   videoSrc: string;
@@ -22,10 +25,11 @@ const ActionReel: React.FC<ActionReelProps> = ({
           poster={thumbnail}
         />
          */}
-        <Video src={videoSrc} />
+        {/* <Video src={videoSrc} /> */}
         {/* <time className="absolute bottom-2 right-2 bg-black text-primary px-1.5 text-sm font-light">
           00:00
         </time> */}
+        <VideoPlayer src={videoSrc} poster={thumbnail} startTimeSeconds={5} />
       </div>
       <div className=" ml-2 flex flex-col justify-end w-full min-w-[130px] max-w-[220px]">
         <h4 className="text-sm font-semibold mb-2 text-primary font-sourceSansPro">
