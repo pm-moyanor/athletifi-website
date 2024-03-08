@@ -36,30 +36,44 @@ export interface IAttributeConfig {
   };
 }
 
-export interface ProfileProps {
-  age: number | null;
-  club: string | null;
-  league: string | null;
-  teamName: string | null;
-  ageGroup: string | null;
-  gender: string | null;
-  coach: string | null;
-  bio: string | null;
+export interface IProfileProps {
+  name?: string | null;
+  playerNumber?: string | null;
+  age?: number | null;
+  club?: string | null;
+  club_logo?: string | null;
+  league?: string | null;
+  team?: string | null;
+  ageGroup?: string | null;
+  gender?: string | null;
+  coach?: string | null;
+  bio?: string | null;
+  player_card_url?: string | null;
 }
 
-export const emptyProfileProps: ProfileProps = {
+export const emptyProfileProps: IProfileProps = {
+  name: null,
+  playerNumber: null,
   age: null,
   club: null,
+  club_logo: null,
   league: null,
-  teamName: null,
+  team: null,
   ageGroup: null,
   gender: null,
   coach: null,
   bio: null,
+  player_card_url: null,
 };
 
-export interface IPlayerRatingProps {
-  playerRating: number | null;
+export interface IRating {
+  attribute?: string;
+  rating?: number;
+}
+
+export interface IRatingProps {
+  overallPlayerRating: number | null;
+  playerRatings?: IRating[];
 }
 
 export interface IBarProps {
@@ -79,3 +93,27 @@ export interface ILineProps {
 export interface ILegendProps {
   payload?: Payload[];
 }
+
+export interface ILatestMatchData {
+  datetime: string | null;
+  location: string | null;
+  weather: string | null;
+  home_team_name: string | null;
+  home_team_logo_url: string | null;
+  home_team_score: number | null;
+  away_team_name: string | null;
+  away_team_logo_url: string | null;
+  away_team_score: number | null;
+}
+
+export const emptyLatestMatchData: ILatestMatchData = {
+  datetime: null,
+  location: null,
+  weather: null,
+  home_team_name: null,
+  home_team_logo_url: null,
+  home_team_score: null,
+  away_team_name: null,
+  away_team_logo_url: null,
+  away_team_score: null,
+};

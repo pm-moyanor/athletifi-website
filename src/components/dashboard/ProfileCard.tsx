@@ -1,17 +1,17 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { ProfileProps } from '@/types/Dashboard.type';
+import { IProfileProps } from '@/types/Dashboard.type';
 
-const Profile: React.FC<ProfileProps> = ({
+const Profile: React.FC<IProfileProps> = ({
   age,
   club,
   league,
-  teamName,
+  team,
   ageGroup,
   gender,
   coach,
   bio,
-}: ProfileProps) => {
+}: IProfileProps) => {
   return (
     <div className="w-full h-[586px] bg-cardsBackground rounded-10 p-4 mb-4 lg:-mt-[86px] font-sourceSansPro overflow-scroll">
       <h2 className="text-primary text-[24px] mb-4 font-semibold">Profile</h2>
@@ -31,7 +31,7 @@ const Profile: React.FC<ProfileProps> = ({
           </tr>
           <tr className="border-b border-partnersBorders">
             <td className="text-left py-1.5">Team name</td>
-            <td className="text-right">{teamName || <Skeleton />}</td>
+            <td className="text-right">{team || <Skeleton />}</td>
           </tr>
           <tr className="border-b border-partnersBorders">
             <td className="text-left py-1.5">Age group</td>
@@ -48,7 +48,7 @@ const Profile: React.FC<ProfileProps> = ({
         </tbody>
       </table>
       <h3 className="text-primary text-md mt-6 mb-px">Bio</h3>
-      <p className="text-primary font-extralight text-sm min-w-[318px] md:min-w-[754px] lg:min-w-[318px]">
+      <p className="text-primary font-extralight text-sm min-w-[319px] md:min-w-[594px] lg:min-w-[354px]">
         {bio || <Skeleton count={4} />}
       </p>
     </div>

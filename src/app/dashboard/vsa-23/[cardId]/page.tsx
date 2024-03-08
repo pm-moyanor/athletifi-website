@@ -16,7 +16,12 @@ import Profile from '@/components/dashboard/ProfileCard';
 import SeasonSection from '@/components/dashboard/SeasonSectionLayout';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
 
-import { ProfileProps, emptyProfileProps } from '@/types/Dashboard.type';
+import {
+  IProfileProps,
+  emptyProfileProps,
+  ILatestMatchData,
+  emptyLatestMatchData,
+} from '@/types/Dashboard.type';
 
 interface PageProps {
   params: { cardId: number };
@@ -33,24 +38,49 @@ const MAX_PLAYER_ID = 1134;
 //     'Explore detailed player statistics, highlights, and more on the AthletiFi Player Dashboard.',
 // };
 
-const dummyProfileProps: ProfileProps = {
-  age: 13,
-  club: 'River City FC',
+const dummyProfileProps: IProfileProps = {
+  name: 'Salvador Carrillo',
+  playerNumber: '22',
+  club: 'Villanova Soccer Academy',
+  club_logo:
+    'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/vsa-logo.svg',
+  team: '2009',
   league: 'Youth Soccer Association',
-  teamName: 'River City Raptors',
+  age: 13,
   ageGroup: 'U14',
   gender: 'Male',
   coach: 'Daniel Smith',
   bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat est velit egestas dui id ornare arcu.',
+  player_card_url:
+    'https://athletifi-s3.s3.us-east-2.amazonaws.com/player-card-images/Jose+Hernandez_13_standing_Bronze+v2_front.webp',
+};
+
+const dummyMatchData: ILatestMatchData = {
+  datetime: 'Saturday, 14 Mar 2021 . 01.00 am',
+  location: 'Citypark, St. Louis',
+  weather: '68°F',
+  home_team_name: 'Chelsea',
+  home_team_logo_url:
+    'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/mls-next-logo.svg',
+  home_team_score: 0,
+  away_team_name: 'Liverpool',
+  away_team_logo_url:
+    'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/vsa-logo.svg',
+  away_team_score: 2,
 };
 
 const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
   const isMobile = useMediaQuery('(max-width: 1024px)');
-  const [profile, setProfile] = useState<ProfileProps>(emptyProfileProps);
+  const [profile, setProfile] = useState<IProfileProps>(emptyProfileProps);
+  const [latestMatch, setLatestMatch] =
+    useState<ILatestMatchData>(emptyLatestMatchData);
+  const [isLatestMatchReady, setIsLatestMatchReady] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       setProfile(dummyProfileProps);
+      setLatestMatch(dummyMatchData);
+      setIsLatestMatchReady(true);
     }, 1500);
   }, []);
 
@@ -59,27 +89,18 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
     notFound();
   }
 
-  // SAMPLE DATA
-  // TODO: FETCH PLAYER DATA FROM BACKEND
-  // const playerProfile = {
-  //   name: 'Lionel Messi',
-  // };
-
-  // SEO
-  // const hero: Hero = {
-  //   heading: playerProfile?.name || `Player data not found`,
-  //   subtitle:
-  //     'Here you can find all the latest stats and highlights on a player!',
-  //   title: 'AthletiFi Player Dashboard',
-  // };
-
   return (
     <>
       <div className="overflow-hidden">
         <div className="bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] flex justify-center w-full border-collapse">
-          {/* <Header /> */}
-          {/* <CommonHero hero={hero} /> */}
-          <HeroBanner />
+          <HeroBanner
+            name={profile.name}
+            playerNumber={profile.playerNumber}
+            club={profile.club}
+            club_logo={profile.club_logo}
+            team={profile.team}
+            player_card_url={profile.player_card_url}
+          />
         </div>
         {isMobile ? (
           <div className="flex justify-center py-4">
@@ -89,7 +110,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
                   age={profile.age}
                   club={profile.club}
                   league={profile.league}
-                  teamName={profile.teamName}
+                  team={profile.team}
                   ageGroup={profile.ageGroup}
                   gender={profile.gender}
                   coach={profile.coach}
@@ -97,7 +118,17 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
                 />
               </div>
               <div className="mx-3">
-                <LatestMatch />
+                <LatestMatch
+                  datetime={latestMatch.datetime}
+                  location={latestMatch.location}
+                  weather={latestMatch.weather}
+                  home_team_name={latestMatch.home_team_name}
+                  home_team_logo_url={latestMatch.home_team_logo_url}
+                  home_team_score={latestMatch.home_team_score}
+                  away_team_name={latestMatch.away_team_name}
+                  away_team_logo_url={latestMatch.away_team_logo_url}
+                  away_team_score={latestMatch.away_team_score}
+                />
               </div>
               <div className="mt-3 mx-3">
                 <Charts />
@@ -108,7 +139,17 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
           <div className="flex justify-center">
             <div className="flex flex-col lg:grid md:grid-cols-11 py-6 max-w-[1130px]">
               <div className="col-start-1 col-span-7 my-2 mx-2 lg:mx-4">
-                <LatestMatch />
+                <LatestMatch
+                  datetime={latestMatch.datetime}
+                  location={latestMatch.location}
+                  weather={latestMatch.weather}
+                  home_team_name={latestMatch.home_team_name}
+                  home_team_logo_url={latestMatch.home_team_logo_url}
+                  home_team_score={latestMatch.home_team_score}
+                  away_team_name={latestMatch.away_team_name}
+                  away_team_logo_url={latestMatch.away_team_logo_url}
+                  away_team_score={latestMatch.away_team_score}
+                />
               </div>
               <div className="col-start-1 col-span-7 my-2 mx-2 lg:mx-4">
                 <Charts />
@@ -118,7 +159,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
                   age={profile.age}
                   club={profile.club}
                   league={profile.league}
-                  teamName={profile.teamName}
+                  team={profile.team}
                   ageGroup={profile.ageGroup}
                   gender={profile.gender}
                   coach={profile.coach}

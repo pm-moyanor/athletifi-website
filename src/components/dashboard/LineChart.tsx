@@ -23,7 +23,7 @@ import {
   NameType,
 } from 'recharts/types/component/DefaultTooltipContent';
 import Skeleton from 'react-loading-skeleton';
-import { IPlayerRatingProps } from '@/types/Dashboard.type';
+import { IRatingProps } from '@/types/Dashboard.type';
 
 const DEFAULT_COLOR = 'rgba(128, 128, 128, 0.15)';
 
@@ -109,9 +109,9 @@ const attributeConfigs: IAttributeConfig = {
   },
 };
 
-const StatsLineChart: React.FC<IPlayerRatingProps> = ({
-  playerRating,
-}: IPlayerRatingProps) => {
+const StatsLineChart: React.FC<IRatingProps> = ({
+  overallPlayerRating,
+}: IRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 850px)');
 
   const [lineProps, setLineProps] = useState<ILineProps>(
@@ -265,7 +265,9 @@ const StatsLineChart: React.FC<IPlayerRatingProps> = ({
         <div className="flex items-center justify-between h-full">
           <div className="text-white text-center w-20 md:w-24 lg:w-32 border-t border-[#ccd1d4] py-4">
             <div className="">Rating</div>
-            <div className="text-[36px]">{playerRating || <Skeleton />}</div>
+            <div className="text-[36px]">
+              {overallPlayerRating || <Skeleton />}
+            </div>
           </div>
         </div>
       </div>
