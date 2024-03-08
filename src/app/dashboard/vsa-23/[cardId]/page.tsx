@@ -106,7 +106,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
             </div>
           </div>
         )}
-        <main className="flex flex-col items-center bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95">
+        <main className="relative flex flex-col items-center bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95">
           <SeasonSection />
           <span className="h-px bg-partnersBorders w-11/12 max-w-[1130px] my-8 md:my-4" />
           <PastMatchesLayout />

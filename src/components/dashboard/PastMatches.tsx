@@ -8,8 +8,8 @@ const PastMatches: React.FC = () => {
     team2Badge: '/vecteezy_crest_1204211.png',
     team1Name: 'Real Madrid',
     team2Name: 'Barcelona',
-    team1Score: 2,
-    team2Score: 1,
+    team1Score: 12,
+    team2Score: 16,
     date: 'Saturday, 14 March 2022, 12:00pm',
     location: 'Citypark, St. Louis',
     weather: '68°F', //resolve logic for getting the weather
