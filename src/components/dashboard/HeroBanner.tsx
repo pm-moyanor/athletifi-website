@@ -56,10 +56,10 @@ const HeroBanner: React.FC<IProfileProps> = ({
           </div>
         </div>
         <div className=" -mb-0 md:-mb-10 lg:-mb-[160px]">
-          {/* {player_card_url ? (
+          {player_card_url ? (
             <Image
               className=""
-              src={player_card_url}
+              src={cardImage}
               alt="Player card"
               width={CARD_IMAGE_WIDTH}
               height={CARD_IMAGE_HEIGHT}
@@ -67,9 +67,15 @@ const HeroBanner: React.FC<IProfileProps> = ({
               loading="lazy"
             />
           ) : (
-            <Skeleton width={CARD_IMAGE_WIDTH} height={CARD_IMAGE_HEIGHT} />
-          )} */}
-          <Image
+            <div className="flex items-center">
+              <Skeleton
+                circle
+                width={(CARD_IMAGE_WIDTH * 5) / 6}
+                height={CARD_IMAGE_HEIGHT}
+              />
+            </div>
+          )}
+          {/* <Image
             className=""
             src={cardImage}
             alt="Player card"
@@ -77,7 +83,7 @@ const HeroBanner: React.FC<IProfileProps> = ({
             height={CARD_IMAGE_HEIGHT}
             quality={75}
             loading="lazy"
-          />
+          /> */}
         </div>
         {isSmallScreen && (
           <div className="text-partnersBorders absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8 z-40">
