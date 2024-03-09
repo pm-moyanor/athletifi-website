@@ -2,7 +2,7 @@
 
 import type { NextPage } from 'next';
 import { notFound } from 'next/navigation';
-
+import Navbar from '@/components/dashboard/NavBar';
 import Charts from '@/components/dashboard/Charts';
 // import CommonHero from '@/components/common/CommonHero';
 import Footer from '@/components/common/Footer';
@@ -56,6 +56,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
   return (
     <>
       <div className="overflow-hidden">
+        <Navbar />
         <div className="bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] flex justify-center w-full border-collapse">
           {/* <Header /> */}
           {/* <CommonHero hero={hero} /> */}
