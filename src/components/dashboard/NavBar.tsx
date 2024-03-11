@@ -23,7 +23,7 @@ const AnimatedHamburgerButton: React.FC<{
           console.log('clicked');
           setOpen(!open);
         }}
-        className="relative h-16 w-16 hover:partnersBorders "
+        className="relative h-16 w-16 hover:partnersBorders"
       >
         <motion.span
           variants={VARIANTS.top}
@@ -88,15 +88,15 @@ const Navbar: React.FC = () => {
   console.log(open);
   return (
     <header>
-      <div id="nav_bar" className=" absolute w-full p-4">
-        <div className="container md:max-w-full xl:max-w-1130 2xl:max-w-1320 mx-auto">
+      <div id="nav_bar" className=" absolute w-full py-4">
+        <div className="container max-w-none md:max-w-full xl:max-w-1130 2xl:max-w-1320 mx-auto px-4 md:px-4">
           <div className="flex items-center justify-between">
             <Link href="/">
               <PageLogo />
             </Link>
             <div
               onClick={() => console.log('click')}
-              className="md:hidden z-50"
+              className="md:hidden z-50 -mr-2"
             >
               <AnimatedHamburgerButton setOpen={setOpen} open={open} />
             </div>
@@ -110,14 +110,14 @@ const Navbar: React.FC = () => {
             >
               {/* NAV PAGE LINKS */}
               <ul
-                className=" flex items-center gap-25 md:gap-16 flex-col md:flex-row h-full justify-center"
+                className={` flex items-center gap-25 md:gap-16 flex-col md:flex-row h-full justify-center ${open ? 'text-lgl' : 'text-base'}`}
                 role="navigation"
                 aria-label="Main"
               >
                 <li>
                   <Link
                     href="/"
-                    className=" text-primary text-base font-sourceSansPro opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto "
+                    className=" text-primary font-sourceSansPro opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto "
                   >
                     Home
                   </Link>
@@ -125,7 +125,7 @@ const Navbar: React.FC = () => {
                 <li>
                   <Link
                     href="/about-us"
-                    className=" text-primary text-base font-sourceSansPro opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto"
+                    className=" text-primary font-sourceSansPro opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto"
                   >
                     About us
                   </Link>
@@ -133,7 +133,7 @@ const Navbar: React.FC = () => {
                 <li>
                   <Link
                     href="/news?page=1"
-                    className="  text-primary text-base font-sourceSansPro  opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto"
+                    className="  text-primary font-sourceSansPro  opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto"
                   >
                     News
                   </Link>
@@ -142,7 +142,7 @@ const Navbar: React.FC = () => {
                 <li>
                   <Link
                     href="/contact-us"
-                    className=" text-primary text-base font-sourceSansPro opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto"
+                    className=" text-primary font-sourceSansPro opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto"
                   >
                     Contact us
                   </Link>
@@ -150,7 +150,7 @@ const Navbar: React.FC = () => {
                 {/* <li>
                   <Link
                     href="/dashboard/vsa-23/1"
-                    className="text-primary text-base font-sourceSansPro hover:bg-skyblueopacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto"
+                    className="text-primary font-sourceSansPro hover:bg-skyblueopacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto"
                   >
                     Dashboard
                   </Link>

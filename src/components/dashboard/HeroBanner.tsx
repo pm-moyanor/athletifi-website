@@ -21,10 +21,10 @@ const HeroBanner: React.FC = () => {
     typeof window !== 'undefined' && window.innerWidth < 640;
 
   return (
-    <section className="relative px-4 items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[380px] lg:h-[370px] w-full md:max-w-[900px] lg:max-w-[1130px]">
-      <div className="w-ful md:w-2/3 lg:w-2/3 flex items-center lg:items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[30px] ml-0 md:ml-10 lg:ml-4 pt-6">
+    <section className="relative px-4 items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[435px] lg:h-[370px] w-full md:max-w-[900px] lg:max-w-[1130px]">
+      <div className="md:w-2/3 lg:w-2/3 flex items-center lg:items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[30px] ml-0 md:ml-10 lg:ml-4 pt-6">
         <VillanovaIcon />
-        <div className="w-full flex flex-col justify-center items-start ml-2 md:ml-4 pr-0 md:pr-6">
+        <div className="w-full flex flex-col justify-center items-start ml-2 md:ml-4 pr-0">
           <h2 className="font-SourceSansPro font-bold text-lg md:text-lgl text-primary relative mb-1">
             {playerInformation.name}
           </h2>
