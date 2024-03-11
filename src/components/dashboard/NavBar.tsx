@@ -8,7 +8,6 @@ const AnimatedHamburgerButton: React.FC<{
   open: boolean;
   setOpen: (open: boolean) => void;
 }> = ({ open, setOpen }) => {
-  console.log(open);
   return (
     <MotionConfig
       transition={{
@@ -85,7 +84,6 @@ const VARIANTS = {
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  console.log(open);
   return (
     <header>
       <div id="nav_bar" className=" absolute w-full py-4">
@@ -94,10 +92,7 @@ const Navbar: React.FC = () => {
             <Link href="/">
               <PageLogo />
             </Link>
-            <div
-              onClick={() => console.log('click')}
-              className="md:hidden z-50 -mr-2"
-            >
+            <div className="md:hidden z-50 -mr-2">
               <AnimatedHamburgerButton setOpen={setOpen} open={open} />
             </div>
 
