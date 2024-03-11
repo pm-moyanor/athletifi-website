@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 // import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
 import cardImage from '../../../public/assets/img/png/jose-card-img.png';
 import { Player } from '@/types/Player.type';
@@ -18,9 +19,13 @@ const CARD_IMAGE_HEIGHT: number = 400;
 
 const HeroBanner: React.FC = () => {
   // check screensize to render arrow down on mobile
-  // const isSmallScreen =
-  //   typeof window !== 'undefined' && window.innerWidth < 640;
+  const isSmallScreen =
+    typeof window !== 'undefined' && window.innerWidth < 640;
 
+  // Scrollk the screen down by one screen height
+  const handleIconClick = () => {
+    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+  };
   return (
     <section className="relative px-4 items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[435px] lg:h-[370px] w-full md:max-w-[900px] lg:max-w-[1130px]">
       <div className="md:w-2/3 lg:w-2/3 flex items-center lg:items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[50px] ml-0 md:ml-10 lg:ml-4 pt-6">
@@ -55,11 +60,21 @@ const HeroBanner: React.FC = () => {
       </div>
 
       {/* floating arrow down on mobile to reinforce scroll down */}
-      {/* {isSmallScreen && (
-        <div className="text-partnersBorders absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8 z-40">
-          <FontAwesomeIcon icon={faChevronDown} size="xl" />
-        </div>
-      )} */}
+      {isSmallScreen && (
+        <motion.div
+          onClick={handleIconClick}
+          className="w-full text-primary opacity-80 absolute bottom-0 left-0  mb-12 z-40 flex justify-center"
+          animate={{
+            y: [0, -5, 0],
+            transition: {
+              duration: 2,
+              repeat: Infinity,
+            },
+          }}
+        >
+          <FontAwesomeIcon icon={faChevronDown} size="2xl" />
+        </motion.div>
+      )}
     </section>
   );
 };
