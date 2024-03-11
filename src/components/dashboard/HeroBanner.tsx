@@ -52,11 +52,13 @@ const HeroBanner: React.FC = () => {
           // layout="responsive"
         />
       </div>
-      {isSmallScreen && (
+
+      {/* floating arrow down on mobile to reinforce scroll down */}
+      {/* {isSmallScreen && (
         <div className="text-partnersBorders absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8 z-40">
           <FontAwesomeIcon icon={faChevronDown} size="xl" />
         </div>
-      )}
+      )} */}
     </section>
   );
 };

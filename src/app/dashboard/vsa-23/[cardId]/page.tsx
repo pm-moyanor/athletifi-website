@@ -32,7 +32,7 @@ const MAX_PLAYER_ID = 1134;
 // };
 
 const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
-  const isMobile = useMediaQuery('(max-width: 1024px)');
+  const isMobile = useMediaQuery('(max-width: 1023px)');
 
   const { cardId } = params;
   if (cardId < MIN_PLAYER_ID || cardId > MAX_PLAYER_ID) {
@@ -64,7 +64,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
         </div>
         {isMobile ? (
           <div className="flex justify-center py-4">
-            <div className="flex flex-col py-3 mt-10 max-w-[650px]">
+            <div className="flex flex-col py-3 mt-10 max-w-[680px]">
               <div className="mx-3">
                 <Profile
                   age={13}
