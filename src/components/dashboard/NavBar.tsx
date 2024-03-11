@@ -87,7 +87,7 @@ const Navbar: React.FC = () => {
   return (
     <header>
       <div id="nav_bar" className=" absolute w-full py-4">
-        <div className="container max-w-none md:max-w-full xl:max-w-1130 2xl:max-w-1320 mx-auto px-4 md:px-4">
+        <div className="container max-w-none lg:max-w-1030 2xl:max-w-1320 mx-auto px-4 md:px-4">
           <div className="flex items-center justify-between">
             <Link href="/">
               <PageLogo />
