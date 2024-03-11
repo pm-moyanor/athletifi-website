@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 // import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
@@ -18,14 +18,38 @@ const CARD_IMAGE_WIDTH: number = 465;
 const CARD_IMAGE_HEIGHT: number = 400;
 
 const HeroBanner: React.FC = () => {
-  // check screensize to render arrow down on mobile
+  const [isVisible, setIsVisible] = useState(true);
+  const previousScrollY = useRef(0); // Ref to store previous scroll position
+
   const isSmallScreen =
     typeof window !== 'undefined' && window.innerWidth < 640;
 
-  // Scrollk the screen down by one screen height
+  // check screensize to render arrow down on mobile
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrolledDown = currentScrollY > previousScrollY.current;
+
+      if (scrolledDown && currentScrollY > 100 && isVisible) {
+        // Hide icon if scrolled down
+        setIsVisible(false);
+      }
+
+      previousScrollY.current = currentScrollY; // Update previous scroll position
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Scrollk onclick the screen down by one screen height
   const handleIconClick = () => {
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
   };
+
   return (
     <section className="relative px-4 items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[435px] lg:h-[370px] w-full md:max-w-[900px] lg:max-w-[1130px]">
       <div className="md:w-2/3 lg:w-2/3 flex items-center lg:items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[50px] ml-0 md:ml-10 lg:ml-4 pt-6">
@@ -61,19 +85,30 @@ const HeroBanner: React.FC = () => {
 
       {/* floating arrow down on mobile to reinforce scroll down */}
       {isSmallScreen && (
-        <motion.div
-          onClick={handleIconClick}
-          className="w-full text-primary opacity-80 absolute bottom-0 left-0  mb-12 z-40 flex justify-center"
-          animate={{
-            y: [0, -5, 0],
-            transition: {
-              duration: 2,
-              repeat: Infinity,
-            },
-          }}
-        >
-          <FontAwesomeIcon icon={faChevronDown} size="2xl" />
-        </motion.div>
+        <AnimatePresence>
+          {isVisible && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isVisible ? 1 : 0 }}
+              exit={{ opacity: 0 }}
+              className="w-full text-primary opacity-80 absolute bottom-0 left-0 mb-12 z-40 flex justify-center"
+            >
+              <motion.div
+                onClick={handleIconClick}
+                initial={{ opacity: 0.8 }}
+                animate={{ opacity: isVisible ? 1 : 0.8, y: [0, -5, 0] }}
+                exit={{ opacity: 0.8 }}
+                transition={{
+                  duration: 1,
+                  repeat: Infinity,
+                  repeatType: 'reverse',
+                }}
+              >
+                <FontAwesomeIcon icon={faChevronDown} size="2xl" />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       )}
     </section>
   );
