@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 //import Image from 'next/image';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 // import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
@@ -49,8 +49,14 @@ const HeroBanner: React.FC = () => {
   };
 
   return (
-    <section className="relative px-4 items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[435px] lg:h-[370px] w-full md:max-w-[900px] lg:max-w-[1130px]">
-      <div className="md:w-2/3 lg:w-2/3 flex items-center lg:items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[50px] ml-0 md:ml-10 lg:ml-4 pt-6">
+    <section className="relative px-4 items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[435px] lg:h-[370px] w-full md:max-w-[900px] lg:max-w-[1160px]">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        typeof="easeIn"
+        className="md:w-2/3 lg:w-2/3 flex items-center lg:items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[50px] ml-0 md:ml-10 lg:ml-4 pt-6"
+      >
         <VillanovaIcon />
         <div className="w-full flex flex-col justify-center items-start ml-2 md:ml-4 pr-0">
           <h2 className="font-SourceSansPro font-bold text-lg md:text-lgl text-primary relative mb-1">
@@ -67,7 +73,7 @@ const HeroBanner: React.FC = () => {
           </p>
           <span className="hidden md:block h-px w-full my-4 bg-partnersBorders" />
         </div>
-      </div>
+      </motion.div>
       <div className=" -mb-0 md:-mb-10 lg:-mb-[160px]">
         {/* <Image
           className=""

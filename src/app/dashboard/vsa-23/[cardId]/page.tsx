@@ -63,7 +63,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
           <HeroBanner />
         </div>
         {isMobile ? (
-          <div className="flex justify-center py-4">
+          <div className="flex justify-center">
             <div className="flex flex-col py-3 mt-10 max-w-[680px]">
               <div className="mx-3">
                 <Profile
