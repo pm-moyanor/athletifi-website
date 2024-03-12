@@ -8,7 +8,7 @@ import cardImage from '../../../public/assets/img/png/jose-card-img.png';
 const CARD_IMAGE_WIDTH: number = 465;
 const CARD_IMAGE_HEIGHT: number = 400;
 
-const CardFlip = () => {
+const FlipCard = () => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {
@@ -50,4 +50,4 @@ const CardFlip = () => {
   );
 };
 
-export default CardFlip;
+export default FlipCard;

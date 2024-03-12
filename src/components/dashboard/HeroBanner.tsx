@@ -9,7 +9,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { IProfileProps } from '@/types/Dashboard.type';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 // import { VillanovaIcon } from '@/components/common/Icon';
-import CardFlip from './FlipCard';
+import FlipCard from './FlipCard';
 
 const HeroBanner: React.FC<IProfileProps> = ({
   name,
@@ -53,12 +53,7 @@ const HeroBanner: React.FC<IProfileProps> = ({
   return (
     <SkeletonTheme baseColor="#113448" highlightColor="#525252">
       <section className="relative px-4 items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[380px] lg:h-[370px] w-full md:max-w-[900px] lg:max-w-[1130px]">
-        <motion.div 
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.4 }}
-           typeof="easeIn"
-           className="w-full md:w-3/4 flex items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[30px] ml-0 md:ml-10 lg:ml-4 pt-6">
+        <div className="md:w-3/4 flex items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[30px] ml-0 md:ml-10 lg:ml-4 pt-6">
           {/* <VillanovaIcon /> */}
           {club_logo ? (
             <Image
@@ -91,15 +86,16 @@ const HeroBanner: React.FC<IProfileProps> = ({
         </div>
         <div className="-mb-0 md:-mb-10 lg:-mb-[160px]">
           {player_card_url ? (
-            <Image
-              className=""
-              src={cardImage}
-              alt="Player card"
-              width={CARD_IMAGE_WIDTH}
-              height={CARD_IMAGE_HEIGHT}
-              quality={75}
-              loading="lazy"
-            />
+            // <Image
+            //   className=""
+            //   src={cardImage}
+            //   alt="Player card"
+            //   width={CARD_IMAGE_WIDTH}
+            //   height={CARD_IMAGE_HEIGHT}
+            //   quality={75}
+            //   loading="lazy"
+            // />
+            <FlipCard />
           ) : (
             <div className="flex items-center">
               <Skeleton
@@ -119,31 +115,31 @@ const HeroBanner: React.FC<IProfileProps> = ({
           /> */}
         </div>
         {isSmallScreen && (
-        <AnimatePresence>
-          {isVisible && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isVisible ? 1 : 0 }}
-              exit={{ opacity: 0 }}
-              className="w-full text-primary opacity-80 absolute bottom-0 left-0 mb-12 z-40 flex justify-center"
-            >
+          <AnimatePresence>
+            {isVisible && (
               <motion.div
-                onClick={handleIconClick}
-                initial={{ opacity: 0.8 }}
-                animate={{ opacity: isVisible ? 1 : 0.8, y: [0, -5, 0] }}
-                exit={{ opacity: 0.8 }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                  repeatType: 'reverse',
-                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isVisible ? 1 : 0 }}
+                exit={{ opacity: 0 }}
+                className="w-full text-primary opacity-80 absolute bottom-0 left-0 mb-12 z-40 flex justify-center"
               >
-                <FontAwesomeIcon icon={faChevronDown} size="2xl" />
+                <motion.div
+                  onClick={handleIconClick}
+                  initial={{ opacity: 0.8 }}
+                  animate={{ opacity: isVisible ? 1 : 0.8, y: [0, -5, 0] }}
+                  exit={{ opacity: 0.8 }}
+                  transition={{
+                    duration: 1,
+                    repeat: Infinity,
+                    repeatType: 'reverse',
+                  }}
+                >
+                  <FontAwesomeIcon icon={faChevronDown} size="2xl" />
+                </motion.div>
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      )}
+            )}
+          </AnimatePresence>
+        )}
       </section>
     </SkeletonTheme>
   );
