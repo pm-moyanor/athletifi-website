@@ -1,8 +1,5 @@
 'use client';
-
-import type { NextPage } from 'next';
-import { notFound } from 'next/navigation';
-
+import { useParams, notFound } from 'next/navigation';
 import Charts from '@/components/dashboard/Charts';
 // import CommonHero from '@/components/common/CommonHero';
 import Footer from '@/components/common/Footer';
@@ -13,16 +10,14 @@ import LatestMatch from '@/components/dashboard/LatestMatchCard';
 import PastMatchesLayout from '@/components/dashboard/PastMatchesLayout';
 import Profile from '@/components/dashboard/ProfileCard';
 import SeasonSection from '@/components/dashboard/SeasonSectionLayout';
-
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
+import { NextPage } from 'next';
+import { useEffect, useState } from 'react';
 
 interface PageProps {
-  params: { cardId: number };
+  params: { cardId: string | number };
   searchParams?: { [key: string]: string | string[] | undefined };
 }
-
-const MIN_PLAYER_ID = 1;
-const MAX_PLAYER_ID = 1134;
 
 // TO DO: Implement dynamic metadata generation for SEO using generateMetadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata#dynamic-metadata
 // export const metadata = {
@@ -30,21 +25,31 @@ const MAX_PLAYER_ID = 1134;
 //   description:
 //     'Explore detailed player statistics, highlights, and more on the AthletiFi Player Dashboard.',
 // };
-
-const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
-  const isMobile = useMediaQuery('(max-width: 1024px)');
-
-  const { cardId } = params;
-  if (cardId < MIN_PLAYER_ID || cardId > MAX_PLAYER_ID) {
-    notFound();
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
+const testAWSFetch = async (cardId: string) => {
+  const response = await fetch(`${baseURL}/dashboard/${cardId}`);
+  const data = await response.json();
+  if (!cardId || !data) {
+    return notFound();
   }
+  return data;
+};
 
-  // SAMPLE DATA
-  // TODO: FETCH PLAYER DATA FROM BACKEND
-  // const playerProfile = {
-  //   name: 'Lionel Messi',
-  // };
+const PlayerDashboardPage: NextPage<PageProps> = () => {
+  const [dashboardData, setDashboardData] = useState(null);
+  const isMobile = useMediaQuery('(max-width: 1024px)');
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
 
+  useEffect(() => {
+    testAWSFetch(cardIdValue as string)
+      .then((data) => {
+        setDashboardData(data);
+      })
+      .catch((error) => {
+        console.error('Failed to fetch data:', error);
+      });
+  }, [cardIdValue]);
   // SEO
   // const hero: Hero = {
   //   heading: playerProfile?.name || `Player data not found`,
