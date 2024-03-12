@@ -2,34 +2,13 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faCloud } from '@fortawesome/free-solid-svg-icons';
+import { IMatchData } from '@/types/Dashboard.type';
 
-interface MatchSummaryProps {
-  matchData: {
-    team1Badge: string;
-    team2Badge: string;
-    team1Name: string;
-    team2Name: string;
-    team1Score: number;
-    team2Score: number;
-    date: string;
-    location: string;
-    weather: string;
-    fullRecapVideo: {
-      title: string;
-      url: string;
-      thumbnail: string;
-      description: string;
-    };
-    videos: {
-      title: string;
-      url: string;
-      thumbnail: string;
-      description: string;
-    }[];
-  };
-}
-
-const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
+const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
+  matchData,
+}: {
+  matchData: IMatchData;
+}) => {
   const [showRecap, setShowRecap] = useState(false);
   const {
     team1Badge,
@@ -54,23 +33,27 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
 
     <div className="w-full flex justify-around md:justify-between items-center text-primary font-sourceSansPro mr-4">
       <div className="flex justify-between items-center w-[250px] max-w-[220px] min-w-[172px] mr-2">
-        <Image
-          src={team1Badge}
-          alt="Crest"
-          width={55}
-          height={55}
-          className="w-auto h-auto"
-        />
+        {team1Badge !== null && (
+          <Image
+            src={team1Badge}
+            alt="Crest"
+            width={55}
+            height={55}
+            className="w-auto h-auto"
+          />
+        )}
         <div className="mx-[4px]">
           <span>{team1Score}</span> - <span>{team2Score}</span>
         </div>
-        <Image
-          src={team2Badge}
-          alt="Crest"
-          width={55}
-          height={55}
-          className="w-auto h-auto"
-        />
+        {team2Badge !== null && (
+          <Image
+            src={team2Badge}
+            alt="Crest"
+            width={55}
+            height={55}
+            className="w-auto h-auto"
+          />
+        )}
       </div>
 
       <div className="flex flex-col md:flex-row md:items-center w-auto md:w-full justify-center ">
@@ -94,23 +77,27 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
           <div className="flex justify-between items-center m-auto text-primary w-full font-sourceSansPro pb-4">
             <div className="flex w-full justify-between items-center max-w-[450px]">
               <div className="flex w-[200px] justify-around items-center">
-                <Image
-                  src={team1Badge}
-                  alt="Crest"
-                  width={50}
-                  height={50}
-                  className="bg-slate-400 rounded-20"
-                />
+                {team1Badge !== null && (
+                  <Image
+                    src={team1Badge}
+                    alt="Crest"
+                    width={50}
+                    height={50}
+                    className="bg-slate-400 rounded-20"
+                  />
+                )}
                 <div className="font-semibold">
                   <span>{team1Score}</span> - <span>{team2Score}</span>
                 </div>
-                <Image
-                  src={team2Badge}
-                  alt="Crest"
-                  width={50}
-                  height={50}
-                  className="bg-slate-400 rounded-20"
-                />
+                {team2Badge !== null && (
+                  <Image
+                    src={team2Badge}
+                    alt="Crest"
+                    width={50}
+                    height={50}
+                    className="bg-slate-400 rounded-20"
+                  />
+                )}
               </div>
 
               <div>
@@ -133,12 +120,14 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
                 <h2 className="text-[20px] font-semibold mb-2">Full Recap</h2>
                 <div className="h-1 mb-4 bg-partnersBorders" />
                 <div className="w-full h-full  min-w-[400px] max-h-[350px]">
-                  <video
-                    // src={fullRecapVideo.url}
-                    controls
-                    poster={fullRecapVideo.thumbnail}
-                    className="w-full h-full bg-slate-500 rounded-md"
-                  ></video>
+                  {fullRecapVideo?.thumbnail && (
+                    <video
+                      // src={fullRecapVideo.url}
+                      controls
+                      poster={fullRecapVideo.thumbnail}
+                      className="w-full h-full bg-slate-500 rounded-md"
+                    ></video>
+                  )}
                 </div>
               </div>
 
@@ -182,12 +171,14 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
                     key={index}
                     className=" w-full m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
                   >
-                    <video
-                      src={video.url}
-                      controls
-                      poster={video.thumbnail}
-                      className="bg-slate-500 rounded-md w-1/2 sm:w-1/2 md:w-full min-h-36"
-                    ></video>
+                    {video?.url && video?.thumbnail && (
+                      <video
+                        src={video.url}
+                        controls
+                        poster={video.thumbnail}
+                        className="bg-slate-500 rounded-md w-1/2 sm:w-1/2 md:w-full min-h-36"
+                      ></video>
+                    )}
                     <div className="video-info text-primary m-2 w-1/3 sm:w-1/3 md:w-full flex flex-col justify-end">
                       <h3 className="text-base">{video.title}</h3>
                       <p className="text-sm text-offwhite m-px ">

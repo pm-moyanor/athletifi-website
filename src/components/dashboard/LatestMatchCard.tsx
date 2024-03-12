@@ -99,7 +99,10 @@ const LatestMatch: React.FC<ILatestMatchData> = ({
           </div>
         </div>
       ) : (
-        <Skeleton borderRadius={10} height={224} />
+        <Skeleton
+          className="min-w-[351px] min-h-[310px] md:min-h-[224px]"
+          borderRadius={10}
+        />
       )}
     </>
   );

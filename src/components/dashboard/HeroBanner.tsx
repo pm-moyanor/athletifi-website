@@ -55,7 +55,7 @@ const HeroBanner: React.FC<IProfileProps> = ({
             <span className="hidden md:block h-px w-full my-4 bg-partnersBorders" />
           </div>
         </div>
-        <div className=" -mb-0 md:-mb-10 lg:-mb-[160px]">
+        <div className="-mb-0 md:-mb-10 lg:-mb-[160px]">
           {player_card_url ? (
             <Image
               className=""
@@ -69,9 +69,8 @@ const HeroBanner: React.FC<IProfileProps> = ({
           ) : (
             <div className="flex items-center">
               <Skeleton
+                className="min-w-[340px] min-h-[340px] md:min-w-[320px] md:min-h-[320px] lg:min-h-[400px] lg:min-w-[400px]"
                 circle
-                width={(CARD_IMAGE_WIDTH * 5) / 6}
-                height={CARD_IMAGE_HEIGHT}
               />
             </div>
           )}

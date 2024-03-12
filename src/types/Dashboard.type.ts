@@ -117,3 +117,73 @@ export const emptyLatestMatchData: ILatestMatchData = {
   away_team_logo_url: null,
   away_team_score: null,
 };
+
+export interface IActionReel {
+  videoSrc: string | null;
+  thumbnail: string | null;
+  title: string | null;
+  description: string | null;
+}
+
+export const emptyActionReel: IActionReel = {
+  videoSrc: null,
+  thumbnail: null,
+  title: null,
+  description: null,
+};
+
+export interface ITeammate {
+  id: number | null;
+  name: string | null;
+  avatar: string | null;
+  playerNumber: number | null;
+}
+
+export const emptyTeammate: ITeammate = {
+  id: null,
+  name: null,
+  avatar: null,
+  playerNumber: null,
+};
+
+export interface IVideo {
+  title: string | null;
+  url: string | null;
+  thumbnail: string | null;
+  description: string | null;
+}
+
+export const emptyVideoData: IVideo = {
+  title: null,
+  url: null,
+  thumbnail: null,
+  description: null,
+};
+
+export interface IMatchData {
+  team1Badge: string | null;
+  team2Badge: string | null;
+  team1Name: string | null;
+  team2Name: string | null;
+  team1Score: number | null;
+  team2Score: number | null;
+  date: string | null;
+  location: string | null;
+  weather: string | null;
+  fullRecapVideo: IVideo;
+  videos: IVideo[];
+}
+
+export const emptyMatchData: IMatchData = {
+  team1Badge: null,
+  team2Badge: null,
+  team1Name: null,
+  team2Name: null,
+  team1Score: null,
+  team2Score: null,
+  date: null,
+  location: null,
+  weather: null,
+  fullRecapVideo: emptyVideoData,
+  videos: [emptyVideoData],
+};
