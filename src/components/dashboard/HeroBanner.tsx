@@ -1,21 +1,19 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
+//import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 // import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
-import cardImage from '../../../public/assets/img/png/jose-card-img.png';
+//import cardImage from '../../../public/assets/img/png/jose-card-img.png';
 import { Player } from '@/types/Player.type';
 import { VillanovaIcon } from '@/components/common/Icon';
+import CardFlip from './FlipCard';
 
 const playerInformation: Player = {
   club: 'Villanova Soccer Academy',
   name: 'Salvador Carrillo',
   team: '2009',
 };
-
-const CARD_IMAGE_WIDTH: number = 465;
-const CARD_IMAGE_HEIGHT: number = 400;
 
 const HeroBanner: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -71,7 +69,7 @@ const HeroBanner: React.FC = () => {
         </div>
       </div>
       <div className=" -mb-0 md:-mb-10 lg:-mb-[160px]">
-        <Image
+        {/* <Image
           className=""
           src={cardImage}
           alt="Player card"
@@ -80,7 +78,8 @@ const HeroBanner: React.FC = () => {
           quality={75}
           loading="lazy"
           // layout="responsive"
-        />
+        /> */}
+        <CardFlip />
       </div>
 
       {/* floating arrow down on mobile to reinforce scroll down */}
