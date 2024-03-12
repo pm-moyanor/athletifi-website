@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 import { motion } from 'framer-motion';
-import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
+// import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
+import cardImage from '../../../public/assets/img/png/jose-card-img.png';
 
 const CARD_IMAGE_WIDTH: number = 465;
 const CARD_IMAGE_HEIGHT: number = 400;
@@ -22,24 +23,29 @@ const CardFlip = () => {
 
   return (
     <motion.div
-      className="w-full h-full overflow-hidden"
+      initial={{ opacity: 0, scale: 0.8 }}
       animate={{
+        opacity: 1,
+        scale: 1,
         rotateY: isFlipped ? 360 : 0,
-        scale: isFlipped ? [1, 1.8, 1.1] : 1,
       }}
       transition={{
-        duration: 0.5,
+        duration: 0.4,
         type: 'spring',
-        damping: 10,
+        stiffness: 100,
+        damping: 15,
       }}
     >
-      <Image
-        src={cardImage}
-        width={CARD_IMAGE_WIDTH}
-        height={CARD_IMAGE_HEIGHT}
-        alt="Card Image"
-        className="w-full h-full object-cover"
-      />
+      <div>
+        <Image
+          src={cardImage}
+          alt="Player card"
+          width={CARD_IMAGE_WIDTH}
+          height={CARD_IMAGE_HEIGHT}
+          quality={75}
+          loading="lazy"
+        />
+      </div>
     </motion.div>
   );
 };
