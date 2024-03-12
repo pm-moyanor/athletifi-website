@@ -105,7 +105,7 @@ const Navbar: React.FC = () => {
             >
               {/* NAV PAGE LINKS */}
               <ul
-                className={` flex items-center gap-25 md:gap-16 flex-col md:flex-row h-full justify-center ${open ? 'text-lgl' : 'text-base'}`}
+                className={` flex items-center gap-25 md:gap-16 flex-col md:flex-row h-full justify-center ${open ? 'text-md' : 'text-base'}`}
                 role="navigation"
                 aria-label="Main"
               >
@@ -134,14 +134,14 @@ const Navbar: React.FC = () => {
                   </Link>
                 </li>
 
-                <li>
+                {/* <li>
                   <Link
                     href="/contact-us"
                     className=" text-primary font-sourceSansPro opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto"
                   >
                     Contact us
                   </Link>
-                </li>
+                </li> */}
                 {/* <li>
                   <Link
                     href="/dashboard/vsa-23/1"
@@ -155,7 +155,7 @@ const Navbar: React.FC = () => {
                     href="/contact-us"
                     className="ml-0 md:ml-4 py-2 px-5 border border-skyblue font-light text-primary text-sm font-sourceSansPro duration-300 hover:bg-skyblue hover:text-white md:inline-block"
                   >
-                    Log out
+                    Contact us
                   </Link>
                 </li>
               </ul>
