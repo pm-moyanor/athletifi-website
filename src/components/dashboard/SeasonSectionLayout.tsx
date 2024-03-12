@@ -1,9 +1,11 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import SeasonHighlights from './SeasonHighlights';
 import { ActionReelList } from './TopActionReels';
-import { useMediaQuery } from '@/app/utils/useMediaQuery';
+import { IActionReel, emptyActionReel } from '@/types/Dashboard.type';
 
-const dummyData = [
+const dummySeasonHighlights = ['Sample data goes here'];
+
+const dummyData: IActionReel[] = [
   {
     videoSrc: '/video2.mp4',
     thumbnail: '/poster2.png',
@@ -25,16 +27,26 @@ const dummyData = [
 ];
 
 const SeasonSection: React.FC = () => {
-  const isMobile = useMediaQuery('(max-width: 767px)');
+  const [seasonHighlights, setSeasonHighlights] = useState<string[] | null[]>([
+    null,
+  ]);
+  const [actionReels, setActionReels] = useState([emptyActionReel]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setActionReels(dummyData);
+      setSeasonHighlights(dummySeasonHighlights);
+    }, 1500);
+  }, []);
 
   return (
-    <div className="w-full max-w-[1030px] sm:py-6 md:py-16 px-4 flex flex-col sm:flex-col md:flex-row justify-center items-center md:items-start h-full">
-      <SeasonHighlights />
-      {isMobile && (
-        <span className=" h-px bg-partnersBorders w-full max-w-[1030px] my-4" />
-      )}
-      <ActionReelList actionReels={dummyData} />
-    </div>
+    <>
+      <div className="w-full max-w-[1030px] sm:py-6 md:py-16 px-4 flex flex-col sm:flex-col md:flex-row justify-center items-center md:items-start h-full">
+        <SeasonHighlights data={seasonHighlights} />
+        <span className="md:hidden h-px bg-partnersBorders w-full max-w-[1030px] my-4" />
+        <ActionReelList actionReels={actionReels} />
+      </div>
+    </>
   );
 };
 

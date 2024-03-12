@@ -10,20 +10,14 @@ import {
 } from 'recharts';
 import { useState } from 'react';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
-import { IBarProps } from '@/types/Dashboard.type';
+import { IAttributeConfig, IBarProps } from '@/types/Dashboard.type';
 import { LegendEventType, ILegendMouseEvent } from '@/types/Chart.type';
+import { IRatingProps } from '@/types/Dashboard.type';
 
 const DEFAULT_COLOR = 'rgba(128, 128, 128, 0.15)';
 const LAYERCOLOR = '#ffffff';
-const dummyData = [
-  { attribute: 'attacking', rating: 80 },
-  { attribute: 'skill', rating: 90 },
-  { attribute: 'physical', rating: 75 },
-  { attribute: 'mentality', rating: 95 },
-  { attribute: 'defending', rating: 85 },
-];
 
-const attributeConfigs = {
+const attributeConfigs: IAttributeConfig = {
   attacking: {
     color: '#DA393B',
     description: 'Attacking description goes here',
@@ -46,7 +40,10 @@ const attributeConfigs = {
   },
 };
 
-function StatsBarChart() {
+const StatsBarChart: React.FC<IRatingProps> = ({
+  overallPlayerRating,
+  playerRatings,
+}: IRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 1023px)');
   const xKey = 'attribute';
   const yKey = 'rating';
@@ -68,11 +65,13 @@ function StatsBarChart() {
             style={{
               background:
                 barProps.click === entry
-                  ? attributeConfigs[entry].color
+                  ? attributeConfigs[entry as keyof IAttributeConfig].color
                   : DEFAULT_COLOR,
             }}
-            onClick={(data) => selectBar(data)}
-            onMouseEnter={(data) => handleLegendMouseEnter(data)}
+            onClick={(playerRatings) => selectBar(playerRatings)}
+            onMouseEnter={(playerRatings) =>
+              handleLegendMouseEnter(playerRatings)
+            }
             onMouseLeave={() => handleLegendMouseLeave()}
           >
             {entry}
@@ -106,7 +105,7 @@ function StatsBarChart() {
     <>
       <ResponsiveContainer width={'100%'} height={295} debounce={50}>
         <BarChart
-          data={dummyData}
+          data={playerRatings}
           layout="vertical"
           margin={isMobile ? { left: -25, right: 30 } : { left: 40, right: 50 }}
         >
@@ -145,11 +144,13 @@ function StatsBarChart() {
               offset={15}
               style={{ fill: LAYERCOLOR }}
             />
-            {dummyData.map((d) => {
+            {playerRatings.map((d) => {
               return (
                 <Cell
                   key={d[xKey]}
-                  fill={attributeConfigs[d[xKey]].color}
+                  fill={
+                    attributeConfigs[d[xKey] as keyof IAttributeConfig].color
+                  }
                   fillOpacity={`${barProps.hover === d[xKey] || !barProps.hover ? 1 : 0.4}`}
                 />
               );
@@ -161,13 +162,16 @@ function StatsBarChart() {
         <div className="flex items-center justify-between h-full">
           <div className="text-white text-center w-20 md:w-24 lg:w-32 border-t border-[#ccd1d4] py-4">
             <div className="">Rating</div>
-            <div className="text-[36px]">72</div>
+            <div className="text-[36px]">{overallPlayerRating}</div>
           </div>
         </div>
         <div className="ml-5 mr-8 lg:ml-[3.75rem] lg:mr-[3.25rem] w-full">
           {barProps.click ? (
             <div className="text-white text-xs md:text-sm bg-gray-500/15 rounded-10 py-4 px-6 h-20 w-full">
-              {attributeConfigs[barProps.click].description}
+              {
+                attributeConfigs[barProps.click as keyof IAttributeConfig]
+                  .description
+              }
             </div>
           ) : (
             ''
@@ -176,6 +180,6 @@ function StatsBarChart() {
       </div>
     </>
   );
-}
+};
 
 export default StatsBarChart;

@@ -56,6 +56,7 @@ module.exports = {
         chartOrange: '#FC6713',
         chartPurple: '#5A54A2',
         cardsBackground: '#113448',
+        cardsDark: '#032436',
         lineAtBase: '#11729C',
       },
       container: {

@@ -9,8 +9,12 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-// import { Payload } from 'recharts/types/component/DefaultLegendContent';
-import { ILineProps } from '@/types/Dashboard.type';
+
+import {
+  IAttributeConfig,
+  ILineProps,
+  ILegendProps,
+} from '@/types/Dashboard.type';
 import { LegendEventType, ILegendMouseEvent } from '@/types/Chart.type';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
 import { TooltipProps } from 'recharts';
@@ -18,6 +22,8 @@ import {
   ValueType,
   NameType,
 } from 'recharts/types/component/DefaultTooltipContent';
+import Skeleton from 'react-loading-skeleton';
+import { IRatingProps } from '@/types/Dashboard.type';
 
 const DEFAULT_COLOR = 'rgba(128, 128, 128, 0.15)';
 
@@ -80,7 +86,7 @@ const dummyData = [
   },
 ];
 
-const attributeConfigs = {
+const attributeConfigs: IAttributeConfig = {
   attacking: {
     color: '#DA393B',
     description: 'Attacking description goes here',
@@ -103,8 +109,10 @@ const attributeConfigs = {
   },
 };
 
-function StatsLineChart() {
-  const isMobile = useMediaQuery('(max-width: 1023px)');
+const StatsLineChart: React.FC<IRatingProps> = ({
+  overallPlayerRating,
+}: IRatingProps) => {
+  const isMobile = useMediaQuery('(max-width: 850px)');
 
   const [lineProps, setLineProps] = useState<ILineProps>(
     Object.keys(attributeConfigs).reduce(
@@ -116,17 +124,17 @@ function StatsLineChart() {
     ),
   );
 
-  function CustomLegend(props) {
+  function CustomLegend(props: ILegendProps) {
     const { payload } = props;
     return (
       <div className="flex flex-row lg:flex-col justify-center lg:items-center flex-wrap">
-        {payload.map((entry, index) => (
+        {payload?.map((entry, index) => (
           <div
             key={`line-item-${index}`}
             className="stats-legend__buttons"
             style={{
-              background: !lineProps[entry.value]
-                ? attributeConfigs[entry.value].color
+              background: !lineProps[entry.value as keyof ILineProps]
+                ? attributeConfigs[entry.value as keyof IAttributeConfig].color
                 : DEFAULT_COLOR,
             }}
             onClick={(data) => selectLine(data)}
@@ -152,7 +160,11 @@ function StatsLineChart() {
               return (
                 <p
                   key={`tooltip-${index}`}
-                  style={{ color: attributeConfigs[entry.name].color }}
+                  style={{
+                    color:
+                      attributeConfigs[entry.name as keyof IAttributeConfig]
+                        .color,
+                  }}
                 >{`${entry.name}: ${entry.value}`}</p>
               );
             }
@@ -226,13 +238,16 @@ function StatsLineChart() {
             }
           />
           {Object.keys(attributeConfigs).map((attribute, idx) => {
+            const i = attribute as keyof ILineProps;
+            const j = attribute as keyof IAttributeConfig;
+
             return (
               <Line
                 key={`${attribute}-${idx}`}
                 type="monotone"
                 dataKey={attribute}
-                stroke={`${lineProps[attribute] ? DEFAULT_COLOR : attributeConfigs[attribute].color}`}
-                strokeWidth={`${lineProps[attribute] ? '2' : lineProps.hover === attribute || !lineProps.hover ? '5' : '1'}`}
+                stroke={`${lineProps[i] ? DEFAULT_COLOR : attributeConfigs[j].color}`}
+                strokeWidth={`${lineProps[i] ? '2' : lineProps.hover === attribute || !lineProps.hover ? '5' : '1'}`}
                 dot={false}
                 // hide={lineProps["attacking"] === true}
               />
@@ -250,12 +265,14 @@ function StatsLineChart() {
         <div className="flex items-center justify-between h-full">
           <div className="text-white text-center w-20 md:w-24 lg:w-32 border-t border-[#ccd1d4] py-4">
             <div className="">Rating</div>
-            <div className="text-[36px]">72</div>
+            <div className="text-[36px]">
+              {overallPlayerRating || <Skeleton />}
+            </div>
           </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default StatsLineChart;

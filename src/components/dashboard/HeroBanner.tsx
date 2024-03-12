@@ -1,26 +1,28 @@
+import Image from 'next/image';
+import { useMediaQuery } from '@/app/utils/useMediaQuery';
 import React, { useEffect, useState, useRef } from 'react';
-//import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 // import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
 //import cardImage from '../../../public/assets/img/png/jose-card-img.png';
-import { Player } from '@/types/Player.type';
-import { VillanovaIcon } from '@/components/common/Icon';
+import { IProfileProps } from '@/types/Dashboard.type';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+// import { VillanovaIcon } from '@/components/common/Icon';
 import CardFlip from './FlipCard';
 
-const playerInformation: Player = {
-  club: 'Villanova Soccer Academy',
-  name: 'Salvador Carrillo',
-  team: '2009',
-};
-
-const HeroBanner: React.FC = () => {
+const HeroBanner: React.FC<IProfileProps> = ({
+  name,
+  playerNumber,
+  club,
+  club_logo,
+  team,
+  player_card_url,
+}: IProfileProps) => {
   const [isVisible, setIsVisible] = useState(true);
   const previousScrollY = useRef(0); // Ref to store previous scroll position
 
-  const isSmallScreen =
-    typeof window !== 'undefined' && window.innerWidth < 640;
+  const isSmallScreen = useMediaQuery('(max-width: 640px)');
 
   // check screensize to render arrow down on mobile
   useEffect(() => {
@@ -49,47 +51,74 @@ const HeroBanner: React.FC = () => {
   };
 
   return (
-    <section className="relative px-4 items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[435px] lg:h-[370px] w-full md:max-w-[900px] lg:max-w-[1160px]">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        typeof="easeIn"
-        className="md:w-2/3 lg:w-2/3 flex items-center lg:items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[50px] ml-0 md:ml-10 lg:ml-4 pt-6"
-      >
-        <VillanovaIcon />
-        <div className="w-full flex flex-col justify-center items-start ml-2 md:ml-4 pr-0">
-          <h2 className="font-SourceSansPro font-bold text-lg md:text-lgl text-primary relative mb-1">
-            {playerInformation.name}
-          </h2>
-          <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative z-20">
-            {playerInformation.club}
-          </p>
-          <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-4 text-start text-primary opacity-80 lg:max-w-769 relative z-20">
-            {`team ${playerInformation.team}`}
-          </p>
-          <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative z-20">
-            #22
-          </p>
-          <span className="hidden md:block h-px w-full my-4 bg-partnersBorders" />
+    <SkeletonTheme baseColor="#113448" highlightColor="#525252">
+      <section className="relative px-4 items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[380px] lg:h-[370px] w-full md:max-w-[900px] lg:max-w-[1130px]">
+        <motion.div 
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.4 }}
+           typeof="easeIn"
+           className="w-full md:w-3/4 flex items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[30px] ml-0 md:ml-10 lg:ml-4 pt-6">
+          {/* <VillanovaIcon /> */}
+          {club_logo ? (
+            <Image
+              className="pt-2"
+              alt="club-logo"
+              src={club_logo}
+              width={100}
+              height={100}
+            />
+          ) : (
+            <div className="pt-2">
+              <Skeleton circle width={100} height={100} />
+            </div>
+          )}
+          <div className="w-full flex flex-col justify-center items-start ml-2 md:ml-4 pr-0 md:pr-6">
+            <h2 className="font-SourceSansPro font-bold text-lg md:text-lgl text-primary relative mb-1 min-w-[256px]">
+              {name || <Skeleton />}
+            </h2>
+            <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative z-20 min-w-[256px]">
+              {club || <Skeleton />}
+            </p>
+            <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-4 text-start text-primary opacity-80 lg:max-w-769 relative z-20 min-w-[256px]">
+              {team ? `team ${team}` : <Skeleton />}
+            </p>
+            <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative z-20 min-w-[256px]">
+              {playerNumber ? `#${playerNumber}` : <Skeleton />}
+            </p>
+            <span className="hidden md:block h-px w-full my-4 bg-partnersBorders" />
+          </div>
         </div>
-      </motion.div>
-      <div className=" -mb-0 md:-mb-10 lg:-mb-[160px]">
-        {/* <Image
-          className=""
-          src={cardImage}
-          alt="Player card"
-          width={CARD_IMAGE_WIDTH}
-          height={CARD_IMAGE_HEIGHT}
-          quality={75}
-          loading="lazy"
-          // layout="responsive"
-        /> */}
-        <CardFlip />
-      </div>
-
-      {/* floating arrow down on mobile to reinforce scroll down */}
-      {isSmallScreen && (
+        <div className="-mb-0 md:-mb-10 lg:-mb-[160px]">
+          {player_card_url ? (
+            <Image
+              className=""
+              src={cardImage}
+              alt="Player card"
+              width={CARD_IMAGE_WIDTH}
+              height={CARD_IMAGE_HEIGHT}
+              quality={75}
+              loading="lazy"
+            />
+          ) : (
+            <div className="flex items-center">
+              <Skeleton
+                className="min-w-[340px] min-h-[340px] md:min-w-[320px] md:min-h-[320px] lg:min-h-[400px] lg:min-w-[400px]"
+                circle
+              />
+            </div>
+          )}
+          {/* <Image
+            className=""
+            src={cardImage}
+            alt="Player card"
+            width={CARD_IMAGE_WIDTH}
+            height={CARD_IMAGE_HEIGHT}
+            quality={75}
+            loading="lazy"
+          /> */}
+        </div>
+        {isSmallScreen && (
         <AnimatePresence>
           {isVisible && (
             <motion.div
@@ -115,7 +144,8 @@ const HeroBanner: React.FC = () => {
           )}
         </AnimatePresence>
       )}
-    </section>
+      </section>
+    </SkeletonTheme>
   );
 };
 
