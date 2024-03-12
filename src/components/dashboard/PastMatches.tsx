@@ -1,8 +1,9 @@
-import React, { useState, useEffect }, { useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import MatchSummary from './MatchSummary';
 import Skeleton from 'react-loading-skeleton';
 import { IMatchData, emptyMatchData } from '@/types/Dashboard.type';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const dummyMatchData: IMatchData = {
   team1Badge: '/vecteezy_crest_1204211.png',
@@ -49,14 +50,13 @@ const pastMatchesList = [dummyMatchData, dummyMatchData, dummyMatchData];
 const PastMatches: React.FC = () => {
   const [pastMatches, setPastMatches] = useState([emptyMatchData]);
   const ref = useRef(null);
-  const inView = useInView(ref, { amount: 0.7, once: true });
+  const { ref: inViewRef, inView } = useInView({ threshold: 0.7 });
 
   useEffect(() => {
     setTimeout(() => {
       setPastMatches(pastMatchesList);
     }, 1500);
   }, []);
-
 
   //varints to trigger animations with staggered effect
   const staggerVariants = {
@@ -70,7 +70,6 @@ const PastMatches: React.FC = () => {
     },
   };
 
-
   return (
     <>
       {pastMatches[0]?.team1Badge ? (
@@ -79,24 +78,27 @@ const PastMatches: React.FC = () => {
             Past matches
           </h2>
           <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-        variants={staggerVariants}
-        className="flex flex-col"
-      >
+            ref={inViewRef}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            variants={staggerVariants}
+            className="flex flex-col"
+          >
             {pastMatches.map((match, index) => (
-                  <React.Fragment key={index}>
-                <motion.div variants={staggerVariants} className="overflow-hidden">
-              <MatchSummary matchData={match} />
+              <React.Fragment key={index}>
+                <motion.div
+                  variants={staggerVariants}
+                  className="overflow-hidden"
+                >
+                  <MatchSummary matchData={match} />
                 </motion.div>
-            {index !== pastMatches.length - 1 && (
+                {index !== pastMatches.length - 1 && (
                   <motion.span
-                initial="hidden"
-                animate={inView ? 'visible' : 'hidden'}
-                variants={staggerVariants}
-                className="h-px my-4 md:my-6 bg-partnersBorders inline-block min-w-min"
-              ></motion.span>
+                    initial="hidden"
+                    animate={inView ? 'visible' : 'hidden'}
+                    variants={staggerVariants}
+                    className="h-px my-4 md:my-6 bg-partnersBorders inline-block min-w-min"
+                  ></motion.span>
                 )}
               </React.Fragment>
             ))}
