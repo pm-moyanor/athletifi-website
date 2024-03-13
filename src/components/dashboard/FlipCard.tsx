@@ -36,7 +36,7 @@ const FlipCard = () => {
         damping: 15,
       }}
     >
-      <div className="border">
+      <div>
         <Image
           src={cardImage}
           alt="Player card"
