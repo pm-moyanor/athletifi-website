@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import MatchSummary from './MatchSummary';
 import Skeleton from 'react-loading-skeleton';
 import { IMatchData, emptyMatchData } from '@/types/Dashboard.type';
@@ -49,7 +49,8 @@ const pastMatchesList = [dummyMatchData, dummyMatchData, dummyMatchData];
 
 const PastMatches: React.FC = () => {
   const [pastMatches, setPastMatches] = useState([emptyMatchData]);
-  const ref = useRef(null);
+
+  //check if in view
   const { ref: inViewRef, inView } = useInView({ threshold: 0.7 });
 
   useEffect(() => {
