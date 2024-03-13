@@ -57,7 +57,7 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
       </div>
 
       <div className="flex flex-col md:flex-row md:items-center w-auto md:w-full justify-center ">
-        <div className="block max-w-full m-none md:m-auto">
+        <div className="block max-w-full ml-px md:m-auto">
           <span className="text-base font-sourceSansPro">{team1Name} </span>vs
           <span className="text-base font-sourceSansPro"> {team2Name}</span>
           <div className="text-sm text-offwhite pt-[2px]">{date}</div>
@@ -100,23 +100,28 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
                 )}
               </div>
 
-              <div>
-                <span className="font-semibold mx-2 text-right">
+              <div className=" flex justify-center gap-6 w-full">
+                <span className="font-semibold text-right  w-[140px]">
                   {team1Name}
                 </span>
-                vs
-                <span className="font-semibold mx-2 text-left">
+                <span className="">vs</span>
+
+                <span className="font-semibold text-left  w-[140px]">
                   {team2Name}
                 </span>
               </div>
             </div>
-            <button onClick={() => setShowRecap(false)} className="-mt-6">
+            <button
+              onClick={() => setShowRecap(false)}
+              className="absolute top-6 right-6"
+            >
               <FontAwesomeIcon icon={faTimes} size="xl" />
             </button>
           </div>
-          <div className="modal-content flex flex-col py-10">
-            <div className="flex flex-col-reverse sm:flex-col-reverse md:flex-row pb-16 ">
-              <div className="w-full pr-2 ">
+
+          <div className="flex flex-col py-8 max-w-[520px] sm:max-w-[520px] md:max-w-[700px] lg:max-w-[1030px] items-center justify-center px-2 w-full">
+            <div className="flex flex-col-reverse sm:flex-col-reverse md:flex-row pb-8 w-full">
+              <div className="w-full mt-6 md:mt-0">
                 <h2 className="text-[20px] font-semibold mb-2">Full Recap</h2>
                 <div className="h-1 mb-4 bg-partnersBorders" />
                 <div className="w-full h-full  min-w-[400px] max-h-[350px]">
@@ -131,7 +136,7 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
                 </div>
               </div>
 
-              <div className="px-0 md:px-6 my-6 md:my-0 font-sourceSansPro w-full md:w-4/6 ">
+              <div className="px-0 md:px-4 my-4 md:my-0 font-sourceSansPro md:w-4/6 ">
                 <h3 className="text-[20px] font-semibold">Summary</h3>
                 {/* <div className="h-1 my-2 bg-partnersBorders" /> */}
                 <div className="text-sm text-offwhite my-4">
@@ -146,10 +151,10 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
                 </div>
 
                 <div>
-                  <div className="h-1 my-6 bg-partnersBorders text-primary" />
+                  <div className="h-1 my-2 bg-partnersBorders text-primary" />
                   <h3 className="font-semibold py-2 text-[18px]">Title</h3>
                   {/* define generated text */}
-                  <p className="font-thin">
+                  <p className="text-sm font-thin">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -161,15 +166,15 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
               </div>
             </div>
             <div className="flex flex-col mt-4 w-full">
-              <h3 className="text-[20px] font-semibold mt-4 mb-2">
+              <h3 className="text-[20px] font-semibold mt-12 md:mt-4 mb-2">
                 Highlights
               </h3>
               <div className="h-1 mb-4 bg-partnersBorders w-full"></div>
-              <div className="flex flex-col md:flex-row justify-between w-full ">
+              <div className="flex flex-col md:flex-row justify-between w-full max-w-none sm:max-w-[600px] md:max-w-none">
                 {videos.map((video, index) => (
                   <div
                     key={index}
-                    className=" w-full m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
+                    className=" w-full sm my-2 md:m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
                   >
                     {video?.url && video?.thumbnail && (
                       <video
