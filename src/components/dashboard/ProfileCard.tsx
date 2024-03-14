@@ -15,7 +15,7 @@ const Profile: React.FC<IProfileProps> = ({
   return (
     <>
       {age ? (
-        <div className="w-full h-[586px] bg-cardsBackground rounded-10 p-4 mb-4 -mt-8 sm:-mt-8 md:mt-0 lg:-mt-[86px] font-sourceSansPro overflow-scroll">
+        <div className="w-full h-[596px] bg-cardsBackground rounded-10 p-4 mb-4 -mt-8 sm:-mt-8 md:mt-0 lg:-mt-[96px] font-sourceSansPro overflow-scroll">
           <h2 className="text-primary text-[24px] mb-4 font-semibold">
             Profile
           </h2>
