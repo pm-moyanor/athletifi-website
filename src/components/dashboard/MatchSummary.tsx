@@ -73,10 +73,10 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
       {/* SUMMARY CARD */}
 
       {showRecap && (
-        <div className=" modal bg-[#032436] absolute top-0 right-0 w-full p-6 md:p-12 max-w-[1200px] z-50">
-          <div className="flex justify-between items-center m-auto text-primary w-full font-sourceSansPro pb-4">
-            <div className="flex w-full justify-between items-center max-w-[450px]">
-              <div className="flex w-[200px] justify-around items-center">
+        <div className="bg-[#0b2230] shadow-lg fixed inset-0 w-full p-2 md:p-8 z-50 flex flex-col items-center overflow-y-auto">
+          <div className="flex justify-center md:justify-start items-center text-primary w-full font-sourceSansPro pb-4 md:max-w-[700px] lg:max-w-[1030px]">
+            <div className="flex flex-col md:flex-row  w-full justify-center md:justify-between items-center sm:max-w-[380px] md:max-w-[600px] mt-8 md:mt-2 ">
+              <div className="flex min-w-[190px] max-w-[190px] justify-center gap-4 items-center my-4">
                 {team1Badge !== null && (
                   <Image
                     src={team1Badge}
@@ -124,7 +124,7 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
               <div className="w-full mt-6 md:mt-0">
                 <h2 className="text-[20px] font-semibold mb-2">Full Recap</h2>
                 <div className="h-1 mb-4 bg-partnersBorders" />
-                <div className="w-full h-full  min-w-[400px] max-h-[350px]">
+                <div className="w-full h-full  min-w-[320px] max-h-[320px]">
                   {fullRecapVideo?.thumbnail && (
                     <video
                       // src={fullRecapVideo.url}
@@ -181,11 +181,11 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
                         src={video.url}
                         controls
                         poster={video.thumbnail}
-                        className="bg-slate-500 rounded-md w-1/2 sm:w-1/2 md:w-full min-h-36"
+                        className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
                       ></video>
                     )}
-                    <div className="video-info text-primary m-2 w-1/3 sm:w-1/3 md:w-full flex flex-col justify-end">
-                      <h3 className="text-base">{video.title}</h3>
+                    <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end  max-w-[320px]">
+                      <h3 className="text-base pt-2">{video.title}</h3>
                       <p className="text-sm text-offwhite m-px ">
                         {video.description}
                       </p>
