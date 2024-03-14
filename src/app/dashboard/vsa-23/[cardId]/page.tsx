@@ -22,6 +22,7 @@ import {
   emptyLatestMatchData,
 } from '@/types/Dashboard.type';
 import Navbar from '@/components/dashboard/NavBar';
+import BackToTop from '@/components/common/BackToTop';
 
 interface PageProps {
   params: { cardId: number };
@@ -137,6 +138,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
           <span className="h-px bg-partnersBorders w-11/12 max-w-[1130px] my-8 md:my-4" />
           <PastMatchesLayout />
         </main>
+        <BackToTop />
         <Footer />
       </div>
     </>
