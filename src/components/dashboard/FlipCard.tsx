@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 // import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
 import cardImage from '../../../public/assets/img/png/jose-card-img.png';
 
-const CARD_IMAGE_WIDTH: number = 465;
-const CARD_IMAGE_HEIGHT: number = 400;
+const CARD_IMAGE_WIDTH: number = 485;
+const CARD_IMAGE_HEIGHT: number = 420;
 
 const FlipCard = () => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -36,7 +36,7 @@ const FlipCard = () => {
         damping: 15,
       }}
     >
-      <div>
+      <div className={`inline-block relative`}>
         <Image
           src={cardImage}
           alt="Player card"

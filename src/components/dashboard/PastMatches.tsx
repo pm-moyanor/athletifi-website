@@ -51,7 +51,10 @@ const PastMatches: React.FC = () => {
   const [pastMatches, setPastMatches] = useState([emptyMatchData]);
 
   //check if in view
-  const { ref: inViewRef, inView } = useInView({ threshold: 0.7 });
+  const { ref: inViewRef, inView } = useInView({
+    threshold: 0.7,
+    triggerOnce: true,
+  });
 
   useEffect(() => {
     setTimeout(() => {
