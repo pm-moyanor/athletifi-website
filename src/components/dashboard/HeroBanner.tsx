@@ -50,19 +50,19 @@ const HeroBanner: React.FC<IProfileProps> = ({
   return (
     <SkeletonTheme baseColor="#113448" highlightColor="#525252">
       <section className="relative items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[380px] lg:h-[370px] w-full md:max-w-[1000px] lg:max-w-[1130px] px-4">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="md:w-2/3 lg:w-2/3 flex items-center md:items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[50px] mt-10 mx-4 "
-        >
-          {/* <VillanovaIcon /> */}
-          {club_logo && (
+        {club_logo ? (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: 'easeIn' }}
+            className="md:w-2/3 lg:w-2/3 flex items-center md:items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[50px] mt-10 mx-4 "
+          >
+            {/* <VillanovaIcon /> */}
+
             <div className="relative w-[90px] md:w-[110px] h-[90px] md:h-[110px] min-w-[90px]  flex justify-center items-center">
               <Image alt="club-logo" src={club_logo} layout="fill" />
             </div>
-          )}
-          {name && (
+
             <div className=" flex flex-col justify-start items-start w-full mx-2">
               <h2 className="font-SourceSansPro font-bold text-[24px] md:text-lgl  text-primary relative mb-[6px]  whitespace-break-spaces leading-7">
                 {name}
@@ -78,8 +78,10 @@ const HeroBanner: React.FC<IProfileProps> = ({
               </p>
               <span className="hidden md:block h-px w-full my-4 bg-partnersBorders" />
             </div>
-          )}
-        </motion.div>
+          </motion.div>
+        ) : (
+          <div className="w-full h-1"></div>
+        )}
 
         <div className="-mb-0 md:-mb-10 lg:-mb-[160px]">
           {player_card_url ? (
