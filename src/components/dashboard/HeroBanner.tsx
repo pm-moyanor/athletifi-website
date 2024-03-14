@@ -83,7 +83,7 @@ const HeroBanner: React.FC<IProfileProps> = ({
           <div className="w-full h-1"></div>
         )}
 
-        <div className="-mb-0 md:-mb-10 lg:-mb-[160px]">
+        <div className="-mb-0 md:-mb-10 lg:-mb-[180px]">
           {player_card_url ? (
             // <Image
             //   className=""
