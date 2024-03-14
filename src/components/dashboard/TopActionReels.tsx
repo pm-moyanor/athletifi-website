@@ -9,8 +9,8 @@ const ActionReel: React.FC<IActionReel> = ({
   description,
 }) => {
   return (
-    <div className=" flex my-3 justify-start">
-      <div className="relative w-full max-w-[230px] min-w-[180px] h-[130px] sm:h-[130px] md:h-[120px]">
+    <div className=" flex my-2 justify-start">
+      <div className="relative w-full md:max-w-[230px] min-w-[180px] h-[120px] sm:h-[120px] md:h-[130px]">
         {videoSrc && thumbnail && (
           <video
             className="w-full h-full object-cover rounded rounded-5"
@@ -22,11 +22,11 @@ const ActionReel: React.FC<IActionReel> = ({
           00:00
         </time>
       </div>
-      <div className=" ml-2 flex flex-col justify-end w-full min-w-[130px] max-w-[220px]">
+      <div className=" ml-2 flex flex-col justify-end w-full min-w-[130px] md:max-w-[230px]">
         <h4 className="text-sm font-semibold mb-2 text-primary font-sourceSansPro">
           {title}
         </h4>
-        <p className="text-sm text-primary font-extralight font-sourceSansPro mb-px">
+        <p className="text-sm text-primary font-extralight font-sourceSansPro">
           {description}
         </p>
       </div>
@@ -42,9 +42,9 @@ const ActionReelList: React.FC<{ actionReels: IActionReel[] }> = ({
   return (
     <>
       {actionReels[0]?.title ? (
-        <div className="border-l-0 border-partnersBorders md:border-l flex flex-col items-start md:items-center w-full md:w-1/2 max-w-[560px] px-0 md:px-4 py-6 md:py-0">
-          <div className=" flex flex-col md:overflow-auto h-[460px] items-center">
-            <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro mb-4">
+        <div className="md:h-[480px] flex flex-col items-start md:items-center w-full md:w-1/2 max-w-[560px] mt-16 md:mt-0">
+          <div className=" flex flex-col md:overflow-auto items-center">
+            <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro mb-2">
               Top Action Reels
             </h3>
             {actionReels.map((actionReel: IActionReel, index: number) => (
