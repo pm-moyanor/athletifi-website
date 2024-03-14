@@ -21,6 +21,7 @@ import {
   ILatestMatchData,
   emptyLatestMatchData,
 } from '@/types/Dashboard.type';
+import Navbar from '@/components/dashboard/NavBar';
 
 interface PageProps {
   params: { cardId: number };
@@ -88,6 +89,7 @@ const PlayerDashboardPage: NextPage<PageProps> = ({ params }) => {
   return (
     <>
       <div className="overflow-hidden">
+        <Navbar />
         <div className="bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] flex justify-center w-full border-collapse">
           <HeroBanner
             name={profile.name}

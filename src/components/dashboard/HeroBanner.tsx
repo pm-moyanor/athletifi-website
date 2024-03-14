@@ -72,13 +72,13 @@ const HeroBanner: React.FC<IProfileProps> = ({
             <h2 className="font-SourceSansPro font-bold text-lg md:text-lgl text-primary relative mb-1 min-w-[256px]">
               {name ? name : <Skeleton />}
             </h2>
-            <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative z-20 min-w-[256px]">
+            <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
               {club || <Skeleton />}
             </p>
-            <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-4 text-start text-primary opacity-80 lg:max-w-769 relative z-20 min-w-[256px]">
+            <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-4 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
               {team ? `team ${team}` : <Skeleton />}
             </p>
-            <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative z-20 min-w-[256px]">
+            <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
               {playerNumber ? `#${playerNumber}` : <Skeleton />}
             </p>
             <span className="hidden md:block h-px w-full my-4 bg-partnersBorders" />
