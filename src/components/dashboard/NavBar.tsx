@@ -112,101 +112,95 @@ const Navbar: React.FC = () => {
   return (
     <header>
       <div id="nav_bar" className=" absolute w-full py-4">
-        <div className="container max-w-none lg:max-w-1030 2xl:max-w-1320 mx-auto px-4 md:px-4">
-          <div className="flex items-center justify-between">
-            <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto">
-              <div className="flex items-center justify-between">
-                <Link href="/">
-                  <PageLogo />
+        <div className="container flex items-center justify-between w-full max-w-none lg:max-w-1130 2xl:max-w-1320 px-4">
+          <Link href="/">
+            <PageLogo />
+          </Link>
+          {/* SMALL SCREEN MENU ICONS */}
+          <div
+            onClick={() => setOpen(!open)}
+            className="flex flex-col md:hidden bg-transparent border-0 relative z-50 cursor-pointer"
+          >
+            <span className="h-3pixel w-35 bg-white inline-block rounded-sm"></span>
+            <span className="my-2 h-3pixel w-7 bg-white inline-block rounded-sm"></span>
+            <span className="h-3pixel w-35 bg-white inline-block rounded-sm"></span>
+          </div>
+          <div
+            className={
+              open
+                ? 'header__nav--open h-full w-full z-20 fixed top-0 left-0 duration-500 transition-all bg-blackBG min-h-screen'
+                : 'header__nav--open md:relative fixed min-h-screen md:min-h-full -left-full md:left-0 duration-500 md:ml-0 md:mt-0 z-50 top-0'
+            }
+          >
+            {/* NAV PAGE LINKS */}
+            <ul
+              className="flex items-center gap-25 md:gap-40pixel flex-col md:flex-row h-full justify-center text-md text-primary font-sourceSansPro"
+              role="navigation"
+              aria-label="Main"
+            >
+              <li>
+                <Link
+                  onClick={() => setOpen(false)}
+                  href="/"
+                  className={` opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
+                    path == '/' ? '!opacity-100' : ''
+                  }`}
+                >
+                  Home
                 </Link>
-                {/* SMALL SCREEN MENU ICONS */}
-                <div
-                  onClick={() => setOpen(!open)}
-                  className="flex flex-col md:hidden bg-transparent border-0 relative z-50 cursor-pointer"
+              </li>
+              <li>
+                <Link
+                  onClick={() => setOpen(false)}
+                  href="/about-us"
+                  className={`opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
+                    path == '/about-us' ? '!opacity-100 ' : ''
+                  }`}
                 >
-                  <span className="h-3pixel w-35 bg-white inline-block rounded-sm"></span>
-                  <span className="my-2 h-3pixel w-7 bg-white inline-block rounded-sm"></span>
-                  <span className="h-3pixel w-35 bg-white inline-block rounded-sm"></span>
-                </div>
-                <div
-                  className={
-                    open
-                      ? 'header__nav--open h-full w-full z-20 fixed top-0 left-0 duration-500 transition-all bg-blackBG min-h-screen'
-                      : 'header__nav--open md:relative fixed min-h-screen md:min-h-full -left-full md:left-0 duration-500 md:ml-0 md:mt-0 z-50 top-0'
-                  }
+                  About us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => setOpen(false)}
+                  href="/news?page=1"
+                  className={` opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
+                    path == '/news' ? '!opacity-100' : ''
+                  }`}
                 >
-                  {/* NAV PAGE LINKS */}
-                  <ul
-                    className="flex items-center gap-25 md:gap-40pixel flex-col md:flex-row h-full justify-center text-md text-primary font-sourceSansPro"
-                    role="navigation"
-                    aria-label="Main"
-                  >
-                    <li>
-                      <Link
-                        onClick={() => setOpen(false)}
-                        href="/"
-                        className={` opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                          path == '/' ? '!opacity-100' : ''
-                        }`}
-                      >
-                        Home
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        onClick={() => setOpen(false)}
-                        href="/about-us"
-                        className={`opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                          path == '/about-us' ? '!opacity-100 ' : ''
-                        }`}
-                      >
-                        About us
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        onClick={() => setOpen(false)}
-                        href="/news?page=1"
-                        className={` opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                          path == '/news' ? '!opacity-100' : ''
-                        }`}
-                      >
-                        News
-                      </Link>
-                    </li>
+                  News
+                </Link>
+              </li>
 
-                    <li>
-                      <Link
-                        onClick={() => setOpen(false)}
-                        href="/dashboard/vsa-23/1"
-                        className={`pacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                          path == '/dashboard' ? '!opacity-100' : ''
-                        }`}
-                      >
-                        Dashboard
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/contact-us"
-                        onClick={() => setOpen(false)}
-                        className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white md:hidden"
-                      >
-                        Contact Us
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
+              <li>
+                <Link
+                  onClick={() => setOpen(false)}
+                  href="/dashboard/vsa-23/1"
+                  className={`pacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
+                    path == '/dashboard' ? '!opacity-100' : ''
+                  }`}
+                >
+                  Dashboard
+                </Link>
+              </li>
+              <li>
                 <Link
                   href="/contact-us"
                   onClick={() => setOpen(false)}
-                  className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden md:inline-block"
+                  className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white md:hidden"
                 >
                   Contact Us
                 </Link>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
+          <Link
+            href="/contact-us"
+            onClick={() => setOpen(false)}
+            className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden md:inline-block"
+          >
+            Contact Us
+          </Link>
         </div>
       </div>
     </header>

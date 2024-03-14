@@ -36,7 +36,7 @@ const FlipCard = () => {
         damping: 15,
       }}
     >
-      <div className={`inline-block relative`}>
+      <div className={`inline-block relative md:max-w-96 lg:max-w-none`}>
         <Image
           src={cardImage}
           alt="Player card"

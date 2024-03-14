@@ -49,7 +49,7 @@ const HeroBanner: React.FC<IProfileProps> = ({
 
   return (
     <SkeletonTheme baseColor="#113448" highlightColor="#525252">
-      <section className="relative items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[380px] lg:h-[370px] w-full md:max-w-[1000px] lg:max-w-[1130px] px-4">
+      <section className="relative items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[420px] lg:h-[370px] w-full md:max-w-[1000px] lg:max-w-[1130px] px-4">
         {club_logo ? (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -63,18 +63,18 @@ const HeroBanner: React.FC<IProfileProps> = ({
               <Image alt="club-logo" src={club_logo} layout="fill" />
             </div>
 
-            <div className=" flex flex-col justify-start items-start w-full mx-2">
-              <h2 className="font-SourceSansPro font-bold text-[24px] md:text-lgl  text-primary relative mb-[6px]  whitespace-break-spaces leading-7">
-                {name}
+            <div className="w-full flex flex-col justify-center items-start ml-2 md:ml-4 pr-0 md:pr-6">
+              <h2 className="font-SourceSansPro font-bold text-lg md:text-lgl text-primary relative mb-1 min-w-[256px]">
+                {name ? name : <Skeleton />}
               </h2>
-              <p className="w-auto  font-SourceSansPro-Semibold text-sm md:text-base leading-4 text-start text-primary opacity-80 relative whitespace-break-spaces mt-[4px] md:mt-[6px]">
-                {club}
+              <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
+                {club || <Skeleton />}
               </p>
-              <p className="w-auto font-SourceSansPro-Semibold text-sm md:text-base leading-4 text-start text-primary opacity-80 relative my-[4px]">
-                {`team ${team}`}
+              <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-4 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
+                {team ? `team ${team}` : <Skeleton />}
               </p>
-              <p className=" font-SourceSansPro-Semibold text-sm md:text-base leading-4 text-start text-primary opacity-80 lg:max-w-769 relative ">
-                {`#${playerNumber}`}
+              <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
+                {playerNumber ? `#${playerNumber}` : <Skeleton />}
               </p>
               <span className="hidden md:block h-px w-full my-4 bg-partnersBorders" />
             </div>
