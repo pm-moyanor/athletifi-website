@@ -41,7 +41,7 @@ const SeasonSection: React.FC = () => {
 
   return (
     <>
-      <div className="w-full max-w-[1130px] sm:py-8 md:py-[100px] px-4 flex flex-col sm:flex-col md:flex-row justify-around items-center md:items-start h-full">
+      <div className="w-full max-w-[1130px] sm:py-8 md:py-20 px-4 flex flex-col sm:flex-col md:flex-row justify-around items-center md:items-start h-full">
         <SeasonHighlights data={seasonHighlights} />
         <ActionReelList actionReels={actionReels} />
       </div>

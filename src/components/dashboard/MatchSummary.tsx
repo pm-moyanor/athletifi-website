@@ -31,39 +31,31 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
   return (
     // MATCH basic INFO
 
-    <div className="w-full flex justify-around md:justify-between items-center text-primary font-sourceSansPro mr-4">
-      <div className="flex justify-between items-center w-[250px] max-w-[220px] min-w-[172px] mr-2">
+    <div className="w-full flex justify-between items-center text-primary font-sourceSansPro md:mr-4">
+      <div className="flex justify-between items-center w-[250px] max-w-[220px] min-w-[200px] mr-2 ">
         {team1Badge !== null && (
-          <Image
-            src={team1Badge}
-            alt="Crest"
-            width={55}
-            height={55}
-            className="w-auto h-auto"
-          />
+          <div className="relative w-16 h-16">
+            <Image src={team1Badge} alt="Crest" layout="fill" />
+          </div>
         )}
         <div className="mx-[4px]">
           <span>{team1Score}</span> - <span>{team2Score}</span>
         </div>
         {team2Badge !== null && (
-          <Image
-            src={team2Badge}
-            alt="Crest"
-            width={55}
-            height={55}
-            className="w-auto h-auto"
-          />
+          <div className="relative w-16 h-16">
+            <Image src={team2Badge} alt="Crest" layout="fill" />
+          </div>
         )}
       </div>
 
-      <div className="flex flex-col md:flex-row md:items-center w-auto md:w-full justify-center ">
-        <div className="block max-w-full ml-px md:m-auto">
+      <div className="flex flex-col md:flex-row md:items-center w-full justify-center ">
+        <div className="block max-w-full ml-[6px] md:m-auto">
           <span className="text-base font-sourceSansPro">{team1Name} </span>vs
           <span className="text-base font-sourceSansPro"> {team2Name}</span>
           <div className="text-sm text-offwhite pt-[2px]">{date}</div>
         </div>
         <button
-          className="w-28 h-[30px] px-2 bg-skyblue text-black text-sm rounded-30 mt-4 md:mt-0 "
+          className="w-28 h-[30px] px-2 bg-skyblue text-black text-sm rounded-30 mt-2 md:mt-0 "
           onClick={handleSummaryClick}
         >
           summary

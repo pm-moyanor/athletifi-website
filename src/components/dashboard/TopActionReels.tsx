@@ -10,7 +10,7 @@ const ActionReel: React.FC<IActionReel> = ({
 }) => {
   return (
     <div className=" flex my-2 justify-start">
-      <div className="relative w-full md:max-w-[230px] min-w-[180px] h-[120px] sm:h-[120px] md:h-[130px]">
+      <div className="relative w-full max-w-[230px] min-w-[180px] h-[120px] sm:h-[120px] md:h-[130px]">
         {videoSrc && thumbnail && (
           <video
             className="w-full h-full object-cover rounded rounded-5"
@@ -42,7 +42,7 @@ const ActionReelList: React.FC<{ actionReels: IActionReel[] }> = ({
   return (
     <>
       {actionReels[0]?.title ? (
-        <div className="md:h-[480px] flex flex-col items-start md:items-center w-full md:w-1/2 max-w-[560px] mt-16 md:mt-0">
+        <div className="md:h-[480px] flex flex-col items-start md:items-center w-full md:w-1/2 max-w-[560px] my-8 md:my-0">
           <div className=" flex flex-col md:overflow-auto items-center">
             <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro mb-2">
               Top Action Reels

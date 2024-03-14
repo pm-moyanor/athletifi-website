@@ -26,9 +26,9 @@ const SeasonHighlights: React.FC<{ data: string[] | null[] }> = ({
           <div className="max-h-[500px] sm:max-h-[500px] md:max-h-none overflow-visible md:overflow-auto ">
             {highlightsList.map((highlight, index) => (
               <React.Fragment key={index}>
-                <div className="h-px bg-partnersBorders w-full my-4" />
+                <div className="h-px bg-partnersBorders w-full my-4 " />
 
-                <p className="text-[16px] text-primary font-extralight max-w-[560px] md:max-w-[540px] pr-2">
+                <p className="text-[16px] text-primary font-extralight max-w-[560px] md:max-w-[540px] md:pr-2">
                   {highlight}
                 </p>
               </React.Fragment>
