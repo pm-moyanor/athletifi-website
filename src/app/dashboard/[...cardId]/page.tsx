@@ -23,6 +23,7 @@ interface PageProps {
 
 interface DashboardData {
   latestMatch: ILatestMatchData; // replace 'any' with the type of your data
+  latestPlayerRating: object;
   matchesList: object; // replace 'any' with the type of your data
   playerProfile: IProfileProps; // replace 'any' with the type of your data
   teammates: object; // replace 'any' with the type of your data
@@ -57,10 +58,11 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
     testAWSFetch(cardIdValue as string)
       .then((data) => {
         const dataObject = {
-          latestMatch: data[0],
-          matchesList: data[1],
-          playerProfile: data[2],
-          teammates: data[3],
+          latestMatch: data[0].result,
+          latestPlayerRating: data[1].result,
+          matchesList: data[2].result,
+          playerProfile: data[3].result,
+          teammates: data[4].result,
         };
         setDashboardData(dataObject);
       })
@@ -85,9 +87,9 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
             name={dashboardData?.playerProfile.name}
             playerNumber={dashboardData?.playerProfile.playerNumber}
             club={dashboardData?.playerProfile.club}
-            club_logo={dashboardData?.playerProfile.club_logo}
+            clubLogo={dashboardData?.playerProfile.clubLogo}
             team={dashboardData?.playerProfile.team}
-            player_card_url={dashboardData?.playerProfile.player_card_url}
+            playerCardUrl={dashboardData?.playerProfile.playerCardUrl}
           />
         </div>
         <div className="flex justify-center">
@@ -98,7 +100,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
                 club={dashboardData?.playerProfile.club}
                 league={dashboardData?.playerProfile.league}
                 team={dashboardData?.playerProfile.team}
-                ageGroup={dashboardData?.playerProfile.ageGroup}
+                agegroup={dashboardData?.playerProfile.agegroup}
                 gender={dashboardData?.playerProfile.gender}
                 coach={dashboardData?.playerProfile.coach}
                 bio={dashboardData?.playerProfile.bio}
@@ -109,16 +111,12 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
                 datetime={dashboardData?.latestMatch.datetime}
                 location={dashboardData?.latestMatch.location}
                 weather={dashboardData?.latestMatch.weather}
-                home_team_name={dashboardData?.latestMatch.home_team_name}
-                home_team_logo_url={
-                  dashboardData?.latestMatch.home_team_logo_url
-                }
-                home_team_score={dashboardData?.latestMatch.home_team_score}
-                away_team_name={dashboardData?.latestMatch.away_team_name}
-                away_team_logo_url={
-                  dashboardData?.latestMatch.away_team_logo_url
-                }
-                away_team_score={dashboardData?.latestMatch.away_team_score}
+                homeclub={dashboardData?.latestMatch.homeclub}
+                homeclublogo={dashboardData?.latestMatch.homeclublogo}
+                homescore={dashboardData?.latestMatch.homescore}
+                awayclub={dashboardData?.latestMatch.awayclub}
+                awayclublogo={dashboardData?.latestMatch.awayclublogo}
+                awayscore={dashboardData?.latestMatch.awayscore}
               />
             </div>
             <div className="mb-3 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-3 lg:order-2">
