@@ -19,6 +19,13 @@ interface PageProps {
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
+interface DashboardData {
+  latestMatch: object; // replace 'any' with the type of your data
+  matchesList: object; // replace 'any' with the type of your data
+  playerProfile: object; // replace 'any' with the type of your data
+  teammates: object; // replace 'any' with the type of your data
+}
+
 // TO DO: Implement dynamic metadata generation for SEO using generateMetadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata#dynamic-metadata
 // export const metadata = {
 //   title: 'Player Dashboard | AthletiFi',
@@ -36,15 +43,25 @@ const testAWSFetch = async (cardId: string) => {
 };
 
 const PlayerDashboardPage: NextPage<PageProps> = () => {
-  const [dashboardData, setDashboardData] = useState(null);
+  const [dashboardData, setDashboardData] = useState<DashboardData | null>(
+    null,
+  );
   const isMobile = useMediaQuery('(max-width: 1024px)');
   const { cardId } = useParams();
   const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
 
+  console.log(dashboardData);
+
   useEffect(() => {
     testAWSFetch(cardIdValue as string)
       .then((data) => {
-        setDashboardData(data);
+        const dataObject = {
+          latestMatch: data[0],
+          matchesList: data[1],
+          playerProfile: data[2],
+          teammates: data[3],
+        };
+        setDashboardData(dataObject);
       })
       .catch((error) => {
         console.error('Failed to fetch data:', error);
