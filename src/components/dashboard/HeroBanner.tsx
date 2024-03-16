@@ -1,56 +1,109 @@
-import React from 'react';
 import Image from 'next/image';
-import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
-import { Player } from '@/types/Player.type';
-import { VillanovaIcon } from '@/components/common/Icon';
+import { useMediaQuery } from '@/app/utils/useMediaQuery';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+// import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
+//import cardImage from '../../../public/assets/img/png/jose-card-img.png';
+import { IProfileProps } from '@/types/Dashboard.type';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+// import { VillanovaIcon } from '@/components/common/Icon';
+import FlipCard from './FlipCard';
 
-const playerInformation: Player = {
-  club: 'Villanova Soccer Academy',
-  name: 'Salvador Carrillo',
-  team: 'team 2009',
-};
+const HeroBanner: React.FC<IProfileProps> = ({
+  name,
+  playerNumber,
+  club,
+  club_logo,
+  team,
+  player_card_url,
+}: IProfileProps) => {
+  const [isVisible, setIsVisible] = useState(true);
+  const previousScrollY = useRef(0); // Ref to store previous scroll position
 
-// const AOS_DURATION: number = 400;
-// const AOS_DELAY: number = 300;
-// const AOS_OFFSET: number = 100;
+  const isSmallScreen = useMediaQuery('(max-width: 640px)');
 
-const CARD_IMAGE_WIDTH: number = 500;
-const CARD_IMAGE_HEIGHT: number = 300;
+  // check screensize to render arrow down on mobile
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrolledDown = currentScrollY > previousScrollY.current;
 
-const HeroBanner: React.FC = () => {
+      if (scrolledDown && currentScrollY > 100 && isVisible) {
+        // Hide icon if scrolled down
+        setIsVisible(false);
+      }
+      previousScrollY.current = currentScrollY; // Update previous scroll position
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  // Scrollk onclick the screen down by one screen height
+  const handleIconClick = () => {
+    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+  };
+
   return (
-    <>
-      <section className="flex flex-col justify-start items-stretch lg:flex-row h-full pt-5 lg:p-0 z-10">
-        <div className="lg:w-3/4 xl:w-1/2 2xl:w-1/2 min-h-full order-2 lg:order-1">
-          <div className=" relative lg:py-16 py-5 md:py-10 z-0  rounded-30 h-full flex items-center justify-center gap-2">
-            <VillanovaIcon />
-            <div
-              className="flex justify-start items-center relative z-20 "
-              // data-aos="fade-up"
-              // data-aos-duration={AOS_DURATION}
-              // data-aos-easing="ease-in-sine"
-              // data-aos-delay={AOS_DELAY}
-              // data-aos-offset={AOS_OFFSET}
-            >
-              <div className="flex flex-col justify-start">
-                <h2 className="font-SourceSansPro-Bold md:text-lgl text-lg   text-primary relative z-20 text-start">
-                  {playerInformation.name}
-                </h2>
-                <p className="font-SourceSansPro-Semibold text-sm md:text-basesm leading-7 text-start text-primary opacity-80 lg:max-w-769 relative z-20">
-                  {playerInformation.club}
-                </p>
-                <p className="font-SourceSansPro-Semibold text-sm md:text-basesm leading-7 text-start text-primary opacity-80 lg:max-w-769 relative z-20">
-                  {`team ${playerInformation.team}`}
-                </p>
-                <div className="relative">
-                  <hr className="border-t-1 border-lineAtBase absolute top-3 left-0 right-0 ml-0 lg:-mr-20 xl:-mr-40 2xl:-mr-72 3xl:-mr-96 4xl:-mr-500 mt-3 hidden lg:block" />
-                </div>
-              </div>
+    <SkeletonTheme baseColor="#113448" highlightColor="#525252">
+      <section className="relative items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[420px] lg:h-[370px] w-full md:max-w-[1000px] lg:max-w-[1130px] px-4">
+        {club_logo ? (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: 'easeIn' }}
+            className="md:w-2/3 lg:w-2/3 flex items-center md:items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[50px] mt-10 mx-4 "
+          >
+            {/* <VillanovaIcon /> */}
+
+            <div className="relative w-[90px] md:w-[110px] h-[90px] md:h-[110px] min-w-[90px]  flex justify-center items-center">
+              <Image alt="club-logo" src={club_logo} layout="fill" />
             </div>
-          </div>
-        </div>
-        <div className="lg:w-full xl:w-1/2 2xl:w-1/2 min-h-full h-full flex justify-center items-center lg:-mb-56 lg:mt-40 order-1">
-          <Image
+
+            <div className="w-full flex flex-col justify-center items-start ml-2 md:ml-4 pr-0 md:pr-6">
+              <h2 className="font-SourceSansPro font-bold text-lg md:text-lgl text-primary relative mb-1 min-w-[256px]">
+                {name ? name : <Skeleton />}
+              </h2>
+              <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
+                {club || <Skeleton />}
+              </p>
+              <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-4 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
+                {team ? `team ${team}` : <Skeleton />}
+              </p>
+              <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
+                {playerNumber ? `#${playerNumber}` : <Skeleton />}
+              </p>
+              <span className="hidden md:block h-px w-full my-4 bg-partnersBorders" />
+            </div>
+          </motion.div>
+        ) : (
+          <div className="w-full h-1"></div>
+        )}
+
+        <div className="-mb-0 md:-mb-10 lg:-mb-[180px]">
+          {player_card_url ? (
+            // <Image
+            //   className=""
+            //   src={cardImage}
+            //   alt="Player card"
+            //   width={CARD_IMAGE_WIDTH}
+            //   height={CARD_IMAGE_HEIGHT}
+            //   quality={75}
+            //   loading="lazy"
+            // />
+            <FlipCard />
+          ) : (
+            <div className="flex items-center">
+              <Skeleton
+                className="min-w-[340px] min-h-[340px] md:min-w-[320px] md:min-h-[320px] lg:min-h-[400px] lg:min-w-[400px]"
+                circle
+              />
+            </div>
+          )}
+          {/* <Image
             className=""
             src={cardImage}
             alt="Player card"
@@ -58,10 +111,36 @@ const HeroBanner: React.FC = () => {
             height={CARD_IMAGE_HEIGHT}
             quality={75}
             loading="lazy"
-          />
+          /> */}
         </div>
+        {isSmallScreen && (
+          <AnimatePresence>
+            {isVisible && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isVisible ? 1 : 0 }}
+                exit={{ opacity: 0 }}
+                className="w-full text-primary opacity-80 absolute bottom-8 left-0 z-40 flex justify-center"
+              >
+                <motion.div
+                  onClick={handleIconClick}
+                  initial={{ opacity: 0.8 }}
+                  animate={{ opacity: isVisible ? 1 : 0.8, y: [0, -4, 0] }}
+                  exit={{ opacity: 0.8 }}
+                  transition={{
+                    duration: 1,
+                    repeat: Infinity,
+                    repeatType: 'reverse',
+                  }}
+                >
+                  <FontAwesomeIcon icon={faChevronDown} size="2xl" />
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        )}
       </section>
-    </>
+    </SkeletonTheme>
   );
 };
 

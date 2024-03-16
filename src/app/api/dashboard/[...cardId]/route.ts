@@ -12,7 +12,7 @@ export async function GET(
 
   const endpoints = [
     `latestMatch?dashboardSlug=${cardId}`,
-    // `latestPlayerRating?dashboardSlug=${cardId}`,
+    `latestPlayerRating?dashboardSlug=${cardId}`,
     // `matchDetails?dashboardSlug=${cardId}`,
     `matchesList?dashboardSlug=${cardId}`,
     `playerProfile?dashboardSlug=${cardId}`,

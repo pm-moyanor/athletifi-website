@@ -1,8 +1,9 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import PastMatches from './PastMatches';
 import Teammates from './Teammates';
+import { ITeammate, emptyTeammate } from '@/types/Dashboard.type';
 
-const teammates = [
+const dummyTeammatesData: ITeammate[] = [
   {
     id: 1,
     name: 'David Rodriguez',
@@ -30,12 +31,18 @@ const teammates = [
 ];
 
 const PastMatchesLayout: React.FC = () => {
+  const [teammates, setTeammates] = useState<ITeammate[]>([emptyTeammate]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTeammates(dummyTeammatesData);
+    }, 1500);
+  }, []);
+
   return (
-    <div className="flex justify-center items-center w-full bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95 ">
-      <div className="flex flex-col md:flex-row justify-between items-center md:items-start w-full p-2 sm:p-8 md:p-6 max-w-[1030px]">
-        <PastMatches />
-        <Teammates teammates={teammates} />
-      </div>
+    <div className="flex flex-col lg:flex-row justify-between my-4 items-center md:items-start w-full px-4 max-w-[620px] md:max-w-none lg:max-w-[1130px]  ">
+      <PastMatches />
+      <Teammates teammates={teammates} />
     </div>
   );
 };
