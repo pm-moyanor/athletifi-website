@@ -42,6 +42,7 @@ const testAWSFetch = async (cardId: string) => {
   if (!cardId || !data) {
     return notFound();
   }
+  console.log(data);
   return data;
 };
 
@@ -51,8 +52,6 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
   );
   const { cardId } = useParams();
   const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
-
-  console.log(dashboardData);
 
   useEffect(() => {
     testAWSFetch(cardIdValue as string)
@@ -64,6 +63,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
           playerProfile: data[3].result,
           teammates: data[4].result,
         };
+        console.log(dataObject.playerProfile);
         setDashboardData(dataObject);
       })
       .catch((error) => {
@@ -85,11 +85,11 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
         <div className="bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] flex justify-center w-full border-collapse">
           <HeroBanner
             name={dashboardData?.playerProfile.name}
-            playerNumber={dashboardData?.playerProfile.playerNumber}
+            number={dashboardData?.playerProfile.number}
             club={dashboardData?.playerProfile.club}
-            clubLogo={dashboardData?.playerProfile.clubLogo}
+            clublogo={dashboardData?.playerProfile.clublogo}
             team={dashboardData?.playerProfile.team}
-            playerCardUrl={dashboardData?.playerProfile.playerCardUrl}
+            cardurl={dashboardData?.playerProfile.cardurl}
           />
         </div>
         <div className="flex justify-center">

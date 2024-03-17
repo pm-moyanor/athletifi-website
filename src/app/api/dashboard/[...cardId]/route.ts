@@ -19,9 +19,15 @@ export async function GET(
     `teammates?dashboardSlug=${cardId}`,
   ];
   try {
-    const responses = await Promise.all(
-      endpoints.map((endpoint) => axiosClient.get(endpoint)),
-    );
+    // const responses = await Promise.all(
+    //   endpoints.map((endpoint) => axiosClient.get(endpoint)),
+    // );
+    const responses = new Array(endpoints.length);
+    responses[0] = await axiosClient.get(endpoints[0]);
+    responses[1] = await axiosClient.get(endpoints[1]);
+    responses[2] = await axiosClient.get(endpoints[2]);
+    responses[3] = await axiosClient.get(endpoints[3]);
+    responses[4] = await axiosClient.get(endpoints[4]);
 
     const data = await Promise.all(responses.map((response) => response.data));
 

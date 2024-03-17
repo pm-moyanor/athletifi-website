@@ -8,25 +8,25 @@ const dummyTeammatesData: ITeammate[] = [
     id: 1,
     name: 'David Rodriguez',
     avatar: '/vecteezy_male-3d-avatar_27245487.png',
-    playerNumber: 10,
+    number: 10,
   },
   {
     id: 2,
     name: 'Sophia Nguyen',
     avatar: '/vecteezy_male-3d-avatar_27245487.png',
-    playerNumber: 7,
+    number: 7,
   },
   {
     id: 3,
     name: 'Liam Wilson',
     avatar: '/vecteezy_male-3d-avatar_27245487.png',
-    playerNumber: 22,
+    number: 22,
   },
   {
     id: 4,
     name: 'Isabella Garcia',
     avatar: '/vecteezy_male-3d-avatar_27245487.png',
-    playerNumber: 14,
+    number: 14,
   },
 ];
 

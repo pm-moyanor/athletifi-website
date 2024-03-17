@@ -38,7 +38,7 @@ const Teammates: React.FC<{ teammates: ITeammate[] }> = ({
                     {teammate.name}
                   </p>
                   <p className="text-center inline-block max-w-full text-sm text-offwhite font-sourceSansPro">
-                    #{teammate.playerNumber}
+                    #{teammate.number}
                   </p>
                 </div>
               </div>

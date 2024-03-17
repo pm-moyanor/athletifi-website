@@ -38,32 +38,32 @@ export interface IAttributeConfig {
 
 export interface IProfileProps {
   name?: string | null;
-  playerNumber?: string | null;
+  number?: string | null;
   age?: number | null;
   club?: string | null;
-  clubLogo?: string | null;
+  clublogo?: string | null;
   league?: string | null;
   team?: string | null;
   agegroup?: string | null;
   gender?: string | null;
   coach?: string | null;
   bio?: string | null;
-  playerCardUrl?: string | null;
+  cardurl?: string | null;
 }
 
 export const emptyProfileProps: IProfileProps = {
   name: null,
-  playerNumber: null,
+  number: null,
   age: null,
   club: null,
-  clubLogo: null,
+  clublogo: null,
   league: null,
   team: null,
   agegroup: null,
   gender: null,
   coach: null,
   bio: null,
-  playerCardUrl: null,
+  cardurl: null,
 };
 
 export interface IRating {
@@ -136,14 +136,14 @@ export interface ITeammate {
   id: number | null;
   name: string | null;
   avatar: string | null;
-  playerNumber: number | null;
+  number: number | null;
 }
 
 export const emptyTeammate: ITeammate = {
   id: null,
   name: null,
   avatar: null,
-  playerNumber: null,
+  number: null,
 };
 
 export interface IVideo {
