@@ -4,11 +4,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-// import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
-//import cardImage from '../../../public/assets/img/png/jose-card-img.png';
 import { IProfileProps } from '@/types/Dashboard.type';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-// import { VillanovaIcon } from '@/components/common/Icon';
 import FlipCard from './FlipCard';
 
 const HeroBanner: React.FC<IProfileProps> = ({
@@ -42,7 +39,7 @@ const HeroBanner: React.FC<IProfileProps> = ({
     };
   }, []);
 
-  // Scrollk onclick the screen down by one screen height
+  // Scroll onclick the screen down by one screen height
   const handleIconClick = () => {
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
   };
@@ -57,8 +54,6 @@ const HeroBanner: React.FC<IProfileProps> = ({
             transition={{ duration: 0.3, ease: 'easeIn' }}
             className="md:w-2/3 lg:w-2/3 flex items-center md:items-start justify-center lg:justify-start mb-[10px] md:mb-[50px] lg:mb-[50px] mt-10 mx-4 "
           >
-            {/* <VillanovaIcon /> */}
-
             <div className="relative w-[90px] md:w-[110px] h-[90px] md:h-[110px] min-w-[90px]  flex justify-center items-center">
               <Image alt="club-logo" src={club_logo} layout="fill" />
             </div>
@@ -83,36 +78,20 @@ const HeroBanner: React.FC<IProfileProps> = ({
           <div className="w-full h-1"></div>
         )}
 
-        <div className="-mb-0 md:-mb-10 lg:-mb-[180px]">
-          {card_url ? (
-            // <Image
-            //   className=""
-            //   src={cardImage}
-            //   alt="Player card"
-            //   width={CARD_IMAGE_WIDTH}
-            //   height={CARD_IMAGE_HEIGHT}
-            //   quality={75}
-            //   loading="lazy"
-            // />
-            <FlipCard />
-          ) : (
+        {card_url ? (
+          <div className="-mb-10 md:-mb-20 lg:-mb-[255px]">
+            <FlipCard cardUrl={card_url} />
+          </div>
+        ) : (
+          <div className="mb-20 md:-mb-10 lg:-mb-[180px]">
             <div className="flex items-center">
               <Skeleton
                 className="min-w-[340px] min-h-[340px] md:min-w-[320px] md:min-h-[320px] lg:min-h-[400px] lg:min-w-[400px]"
                 circle
               />
             </div>
-          )}
-          {/* <Image
-            className=""
-            src={cardImage}
-            alt="Player card"
-            width={CARD_IMAGE_WIDTH}
-            height={CARD_IMAGE_HEIGHT}
-            quality={75}
-            loading="lazy"
-          /> */}
-        </div>
+          </div>
+        )}
         {isSmallScreen && (
           <AnimatePresence>
             {isVisible && (
