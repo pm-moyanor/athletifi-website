@@ -7,7 +7,7 @@ const Profile: React.FC<IProfileProps> = ({
   club,
   league,
   team,
-  ageGroup,
+  agegroup,
   gender,
   coach,
   bio,
@@ -15,7 +15,7 @@ const Profile: React.FC<IProfileProps> = ({
   return (
     <>
       {age ? (
-        <div className="w-full h-[586px] bg-cardsBackground rounded-10 p-4 mb-4 -mt-8 sm:-mt-8 md:mt-0 lg:-mt-[86px] font-sourceSansPro overflow-scroll">
+        <div className="w-full h-[596px] bg-cardsBackground rounded-10 p-4 mb-4 -mt-8 sm:-mt-8 md:mt-0 lg:-mt-[96px] font-sourceSansPro overflow-scroll">
           <h2 className="text-primary text-[24px] mb-4 font-semibold">
             Profile
           </h2>
@@ -39,7 +39,7 @@ const Profile: React.FC<IProfileProps> = ({
               </tr>
               <tr className="border-b border-partnersBorders">
                 <td className="text-left py-1.5">Age group</td>
-                <td className="text-right">{ageGroup}</td>
+                <td className="text-right">{agegroup}</td>
               </tr>
               <tr className="border-b border-partnersBorders">
                 <td className="text-left py-1.5">Gender</td>
