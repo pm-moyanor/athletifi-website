@@ -7,7 +7,7 @@ const Profile: React.FC<IProfileProps> = ({
   club,
   league,
   team,
-  agegroup,
+  age_group,
   gender,
   coach,
   bio,
@@ -39,7 +39,7 @@ const Profile: React.FC<IProfileProps> = ({
               </tr>
               <tr className="border-b border-partnersBorders">
                 <td className="text-left py-1.5">Age group</td>
-                <td className="text-right">{agegroup}</td>
+                <td className="text-right">{age_group}</td>
               </tr>
               <tr className="border-b border-partnersBorders">
                 <td className="text-left py-1.5">Gender</td>

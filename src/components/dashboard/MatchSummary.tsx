@@ -11,16 +11,16 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
 }) => {
   const [showRecap, setShowRecap] = useState(false);
   const {
-    team1Badge,
-    team2Badge,
-    team1Name,
-    team2Name,
-    team1Score,
-    team2Score,
+    team1_badge,
+    team2_badge,
+    team1_name,
+    team2_name,
+    team1_score,
+    team2_score,
     date,
     location,
     weather,
-    fullRecapVideo,
+    full_recap_video,
     videos,
   } = matchData;
 
@@ -33,25 +33,25 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
 
     <div className="w-full flex justify-between items-center text-primary font-sourceSansPro md:mr-4">
       <div className="flex justify-between items-center w-[250px] max-w-[220px] min-w-[200px] mr-2 ">
-        {team1Badge !== null && (
+        {team1_badge !== null && (
           <div className="relative w-16 h-16">
-            <Image src={team1Badge} alt="Crest" layout="fill" />
+            <Image src={team1_badge} alt="Crest" layout="fill" />
           </div>
         )}
         <div className="mx-[4px]">
-          <span>{team1Score}</span> - <span>{team2Score}</span>
+          <span>{team1_score}</span> - <span>{team2_score}</span>
         </div>
-        {team2Badge !== null && (
+        {team2_badge !== null && (
           <div className="relative w-16 h-16">
-            <Image src={team2Badge} alt="Crest" layout="fill" />
+            <Image src={team2_badge} alt="Crest" layout="fill" />
           </div>
         )}
       </div>
 
       <div className="flex flex-col md:flex-row md:items-center w-full justify-center ">
         <div className="block max-w-full ml-[6px] md:m-auto">
-          <span className="text-base font-sourceSansPro">{team1Name} </span>vs
-          <span className="text-base font-sourceSansPro"> {team2Name}</span>
+          <span className="text-base font-sourceSansPro">{team1_name} </span>vs
+          <span className="text-base font-sourceSansPro"> {team2_name}</span>
           <div className="text-sm text-offwhite pt-[2px]">{date}</div>
         </div>
         <button
@@ -69,9 +69,9 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
           <div className="flex justify-center md:justify-start items-center text-primary w-full font-sourceSansPro pb-4 md:max-w-[700px] lg:max-w-[1030px]">
             <div className="flex flex-col md:flex-row  w-full justify-center md:justify-between items-center sm:max-w-[380px] md:max-w-[600px] mt-8 md:mt-2 ">
               <div className="flex min-w-[190px] max-w-[190px] justify-center gap-4 items-center my-4">
-                {team1Badge !== null && (
+                {team1_badge !== null && (
                   <Image
-                    src={team1Badge}
+                    src={team1_badge}
                     alt="Crest"
                     width={50}
                     height={50}
@@ -79,11 +79,11 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
                   />
                 )}
                 <div className="font-semibold">
-                  <span>{team1Score}</span> - <span>{team2Score}</span>
+                  <span>{team1_score}</span> - <span>{team2_score}</span>
                 </div>
-                {team2Badge !== null && (
+                {team2_badge !== null && (
                   <Image
-                    src={team2Badge}
+                    src={team2_badge}
                     alt="Crest"
                     width={50}
                     height={50}
@@ -94,12 +94,12 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
 
               <div className=" flex justify-center gap-6 w-full">
                 <span className="font-semibold text-right  w-[140px]">
-                  {team1Name}
+                  {team1_name}
                 </span>
                 <span className="">vs</span>
 
                 <span className="font-semibold text-left  w-[140px]">
-                  {team2Name}
+                  {team2_name}
                 </span>
               </div>
             </div>
@@ -117,11 +117,11 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
                 <h2 className="text-[20px] font-semibold mb-2">Full Recap</h2>
                 <div className="h-1 mb-4 bg-partnersBorders" />
                 <div className="w-full h-full  min-w-[320px] max-h-[320px]">
-                  {fullRecapVideo?.thumbnail && (
+                  {full_recap_video?.thumbnail && (
                     <video
-                      // src={fullRecapVideo.url}
+                      // src={full_recap_video.url}
                       controls
-                      poster={fullRecapVideo.thumbnail}
+                      poster={full_recap_video.thumbnail}
                       className="w-full h-full bg-slate-500 rounded-md"
                     ></video>
                   )}

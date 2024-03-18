@@ -110,7 +110,7 @@ const attributeConfigs: IAttributeConfig = {
 };
 
 const StatsLineChart: React.FC<IRatingProps> = ({
-  overallPlayerRating,
+  overall_rating,
 }: IRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 850px)');
 
@@ -266,7 +266,7 @@ const StatsLineChart: React.FC<IRatingProps> = ({
           <div className="text-white text-center w-20 md:w-24 lg:w-32 border-t border-[#ccd1d4] py-4">
             <div className="">Rating</div>
             <div className="text-[36px]">
-              {overallPlayerRating || <Skeleton />}
+              {overall_rating || <Skeleton />}
             </div>
           </div>
         </div>

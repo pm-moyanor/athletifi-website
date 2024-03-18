@@ -41,14 +41,14 @@ export interface IProfileProps {
   number?: string | null;
   age?: number | null;
   club?: string | null;
-  clublogo?: string | null;
+  club_logo?: string | null;
   league?: string | null;
   team?: string | null;
-  agegroup?: string | null;
+  age_group?: string | null;
   gender?: string | null;
   coach?: string | null;
   bio?: string | null;
-  cardurl?: string | null;
+  card_url?: string | null;
 }
 
 export const emptyProfileProps: IProfileProps = {
@@ -56,14 +56,14 @@ export const emptyProfileProps: IProfileProps = {
   number: null,
   age: null,
   club: null,
-  clublogo: null,
+  club_logo: null,
   league: null,
   team: null,
-  agegroup: null,
+  age_group: null,
   gender: null,
   coach: null,
   bio: null,
-  cardurl: null,
+  card_url: null,
 };
 
 export interface IRating {
@@ -72,8 +72,8 @@ export interface IRating {
 }
 
 export interface IRatingProps {
-  overallPlayerRating: number | null;
-  playerRatings?: IRating[];
+  overall_rating: number | null;
+  player_ratings?: IRating[];
 }
 
 export interface IBarProps {
@@ -98,35 +98,35 @@ export interface ILatestMatchData {
   datetime: string | null | undefined;
   location: string | null | undefined;
   weather: string | null | undefined;
-  homeclub: string | null | undefined;
-  homeclublogo: string | null | undefined;
-  homescore: number | null | undefined;
-  awayclub: string | null | undefined;
-  awayclublogo: string | null | undefined;
-  awayscore: number | null | undefined;
+  home_club: string | null | undefined;
+  home_club_logo: string | null | undefined;
+  home_score: number | null | undefined;
+  away_club: string | null | undefined;
+  away_club_logo: string | null | undefined;
+  away_score: number | null | undefined;
 }
 
 export const emptyLatestMatchData: ILatestMatchData = {
   datetime: null,
   location: null,
   weather: null,
-  homeclub: null,
-  homeclublogo: null,
-  homescore: null,
-  awayclub: null,
-  awayclublogo: null,
-  awayscore: null,
+  home_club: null,
+  home_club_logo: null,
+  home_score: null,
+  away_club: null,
+  away_club_logo: null,
+  away_score: null,
 };
 
 export interface IActionReel {
-  videoSrc: string | null;
+  video_src: string | null;
   thumbnail: string | null;
   title: string | null;
   description: string | null;
 }
 
 export const emptyActionReel: IActionReel = {
-  videoSrc: null,
+  video_src: null,
   thumbnail: null,
   title: null,
   description: null,
@@ -161,29 +161,29 @@ export const emptyVideoData: IVideo = {
 };
 
 export interface IMatchData {
-  team1Badge: string | null;
-  team2Badge: string | null;
-  team1Name: string | null;
-  team2Name: string | null;
-  team1Score: number | null;
-  team2Score: number | null;
+  team1_badge: string | null;
+  team2_badge: string | null;
+  team1_name: string | null;
+  team2_name: string | null;
+  team1_score: number | null;
+  team2_score: number | null;
   date: string | null;
   location: string | null;
   weather: string | null;
-  fullRecapVideo: IVideo;
+  full_recap_video: IVideo;
   videos: IVideo[];
 }
 
 export const emptyMatchData: IMatchData = {
-  team1Badge: null,
-  team2Badge: null,
-  team1Name: null,
-  team2Name: null,
-  team1Score: null,
-  team2Score: null,
+  team1_badge: null,
+  team2_badge: null,
+  team1_name: null,
+  team2_name: null,
+  team1_score: null,
+  team2_score: null,
   date: null,
   location: null,
   weather: null,
-  fullRecapVideo: emptyVideoData,
+  full_recap_video: emptyVideoData,
   videos: [emptyVideoData],
 };

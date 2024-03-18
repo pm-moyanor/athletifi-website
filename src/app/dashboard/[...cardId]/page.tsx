@@ -87,9 +87,9 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
             name={dashboardData?.playerProfile.name}
             number={dashboardData?.playerProfile.number}
             club={dashboardData?.playerProfile.club}
-            clublogo={dashboardData?.playerProfile.clublogo}
+            club_logo={dashboardData?.playerProfile.club_logo}
             team={dashboardData?.playerProfile.team}
-            cardurl={dashboardData?.playerProfile.cardurl}
+            card_url={dashboardData?.playerProfile.card_url}
           />
         </div>
         <div className="flex justify-center">
@@ -100,7 +100,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
                 club={dashboardData?.playerProfile.club}
                 league={dashboardData?.playerProfile.league}
                 team={dashboardData?.playerProfile.team}
-                agegroup={dashboardData?.playerProfile.agegroup}
+                age_group={dashboardData?.playerProfile.age_group}
                 gender={dashboardData?.playerProfile.gender}
                 coach={dashboardData?.playerProfile.coach}
                 bio={dashboardData?.playerProfile.bio}
@@ -111,12 +111,12 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
                 datetime={dashboardData?.latestMatch.datetime}
                 location={dashboardData?.latestMatch.location}
                 weather={dashboardData?.latestMatch.weather}
-                homeclub={dashboardData?.latestMatch.homeclub}
-                homeclublogo={dashboardData?.latestMatch.homeclublogo}
-                homescore={dashboardData?.latestMatch.homescore}
-                awayclub={dashboardData?.latestMatch.awayclub}
-                awayclublogo={dashboardData?.latestMatch.awayclublogo}
-                awayscore={dashboardData?.latestMatch.awayscore}
+                home_club={dashboardData?.latestMatch.home_club}
+                home_club_logo={dashboardData?.latestMatch.home_club_logo}
+                home_score={dashboardData?.latestMatch.home_score}
+                away_club={dashboardData?.latestMatch.away_club}
+                away_club_logo={dashboardData?.latestMatch.away_club_logo}
+                away_score={dashboardData?.latestMatch.away_score}
               />
             </div>
             <div className="mb-3 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-3 lg:order-2">

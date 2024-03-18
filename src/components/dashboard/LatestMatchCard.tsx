@@ -16,12 +16,12 @@ const LatestMatch: React.FC<ILatestMatchData> = ({
   datetime,
   location,
   weather,
-  homeclub,
-  homeclublogo,
-  homescore,
-  awayclub,
-  awayclublogo,
-  awayscore,
+  home_club,
+  home_club_logo,
+  home_score,
+  away_club,
+  away_club_logo,
+  away_score,
 }: ILatestMatchData) => {
   return (
     <>
@@ -30,10 +30,10 @@ const LatestMatch: React.FC<ILatestMatchData> = ({
           <h1 className="text-[24px] font-semibold">Latest Match</h1>
           <div className="flex justify-center items-center">
             <div className="flex flex-col md:flex-row items-center">
-              <p className="px-4">{homeclub}</p>
-              {!!homeclublogo && (
+              <p className="px-4">{home_club}</p>
+              {!!home_club_logo && (
                 <Image
-                  src={homeclublogo}
+                  src={home_club_logo}
                   alt="crest"
                   className=""
                   width={LOGO_SIZE}
@@ -43,12 +43,12 @@ const LatestMatch: React.FC<ILatestMatchData> = ({
                 />
               )}
             </div>
-            <p className="px-4">{`${homescore} - ${awayscore}`}</p>
+            <p className="px-4">{`${home_score} - ${away_score}`}</p>
             <div className="flex flex-col md:flex-row-reverse items-center">
-              <p className="px-4">{awayclub}</p>
-              {!!awayclublogo && (
+              <p className="px-4">{away_club}</p>
+              {!!away_club_logo && (
                 <Image
-                  src={awayclublogo}
+                  src={away_club_logo}
                   alt="crest"
                   className=""
                   width={LOGO_SIZE}

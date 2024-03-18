@@ -15,9 +15,9 @@ const HeroBanner: React.FC<IProfileProps> = ({
   name,
   number,
   club,
-  clublogo,
+  club_logo,
   team,
-  cardurl,
+  card_url,
 }: IProfileProps) => {
   const [isVisible, setIsVisible] = useState(true);
   const previousScrollY = useRef(0); // Ref to store previous scroll position
@@ -50,7 +50,7 @@ const HeroBanner: React.FC<IProfileProps> = ({
   return (
     <SkeletonTheme baseColor="#113448" highlightColor="#525252">
       <section className="relative items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[420px] lg:h-[370px] w-full md:max-w-[1000px] lg:max-w-[1130px] px-4">
-        {clublogo ? (
+        {club_logo ? (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -60,7 +60,7 @@ const HeroBanner: React.FC<IProfileProps> = ({
             {/* <VillanovaIcon /> */}
 
             <div className="relative w-[90px] md:w-[110px] h-[90px] md:h-[110px] min-w-[90px]  flex justify-center items-center">
-              <Image alt="club-logo" src={clublogo} layout="fill" />
+              <Image alt="club-logo" src={club_logo} layout="fill" />
             </div>
 
             <div className="w-full flex flex-col justify-center items-start ml-2 md:ml-4 pr-0 md:pr-6">
@@ -84,7 +84,7 @@ const HeroBanner: React.FC<IProfileProps> = ({
         )}
 
         <div className="-mb-0 md:-mb-10 lg:-mb-[180px]">
-          {cardurl ? (
+          {card_url ? (
             // <Image
             //   className=""
             //   src={cardImage}
