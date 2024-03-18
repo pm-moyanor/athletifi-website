@@ -14,7 +14,9 @@ import SeasonSection from '@/components/dashboard/SeasonSectionLayout';
 
 import {
   IProfileProps,
-  ILatestMatchDataWithWeather,
+  IMatchDataWithWeather,
+  ILatestPlayerRatings,
+  ITeammate,
 } from '@/types/Dashboard.type';
 import Navbar from '@/components/dashboard/NavBar';
 import BackToTop from '@/components/common/BackToTop';
@@ -25,11 +27,11 @@ interface PageProps {
 }
 
 interface DashboardData {
-  latestMatch: ILatestMatchDataWithWeather; // replace 'any' with the type of your data
-  latestPlayerRating: object;
-  matchesList: object; // replace 'any' with the type of your data
+  latestMatch: IMatchDataWithWeather; // replace 'any' with the type of your data
+  latestPlayerRating: ILatestPlayerRatings;
+  matchesList: IMatchDataWithWeather[]; // replace 'any' with the type of your data
   playerProfile: IProfileProps; // replace 'any' with the type of your data
-  teammates: object; // replace 'any' with the type of your data
+  teammates: ITeammate[]; // replace 'any' with the type of your data
 }
 
 // TO DO: Implement dynamic metadata generation for SEO using generateMetadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata#dynamic-metadata
@@ -111,6 +113,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
             </div>
             <div className="mb-4 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-2 lg:order-1">
               <LatestMatch
+                id={dashboardData?.latestMatch.id}
                 datetime={dashboardData?.latestMatch.datetime}
                 location={dashboardData?.latestMatch.location}
                 weather={dashboardData?.latestMatch.weather?.current?.temp}
@@ -130,7 +133,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
         <main className="flex flex-col items-center bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95">
           <SeasonSection />
           <span className="h-px bg-partnersBorders w-11/12 max-w-[1130px] my-8 md:my-4" />
-          <PastMatchesLayout />
+          <PastMatchesLayout teammates={dashboardData?.teammates} />
         </main>
         <BackToTop />
         <Footer />

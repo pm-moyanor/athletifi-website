@@ -94,34 +94,35 @@ export interface ILegendProps {
   payload?: Payload[];
 }
 
-export interface ILatestMatchData {
+export interface IMatchData {
+  id: string | null | undefined;
   datetime: string | null | undefined;
   location: string | null | undefined;
-
-  home_club: string | null | undefined;
-  home_club_logo: string | null | undefined;
-  home_score: number | null | undefined;
-  away_club: string | null | undefined;
-  away_club_logo: string | null | undefined;
-  away_score: number | null | undefined;
+  home_club?: string | null | undefined;
+  home_club_logo?: string | null | undefined;
+  home_score?: number | null | undefined;
+  away_club?: string | null | undefined;
+  away_club_logo?: string | null | undefined;
+  away_score?: number | null | undefined;
 }
 
-export interface ILatestMatchDataWithWeather extends ILatestMatchData {
+export interface IMatchDataWithWeather extends IMatchData {
   weather: {
     current: {
-      temp: number;
+      temp: number | null;
     };
   };
 }
 
-export interface ILatestMatchProps extends ILatestMatchData {
-  weather: number | undefined;
+export interface ILatestMatchProps extends IMatchData {
+  weather: number | null | undefined;
 }
 
-export const emptyLatestMatchData: ILatestMatchData = {
+export const emptyLatestMatchData: IMatchDataWithWeather = {
+  id: '',
   datetime: null,
   location: null,
-  weather: null,
+  weather: { current: { temp: null } },
   home_club: null,
   home_club_logo: null,
   home_score: null,
@@ -145,18 +146,20 @@ export const emptyActionReel: IActionReel = {
 };
 
 export interface ITeammate {
-  id: number | null;
   name: string | null;
-  avatar: string | null;
   number: number | null;
+  avatar_url: string | null;
 }
 
 export const emptyTeammate: ITeammate = {
-  id: null,
   name: null,
-  avatar: null,
   number: null,
+  avatar_url: null,
 };
+
+export interface ITeammates {
+  teammates: ITeammate[] | undefined;
+}
 
 export interface IVideo {
   title: string | null;
@@ -172,30 +175,36 @@ export const emptyVideoData: IVideo = {
   description: null,
 };
 
-export interface IMatchData {
+export interface IMatchDataExtended extends IMatchDataWithWeather {
   team1_badge: string | null;
   team2_badge: string | null;
   team1_name: string | null;
   team2_name: string | null;
   team1_score: number | null;
   team2_score: number | null;
-  date: string | null;
-  location: string | null;
-  weather: string | null;
   full_recap_video: IVideo;
   videos: IVideo[];
 }
 
-export const emptyMatchData: IMatchData = {
+export const emptyMatchData: IMatchDataExtended = {
+  id: '',
   team1_badge: null,
   team2_badge: null,
   team1_name: null,
   team2_name: null,
   team1_score: null,
   team2_score: null,
-  date: null,
+  datetime: null,
   location: null,
-  weather: null,
+  weather: { current: { temp: null } },
   full_recap_video: emptyVideoData,
   videos: [emptyVideoData],
 };
+
+export interface ILatestPlayerRatings {
+  skill_ratings: number | null;
+  attacking_ratings: number | null;
+  physical_ratings: number | null;
+  mentality_ratings: number | null;
+  defending_ratings: number | null;
+}

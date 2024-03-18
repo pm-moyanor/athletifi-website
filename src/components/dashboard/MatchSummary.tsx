@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faCloud } from '@fortawesome/free-solid-svg-icons';
-import { IMatchData } from '@/types/Dashboard.type';
+import { IMatchDataExtended } from '@/types/Dashboard.type';
 
-const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
+const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   matchData,
 }: {
-  matchData: IMatchData;
+  matchData: IMatchDataExtended;
 }) => {
   const [showRecap, setShowRecap] = useState(false);
   const {
@@ -17,7 +17,7 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
     team2_name,
     team1_score,
     team2_score,
-    date,
+    datetime,
     location,
     weather,
     full_recap_video,
@@ -52,7 +52,7 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
         <div className="block max-w-full ml-[6px] md:m-auto">
           <span className="text-base font-sourceSansPro">{team1_name} </span>vs
           <span className="text-base font-sourceSansPro"> {team2_name}</span>
-          <div className="text-sm text-offwhite pt-[2px]">{date}</div>
+          <div className="text-sm text-offwhite pt-[2px]">{datetime}</div>
         </div>
         <button
           className="w-28 h-[30px] px-2 bg-skyblue text-black text-sm rounded-30 mt-2 md:mt-0 "
@@ -132,7 +132,7 @@ const MatchSummary: React.FC<{ matchData: IMatchData }> = ({
                 <h3 className="text-[20px] font-semibold">Summary</h3>
                 {/* <div className="h-1 my-2 bg-partnersBorders" /> */}
                 <div className="text-sm text-offwhite my-4">
-                  <p className="pb-[2px]">{date}</p>
+                  <p className="pb-[2px]">{datetime}</p>
                   <p className="pb-[2px]">{location}</p>
                   <div className="flex">
                     <div className="mr-2">

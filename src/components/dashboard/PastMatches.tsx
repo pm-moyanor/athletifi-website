@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import MatchSummary from './MatchSummary';
 import Skeleton from 'react-loading-skeleton';
-import { IMatchData, emptyMatchData } from '@/types/Dashboard.type';
+import { IMatchDataExtended, emptyMatchData } from '@/types/Dashboard.type';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-const dummyMatchData: IMatchData = {
+const dummyMatchData: IMatchDataExtended = {
   team1_badge: '/vecteezy_crest_1204211.png',
   team2_badge: '/vecteezy_crest_1204211.png',
   team1_name: 'Real Madrid',
   team2_name: 'Barcelona',
   team1_score: 2,
   team2_score: 1,
-  date: 'Saturday, 14 March 2022, 12:00pm',
+  datetime: 'Saturday, 14 March 2022, 12:00pm',
   location: 'Citypark, St. Louis',
-  weather: '68°F', //resolve logic for getting the weather
+  weather: { current: { temp: 68 } },
   full_recap_video: {
     title: 'Full Match Recap',
     url: 'full-match-recap.mp4',
