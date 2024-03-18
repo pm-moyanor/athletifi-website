@@ -12,7 +12,10 @@ import PastMatchesLayout from '@/components/dashboard/PastMatchesLayout';
 import Profile from '@/components/dashboard/ProfileCard';
 import SeasonSection from '@/components/dashboard/SeasonSectionLayout';
 
-import { IProfileProps, ILatestMatchData } from '@/types/Dashboard.type';
+import {
+  IProfileProps,
+  ILatestMatchDataWithWeather,
+} from '@/types/Dashboard.type';
 import Navbar from '@/components/dashboard/NavBar';
 import BackToTop from '@/components/common/BackToTop';
 
@@ -22,7 +25,7 @@ interface PageProps {
 }
 
 interface DashboardData {
-  latestMatch: ILatestMatchData; // replace 'any' with the type of your data
+  latestMatch: ILatestMatchDataWithWeather; // replace 'any' with the type of your data
   latestPlayerRating: object;
   matchesList: object; // replace 'any' with the type of your data
   playerProfile: IProfileProps; // replace 'any' with the type of your data
@@ -110,7 +113,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
               <LatestMatch
                 datetime={dashboardData?.latestMatch.datetime}
                 location={dashboardData?.latestMatch.location}
-                weather={dashboardData?.latestMatch.weather}
+                weather={dashboardData?.latestMatch.weather?.current?.temp}
                 home_club={dashboardData?.latestMatch.home_club}
                 home_club_logo={dashboardData?.latestMatch.home_club_logo}
                 home_score={dashboardData?.latestMatch.home_score}

@@ -97,13 +97,25 @@ export interface ILegendProps {
 export interface ILatestMatchData {
   datetime: string | null | undefined;
   location: string | null | undefined;
-  weather: string | null | undefined;
+
   home_club: string | null | undefined;
   home_club_logo: string | null | undefined;
   home_score: number | null | undefined;
   away_club: string | null | undefined;
   away_club_logo: string | null | undefined;
   away_score: number | null | undefined;
+}
+
+export interface ILatestMatchDataWithWeather extends ILatestMatchData {
+  weather: {
+    current: {
+      temp: number;
+    };
+  };
+}
+
+export interface ILatestMatchProps extends ILatestMatchData {
+  weather: number | undefined;
 }
 
 export const emptyLatestMatchData: ILatestMatchData = {
