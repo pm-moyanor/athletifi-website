@@ -14,18 +14,18 @@ const dummyData: IActionReel[] = [
     title: 'Highlight',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
   },
-  // {
-  //   videoSrc: '/video3.mp4',
-  //   thumbnail: '/poster3.png',
-  //   title: 'Highlight',
-  //   description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-  // },
-  // {
-  //   videoSrc: '/video3.mp4',
-  //   thumbnail: '/poster3.png',
-  //   title: 'Highlight',
-  //   description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-  // },
+  {
+    video_src: '/video2.mp4',
+    thumbnail: '/poster3.png',
+    title: 'Highlight',
+    description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+  },
+  {
+    video_src: '/video3.mp4',
+    thumbnail: '/poster3.png',
+    title: 'Highlight',
+    description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+  },
 ];
 
 const SeasonSection: React.FC = () => {
