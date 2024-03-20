@@ -7,7 +7,7 @@ const dummySeasonHighlights = ['Sample data goes here'];
 
 const dummyData: IActionReel[] = [
   {
-    videoSrc:
+    video_src:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
     // 'https://youtu.be/qv6UVOQ0F44',
     thumbnail: '/poster2.png',

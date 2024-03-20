@@ -45,7 +45,7 @@ const Charts = () => {
 
   const [isLatestActive, setIsLatestActive] = useState(true);
   const [overallRating, setOverallRating] = useState(0);
-  const [playerRatings, setPlayerRatings] = useState<IRating[]>([]);
+  const [player_ratings, setPlayerRatings] = useState<IRating[]>([]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -93,13 +93,13 @@ const Charts = () => {
           <section className="flex flex-col items-start h-full min-h-[450px] gap-5 pt-6">
             {isLatestActive ? (
               <StatsBarChartWithNoSSR
-                overallPlayerRating={overallRating}
-                playerRatings={playerRatings}
+                overall_rating={overallRating}
+                player_ratings={player_ratings}
               />
             ) : (
               <StatsLineChartWithNoSSR
-                overallPlayerRating={overallRating}
-                playerRatings={playerRatings}
+                overall_rating={overallRating}
+                player_ratings={player_ratings}
               />
             )}
           </section>

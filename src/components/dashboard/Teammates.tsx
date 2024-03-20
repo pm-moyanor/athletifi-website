@@ -1,16 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
-import { ITeammate } from '@/types/Dashboard.type';
+import { ITeammates } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
 
-const Teammates: React.FC<{ teammates: ITeammate[] }> = ({
-  teammates,
-}: {
-  teammates: ITeammate[];
-}) => {
+const Teammates: React.FC<ITeammates> = ({ teammates }: ITeammates) => {
   return (
     <>
-      {teammates[0]?.id ? (
+      {teammates && teammates[0]?.name ? (
         <div className="bg-cardsBackground p-4 w-full lg:w-[330px] rounded-10 my-12 lg:my-0 ml-0 lg:ml-6 shadow-md ">
           <h2 className="text-primary font-semibold text-[20px] font-sourceSansPro">
             Teammates
@@ -19,12 +15,12 @@ const Teammates: React.FC<{ teammates: ITeammate[] }> = ({
           <div className=" grid grid-col-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-1 gap-px ">
             {teammates.map((teammate) => (
               <div
-                key={teammate.id}
+                key={`${teammate.name}-${teammate.number}`}
                 className="flex items-center py-2 flex-row md:flex-col lg:flex-row"
               >
-                {teammate.avatar && teammate.name ? (
+                {teammate.avatar_url && teammate.name ? (
                   <Image
-                    src={teammate.avatar}
+                    src={teammate.avatar_url}
                     alt={teammate.name}
                     width={70}
                     height={70}
@@ -38,7 +34,7 @@ const Teammates: React.FC<{ teammates: ITeammate[] }> = ({
                     {teammate.name}
                   </p>
                   <p className="text-center inline-block max-w-full text-sm text-offwhite font-sourceSansPro">
-                    #{teammate.playerNumber}
+                    #{teammate.number}
                   </p>
                 </div>
               </div>
