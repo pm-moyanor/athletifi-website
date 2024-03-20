@@ -121,7 +121,6 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                   {full_recap_video?.thumbnail && (
                     <Video
                       src={full_recap_video.url}
-                      controls
                       poster={full_recap_video.thumbnail}
                       className="w-full h-full bg-slate-500 rounded-md"
                     />
@@ -172,7 +171,6 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                     {video?.url && video?.thumbnail && (
                       <Video
                         src={video.url}
-                        controls
                         poster={video.thumbnail}
                         className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
                       />

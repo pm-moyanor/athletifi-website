@@ -47,7 +47,6 @@ const Highlights: React.FC = () => {
                   src={video.src}
                   width={VIDEO_WIDTH}
                   height={VIDEO_HEIGHT}
-                  controls
                   poster={video.thumbnail}
                   className="mx-auto"
                 />
