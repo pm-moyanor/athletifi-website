@@ -12,7 +12,12 @@ import PastMatchesLayout from '@/components/dashboard/PastMatchesLayout';
 import Profile from '@/components/dashboard/ProfileCard';
 import SeasonSection from '@/components/dashboard/SeasonSectionLayout';
 
-import { IProfileProps, ILatestMatchData } from '@/types/Dashboard.type';
+import {
+  IProfileProps,
+  IMatchDataWithWeather,
+  ILatestPlayerRatings,
+  ITeammate,
+} from '@/types/Dashboard.type';
 import Navbar from '@/components/dashboard/NavBar';
 import BackToTop from '@/components/common/BackToTop';
 
@@ -22,11 +27,11 @@ interface PageProps {
 }
 
 interface DashboardData {
-  latestMatch: ILatestMatchData; // replace 'any' with the type of your data
-  latestPlayerRating: object;
-  matchesList: object; // replace 'any' with the type of your data
+  latestMatch: IMatchDataWithWeather; // replace 'any' with the type of your data
+  latestPlayerRating: ILatestPlayerRatings;
+  matchesList: IMatchDataWithWeather[]; // replace 'any' with the type of your data
   playerProfile: IProfileProps; // replace 'any' with the type of your data
-  teammates: object; // replace 'any' with the type of your data
+  teammates: ITeammate[]; // replace 'any' with the type of your data
 }
 
 // TO DO: Implement dynamic metadata generation for SEO using generateMetadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata#dynamic-metadata
@@ -42,6 +47,7 @@ const testAWSFetch = async (cardId: string) => {
   if (!cardId || !data) {
     return notFound();
   }
+  console.log(data);
   return data;
 };
 
@@ -51,8 +57,6 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
   );
   const { cardId } = useParams();
   const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
-
-  console.log(dashboardData);
 
   useEffect(() => {
     testAWSFetch(cardIdValue as string)
@@ -64,6 +68,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
           playerProfile: data[3].result,
           teammates: data[4].result,
         };
+        console.log(dataObject.playerProfile);
         setDashboardData(dataObject);
       })
       .catch((error) => {
@@ -85,11 +90,11 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
         <div className="bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] flex justify-center w-full border-collapse">
           <HeroBanner
             name={dashboardData?.playerProfile.name}
-            playerNumber={dashboardData?.playerProfile.playerNumber}
+            number={dashboardData?.playerProfile.number}
             club={dashboardData?.playerProfile.club}
-            clubLogo={dashboardData?.playerProfile.clubLogo}
+            club_logo={dashboardData?.playerProfile.club_logo}
             team={dashboardData?.playerProfile.team}
-            playerCardUrl={dashboardData?.playerProfile.playerCardUrl}
+            card_url={dashboardData?.playerProfile.card_url}
           />
         </div>
         <div className="flex justify-center">
@@ -100,7 +105,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
                 club={dashboardData?.playerProfile.club}
                 league={dashboardData?.playerProfile.league}
                 team={dashboardData?.playerProfile.team}
-                agegroup={dashboardData?.playerProfile.agegroup}
+                age_group={dashboardData?.playerProfile.age_group}
                 gender={dashboardData?.playerProfile.gender}
                 coach={dashboardData?.playerProfile.coach}
                 bio={dashboardData?.playerProfile.bio}
@@ -108,15 +113,16 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
             </div>
             <div className="mb-4 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-2 lg:order-1">
               <LatestMatch
+                id={dashboardData?.latestMatch.id}
                 datetime={dashboardData?.latestMatch.datetime}
                 location={dashboardData?.latestMatch.location}
-                weather={dashboardData?.latestMatch.weather}
-                homeclub={dashboardData?.latestMatch.homeclub}
-                homeclublogo={dashboardData?.latestMatch.homeclublogo}
-                homescore={dashboardData?.latestMatch.homescore}
-                awayclub={dashboardData?.latestMatch.awayclub}
-                awayclublogo={dashboardData?.latestMatch.awayclublogo}
-                awayscore={dashboardData?.latestMatch.awayscore}
+                weather={dashboardData?.latestMatch.weather?.current?.temp}
+                home_club={dashboardData?.latestMatch.home_club}
+                home_club_logo={dashboardData?.latestMatch.home_club_logo}
+                home_score={dashboardData?.latestMatch.home_score}
+                away_club={dashboardData?.latestMatch.away_club}
+                away_club_logo={dashboardData?.latestMatch.away_club_logo}
+                away_score={dashboardData?.latestMatch.away_score}
               />
             </div>
             <div className="mb-3 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-3 lg:order-2">
@@ -127,7 +133,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
         <main className="flex flex-col items-center bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95">
           <SeasonSection />
           <span className="h-px bg-partnersBorders w-11/12 max-w-[1130px] my-8 md:my-4" />
-          <PastMatchesLayout />
+          <PastMatchesLayout teammates={dashboardData?.teammates} />
         </main>
         <BackToTop />
         <Footer />
