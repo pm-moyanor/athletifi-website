@@ -17,7 +17,7 @@ const dummyMatchData: IMatchDataExtended = {
   weather: { current: { temp: 68 } },
   full_recap_video: {
     title: 'Full Match Recap',
-    url: 'full-match-recap.mp4',
+    url: '/video2.mp4',
     thumbnail: 'full-match-recap-thumbnail.jpg',
     description:
       'Watch the full recap of the match between Real Madrid and Barcelona.',
@@ -25,20 +25,20 @@ const dummyMatchData: IMatchDataExtended = {
   videos: [
     {
       title: 'Match Highlights',
-      url: 'match-highlights.mp4',
+      url: '/video3.mp4',
       thumbnail: 'match-thumbnail.jpg',
       description:
         'Highlights from the match between Real Madrid and Barcelona.',
     },
     {
       title: 'Player Interviews',
-      url: 'player-interviews.mp4',
+      url: '/video2.mp4',
       thumbnail: 'interviews-thumbnail.jpg',
       description: 'Post-match interviews with players from both teams.',
     },
     {
       title: 'Goal of the Match',
-      url: 'goal-of-the-match.mp4',
+      url: '/video3.mp4',
       thumbnail: 'goal-thumbnail.jpg',
       description: 'Watch the best goal from the match!',
     },

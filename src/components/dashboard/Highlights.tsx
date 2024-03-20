@@ -1,5 +1,6 @@
 import React from 'react';
 import { UnderLineText } from '@/components/common/Icon';
+import Video from 'next-video';
 
 interface VideoItem {
   src: string;
@@ -42,16 +43,14 @@ const Highlights: React.FC = () => {
           <div className="flex flex-wrap justify-center items-center gap-6 p-5">
             {videos.map((video, index) => (
               <div key={index} className="my-2">
-                <video
+                <Video
+                  src={video.src}
                   width={VIDEO_WIDTH}
                   height={VIDEO_HEIGHT}
                   controls
                   poster={video.thumbnail}
                   className="mx-auto"
-                >
-                  <source src={video.src} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                />
               </div>
             ))}
           </div>
