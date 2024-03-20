@@ -29,7 +29,7 @@ const Footer = () => {
   return (
     <>
       <footer className="flex flex-col border-t border-darkerSkyBlue h-541">
-        <div className="container flex flex-col items-start gap-5 md:flex-row md:justify-between md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto my-32">
+        <div className="container flex flex-col items-start gap-5 md:flex-row md:justify-around md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto my-32">
           <div className="flex flex-col justify-start">
             <ul>
               <li>
@@ -135,19 +135,19 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-
-        <div className="container md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto  flex flex-col md:flex-row gap-5 items-center justify-between py-7 border-t border-extraDarkBlue">
-          <div>
+        <span className="hidden md:block h-px w-10/12 my-4 mx-auto bg-partnersBorders" />
+        <div className="container max-w-10/12 min-w-10/12 mx-auto  flex flex-wrap md:flex-nowrap gap-8 items-center justify-around pt-7 pb-1">
+          <div className="px-15 md:px-0">
             <Link href="/">
               <PageLogo />
             </Link>
           </div>
-          <p className="text-white text-sm font-Segoe opacity-70">
+          <p className="text-white text-sm font-Segoe opacity-70 mt-auto md:mt-0 order-3">
             @{year} Athletifi. All rights reserved
           </p>
 
           {/* SOCIAL-ICON */}
-          <div className="flex gap-4">
+          <div className="flex gap-4 md:order-3 px-15 md:px-0">
             <Link
               aria-label="Tik-Tok"
               className="hover:-translate-y-1 transition duration-300 ease-out"
