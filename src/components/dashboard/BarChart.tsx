@@ -41,8 +41,8 @@ const attributeConfigs: IAttributeConfig = {
 };
 
 const StatsBarChart: React.FC<IRatingProps> = ({
-  overallPlayerRating,
-  playerRatings,
+  overall_rating,
+  player_ratings,
 }: IRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 1023px)');
   const xKey = 'attribute';
@@ -68,9 +68,9 @@ const StatsBarChart: React.FC<IRatingProps> = ({
                   ? attributeConfigs[entry as keyof IAttributeConfig].color
                   : DEFAULT_COLOR,
             }}
-            onClick={(playerRatings) => selectBar(playerRatings)}
-            onMouseEnter={(playerRatings) =>
-              handleLegendMouseEnter(playerRatings)
+            onClick={(player_ratings) => selectBar(player_ratings)}
+            onMouseEnter={(player_ratings) =>
+              handleLegendMouseEnter(player_ratings)
             }
             onMouseLeave={() => handleLegendMouseLeave()}
           >
@@ -105,7 +105,7 @@ const StatsBarChart: React.FC<IRatingProps> = ({
     <>
       <ResponsiveContainer width={'100%'} height={295} debounce={50}>
         <BarChart
-          data={playerRatings}
+          data={player_ratings}
           layout="vertical"
           margin={isMobile ? { left: -25, right: 30 } : { left: 40, right: 50 }}
         >
@@ -144,7 +144,7 @@ const StatsBarChart: React.FC<IRatingProps> = ({
               offset={15}
               style={{ fill: LAYERCOLOR }}
             />
-            {playerRatings.map((d) => {
+            {player_ratings.map((d) => {
               return (
                 <Cell
                   key={d[xKey]}
@@ -162,7 +162,7 @@ const StatsBarChart: React.FC<IRatingProps> = ({
         <div className="flex items-center justify-between h-full">
           <div className="text-white text-center w-20 md:w-24 lg:w-32 border-t border-[#ccd1d4] py-4">
             <div className="">Rating</div>
-            <div className="text-[36px]">{overallPlayerRating}</div>
+            <div className="text-[36px]">{overall_rating}</div>
           </div>
         </div>
         <div className="ml-5 mr-8 lg:ml-[3.75rem] lg:mr-[3.25rem] w-full">
