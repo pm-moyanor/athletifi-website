@@ -11,17 +11,18 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
 }) => {
   const [showRecap, setShowRecap] = useState(false);
   const {
-    team1_badge,
-    team2_badge,
-    team1_name,
-    team2_name,
-    team1_score,
-    team2_score,
+    home_club_logo,
+    away_club_logo,
+    home_club,
+    away_club,
+    home_score,
+    away_score,
     datetime,
     location,
     weather,
-    full_recap_video,
-    videos,
+    video_url,
+    // highlight_urls,
+    highlight_descriptions,
   } = matchData;
 
   const handleSummaryClick = () => {
@@ -33,25 +34,25 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
 
     <div className="w-full flex justify-between items-center text-primary font-sourceSansPro md:mr-4">
       <div className="flex justify-between items-center w-[250px] max-w-[220px] min-w-[200px] mr-2 ">
-        {team1_badge !== null && (
+        {home_club_logo !== null && (
           <div className="relative w-16 h-16">
-            <Image src={team1_badge} alt="Crest" layout="fill" />
+            <Image src={home_club_logo} alt="Crest" layout="fill" />
           </div>
         )}
         <div className="mx-[4px]">
-          <span>{team1_score}</span> - <span>{team2_score}</span>
+          <span>{home_score}</span> - <span>{away_score}</span>
         </div>
-        {team2_badge !== null && (
+        {away_club_logo !== null && (
           <div className="relative w-16 h-16">
-            <Image src={team2_badge} alt="Crest" layout="fill" />
+            <Image src={away_club_logo} alt="Crest" layout="fill" />
           </div>
         )}
       </div>
 
       <div className="flex flex-col md:flex-row md:items-center w-full justify-center ">
         <div className="block max-w-full ml-[6px] md:m-auto">
-          <span className="text-base font-sourceSansPro">{team1_name} </span>vs
-          <span className="text-base font-sourceSansPro"> {team2_name}</span>
+          <span className="text-base font-sourceSansPro">{home_club} </span>vs
+          <span className="text-base font-sourceSansPro"> {away_club}</span>
           <div className="text-sm text-offwhite pt-[2px]">{datetime}</div>
         </div>
         <button
@@ -69,9 +70,9 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
           <div className="flex justify-center md:justify-start items-center text-primary w-full font-sourceSansPro pb-4 md:max-w-[700px] lg:max-w-[1030px]">
             <div className="flex flex-col md:flex-row  w-full justify-center md:justify-between items-center sm:max-w-[380px] md:max-w-[600px] mt-8 md:mt-2 ">
               <div className="flex min-w-[190px] max-w-[190px] justify-center gap-4 items-center my-4">
-                {team1_badge !== null && (
+                {home_club_logo !== null && (
                   <Image
-                    src={team1_badge}
+                    src={home_club_logo}
                     alt="Crest"
                     width={50}
                     height={50}
@@ -79,11 +80,11 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                   />
                 )}
                 <div className="font-semibold">
-                  <span>{team1_score}</span> - <span>{team2_score}</span>
+                  <span>{home_score}</span> - <span>{away_score}</span>
                 </div>
-                {team2_badge !== null && (
+                {away_club_logo !== null && (
                   <Image
-                    src={team2_badge}
+                    src={away_club_logo}
                     alt="Crest"
                     width={50}
                     height={50}
@@ -94,12 +95,12 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
 
               <div className=" flex justify-center gap-6 w-full">
                 <span className="font-semibold text-right  w-[140px]">
-                  {team1_name}
+                  {home_club}
                 </span>
                 <span className="">vs</span>
 
                 <span className="font-semibold text-left  w-[140px]">
-                  {team2_name}
+                  {away_club}
                 </span>
               </div>
             </div>
@@ -117,13 +118,16 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                 <h2 className="text-[20px] font-semibold mb-2">Full Recap</h2>
                 <div className="h-1 mb-4 bg-partnersBorders" />
                 <div className="w-full h-full  min-w-[320px] max-h-[320px]">
-                  {full_recap_video?.thumbnail && (
+                  {video_url ? (
                     <video
-                      // src={full_recap_video.url}
+                      src={video_url}
                       controls
-                      poster={full_recap_video.thumbnail}
                       className="w-full h-full bg-slate-500 rounded-md"
                     ></video>
+                  ) : (
+                    <div className="w-full h-full bg-slate-500 rounded-md flex justify-center items-center">
+                      <p>No video currently available for this match</p>
+                    </div>
                   )}
                 </div>
               </div>
@@ -138,7 +142,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                     <div className="mr-2">
                       <FontAwesomeIcon icon={faCloud} />
                     </div>
-                    <p>{weather}</p>
+                    <p>{weather.current.temp}</p>
                   </div>
                 </div>
 
@@ -163,27 +167,32 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
               </h3>
               <div className="h-1 mb-4 bg-partnersBorders w-full"></div>
               <div className="flex flex-col md:flex-row justify-between w-full max-w-none sm:max-w-[600px] md:max-w-none">
-                {videos.map((video, index) => (
-                  <div
-                    key={index}
-                    className=" w-full sm my-2 md:m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
-                  >
-                    {video?.url && video?.thumbnail && (
-                      <video
-                        src={video.url}
-                        controls
-                        poster={video.thumbnail}
-                        className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
-                      ></video>
-                    )}
-                    <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end  max-w-[320px]">
-                      <h3 className="text-base pt-2">{video.title}</h3>
-                      <p className="text-sm text-offwhite m-px ">
-                        {video.description}
-                      </p>
+                {highlight_descriptions?.map(
+                  (description: string, index: number) => (
+                    <div
+                      key={index}
+                      className=" w-full sm my-2 md:m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
+                    >
+                      {video_url ? (
+                        <video
+                          src={video_url}
+                          controls
+                          className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
+                        ></video>
+                      ) : (
+                        <div className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px] flex justify-center items-center text-center">
+                          <p>No video currently available for this match</p>
+                        </div>
+                      )}
+                      <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end  max-w-[320px]">
+                        <h3 className="text-base pt-2">{`Highlight-${index}`}</h3>
+                        <p className="text-sm text-offwhite m-px ">
+                          {description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ),
+                )}
               </div>
             </div>
           </div>

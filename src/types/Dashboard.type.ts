@@ -95,15 +95,15 @@ export interface ILegendProps {
 }
 
 export interface IMatchData {
-  id: string | null | undefined;
-  datetime: string | null | undefined;
-  location: string | null | undefined;
-  home_club?: string | null | undefined;
-  home_club_logo?: string | null | undefined;
-  home_score?: number | null | undefined;
-  away_club?: string | null | undefined;
-  away_club_logo?: string | null | undefined;
-  away_score?: number | null | undefined;
+  match_id: string | null;
+  datetime: string | null;
+  location: string | null;
+  home_club?: string | null;
+  home_club_logo?: string | null;
+  home_score?: number | null;
+  away_club?: string | null;
+  away_club_logo?: string | null;
+  away_score?: number | null;
 }
 
 export interface IMatchDataWithWeather extends IMatchData {
@@ -115,11 +115,11 @@ export interface IMatchDataWithWeather extends IMatchData {
 }
 
 export interface ILatestMatchProps extends IMatchData {
-  weather: number | null | undefined;
+  weather: number | null;
 }
 
 export const emptyLatestMatchData: IMatchDataWithWeather = {
-  id: '',
+  match_id: '',
   datetime: null,
   location: null,
   weather: { current: { temp: null } },
@@ -161,6 +161,15 @@ export interface ITeammates {
   teammates: ITeammate[] | undefined;
 }
 
+export interface IPastMatches {
+  past_matches: IMatchDataExtended[] | undefined;
+}
+
+export interface IPastMatchesLayoutProps {
+  teammates: ITeammate[] | undefined;
+  past_matches: IMatchDataExtended[] | undefined;
+}
+
 export interface IVideo {
   title: string | null;
   url: string | null;
@@ -176,29 +185,31 @@ export const emptyVideoData: IVideo = {
 };
 
 export interface IMatchDataExtended extends IMatchDataWithWeather {
-  team1_badge: string | null;
-  team2_badge: string | null;
-  team1_name: string | null;
-  team2_name: string | null;
-  team1_score: number | null;
-  team2_score: number | null;
-  full_recap_video: IVideo;
-  videos: IVideo[];
+  home_club_logo: string | null;
+  away_club_logo: string | null;
+  home_club: string | null;
+  away_club: string | null;
+  home_score: number | null;
+  away_score: number | null;
+  video_url: string | null;
+  highlight_urls: string[] | null;
+  highlight_descriptions: string[] | null;
 }
 
 export const emptyMatchData: IMatchDataExtended = {
-  id: '',
-  team1_badge: null,
-  team2_badge: null,
-  team1_name: null,
-  team2_name: null,
-  team1_score: null,
-  team2_score: null,
+  match_id: '',
+  home_club_logo: null,
+  away_club_logo: null,
+  home_club: null,
+  away_club: null,
+  home_score: null,
+  away_score: null,
   datetime: null,
   location: null,
   weather: { current: { temp: null } },
-  full_recap_video: emptyVideoData,
-  videos: [emptyVideoData],
+  video_url: null,
+  highlight_urls: null,
+  highlight_descriptions: null,
 };
 
 export interface ILatestPlayerRatings {
@@ -208,3 +219,27 @@ export interface ILatestPlayerRatings {
   mentality_ratings: number | null;
   defending_ratings: number | null;
 }
+
+export const emptyLatestPlayerRatings: ILatestPlayerRatings = {
+  skill_ratings: null,
+  attacking_ratings: null,
+  physical_ratings: null,
+  mentality_ratings: null,
+  defending_ratings: null,
+};
+
+export interface DashboardData {
+  latestMatch: IMatchDataWithWeather; // replace 'any' with the type of your data
+  latestPlayerRating: ILatestPlayerRatings;
+  matchesList: IMatchDataExtended[]; // replace 'any' with the type of your data
+  playerProfile: IProfileProps; // replace 'any' with the type of your data
+  teammates: ITeammate[]; // replace 'any' with the type of your data
+}
+
+export const emptyDashboardData: DashboardData = {
+  latestMatch: emptyLatestMatchData, // replace 'any' with the type of your data
+  latestPlayerRating: emptyLatestPlayerRatings,
+  matchesList: [emptyMatchData], // replace 'any' with the type of your data
+  playerProfile: emptyProfileProps, // replace 'any' with the type of your data
+  teammates: [emptyTeammate], // replace 'any' with the type of your data
+};

@@ -12,34 +12,16 @@ import PastMatchesLayout from '@/components/dashboard/PastMatchesLayout';
 import Profile from '@/components/dashboard/ProfileCard';
 import SeasonSection from '@/components/dashboard/SeasonSectionLayout';
 
-import {
-  IProfileProps,
-  IMatchDataWithWeather,
-  ILatestPlayerRatings,
-  ITeammate,
-} from '@/types/Dashboard.type';
 import Navbar from '@/components/dashboard/NavBar';
 import BackToTop from '@/components/common/BackToTop';
+
+import { DashboardData, emptyDashboardData } from '@/types/Dashboard.type';
 
 interface PageProps {
   params: { cardId: string | number };
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-interface DashboardData {
-  latestMatch: IMatchDataWithWeather; // replace 'any' with the type of your data
-  latestPlayerRating: ILatestPlayerRatings;
-  matchesList: IMatchDataWithWeather[]; // replace 'any' with the type of your data
-  playerProfile: IProfileProps; // replace 'any' with the type of your data
-  teammates: ITeammate[]; // replace 'any' with the type of your data
-}
-
-// TO DO: Implement dynamic metadata generation for SEO using generateMetadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata#dynamic-metadata
-// export const metadata = {
-//   title: 'Player Dashboard | AthletiFi',
-//   description:
-//     'Explore detailed player statistics, highlights, and more on the AthletiFi Player Dashboard.',
-// };
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
 const testAWSFetch = async (cardId: string) => {
   const response = await fetch(`${baseURL}/dashboard/${cardId}`);
@@ -52,9 +34,8 @@ const testAWSFetch = async (cardId: string) => {
 };
 
 const PlayerDashboardPage: NextPage<PageProps> = () => {
-  const [dashboardData, setDashboardData] = useState<DashboardData | null>(
-    null,
-  );
+  const [dashboardData, setDashboardData] =
+    useState<DashboardData>(emptyDashboardData);
   const { cardId } = useParams();
   const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
 
@@ -68,20 +49,12 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
           playerProfile: data[3].result,
           teammates: data[4].result,
         };
-        console.log(dataObject.playerProfile);
         setDashboardData(dataObject);
       })
       .catch((error) => {
         console.error('Failed to fetch data:', error);
       });
   }, [cardIdValue]);
-  // SEO
-  // const hero: Hero = {
-  //   heading: playerProfile?.name || `Player data not found`,
-  //   subtitle:
-  //     'Here you can find all the latest stats and highlights on a player!',
-  //   title: 'AthletiFi Player Dashboard',
-  // };
 
   return (
     <>
@@ -113,10 +86,10 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
             </div>
             <div className="mb-4 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-2 lg:order-1">
               <LatestMatch
-                id={dashboardData?.latestMatch.id}
+                match_id={dashboardData?.latestMatch.match_id}
                 datetime={dashboardData?.latestMatch.datetime}
                 location={dashboardData?.latestMatch.location}
-                weather={dashboardData?.latestMatch.weather?.current?.temp}
+                weather={dashboardData?.latestMatch.weather}
                 home_club={dashboardData?.latestMatch.home_club}
                 home_club_logo={dashboardData?.latestMatch.home_club_logo}
                 home_score={dashboardData?.latestMatch.home_score}
@@ -133,7 +106,10 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
         <main className="flex flex-col items-center bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95">
           <SeasonSection />
           <span className="h-px bg-partnersBorders w-11/12 max-w-[1130px] my-8 md:my-4" />
-          <PastMatchesLayout teammates={dashboardData?.teammates} />
+          <PastMatchesLayout
+            past_matches={dashboardData?.matchesList}
+            teammates={dashboardData?.teammates}
+          />
         </main>
         <BackToTop />
         <Footer />

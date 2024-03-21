@@ -7,12 +7,12 @@ import {
   // faSnowflake,
 } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
-import { ILatestMatchProps } from '@/types/Dashboard.type';
+import { IMatchDataWithWeather } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
 
 const LOGO_SIZE = 50;
 
-const LatestMatch: React.FC<ILatestMatchProps> = ({
+const LatestMatch: React.FC<IMatchDataWithWeather> = ({
   datetime,
   location,
   weather,
@@ -22,7 +22,7 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
   away_club,
   away_club_logo,
   away_score,
-}: ILatestMatchProps) => {
+}: IMatchDataWithWeather) => {
   return (
     <>
       {datetime !== null ? (
@@ -66,7 +66,7 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
               <div className=" w-6 text-center mr-2">
                 <FontAwesomeIcon icon={faCloudRain} size="lg" />
               </div>
-              <p className="">{weather}&deg;F</p>
+              <p className="">{weather?.current.temp}&deg;F</p>
             </div>
           </div>
 
