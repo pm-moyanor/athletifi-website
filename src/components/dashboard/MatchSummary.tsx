@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faCloud } from '@fortawesome/free-solid-svg-icons';
 import { IMatchDataExtended } from '@/types/Dashboard.type';
+import Video from 'next-video';
 
 const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   matchData,
@@ -118,12 +119,11 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                 <div className="h-1 mb-4 bg-partnersBorders" />
                 <div className="w-full h-full  min-w-[320px] max-h-[320px]">
                   {full_recap_video?.thumbnail && (
-                    <video
-                      // src={full_recap_video.url}
-                      controls
+                    <Video
+                      src={full_recap_video.url}
                       poster={full_recap_video.thumbnail}
                       className="w-full h-full bg-slate-500 rounded-md"
-                    ></video>
+                    />
                   )}
                 </div>
               </div>
@@ -138,7 +138,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                     <div className="mr-2">
                       <FontAwesomeIcon icon={faCloud} />
                     </div>
-                    <p>{weather}</p>
+                    <p>{weather.current.temp}</p>
                   </div>
                 </div>
 
@@ -169,12 +169,11 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                     className=" w-full sm my-2 md:m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
                   >
                     {video?.url && video?.thumbnail && (
-                      <video
+                      <Video
                         src={video.url}
-                        controls
                         poster={video.thumbnail}
                         className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
-                      ></video>
+                      />
                     )}
                     <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end  max-w-[320px]">
                       <h3 className="text-base pt-2">{video.title}</h3>
