@@ -213,24 +213,27 @@ export const emptyMatchData: IMatchDataExtended = {
 };
 
 export interface ILatestPlayerRatings {
-  skill_ratings: number | null;
-  attacking_ratings: number | null;
-  physical_ratings: number | null;
-  mentality_ratings: number | null;
-  defending_ratings: number | null;
+  name: string | null;
+  skill: number | null;
+  attacking: number | null;
+  physical: number | null;
+  mentality: number | null;
+  defending: number | null;
 }
 
 export const emptyLatestPlayerRatings: ILatestPlayerRatings = {
-  skill_ratings: null,
-  attacking_ratings: null,
-  physical_ratings: null,
-  mentality_ratings: null,
-  defending_ratings: null,
+  name: '',
+  skill: null,
+  attacking: null,
+  physical: null,
+  mentality: null,
+  defending: null,
 };
 
 export interface DashboardData {
   latestMatch: IMatchDataWithWeather; // replace 'any' with the type of your data
-  latestPlayerRating: ILatestPlayerRatings;
+  latestPlayerRating: IRating[];
+  overallRating: number;
   matchesList: IMatchDataExtended[]; // replace 'any' with the type of your data
   playerProfile: IProfileProps; // replace 'any' with the type of your data
   teammates: ITeammate[]; // replace 'any' with the type of your data
@@ -238,7 +241,8 @@ export interface DashboardData {
 
 export const emptyDashboardData: DashboardData = {
   latestMatch: emptyLatestMatchData, // replace 'any' with the type of your data
-  latestPlayerRating: emptyLatestPlayerRatings,
+  latestPlayerRating: [],
+  overallRating: 0,
   matchesList: [emptyMatchData], // replace 'any' with the type of your data
   playerProfile: emptyProfileProps, // replace 'any' with the type of your data
   teammates: [emptyTeammate], // replace 'any' with the type of your data

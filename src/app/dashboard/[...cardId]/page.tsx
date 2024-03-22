@@ -42,9 +42,22 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
   useEffect(() => {
     testAWSFetch(cardIdValue as string)
       .then((data) => {
+        const playerRatings = Object.keys(data[1].result)
+          .filter((x) => x !== 'name')
+          .map((attr) => {
+            return {
+              attribute: attr,
+              rating: Math.trunc(data[1].result[attr]),
+            };
+          });
+        const overallRating = Math.round(
+          playerRatings.reduce((a, b) => a + b.rating, 0) /
+            playerRatings.length,
+        );
         const dataObject = {
           latestMatch: data[0].result,
-          latestPlayerRating: data[1].result,
+          latestPlayerRating: playerRatings,
+          overallRating: overallRating,
           matchesList: data[2].result,
           playerProfile: data[3].result,
           teammates: data[4].result,
@@ -99,7 +112,10 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
               />
             </div>
             <div className="mb-3 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-3 lg:order-2">
-              <Charts />
+              <Charts
+                overallRating={dashboardData?.overallRating}
+                player_ratings={dashboardData?.latestPlayerRating}
+              />
             </div>
           </div>
         </div>
