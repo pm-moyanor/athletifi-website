@@ -7,12 +7,12 @@ import {
   // faSnowflake,
 } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
-import { IMatchDataWithWeather } from '@/types/Dashboard.type';
+import { ILatestMatchProps } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
 
 const LOGO_SIZE = 50;
 
-const LatestMatch: React.FC<IMatchDataWithWeather> = ({
+const LatestMatch: React.FC<ILatestMatchProps> = ({
   datetime,
   location,
   weather,
@@ -22,7 +22,8 @@ const LatestMatch: React.FC<IMatchDataWithWeather> = ({
   away_club,
   away_club_logo,
   away_score,
-}: IMatchDataWithWeather) => {
+  player_ratings,
+}: ILatestMatchProps) => {
   return (
     <>
       {datetime !== null ? (
@@ -72,14 +73,13 @@ const LatestMatch: React.FC<IMatchDataWithWeather> = ({
 
           <div className="flex justify-between items-center mb-2 sm:mb-4 md:mb-0 mx-1 sm:mx-6">
             <div className="flex flex-col justify-center">
-              <h4 className="text-center text-md">56</h4>
-              <p className="text-xs sm:text-sm font-light">attacking</p>
+              <h4 className=" text-center text-md">12</h4>
+              <p className="text-xs sm:text-sm font-light">skill</p>
             </div>
-
             <span className="h-6 w-1 bg-partnersBorders" />
             <div className="flex flex-col justify-center">
-              <h4 className=" text-center text-md">40</h4>
-              <p className="text-xs sm:text-sm font-light">mentality</p>
+              <h4 className="text-center text-md">56</h4>
+              <p className="text-xs sm:text-sm font-light">attacking</p>
             </div>
             <span className="h-6 w-1 bg-partnersBorders" />
             <div className="flex flex-col justify-center">
@@ -88,13 +88,13 @@ const LatestMatch: React.FC<IMatchDataWithWeather> = ({
             </div>
             <span className="h-6 w-1 bg-partnersBorders" />
             <div className="flex flex-col justify-center">
-              <h4 className=" text-center text-md">12</h4>
-              <p className="text-xs sm:text-sm font-light">skill</p>
+              <h4 className=" text-center text-md">40</h4>
+              <p className="text-xs sm:text-sm font-light">mentality</p>
             </div>
             <span className="h-6 w-1 bg-partnersBorders" />
             <div className="flex flex-col justify-center">
               <h4 className=" text-center text-md">78</h4>
-              <p className="text-xs sm:text-sm font-light">defense</p>
+              <p className="text-xs sm:text-sm font-light">defending</p>
             </div>
           </div>
         </div>

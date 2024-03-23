@@ -42,12 +42,13 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
   useEffect(() => {
     testAWSFetch(cardIdValue as string)
       .then((data) => {
+        console.log(data[1].result);
         const playerRatings = Object.keys(data[1].result)
           .filter((x) => x !== 'name')
           .map((attr) => {
             return {
               attribute: attr,
-              rating: Math.trunc(data[1].result[attr]),
+              rating: Math.trunc(Number(data[1].result[attr])),
             };
           });
         const overallRating = Math.round(
@@ -109,6 +110,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
                 away_club={dashboardData?.latestMatch.away_club}
                 away_club_logo={dashboardData?.latestMatch.away_club_logo}
                 away_score={dashboardData?.latestMatch.away_score}
+                player_ratings={dashboardData?.latestPlayerRating}
               />
             </div>
             <div className="mb-3 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-3 lg:order-2">

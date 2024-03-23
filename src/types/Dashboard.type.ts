@@ -6,19 +6,19 @@ export type PlayerDashboardProps = {
 };
 
 export enum Attributes {
-  Attacking = 'attacking',
   Skill = 'skill',
+  Attacking = 'attacking',
   Physical = 'physical',
   Mental = 'mental',
   Defending = 'defending',
 }
 
 export interface IAttributeConfig {
-  attacking: {
+  skill: {
     color: string;
     description: string;
   };
-  skill: {
+  attacking: {
     color: string;
     description: string;
   };
@@ -114,8 +114,8 @@ export interface IMatchDataWithWeather extends IMatchData {
   };
 }
 
-export interface ILatestMatchProps extends IMatchData {
-  weather: number | null;
+export interface ILatestMatchProps extends IMatchDataWithWeather {
+  player_ratings: IRating[];
 }
 
 export const emptyLatestMatchData: IMatchDataWithWeather = {
@@ -214,11 +214,11 @@ export const emptyMatchData: IMatchDataExtended = {
 
 export interface ILatestPlayerRatings {
   name: string | null;
-  skill: number | null;
-  attacking: number | null;
-  physical: number | null;
-  mentality: number | null;
-  defending: number | null;
+  skill: string | null;
+  attacking: string | null;
+  physical: string | null;
+  mentality: string | null;
+  defending: string | null;
 }
 
 export const emptyLatestPlayerRatings: ILatestPlayerRatings = {
