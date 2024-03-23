@@ -3,11 +3,11 @@
 // It includes copyright information and footer links.
 import React, { useEffect, useState } from 'react';
 import {
-  FacebookIcon,
-  InstaIcon,
-  LinkedInIcon,
+  WhiteFacebookIcon,
+  WhiteInstaIcon,
+  WhiteLinkedInIcon,
   TikTokIcon,
-  TwitterIcon,
+  WhiteTwitterIcon,
   PageLogo,
   ArrowButton,
 } from './Icon';
@@ -28,8 +28,8 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="flex flex-col border-t border-darkerSkyBlue h-541">
-        <div className="container flex flex-col items-start gap-5 md:flex-row md:justify-around md:max-w-full xl:max-w-1140 2xl:max-w-1320 mx-auto my-32">
+      <footer className="flex flex-col justify-center border-t border-darkerSkyBlue">
+        <div className="container flex flex-row items-start justify-around gap-5 md:flex-row md:justify-around md:max-w-full xl:max-w-1140 2xl:max-w-1320  my-32">
           <div className="flex flex-col justify-start">
             <ul>
               <li>
@@ -123,9 +123,9 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div>
+          {/* <div>
             <Link
-              href="/contact-us"
+              href="/sign-up"
               className="sm:px-24pixel px-4 sm:py-14.5 py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-6pixel group border border-skyblue hover:bg-black hover:text-skyblue btn__cta transition duration-300 ease-in-out social-popup__btn"
             >
               Contact Us
@@ -133,66 +133,70 @@ const Footer = () => {
                 <ArrowButton />
               </span>
             </Link>
-          </div>
+          </div> */}
         </div>
-        <span className="hidden md:block h-px w-10/12 my-4 mx-auto bg-partnersBorders" />
-        <div className="container max-w-10/12 min-w-10/12 mx-auto  flex flex-wrap md:flex-nowrap gap-8 items-center justify-around pt-7 pb-1">
-          <div className="px-15 md:px-0">
-            <Link href="/">
-              <PageLogo />
-            </Link>
-          </div>
-          <p className="text-white text-sm font-Segoe opacity-70 mt-auto md:mt-0 order-3">
-            @{year} Athletifi. All rights reserved
-          </p>
+        <span className="hidden md:block h-px w-10/12 mb-7 mx-auto bg-partnersBorders" />
+        <div className="flex flex-col justify-center">
+          <div className="max-w-10/12 min-w-10/12 mx-0 flex flex-wrap md:flex-nowrap gap-5 items-center justify-around pb-7">
+            <div className="px-15 md:px-0">
+              <Link href="/">
+                <PageLogo />
+              </Link>
+            </div>
 
-          {/* SOCIAL-ICON */}
-          <div className="flex gap-4 md:order-3 px-15 md:px-0">
-            <Link
-              aria-label="Tik-Tok"
-              className="hover:-translate-y-1 transition duration-300 ease-out"
-              href="https://www.tiktok.com/@athletifi"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <TikTokIcon />
-            </Link>
-            <Link
-              aria-label="facebook"
-              className="hover:-translate-y-1 transition duration-300 ease-out"
-              href="https://www.facebook.com/profile.php?id=61553263775533"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FacebookIcon />
-            </Link>
-            <Link
-              aria-label="twitter"
-              className="hover:-translate-y-1 transition duration-300 ease-out"
-              href="https://twitter.com/Athletifi"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <TwitterIcon />
-            </Link>
-            <Link
-              aria-label="instagram"
-              className="hover:-translate-y-1 transition duration-300 ease-out"
-              href="https://www.instagram.com/athletifi/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <InstaIcon />
-            </Link>
-            <Link
-              aria-label="linkedin"
-              className="hover:-translate-y-1 transition duration-300 ease-out"
-              href="https://www.linkedin.com/company/athletifi/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <LinkedInIcon />
-            </Link>
+            {/* SOCIAL-ICON */}
+            <div className="flex gap-4 md:order-3 px-15 md:px-0">
+              <Link
+                aria-label="Tik-Tok"
+                className="hover:-translate-y-1 transition duration-300 ease-out"
+                href="https://www.tiktok.com/@athletifi"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <TikTokIcon />
+              </Link>
+              <Link
+                aria-label="facebook"
+                className="hover:-translate-y-1 transition duration-300 ease-out"
+                href="https://www.facebook.com/profile.php?id=61553263775533"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WhiteFacebookIcon />
+              </Link>
+              <Link
+                aria-label="twitter"
+                className="hover:-translate-y-1 transition duration-300 ease-out"
+                href="https://twitter.com/Athletifi"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WhiteTwitterIcon />
+              </Link>
+              <Link
+                aria-label="instagram"
+                className="hover:-translate-y-1 transition duration-300 ease-out"
+                href="https://www.instagram.com/athletifi/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WhiteInstaIcon />
+              </Link>
+              <Link
+                aria-label="linkedin"
+                className="hover:-translate-y-1 transition duration-300 ease-out"
+                href="https://www.linkedin.com/company/athletifi/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <WhiteLinkedInIcon />
+              </Link>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <p className="text-white text-sm font-Segoe opacity-70">
+              @{year} Athletifi. All rights reserved
+            </p>
           </div>
         </div>
       </footer>
