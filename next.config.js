@@ -1,3 +1,5 @@
+const { withNextVideo } = require('next-video/process')
+
 // This is the configuration file for Next.js.
 // It sets up various settings for the Next.js application.
 
@@ -10,4 +12,4 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-module.exports = nextConfig;
+module.exports = withNextVideo(nextConfig);

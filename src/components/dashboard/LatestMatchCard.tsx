@@ -26,7 +26,7 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
 }: ILatestMatchProps) => {
   return (
     <>
-      {datetime !== null ? (
+      {home_score !== null ? (
         <div className="bg-cardsBackground h-[310px] sm:h-[310px] md:h-56 flex flex-col justify-between p-4 relative w-full rounded-10 text-primary font-sourceSansPro">
           <h1 className="text-[24px] font-semibold">Latest Match</h1>
           <div className="flex justify-center items-center">

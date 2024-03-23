@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faCloud } from '@fortawesome/free-solid-svg-icons';
 import { IMatchDataExtended } from '@/types/Dashboard.type';
+import Video from 'next-video';
 
 const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   matchData,
@@ -119,11 +120,10 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                 <div className="h-1 mb-4 bg-partnersBorders" />
                 <div className="w-full h-full  min-w-[320px] max-h-[320px]">
                   {video_url ? (
-                    <video
+                    <Video
                       src={video_url}
-                      controls
                       className="w-full h-full bg-slate-500 rounded-md"
-                    ></video>
+                    />
                   ) : (
                     <div className="w-full h-full bg-slate-500 rounded-md flex justify-center items-center">
                       <p>No video currently available for this match</p>
@@ -174,11 +174,10 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                       className=" w-full sm my-2 md:m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
                     >
                       {video_url ? (
-                        <video
+                        <Video
                           src={video_url}
-                          controls
                           className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
-                        ></video>
+                        />
                       ) : (
                         <div className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px] flex justify-center items-center text-center">
                           <p>No video currently available for this match</p>

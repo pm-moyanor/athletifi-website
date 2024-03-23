@@ -132,14 +132,14 @@ export const emptyLatestMatchData: IMatchDataWithWeather = {
 };
 
 export interface IActionReel {
-  video_src: string | null;
+  video_url: string | null;
   thumbnail: string | null;
   title: string | null;
   description: string | null;
 }
 
 export const emptyActionReel: IActionReel = {
-  video_src: null,
+  video_url: null,
   thumbnail: null,
   title: null,
   description: null,
@@ -172,14 +172,14 @@ export interface IPastMatchesLayoutProps {
 
 export interface IVideo {
   title: string | null;
-  url: string | null;
+  url: string;
   thumbnail: string | null;
   description: string | null;
 }
 
 export const emptyVideoData: IVideo = {
   title: null,
-  url: null,
+  url: '',
   thumbnail: null,
   description: null,
 };
