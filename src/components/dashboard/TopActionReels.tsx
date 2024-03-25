@@ -1,9 +1,10 @@
 import { IActionReel } from '@/types/Dashboard.type';
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
+import Video from 'next-video';
 
 const ActionReel: React.FC<IActionReel> = ({
-  video_src,
+  video_url,
   thumbnail,
   title,
   description,
@@ -11,10 +12,10 @@ const ActionReel: React.FC<IActionReel> = ({
   return (
     <div className=" flex my-2 justify-start">
       <div className="relative w-full max-w-[230px] min-w-[180px] h-[120px] sm:h-[120px] md:h-[130px]">
-        {video_src && thumbnail && (
-          <video
+        {video_url && thumbnail && (
+          <Video
             className="w-full h-full object-cover rounded rounded-5"
-            src={video_src}
+            src={video_url}
             poster={thumbnail}
           />
         )}

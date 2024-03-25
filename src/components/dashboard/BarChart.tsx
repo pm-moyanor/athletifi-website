@@ -18,13 +18,13 @@ const DEFAULT_COLOR = 'rgba(128, 128, 128, 0.15)';
 const LAYERCOLOR = '#ffffff';
 
 const attributeConfigs: IAttributeConfig = {
-  attacking: {
-    color: '#DA393B',
-    description: 'Attacking description goes here',
-  },
   skill: {
     color: '#27B6BD',
     description: 'Skill description goes here',
+  },
+  attacking: {
+    color: '#DA393B',
+    description: 'Attacking description goes here',
   },
   physical: {
     color: '#B09E03',

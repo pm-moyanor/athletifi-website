@@ -1,19 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
 import { IRating } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
-
-const dummyDataOverallRating: number = 72;
-
-const dummyDataRatings: IRating[] = [
-  { attribute: 'attacking', rating: 80 },
-  { attribute: 'skill', rating: 90 },
-  { attribute: 'physical', rating: 75 },
-  { attribute: 'mentality', rating: 95 },
-  { attribute: 'defending', rating: 85 },
-];
 
 const StatsBarChartWithNoSSR = dynamic(
   () => import('@/components/dashboard/BarChart'),
@@ -40,19 +30,16 @@ const tabInfo = [
   },
 ];
 
-const Charts = () => {
+const Charts = ({
+  overallRating,
+  player_ratings,
+}: {
+  overallRating: number;
+  player_ratings: IRating[];
+}) => {
   const isMobile = useMediaQuery('(max-width: 1024px)');
 
   const [isLatestActive, setIsLatestActive] = useState(true);
-  const [overallRating, setOverallRating] = useState(0);
-  const [player_ratings, setPlayerRatings] = useState<IRating[]>([]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setOverallRating(dummyDataOverallRating);
-      setPlayerRatings(dummyDataRatings);
-    }, 1500);
-  }, []);
 
   return (
     <>
@@ -97,10 +84,7 @@ const Charts = () => {
                 player_ratings={player_ratings}
               />
             ) : (
-              <StatsLineChartWithNoSSR
-                overall_rating={overallRating}
-                player_ratings={player_ratings}
-              />
+              <StatsLineChartWithNoSSR overall_rating={overallRating} />
             )}
           </section>
         </div>

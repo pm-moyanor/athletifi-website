@@ -1,66 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import MatchSummary from './MatchSummary';
 import Skeleton from 'react-loading-skeleton';
-import { IMatchDataExtended, emptyMatchData } from '@/types/Dashboard.type';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { IPastMatches } from '@/types/Dashboard.type';
 
-const dummyMatchData: IMatchDataExtended = {
-  team1_badge: '/vecteezy_crest_1204211.png',
-  team2_badge: '/vecteezy_crest_1204211.png',
-  team1_name: 'Real Madrid',
-  team2_name: 'Barcelona',
-  team1_score: 2,
-  team2_score: 1,
-  datetime: 'Saturday, 14 March 2022, 12:00pm',
-  location: 'Citypark, St. Louis',
-  weather: { current: { temp: 68 } },
-  full_recap_video: {
-    title: 'Full Match Recap',
-    url: 'full-match-recap.mp4',
-    thumbnail: 'full-match-recap-thumbnail.jpg',
-    description:
-      'Watch the full recap of the match between Real Madrid and Barcelona.',
-  },
-  videos: [
-    {
-      title: 'Match Highlights',
-      url: 'match-highlights.mp4',
-      thumbnail: 'match-thumbnail.jpg',
-      description:
-        'Highlights from the match between Real Madrid and Barcelona.',
-    },
-    {
-      title: 'Player Interviews',
-      url: 'player-interviews.mp4',
-      thumbnail: 'interviews-thumbnail.jpg',
-      description: 'Post-match interviews with players from both teams.',
-    },
-    {
-      title: 'Goal of the Match',
-      url: 'goal-of-the-match.mp4',
-      thumbnail: 'goal-thumbnail.jpg',
-      description: 'Watch the best goal from the match!',
-    },
-  ],
-};
-
-const pastMatchesList = [dummyMatchData, dummyMatchData, dummyMatchData];
-
-const PastMatches: React.FC = () => {
-  const [pastMatches, setPastMatches] = useState([emptyMatchData]);
-
+const PastMatches: React.FC<IPastMatches> = ({
+  past_matches,
+}: IPastMatches) => {
   //check if in view
   const { ref: inViewRef, inView } = useInView({
     threshold: 0.7,
     triggerOnce: true,
   });
-
-  useEffect(() => {
-    setTimeout(() => {
-      setPastMatches(pastMatchesList);
-    }, 1500);
-  }, []);
 
   //varints to trigger animations with staggered effect
   const staggerVariants = {
@@ -76,7 +28,7 @@ const PastMatches: React.FC = () => {
 
   return (
     <>
-      {pastMatches[0]?.team1_badge ? (
+      {past_matches && past_matches[0]?.home_club_logo ? (
         <div className="w-full px-0 md:px-4 lg:px-0 lg:w-2/3 lg:max-w-[640px]">
           <h2 className="text-primary font-semibold text-2xl mb-6 font-sourceSansPro">
             Past matches
@@ -88,7 +40,7 @@ const PastMatches: React.FC = () => {
             variants={staggerVariants}
             className="flex flex-col"
           >
-            {pastMatches.map((match, index) => (
+            {past_matches.map((match, index) => (
               <React.Fragment key={index}>
                 <motion.div
                   variants={staggerVariants}
@@ -96,7 +48,7 @@ const PastMatches: React.FC = () => {
                 >
                   <MatchSummary matchData={match} />
                 </motion.div>
-                {index !== pastMatches.length - 1 && (
+                {index !== past_matches.length - 1 && (
                   <motion.span
                     initial="hidden"
                     animate={inView ? 'visible' : 'hidden'}

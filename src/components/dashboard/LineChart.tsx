@@ -265,9 +265,7 @@ const StatsLineChart: React.FC<IRatingProps> = ({
         <div className="flex items-center justify-between h-full">
           <div className="text-white text-center w-20 md:w-24 lg:w-32 border-t border-[#ccd1d4] py-4">
             <div className="">Rating</div>
-            <div className="text-[36px]">
-              {overall_rating || <Skeleton />}
-            </div>
+            <div className="text-[36px]">{overall_rating || <Skeleton />}</div>
           </div>
         </div>
       </div>
