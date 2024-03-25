@@ -22,6 +22,7 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
   away_club,
   away_club_logo,
   away_score,
+  player_ratings,
 }: ILatestMatchProps) => {
   return (
     <>
@@ -66,20 +67,19 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
               <div className=" w-6 text-center mr-2">
                 <FontAwesomeIcon icon={faCloudRain} size="lg" />
               </div>
-              <p className="">{weather}&deg;F</p>
+              <p className="">{weather?.current.temp}&deg;F</p>
             </div>
           </div>
 
           <div className="flex justify-between items-center mb-2 sm:mb-4 md:mb-0 mx-1 sm:mx-6">
             <div className="flex flex-col justify-center">
-              <h4 className="text-center text-md">56</h4>
-              <p className="text-xs sm:text-sm font-light">attacking</p>
+              <h4 className=" text-center text-md">12</h4>
+              <p className="text-xs sm:text-sm font-light">skill</p>
             </div>
-
             <span className="h-6 w-1 bg-partnersBorders" />
             <div className="flex flex-col justify-center">
-              <h4 className=" text-center text-md">40</h4>
-              <p className="text-xs sm:text-sm font-light">mentality</p>
+              <h4 className="text-center text-md">56</h4>
+              <p className="text-xs sm:text-sm font-light">attacking</p>
             </div>
             <span className="h-6 w-1 bg-partnersBorders" />
             <div className="flex flex-col justify-center">
@@ -88,13 +88,13 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
             </div>
             <span className="h-6 w-1 bg-partnersBorders" />
             <div className="flex flex-col justify-center">
-              <h4 className=" text-center text-md">12</h4>
-              <p className="text-xs sm:text-sm font-light">skill</p>
+              <h4 className=" text-center text-md">40</h4>
+              <p className="text-xs sm:text-sm font-light">mentality</p>
             </div>
             <span className="h-6 w-1 bg-partnersBorders" />
             <div className="flex flex-col justify-center">
               <h4 className=" text-center text-md">78</h4>
-              <p className="text-xs sm:text-sm font-light">defense</p>
+              <p className="text-xs sm:text-sm font-light">defending</p>
             </div>
           </div>
         </div>
