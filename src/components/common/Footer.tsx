@@ -9,7 +9,6 @@ import {
   TikTokIcon,
   WhiteTwitterIcon,
   PageLogo,
-  ArrowButton,
 } from './Icon';
 import Link from 'next/link';
 
@@ -193,9 +192,9 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center pb-2">
             <p className="text-white text-sm font-Segoe opacity-70">
-              @{year} Athletifi. All rights reserved
+              &copy;{year} Athletifi. All rights reserved
             </p>
           </div>
         </div>
