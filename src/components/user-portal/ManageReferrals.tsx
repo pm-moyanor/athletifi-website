@@ -9,13 +9,13 @@ const dummyDataReferrals = [
     name: 'Gloria Carrillo',
   },
   {
-    name: 'Gloria Carrillo',
+    name: 'Andrew Carrillo',
   },
 ];
 
 const dummyDataInvites = [
   {
-    name: 'Andrew Guilmore',
+    name: 'Gloria Guilmore',
   },
   {
     name: 'Andrew Guilmore',
@@ -25,6 +25,16 @@ const dummyDataInvites = [
 export default function ManageReferrals() {
   const [referrals, setReferrals] = useState(dummyDataReferrals);
   const [invites, setInvites] = useState(dummyDataInvites);
+
+  function handleAddReferral(referralName: string) {}
+
+  function handleRemoveReferral(i: number) {
+    setReferrals(referrals.filter((item, idx) => idx !== i));
+  }
+
+  function handleRemoveInvites(i: number) {
+    setInvites(invites.filter((item, idx) => idx !== i));
+  }
 
   return (
     <div className="flex flex-col mt-16 text-white">
@@ -43,7 +53,10 @@ export default function ManageReferrals() {
             className="flex justify-between items-center py-4 mx-4 border-b border-b-offwhite"
           >
             <div>{referral.name}</div>
-            <div className="flex items-center cursor-pointer">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={() => handleRemoveReferral(idx)}
+            >
               <div className="mx-4">remove</div>
               <FontAwesomeIcon
                 className="text-chartRed text-basemd md:text-3xl"
@@ -52,15 +65,20 @@ export default function ManageReferrals() {
             </div>
           </div>
         ))}
-        <div className="flex justify-between items-center py-4 mx-4 border-b border-b-offwhite">
-          <div className="text-offwhite">New guest</div>
-          <div className="flex items-center cursor-pointer">
+        <div className="flex justify-between items-center py-2 mx-4 border-b border-b-offwhite">
+          <input
+            type="text"
+            name="new-referral"
+            placeholder="New guest"
+            className="text-offwhite border-0 bg-inherit py-3"
+          />
+          <button className="flex items-center cursor-pointer" type="submit">
             <div className="mx-4">add</div>
             <FontAwesomeIcon
               className="text-skyblue text-basemd md:text-3xl"
               icon={faPlus}
             />
-          </div>
+          </button>
         </div>
         <div className="p-4 mt-4">Cards you have been invited to see</div>
         {invites.map((invite, idx) => (
@@ -69,7 +87,10 @@ export default function ManageReferrals() {
             className="flex justify-between items-center py-4 mx-4 border-b border-b-offwhite"
           >
             <div>{invite.name}</div>
-            <div className="flex items-center cursor-pointer">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={() => handleRemoveInvites(idx)}
+            >
               <div className="mx-4">remove</div>
               <FontAwesomeIcon
                 className="text-chartRed text-basemd md:text-3xl"

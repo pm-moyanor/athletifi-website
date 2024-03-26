@@ -122,9 +122,9 @@ const Navbar: React.FC = () => {
         setShowDropdown(false);
       }
     }
-    window.addEventListener('mousedown', handleOutSideClick);
+    window.addEventListener('mouseup', handleOutSideClick);
     // clean up
-    return () => window.removeEventListener('mousedown', handleOutSideClick);
+    return () => window.removeEventListener('mouseup', handleOutSideClick);
   }, [showDropdown]);
 
   function handleLogout() {}
