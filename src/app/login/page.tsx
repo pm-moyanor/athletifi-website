@@ -1,11 +1,11 @@
 import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
+import Navbar from '@/components/dashboard/NavBar';
 import SignUpIn from '@/components/signup-signin/SignUpIn';
 
 const LoginPage = () => {
   return (
     <div>
-      <Header />
+      <Navbar />
 
       <main>
         <SignUpIn isSignupPage={false} />

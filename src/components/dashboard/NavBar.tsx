@@ -1,7 +1,15 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { PageLogo } from '../common/Icon';
+import {
+  WhiteFacebookIcon,
+  WhiteInstaIcon,
+  WhiteLinkedInIcon,
+  TikTokIcon,
+  WhiteTwitterIcon,
+  PageLogo,
+} from '../common/Icon';
+
 //import { MotionConfig, motion } from 'framer-motion';
 
 //----------------animated button-----------------
@@ -82,36 +90,14 @@ import { PageLogo } from '../common/Icon';
 //     },
 //   },
 // };
+const linksStyle = `opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto`;
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [path, setPath] = useState<string>('');
-
-  useEffect(() => {
-    // Set the path state to the current pathname on the client side
-    setPath(window.location.pathname);
-
-    const handleBodyOverflow = () => {
-      if (open) {
-        document.body.classList.add('overflow-hidden');
-      } else {
-        document.body.classList.remove('overflow-hidden');
-      }
-    };
-
-    if (typeof window !== 'undefined') {
-      handleBodyOverflow();
-    }
-
-    return () => {
-      // Clean up to remove class when component unmounts or path changes
-      document.body.classList.remove('overflow-hidden');
-    };
-  }, [open]);
 
   return (
     <header>
-      <div id="nav_bar" className=" absolute w-full py-4">
+      <div id="nav_bar" className=" absolute w-full py-4 font-sourceSansPro">
         <div className="container flex items-center justify-between w-full max-w-none lg:max-w-1130 2xl:max-w-1320 px-4">
           <Link href="/">
             <PageLogo />
@@ -119,22 +105,22 @@ const Navbar: React.FC = () => {
           {/* SMALL SCREEN MENU ICONS */}
           <div
             onClick={() => setOpen(!open)}
-            className="flex flex-col md:hidden bg-transparent border-0 relative z-50 cursor-pointer"
+            className="flex flex-col md:hidden bg-transparent border-0 relative z-50 cursor-pointer p-4"
           >
-            <span className="h-3pixel w-35 bg-white inline-block rounded-sm"></span>
+            <span className="h-3pixel w-8 bg-white inline-block rounded-sm"></span>
             <span className="my-2 h-3pixel w-7 bg-white inline-block rounded-sm"></span>
-            <span className="h-3pixel w-35 bg-white inline-block rounded-sm"></span>
+            <span className="h-3pixel w-8 bg-white inline-block rounded-sm"></span>
           </div>
           <div
             className={
               open
-                ? 'header__nav--open h-full w-full z-20 fixed top-0 left-0 duration-500 transition-all bg-blackBG min-h-screen'
+                ? 'header__nav--open h-full w-full z-20 fixed top-0 left-0 duration-500 transition-all bg-cardsDark flex items-center justify-center flex-col'
                 : 'header__nav--open md:relative fixed min-h-screen md:min-h-full -left-full md:left-0 duration-500 md:ml-0 md:mt-0 z-50 top-0'
             }
           >
             {/* NAV PAGE LINKS */}
             <ul
-              className="flex items-center gap-25 md:gap-40pixel flex-col md:flex-row h-full justify-center text-md text-primary font-sourceSansPro"
+              className=" h-full flex items-center gap-[20px] md:gap-40pixel flex-col md:flex-row  justify-center text-5xl md:text-base text-primary font-sourceSansPro"
               role="navigation"
               aria-label="Main"
             >
@@ -142,9 +128,8 @@ const Navbar: React.FC = () => {
                 <Link
                   onClick={() => setOpen(false)}
                   href="/"
-                  className={` opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                    path == '/' ? '!opacity-100' : ''
-                  }`}
+                  className={` ${linksStyle} 
+                  `}
                 >
                   Home
                 </Link>
@@ -153,9 +138,9 @@ const Navbar: React.FC = () => {
                 <Link
                   onClick={() => setOpen(false)}
                   href="/about-us"
-                  className={`opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                    path == '/about-us' ? '!opacity-100 ' : ''
-                  }`}
+                  className={` ${linksStyle}  
+                    
+                  `}
                 >
                   About us
                 </Link>
@@ -164,9 +149,7 @@ const Navbar: React.FC = () => {
                 <Link
                   onClick={() => setOpen(false)}
                   href="/news?page=1"
-                  className={` opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                    path == '/news' ? '!opacity-100' : ''
-                  }`}
+                  className={` ${linksStyle}  `}
                 >
                   News
                 </Link>
@@ -175,32 +158,81 @@ const Navbar: React.FC = () => {
               <li>
                 <Link
                   onClick={() => setOpen(false)}
-                  href="/dashboard/vsa-23/1"
-                  className={`pacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
-                    path == '/dashboard' ? '!opacity-100' : ''
-                  }`}
+                  href="/contact-us"
+                  className={` ${linksStyle}  
+                 
+                  `}
                 >
-                  Dashboard
+                  Contact
                 </Link>
               </li>
+
               <li>
-                <Link
-                  href="/contact-us"
-                  onClick={() => setOpen(false)}
-                  className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white md:hidden"
-                >
-                  Contact Us
-                </Link>
+                <div className="flex font-sourceSansPro flex-1 mt-8 md:mt-0 md:ml-[75px] justify-end max-w-[280px]">
+                  <button className=" text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue">
+                    Log in
+                  </button>
+                  <button className="text-darkgray ml-2 w-[100px]  bg-skyblue text-sm rounded-full">
+                    Sign up
+                  </button>
+                </div>
               </li>
             </ul>
+            {open && (
+              <>
+                <div className="h-1 bg-offwhite w-4/5 mt-12 mb-6 " />
+                <div className="mt-auto mb-12">
+                  <div className="flex gap-4 md:order-3 px-15 md:px-0">
+                    <Link
+                      aria-label="Tik-Tok"
+                      className="hover:-translate-y-1 transition duration-300 ease-out"
+                      href="https://www.tiktok.com/@athletifi"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <TikTokIcon />
+                    </Link>
+                    <Link
+                      aria-label="facebook"
+                      className="hover:-translate-y-1 transition duration-300 ease-out"
+                      href="https://www.facebook.com/profile.php?id=61553263775533"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <WhiteFacebookIcon />
+                    </Link>
+                    <Link
+                      aria-label="twitter"
+                      className="hover:-translate-y-1 transition duration-300 ease-out"
+                      href="https://twitter.com/Athletifi"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <WhiteTwitterIcon />
+                    </Link>
+                    <Link
+                      aria-label="instagram"
+                      className="hover:-translate-y-1 transition duration-300 ease-out"
+                      href="https://www.instagram.com/athletifi/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <WhiteInstaIcon />
+                    </Link>
+                    <Link
+                      aria-label="linkedin"
+                      className="hover:-translate-y-1 transition duration-300 ease-out"
+                      href="https://www.linkedin.com/company/athletifi/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <WhiteLinkedInIcon />
+                    </Link>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
-          <Link
-            href="/contact-us"
-            onClick={() => setOpen(false)}
-            className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden md:inline-block"
-          >
-            Contact Us
-          </Link>
         </div>
       </div>
     </header>
