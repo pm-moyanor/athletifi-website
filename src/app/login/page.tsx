@@ -2,16 +2,17 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import SignUpIn from '@/components/signup-signin/SignUpIn';
 
-const RegisterPage = () => {
+const LoginPage = () => {
   return (
     <div>
       <Header />
+
       <main>
-        <SignUpIn isSignupPage={true} />;
+        <SignUpIn isSignupPage={false} />
       </main>
       <Footer />
     </div>
   );
 };
 
-export default RegisterPage;
+export default LoginPage;
