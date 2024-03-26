@@ -170,10 +170,10 @@ const Navbar: React.FC = () => {
               <li>
                 <div className="flex font-sourceSansPro flex-1 mt-8 md:mt-0 md:ml-[75px] justify-end max-w-[280px]">
                   <button className=" text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue">
-                    Log in
+                    <Link href="/login">Log in</Link>
                   </button>
                   <button className="text-darkgray ml-2 w-[100px]  bg-skyblue text-sm rounded-full">
-                    Sign up
+                    <Link href="/register">Sign up</Link>
                   </button>
                 </div>
               </li>
