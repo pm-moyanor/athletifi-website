@@ -44,6 +44,7 @@ module.exports = {
         darkerSkyBlue: '#00C7FF',
         darkgray: '#0D171F',
         extraDarkBlue: '#00c3f47b',
+        settingsGray: '#A8A9AD',
         matchtitles: 'rgba(0, 197, 244, 0.05)',
         offwhite: '#B1B5B8',
         partnersBorders: '#49545C',
@@ -57,6 +58,7 @@ module.exports = {
         chartPurple: '#5A54A2',
         cardsBackground: '#113448',
         cardsDark: '#032436',
+        cardsDark2: '#032537',
         lineAtBase: '#11729C',
       },
       container: {

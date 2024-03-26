@@ -1,7 +1,9 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { PageLogo } from '../common/Icon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 //import { MotionConfig, motion } from 'framer-motion';
 
 //----------------animated button-----------------
@@ -86,6 +88,9 @@ import { PageLogo } from '../common/Icon';
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [path, setPath] = useState<string>('');
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const dropdown = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Set the path state to the current pathname on the client side
@@ -108,6 +113,21 @@ const Navbar: React.FC = () => {
       document.body.classList.remove('overflow-hidden');
     };
   }, [open]);
+
+  useEffect(() => {
+    // only add the event listener when the dropdown is opened
+    if (!showDropdown) return;
+    function handleOutSideClick(event: MouseEvent) {
+      if (!dropdown.current?.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    }
+    window.addEventListener('mousedown', handleOutSideClick);
+    // clean up
+    return () => window.removeEventListener('mousedown', handleOutSideClick);
+  }, [showDropdown]);
+
+  function handleLogout() {}
 
   return (
     <header>
@@ -197,10 +217,47 @@ const Navbar: React.FC = () => {
           <Link
             href="/contact-us"
             onClick={() => setOpen(false)}
-            className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden md:inline-block"
+            // className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden md:inline-block"
+            className="hidden"
           >
             Contact Us
           </Link>
+          <div className="hidden relative md:flex text-offwhite">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={() => setShowDropdown(!showDropdown)}
+            >
+              <p className="text-md px-2 md:px-4">Daniel Carrillo</p>
+              <FontAwesomeIcon icon={faChevronDown} />
+            </div>
+            {showDropdown && (
+              <div
+                ref={dropdown}
+                className="absolute flex flex-col top-10 z-20 bg-cardsDark rounded p-6 gap-4"
+              >
+                <Link href="/" className="hover:text-white">
+                  My cards
+                </Link>
+                <Link
+                  href="/settings"
+                  onClick={() => setShowDropdown(!showDropdown)}
+                  className="hover:text-white"
+                >
+                  Settings
+                </Link>
+                <Link href="/" className="hover:text-white">
+                  Help & Support
+                </Link>
+                <div className="border-t border-t-offwhite opacity-75"></div>
+                <div
+                  className="hover:text-white cursor-pointer"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </header>
