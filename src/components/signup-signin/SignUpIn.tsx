@@ -4,16 +4,57 @@ import React, { useState } from 'react';
 interface SignupProps {
   isSignupPage: boolean;
 }
+interface ValidationErrors {
+  [key: string]: string | null;
+}
 
 const SignUpIn: React.FC<SignupProps> = ({ isSignupPage }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [errors, setErrors] = useState<ValidationErrors>({});
 
-  //need to add the functionality
-  const handleSignUp = () => {
-    console.log(email, password);
+  const validateEmail = (email: string): string | null => {
+    if (!email.match(/^\S+@\S+\.\S+$/)) {
+      return 'Invalid email address';
+    }
+    return null;
   };
+
+  const validatePassword = (password: string): string | null => {
+    if (password.length < 8) {
+      return 'Password must be at least 8 characters long';
+    }
+    return null;
+  };
+
+  const validateConfirmPassword = (confirmPassword: string): string | null => {
+    if (confirmPassword !== password) {
+      return 'Passwords do not match';
+    }
+    return null;
+  };
+
+  const handleBlur = (field: string, value: string) => {
+    let error: string | null = null;
+    switch (field) {
+      case 'email':
+        error = validateEmail(value);
+        break;
+      case 'password':
+        error = validatePassword(value);
+        break;
+      case 'confirmPassword':
+        error = validateConfirmPassword(value);
+        break;
+      default:
+        break;
+    }
+    setErrors((prevErrors) => ({ ...prevErrors, [field]: error }));
+  };
+  // const handleSignUp = () => {
+
+  // };
 
   return (
     <div className=" flex justify-center h-auto items-center py-[50px]">
@@ -53,18 +94,24 @@ const SignUpIn: React.FC<SignupProps> = ({ isSignupPage }) => {
         </div>
         <div className="h-px bg-partnersBorders w-full my-4" />
         <form className="flex flex-col w-full h-[450px] items-end justify-around text-primary">
-          <div className="flex flex-col w-full">
+          <div className="relative flex flex-col w-full">
             <label className="mb-2 font-thin">Enter your email address</label>
             <input
               type="email"
               placeholder="Email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onBlur={(e) => handleBlur('email', e.target.value)}
               className="h-[53px] bg-cardsBackground rounded-lg pl-3 font-extralight text-sm"
             />
+            {errors.email && (
+              <p className="absolute bottom-0 right-0 -mb-6 text-red-500 text-sm font-extralight">
+                {errors.email}
+              </p>
+            )}
           </div>
           <div
-            className={`flex flex-col w-full ${!isSignupPage ? '-mt-10' : 'mt-0'}`}
+            className={`relative flex flex-col w-full ${!isSignupPage ? '-mt-10' : 'mt-0'}`}
           >
             <label className="mb-2 font-thin">Enter your password</label>
             <input
@@ -72,8 +119,14 @@ const SignUpIn: React.FC<SignupProps> = ({ isSignupPage }) => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onBlur={(e) => handleBlur('password', e.target.value)}
               className="h-[53px] bg-cardsBackground rounded-lg pl-3 font-extralight text-sm"
             />
+            {errors.password && (
+              <p className="absolute bottom-0 right-0 -mb-6 text-red-500 text-sm font-extralight ">
+                {errors.password}
+              </p>
+            )}
             {!isSignupPage && (
               // need to add the logic to recover password
               <p className="opacity-50 font-extralight mt-[4px] pr-2 w-full text-right">
@@ -82,7 +135,7 @@ const SignUpIn: React.FC<SignupProps> = ({ isSignupPage }) => {
             )}
           </div>
           {isSignupPage && (
-            <div className="flex flex-col my-3 w-full">
+            <div className="relative flex flex-col my-3 w-full">
               <label className="text-primary mb-2 font-thin">
                 Confirm your password
               </label>
@@ -91,14 +144,20 @@ const SignUpIn: React.FC<SignupProps> = ({ isSignupPage }) => {
                 placeholder="Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="h-[53px] bg-cardsBackground rounded-lg pl-3 font-extralight mb-12 text-sm"
+                onBlur={(e) => handleBlur('confirmPassword', e.target.value)}
+                className="h-[53px] bg-cardsBackground rounded-lg pl-3 font-extralight  text-sm"
               />
+              {errors.confirmPassword && (
+                <p className=" absolute bottom-0 right-0 -mb-6 text-red-500 text-sm font-extralight">
+                  {errors.confirmPassword}
+                </p>
+              )}
             </div>
           )}
 
           <button
-            onClick={handleSignUp}
-            className="w-[200px] md:w-[230px] h-[43px] md:h-[53px] rounded-full bg-darkerSkyBlue shadow-md shadow-lime-500/20 text-darkgray"
+            // onClick={handleSignUp}
+            className="w-[200px] md:w-[230px] h-[43px] md:h-[53px] rounded-full bg-darkerSkyBlue shadow-md shadow-lime-500/20 text-darkgray mt-12"
           >
             {isSignupPage ? 'Sign up' : 'Sign in'}
           </button>
