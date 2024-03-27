@@ -29,7 +29,7 @@ const PastMatches: React.FC<IPastMatches> = ({
   return (
     <>
       {past_matches && past_matches[0]?.home_club_logo ? (
-        <div className="w-full px-0 md:px-4 lg:px-0 lg:w-2/3 lg:max-w-[640px]">
+        <div className="w-full px-0 md:px-4 lg:px-0 lg:w-2/3 lg:max-w-[640px] max-h-[550px] lg:max-h-[355px] overflow-auto">
           <h2 className="text-primary font-semibold text-2xl mb-6 font-sourceSansPro">
             Past matches
           </h2>
@@ -61,7 +61,7 @@ const PastMatches: React.FC<IPastMatches> = ({
           </motion.div>
         </div>
       ) : (
-        <Skeleton className="min-w-[343px] md:min-w-[778px] lg:min-w-[640px] min-h-[530px] md:min-h-[355px] lg:min-h-[355px] mb-10 lg:mb-0" />
+        <Skeleton className="min-w-[343px] md:min-w-[778px] lg:min-w-[640px] min-h-[550px] md:min-h-[355px] mb-10 lg:mb-0" />
       )}
     </>
   );

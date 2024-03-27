@@ -7,7 +7,7 @@ const Teammates: React.FC<ITeammates> = ({ teammates }: ITeammates) => {
   return (
     <>
       {teammates && teammates[0]?.name ? (
-        <div className="bg-cardsBackground p-4 w-full lg:w-[330px] rounded-10 my-12 lg:my-0 ml-0 lg:ml-6 shadow-md ">
+        <div className="bg-cardsBackground p-4 w-full lg:w-[330px] rounded-10 my-12 lg:my-0 ml-0 lg:ml-6 shadow-md max-h-96 md:max-h-52 lg:max-h-96 overflow-auto">
           <h2 className="text-primary font-semibold text-[20px] font-sourceSansPro">
             Teammates
           </h2>
@@ -42,7 +42,7 @@ const Teammates: React.FC<ITeammates> = ({ teammates }: ITeammates) => {
           </div>
         </div>
       ) : (
-        <Skeleton className="min-w-[343px] md:min-w-[778px] lg:min-w-[330px]  min-h-[426px] md:min-h-[217px] lg:min-h-[458px] mb-12 lg:mb-0" />
+        <Skeleton className="min-w-[343px] md:min-w-[778px] lg:min-w-[330px] min-h-[426px] md:min-h-[217px] lg:min-h-[355px] mb-12 lg:mb-0" />
       )}
     </>
   );
