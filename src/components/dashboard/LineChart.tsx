@@ -87,13 +87,13 @@ const dummyData = [
 ];
 
 const attributeConfigs: IAttributeConfig = {
-  attacking: {
-    color: '#DA393B',
-    description: 'Attacking description goes here',
-  },
   skill: {
     color: '#27B6BD',
     description: 'Skill description goes here',
+  },
+  attacking: {
+    color: '#DA393B',
+    description: 'Attacking description goes here',
   },
   physical: {
     color: '#B09E03',

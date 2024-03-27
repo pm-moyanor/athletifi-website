@@ -72,7 +72,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
 
   return (
     <>
-      <div className="overflow-hidden">
+      <div className="overflow-hidden font-sourceSansPro">
         <Navbar />
         <div className="bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] flex justify-center w-full border-collapse">
           <HeroBanner
