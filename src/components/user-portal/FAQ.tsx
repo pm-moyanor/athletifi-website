@@ -21,7 +21,7 @@ const faqDummyData = [
   },
   {
     question:
-      "Can I return my virtual card if I'm not satisfied with the soccer stats service?",
+      "Can I return my virtual card if I'm not satisfied with the card?",
     answer:
       'Due to the nature of virtual cards offering access to digital content, we do not offer refunds. However, we strive to ensure customer satisfaction and are happy to assist with any issues.',
   },
@@ -31,10 +31,9 @@ const faqDummyData = [
       'Yes, our virtual cards for accessing soccer stats are accessible internationally. As long as you have an internet connection, you can access them from anywhere in the world.',
   },
   {
-    question:
-      'Is there a warranty on your virtual cards for accessing soccer stats?',
+    question: 'Is there a warranty?',
     answer:
-      'We do not offer warranties on virtual cards, but we are committed to providing quality service and support for accessing soccer stats.',
+      'We do not offer warranties, but we are committed to providing quality service and support for accessing soccer stats.',
   },
 ];
 
@@ -46,7 +45,7 @@ const Accordion: FC<{ faqData: FAQData[] }> = () => {
   };
 
   return (
-    <div className="w-full max-w-[850px]">
+    <div className="w-full">
       <div className=" bg-cardsDark bg-opacity-70 mt-7 rounded-10">
         {faqDummyData.map((faq, idx) => (
           <div key={idx} className={`flex justify-between items-center px-4`}>
