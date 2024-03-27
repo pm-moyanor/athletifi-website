@@ -97,8 +97,8 @@ const Navbar: React.FC = () => {
 
   return (
     <header>
-      <div id="nav_bar" className=" absolute w-full py-4 font-sourceSansPro">
-        <div className="container flex items-center justify-between w-full max-w-none lg:max-w-1130 2xl:max-w-1320 px-4">
+      <div id="nav_bar" className="absolute w-full p-4 font-sourceSansPro">
+        <div className="container flex items-center justify-between w-full max-w-none  px-4">
           <Link href="/">
             <PageLogo />
           </Link>
@@ -120,7 +120,7 @@ const Navbar: React.FC = () => {
           >
             {/* NAV PAGE LINKS */}
             <ul
-              className=" h-full flex items-center gap-[20px] md:gap-40pixel flex-col md:flex-row  justify-center text-6xl font-extralight md:text-base text-primary font-sourceSansPro"
+              className=" h-full flex items-center gap-[20px] md:gap-7 flex-col md:flex-row  justify-center text-6xl font-extralight md:text-base text-primary font-sourceSansPro"
               role="navigation"
               aria-label="Main"
             >
@@ -168,7 +168,7 @@ const Navbar: React.FC = () => {
               </li>
 
               <li>
-                <div className="flex font-sourceSansPro flex-1 mt-8 md:mt-0 md:ml-[75px] justify-end max-w-[280px]">
+                <div className="flex font-sourceSansPro flex-1 mt-8 md:mt-0 md:ml-12 justify-end max-w-[280px]">
                   <button className=" text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
                     <Link href="/login">Log in</Link>
                   </button>
