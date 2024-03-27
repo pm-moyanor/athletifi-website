@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
 import PortalNav from './PortalNav';
@@ -7,7 +7,11 @@ const dummyDataUser = {
   name: 'Daniel Carrillo',
 };
 
-export default function Header() {
+interface HeaderProps {
+  pageTitle: string;
+}
+
+const Header: FC<HeaderProps> = ({ pageTitle }) => {
   const [user, setUser] = useState(dummyDataUser);
   const [isOpenSideNav, setIsOpenSideNav] = useState(false);
 
@@ -39,8 +43,10 @@ export default function Header() {
       </div>
       <div className="flex border-t border-t-offwhite opacity-50"></div>
       <h1 className="font-bold text-4xl md:text-6xl text-white opacity-75 my-5">
-        Settings
+        {pageTitle}
       </h1>
     </>
   );
-}
+};
+
+export default Header;
