@@ -67,7 +67,7 @@ const SignUpIn: React.FC<SignupProps> = ({ isSignupPage }) => {
                 AthletiFi
               </a>
             </h4>
-            <h2 className="text-primary text-[45px] md:text-[55px] -mt-2 md:mt-2 font-semibold">
+            <h2 className="text-primary text-[45px] md:text-6xl -mt-2 md:mt-2 font-semibold">
               {isSignupPage ? 'Sign up' : 'Sign in'}
             </h2>
           </div>
@@ -128,7 +128,6 @@ const SignUpIn: React.FC<SignupProps> = ({ isSignupPage }) => {
               </p>
             )}
             {!isSignupPage && (
-              // need to add the logic to recover password
               <p className="opacity-50 font-extralight mt-[4px] pr-2 w-full text-right">
                 Forgot your password?
               </p>
