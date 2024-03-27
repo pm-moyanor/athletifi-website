@@ -105,7 +105,7 @@ const Navbar: React.FC = () => {
           {/* SMALL SCREEN MENU ICONS */}
           <div
             onClick={() => setOpen(!open)}
-            className="flex flex-col md:hidden bg-transparent border-0 relative z-50 cursor-pointer p-4"
+            className="flex flex-col md:hidden bg-transparent border-0 relative z-50 cursor-pointer p-4 hover:opacity-90 transform hover:scale-95 ease-in-out"
           >
             <span className="h-3pixel w-8 bg-white inline-block rounded-sm"></span>
             <span className="my-2 h-3pixel w-7 bg-white inline-block rounded-sm"></span>
@@ -114,13 +114,13 @@ const Navbar: React.FC = () => {
           <div
             className={
               open
-                ? 'header__nav--open h-full w-full z-20 fixed top-0 left-0 duration-500 transition-all bg-cardsDark flex items-center justify-center flex-col'
-                : 'header__nav--open md:relative fixed min-h-screen md:min-h-full -left-full md:left-0 duration-500 md:ml-0 md:mt-0 z-50 top-0'
+                ? 'h-full w-full z-20 fixed bg-cardsDark flex items-center justify-center flex-col  top-0 left-0 duration-500 transition-all'
+                : 'md:relative fixed md:min-h-full md:left-0 md:ml-0 md:mt-0 z-50 top-0 -left-full'
             }
           >
             {/* NAV PAGE LINKS */}
             <ul
-              className=" h-full flex items-center gap-[20px] md:gap-40pixel flex-col md:flex-row  justify-center text-5xl md:text-base text-primary font-sourceSansPro"
+              className=" h-full flex items-center gap-[20px] md:gap-40pixel flex-col md:flex-row  justify-center text-6xl font-extralight md:text-base text-primary font-sourceSansPro"
               role="navigation"
               aria-label="Main"
             >
@@ -169,10 +169,10 @@ const Navbar: React.FC = () => {
 
               <li>
                 <div className="flex font-sourceSansPro flex-1 mt-8 md:mt-0 md:ml-[75px] justify-end max-w-[280px]">
-                  <button className=" text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue">
+                  <button className=" text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
                     <Link href="/login">Log in</Link>
                   </button>
-                  <button className="text-darkgray ml-2 w-[100px]  bg-skyblue text-sm rounded-full">
+                  <button className="text-darkgray ml-2 w-[100px]  bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
                     <Link href="/register">Sign up</Link>
                   </button>
                 </div>
