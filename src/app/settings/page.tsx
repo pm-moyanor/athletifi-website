@@ -1,3 +1,5 @@
+'use client';
+
 import Navbar from '@/components/dashboard/NavBar';
 import BackToTop from '@/components/common/BackToTop';
 import Footer from '@/components/common/Footer';
