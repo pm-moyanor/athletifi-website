@@ -8,11 +8,16 @@ import AccountDetails from '@/components/user-portal/AccountDetails';
 import Notifications from '@/components/user-portal/Notifications';
 import ManageReferrals from '@/components/user-portal/ManageReferrals';
 import Header from '@/components/user-portal/Header';
+import { Source_Sans_3 } from 'next/font/google';
+const sourceSans3 = Source_Sans_3({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 const SettingsPage = () => {
   return (
-    <>
-      <div className="overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground font-sourceSansPro">
+    <div className={sourceSans3.className}>
+      <div className="overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground ">
         <Navbar />
         <main className="mx-2 md:mx-20 my-32 md:my-36 lg:my-48 text-sm md:text-base">
           <Header pageTitle={'Settings'} />
@@ -23,7 +28,7 @@ const SettingsPage = () => {
         <BackToTop />
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 
