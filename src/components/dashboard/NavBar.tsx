@@ -218,7 +218,7 @@ const Navbar: React.FC = () => {
                       >
                         Settings
                       </Link>
-                      <Link href="/" className="hover:text-white">
+                      <Link href="/help-support" className="hover:text-white">
                         Help & Support
                       </Link>
                       <div className="border-t border-t-offwhite opacity-75"></div>
