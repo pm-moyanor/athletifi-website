@@ -12,13 +12,19 @@ import {
   faPaperPlane,
   faMessage,
 } from '@fortawesome/free-solid-svg-icons';
-
+import { Source_Sans_3 } from 'next/font/google';
+const sourceSans3 = Source_Sans_3({
+  subsets: ['latin'],
+  display: 'swap',
+});
 interface HelpPageProps {}
 
 const HelpPage: FC<HelpPageProps> = () => {
   return (
     <>
-      <div className="overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground w-full">
+      <div
+        className={`${sourceSans3.className} overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground w-full`}
+      >
         <Navbar />
         <main className="mx-4 md:mx-20 my-32 md:my-36 lg:my-48 text-sm md:text-sm md:text-base flex flex-col justify-center">
           <Header pageTitle={'Help & Support'} />
