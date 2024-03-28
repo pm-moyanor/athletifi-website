@@ -35,7 +35,7 @@ export default function Notifications() {
   }
 
   return (
-    <div className="flex flex-col mt-16 text-white">
+    <div className="flex flex-col mt-16 text-primary">
       <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-4">
         Notifications
       </h2>

@@ -14,8 +14,8 @@ const SettingsPage = () => {
     <>
       <div className="overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground font-sourceSansPro">
         <Navbar />
-        <main className="mx-2 md:mx-20 my-32 md:my-36 lg:my-48 text-sm md:text-md">
-          <Header />
+        <main className="mx-2 md:mx-20 my-32 md:my-36 lg:my-48 text-sm md:text-base">
+          <Header pageTitle={'Settings'} />
           <AccountDetails />
           <Notifications />
           <ManageReferrals />
