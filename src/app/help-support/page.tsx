@@ -20,7 +20,7 @@ const HelpPage: FC<HelpPageProps> = () => {
     <>
       <div className="overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground w-full">
         <Navbar />
-        <main className="mx-4 md:mx-20 my-32 md:my-36 lg:my-48 text-sm md:text-base flex flex-col justify-center">
+        <main className="mx-4 md:mx-20 my-32 md:my-36 lg:my-48 text-sm md:text-sm md:text-base flex flex-col justify-center">
           <Header pageTitle={'Help & Support'} />
           <div className="flex justify-center">
             <div className="flex flex-col mt-12 w-full justify-center max-w-[880px]">
@@ -32,7 +32,7 @@ const HelpPage: FC<HelpPageProps> = () => {
               </div>
               <div className="h-px w-full bg-partnersBorders my-12"></div>
               <div>
-                <p className="text-primary text-base mb-6">
+                <p className="text-primary text-sm md:text-base mb-6">
                   Can’t find what you are looking for?
                 </p>
                 <div className="w-full flex justify-between bg-cardsDark py-2 px-6 rounded-10">
@@ -41,7 +41,7 @@ const HelpPage: FC<HelpPageProps> = () => {
                       icon={faPaperPlane}
                       className="text-skyblue mr-3"
                     />
-                    <p className="text-primary text-base font-extralight">
+                    <p className="text-primary text-sm md:text-base font-extralight">
                       Send an email
                     </p>
                   </div>
@@ -50,7 +50,7 @@ const HelpPage: FC<HelpPageProps> = () => {
                       icon={faMessage}
                       className="text-skyblue mr-3"
                     />
-                    <p className="text-primary text-base font-extralight">
+                    <p className="text-primary text-sm md:text-base font-extralight">
                       Chat with us
                     </p>
                   </div>
@@ -64,7 +64,9 @@ const HelpPage: FC<HelpPageProps> = () => {
                     className="text-skyblue mr-3"
                     icon={faFlag}
                   />
-                  <p className="text-primary text-base">Report a problem</p>
+                  <p className="text-primary text-sm md:text-base">
+                    Report a problem
+                  </p>
                 </div>
 
                 <div className="flex items-center cursor-pointer">
@@ -73,7 +75,9 @@ const HelpPage: FC<HelpPageProps> = () => {
                       className="text-skyblue mr-3"
                       icon={faCircleInfo}
                     />
-                    <p className="text-primary text-base">Terms and Policies</p>
+                    <p className="text-primary text-sm md:text-base">
+                      Terms and Policies
+                    </p>
                   </div>
                 </div>
               </div>
