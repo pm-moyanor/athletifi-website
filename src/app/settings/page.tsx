@@ -12,7 +12,7 @@ import Header from '@/components/user-portal/Header';
 const SettingsPage = () => {
   return (
     <>
-      <div className="overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground">
+      <div className="overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground font-sourceSansPro">
         <Navbar />
         <main className="mx-2 md:mx-20 my-32 md:my-36 lg:my-48 text-sm md:text-md">
           <Header pageTitle={'Settings'} />
