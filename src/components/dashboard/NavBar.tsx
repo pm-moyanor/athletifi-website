@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import {
   WhiteFacebookIcon,
@@ -9,6 +9,8 @@ import {
   WhiteTwitterIcon,
   PageLogo,
 } from '../common/Icon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 //import { MotionConfig, motion } from 'framer-motion';
 
@@ -94,6 +96,25 @@ const linksStyle = `opacity-80 hover:opacity-100 duration-300 relative after:con
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const dropdown = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // only add the event listener when the dropdown is opened
+    if (!showDropdown) return;
+    function handleOutSideClick(event: MouseEvent) {
+      if (!dropdown.current?.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    }
+    window.addEventListener('mouseup', handleOutSideClick);
+    // clean up
+    return () => window.removeEventListener('mouseup', handleOutSideClick);
+  }, [showDropdown]);
+
+  function handleLogout() {}
 
   return (
     <header>
@@ -128,8 +149,7 @@ const Navbar: React.FC = () => {
                 <Link
                   onClick={() => setOpen(false)}
                   href="/"
-                  className={` ${linksStyle} 
-                  `}
+                  className={` ${linksStyle} `}
                 >
                   Home
                 </Link>
@@ -138,9 +158,7 @@ const Navbar: React.FC = () => {
                 <Link
                   onClick={() => setOpen(false)}
                   href="/about-us"
-                  className={` ${linksStyle}  
-                    
-                  `}
+                  className={` ${linksStyle} `}
                 >
                   About us
                 </Link>
@@ -149,7 +167,7 @@ const Navbar: React.FC = () => {
                 <Link
                   onClick={() => setOpen(false)}
                   href="/news?page=1"
-                  className={` ${linksStyle}  `}
+                  className={` ${linksStyle} `}
                 >
                   News
                 </Link>
@@ -159,24 +177,61 @@ const Navbar: React.FC = () => {
                 <Link
                   onClick={() => setOpen(false)}
                   href="/contact-us"
-                  className={` ${linksStyle}  
-                 
-                  `}
+                  className={` ${linksStyle} `}
                 >
                   Contact
                 </Link>
               </li>
 
-              <li>
-                <div className="flex font-sourceSansPro flex-1 mt-8 md:mt-0 md:ml-12 justify-end max-w-[280px]">
-                  <button className=" text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
-                    <Link href="/login">Log in</Link>
-                  </button>
-                  <button className="text-darkgray ml-2 w-[100px]  bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
-                    <Link href="/register">Sign up</Link>
-                  </button>
+              {!isLoggedIn ? (
+                <li>
+                  <div className="flex font-sourceSansPro flex-1 mt-8 md:mt-0 md:ml-12 justify-end max-w-[280px]">
+                    <button className=" text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
+                      <Link href="/login">Log in</Link>
+                    </button>
+                    <button className="text-darkgray ml-2 w-[100px]  bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
+                      <Link href="/register">Sign up</Link>
+                    </button>
+                  </div>
+                </li>
+              ) : (
+                <div className="hidden relative md:flex item text-offwhite">
+                  <div
+                    className="flex items-center cursor-pointer"
+                    onClick={() => setShowDropdown(!showDropdown)}
+                  >
+                    <p className="text-md px-2 md:px-4">Daniel Carrillo</p>
+                    <FontAwesomeIcon icon={faChevronDown} />
+                  </div>
+                  {showDropdown && (
+                    <div
+                      ref={dropdown}
+                      className="absolute flex flex-col top-10 z-20 bg-cardsDark rounded p-6 gap-4"
+                    >
+                      <Link href="/" className="hover:text-white">
+                        My cards
+                      </Link>
+                      <Link
+                        href="/settings"
+                        onClick={() => setShowDropdown(!showDropdown)}
+                        className="hover:text-white"
+                      >
+                        Settings
+                      </Link>
+                      <Link href="/" className="hover:text-white">
+                        Help & Support
+                      </Link>
+                      <div className="border-t border-t-offwhite opacity-75"></div>
+                      <div
+                        className="hover:text-white cursor-pointer"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </li>
+              )}
             </ul>
             {open && (
               <>
