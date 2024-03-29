@@ -23,7 +23,12 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
   away_club_logo,
   away_score,
   player_ratings,
+  is_goalkeeper,
 }: ILatestMatchProps) => {
+  const excludeKey = is_goalkeeper ? 'attacking' : 'goalkeeping';
+  const filteredRatings = player_ratings?.filter(
+    (x) => x.attribute !== excludeKey,
+  );
   return (
     <>
       {home_score !== null ? (
@@ -72,30 +77,22 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
           </div>
 
           <div className="flex justify-between items-center mb-2 sm:mb-4 md:mb-0 mx-1 sm:mx-6">
-            <div className="flex flex-col justify-center">
-              <h4 className=" text-center text-md">12</h4>
-              <p className="text-xs sm:text-sm font-light">skill</p>
-            </div>
-            <span className="h-6 w-1 bg-partnersBorders" />
-            <div className="flex flex-col justify-center">
-              <h4 className="text-center text-md">56</h4>
-              <p className="text-xs sm:text-sm font-light">attacking</p>
-            </div>
-            <span className="h-6 w-1 bg-partnersBorders" />
-            <div className="flex flex-col justify-center">
-              <h4 className=" text-center text-md">87</h4>
-              <p className="text-xs sm:text-sm font-light">physical</p>
-            </div>
-            <span className="h-6 w-1 bg-partnersBorders" />
-            <div className="flex flex-col justify-center">
-              <h4 className=" text-center text-md">40</h4>
-              <p className="text-xs sm:text-sm font-light">mentality</p>
-            </div>
-            <span className="h-6 w-1 bg-partnersBorders" />
-            <div className="flex flex-col justify-center">
-              <h4 className=" text-center text-md">78</h4>
-              <p className="text-xs sm:text-sm font-light">defending</p>
-            </div>
+            {filteredRatings.map((rating, idx) => (
+              <>
+                <div
+                  key={idx}
+                  className="flex flex-col justify-center items-center"
+                >
+                  <h4 className="text-center text-md">{rating.rating}</h4>
+                  <p className="text-xs sm:text-sm font-light">
+                    {rating.attribute}
+                  </p>
+                </div>
+                {idx < filteredRatings.length - 1 && (
+                  <span className="min-h-6 min-w-[1px] bg-partnersBorders" />
+                )}
+              </>
+            ))}
           </div>
         </div>
       ) : (

@@ -122,6 +122,7 @@ export interface IMatchDataWithWeather extends IMatchData {
 
 export interface ILatestMatchProps extends IMatchDataWithWeather {
   player_ratings: IRating[];
+  is_goalkeeper: boolean;
 }
 
 export const emptyLatestMatchData: IMatchDataWithWeather = {
