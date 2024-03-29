@@ -18,7 +18,7 @@ export interface IAttributeConfig {
     color: string;
     description: string;
   };
-  attacking: {
+  attacking?: {
     color: string;
     description: string;
   };
@@ -31,6 +31,10 @@ export interface IAttributeConfig {
     description: string;
   };
   defending: {
+    color: string;
+    description: string;
+  };
+  goalkeeping?: {
     color: string;
     description: string;
   };
@@ -74,6 +78,7 @@ export interface IRating {
 export interface IRatingProps {
   overall_rating: number | null;
   player_ratings?: IRating[];
+  is_goalkeeper?: boolean;
 }
 
 export interface IBarProps {
@@ -87,6 +92,7 @@ export interface ILineProps {
   physical?: boolean;
   mental?: boolean;
   defending?: boolean;
+  goalkeeping?: boolean;
   hover: Attributes | undefined | null;
 }
 
@@ -215,10 +221,11 @@ export const emptyMatchData: IMatchDataExtended = {
 export interface ILatestPlayerRatings {
   name: string | null;
   skill: string | null;
-  attacking: string | null;
+  attacking?: string | null;
   physical: string | null;
   mentality: string | null;
   defending: string | null;
+  goalkeeping?: string | null;
 }
 
 export const emptyLatestPlayerRatings: ILatestPlayerRatings = {
@@ -228,6 +235,7 @@ export const emptyLatestPlayerRatings: ILatestPlayerRatings = {
   physical: null,
   mentality: null,
   defending: null,
+  goalkeeping: null,
 };
 
 export interface DashboardData {

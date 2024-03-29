@@ -22,6 +22,8 @@ interface PageProps {
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
+const isGoalKeeper: boolean = false;
+
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
 const testAWSFetch = async (cardId: string) => {
   const response = await fetch(`${baseURL}/dashboard/${cardId}`);
@@ -115,8 +117,9 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
             </div>
             <div className="mb-3 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-3 lg:order-2">
               <Charts
-                overallRating={dashboardData?.overallRating}
+                overall_rating={dashboardData?.overallRating}
                 player_ratings={dashboardData?.latestPlayerRating}
+                is_goalkeeper={isGoalKeeper}
               />
             </div>
           </div>
