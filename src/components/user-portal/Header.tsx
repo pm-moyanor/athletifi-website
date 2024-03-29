@@ -12,7 +12,7 @@ interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = ({ pageTitle }) => {
-  const [user, setUser] = useState(dummyDataUser);
+  const [user] = useState(dummyDataUser);
   const [isOpenSideNav, setIsOpenSideNav] = useState(false);
 
   return (

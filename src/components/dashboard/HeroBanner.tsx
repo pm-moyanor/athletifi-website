@@ -37,7 +37,7 @@ const HeroBanner: React.FC<IProfileProps> = ({
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isVisible]);
 
   // Scroll onclick the screen down by one screen height
   const handleIconClick = () => {
