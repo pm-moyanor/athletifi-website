@@ -122,7 +122,6 @@ const attributeConfigs: IAttributeConfig = {
 
 const StatsLineChart: React.FC<IRatingProps> = ({
   overall_rating,
-  player_ratings,
   is_goalkeeper,
 }: IRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 850px)');

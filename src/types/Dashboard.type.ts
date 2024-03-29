@@ -8,6 +8,7 @@ export type PlayerDashboardProps = {
 export enum Attributes {
   Skill = 'skill',
   Attacking = 'attacking',
+  Goalkeeping = 'goalkeeping',
   Physical = 'physical',
   Mental = 'mental',
   Defending = 'defending',
@@ -18,7 +19,11 @@ export interface IAttributeConfig {
     color: string;
     description: string;
   };
-  attacking?: {
+  attacking: {
+    color: string;
+    description: string;
+  };
+  goalkeeping: {
     color: string;
     description: string;
   };
@@ -31,10 +36,6 @@ export interface IAttributeConfig {
     description: string;
   };
   defending: {
-    color: string;
-    description: string;
-  };
-  goalkeeping?: {
     color: string;
     description: string;
   };
@@ -87,12 +88,12 @@ export interface IBarProps {
 }
 
 export interface ILineProps {
-  attacking?: boolean;
   skill?: boolean;
+  attacking?: boolean;
+  goalkeeping?: boolean;
   physical?: boolean;
   mental?: boolean;
   defending?: boolean;
-  goalkeeping?: boolean;
   hover: Attributes | undefined | null;
 }
 
@@ -223,20 +224,20 @@ export interface ILatestPlayerRatings {
   name: string | null;
   skill: string | null;
   attacking?: string | null;
+  goalkeeping?: string | null;
   physical: string | null;
   mentality: string | null;
   defending: string | null;
-  goalkeeping?: string | null;
 }
 
 export const emptyLatestPlayerRatings: ILatestPlayerRatings = {
   name: '',
   skill: null,
   attacking: null,
+  goalkeeping: null,
   physical: null,
   mentality: null,
   defending: null,
-  goalkeeping: null,
 };
 
 export interface DashboardData {
