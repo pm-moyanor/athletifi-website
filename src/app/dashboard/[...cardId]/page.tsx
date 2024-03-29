@@ -22,7 +22,7 @@ interface PageProps {
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-const isGoalKeeper: boolean = false;
+const isGoalKeeper: boolean = true;
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
 const testAWSFetch = async (cardId: string) => {
