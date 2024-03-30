@@ -13,6 +13,7 @@ import BeyondNumbers from '@/components/home/BeyondNumbers';
 import HeroHomepage from '@/components/home/HeroHomepage';
 import { SEO_CONFIG } from '@/utils/seoConfig';
 import { getNewsList } from '@/utils/ApiHelper';
+import CardThumbnail from '@/components/user-portal/CardThumbnail';
 
 const BackToTop = dynamic(() => import('@/components/common/BackToTop'), {
   ssr: false,
@@ -61,6 +62,7 @@ export default async function Home() {
           </div>
         </div>
         <main>
+          <CardThumbnail />
           <FollowTomorrow />
           <PassiveEngagement />
           <BeyondNumbers />
