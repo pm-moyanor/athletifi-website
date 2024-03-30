@@ -47,7 +47,7 @@ const StatsBarChart: React.FC<IRatingProps> = ({
   const isMobile = useMediaQuery('(max-width: 1023px)');
   const xKey = 'attribute';
   const yKey = 'rating';
-
+  console.log(player_ratings);
   const resetProps = {
     click: null,
     hover: null,
