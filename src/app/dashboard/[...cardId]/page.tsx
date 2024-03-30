@@ -29,7 +29,6 @@ const testAWSFetch = async (cardId: string) => {
   if (!cardId || !data) {
     return notFound();
   }
-  console.log(data);
   return data;
 };
 
@@ -38,30 +37,55 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
     useState<DashboardData>(emptyDashboardData);
   const { cardId } = useParams();
   const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
-
+  console.log(dashboardData);
   useEffect(() => {
     testAWSFetch(cardIdValue as string)
       .then((data) => {
-        console.log(data[1].result);
-        const playerRatings = Object.keys(data[1].result)
-          .filter((x) => x !== 'name')
-          .map((attr) => {
-            return {
-              attribute: attr,
-              rating: Math.trunc(Number(data[1].result[attr])),
-            };
-          });
+        console.log(data);
+        const playerRatings = data.result.player_ratings.map((playerRating) => {
+          if (!playerRating.is_goalkeeper) {
+            return Object.keys(playerRating)
+              .filter(
+                (x) =>
+                  x !== 'name' &&
+                  x !== 'src_ref' &&
+                  x !== 'rating_date' &&
+                  x !== 'is_goalkeeper' &&
+                  x !== 'goalkeeping',
+              )
+              .map((attr) => {
+                return {
+                  attribute: attr,
+                  rating: Math.trunc(Number(playerRating[attr])),
+                };
+              });
+          }
+          return Object.keys(playerRating)
+            .filter(
+              (x) => x !== 'name' && x !== 'src_ref' && x !== 'rating_date',
+            )
+            .map((attr) => {
+              return {
+                attribute: attr,
+                rating: Math.trunc(Number(playerRating[attr])),
+              };
+            });
+        });
+        console.log(playerRatings);
+        const flattenedPlayerRatings = playerRatings.flat();
+        console.log(flattenedPlayerRatings);
         const overallRating = Math.round(
-          playerRatings.reduce((a, b) => a + b.rating, 0) /
-            playerRatings.length,
+          flattenedPlayerRatings.reduce((a, b) => a + b.rating, 0) /
+            flattenedPlayerRatings.length,
         );
+        console.log(overallRating);
         const dataObject = {
-          latestMatch: data[0].result,
-          latestPlayerRating: playerRatings,
+          latestMatch: data.result.past_matches[0],
+          latestPlayerRating: playerRatings[0],
           overallRating: overallRating,
-          matchesList: data[2].result,
-          playerProfile: data[3].result,
-          teammates: data[4].result,
+          matchesList: data.result.past_matches,
+          playerProfile: data.result,
+          teammates: data.result.teammates,
         };
         setDashboardData(dataObject);
       })
