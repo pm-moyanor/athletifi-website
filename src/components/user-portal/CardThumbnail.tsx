@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Card from './../../../public/assets/img/png/jose-card-img.png';
 import Image from 'next/image';
+import { ButtonWhiteArrow } from '../common/Icon';
 
 const CardThumbnail: React.FC = () => {
   const [isToggle, setIsToggle] = useState<boolean>(false);
@@ -43,7 +44,23 @@ const CardThumbnail: React.FC = () => {
         </button>
       </div>
       {isToggle && (
-        <div className="w-full p-3 bd-white">This is the hidden content</div>
+        <div className="w-full p-3 flex flex-col justify-center">
+          <p className="font-SourceSansPro-Semibold px-3 text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
+            Enter the email of the recipient to share this
+          </p>
+          <div className="w-full p-3 flex">
+            <input
+              type="email"
+              placeholder="Type email here"
+              className="w-full p-3 border rounded-l-lg "
+              // onChange={(e) => setEmail(e.target.value)}
+            />
+            {/* create a submit button here */}
+            <button className="w-1/6 p-3 text-primary font-SourceSansPro-Semibold text-sm md:text-base leading-6 flex items-center justify-center bg-darkerSkyBlue rounded-r-lg ">
+              <ButtonWhiteArrow />
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
