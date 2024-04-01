@@ -10,11 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-import {
-  IAttributeConfig,
-  ILineProps,
-  ILegendProps,
-} from '@/types/Dashboard.type';
+import { IAttributeConfig, ILineProps } from '@/types/Dashboard.type';
 import { LegendEventType, ILegendMouseEvent } from '@/types/Chart.type';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
 import { TooltipProps } from 'recharts';
@@ -24,113 +20,16 @@ import {
 } from 'recharts/types/component/DefaultTooltipContent';
 import Skeleton from 'react-loading-skeleton';
 import { IRatingProps } from '@/types/Dashboard.type';
+import { attributeConfigs } from '@/app/utils/dashboardHelper';
 
 const DEFAULT_COLOR = 'rgba(128, 128, 128, 0.15)';
 
-const dummyData = [
-  {
-    match: '1',
-    skill: 75,
-    attacking: 30,
-    goalkeeping: 30,
-    physical: 70,
-    mentality: 60,
-    defending: 85,
-  },
-  {
-    match: '2',
-    skill: 85,
-    attacking: 40,
-    goalkeeping: 40,
-    physical: 75,
-    mentality: 63,
-    defending: 85,
-  },
-  {
-    match: '3',
-    skill: 80,
-    attacking: 50,
-    goalkeeping: 50,
-    physical: 75,
-    mentality: 66,
-    defending: 85,
-  },
-  {
-    match: '4',
-    skill: 90,
-    attacking: 70,
-    goalkeeping: 70,
-    physical: 70,
-    mentality: 69,
-    defending: 85,
-  },
-  {
-    match: '5',
-    skill: 85,
-    attacking: 60,
-    goalkeeping: 60,
-    physical: 75,
-    mentality: 75,
-    defending: 85,
-  },
-  {
-    match: '6',
-    skill: 90,
-    attacking: 80,
-    goalkeeping: 80,
-    physical: 75,
-    mentality: 75,
-    defending: 85,
-  },
-  {
-    match: '7',
-    skill: 85,
-    attacking: 75,
-    goalkeeping: 75,
-    physical: 70,
-    mentality: 80,
-    defending: 85,
-  },
-];
-
-const attributeConfigs: IAttributeConfig = {
-  skill: {
-    color: '#27B6BD',
-    description: 'Skill description goes here',
-  },
-  attacking: {
-    color: '#DA393B',
-    description: 'Attacking description goes here',
-  },
-  goalkeeping: {
-    color: '#DA393B',
-    description: 'Goalkeeping description goes here',
-  },
-  physical: {
-    color: '#B09E03',
-    description: 'Physical description goes here',
-  },
-  mentality: {
-    color: '#FC6713',
-    description: 'Mentality description goes here',
-  },
-  defending: {
-    color: '#5A54A2',
-    description: 'Defending description goes here',
-  },
-};
-
 const StatsLineChart: React.FC<IRatingProps> = ({
   overall_rating,
-  is_goalkeeper,
+  player_ratings,
+  chart_fields,
 }: IRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 850px)');
-
-  const excludeKey = is_goalkeeper ? 'attacking' : 'goalkeeping';
-  const filteredRatings = dummyData?.map((x) => {
-    delete x[excludeKey];
-    return x;
-  });
 
   const [lineProps, setLineProps] = useState<ILineProps>(
     Object.keys(attributeConfigs).reduce(
@@ -142,25 +41,23 @@ const StatsLineChart: React.FC<IRatingProps> = ({
     ),
   );
 
-  function CustomLegend(props: ILegendProps) {
-    const { payload } = props;
-    const attributes = payload?.filter((x) => x.value !== excludeKey);
+  function CustomLegend() {
     return (
       <div className="flex flex-row lg:flex-col justify-center lg:items-center flex-wrap">
-        {attributes?.map((entry, index) => (
+        {chart_fields.map((value, index) => (
           <div
             key={`line-item-${index}`}
             className="stats-legend__buttons"
             style={{
-              background: !lineProps[entry.value as keyof ILineProps]
-                ? attributeConfigs[entry.value as keyof IAttributeConfig].color
+              background: !lineProps[value as keyof ILineProps]
+                ? attributeConfigs[value as keyof IAttributeConfig].color
                 : DEFAULT_COLOR,
             }}
             onClick={(data) => selectLine(data)}
             onMouseEnter={(data) => handleLegendMouseEnter(data)}
             onMouseLeave={() => handleLegendMouseLeave()}
           >
-            {entry.value}
+            {value}
           </div>
         ))}
       </div>
@@ -225,7 +122,7 @@ const StatsLineChart: React.FC<IRatingProps> = ({
         <LineChart
           width={500}
           height={300}
-          data={filteredRatings}
+          data={player_ratings}
           margin={
             isMobile
               ? {

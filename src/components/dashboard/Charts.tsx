@@ -31,17 +31,25 @@ const tabInfo = [
 ];
 
 const Charts = ({
-  overall_rating,
+  latest_player_ratings,
   player_ratings,
-  is_goalkeeper,
+  chart_fields,
 }: IRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 1024px)');
 
   const [isLatestActive, setIsLatestActive] = useState(true);
 
+  const overall_rating = Math.round(
+    latest_player_ratings
+      .map((x) => x.rating)
+      .reduce(function (avg, value, _, { length }) {
+        return avg + value / length;
+      }, 0),
+  );
+
   return (
     <>
-      {overall_rating ? (
+      {latest_player_ratings ? (
         <div className="stats-chart__container bg-cardsBackground">
           <div className="flex text-sm md:text-md text-white border-b border-gray-500">
             <div
@@ -79,14 +87,16 @@ const Charts = ({
             {isLatestActive ? (
               <StatsBarChartWithNoSSR
                 overall_rating={overall_rating}
-                player_ratings={player_ratings}
-                is_goalkeeper={is_goalkeeper}
+                latest_player_ratings={latest_player_ratings}
+                player_ratings={[]}
+                chart_fields={chart_fields}
               />
             ) : (
               <StatsLineChartWithNoSSR
                 overall_rating={overall_rating}
+                latest_player_ratings={[]}
                 player_ratings={player_ratings}
-                is_goalkeeper={is_goalkeeper}
+                chart_fields={chart_fields}
               />
             )}
           </section>

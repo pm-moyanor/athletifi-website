@@ -1,4 +1,5 @@
 import type { Payload } from 'recharts/types/component/DefaultLegendContent';
+import { FieldPlayerRatings, GoalKeeperRatings } from '@/utils/dashboardHelper';
 
 export type PlayerDashboardProps = {
   params: { cardId: number };
@@ -10,7 +11,7 @@ export enum Attributes {
   Attacking = 'attacking',
   Goalkeeping = 'goalkeeping',
   Physical = 'physical',
-  Mental = 'mental',
+  Mentality = 'mentality',
   Defending = 'defending',
 }
 
@@ -71,15 +72,25 @@ export const emptyProfileProps: IProfileProps = {
   card_url: null,
 };
 
+export interface IRatingRaw {
+  rating_date: string;
+  skill: string;
+  attacking_goalkeeping: string;
+  physical: string;
+  mentality: string;
+  defending: string;
+}
+
 export interface IRating {
-  attribute?: string;
-  rating?: number;
+  attribute: string;
+  rating: number;
 }
 
 export interface IRatingProps {
-  overall_rating: number | null;
-  player_ratings?: IRating[];
-  is_goalkeeper?: boolean;
+  overall_rating?: number;
+  latest_player_ratings: IRating[];
+  player_ratings: IRatingRaw[];
+  chart_fields: typeof FieldPlayerRatings | typeof GoalKeeperRatings;
 }
 
 export interface IBarProps {
@@ -92,7 +103,7 @@ export interface ILineProps {
   attacking?: boolean;
   goalkeeping?: boolean;
   physical?: boolean;
-  mental?: boolean;
+  mentality?: boolean;
   defending?: boolean;
   hover: Attributes | undefined | null;
 }
@@ -123,7 +134,6 @@ export interface IMatchDataWithWeather extends IMatchData {
 
 export interface ILatestMatchProps extends IMatchDataWithWeather {
   player_ratings: IRating[];
-  is_goalkeeper: boolean;
 }
 
 export const emptyLatestMatchData: IMatchDataWithWeather = {
@@ -243,17 +253,19 @@ export const emptyLatestPlayerRatings: ILatestPlayerRatings = {
 export interface DashboardData {
   latestMatch: IMatchDataWithWeather; // replace 'any' with the type of your data
   latestPlayerRating: IRating[];
-  overallRating: number;
+  playerRatings: IRatingRaw[];
   matchesList: IMatchDataExtended[]; // replace 'any' with the type of your data
   playerProfile: IProfileProps; // replace 'any' with the type of your data
   teammates: ITeammate[]; // replace 'any' with the type of your data
+  chartFields: typeof FieldPlayerRatings | typeof GoalKeeperRatings;
 }
 
 export const emptyDashboardData: DashboardData = {
   latestMatch: emptyLatestMatchData, // replace 'any' with the type of your data
   latestPlayerRating: [],
-  overallRating: 0,
+  playerRatings: [],
   matchesList: [emptyMatchData], // replace 'any' with the type of your data
   playerProfile: emptyProfileProps, // replace 'any' with the type of your data
   teammates: [emptyTeammate], // replace 'any' with the type of your data
+  chartFields: FieldPlayerRatings,
 };

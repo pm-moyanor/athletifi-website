@@ -16,16 +16,20 @@ import Navbar from '@/components/dashboard/NavBar';
 import BackToTop from '@/components/common/BackToTop';
 
 import { DashboardData, emptyDashboardData } from '@/types/Dashboard.type';
+import {
+  filterRatingData,
+  transformRatingData,
+  FieldPlayerRatings,
+  GoalKeeperRatings,
+} from '@/app/utils/dashboardHelper';
 
 interface PageProps {
   params: { cardId: string | number };
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-const isGoalKeeper: boolean = true;
-
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
-const testAWSFetch = async (cardId: string) => {
+const fetchHelper = async (cardId: string) => {
   const response = await fetch(`${baseURL}/dashboard/${cardId}`);
   const data = await response.json();
   if (!cardId || !data) {
@@ -39,55 +43,26 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
     useState<DashboardData>(emptyDashboardData);
   const { cardId } = useParams();
   const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
-  console.log(dashboardData);
+
   useEffect(() => {
-    testAWSFetch(cardIdValue as string)
+    fetchHelper(cardIdValue as string)
       .then((data) => {
-        console.log(data);
-        const playerRatings = data.result.player_ratings.map((playerRating) => {
-          if (!playerRating.is_goalkeeper) {
-            return Object.keys(playerRating)
-              .filter(
-                (x) =>
-                  x !== 'name' &&
-                  x !== 'src_ref' &&
-                  x !== 'rating_date' &&
-                  x !== 'is_goalkeeper' &&
-                  x !== 'goalkeeping',
-              )
-              .map((attr) => {
-                return {
-                  attribute: attr,
-                  rating: Math.trunc(Number(playerRating[attr])),
-                };
-              });
-          }
-          return Object.keys(playerRating)
-            .filter(
-              (x) => x !== 'name' && x !== 'src_ref' && x !== 'rating_date',
-            )
-            .map((attr) => {
-              return {
-                attribute: attr,
-                rating: Math.trunc(Number(playerRating[attr])),
-              };
-            });
-        });
-        console.log(playerRatings);
-        const flattenedPlayerRatings = playerRatings.flat();
-        console.log(flattenedPlayerRatings);
-        const overallRating = Math.round(
-          flattenedPlayerRatings.reduce((a, b) => a + b.rating, 0) /
-            flattenedPlayerRatings.length,
-        );
-        console.log(overallRating);
         const dataObject = {
           latestMatch: data.result.past_matches[0],
-          latestPlayerRating: playerRatings[0],
-          overallRating: overallRating,
+          latestPlayerRating: transformRatingData(
+            data.result.player_ratings[0],
+            data.result.is_goalkeeper,
+          ),
+          playerRatings: filterRatingData(
+            data.result.player_ratings,
+            data.result.is_goalkeeper,
+          ),
           matchesList: data.result.past_matches,
           playerProfile: data.result,
           teammates: data.result.teammates,
+          chartFields: data.result.is_goalkeeper
+            ? GoalKeeperRatings
+            : FieldPlayerRatings,
         };
         setDashboardData(dataObject);
       })
@@ -137,14 +112,13 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
                 away_club_logo={dashboardData?.latestMatch.away_club_logo}
                 away_score={dashboardData?.latestMatch.away_score}
                 player_ratings={dashboardData?.latestPlayerRating}
-                is_goalkeeper={isGoalKeeper}
               />
             </div>
             <div className="mb-3 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-3 lg:order-2">
               <Charts
-                overall_rating={dashboardData?.overallRating}
-                player_ratings={dashboardData?.latestPlayerRating}
-                is_goalkeeper={isGoalKeeper}
+                latest_player_ratings={dashboardData?.latestPlayerRating}
+                player_ratings={dashboardData?.playerRatings}
+                chart_fields={dashboardData?.chartFields}
               />
             </div>
           </div>

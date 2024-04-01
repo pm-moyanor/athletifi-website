@@ -41,12 +41,7 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
   away_club_logo,
   away_score,
   player_ratings,
-  is_goalkeeper,
 }: ILatestMatchProps) => {
-  const excludeKey = is_goalkeeper ? 'attacking' : 'goalkeeping';
-  const filteredRatings = player_ratings?.filter(
-    (x) => x.attribute !== excludeKey,
-  );
   return (
     <>
       {home_score !== null ? (
@@ -95,10 +90,10 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
           </div>
 
           <div className="flex justify-between items-center mb-2 sm:mb-4 md:mb-0 mx-1 sm:mx-6">
-            {filteredRatings.map((rating, idx) => (
+            {player_ratings.map((rating, idx) => (
               <RatingBox
                 key={idx}
-                isLast={idx === filteredRatings.length - 1}
+                isLast={idx === player_ratings.length - 1}
                 rating={rating}
               />
             ))}

@@ -13,46 +13,19 @@ import { useMediaQuery } from '@/app/utils/useMediaQuery';
 import { IAttributeConfig, IBarProps } from '@/types/Dashboard.type';
 import { LegendEventType, ILegendMouseEvent } from '@/types/Chart.type';
 import { IRatingProps } from '@/types/Dashboard.type';
+import { attributeConfigs } from '@/app/utils/dashboardHelper';
 
 const DEFAULT_COLOR = 'rgba(128, 128, 128, 0.15)';
 const LAYERCOLOR = '#ffffff';
 
-const attributeConfigs: IAttributeConfig = {
-  skill: {
-    color: '#27B6BD',
-    description: 'Skill description goes here',
-  },
-  attacking: {
-    color: '#DA393B',
-    description: 'Attacking description goes here',
-  },
-  goalkeeping: {
-    color: '#DA393B',
-    description: 'Goalkeeping description goes here',
-  },
-  physical: {
-    color: '#B09E03',
-    description: 'Physical description goes here',
-  },
-  mentality: {
-    color: '#FC6713',
-    description: 'Mentality description goes here',
-  },
-  defending: {
-    color: '#5A54A2',
-    description: 'Defending description goes here',
-  },
-};
-
 const StatsBarChart: React.FC<IRatingProps> = ({
   overall_rating,
-  player_ratings,
-  is_goalkeeper,
+  latest_player_ratings,
+  chart_fields,
 }: IRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 1023px)');
   const xKey = 'attribute';
   const yKey = 'rating';
-  console.log(player_ratings);
   const resetProps = {
     click: null,
     hover: null,
@@ -60,18 +33,10 @@ const StatsBarChart: React.FC<IRatingProps> = ({
 
   const [barProps, setBarProps] = useState<IBarProps>(resetProps);
 
-  const excludeKey = is_goalkeeper ? 'attacking' : 'goalkeeping';
-  const attributesArray = Object.keys(attributeConfigs).filter(
-    (x) => x !== excludeKey,
-  );
-  const filterPlayerRatings = player_ratings?.filter(
-    (x) => x.attribute !== excludeKey,
-  );
-
   function CustomLegend() {
     return (
       <div className="flex flex-row lg:flex-col justify-center lg:items-center flex-wrap">
-        {attributesArray.map((entry, index) => (
+        {chart_fields.map((entry, index) => (
           <div
             key={`bar-item-${index}`}
             className="stats-legend__buttons"
@@ -81,9 +46,11 @@ const StatsBarChart: React.FC<IRatingProps> = ({
                   ? attributeConfigs[entry as keyof IAttributeConfig].color
                   : DEFAULT_COLOR,
             }}
-            onClick={(player_ratings) => selectBar(player_ratings)}
-            onMouseEnter={(player_ratings) =>
-              handleLegendMouseEnter(player_ratings)
+            onClick={(latest_player_ratings) =>
+              selectBar(latest_player_ratings)
+            }
+            onMouseEnter={(latest_player_ratings) =>
+              handleLegendMouseEnter(latest_player_ratings)
             }
             onMouseLeave={() => handleLegendMouseLeave()}
           >
@@ -118,7 +85,7 @@ const StatsBarChart: React.FC<IRatingProps> = ({
     <>
       <ResponsiveContainer width={'100%'} height={295} debounce={50}>
         <BarChart
-          data={filterPlayerRatings}
+          data={latest_player_ratings}
           layout="vertical"
           margin={isMobile ? { left: -25, right: 30 } : { left: 40, right: 50 }}
         >
@@ -157,7 +124,7 @@ const StatsBarChart: React.FC<IRatingProps> = ({
               offset={15}
               style={{ fill: LAYERCOLOR }}
             />
-            {filterPlayerRatings?.map((d) => {
+            {latest_player_ratings?.map((d) => {
               return (
                 <Cell
                   key={d[xKey]}
