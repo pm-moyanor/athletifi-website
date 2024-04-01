@@ -1,5 +1,7 @@
 'use client';
+
 import { FC } from 'react';
+import Link from 'next/link';
 import Navbar from '@/components/dashboard/NavBar';
 import BackToTop from '@/components/common/BackToTop';
 import Footer from '@/components/common/Footer';
@@ -82,7 +84,19 @@ const HelpPage: FC<HelpPageProps> = () => {
                       icon={faCircleInfo}
                     />
                     <p className="text-primary text-sm md:text-base">
-                      Terms and Policies
+                      <Link
+                        href="/terms-of-use"
+                        className="hover:text-skyblue hover:underline"
+                      >
+                        Terms
+                      </Link>{' '}
+                      and{' '}
+                      <Link
+                        href="/privacy-policy"
+                        className="hover:text-skyblue hover:underline"
+                      >
+                        Policies
+                      </Link>
                     </p>
                   </div>
                 </div>
