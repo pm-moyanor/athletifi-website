@@ -47,7 +47,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
   useEffect(() => {
     fetchHelper(cardIdValue as string)
       .then((data) => {
-        const dataObject = {
+        const dataObject: DashboardData = {
           latestMatch: data.result.past_matches[0],
           latestPlayerRating: transformRatingData(
             data.result.player_ratings[0],

@@ -43,7 +43,7 @@ export const GoalKeeperRatings = [
   'defending',
 ];
 
-export function transformRatingData(data, is_goalkeeper = false) {
+export function transformRatingData(data: IRatingRaw, is_goalkeeper = false) {
   return Object.keys(data).flatMap((x) => {
     switch (x) {
       case 'rating_date':
@@ -52,22 +52,25 @@ export function transformRatingData(data, is_goalkeeper = false) {
         if (is_goalkeeper)
           return {
             attribute: 'goalkeeping',
-            rating: Math.trunc(Number(data[x])),
+            rating: Math.trunc(Number(data[x as keyof IRatingRaw])),
           };
         return {
           attribute: 'attacking',
-          rating: Math.trunc(Number(data[x])),
+          rating: Math.trunc(Number(data[x as keyof IRatingRaw])),
         };
       default:
         return {
           attribute: x,
-          rating: Math.trunc(Number(data[x])),
+          rating: Math.trunc(Number(data[x as keyof IRatingRaw])),
         };
     }
   });
 }
 
-export function filterRatingData(data, is_goalkeeper = false): IRatingRaw {
+export function filterRatingData(
+  data: IRatingRaw[],
+  is_goalkeeper = false,
+): IRatingRaw[] {
   return data.map((x: IRatingRaw) => {
     if (is_goalkeeper) {
       return {

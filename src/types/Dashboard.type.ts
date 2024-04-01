@@ -75,7 +75,9 @@ export const emptyProfileProps: IProfileProps = {
 export interface IRatingRaw {
   rating_date: string;
   skill: string | number;
-  attacking_goalkeeping: string | number;
+  attacking_goalkeeping?: string | number;
+  attacking?: string | number;
+  goalkeeping?: string | number;
   physical: string | number;
   mentality: string | number;
   defending: string | number;
