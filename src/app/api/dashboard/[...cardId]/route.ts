@@ -9,27 +9,11 @@ export async function GET(
   const cardId = Array.isArray(params.cardId)
     ? params.cardId.join('/')
     : params.cardId;
-
-  const endpoints = [
-    `latestMatch?dashboardSlug=${cardId}`,
-    `latestPlayerRating?dashboardSlug=${cardId}`,
-    // `matchDetails?dashboardSlug=${cardId}`,
-    `matchesList?dashboardSlug=${cardId}`,
-    `playerProfile?dashboardSlug=${cardId}`,
-    `teammates?dashboardSlug=${cardId}`,
-  ];
+  const dashboardEndpoint = `dashboardData?dashboardSlug=${cardId}`;
   try {
-    // const responses = await Promise.all(
-    //   endpoints.map((endpoint) => axiosClient.get(endpoint)),
-    // );
-    const responses = new Array(endpoints.length);
-    responses[0] = await axiosClient.get(endpoints[0]);
-    responses[1] = await axiosClient.get(endpoints[1]);
-    responses[2] = await axiosClient.get(endpoints[2]);
-    responses[3] = await axiosClient.get(endpoints[3]);
-    responses[4] = await axiosClient.get(endpoints[4]);
+    const response = await axiosClient.get(dashboardEndpoint);
 
-    const data = await Promise.all(responses.map((response) => response.data));
+    const data = response.data;
 
     return NextResponse.json(data);
   } catch (error) {

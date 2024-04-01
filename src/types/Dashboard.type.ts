@@ -1,4 +1,5 @@
 import type { Payload } from 'recharts/types/component/DefaultLegendContent';
+import { FieldPlayerRatings, GoalKeeperRatings } from '@/utils/dashboardHelper';
 
 export type PlayerDashboardProps = {
   params: { cardId: number };
@@ -8,8 +9,9 @@ export type PlayerDashboardProps = {
 export enum Attributes {
   Skill = 'skill',
   Attacking = 'attacking',
+  Goalkeeping = 'goalkeeping',
   Physical = 'physical',
-  Mental = 'mental',
+  Mentality = 'mentality',
   Defending = 'defending',
 }
 
@@ -19,6 +21,10 @@ export interface IAttributeConfig {
     description: string;
   };
   attacking: {
+    color: string;
+    description: string;
+  };
+  goalkeeping: {
     color: string;
     description: string;
   };
@@ -66,14 +72,27 @@ export const emptyProfileProps: IProfileProps = {
   card_url: null,
 };
 
+export interface IRatingRaw {
+  rating_date: string;
+  skill: string | number;
+  attacking_goalkeeping?: string | number;
+  attacking?: string | number;
+  goalkeeping?: string | number;
+  physical: string | number;
+  mentality: string | number;
+  defending: string | number;
+}
+
 export interface IRating {
-  attribute?: string;
-  rating?: number;
+  attribute: string;
+  rating: number;
 }
 
 export interface IRatingProps {
-  overall_rating: number | null;
-  player_ratings?: IRating[];
+  overall_rating?: number;
+  latest_player_ratings: IRating[];
+  player_ratings: IRatingRaw[];
+  chart_fields: typeof FieldPlayerRatings | typeof GoalKeeperRatings;
 }
 
 export interface IBarProps {
@@ -82,10 +101,11 @@ export interface IBarProps {
 }
 
 export interface ILineProps {
-  attacking?: boolean;
   skill?: boolean;
+  attacking?: boolean;
+  goalkeeping?: boolean;
   physical?: boolean;
-  mental?: boolean;
+  mentality?: boolean;
   defending?: boolean;
   hover: Attributes | undefined | null;
 }
@@ -215,7 +235,8 @@ export const emptyMatchData: IMatchDataExtended = {
 export interface ILatestPlayerRatings {
   name: string | null;
   skill: string | null;
-  attacking: string | null;
+  attacking?: string | null;
+  goalkeeping?: string | null;
   physical: string | null;
   mentality: string | null;
   defending: string | null;
@@ -225,6 +246,7 @@ export const emptyLatestPlayerRatings: ILatestPlayerRatings = {
   name: '',
   skill: null,
   attacking: null,
+  goalkeeping: null,
   physical: null,
   mentality: null,
   defending: null,
@@ -233,17 +255,19 @@ export const emptyLatestPlayerRatings: ILatestPlayerRatings = {
 export interface DashboardData {
   latestMatch: IMatchDataWithWeather; // replace 'any' with the type of your data
   latestPlayerRating: IRating[];
-  overallRating: number;
+  playerRatings: IRatingRaw[];
   matchesList: IMatchDataExtended[]; // replace 'any' with the type of your data
   playerProfile: IProfileProps; // replace 'any' with the type of your data
   teammates: ITeammate[]; // replace 'any' with the type of your data
+  chartFields: typeof FieldPlayerRatings | typeof GoalKeeperRatings;
 }
 
 export const emptyDashboardData: DashboardData = {
   latestMatch: emptyLatestMatchData, // replace 'any' with the type of your data
   latestPlayerRating: [],
-  overallRating: 0,
+  playerRatings: [],
   matchesList: [emptyMatchData], // replace 'any' with the type of your data
   playerProfile: emptyProfileProps, // replace 'any' with the type of your data
   teammates: [emptyTeammate], // replace 'any' with the type of your data
+  chartFields: FieldPlayerRatings,
 };

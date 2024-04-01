@@ -10,11 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-import {
-  IAttributeConfig,
-  ILineProps,
-  ILegendProps,
-} from '@/types/Dashboard.type';
+import { IAttributeConfig, ILineProps } from '@/types/Dashboard.type';
 import { LegendEventType, ILegendMouseEvent } from '@/types/Chart.type';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
 import { TooltipProps } from 'recharts';
@@ -24,93 +20,14 @@ import {
 } from 'recharts/types/component/DefaultTooltipContent';
 import Skeleton from 'react-loading-skeleton';
 import { IRatingProps } from '@/types/Dashboard.type';
+import { attributeConfigs } from '@/app/utils/dashboardHelper';
 
 const DEFAULT_COLOR = 'rgba(128, 128, 128, 0.15)';
 
-const dummyData = [
-  {
-    match: '1',
-    attacking: 30,
-    skill: 75,
-    physical: 70,
-    mentality: 60,
-    defending: 85,
-  },
-  {
-    match: '2',
-    attacking: 40,
-    skill: 85,
-    physical: 75,
-    mentality: 63,
-    defending: 85,
-  },
-  {
-    match: '3',
-    attacking: 50,
-    skill: 80,
-    physical: 75,
-    mentality: 66,
-    defending: 85,
-  },
-  {
-    match: '4',
-    attacking: 70,
-    skill: 90,
-    physical: 70,
-    mentality: 69,
-    defending: 85,
-  },
-  {
-    match: '5',
-    attacking: 60,
-    skill: 85,
-    physical: 75,
-    mentality: 75,
-    defending: 85,
-  },
-  {
-    match: '6',
-    attacking: 80,
-    skill: 90,
-    physical: 75,
-    mentality: 75,
-    defending: 85,
-  },
-  {
-    match: '7',
-    attacking: 75,
-    skill: 85,
-    physical: 70,
-    mentality: 80,
-    defending: 85,
-  },
-];
-
-const attributeConfigs: IAttributeConfig = {
-  skill: {
-    color: '#27B6BD',
-    description: 'Skill description goes here',
-  },
-  attacking: {
-    color: '#DA393B',
-    description: 'Attacking description goes here',
-  },
-  physical: {
-    color: '#B09E03',
-    description: 'Physical description goes here',
-  },
-  mentality: {
-    color: '#FC6713',
-    description: 'Mentality description goes here',
-  },
-  defending: {
-    color: '#5A54A2',
-    description: 'Defending description goes here',
-  },
-};
-
 const StatsLineChart: React.FC<IRatingProps> = ({
   overall_rating,
+  player_ratings,
+  chart_fields,
 }: IRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 850px)');
 
@@ -124,24 +41,23 @@ const StatsLineChart: React.FC<IRatingProps> = ({
     ),
   );
 
-  function CustomLegend(props: ILegendProps) {
-    const { payload } = props;
+  function CustomLegend() {
     return (
       <div className="flex flex-row lg:flex-col justify-center lg:items-center flex-wrap">
-        {payload?.map((entry, index) => (
+        {chart_fields.map((value, index) => (
           <div
             key={`line-item-${index}`}
             className="stats-legend__buttons"
             style={{
-              background: !lineProps[entry.value as keyof ILineProps]
-                ? attributeConfigs[entry.value as keyof IAttributeConfig].color
+              background: !lineProps[value as keyof ILineProps]
+                ? attributeConfigs[value as keyof IAttributeConfig].color
                 : DEFAULT_COLOR,
             }}
             onClick={(data) => selectLine(data)}
             onMouseEnter={(data) => handleLegendMouseEnter(data)}
             onMouseLeave={() => handleLegendMouseLeave()}
           >
-            {entry.value}
+            {value}
           </div>
         ))}
       </div>
@@ -206,7 +122,7 @@ const StatsLineChart: React.FC<IRatingProps> = ({
         <LineChart
           width={500}
           height={300}
-          data={dummyData}
+          data={player_ratings}
           margin={
             isMobile
               ? {

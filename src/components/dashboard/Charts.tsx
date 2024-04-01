@@ -2,7 +2,7 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
-import { IRating } from '@/types/Dashboard.type';
+import { IRatingProps } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
 
 const StatsBarChartWithNoSSR = dynamic(
@@ -31,19 +31,25 @@ const tabInfo = [
 ];
 
 const Charts = ({
-  overallRating,
+  latest_player_ratings,
   player_ratings,
-}: {
-  overallRating: number;
-  player_ratings: IRating[];
-}) => {
+  chart_fields,
+}: IRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 1024px)');
 
   const [isLatestActive, setIsLatestActive] = useState(true);
 
+  const overall_rating = Math.round(
+    latest_player_ratings
+      .map((x) => x.rating)
+      .reduce(function (avg, value, _, { length }) {
+        return avg + value / length;
+      }, 0),
+  );
+
   return (
     <>
-      {overallRating ? (
+      {latest_player_ratings ? (
         <div className="stats-chart__container bg-cardsBackground">
           <div className="flex text-sm md:text-md text-white border-b border-gray-500">
             <div
@@ -80,11 +86,18 @@ const Charts = ({
           <section className="flex flex-col items-start h-full min-h-[450px] gap-5 pt-6">
             {isLatestActive ? (
               <StatsBarChartWithNoSSR
-                overall_rating={overallRating}
-                player_ratings={player_ratings}
+                overall_rating={overall_rating}
+                latest_player_ratings={latest_player_ratings}
+                player_ratings={[]}
+                chart_fields={chart_fields}
               />
             ) : (
-              <StatsLineChartWithNoSSR overall_rating={overallRating} />
+              <StatsLineChartWithNoSSR
+                overall_rating={overall_rating}
+                latest_player_ratings={[]}
+                player_ratings={player_ratings}
+                chart_fields={chart_fields}
+              />
             )}
           </section>
         </div>
