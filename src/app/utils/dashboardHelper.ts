@@ -1,4 +1,4 @@
-import { IAttributeConfig } from '@/types/Dashboard.type';
+import { IAttributeConfig, IRatingRaw } from '@/types/Dashboard.type';
 
 export const attributeConfigs: IAttributeConfig = {
   skill: {
@@ -67,15 +67,26 @@ export function transformRatingData(data, is_goalkeeper = false) {
   });
 }
 
-export function filterRatingData(data, is_goalkeeper = false) {
-  return data.map((x) => {
-    const rating = x.attacking_goalkeeping;
-    delete x.attacking_goalkeeping;
+export function filterRatingData(data, is_goalkeeper = false): IRatingRaw {
+  return data.map((x: IRatingRaw) => {
     if (is_goalkeeper) {
-      x['goalkeeping'] = rating;
+      return {
+        rating_date: x.rating_date,
+        skill: Math.trunc(Number(x.skill)),
+        goalkeeping: Math.trunc(Number(x.attacking_goalkeeping)),
+        physical: Math.trunc(Number(x.physical)),
+        mentality: Math.trunc(Number(x.mentality)),
+        defending: Math.trunc(Number(x.defending)),
+      };
     } else {
-      x['attacking'] = rating;
+      return {
+        rating_date: x.rating_date,
+        skill: Math.trunc(Number(x.skill)),
+        attacking: Math.trunc(Number(x.attacking_goalkeeping)),
+        physical: Math.trunc(Number(x.physical)),
+        mentality: Math.trunc(Number(x.mentality)),
+        defending: Math.trunc(Number(x.defending)),
+      };
     }
-    return x;
   });
 }
