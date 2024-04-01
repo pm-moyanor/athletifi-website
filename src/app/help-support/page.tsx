@@ -44,7 +44,10 @@ const HelpPage: FC<HelpPageProps> = () => {
                   Can’t find what you are looking for?
                 </p>
                 <div className="w-full flex justify-between bg-cardsDark py-2 px-6 rounded-10">
-                  <div className="flex my-4">
+                  <a
+                    href="mailto:support@athleti.fi?subject=Inquiry&body=Dear%20Support%20Team,%0D%0A%0D%0AI%20have%20a%20question%20regarding%20your%20website.%0D%0A%0D%0A[Please%20provide%20more%20details%20about%20your%20inquiry]%0D%0A%0D%0AThank%20you%20for%20your%20assistance.%0D%0A%0D%0ABest%20regards,%0D%0A[Your%20Name]"
+                    className="flex my-4"
+                  >
                     <FontAwesomeIcon
                       icon={faPaperPlane}
                       className="text-skyblue mr-3"
@@ -52,7 +55,7 @@ const HelpPage: FC<HelpPageProps> = () => {
                     <p className="text-primary text-sm md:text-base font-extralight">
                       Send an email
                     </p>
-                  </div>
+                  </a>
                   <div className="flex my-4">
                     <FontAwesomeIcon
                       icon={faMessage}
