@@ -147,7 +147,8 @@ const StatsBarChart: React.FC<IRatingProps> = ({
         </div>
         <div className="ml-5 mr-8 lg:ml-[3.75rem] lg:mr-[3.25rem] w-full">
           {barProps.click ? (
-            <div className="text-white text-xs md:text-sm bg-gray-500/15 rounded-10 py-4 px-6 h-20 w-full">
+            // <div className="text-white text-xs md:text-sm bg-gray-500/15 rounded-10 py-4 px-6 h-20 w-full">
+            <div className="text-white text-xs md:text-sm bg-gray-500/15 rounded-10 py-4 px-6 mb-4 w-full">
               {
                 attributeConfigs[barProps.click as keyof IAttributeConfig]
                   .description
