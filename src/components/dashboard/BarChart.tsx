@@ -26,6 +26,10 @@ const attributeConfigs: IAttributeConfig = {
     color: '#DA393B',
     description: 'Attacking description goes here',
   },
+  goalkeeping: {
+    color: '#DA393B',
+    description: 'Goalkeeping description goes here',
+  },
   physical: {
     color: '#B09E03',
     description: 'Physical description goes here',
@@ -43,6 +47,7 @@ const attributeConfigs: IAttributeConfig = {
 const StatsBarChart: React.FC<IRatingProps> = ({
   overall_rating,
   player_ratings,
+  is_goalkeeper,
 }: IRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 1023px)');
   const xKey = 'attribute';
@@ -55,10 +60,18 @@ const StatsBarChart: React.FC<IRatingProps> = ({
 
   const [barProps, setBarProps] = useState<IBarProps>(resetProps);
 
+  const excludeKey = is_goalkeeper ? 'attacking' : 'goalkeeping';
+  const attributesArray = Object.keys(attributeConfigs).filter(
+    (x) => x !== excludeKey,
+  );
+  const filterPlayerRatings = player_ratings?.filter(
+    (x) => x.attribute !== excludeKey,
+  );
+
   function CustomLegend() {
     return (
       <div className="flex flex-row lg:flex-col justify-center lg:items-center flex-wrap">
-        {Object.keys(attributeConfigs).map((entry, index) => (
+        {attributesArray.map((entry, index) => (
           <div
             key={`bar-item-${index}`}
             className="stats-legend__buttons"
@@ -105,7 +118,7 @@ const StatsBarChart: React.FC<IRatingProps> = ({
     <>
       <ResponsiveContainer width={'100%'} height={295} debounce={50}>
         <BarChart
-          data={player_ratings}
+          data={filterPlayerRatings}
           layout="vertical"
           margin={isMobile ? { left: -25, right: 30 } : { left: 40, right: 50 }}
         >
@@ -144,7 +157,7 @@ const StatsBarChart: React.FC<IRatingProps> = ({
               offset={15}
               style={{ fill: LAYERCOLOR }}
             />
-            {player_ratings.map((d) => {
+            {filterPlayerRatings?.map((d) => {
               return (
                 <Cell
                   key={d[xKey]}

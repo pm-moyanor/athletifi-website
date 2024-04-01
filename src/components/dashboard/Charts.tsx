@@ -2,7 +2,7 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
-import { IRating } from '@/types/Dashboard.type';
+import { IRatingProps } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
 
 const StatsBarChartWithNoSSR = dynamic(
@@ -31,19 +31,17 @@ const tabInfo = [
 ];
 
 const Charts = ({
-  overallRating,
+  overall_rating,
   player_ratings,
-}: {
-  overallRating: number;
-  player_ratings: IRating[];
-}) => {
+  is_goalkeeper,
+}: IRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 1024px)');
 
   const [isLatestActive, setIsLatestActive] = useState(true);
 
   return (
     <>
-      {overallRating ? (
+      {overall_rating ? (
         <div className="stats-chart__container bg-cardsBackground">
           <div className="flex text-sm md:text-md text-white border-b border-gray-500">
             <div
@@ -80,11 +78,16 @@ const Charts = ({
           <section className="flex flex-col items-start h-full min-h-[450px] gap-5 pt-6">
             {isLatestActive ? (
               <StatsBarChartWithNoSSR
-                overall_rating={overallRating}
+                overall_rating={overall_rating}
                 player_ratings={player_ratings}
+                is_goalkeeper={is_goalkeeper}
               />
             ) : (
-              <StatsLineChartWithNoSSR overall_rating={overallRating} />
+              <StatsLineChartWithNoSSR
+                overall_rating={overall_rating}
+                player_ratings={player_ratings}
+                is_goalkeeper={is_goalkeeper}
+              />
             )}
           </section>
         </div>
