@@ -28,10 +28,10 @@ const HelpPage: FC<HelpPageProps> = () => {
         className={`${sourceSans3.className} overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground w-full`}
       >
         <Navbar />
-        <main className="mx-4 md:mx-20 my-32 md:my-36 lg:my-48 text-sm md:text-sm md:text-base flex flex-col justify-center">
+        <main className="mx-4 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-sm md:text-base">
           <Header pageTitle={'Help & Support'} />
           <div className="flex justify-center">
-            <div className="flex flex-col mt-12 w-full justify-center max-w-[880px]">
+            <div className="flex flex-col w-full justify-center max-w-[880px]">
               <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-2 md:px-4">
                 Frequently asked questions
               </h2>

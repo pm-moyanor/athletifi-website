@@ -26,25 +26,27 @@ const Header: FC<HeaderProps> = ({ pageTitle }) => {
       >
         <PortalNav />
       </div>
-      <div className="flex justify-end text-offwhite md:hidden pb-3">
-        <div
-          className="flex items-center cursor-pointer mx-3"
-          onClick={() => setIsOpenSideNav(!isOpenSideNav)}
-        >
-          {!isOpenSideNav ? (
-            <>
-              <p className="text-md px-2 md:px-4">{user.name}</p>
-              <FontAwesomeIcon icon={faChevronDown} />
-            </>
-          ) : (
-            <FontAwesomeIcon icon={faXmark} size="lg" />
-          )}
+      <div className="max-w-[1030px] mx-auto mb-[72px]">
+        <div className="flex justify-end text-offwhite md:hidden pb-3">
+          <div
+            className="flex items-center cursor-pointer mx-3"
+            onClick={() => setIsOpenSideNav(!isOpenSideNav)}
+          >
+            {!isOpenSideNav ? (
+              <>
+                <p className="text-md px-2 md:px-4">{user.name}</p>
+                <FontAwesomeIcon icon={faChevronDown} />
+              </>
+            ) : (
+              <FontAwesomeIcon icon={faXmark} size="lg" />
+            )}
+          </div>
         </div>
+        <div className="flex border-t border-t-offwhite opacity-50"></div>
+        <h1 className="font-bold text-[48px] md:text-[54px] text-white opacity-75 my-12">
+          {pageTitle}
+        </h1>
       </div>
-      <div className="flex border-t border-t-offwhite opacity-50"></div>
-      <h1 className="font-bold text-4xl md:text-6xl text-white opacity-75 my-5">
-        {pageTitle}
-      </h1>
     </>
   );
 };
