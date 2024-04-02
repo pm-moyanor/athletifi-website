@@ -118,15 +118,15 @@ const Navbar: React.FC = () => {
 
   return (
     <header>
-      <div id="nav_bar" className="absolute w-full p-4 font-sourceSansPro">
-        <div className="container flex items-center justify-between w-full max-w-none  px-4">
+      <div id="nav_bar" className="absolute w-full py-4 font-sourceSansPro">
+        <div className="container flex items-center justify-between w-full max-w-none md:px-6">
           <Link href="/">
             <PageLogo />
           </Link>
           {/* SMALL SCREEN MENU ICONS */}
           <div
             onClick={() => setOpen(!open)}
-            className="flex flex-col md:hidden bg-transparent border-0 relative z-50 cursor-pointer p-4 hover:opacity-90 transform hover:scale-95 ease-in-out"
+            className="flex flex-col md:hidden bg-transparent border-0 relative z-50 cursor-pointer py-4 hover:opacity-90 transform hover:scale-95 ease-in-out"
           >
             <span className="h-3pixel w-8 bg-white inline-block rounded-sm"></span>
             <span className="my-2 h-3pixel w-7 bg-white inline-block rounded-sm"></span>

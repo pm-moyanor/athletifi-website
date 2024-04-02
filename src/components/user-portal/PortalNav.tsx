@@ -18,15 +18,15 @@ export default function PortalNav() {
         </div>
       </Link>
 
-      <div className="flex items-center my-2 mx-3 cursor-pointer">
+      <div className="flex items-center my-3 mx-3 cursor-pointer">
         <FontAwesomeIcon className="text-skyblue mr-3" icon={faUser} />
         <p>Account</p>
       </div>
-      <div className="flex items-center my-2 mx-3 cursor-pointer">
+      <div className="flex items-center my-4 mx-3 cursor-pointer">
         <FontAwesomeIcon className="text-skyblue mr-3" icon={faBell} />
         <p>Notifications</p>
       </div>
-      <div className="flex items-center my-2 mx-3 cursor-pointer">
+      <div className="flex items-center my-4 mx-3 cursor-pointer">
         <FontAwesomeIcon className="text-skyblue mr-3" icon={faUsers} />
         <p>Manage referrals</p>
       </div>
@@ -36,16 +36,16 @@ export default function PortalNav() {
           <FontAwesomeIcon icon={faChevronRight} />
         </div>
       </Link>
-      <div className="flex items-center my-2 mx-3 cursor-pointer">
+      <div className="flex items-center my-4 mx-3 cursor-pointer">
         <FontAwesomeIcon className="text-skyblue mr-3" icon={faFlag} />
         <p>Report a problem</p>
       </div>
-      <div className="flex items-center my-2 mx-3 cursor-pointer">
+      <div className="flex items-center my-4 mx-3 cursor-pointer">
         <FontAwesomeIcon className="text-skyblue mr-3" icon={faCircleInfo} />
         <p>Terms and Policies</p>
       </div>
-      <div className="flex border-t border-t-offwhite opacity-75 my-8"></div>
-      <div className="flex items-center my-2 mx-3 cursor-pointer">
+      <div className="flex border-t border-t-offwhite opacity-75 my-4"></div>
+      <div className="flex items-center my-4 mx-3 cursor-pointer">
         <FontAwesomeIcon
           className="text-skyblue mr-3"
           icon={faArrowRightFromBracket}

@@ -54,7 +54,7 @@ const Accordion: FC<{ faqData: FAQData[] }> = () => {
                 className={`flex justify-between items-center`}
                 onClick={() => handleToggle(idx)}
               >
-                <div className="p-6 font-normal">{faq.question}</div>
+                <div className="p-8 font-normal">{faq.question}</div>
                 <div className="h-6">
                   <FontAwesomeIcon
                     icon={openIndex === idx ? faMinus : faPlus}

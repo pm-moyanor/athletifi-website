@@ -75,29 +75,30 @@ const Profile = () => {
 
   return (
     <div className="overflow-hidden ">
-      <div className="absolute top-0 left-0 bg-gradient-to-r from-cardsDark2 to-cardsBackground h-[280px] lg:h-[330px] w-full"></div>
+      <div className="absolute top-0 left-0 bg-gradient-to-r from-cardsDark2 to-cardsBackground h-[280px] lg:h-[330px] w-full -z-10"></div>
       <Navbar />
-      <main className="mx-4 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-base">
+      <main className="mx-2 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-base">
         <Header pageTitle={'My Cards'} />
-        <div className="flex flex-col items-center pt-7">
+        <div className="flex flex-col items-center mt-4 md:pt-7">
           {populatedTeams.map((team, idx) => (
             <div
               key={idx}
-              className="overflow-hidden w-full max-w-[1030px] mb-4 text-primary bg-cardsBackground shadow-lg rounded-10  flex flex-col"
+              className="overflow-hidden w-full max-w-[1030px] mb-4 text-primary bg-cardsBackground shadow-lg rounded-10  flex flex-col "
               onClick={() => handleToggle(idx)}
             >
-              <div className="flex justify-between items-center h-20 ml-10">
+              <div className="flex justify-between items-center h-16 md:h-20 ml-4 md:ml-10">
                 <h2>{team.teamName}</h2>
                 <div className="flex items-center h-20">
-                  <button className="h-full border-x border-partnersBorders px-4 text-sm ">
+                  <button className="h-full border-x border-partnersBorders px-2 md:px-4 text-sm ">
                     go to dashboard
                   </button>
-                  <div className="h-full w-20 flex justify-center items-center">
+                  <div className="h-full w-16 md:w-20 flex justify-center items-center">
                     <FontAwesomeIcon
                       icon={
                         openIndex[idx] == false ? faChevronDown : faChevronUp
                       }
                       size="xs"
+                      className="text-skyblues"
                     />
                   </div>
                 </div>
