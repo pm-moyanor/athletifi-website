@@ -1,7 +1,8 @@
 'use client';
-
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Header from '@/components/user-portal/Header';
 import Navbar from '@/components/dashboard/NavBar';
 
@@ -46,47 +47,87 @@ const populatedTeams = [
   },
 ];
 
-const CardsByTeam = ({ team }) => {
-  console.log(team);
-  return (
-    <div className="text-primary w-full bg-cardsDark h-28 rounded-10 py-8 flex flex-col px-10">
-      <div className="flex justify-between items-center">
-        <h2>{team.teamName}</h2>
-
-        <FontAwesomeIcon icon={faArrowDown} size="xs" />
-      </div>
-      <div className="flex">
-        {team.cards.map((card, index) => (
-          <div key={index} className="flex ">
-            <div className="flex flex-col w-48 h-48 border m-4">
-              <p> {card.playerName}</p>
-              <p>{card.playerClub}</p>
-              <p>{card.playerTeam}</p>
-              <p>{card.playerCard}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const Profile = () => {
-  return (
-    <div>
-      {/* <Navbar /> */}
-      <div className="mt-24">
-        <Header pageTitle={'My Cards'} />
-        <div>
-          {populatedTeams.map((team, index) => (
-            <h3 key={index} className="text-primary">
-              <div className="border h-96">
-                <CardsByTeam team={team} />
-              </div>
-            </h3>
-          ))}
+const CardsByTeam = ({ team }) => (
+  <div className="flex">
+    {team.cards.map((card, index) => (
+      <div key={index} className="flex">
+        <div className="flex flex-col w-[320px] h-64 border m-4">
+          <p> {card.playerName}</p>
+          <p>{card.playerClub}</p>
+          <p>{card.playerTeam}</p>
+          <div className="w-24 h-24 bg-green-900"></div>
         </div>
       </div>
+    ))}
+  </div>
+);
+
+const Profile = () => {
+  const [openIndex, setOpenIndex] = useState(
+    Array(populatedTeams.length).fill(false),
+  );
+
+  const handleToggle = (index) => {
+    setOpenIndex((prevIndex) =>
+      prevIndex.map((isOpen, i) => (i === index ? !isOpen : isOpen)),
+    );
+  };
+
+  return (
+    <div className="overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground ">
+      <Navbar />
+      <main className="mx-2 md:mx-20 my-32 md:my-36 lg:my-48 text-sm md:text-base">
+        <Header pageTitle={'My Cards'} />
+
+        {populatedTeams.map((team, idx) => (
+          <div
+            key={idx}
+            className="overflow-hidden w-full max-w-[1030px] m-10 text-primary bg-cardsBackground shadow-lg rounded-10  flex flex-col"
+            onClick={() => handleToggle(idx)}
+          >
+            <div className="flex justify-between items-center h-20 ml-10">
+              <h2>{team.teamName}</h2>
+              <div className="flex items-center h-20">
+                <button className="h-full border-x border-partnersBorders px-4 text-sm ">
+                  go to dashboard
+                </button>
+                <div className="h-full w-20 flex justify-center items-center">
+                  <FontAwesomeIcon
+                    icon={openIndex[idx] == false ? faChevronDown : faChevronUp}
+                    size="xs"
+                  />
+                </div>
+              </div>
+            </div>
+            <AnimatePresence>
+              {openIndex[idx] && (
+                <motion.div
+                  key="content"
+                  initial="collapsed"
+                  animate="open"
+                  exit="collapsed"
+                  variants={{
+                    open: { height: 'auto' },
+                    collapsed: { height: 0 },
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.04, 0.62, 0.23, 0.98],
+                  }}
+                  className=" text-primary "
+                >
+                  <div
+                    key={idx}
+                    className="transition-opacity opacity-80 bg-cardsDark w-full p-10"
+                  >
+                    <CardsByTeam team={team} />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        ))}
+      </main>
     </div>
   );
 };
