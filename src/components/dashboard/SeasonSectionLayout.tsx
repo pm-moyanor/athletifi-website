@@ -9,23 +9,22 @@ const dummyData: IActionReel[] = [
   {
     video_url:
       'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
-    // 'https://youtu.be/qv6UVOQ0F44',
     thumbnail: '/poster2.png',
     title: 'Highlight',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
   },
-  {
-    video_url: '/video2.mp4',
-    thumbnail: '/poster3.png',
-    title: 'Highlight',
-    description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-  },
-  {
-    video_url: '/video3.mp4',
-    thumbnail: '/poster3.png',
-    title: 'Highlight',
-    description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-  },
+  // {
+  //   video_url: '/video2.mp4',
+  //   thumbnail: '/poster3.png',
+  //   title: 'Highlight',
+  //   description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+  // },
+  // {
+  //   video_url: '/video3.mp4',
+  //   thumbnail: '/poster3.png',
+  //   title: 'Highlight',
+  //   description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+  // },
 ];
 
 const SeasonSection: React.FC = () => {

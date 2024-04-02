@@ -16,6 +16,12 @@ import Navbar from '@/components/dashboard/NavBar';
 import BackToTop from '@/components/common/BackToTop';
 
 import { DashboardData, emptyDashboardData } from '@/types/Dashboard.type';
+import {
+  filterRatingData,
+  transformRatingData,
+  FieldPlayerRatings,
+  GoalKeeperRatings,
+} from '@/app/utils/dashboardHelper';
 
 interface PageProps {
   params: { cardId: string | number };
@@ -23,13 +29,12 @@ interface PageProps {
 }
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
-const testAWSFetch = async (cardId: string) => {
+const fetchHelper = async (cardId: string) => {
   const response = await fetch(`${baseURL}/dashboard/${cardId}`);
   const data = await response.json();
   if (!cardId || !data) {
     return notFound();
   }
-  console.log(data);
   return data;
 };
 
@@ -40,28 +45,24 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
   const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
 
   useEffect(() => {
-    testAWSFetch(cardIdValue as string)
+    fetchHelper(cardIdValue as string)
       .then((data) => {
-        console.log(data[1].result);
-        const playerRatings = Object.keys(data[1].result)
-          .filter((x) => x !== 'name')
-          .map((attr) => {
-            return {
-              attribute: attr,
-              rating: Math.trunc(Number(data[1].result[attr])),
-            };
-          });
-        const overallRating = Math.round(
-          playerRatings.reduce((a, b) => a + b.rating, 0) /
-            playerRatings.length,
-        );
-        const dataObject = {
-          latestMatch: data[0].result,
-          latestPlayerRating: playerRatings,
-          overallRating: overallRating,
-          matchesList: data[2].result,
-          playerProfile: data[3].result,
-          teammates: data[4].result,
+        const dataObject: DashboardData = {
+          latestMatch: data.result.past_matches[0],
+          latestPlayerRating: transformRatingData(
+            data.result.player_ratings[0],
+            data.result.is_goalkeeper,
+          ),
+          playerRatings: filterRatingData(
+            data.result.player_ratings,
+            data.result.is_goalkeeper,
+          ),
+          matchesList: data.result.past_matches,
+          playerProfile: data.result,
+          teammates: data.result.teammates,
+          chartFields: data.result.is_goalkeeper
+            ? GoalKeeperRatings
+            : FieldPlayerRatings,
         };
         setDashboardData(dataObject);
       })
@@ -115,8 +116,9 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
             </div>
             <div className="mb-3 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-3 lg:order-2">
               <Charts
-                overallRating={dashboardData?.overallRating}
-                player_ratings={dashboardData?.latestPlayerRating}
+                latest_player_ratings={dashboardData?.latestPlayerRating}
+                player_ratings={dashboardData?.playerRatings}
+                chart_fields={dashboardData?.chartFields}
               />
             </div>
           </div>

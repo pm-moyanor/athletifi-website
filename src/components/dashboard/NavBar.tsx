@@ -97,7 +97,7 @@ const linksStyle = `opacity-80 hover:opacity-100 duration-300 relative after:con
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(false);
 
   const dropdown = useRef<HTMLDivElement>(null);
 

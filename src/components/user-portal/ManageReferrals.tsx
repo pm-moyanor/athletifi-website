@@ -26,8 +26,6 @@ export default function ManageReferrals() {
   const [referrals, setReferrals] = useState(dummyDataReferrals);
   const [invites, setInvites] = useState(dummyDataInvites);
 
-  function handleAddReferral(referralName: string) {}
-
   function handleRemoveReferral(i: number) {
     setReferrals(referrals.filter((item, idx) => idx !== i));
   }

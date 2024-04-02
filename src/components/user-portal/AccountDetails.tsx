@@ -10,7 +10,7 @@ const dummyDataUser = {
 };
 
 export default function AccountDetails() {
-  const [userData, setUserData] = useState(dummyDataUser);
+  const [userData] = useState(dummyDataUser);
 
   function handleUserChange() {}
 
