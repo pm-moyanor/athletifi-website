@@ -92,7 +92,8 @@ export interface IRatingProps {
   overall_rating?: number;
   latest_player_ratings: IRating[];
   player_ratings: IRatingRaw[];
-  chart_fields: typeof FieldPlayerRatings | typeof GoalKeeperRatings;
+  is_goalkeeper?: boolean | null;
+  chart_fields?: string[];
 }
 
 export interface IBarProps {
@@ -259,7 +260,7 @@ export interface DashboardData {
   matchesList: IMatchDataExtended[]; // replace 'any' with the type of your data
   playerProfile: IProfileProps; // replace 'any' with the type of your data
   teammates: ITeammate[]; // replace 'any' with the type of your data
-  chartFields: typeof FieldPlayerRatings | typeof GoalKeeperRatings;
+  isGoalkeeper: boolean | null;
 }
 
 export const emptyDashboardData: DashboardData = {
@@ -269,5 +270,5 @@ export const emptyDashboardData: DashboardData = {
   matchesList: [emptyMatchData], // replace 'any' with the type of your data
   playerProfile: emptyProfileProps, // replace 'any' with the type of your data
   teammates: [emptyTeammate], // replace 'any' with the type of your data
-  chartFields: FieldPlayerRatings,
+  isGoalkeeper: null,
 };
