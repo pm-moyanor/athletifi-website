@@ -50,6 +50,7 @@ module.exports = {
         partnersBorders: '#49545C',
         primary: '#FDFEFF',
         skyblue: '#00C5F4',
+        card_border: '#2B4A5C',
         //dashboard
         chartRed: '#DA393B',
         chartBlue: '#27B6BD',
@@ -60,6 +61,7 @@ module.exports = {
         cardsDark: '#032436',
         cardsDark2: '#032537',
         lineAtBase: '#11729C',
+        buttonCardBg: '#092C3E',
       },
       container: {
         center: true,
