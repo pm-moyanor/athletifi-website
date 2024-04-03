@@ -1,5 +1,4 @@
 import type { Payload } from 'recharts/types/component/DefaultLegendContent';
-import { FieldPlayerRatings, GoalKeeperRatings } from '@/utils/dashboardHelper';
 
 export type PlayerDashboardProps = {
   params: { cardId: number };
