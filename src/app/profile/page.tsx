@@ -1,8 +1,8 @@
 'use client';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence,useAnimate, stagger } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Header from '@/components/user-portal/Header';
 import Navbar from '@/components/dashboard/NavBar';
 
@@ -62,6 +62,14 @@ const CardsByTeam = ({ team }) => (
   </div>
 );
 
+const variants = {
+  initial:{y:100},
+  animate: {
+    y: 0,
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
+  },
+};
+
 const Profile = () => {
   const [openIndex, setOpenIndex] = useState(
     Array(populatedTeams.length).fill(false),
@@ -74,33 +82,46 @@ const Profile = () => {
   };
 
   return (
-    <div className="overflow-hidden ">
+    <motion.div 
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    className="overflow-hidden ">
       <div className="absolute top-0 left-0 bg-gradient-to-r from-cardsDark2 to-cardsBackground h-[280px] lg:h-[330px] w-full -z-10"></div>
       <Navbar />
       <main className="mx-2 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-base">
         <Header pageTitle={'My Cards'} />
-        <div className="flex flex-col items-center mt-4 md:pt-7">
+        <motion.div 
+         variants={variants} initial="initial" animate="animate"
+          className="flex flex-col items-center mt-4 md:pt-7">
           {populatedTeams.map((team, idx) => (
-            <div
+            <motion.div
               key={idx}
+              variants={variants}
               className="overflow-hidden w-full max-w-[1030px] mb-4 text-primary bg-cardsBackground shadow-lg rounded-10  flex flex-col "
               onClick={() => handleToggle(idx)}
             >
               <div className="flex justify-between items-center h-16 md:h-20 ml-4 md:ml-10">
                 <h2>{team.teamName}</h2>
                 <div className="flex items-center h-20">
-                  <button className="h-full border-x border-partnersBorders px-2 md:px-4 text-sm ">
+                  <button className="h-full border-x border-partnersBorders px-2 md:px-4 text-sm hover:border-none hover:bg-cardsDark
+                   ">
                     go to dashboard
                   </button>
-                  <div className="h-full w-16 md:w-20 flex justify-center items-center">
+                  <div className="h-full w-16 md:w-20 flex justify-center items-center hover:bg-cardsDark">
+                  <motion.div 
+                    animate={{
+                      rotateX: openIndex[idx] == false ? 180 : 0, 
+                    }}
+                    transition={{ duration: 0.5 }} 
+                  >
                     <FontAwesomeIcon
-                      icon={
-                        openIndex[idx] == false ? faChevronDown : faChevronUp
-                      }
-                      size="xs"
-                      className="text-skyblues"
+                      icon={faChevronUp }
+                      size="sm"
                     />
+                  </motion.div>
                   </div>
+          
                 </div>
               </div>
               <AnimatePresence>
@@ -129,11 +150,11 @@ const Profile = () => {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </main>
-    </div>
+      </motion.div>
   );
 };
 
