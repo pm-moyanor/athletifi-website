@@ -49,19 +49,26 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
       .then((data) => {
         if (data.message === 'Success') {
           const dataObject: DashboardData = {
-            latestMatch: data.result.past_matches[0],
-            latestPlayerRating: transformRatingData(
-              data.result.player_ratings[0],
-              data.result.is_goalkeeper,
-            ),
-            playerRatings: filterRatingData(
-              data.result.player_ratings,
-              data.result.is_goalkeeper,
-            ),
+            latestMatch: data.result.past_matches
+              ? data.result.past_matches[0]
+              : null,
+            latestPlayerRating: data.result.player_ratings
+              ? transformRatingData(
+                  data.result.player_ratings[0],
+                  data.result.is_goalkeeper,
+                )
+              : null,
+            playerRatings: data.result.player_ratings
+              ? filterRatingData(
+                  data.result.player_ratings,
+                  data.result.is_goalkeeper,
+                )
+              : null,
             matchesList: data.result.past_matches,
             playerProfile: data.result,
             teammates: data.result.teammates,
             isGoalkeeper: data.result.is_goalkeeper,
+            seasonHighlights: data.result.season_highlights,
           };
           setDashboardData(dataObject);
         } else {
@@ -71,6 +78,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
       })
       .catch((error) => {
         console.error('Failed to fetch data:', error);
+        setFetchMessage('Data load error. Please try again.');
       });
   }, [cardIdValue]);
 
@@ -108,16 +116,16 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
                 </div>
                 <div className="mb-4 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-2 lg:order-1">
                   <LatestMatch
-                    match_id={dashboardData?.latestMatch.match_id}
-                    datetime={dashboardData?.latestMatch.datetime}
-                    location={dashboardData?.latestMatch.location}
-                    weather={dashboardData?.latestMatch.weather}
-                    home_club={dashboardData?.latestMatch.home_club}
-                    home_club_logo={dashboardData?.latestMatch.home_club_logo}
-                    home_score={dashboardData?.latestMatch.home_score}
-                    away_club={dashboardData?.latestMatch.away_club}
-                    away_club_logo={dashboardData?.latestMatch.away_club_logo}
-                    away_score={dashboardData?.latestMatch.away_score}
+                    match_id={dashboardData?.latestMatch?.match_id}
+                    datetime={dashboardData?.latestMatch?.datetime}
+                    location={dashboardData?.latestMatch?.location}
+                    weather={dashboardData?.latestMatch?.weather}
+                    home_club={dashboardData?.latestMatch?.home_club}
+                    home_club_logo={dashboardData?.latestMatch?.home_club_logo}
+                    home_score={dashboardData?.latestMatch?.home_score}
+                    away_club={dashboardData?.latestMatch?.away_club}
+                    away_club_logo={dashboardData?.latestMatch?.away_club_logo}
+                    away_score={dashboardData?.latestMatch?.away_score}
                     player_ratings={dashboardData?.latestPlayerRating}
                   />
                 </div>
@@ -131,7 +139,9 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
               </div>
             </div>
             <main className="flex flex-col items-center bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95">
-              <SeasonSection />
+              <SeasonSection
+                seasonHighlights={dashboardData?.seasonHighlights}
+              />
               <span className="h-px bg-partnersBorders w-11/12 max-w-[1130px] my-8 md:my-4" />
               <PastMatchesLayout
                 past_matches={dashboardData?.matchesList}

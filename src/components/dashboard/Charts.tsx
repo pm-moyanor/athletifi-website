@@ -44,13 +44,15 @@ const Charts = ({
 
   const chart_fields = is_goalkeeper ? GoalKeeperRatings : FieldPlayerRatings;
 
-  const overall_rating = Math.round(
-    latest_player_ratings
-      .map((x) => x.rating)
-      .reduce(function (avg, value, _, { length }) {
-        return avg + value / length;
-      }, 0),
-  );
+  const overall_rating =
+    latest_player_ratings &&
+    Math.round(
+      latest_player_ratings
+        .map((x) => x.rating)
+        .reduce(function (avg, value, _, { length }) {
+          return avg + value / length;
+        }, 0),
+    );
 
   return (
     <>

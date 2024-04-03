@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import SeasonHighlights from './SeasonHighlights';
 import { ActionReelList } from './TopActionReels';
-import { IActionReel, emptyActionReel } from '@/types/Dashboard.type';
-
-const dummySeasonHighlights = ['Sample data goes here'];
+import {
+  IActionReel,
+  ISeasonHighlights,
+  emptyActionReel,
+} from '@/types/Dashboard.type';
 
 const dummyData: IActionReel[] = [
   {
@@ -27,23 +29,21 @@ const dummyData: IActionReel[] = [
   // },
 ];
 
-const SeasonSection: React.FC = () => {
-  const [seasonHighlights, setSeasonHighlights] = useState<string[] | null[]>([
-    null,
-  ]);
+const SeasonSection: React.FC<ISeasonHighlights> = ({
+  seasonHighlights,
+}: ISeasonHighlights) => {
   const [actionReels, setActionReels] = useState([emptyActionReel]);
 
   useEffect(() => {
     setTimeout(() => {
       setActionReels(dummyData);
-      setSeasonHighlights(dummySeasonHighlights);
     }, 1500);
   }, []);
 
   return (
     <>
       <div className="w-full max-w-[1130px] sm:py-8 md:py-20 px-4 flex flex-col sm:flex-col md:flex-row justify-around items-center md:items-start h-full">
-        <SeasonHighlights data={seasonHighlights} />
+        <SeasonHighlights seasonHighlights={seasonHighlights} />
         <ActionReelList actionReels={actionReels} />
       </div>
     </>

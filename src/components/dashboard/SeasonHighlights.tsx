@@ -1,21 +1,13 @@
+import { ISeasonHighlights } from '@/types/Dashboard.type';
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 
-const highlightsList = [
-  'First highlight of the season. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eu vehicula odio. Duis feugiat massa at tellus convallis, sit amet tincidunt dui faucibus.',
-  'Second highlight of the season. Fusce quis vehicula leo, ac convallis lorem. Phasellus nec metus nec nunc congue consectetur. Maecenas consequat ligula nec malesuada efficitur.',
-  'Third highlight of the season. Nulla facilisi. Aliquam erat volutpat. Duis nec enim ut mi consequat venenatis. Quisque eget lobortis elit, ac vestibulum enim.',
-  'Fourth highlight of the season. Sed vitae mauris nec lorem imperdiet ultricies. Proin et est ultricies, sollicitudin ex at, tincidunt urna. Vivamus nec lacinia quam, non laoreet orci.',
-];
-
-const SeasonHighlights: React.FC<{ data: string[] | null[] }> = ({
-  data,
-}: {
-  data: string[] | null[];
-}) => {
+const SeasonHighlights: React.FC<ISeasonHighlights> = ({
+  seasonHighlights,
+}: ISeasonHighlights) => {
   return (
     <>
-      {data[0] ? (
+      {seasonHighlights ? (
         <div
           className="flex flex-col w-full md:w-1/2 ml-2 mr-4 md:mr-6 mb-4 py-8 md:py-0
     md:my-0 items-center md:items-start md:max-h-[460px] max-w-[560px] md:max-w-[540px]"
@@ -24,7 +16,7 @@ const SeasonHighlights: React.FC<{ data: string[] | null[] }> = ({
             Season Highlights
           </h2>
           <div className="max-h-[500px] sm:max-h-[500px] md:max-h-none overflow-visible md:overflow-auto ">
-            {highlightsList.map((highlight, index) => (
+            {seasonHighlights.map((highlight, index) => (
               <React.Fragment key={index}>
                 <div className="h-px bg-partnersBorders w-full my-4 " />
 
