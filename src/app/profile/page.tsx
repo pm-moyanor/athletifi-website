@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { motion, AnimatePresence, useAnimate, stagger } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Header from '@/components/user-portal/Header';
@@ -34,8 +34,14 @@ const populatedTeams = [
     ],
   },
 ];
+//adjust when integrate data
+interface Team {
+  teamName: string;
+  cards: { id: number }[];
+}
 
-const CardsByTeam = ({ team }) => (
+//dummy component to render cards by team
+const CardsByTeam = ({ team }: { team: Team }) => (
   <div className="flex justify-center flex-col md:flex-row flex-wrap items-center md:items-start">
     {team.cards.map((card, index) => (
       <RenderCardThumbnail key={index} />
@@ -43,6 +49,7 @@ const CardsByTeam = ({ team }) => (
   </div>
 );
 
+//motion variants to animate the team bars
 const variants = {
   initial: { y: 100 },
   animate: {
@@ -52,11 +59,11 @@ const variants = {
 };
 
 const Profile = () => {
-  const [openIndex, setOpenIndex] = useState(
+  const [openIndex, setOpenIndex] = useState<boolean[]>(
     Array(populatedTeams.length).fill(false),
   );
 
-  const handleToggle = (index) => {
+  const handleToggle = (index: number) => {
     setOpenIndex((prevIndex) =>
       prevIndex.map((isOpen, i) => (i === index ? !isOpen : isOpen)),
     );
