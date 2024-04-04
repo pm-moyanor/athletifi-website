@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Header from '@/components/user-portal/Header';
 import Navbar from '@/components/dashboard/NavBar';
+import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
 
 const populatedTeams = [
   {
@@ -12,17 +13,12 @@ const populatedTeams = [
     cards: [
       {
         id: 1,
-        playerName: 'Player 1',
-        playerClub: 'Club A',
-        playerTeam: 'Team A',
-        playerCard: 'Gold',
       },
       {
         id: 2,
-        playerName: 'Player 2',
-        playerClub: 'Club B',
-        playerTeam: 'Team A',
-        playerCard: 'Silver',
+      },
+      {
+        id: 3,
       },
     ],
   },
@@ -30,34 +26,19 @@ const populatedTeams = [
     teamName: 'Team B',
     cards: [
       {
-        id: 3,
-        playerName: 'Player 3',
-        playerClub: 'Club C',
-        playerTeam: 'Team B',
-        playerCard: 'Bronze',
+        id: 4,
       },
       {
-        id: 4,
-        playerName: 'Player 4',
-        playerClub: 'Club D',
-        playerTeam: 'Team B',
-        playerCard: 'Gold',
+        id: 5,
       },
     ],
   },
 ];
 
 const CardsByTeam = ({ team }) => (
-  <div className="flex justify-center flex-col md:flex-row items-center">
+  <div className="flex justify-center flex-col md:flex-row flex-wrap items-center md:items-start">
     {team.cards.map((card, index) => (
-      <div key={index} className="flex">
-        <div className="flex flex-col w-[320px] h-64 border m-4">
-          <p> {card.playerName}</p>
-          <p>{card.playerClub}</p>
-          <p>{card.playerTeam}</p>
-          <div className="w-24 h-24 bg-green-900"></div>
-        </div>
-      </div>
+      <RenderCardThumbnail key={index} />
     ))}
   </div>
 );
@@ -84,7 +65,6 @@ const Profile = () => {
             <div
               key={idx}
               className="overflow-hidden w-full max-w-[1030px] mb-4 text-primary bg-cardsBackground shadow-lg rounded-10  flex flex-col "
-              onClick={() => handleToggle(idx)}
             >
               <div className="flex justify-between items-center h-16 md:h-20 ml-4 md:ml-10">
                 <h2>{team.teamName}</h2>
@@ -92,7 +72,10 @@ const Profile = () => {
                   <button className="h-full border-x border-partnersBorders px-2 md:px-4 text-sm ">
                     go to dashboard
                   </button>
-                  <div className="h-full w-16 md:w-20 flex justify-center items-center">
+                  <div
+                    className="h-full w-16 md:w-20 flex justify-center items-center"
+                    onClick={() => handleToggle(idx)}
+                  >
                     <FontAwesomeIcon
                       icon={
                         openIndex[idx] == false ? faChevronDown : faChevronUp
@@ -122,7 +105,7 @@ const Profile = () => {
                   >
                     <div
                       key={idx}
-                      className="transition-opacity opacity-80 bg-cardsDark w-full p-10"
+                      className="transition-opacity opacity-80 bg-cardsDark w-full p-4 py-8"
                     >
                       <CardsByTeam team={team} />
                     </div>

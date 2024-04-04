@@ -1,12 +1,7 @@
 import { FC, useState } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faChevronDown,
-  faUser,
-  faChevronUp,
-  faGear,
-} from '@fortawesome/free-solid-svg-icons';
+import { faUser, faGear } from '@fortawesome/free-solid-svg-icons';
 import PortalNav from './PortalNav';
 import { motion, AnimatePresence } from 'framer-motion';
 

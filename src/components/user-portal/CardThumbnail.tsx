@@ -8,8 +8,16 @@ import React, {
 } from 'react';
 import Card from './../../../public/assets/img/png/jose-card-img.png';
 import Image from 'next/image';
-import { ButtonWhiteArrow } from '../common/Icon';
 import { IProfileProps } from '@/types/Dashboard.type';
+import { Source_Sans_3 } from 'next/font/google';
+import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
+const sourceSans3 = Source_Sans_3({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 const profileProps: IProfileProps = {
   name: 'Salvador Carillo',
@@ -65,62 +73,85 @@ const CardThumbnail: React.FC<IProfileProps> = ({
   return (
     <div
       ref={cardRef}
-      className="container flex flex-col bg-cardsBackground max-w-500 rounded-lg gap-6"
+      className="flex flex-col bg-cardsBackground min-w-[312px] max-w-[312px] min-h-[220px] rounded-lg justify-between p-0 mx-2 my-6 shadow-md"
     >
-      <div className="flex justify-around gap-0 mx-4 items-stretch">
-        <div className="flex flex-col justify-center">
-          <h2 className="font-SourceSansPro mb-2 font-bold text-lg md:text-lgl text-primary relative min-w-[256px]">
+      <div className="flex justify-between">
+        <div className="flex flex-col justify-center ml-3  mr-auto mt-[36px]">
+          <h2
+            className={`${sourceSans3.className}  mb-2 font-bold text-[20px] text-primary relative mr-auto`}
+          >
             {name}
           </h2>
-          <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
+          <p
+            className={`${sourceSans3.className}  text-sm md:text-base leading-5 text-start text-primary opacity-80 lg:max-w-769 relative `}
+          >
             {club}
           </p>
-          <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
+          <p
+            className={`${sourceSans3.className} text-sm md:text-base leading-5 text-start text-primary opacity-80 lg:max-w-769 relative`}
+          >
             {team}
           </p>
-          <p className="font-SourceSansPro-Semibold text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
+          <p
+            className={`${sourceSans3.className} text-sm md:text-base leading-5 text-start text-primary opacity-80 lg:max-w-769 relative `}
+          >
             {number}
           </p>
         </div>
-        <div className="-mt-10">
-          <Image src={card_url} alt="Card Thumbnail" width={200} height={200} />
+
+        <div className="-mt-6 mr-2 w-36 h-36 relative">
+          <Image
+            src={card_url}
+            alt="Card Thumbnail"
+            layout="fill"
+            objectFit="contain"
+          />
         </div>
       </div>
-      <div className="flex justify-center w-full border-t border-card_border">
+
+      <div className="w-full flex justify-center  border-t border-card_border h-12 ">
         <button
-          className={`text-primary font-SourceSansPro-Semibold text-sm md:text-base leading-6 w-full p-3 ${isToggle ? 'bg-buttonCardBg' : 'border-r border-card_border'}`}
+          className={` text-primary ${sourceSans3.className} text-sm  w-1/2 ${isToggle ? 'bg-buttonCardBg' : 'border-r border-card_border'}`}
         >
           go to dashboard
         </button>
         <button
           onClick={toggleEmailInput}
-          className="text-primary font-SourceSansPro-Semibold text-sm md:text-base leading-6 w-full p-3"
+          className={`text-primary ${sourceSans3.className} text-sm  w-1/2 `}
         >
           refer to friend/family
         </button>
       </div>
       {isToggle && (
-        <div className="w-full p-3 flex flex-col justify-center">
-          <p className="font-SourceSansPro-Semibold px-3 text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
-            Enter the email of the recipient to share this
-          </p>
-          <form className="w-full p-3 flex" onSubmit={emailSubmit}>
-            <input
-              type="email"
-              value={email}
-              placeholder="Type email here"
-              className="w-full p-3 border rounded-l-lg "
-              onChange={handleChange}
-            />
-            {/* create a submit button here */}
-            <button
-              type="submit"
-              className="w-1/6 p-3 text-primary font-SourceSansPro-Semibold text-sm md:text-base leading-6 flex items-center justify-center bg-darkerSkyBlue rounded-r-lg"
-            >
-              <ButtonWhiteArrow />
-            </button>
-          </form>
-        </div>
+        <motion.div
+          initial={{ height: 0, overflow: 'hidden' }}
+          animate={{ height: 'auto', overflow: 'visible' }}
+          exit={{ height: 0 }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          className="w-full "
+        >
+          <div className="pb-2">
+            <p className="px-3 text-sm md:text-base mt-6  text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
+              Enter the email of the recipient to share this
+            </p>
+            <form className="w-full p-3 flex" onSubmit={emailSubmit}>
+              <input
+                type="email"
+                value={email}
+                placeholder="Type email here"
+                className=" text-sm bottom-0 left-0 w-full p-3 border rounded-l"
+                onChange={handleChange}
+              />
+              {/* create a submit button here */}
+              <button
+                type="submit"
+                className="w-1/6 p-3  font-semibold text-sm md:text-base leading-6 flex items-center justify-center bg-darkerSkyBlue rounded-r"
+              >
+                <FontAwesomeIcon icon={faArrowRight} />
+              </button>
+            </form>
+          </div>
+        </motion.div>
       )}
     </div>
   );
