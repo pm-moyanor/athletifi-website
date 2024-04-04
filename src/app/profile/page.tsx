@@ -87,7 +87,7 @@ const Profile = () => {
             >
               <div className="flex justify-between items-center h-16 md:h-20 ml-4 md:ml-10">
                 <h2>{team.teamName}</h2>
-                <div className="flex items-center h-20">
+                <div className="flex items-center h-16 md:h-20">
                   <button
                     className="h-full border-x border-partnersBorders px-2 md:px-4 text-sm hover:border-none hover:bg-cardsDark
                    "
@@ -128,7 +128,7 @@ const Profile = () => {
                   >
                     <div
                       key={idx}
-                      className="transition-opacity opacity-80 bg-cardsDark w-full p-4 py-8"
+                      className="transition-opacity opacity-80 bg-cardsDark w-full p-2 py-8"
                     >
                       <CardsByTeam team={team} />
                     </div>

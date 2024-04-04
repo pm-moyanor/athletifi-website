@@ -10,7 +10,7 @@ import Card from './../../../public/assets/img/png/jose-card-img.png';
 import Image from 'next/image';
 import { IProfileProps } from '@/types/Dashboard.type';
 import { Source_Sans_3 } from 'next/font/google';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -54,17 +54,22 @@ const CardThumbnail: React.FC<IProfileProps> = ({
 }) => {
   const [isToggle, setIsToggle] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
+  const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
+
   const emailSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (email) {
       console.log(email);
+      setEmailSubmitted(true);
     } else {
       console.log('invalid email');
     }
   };
+
   const toggleEmailInput = () => {
     setIsToggle(!isToggle);
   };
@@ -73,17 +78,17 @@ const CardThumbnail: React.FC<IProfileProps> = ({
   return (
     <div
       ref={cardRef}
-      className="flex flex-col bg-cardsBackground min-w-[312px] max-w-[312px] min-h-[220px] rounded-lg justify-between p-0 mx-2 my-6 shadow-md"
+      className="flex flex-col bg-cardsBackground w-[350px] lg:w-[320px] min-h-[190px] rounded-lg justify-between p-0 mx-2 my-6 shadow-md"
     >
-      <div className="flex justify-between">
-        <div className="flex flex-col justify-center ml-3  mr-auto mt-[36px]">
+      <div className="flex justify-between min-h-[160px]">
+        <div className="flex flex-col justify-start ml-3 w-1/2 mr-auto mt-8">
           <h2
             className={`${sourceSans3.className}  mb-2 font-bold text-[20px] text-primary relative mr-auto`}
           >
             {name}
           </h2>
           <p
-            className={`${sourceSans3.className}  text-sm md:text-base leading-5 text-start text-primary opacity-80 lg:max-w-769 relative `}
+            className={`${sourceSans3.className}  text-sm md:text-base leading-5 text-start text-primary opacity-80 lg:max-w-769 relative w-[170px]`}
           >
             {club}
           </p>
@@ -99,7 +104,7 @@ const CardThumbnail: React.FC<IProfileProps> = ({
           </p>
         </div>
 
-        <div className="-mt-6 mr-2 w-36 h-36 relative">
+        <div className="-mt-6 mr-2 w-1/2 h-36 relative">
           <Image
             src={card_url}
             alt="Card Thumbnail"
@@ -119,39 +124,55 @@ const CardThumbnail: React.FC<IProfileProps> = ({
           onClick={toggleEmailInput}
           className={`text-primary ${sourceSans3.className} text-sm  w-1/2 `}
         >
-          refer to friend/family
+          share access to card
         </button>
       </div>
       {isToggle && (
-        <motion.div
-          initial={{ height: 0, overflow: 'hidden' }}
-          animate={{ height: 'auto', overflow: 'visible' }}
-          exit={{ height: 0 }}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
-          className="w-full "
-        >
-          <div className="pb-2">
-            <p className="px-3 text-sm md:text-base mt-6  text-start text-primary opacity-80 lg:max-w-769 relative min-w-[256px]">
-              Enter the email of the recipient to share this
-            </p>
-            <form className="w-full p-3 flex" onSubmit={emailSubmit}>
-              <input
-                type="email"
-                value={email}
-                placeholder="Type email here"
-                className=" text-sm bottom-0 left-0 w-full p-3 border rounded-l"
-                onChange={handleChange}
-              />
-              {/* create a submit button here */}
-              <button
-                type="submit"
-                className="w-1/6 p-3  font-semibold text-sm md:text-base leading-6 flex items-center justify-center bg-darkerSkyBlue rounded-r"
-              >
-                <FontAwesomeIcon icon={faArrowRight} />
-              </button>
-            </form>
-          </div>
-        </motion.div>
+        <AnimatePresence>
+          <motion.div
+            key="email-container"
+            initial={{ height: 0, overflow: 'hidden' }}
+            animate={{ height: 'auto', overflow: 'visible' }}
+            exit={{ height: 0 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="w-full"
+          >
+            <motion.div
+              key="email-form"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 100 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4, ease: 'easeIn' }}
+              className="py-6"
+            >
+              <p className="px-3 text-sm mb-2 text-start text-primary lg:max-w-769 relative min-w-[256px]">
+                {emailSubmitted
+                  ? 'Invitation sent! Your card is now accessible to your guest'
+                  : 'Enter the email of the recipient to share access to your card'}
+              </p>
+              {!emailSubmitted && (
+                <form
+                  className="w-full flex h-[40px] px-3"
+                  onSubmit={emailSubmit}
+                >
+                  <input
+                    type="email"
+                    value={email}
+                    placeholder="Type email here"
+                    className=" text-sm bottom-0 left-0 w-full p-3 border rounded-l text-partnersBorders"
+                    onChange={handleChange}
+                  />
+                  <button
+                    type="submit"
+                    className="w-1/6 p-3  font-semibold text-sm md:text-base leading-6 flex items-center justify-center bg-darkerSkyBlue rounded-r"
+                  >
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
+                </form>
+              )}
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
       )}
     </div>
   );
