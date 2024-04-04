@@ -7,19 +7,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faUser, faBell, faFlag } from '@fortawesome/free-regular-svg-icons';
 import Link from 'next/link';
-import { motion} from 'framer-motion';
-
-
-
+import { motion } from 'framer-motion';
 
 export default function PortalNav() {
   return (
-    <motion.div
-
-     className="flex flex-col mt-4 mx-3 text-white">
+    <motion.div className="flex flex-col mt-4 mx-3 text-white">
       <Link href={'/settings'}>
-        <div className="flex justify-between items-center bg-cardsDark text-settingsGray rounded p-2 cursor-pointer mt-4">
-          <h2 className="">Settings</h2>
+        <div className="flex justify-between items-center bg-cardsDark text-primary opacity-80 rounded p-4 cursor-pointer mb-6 shadow-portalNav">
+          <h2 className="text-md">Settings</h2>
           <FontAwesomeIcon icon={faChevronRight} />
         </div>
       </Link>
@@ -37,8 +32,8 @@ export default function PortalNav() {
         <p>Manage referrals</p>
       </div>
       <Link href={'/help-support'}>
-        <div className="flex justify-between items-center bg-cardsDark text-settingsGray rounded p-2 cursor-pointer mt-4">
-          <h2 className="">Help & Support</h2>
+        <div className="flex justify-between items-center bg-cardsDark text-primary opacity-80 rounded p-4 cursor-pointer my-6 shadow-portalNav">
+          <h2 className="text-md ">Help & Support</h2>
           <FontAwesomeIcon icon={faChevronRight} />
         </div>
       </Link>
