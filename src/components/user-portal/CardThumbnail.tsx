@@ -116,7 +116,7 @@ const CardThumbnail: React.FC<IProfileProps> = ({
 
       <div className="w-full flex justify-center  border-t border-card_border h-12 ">
         <button
-          className={` text-primary ${sourceSans3.className} text-sm  w-1/2 ${isToggle ? 'bg-buttonCardBg' : 'border-r border-card_border'}`}
+          className={` text-primary ${sourceSans3.className} text-sm  w-1/2 rounded-bl-10  bg-buttonCardBg `}
         >
           go to dashboard
         </button>
@@ -127,22 +127,32 @@ const CardThumbnail: React.FC<IProfileProps> = ({
           share access to card
         </button>
       </div>
-      {isToggle && (
-        <AnimatePresence>
+      <AnimatePresence>
+        {isToggle && (
           <motion.div
-            key="email-container"
-            initial={{ height: 0, overflow: 'hidden' }}
-            animate={{ height: 'auto', overflow: 'visible' }}
-            exit={{ height: 0 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+            key="content"
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { height: 'auto' },
+              collapsed: { height: 0 },
+            }}
+            transition={{
+              duration: 0.6,
+              ease: [0.04, 0.62, 0.23, 0.98],
+            }}
             className="w-full"
           >
             <motion.div
-              key="email-form"
+              key="form"
               initial={{ opacity: 0 }}
               animate={{ opacity: 100 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, ease: 'easeIn' }}
+              transition={{
+                duration: 0.3,
+                ease: [0.04, 0.62, 0.23, 0.98],
+              }}
               className="py-6"
             >
               <p className="px-3 text-sm mb-2 text-start text-primary lg:max-w-769 relative min-w-[256px]">
@@ -172,8 +182,8 @@ const CardThumbnail: React.FC<IProfileProps> = ({
               )}
             </motion.div>
           </motion.div>
-        </AnimatePresence>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
 };
