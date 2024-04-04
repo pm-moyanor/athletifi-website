@@ -13,25 +13,44 @@ interface HeaderProps {
   pageTitle: string;
 }
 
+
+
 const Header: FC<HeaderProps> = ({ pageTitle }) => {
   const [user] = useState(dummyDataUser);
   const [isOpenSideNav, setIsOpenSideNav] = useState(false);
 
+
+  const sidebar = {
+    open: (width = 1000) => ({
+      clipPath: `circle(${width * 2 + 200}px at calc(100vw - 50px) 0px)`,
+      transition: {
+        type: "spring",
+        stiffness: 20,
+        restDelta: 2
+      }
+    }),
+    closed: {
+      clipPath: "circle(0px at 2px 2px)",
+      transition: {
+        // delay: 0.1,
+        type: "spring",
+        stiffness: 400,
+        damping: 40
+      },
+
+    }
+  };
   return (
     <>
       <AnimatePresence>
         {isOpenSideNav && (
           <motion.div
-            initial={{ opacity: 0, maxHeight: 0 }}
-            animate={{ opacity: 1, maxHeight: '100vh', overflow: 'auto' }}
-            exit={{ opacity: 0, maxHeight: 0, overflow: 'hidden' }}
-            transition={{
-              duration: 0.08,
-              ease: [0.04, 0.62, 0.23, 0.98],
-            }}
-            className="h-full w-full z-20 fixed top-48 md:top-32 left-0 duration-500 transition-all bg-gradient-to-r from-cardsDark2 to-cardsBackground"
+          variants={sidebar}
+          animate={isOpenSideNav ? "open" : "closed"}
+exit={"closed"}
+           className="h-full w-full z-10 fixed top-48 md:top-32 left-0 duration-500 transition-all bg-gradient-to-r from-cardsDark2 to-cardsBackground"
           >
-            <PortalNav />
+            <PortalNav/>
           </motion.div>
         )}
       </AnimatePresence>
@@ -51,9 +70,14 @@ const Header: FC<HeaderProps> = ({ pageTitle }) => {
           </div>
         </div>
         <div className="flex h-px bg-partnersBorders"></div>
-        <h1 className="font-bold text-[48px] md:text-[54px] text-white opacity-75 my-12">
+        <motion.h1 
+   initial={{ y: -20 }}
+   animate={{y: 0 }}
+
+   transition={{ ease: "easeOut", duration: 0.5 }}
+        className="font-bold text-[48px] md:text-[54px] text-white opacity-75 my-12">
           {pageTitle}
-        </h1>
+        </motion.h1>
       </div>
     </>
   );

@@ -195,7 +195,7 @@ const Navbar: React.FC = () => {
                   </div>
                 </li>
               ) : (
-                <div className="hidden relative md:flex item text-offwhite">
+                <div className="hidden relative md:flex item text-primary">
                   <div
                     className="flex items-center cursor-pointer"
                     onClick={() => setShowDropdown(!showDropdown)}
@@ -206,24 +206,27 @@ const Navbar: React.FC = () => {
                   {showDropdown && (
                     <div
                       ref={dropdown}
-                      className="absolute flex flex-col top-10 z-20 bg-cardsDark rounded p-6 gap-4"
+                      className="absolute flex flex-col justify-between w-48 h-60 top-8 right-px z-20 bg-cardsDark rounded px-4 py-8 "
                     >
-                      <Link href="/" className="hover:text-white">
+                      <Link href="/" className={`${linksStyle} mr-auto`}>
                         My cards
                       </Link>
                       <Link
                         href="/settings"
                         onClick={() => setShowDropdown(!showDropdown)}
-                        className="hover:text-white"
+                        className={`${linksStyle} mr-auto`}
                       >
                         Settings
                       </Link>
-                      <Link href="/help-support" className="hover:text-white">
+                      <Link
+                        href="/help-support"
+                        className={`${linksStyle} mr-auto`}
+                      >
                         Help & Support
                       </Link>
                       <div className="border-t border-t-offwhite opacity-75"></div>
                       <div
-                        className="hover:text-white cursor-pointer"
+                        className={`${linksStyle} mr-auto`}
                         onClick={handleLogout}
                       >
                         Logout

@@ -7,6 +7,8 @@ import BackToTop from '@/components/common/BackToTop';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/user-portal/Header';
 import Accordion from '@/components/user-portal/FAQ';
+import { motion } from 'framer-motion';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCircleInfo,
@@ -24,7 +26,10 @@ interface HelpPageProps {}
 const HelpPage: FC<HelpPageProps> = () => {
   return (
     <>
-      <div
+     <motion.div
+         initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
         className={`${sourceSans3.className} overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground w-full`}
       >
         <Navbar />
@@ -116,7 +121,7 @@ const HelpPage: FC<HelpPageProps> = () => {
         </main>
         <BackToTop />
         <Footer />
-      </div>
+      </motion.div>
     </>
   );
 };
