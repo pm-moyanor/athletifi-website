@@ -9,7 +9,7 @@ import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
 
 const populatedTeams = [
   {
-    teamName: 'Team A',
+    teamName: 'Villanova Soccer Academy',
     cards: [
       {
         id: 1,
@@ -92,17 +92,19 @@ const Profile = () => {
               variants={variants}
               className="overflow-hidden w-full max-w-[1030px] mb-4 text-primary bg-cardsBackground shadow-lg rounded-10  flex flex-col "
             >
-              <div className="flex justify-between items-center h-16 md:h-20 ml-4 md:ml-10">
-                <h2>{team.teamName}</h2>
-                <div className="flex items-center h-16 md:h-20">
+              <div className="flex flex-col md:flex-row justify-between items-center h-24 md:h-20 ml-0 md:ml-10">
+                <h2 className="h-1/2 md:h-auto flex items-center justify-center">
+                  {team.teamName}
+                </h2>
+                <div className="w-full md:w-52 flex items-center h-1/2 md:h-20 border-t md:border-none border-partnersBorders">
                   <button
-                    className="h-full border-x border-partnersBorders px-2 md:px-4 text-sm hover:border-none hover:bg-cardsDark
+                    className="h-full w-2/3 md:w-full border-r md:border-x border-partnersBorders px-2 md:px-4 text-sm hover:border-none hover:bg-cardsDark
                    "
                   >
                     go to dashboard
                   </button>
                   <div
-                    className="h-full w-16 md:w-20 flex justify-center items-center hover:bg-cardsDark"
+                    className="h-full w-1/3 md:w-20 flex justify-center items-center hover:bg-cardsDark"
                     onClick={() => handleToggle(idx)}
                   >
                     <motion.div
