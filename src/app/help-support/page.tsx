@@ -26,10 +26,10 @@ interface HelpPageProps {}
 const HelpPage: FC<HelpPageProps> = () => {
   return (
     <>
-     <motion.div
-         initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         className={`${sourceSans3.className} overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground w-full`}
       >
         <Navbar />
@@ -37,9 +37,11 @@ const HelpPage: FC<HelpPageProps> = () => {
           <Header pageTitle={'Help & Support'} />
           <div className="flex justify-center">
             <div className="flex flex-col w-full justify-center max-w-[880px]">
-              <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-2 md:px-4">
-                Frequently asked questions
-              </h2>
+              <div className="shadow-portalNav">
+                <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-2 md:px-4">
+                  Frequently asked questions
+                </h2>
+              </div>
               <div className="flex justify-center">
                 <Accordion faqData={[]} />
               </div>
@@ -48,7 +50,8 @@ const HelpPage: FC<HelpPageProps> = () => {
                 <p className="text-primary text-sm md:text-base mb-6">
                   Can’t find what you are looking for?
                 </p>
-                <div className="w-full flex justify-between bg-cardsDark py-2 px-6 rounded-10">
+
+                <div className="w-full flex justify-between bg-cardsDark py-2 px-6 rounded-10 shadow-portalNav">
                   <a
                     href="mailto:send-an-email@athleti.fi?subject=Question%20about%20AthletiFi&body=Dear%20Support%20Team,%0D%0A%0D%0AI%20have%20a%20question%20regarding%20your%20website.%0D%0A%0D%0A[Please%20provide%20more%20details%20about%20your%20inquiry]%0D%0A%0D%0AThank%20you%20for%20your%20assistance.%0D%0A%0D%0ABest%20regards,%0D%0A[Your%20Name]"
                     className="flex my-4"

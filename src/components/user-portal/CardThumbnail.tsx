@@ -78,7 +78,7 @@ const CardThumbnail: React.FC<IProfileProps> = ({
   return (
     <div
       ref={cardRef}
-      className="flex flex-col bg-cardsBackground w-[350px] lg:w-[320px] min-h-[190px] rounded-lg justify-between p-0 mx-2 my-6 shadow-md"
+      className="flex flex-col bg-cardsBackground w-[350px] lg:w-[320px] min-h-[190px] rounded-lg justify-between p-0 mx-2 my-6 shadow-lg"
     >
       <div className="flex justify-between min-h-[160px]">
         <div className="flex flex-col justify-start ml-3 w-1/2 mr-auto mt-8">

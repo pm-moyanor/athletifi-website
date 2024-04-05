@@ -79,7 +79,7 @@ const Accordion: FC<{ faqData: FAQData[] }> = () => {
 
   return (
     <div className="w-full">
-      <div className=" bg-cardsDark bg-opacity-70 mt-7 rounded-10">
+      <div className=" bg-cardsDark bg-opacity-70 mt-7 rounded-10 shadow-portalNav">
         {faqs.map((faq, idx) => (
           <div key={idx} className={`flex justify-between items-center px-4`}>
             <div className="flex flex-col text-primary text-base font-extralight w-full">
@@ -87,7 +87,9 @@ const Accordion: FC<{ faqData: FAQData[] }> = () => {
                 className={`flex justify-between items-center`}
                 onClick={() => handleToggle(idx)}
               >
-                <div className="p-8 font-normal">{faq.question}</div>
+                <div className="px-2 py-6 md:px-2 md:py-8 mr-2 font-normal">
+                  {faq.question}
+                </div>
                 <div className="h-6">
                   <FontAwesomeIcon
                     icon={openIndex === idx ? faMinus : faPlus}
@@ -112,7 +114,7 @@ const Accordion: FC<{ faqData: FAQData[] }> = () => {
                     className="overflow-hidden"
                   >
                     <div
-                      className={`transition-opacity px-4 pb-6 text-primary opacity-80 mr-16 leading-6`}
+                      className={`transition-opacity px-2 pb-6 text-primary opacity-80 mr-6 md:mr-16 leading-6`}
                     >
                       {faq.answer}
                     </div>

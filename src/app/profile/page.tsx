@@ -131,7 +131,7 @@ const Profile = () => {
                       duration: 0.6,
                       ease: [0.04, 0.62, 0.23, 0.98],
                     }}
-                    className=" text-primary "
+                    className=" text-primary"
                   >
                     <div
                       key={idx}
