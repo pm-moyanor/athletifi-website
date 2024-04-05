@@ -78,10 +78,10 @@ const CardThumbnail: React.FC<IProfileProps> = ({
   return (
     <div
       ref={cardRef}
-      className="flex flex-col bg-cardsBackground w-[350px] lg:w-[320px] min-h-[190px] rounded-lg justify-between p-0 mx-2 my-6 shadow-lg"
+      className="flex flex-col bg-cardsBackground min-w-[250px] w-full max-w-[320px] md:w-[350px] lg:w-[320px] min-h-[190px] rounded-lg justify-between p-0 mx-2 my-6 shadow-lg"
     >
-      <div className="flex justify-between min-h-[160px]">
-        <div className="flex flex-col justify-start ml-3 w-1/2 mr-auto mt-8">
+      <div className="flex flex-col-reverse md:flex-row  justify-between min-h-[160px] mx-4 md:mx-0">
+        <div className="flex flex-col justify-start ml-0 md:ml-3 w-full md:w-1/2 mr-auto  mb-2 mt-4 md:mt-8">
           <h2
             className={`${sourceSans3.className}  mb-2 font-bold text-[20px] text-primary relative mr-auto`}
           >
@@ -104,7 +104,7 @@ const CardThumbnail: React.FC<IProfileProps> = ({
           </p>
         </div>
 
-        <div className="-mt-6 mr-2 w-1/2 h-36 relative">
+        <div className="-mt-0 md:-mt-6 w-full md:w-1/2 h-56 md:h-36 relative">
           <Image
             src={card_url}
             alt="Card Thumbnail"
@@ -114,15 +114,15 @@ const CardThumbnail: React.FC<IProfileProps> = ({
         </div>
       </div>
 
-      <div className="w-full flex justify-center  border-t border-card_border h-12 ">
+      <div className="w-full flex justify-center border-t border-card_border h-12 ">
         <button
-          className={` text-primary ${sourceSans3.className} text-sm  w-1/2 rounded-bl-10  bg-buttonCardBg `}
+          className={` text-primary ${sourceSans3.className} text-sm px-2 w-1/2 rounded-bl-10  bg-buttonCardBg `}
         >
           go to dashboard
         </button>
         <button
           onClick={toggleEmailInput}
-          className={`text-primary ${sourceSans3.className} text-sm  w-1/2 `}
+          className={`text-primary ${sourceSans3.className} text-sm px-2 w-1/2 `}
         >
           share access to card
         </button>

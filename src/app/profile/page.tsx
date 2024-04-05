@@ -42,7 +42,7 @@ interface Team {
 
 //dummy component to render cards by team
 const CardsByTeam = ({ team }: { team: Team }) => (
-  <div className="flex justify-center flex-col md:flex-row flex-wrap items-center md:items-start">
+  <div className="flex justify-center md:flex-row flex-wrap items-center md:items-start">
     {team.cards.map((card, index) => (
       <RenderCardThumbnail key={index} />
     ))}
@@ -135,7 +135,7 @@ const Profile = () => {
                   >
                     <div
                       key={idx}
-                      className="transition-opacity opacity-80 bg-cardsDark w-full p-2 py-8"
+                      className="transition-opacity opacity-80 bg-cardsDark w-full p-px md:p-2 py-8"
                     >
                       <CardsByTeam team={team} />
                     </div>
