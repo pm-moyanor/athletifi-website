@@ -271,7 +271,7 @@ export const emptyDashboardData: DashboardData = {
   playerProfile: emptyProfileProps, // replace 'any' with the type of your data
   teammates: [emptyTeammate], // replace 'any' with the type of your data
   isGoalkeeper: null,
-  seasonHighlights: null,
+  seasonHighlights: [''],
 };
 
 export interface ISeasonHighlights {
