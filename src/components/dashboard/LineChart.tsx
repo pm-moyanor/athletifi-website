@@ -70,6 +70,7 @@ const StatsLineChart: React.FC<IRatingProps> = ({
     if (active && payload && payload.length) {
       return (
         <div className="bg-white rounded-10 p-3 leading-8">
+          {`${payload?.[0].payload?.rating_date}`}
           {payload.map(function (entry, index) {
             if (entry?.name) {
               return (
@@ -117,9 +118,10 @@ const StatsLineChart: React.FC<IRatingProps> = ({
 
   return (
     <>
-      {player_ratings === null ? (
-        <div className="flex w-full justify-center text-red-400">
-          No data to show yet
+      {player_ratings === null || player_ratings?.length === 1 ? (
+        <div className="flex w-full justify-center text-gray-500 px-8">
+          We are working on getting more stats for your player. Please come back
+          soon for the full experience!
         </div>
       ) : (
         <>
@@ -127,7 +129,7 @@ const StatsLineChart: React.FC<IRatingProps> = ({
             <LineChart
               width={500}
               height={300}
-              data={player_ratings}
+              data={[...(player_ratings as IRatingProps[])].reverse()}
               margin={
                 isMobile
                   ? {
@@ -142,7 +144,7 @@ const StatsLineChart: React.FC<IRatingProps> = ({
                     }
               }
             >
-              <XAxis dataKey="match" tickLine={false} />
+              <XAxis dataKey="rating_date" tickLine={true} />
               <YAxis axisLine={false} tickLine={false} />
               <Tooltip content={<CustomTooltip />} />
               <Legend

@@ -49,8 +49,9 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
           {datetime === undefined ? (
             <div className="bg-cardsBackground h-[310px] sm:h-[310px] md:h-56 flex flex-col relative w-full rounded-10 text-primary font-sourceSansPro">
               <h1 className="text-[24px] font-semibold">Latest Match</h1>
-              <div className="flex h-full text-red-400 justify-center items-center">
-                There is no match data
+              <div className="flex h-full text-gray-500 justify-center items-center">
+                We are working on getting more match data. Please come back soon
+                for a more complete experience.
               </div>
             </div>
           ) : (
@@ -94,14 +95,15 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
                   <div className=" w-6 text-center mr-2">
                     <FontAwesomeIcon icon={faCloudRain} size="lg" />
                   </div>
-                  <p className="">{weather?.current.temp}&deg;F</p>
+                  <p className="">{weather?.tempFahr}&deg;F</p>
                 </div>
               </div>
             </>
           )}
           {player_ratings === null ? (
-            <div className="flex text-red-400 justify-center items-center">
-              No data to show yet
+            <div className="flex text-gray-500 justify-center items-center">
+              We are currently working on getting more data. Please come back
+              soon
             </div>
           ) : (
             <div className="flex justify-between items-center mb-2 sm:mb-4 md:mb-0 mx-1 sm:mx-6">

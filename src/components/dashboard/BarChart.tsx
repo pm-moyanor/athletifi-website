@@ -84,8 +84,9 @@ const StatsBarChart: React.FC<IRatingProps> = ({
   return (
     <>
       {latest_player_ratings === null ? (
-        <div className="flex w-full justify-center text-red-400">
-          No data to show yet
+        <div className="flex w-full justify-center text-gray-500">
+          We are working on getting more stats for your player. Please come back
+          soon for the full experience!
         </div>
       ) : (
         <>

@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import Video from 'next-video';
 
 const ActionReel: React.FC<IActionReel> = ({
-  video_url,
+  video_key,
   thumbnail,
   title,
   description,
@@ -12,10 +12,10 @@ const ActionReel: React.FC<IActionReel> = ({
   return (
     <div className=" flex my-2 justify-start">
       <div className="relative w-full max-w-[230px] min-w-[180px] h-[120px] sm:h-[120px] md:h-[130px]">
-        {video_url && thumbnail && (
+        {video_key && thumbnail && (
           <Video
             className="w-full h-full object-cover rounded rounded-5"
-            src={video_url}
+            src={process.env.S3_ROOT_URL + video_key}
             poster={thumbnail}
           />
         )}
