@@ -35,7 +35,7 @@ export default function ManageReferrals() {
   }
 
   return (
-    <div className="flex flex-col mt-16 text-primary">
+    <div className="flex flex-col mt-16 text-primary" id="manage-referrals">
       <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-4">
         Manage Referrals
       </h2>

@@ -24,7 +24,7 @@ const Header: FC<HeaderProps> = ({ pageTitle }) => {
             : 'fixed min-h-screen -left-full'
         }
       >
-        <PortalNav />
+        <PortalNav setIsOpenSideNav={setIsOpenSideNav} />
       </div>
       <div className="flex justify-end text-offwhite md:hidden pb-3">
         <div
