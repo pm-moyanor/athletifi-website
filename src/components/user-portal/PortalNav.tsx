@@ -8,7 +8,11 @@ import {
 import { faUser, faBell, faFlag } from '@fortawesome/free-regular-svg-icons';
 import Link from 'next/link';
 
-export default function PortalNav({ setIsOpenSideNav }) {
+export default function PortalNav({
+  setIsOpenSideNav,
+}: {
+  setIsOpenSideNav: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   return (
     <div className="flex flex-col mt-4 mx-3 text-white">
       <Link href={'/settings'} onClick={() => setIsOpenSideNav(false)}>
