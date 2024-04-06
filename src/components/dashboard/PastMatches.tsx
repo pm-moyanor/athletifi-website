@@ -67,7 +67,7 @@ const PastMatches: React.FC<IPastMatches> = ({
           </h2>
           <div className="text-gray-500 min-w-[343px] md:min-w-[778px] lg:min-w-[640px] min-h-[50px] mb-10 lg:mb-0">
             We are working on getting more match data for your player. Please
-            come back soon for the full experience!
+            come back soon!
           </div>
         </div>
       ) : (

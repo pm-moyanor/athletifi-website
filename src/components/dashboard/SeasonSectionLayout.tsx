@@ -8,13 +8,13 @@ import {
 } from '@/types/Dashboard.type';
 
 const dummyData: IActionReel[] = [
-  {
-    video_key:
-      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
-    thumbnail: '/poster2.png',
-    title: 'Highlight',
-    description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-  },
+  // {
+  //   video_key:
+  //     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+  //   thumbnail: '/poster2.png',
+  //   title: 'Highlight',
+  //   description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
+  // },
   // {
   //   video_key: '/video2.mp4',
   //   thumbnail: '/poster3.png',

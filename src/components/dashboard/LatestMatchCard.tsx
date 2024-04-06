@@ -51,7 +51,7 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
               <h1 className="text-[24px] font-semibold">Latest Match</h1>
               <div className="flex h-full text-gray-500 justify-center items-center">
                 We are working on getting more match data. Please come back soon
-                for a more complete experience.
+                to view the full experience.
               </div>
             </div>
           ) : (

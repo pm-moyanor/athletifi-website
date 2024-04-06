@@ -33,8 +33,8 @@ const SeasonHighlights: React.FC<ISeasonHighlights> = ({
             Season Highlights
           </h2>
           <div className="flex h-full text-gray-500 min-w-[343px] md:min-w-[340px] lg:min-w-[420px] my-4">
-            We are working on getting more data. Come back soon for a view of
-            season highlights!
+            We are working on getting more data. Come back soon to view season
+            highlights!
           </div>
         </div>
       ) : (

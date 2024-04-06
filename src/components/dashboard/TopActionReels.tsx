@@ -42,7 +42,7 @@ const ActionReelList: React.FC<{ actionReels: IActionReel[] }> = ({
 }) => {
   return (
     <>
-      {actionReels[0]?.title ? (
+      {actionReels && actionReels[0]?.title ? (
         <div className="md:h-[480px] flex flex-col items-start md:items-center w-full md:w-1/2 max-w-[560px] my-8 md:my-0">
           <div className=" flex flex-col md:overflow-auto items-center">
             <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro mb-2">
@@ -51,6 +51,16 @@ const ActionReelList: React.FC<{ actionReels: IActionReel[] }> = ({
             {actionReels.map((actionReel: IActionReel, index: number) => (
               <ActionReel key={index} {...actionReel} />
             ))}
+          </div>
+        </div>
+      ) : actionReels.length === 0 ? (
+        <div className="border-l-0 md:border-l max-w-[343px] md:max-w-[340px] lg:max-w-[420px] mt-6 md:mt-0 md:pl-4 border-gray-600">
+          <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro mb-2">
+            Top Action Reels
+          </h3>
+          <div className="flex h-full text-gray-500 min-h-[480px] md:min-h-[450px] lg:min-h-[455px] my-4">
+            We are working on getting more data. Come back soon to view
+            highlight reels!
           </div>
         </div>
       ) : (
