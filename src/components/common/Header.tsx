@@ -77,7 +77,7 @@ const Header: React.FC = () => {
       <div
         ref={navbarRef}
         id="nav_bar"
-        className={`navbar fixed top-0 black w-full bg-bgnav py-2 z-40 ${
+        className={`navbar fixed top-0 black w-full bg-bgnav py-2 z-10 ${
           scrollPosition > SCROLL_THRESHOLD
             ? 'header--slide-up'
             : 'header--slide-down'

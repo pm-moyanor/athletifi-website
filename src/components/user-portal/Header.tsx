@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons';
 import PortalNav from './PortalNav';
@@ -15,12 +15,20 @@ const Header: FC<HeaderProps> = ({ pageTitle }) => {
   const [user] = useState(dummyDataUser);
   const [isOpenSideNav, setIsOpenSideNav] = useState(false);
 
+  useEffect(() => {
+    if (isOpenSideNav) {
+      document.body.classList.add('overflow-y-hidden');
+    } else {
+      document.body.classList.remove('overflow-y-hidden');
+    }
+  }, [isOpenSideNav]);
+
   return (
     <>
       <div
         className={
           isOpenSideNav
-            ? 'h-full w-full z-20 fixed top-40 left-0 duration-500 transition-all bg-gradient-to-r from-cardsDark2 to-cardsBackground min-h-screen'
+            ? 'h-full w-full z-10 fixed top-40 left-0 duration-500 transition-all bg-gradient-to-r from-cardsDark2 to-cardsBackground min-h-screen'
             : 'fixed min-h-screen -left-full'
         }
       >
