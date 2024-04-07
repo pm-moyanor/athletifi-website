@@ -151,7 +151,7 @@ const Header: React.FC = () => {
                   </Link>
                 </li>
                 {/* UNCOMMENT WHEN YOU ARE READY TO RE-ADD THE DASHBOARD TO THE MENUBAR */}
-                <li>
+                {/* <li>
                   <Link
                     onClick={() => setOpen(false)}
                     href="/dashboard/vsa-23/1"
@@ -161,7 +161,7 @@ const Header: React.FC = () => {
                   >
                     Dashboard
                   </Link>
-                </li>
+                </li> */}
                 <li className="social-popup--show sm:mt-7 sm:pb-7 hidden md:block">
                   <button
                     onClick={socialIcon}

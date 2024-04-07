@@ -30,13 +30,19 @@ const StatsLineChart: React.FC<IRatingProps> = ({
 }: IRatingProps) => {
   const isMobile = useMediaQuery('(max-width: 850px)');
 
-  const [lineProps, setLineProps] = useState<ILineProps>(
+  const [lineProps, setLineProps] = useState<
+    { [key in keyof typeof attributeConfigs]: boolean } & {
+      hover: null | string;
+    }
+  >(() =>
     Object.keys(attributeConfigs).reduce(
       (a, key) => {
-        a[key] = false;
+        a[key as keyof typeof attributeConfigs] = false;
         return a;
       },
-      { hover: null },
+      { hover: null } as { [key in keyof typeof attributeConfigs]: boolean } & {
+        hover: null | string;
+      },
     ),
   );
 

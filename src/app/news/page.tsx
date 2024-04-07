@@ -7,6 +7,8 @@ import NewsInsightsCards from '@/components/news-insights/NewsInsightsCards';
 import { Hero } from '@/types/CommonHero.type';
 import { filterTargetArticle } from '@/utils/helpers';
 import { getNewsList } from '@/utils/ApiHelper';
+import { Suspense } from 'react';
+
 // import { SEO_CONFIG } from '@/utils/seoConfig';
 
 // TO DO: Implement dynamic metadata generation for SEO using generateMetadata https://nextjs.org/docs/app/building-your-application/optimizing/metadata#dynamic-metadata
@@ -58,7 +60,10 @@ export default async function NewsPage() {
           <CommonHero hero={hero} />
         </div>
         <FocusArticle newsListData={filteredNewsListData} />
-        <NewsInsightsCards allNewsList={allNewsButTargetArticle} />
+        {/* <NewsInsightsCards allNewsList={allNewsButTargetArticle} /> */}
+        <Suspense fallback={<div>Loading...</div>}>
+          <NewsInsightsCards allNewsList={allNewsButTargetArticle} />
+        </Suspense>
         <Footer />
         <BackToTop />
       </div>
