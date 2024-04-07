@@ -11,7 +11,9 @@ export async function GET(
     : params.cardId;
   const dashboardEndpoint = `dashboardData?dashboardSlug=${cardId}`;
   try {
-    const response = await axiosClient.get(dashboardEndpoint);
+    const response = await axiosClient.get(dashboardEndpoint, {
+      timeout: 10000,
+    });
 
     const data = response.data;
 

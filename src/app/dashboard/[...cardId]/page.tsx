@@ -19,9 +19,8 @@ import { DashboardData, emptyDashboardData } from '@/types/Dashboard.type';
 import {
   filterRatingData,
   transformRatingData,
-  FieldPlayerRatings,
-  GoalKeeperRatings,
 } from '@/app/utils/dashboardHelper';
+import DashboardFetchError from '@/components/dashboard/DashboardFetchError';
 
 interface PageProps {
   params: { cardId: string | number };
@@ -41,33 +40,45 @@ const fetchHelper = async (cardId: string) => {
 const PlayerDashboardPage: NextPage<PageProps> = () => {
   const [dashboardData, setDashboardData] =
     useState<DashboardData>(emptyDashboardData);
+  const [isFetchMessage, setFetchMessage] = useState<string | null>(null);
   const { cardId } = useParams();
   const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
 
   useEffect(() => {
     fetchHelper(cardIdValue as string)
       .then((data) => {
-        const dataObject: DashboardData = {
-          latestMatch: data.result.past_matches[0],
-          latestPlayerRating: transformRatingData(
-            data.result.player_ratings[0],
-            data.result.is_goalkeeper,
-          ),
-          playerRatings: filterRatingData(
-            data.result.player_ratings,
-            data.result.is_goalkeeper,
-          ),
-          matchesList: data.result.past_matches,
-          playerProfile: data.result,
-          teammates: data.result.teammates,
-          chartFields: data.result.is_goalkeeper
-            ? GoalKeeperRatings
-            : FieldPlayerRatings,
-        };
-        setDashboardData(dataObject);
+        if (data.message === 'Success') {
+          const dataObject: DashboardData = {
+            latestMatch: data.result.past_matches
+              ? data.result.past_matches[0]
+              : null,
+            latestPlayerRating: data.result.player_ratings
+              ? transformRatingData(
+                  data.result.player_ratings[0],
+                  data.result.is_goalkeeper,
+                )
+              : null,
+            playerRatings: data.result.player_ratings
+              ? filterRatingData(
+                  data.result.player_ratings,
+                  data.result.is_goalkeeper,
+                )
+              : null,
+            matchesList: data.result.past_matches,
+            playerProfile: data.result,
+            teammates: data.result.teammates,
+            isGoalkeeper: data.result.is_goalkeeper,
+            seasonHighlights: data.result.season_highlights,
+          };
+          setDashboardData(dataObject);
+        } else {
+          console.error('Dashboard data was unsuccessfully fetched:', data);
+          setFetchMessage(data.message);
+        }
       })
       .catch((error) => {
         console.error('Failed to fetch data:', error);
+        setFetchMessage('Data load error. Please try again.');
       });
   }, [cardIdValue]);
 
@@ -75,64 +86,72 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
     <>
       <div className="overflow-hidden font-sourceSansPro">
         <Navbar />
-        <div className="bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] flex justify-center w-full border-collapse">
-          <HeroBanner
-            name={dashboardData?.playerProfile.name}
-            number={dashboardData?.playerProfile.number}
-            club={dashboardData?.playerProfile.club}
-            club_logo={dashboardData?.playerProfile.club_logo}
-            team={dashboardData?.playerProfile.team}
-            card_url={dashboardData?.playerProfile.card_url}
-          />
-        </div>
-        <div className="flex justify-center">
-          <div className="flex flex-col py-3 lg:py-6 mt-10 max-w-[650px] lg:max-w-[1130px] lg:grid md:grid-cols-11">
-            <div className="mx-3 lg:col-start-8 lg:col-span-4 lg:my-2 lg:ml-0 lg:mr-6 order-1 lg:order-3">
-              <Profile
-                age={dashboardData?.playerProfile.age}
+        {isFetchMessage ? (
+          <DashboardFetchError message={isFetchMessage} />
+        ) : (
+          <>
+            <div className="bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] flex justify-center w-full border-collapse">
+              <HeroBanner
+                name={dashboardData?.playerProfile.name}
+                number={dashboardData?.playerProfile.number}
                 club={dashboardData?.playerProfile.club}
-                league={dashboardData?.playerProfile.league}
+                club_logo={dashboardData?.playerProfile.club_logo}
                 team={dashboardData?.playerProfile.team}
-                age_group={dashboardData?.playerProfile.age_group}
-                gender={dashboardData?.playerProfile.gender}
-                coach={dashboardData?.playerProfile.coach}
-                bio={dashboardData?.playerProfile.bio}
+                card_url={dashboardData?.playerProfile.card_url}
               />
             </div>
-            <div className="mb-4 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-2 lg:order-1">
-              <LatestMatch
-                match_id={dashboardData?.latestMatch.match_id}
-                datetime={dashboardData?.latestMatch.datetime}
-                location={dashboardData?.latestMatch.location}
-                weather={dashboardData?.latestMatch.weather}
-                home_club={dashboardData?.latestMatch.home_club}
-                home_club_logo={dashboardData?.latestMatch.home_club_logo}
-                home_score={dashboardData?.latestMatch.home_score}
-                away_club={dashboardData?.latestMatch.away_club}
-                away_club_logo={dashboardData?.latestMatch.away_club_logo}
-                away_score={dashboardData?.latestMatch.away_score}
-                player_ratings={dashboardData?.latestPlayerRating}
-              />
+            <div className="flex justify-center">
+              <div className="flex flex-col py-3 lg:py-6 mt-10 max-w-[650px] lg:max-w-[1130px] lg:grid md:grid-cols-11">
+                <div className="mx-3 lg:col-start-8 lg:col-span-4 lg:my-2 lg:ml-0 lg:mr-6 order-1 lg:order-3">
+                  <Profile
+                    age={dashboardData?.playerProfile.age}
+                    club={dashboardData?.playerProfile.club}
+                    league={dashboardData?.playerProfile.league}
+                    team={dashboardData?.playerProfile.team}
+                    age_group={dashboardData?.playerProfile.age_group}
+                    gender={dashboardData?.playerProfile.gender}
+                    coach={dashboardData?.playerProfile.coach}
+                    bio={dashboardData?.playerProfile.bio}
+                  />
+                </div>
+                <div className="mb-4 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-2 lg:order-1">
+                  <LatestMatch
+                    match_id={dashboardData?.latestMatch?.match_id}
+                    datetime={dashboardData?.latestMatch?.datetime}
+                    location={dashboardData?.latestMatch?.location}
+                    weather={dashboardData?.latestMatch?.weather}
+                    home_club={dashboardData?.latestMatch?.home_club}
+                    home_club_logo={dashboardData?.latestMatch?.home_club_logo}
+                    home_score={dashboardData?.latestMatch?.home_score}
+                    away_club={dashboardData?.latestMatch?.away_club}
+                    away_club_logo={dashboardData?.latestMatch?.away_club_logo}
+                    away_score={dashboardData?.latestMatch?.away_score}
+                    player_ratings={dashboardData?.latestPlayerRating}
+                  />
+                </div>
+                <div className="mb-3 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-3 lg:order-2">
+                  <Charts
+                    latest_player_ratings={dashboardData?.latestPlayerRating}
+                    player_ratings={dashboardData?.playerRatings}
+                    is_goalkeeper={dashboardData?.isGoalkeeper}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="mb-3 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-3 lg:order-2">
-              <Charts
-                latest_player_ratings={dashboardData?.latestPlayerRating}
-                player_ratings={dashboardData?.playerRatings}
-                chart_fields={dashboardData?.chartFields}
+            <main className="flex flex-col items-center bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95">
+              <SeasonSection
+                seasonHighlights={dashboardData?.seasonHighlights}
               />
-            </div>
-          </div>
-        </div>
-        <main className="flex flex-col items-center bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95">
-          <SeasonSection />
-          <span className="h-px bg-partnersBorders w-11/12 max-w-[1130px] my-8 md:my-4" />
-          <PastMatchesLayout
-            past_matches={dashboardData?.matchesList}
-            teammates={dashboardData?.teammates}
-          />
-        </main>
-        <BackToTop />
-        <Footer />
+              <span className="h-px bg-partnersBorders w-11/12 max-w-[1130px] my-8 md:my-4" />
+              <PastMatchesLayout
+                past_matches={dashboardData?.matchesList}
+                teammates={dashboardData?.teammates}
+              />
+            </main>
+            <BackToTop />
+            <Footer />
+          </>
+        )}
       </div>
     </>
   );

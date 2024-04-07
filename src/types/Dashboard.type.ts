@@ -1,5 +1,4 @@
 import type { Payload } from 'recharts/types/component/DefaultLegendContent';
-import { FieldPlayerRatings, GoalKeeperRatings } from '@/utils/dashboardHelper';
 
 export type PlayerDashboardProps = {
   params: { cardId: number };
@@ -89,10 +88,11 @@ export interface IRating {
 }
 
 export interface IRatingProps {
-  overall_rating?: number;
-  latest_player_ratings: IRating[];
-  player_ratings: IRatingRaw[];
-  chart_fields: typeof FieldPlayerRatings | typeof GoalKeeperRatings;
+  overall_rating?: number | null;
+  latest_player_ratings?: IRating[] | null;
+  player_ratings?: IRatingRaw[] | null;
+  is_goalkeeper?: boolean | null;
+  chart_fields?: string[];
 }
 
 export interface IBarProps {
@@ -115,9 +115,9 @@ export interface ILegendProps {
 }
 
 export interface IMatchData {
-  match_id: string | null;
-  datetime: string | null;
-  location: string | null;
+  match_id?: string | null;
+  datetime?: string | null;
+  location?: string | null;
   home_club?: string | null;
   home_club_logo?: string | null;
   home_score?: number | null;
@@ -127,22 +127,20 @@ export interface IMatchData {
 }
 
 export interface IMatchDataWithWeather extends IMatchData {
-  weather: {
-    current: {
-      temp: number | null;
-    };
+  weather?: {
+    tempFahr: number | null;
   };
 }
 
 export interface ILatestMatchProps extends IMatchDataWithWeather {
-  player_ratings: IRating[];
+  player_ratings: IRating[] | null;
 }
 
 export const emptyLatestMatchData: IMatchDataWithWeather = {
   match_id: '',
   datetime: null,
   location: null,
-  weather: { current: { temp: null } },
+  weather: { tempFahr: null },
   home_club: null,
   home_club_logo: null,
   home_score: null,
@@ -152,14 +150,14 @@ export const emptyLatestMatchData: IMatchDataWithWeather = {
 };
 
 export interface IActionReel {
-  video_url: string | null;
+  video_key: string | null;
   thumbnail: string | null;
   title: string | null;
   description: string | null;
 }
 
 export const emptyActionReel: IActionReel = {
-  video_url: null,
+  video_key: null,
   thumbnail: null,
   title: null,
   description: null,
@@ -211,7 +209,7 @@ export interface IMatchDataExtended extends IMatchDataWithWeather {
   away_club: string | null;
   home_score: number | null;
   away_score: number | null;
-  video_url: string | null;
+  video_key: string | null;
   highlight_urls: string[] | null;
   highlight_descriptions: string[] | null;
 }
@@ -226,8 +224,8 @@ export const emptyMatchData: IMatchDataExtended = {
   away_score: null,
   datetime: null,
   location: null,
-  weather: { current: { temp: null } },
-  video_url: null,
+  weather: { tempFahr: null },
+  video_key: null,
   highlight_urls: null,
   highlight_descriptions: null,
 };
@@ -253,13 +251,14 @@ export const emptyLatestPlayerRatings: ILatestPlayerRatings = {
 };
 
 export interface DashboardData {
-  latestMatch: IMatchDataWithWeather; // replace 'any' with the type of your data
-  latestPlayerRating: IRating[];
-  playerRatings: IRatingRaw[];
+  latestMatch: IMatchDataWithWeather | null; // replace 'any' with the type of your data
+  latestPlayerRating: IRating[] | null;
+  playerRatings: IRatingRaw[] | null;
   matchesList: IMatchDataExtended[]; // replace 'any' with the type of your data
   playerProfile: IProfileProps; // replace 'any' with the type of your data
   teammates: ITeammate[]; // replace 'any' with the type of your data
-  chartFields: typeof FieldPlayerRatings | typeof GoalKeeperRatings;
+  isGoalkeeper: boolean | null;
+  seasonHighlights: string[] | null;
 }
 
 export const emptyDashboardData: DashboardData = {
@@ -269,5 +268,10 @@ export const emptyDashboardData: DashboardData = {
   matchesList: [emptyMatchData], // replace 'any' with the type of your data
   playerProfile: emptyProfileProps, // replace 'any' with the type of your data
   teammates: [emptyTeammate], // replace 'any' with the type of your data
-  chartFields: FieldPlayerRatings,
+  isGoalkeeper: null,
+  seasonHighlights: [''],
 };
+
+export interface ISeasonHighlights {
+  seasonHighlights: string[] | null;
+}

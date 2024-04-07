@@ -60,6 +60,16 @@ const PastMatches: React.FC<IPastMatches> = ({
             ))}
           </motion.div>
         </div>
+      ) : past_matches === null ? (
+        <div className="w-full px-0 md:px-4 lg:px-0 lg:w-2/3 lg:max-w-[640px]">
+          <h2 className="text-primary font-semibold text-2xl mb-6 font-sourceSansPro">
+            Past matches
+          </h2>
+          <div className="text-gray-500 min-w-[343px] md:min-w-[778px] lg:min-w-[640px] min-h-[50px] mb-10 lg:mb-0">
+            We are working on getting more match data for your player. Please
+            come back soon!
+          </div>
+        </div>
       ) : (
         <Skeleton className="min-w-[343px] md:min-w-[778px] lg:min-w-[640px] min-h-[550px] md:min-h-[355px] mb-10 lg:mb-0" />
       )}

@@ -21,7 +21,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     datetime,
     location,
     weather,
-    video_url,
+    video_key,
     // highlight_urls,
     highlight_descriptions,
   } = matchData;
@@ -119,9 +119,9 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                 <h2 className="text-[20px] font-semibold mb-2">Full Recap</h2>
                 <div className="h-1 mb-4 bg-partnersBorders" />
                 <div className="w-full h-full  min-w-[320px] max-h-[320px]">
-                  {video_url ? (
+                  {video_key ? (
                     <Video
-                      src={video_url}
+                      src={process.env.S3_ROOT_URL + video_key}
                       className="w-full h-full bg-slate-500 rounded-md"
                     />
                   ) : (
@@ -142,7 +142,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                     <div className="mr-2">
                       <FontAwesomeIcon icon={faCloud} />
                     </div>
-                    <p>{weather.current.temp}</p>
+                    <p>{weather?.tempFahr}</p>
                   </div>
                 </div>
 
@@ -173,9 +173,9 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                       key={index}
                       className=" w-full sm my-2 md:m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
                     >
-                      {video_url ? (
+                      {video_key ? (
                         <Video
-                          src={video_url}
+                          src={process.env.S3_ROOT_URL + video_key}
                           className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
                         />
                       ) : (
