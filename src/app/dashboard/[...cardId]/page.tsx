@@ -21,6 +21,13 @@ import {
   transformRatingData,
 } from '@/app/utils/dashboardHelper';
 import DashboardFetchError from '@/components/dashboard/DashboardFetchError';
+import { Source_Sans_3 } from 'next/font/google';
+
+//next font variable
+const sourceSans3 = Source_Sans_3({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 interface PageProps {
   params: { cardId: string | number };
@@ -84,7 +91,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
 
   return (
     <>
-      <div className="overflow-hidden font-sourceSansPro">
+      <div className={`overflow-hidden ${sourceSans3.className}`}>
         <Navbar />
         {isFetchMessage ? (
           <DashboardFetchError message={isFetchMessage} />
