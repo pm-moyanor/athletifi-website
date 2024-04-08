@@ -1,55 +1,61 @@
 import React from 'react';
-import { UnderLineText } from '../common/Icon';
-// import Image from 'next/image';
-import portrait from './portrait.jpg';
-import { samplePlayers, Player } from '@/types/Player.type';
+import Image from 'next/image';
+import { ITeammates } from '@/types/Dashboard.type';
+import Skeleton from 'react-loading-skeleton';
 
-const players: Player[] = samplePlayers;
-
-const AOS_DURATION: number = 400;
-const AOS_DELAY: number = 300;
-const AOS_OFFSET: number = 100;
-
-const Teammates: React.FC = () => {
-  const handlePlayerClick = (player: string) => {
-    console.log(player);
-  };
+const Teammates: React.FC<ITeammates> = ({ teammates }: ITeammates) => {
   return (
-    <div className="w-full xl:w-1/3 2xl:w-1/3 min-h-full">
-      <div className="container__border--blue-gradient bg-blue_linear_gradient after:absolute relative lg:py-16 py-5 md:py-10 z-0  after:contents-[''] after:inset-0 after:p-1 after:rounded-30 rounded-30 h-full flex items-center justify-center">
-        <div
-          className="flex flex-col justify-center items-center z-20 gap-4"
-          data-aos="fade-up"
-          data-aos-duration={AOS_DURATION}
-          data-aos-easing="ease-in-sine"
-          data-aos-delay={AOS_DELAY}
-          data-aos-offset={AOS_OFFSET}
-        >
-          <h2 className="font-HelveticaNeueMedium md:text-4xl text-basemd text-primary font-medium leading-60 relative z-20 text-center md:mb-4">
-            <span className="relative ">
-              Teammates
-              <span className="absolute -bottom-2 left-0 z-0">
-                <UnderLineText />
-              </span>
-            </span>
+    <>
+      {teammates && teammates[0]?.name ? (
+        <div className="bg-cardsBackground p-4 w-full lg:w-[330px] rounded-10 my-12 lg:my-0 ml-0 lg:ml-6 shadow-md max-h-96 md:max-h-52 lg:max-h-96 overflow-auto">
+          <h2 className="text-primary font-semibold text-[20px] font-sourceSansPro">
+            Teammates
           </h2>
-          <div className="flex flex-wrap justify-center items-center gap-5 max-w-sm p-5">
-            {players.map((player, index) => (
-              <button
-                key={index}
-                onClick={() => handlePlayerClick(player.name)}
-                className="flex flex-col items-center mb-4"
+          <div className="h-1 bg-partnersBorders my-2" />
+          <div className=" grid grid-col-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-1 gap-px ">
+            {teammates.map((teammate) => (
+              <div
+                key={`${teammate.name}-${teammate.number}`}
+                className="flex items-center py-2 flex-row md:flex-col lg:flex-row"
               >
-                <img className="w-100 h-70" src={portrait.src} />
-                <div className="w-full text-primary font-Segoe text-center">
-                  {player.name}
+                {teammate.avatar_url && teammate.name ? (
+                  <Image
+                    src={teammate.avatar_url}
+                    alt={teammate.name}
+                    width={70}
+                    height={70}
+                    className="rounded-full bg-slate-500 md:mb-2"
+                  />
+                ) : (
+                  <></>
+                )}
+                <div className="ml-6 md:ml-0 lg:ml-4 flex flex-col items-start md:items-center lg:items-start">
+                  <p className="text-base text-primary font-sourceSansPro">
+                    {teammate.name}
+                  </p>
+                  <p className="text-center inline-block max-w-full text-sm text-offwhite font-sourceSansPro">
+                    #{teammate.number}
+                  </p>
                 </div>
-              </button>
+              </div>
             ))}
           </div>
         </div>
-      </div>
-    </div>
+      ) : teammates === null ? (
+        <div className="bg-cardsBackground p-4 w-full lg:w-[330px] rounded-10 my-12 lg:my-0 ml-0 lg:ml-6 shadow-md">
+          <h2 className="text-primary font-semibold text-[20px] font-sourceSansPro">
+            Teammates
+          </h2>
+          <div className="h-1 bg-partnersBorders my-2" />
+          <div className="text-gray-500 min-w-[343px] md:min-w-[778px] lg:min-w-[330px] min-h-[150px]">
+            We are working on getting more teammate data for your player. Please
+            come back soon!
+          </div>
+        </div>
+      ) : (
+        <Skeleton className="min-w-[343px] md:min-w-[778px] lg:min-w-[330px] min-h-[426px] md:min-h-[217px] lg:min-h-[355px] mb-12 lg:mb-0" />
+      )}
+    </>
   );
 };
 

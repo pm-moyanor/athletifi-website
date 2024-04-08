@@ -2,6 +2,6 @@ export type SignUp = {
   email: string;
 };
 
-export type PostSignUp<T> = {
-  email: T;
+export type SignUpFormDetails = {
+  data: SignUp;
 };

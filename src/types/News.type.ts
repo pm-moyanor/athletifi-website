@@ -66,9 +66,18 @@ export interface NewsProps extends Articles {
 }
 
 export interface NewsDetails {
-  newsDetailData: PaginatedWorkflow;
+  newsArticle: PaginatedWorkflow;
 }
 
 export interface NewsSlugProps extends NewsDetails {
   allNewsData: PaginatedWorkflow;
+}
+
+export interface NewsPageContext {
+  params: {
+    slug: string;
+  };
+  searchParams?: {
+    page: string;
+  };
 }

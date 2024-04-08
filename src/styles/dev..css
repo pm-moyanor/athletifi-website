@@ -25,9 +25,6 @@
 }
 
 /* ================================================ MEET OUR STRATEGIC ADVISOR ================================================ */
-.btn__cta:hover span {
-  color: #00c5f4;
-}
 
 .btn__cta:hover svg path {
   fill: #00c5f4;
@@ -67,13 +64,13 @@
 
 .legal__heading {
   font-weight: bold;
-  margin-top: 2rem; 
-  margin-bottom: 1rem; 
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .legal__body {
   text-align: justify;
-  margin-bottom: 1rem; 
+  margin-bottom: 1rem;
 }
 
 .legal__list {
@@ -83,10 +80,9 @@
   padding-left: 1.5rem;
 }
 
-
 /* ============================ sign up ================================= */
 
-.sign-up__checkbox input[type="checkbox"] {
+.sign-up__checkbox input[type='checkbox'] {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -101,8 +97,8 @@
   padding: 7px;
 }
 
-.sign-up__checkbox input[type="checkbox"]::before {
-  content: "\2713";
+.sign-up__checkbox input[type='checkbox']::before {
+  content: '\2713';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -113,7 +109,7 @@
   padding: 7px;
 }
 
-.sign-up__checkbox input[type="checkbox"]:checked::before {
+.sign-up__checkbox input[type='checkbox']:checked::before {
   opacity: 1;
 }
 
@@ -124,6 +120,7 @@
 .sign-up__link:hover {
   text-decoration: underline;
 }
+
 /* ============================ Custom 404 - Not Found Page ================================= */
 
 .not-found__container {
@@ -139,6 +136,34 @@
   text-decoration: underline;
 }
 
+.stats-chart__container {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.stats-legend__buttons {
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  width: 8rem;
+  border-radius: 9999px;
+  padding: 0.5rem 0;
+  margin: 0.25rem 0.5rem;
+}
+
+.stats-legend__buttons:hover {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.stats-chart__icon--white {
+  filter: invert(100%) sepia(13%) saturate(7500%) hue-rotate(176deg) brightness(115%) contrast(112%);
+}
+
+.stats-chart__icon--rotate90 {
+  transform: rotate(90deg);
+}
+
 /* PRELOADER ANIMATION */
 @keyframes preloader_img {
   0% {
@@ -150,8 +175,21 @@
   }
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   .header__nav--open {
     all: unset;
   }
+}
+
+@media (min-width: 1024px) {
+  .stats-legend__buttons {
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    width: 8rem;
+    border-radius: 9999px;
+    padding: 0.4rem 0;
+    margin: 0.7rem 0;
+  }
+
 }

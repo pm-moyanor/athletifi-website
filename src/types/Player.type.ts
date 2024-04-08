@@ -1,5 +1,6 @@
 export interface Player {
   club?: string;
+  club_logo?: string;
   name: string;
   number?: string | number;
   team?: string;

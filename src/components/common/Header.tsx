@@ -1,9 +1,8 @@
 // This component renders the header of the website.
 // It includes navigation links and other header elements.
-
+'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import {
   ArrowButton,
   FacebookIcon,
@@ -19,15 +18,28 @@ const SCROLL_THRESHOLD: number = 200;
 
 const Header: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const path: string = useRouter().pathname;
+  const [path, setPath] = useState<string>('');
+
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    // Set the path state to the current pathname on the client side
+    setPath(window.location.pathname);
+
+    const handleBodyOverflow = () => {
       if (open) {
         document.body.classList.add('overflow-hidden');
       } else {
         document.body.classList.remove('overflow-hidden');
       }
+    };
+
+    if (typeof window !== 'undefined') {
+      handleBodyOverflow();
     }
+
+    return () => {
+      // Clean up to remove class when component unmounts or path changes
+      document.body.classList.remove('overflow-hidden');
+    };
   }, [open]);
 
   // ==============================================
@@ -65,7 +77,7 @@ const Header: React.FC = () => {
       <div
         ref={navbarRef}
         id="nav_bar"
-        className={`navbar fixed top-0 black w-full bg-bgnav py-2 z-40 ${
+        className={`navbar fixed top-0 black w-full bg-bgnav py-2 z-10 ${
           scrollPosition > SCROLL_THRESHOLD
             ? 'header--slide-up'
             : 'header--slide-down'
@@ -138,12 +150,11 @@ const Header: React.FC = () => {
                     News
                   </Link>
                 </li>
-                {/* 
-                UNCOMMENT WHEN YOU ARE READY TO RE-ADD THE DASHBOARD TO THE MENUBAR
-                <li>
+                {/* UNCOMMENT WHEN YOU ARE READY TO RE-ADD THE DASHBOARD TO THE MENUBAR */}
+                {/* <li>
                   <Link
                     onClick={() => setOpen(false)}
-                    href="/dashboard"
+                    href="/dashboard/vsa-23/1"
                     className={`text-md text-white font-normal font-Segoe opacity-70 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto ${
                       path == '/dashboard' ? '!opacity-100' : ''
                     }`}
@@ -249,7 +260,7 @@ const Header: React.FC = () => {
                         </span>
                       </Link>
                       <Link
-                        href="/sign-up"
+                        href="/contact-us"
                         className="sm:px-24pixel px-4 sm:py-14.5 py-2 flex bg-skyblue text-base font-semibold text-white font-Segoe leading-6 gap-6pixel group border border-skyblue hover:bg-black hover:text-skyblue btn__cta transition duration-300 ease-in-out social-popup__btn"
                       >
                         Contact Us
@@ -262,21 +273,21 @@ const Header: React.FC = () => {
                 </li>
                 <li>
                   <Link
-                    href="/sign-up"
+                    href="/contact-us"
                     onClick={() => setOpen(false)}
                     className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white md:hidden"
                   >
-                    Sign up
+                    Contact Us
                   </Link>
                 </li>
               </ul>
             </div>
             <Link
-              href="/sign-up"
+              href="/contact-us"
               onClick={() => setOpen(false)}
               className="pt-10pixel pb-14pixel px-24pixel text-skyblue border border-skyblue font-semibold text-base font-Segoe duration-300 hover:bg-skyblue hover:text-white hidden md:inline-block"
             >
-              Sign up
+              Contact Us
             </Link>
           </div>
         </div>

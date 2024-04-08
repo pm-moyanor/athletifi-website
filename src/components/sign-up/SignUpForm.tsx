@@ -1,10 +1,10 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { ButtonWhiteArrow, UnderLineText } from '@/components/common/Icon';
-import { postRequestHandler } from '@/components/common/api/Api';
-import { postNewsLetterHandler } from '@/components/common/api/ApiUrls';
-import { SignUp } from '@/types/SignUp.type';
+import { SignUp, SignUpFormDetails } from '@/types/SignUp.type';
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,6 +12,25 @@ const IMAGE_WIDTH_GRID = 400;
 const IMAGE_HEIGHT_GRID = 448;
 const IMAGE_WIDTH_PLAYER = 658;
 const IMAGE_HEIGHT_PLAYER = 598;
+
+async function handleSubmit(formDetails: SignUpFormDetails) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/signup`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ data: formDetails }), // Matching the PostData<T> type structure
+  });
+
+  if (!response.ok) {
+    console.error('Signup failed:', response.statusText);
+    return;
+  }
+
+  const responseData = await response.json();
+  console.log('Signup success:', responseData);
+  return responseData;
+}
 
 const SignUpForm = () => {
   // CUSTOM INPUT-CHECK
@@ -21,7 +40,6 @@ const SignUpForm = () => {
     email: '',
   };
 
-  console.log(typeof initialState);
   const [data, setData] = useState<SignUp>(initialState);
 
   const formHandler = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -29,18 +47,14 @@ const SignUpForm = () => {
     const formDetails = { data };
     const toastOptions: ToastOptions = {
       draggable: false,
-      position: toast.POSITION.BOTTOM_RIGHT,
+      position: 'bottom-right',
     };
 
     setLoading(true);
     if (checked) {
       try {
-        const response = await postRequestHandler(
-          postNewsLetterHandler(),
-          formDetails
-        );
-        console.log(response);
-        if (response.data) {
+        const response = await handleSubmit(formDetails);
+        if (response?.data) {
           toast.success('You have successfully signed-up!', toastOptions);
           setData({
             ...data,
@@ -49,7 +63,7 @@ const SignUpForm = () => {
         } else if (response.response.status === 400) {
           toast.error(
             'This email has already been used to sign-up',
-            toastOptions
+            toastOptions,
           );
         }
       } catch (err) {
@@ -58,7 +72,7 @@ const SignUpForm = () => {
     } else {
       toast.warning(
         'Please review and agree to the Terms and Privacy Policy',
-        toastOptions
+        toastOptions,
       );
     }
     setLoading(false);
@@ -119,7 +133,7 @@ const SignUpForm = () => {
                     placeholder="Email"
                     className="font-Sugoe font-normal input:-webkit-autofill focus:border-primary autofill:none text-base text-primary leading-6 py-5 px-4 bg-transparent w-full lg:max-w-400 mt-1.5 border border-1 border-offwhite outline-none"
                     id="email"
-                    onChange={e =>
+                    onChange={(e) =>
                       setData({
                         ...data,
                         email: e.target.value,
@@ -131,7 +145,7 @@ const SignUpForm = () => {
                   <input
                     type="checkbox"
                     id="Privacy-Policy"
-                    onChange={event => setChecked(event.target.checked)}
+                    onChange={(event) => setChecked(event.target.checked)}
                   />
                   <label
                     htmlFor="Privacy-Policy"
@@ -161,7 +175,7 @@ const SignUpForm = () => {
                 <div className="flex mt-6 md:mt-8 lg:max-w-400">
                   <button
                     type="submit"
-                    className={`sm:w-full justify-center text-center sm:px-24pixel px-4 sm:py-14.5 py-2 flex bg-skyblue text-base font-semibold text-primary font-Segoe leading-6 gap-6pixel group border border-skyblue hover:bg-black  join_now_btn transition duration-300 ease-in-out ${
+                    className={`sm:w-full justify-center text-center sm:px-24pixel px-4 sm:py-14.5 py-2 flex bg-skyblue text-base font-semibold text-primary font-Segoe leading-6 gap-6pixel group border border-skyblue hover:bg-black transition duration-300 ease-in-out ${
                       checked ? ' bg-skyblue' : ''
                     }`}
                   >
