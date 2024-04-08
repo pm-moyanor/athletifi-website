@@ -17,11 +17,12 @@ const sourceSans3 = Source_Sans_3({
 
 const SettingsPage = () => {
   return (
-    <motion.div 
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    className={sourceSans3.className}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className={sourceSans3.className}
+    >
       <div className="overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground ">
         <Navbar />
         <main className="mx-4 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-base">

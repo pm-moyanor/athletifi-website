@@ -1,5 +1,3 @@
-import Header from './Header';
-
 const CardsByTeam = ({ team }) => (
   <div>
     {team.map((card, index) => (
