@@ -27,7 +27,7 @@ interface PageProps {
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
+const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
 const fetchHelper = async (cardId: string) => {
   const response = await fetch(`${baseURL}/dashboard/${cardId}`);
   const data = await response.json();
