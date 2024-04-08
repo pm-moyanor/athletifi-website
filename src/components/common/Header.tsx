@@ -77,7 +77,7 @@ const Header: React.FC = () => {
       <div
         ref={navbarRef}
         id="nav_bar"
-        className={`navbar fixed top-0 black w-full bg-bgnav py-2 z-40 ${
+        className={`navbar fixed top-0 black w-full bg-bgnav py-2 z-10 ${
           scrollPosition > SCROLL_THRESHOLD
             ? 'header--slide-up'
             : 'header--slide-down'
@@ -151,7 +151,7 @@ const Header: React.FC = () => {
                   </Link>
                 </li>
                 {/* UNCOMMENT WHEN YOU ARE READY TO RE-ADD THE DASHBOARD TO THE MENUBAR */}
-                <li>
+                {/* <li>
                   <Link
                     onClick={() => setOpen(false)}
                     href="/dashboard/vsa-23/1"
@@ -161,7 +161,7 @@ const Header: React.FC = () => {
                   >
                     Dashboard
                   </Link>
-                </li>
+                </li> */}
                 <li className="social-popup--show sm:mt-7 sm:pb-7 hidden md:block">
                   <button
                     onClick={socialIcon}

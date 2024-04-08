@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faGear, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -16,6 +16,14 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({ pageTitle }) => {
   const [user] = useState(dummyDataUser);
   const [isOpenSideNav, setIsOpenSideNav] = useState(false);
+
+  useEffect(() => {
+    if (isOpenSideNav) {
+      document.body.classList.add('overflow-y-hidden');
+    } else {
+      document.body.classList.remove('overflow-y-hidden');
+    }
+  }, [isOpenSideNav]);
 
   const sidebar = {
     open: (width = 1000) => ({
@@ -46,7 +54,7 @@ const Header: FC<HeaderProps> = ({ pageTitle }) => {
             exit={'closed'}
             className="h-full w-full z-10 fixed top-48 md:top-32 left-0 duration-500 transition-all bg-gradient-to-r from-cardsDark2 to-cardsBackground"
           >
-            <PortalNav />
+            <PortalNav setIsOpenSideNav={setIsOpenSideNav} />
           </motion.div>
         )}
       </AnimatePresence>

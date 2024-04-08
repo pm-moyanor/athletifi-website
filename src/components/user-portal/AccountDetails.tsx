@@ -17,7 +17,7 @@ export default function AccountDetails() {
   function handlePassChange() {}
 
   return (
-    <div className="flex flex-col mt-16 text-primary">
+    <div className="flex flex-col mt-16 text-primary" id="account-details">
       <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-2 md:px-4 shadow-portalNav">
         Account Details
       </h2>

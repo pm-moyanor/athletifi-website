@@ -41,6 +41,17 @@ const Teammates: React.FC<ITeammates> = ({ teammates }: ITeammates) => {
             ))}
           </div>
         </div>
+      ) : teammates === null ? (
+        <div className="bg-cardsBackground p-4 w-full lg:w-[330px] rounded-10 my-12 lg:my-0 ml-0 lg:ml-6 shadow-md">
+          <h2 className="text-primary font-semibold text-[20px] font-sourceSansPro">
+            Teammates
+          </h2>
+          <div className="h-1 bg-partnersBorders my-2" />
+          <div className="text-gray-500 min-w-[343px] md:min-w-[778px] lg:min-w-[330px] min-h-[150px]">
+            We are working on getting more teammate data for your player. Please
+            come back soon!
+          </div>
+        </div>
       ) : (
         <Skeleton className="min-w-[343px] md:min-w-[778px] lg:min-w-[330px] min-h-[426px] md:min-h-[217px] lg:min-h-[355px] mb-12 lg:mb-0" />
       )}
