@@ -1,9 +1,8 @@
-import { NextApiRequest } from 'next';
 import { NextResponse } from 'next/server';
 import axiosClient from '@/utils/axiosClient';
 
 export async function GET(
-  req: NextApiRequest,
+  request: Request,
   { params }: { params: { cardId: string } },
 ) {
   const cardId = Array.isArray(params.cardId)

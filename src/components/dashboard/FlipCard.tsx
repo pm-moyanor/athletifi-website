@@ -10,7 +10,7 @@ const FlipCard = ({ cardUrl }: { cardUrl: string }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {
-    setIsFlipped(!isFlipped);
+    setIsFlipped((prevState) => !prevState);
   }, []);
 
   return (
