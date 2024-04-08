@@ -36,14 +36,14 @@ export default function ManageReferrals() {
 
   return (
     <div className="flex flex-col mt-16 text-primary" id="manage-referrals">
-      <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-4">
+      <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-4 shadow-portalNav">
         Manage Referrals
       </h2>
       <div className="text-offwhite mx-4 my-8">
         Manage access to your guest list and view invitations to other
         users&apos; cards
       </div>
-      <div className="rounded bg-cardsDark pt-4 pb-16">
+      <div className="rounded bg-cardsDark pt-4 pb-16 shadow-portalNav">
         <div className="p-4">Guests invited to view your cards</div>
         {referrals.map((referral, idx) => (
           <div

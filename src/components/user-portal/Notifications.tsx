@@ -36,13 +36,13 @@ export default function Notifications() {
 
   return (
     <div className="flex flex-col mt-16 text-primary" id="notifications">
-      <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-4">
+      <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-4 shadow-portalNav">
         Notifications
       </h2>
       <div className="text-offwhite mx-4 my-8">
         What would you like to be notified via email?
       </div>
-      <div className="rounded bg-cardsDark">
+      <div className="rounded bg-cardsDark shadow-portalNav">
         {notificationSettings.map((setting, idx) => (
           <div
             key={idx}

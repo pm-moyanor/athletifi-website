@@ -118,15 +118,15 @@ const Navbar: React.FC = () => {
 
   return (
     <header>
-      <div id="nav_bar" className="absolute w-full p-4 font-sourceSansPro">
-        <div className="container flex items-center justify-between w-full max-w-none  px-4">
+      <div id="nav_bar" className="absolute w-full py-4 font-sourceSansPro">
+        <div className="container flex items-center justify-between w-full max-w-none md:px-6">
           <Link href="/">
             <PageLogo />
           </Link>
           {/* SMALL SCREEN MENU ICONS */}
           <div
             onClick={() => setOpen(!open)}
-            className="flex flex-col md:hidden bg-transparent border-0 relative z-50 cursor-pointer p-4 hover:opacity-90 transform hover:scale-95 ease-in-out"
+            className="flex flex-col md:hidden bg-transparent border-0 relative z-50 cursor-pointer py-4 hover:opacity-90 transform hover:scale-95 ease-in-out"
           >
             <span className="h-3pixel w-8 bg-white inline-block rounded-sm"></span>
             <span className="my-2 h-3pixel w-7 bg-white inline-block rounded-sm"></span>
@@ -195,7 +195,7 @@ const Navbar: React.FC = () => {
                   </div>
                 </li>
               ) : (
-                <div className="hidden relative md:flex item text-offwhite">
+                <div className="hidden relative md:flex item text-primary">
                   <div
                     className="flex items-center cursor-pointer"
                     onClick={() => setShowDropdown(!showDropdown)}
@@ -206,24 +206,27 @@ const Navbar: React.FC = () => {
                   {showDropdown && (
                     <div
                       ref={dropdown}
-                      className="absolute flex flex-col top-10 z-20 bg-cardsDark rounded p-6 gap-4"
+                      className="absolute flex flex-col justify-between w-48 h-60 top-8 right-px z-20 bg-cardsDark rounded px-4 py-8 "
                     >
-                      <Link href="/" className="hover:text-white">
+                      <Link href="/" className={`${linksStyle} mr-auto`}>
                         My cards
                       </Link>
                       <Link
                         href="/settings"
                         onClick={() => setShowDropdown(!showDropdown)}
-                        className="hover:text-white"
+                        className={`${linksStyle} mr-auto`}
                       >
                         Settings
                       </Link>
-                      <Link href="/help-support" className="hover:text-white">
+                      <Link
+                        href="/help-support"
+                        className={`${linksStyle} mr-auto`}
+                      >
                         Help & Support
                       </Link>
                       <div className="border-t border-t-offwhite opacity-75"></div>
                       <div
-                        className="hover:text-white cursor-pointer"
+                        className={`${linksStyle} mr-auto`}
                         onClick={handleLogout}
                       >
                         Logout
