@@ -31,6 +31,10 @@ const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
 const fetchHelper = async (cardId: string) => {
   const response = await fetch(`${baseURL}/dashboard/${cardId}`);
   const data = await response.json();
+  console.log('DEV LOGS----');
+  console.log('url: ', `${baseURL}/dashboard/${cardId}`);
+  console.log('data:');
+  console.log(data);
   if (!cardId || !data) {
     return notFound();
   }
