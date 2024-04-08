@@ -107,8 +107,8 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
                 card_url={dashboardData?.playerProfile.card_url}
               />
             </div>
-            <div className="flex justify-center">
-              <div className="flex flex-col py-3 lg:py-6 mt-10 max-w-[650px] lg:max-w-[1130px] lg:grid md:grid-cols-11">
+            <div className="flex justify-center w-full">
+              <div className="w-full flex flex-col py-3 lg:py-6 mt-10 max-w-[650px] lg:max-w-[1130px] lg:grid md:grid-cols-11">
                 <div className="mx-3 lg:col-start-8 lg:col-span-4 lg:my-2 lg:ml-0 lg:mr-6 order-1 lg:order-3">
                   <Profile
                     age={dashboardData?.playerProfile.age}
