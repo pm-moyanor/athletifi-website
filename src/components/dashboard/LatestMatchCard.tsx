@@ -58,7 +58,7 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
             <>
               <div className=" flex flex-col md:flex-row justify-between">
                 <h1 className="text-[24px] font-semibold">Latest Match</h1>
-                <div className="flex flex-col justify-between h-[70px] items-center md:items-end mt-4 md:mt-0 text-sm font-light">
+                <div className="flex flex-col justify-between h-[68px] items-center md:items-end mt-4 md:mt-0 text-sm font-light">
                   <p className="text-center md:text-right">{datetime}</p>
                   <p className="text-center md:text-right">{location}</p>
                   <div className="flex item-center items-center justify-center sm:justify-center md:justify-end">
@@ -122,7 +122,7 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
               soon
             </div>
           ) : (
-            <div className="flex justify-between items-center  mt-6">
+            <div className="flex justify-between items-center mt-10 md:mt-6">
               {player_ratings?.map((rating, idx) => (
                 <RatingBox
                   key={idx}

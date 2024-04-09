@@ -12,11 +12,11 @@ const Teammates: React.FC<ITeammates> = ({ teammates }: ITeammates) => {
             Teammates
           </h2>
           <div className="h-1 bg-partnersBorders my-2" />
-          <div className=" grid grid-col-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-1 gap-px ">
+          <div className=" grid grid-col-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-1 gap-2 ">
             {teammates.map((teammate) => (
               <div
                 key={`${teammate.name}-${teammate.number}`}
-                className="flex items-center py-2 flex-row md:flex-col lg:flex-row"
+                className="flex items-center flex-row md:flex-col lg:flex-row"
               >
                 {teammate.avatar_url && teammate.name ? (
                   <Image
