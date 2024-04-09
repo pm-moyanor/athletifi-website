@@ -15,12 +15,12 @@ const Profile: React.FC<IProfileProps> = ({
   return (
     <>
       {age ? (
-        <div className="w-full h-[596px] bg-cardsBackground rounded-10 p-4 mb-4 -mt-8 sm:-mt-8 md:mt-0 lg:-mt-[96px] flex flex-col">
+        <div className="w-full h-[612px] bg-cardsBackground rounded-10 p-4 mb-4 -mt-8 sm:-mt-8 md:mt-0 lg:-mt-[112px] flex flex-col">
           <h2 className="text-primary text-[24px] mb-4 font-semibold">
             Profile
           </h2>
           <table className="text-primary w-full divide-y divide-gray-200">
-            <tbody className="font-extralight text-base">
+            <tbody className="font-light text-base">
               <tr className="border-b border-partnersBorders">
                 <td className="text-left py-2 px-[4px]">Age</td>
                 <td className="text-right min-w-24 px-[4px]">{age}</td>
@@ -52,10 +52,8 @@ const Profile: React.FC<IProfileProps> = ({
             </tbody>
           </table>
           <h3 className="text-primary text-[20px] mt-6 mb-2 w-full">Bio</h3>
-          <div className="h-full overflow-scroll mb-4">
-            <p className="text-primary font-extralight text-base min-w-[319px] md:min-w-[594px] lg:min-w-[354px]">
-              {bio}
-            </p>
+          <div className="h-full overflow-y-auto mb-4 ">
+            <p className="text-primary font-light text-base ">{bio}</p>
           </div>
         </div>
       ) : (

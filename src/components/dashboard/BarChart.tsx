@@ -90,7 +90,11 @@ const StatsBarChart: React.FC<IRatingProps> = ({
         </div>
       ) : (
         <>
-          <ResponsiveContainer width={'100%'} height={295} debounce={50}>
+          <ResponsiveContainer
+            width={'100%'}
+            height={isMobile ? 320 : 295}
+            debounce={50}
+          >
             <BarChart
               data={latest_player_ratings}
               layout="vertical"
@@ -123,7 +127,7 @@ const StatsBarChart: React.FC<IRatingProps> = ({
               <Bar
                 dataKey={yKey}
                 minPointSize={2}
-                barSize={isMobile ? 28 : 36}
+                barSize={isMobile ? 26 : 32}
                 radius={20}
                 background={{ fill: LAYERCOLOR, radius: 20, opacity: 0.1 }}
               >
@@ -157,7 +161,7 @@ const StatsBarChart: React.FC<IRatingProps> = ({
             </div>
             <div className="ml-5 mr-8 lg:ml-[3.75rem] lg:mr-[3.25rem] w-full">
               {barProps.click ? (
-                <div className="text-white text-xs md:text-sm bg-gray-500/15 rounded-10 py-4 px-6 mb-4 w-full">
+                <div className="-mt-[4px] text-primary font-extralight text-xs md:text-sm bg-gray-500/15 rounded-10 p-2 md:p-4 mb-4 w-full overflow-y-auto max-h-24">
                   {
                     attributeConfigs[barProps.click as keyof IAttributeConfig]
                       .description
