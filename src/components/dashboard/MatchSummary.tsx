@@ -34,8 +34,8 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   return (
     // MATCH basic INFO
 
-    <div className="w-full flex justify-around md:justify-between items-center text-primary  md:mr-4">
-      <div className="flex justify-between items-center w-full max-w-[200px] min-w-[140px] mr-2 ">
+    <div className="w-full flex md:justify-between items-center text-primary md:mr-4">
+      <div className="flex justify-between items-center w-full max-w-[200px] min-w-[140px] mr-2">
         {home_club_logo !== null && (
           <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
             <Image src={home_club_logo} alt="Crest" layout="fill" />
@@ -51,8 +51,8 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
         )}
       </div>
 
-      <div className=" flex flex-row flex-wrap items-center justify-between md:w-[600px] gap-2">
-        <div className="block ml-[6px] md:m-auto">
+      <div className="flex flex-row flex-wrap items-center md:justify-around w-[600px] gap-2">
+        <div className="ml-[6px]">
           <span className="text-sm md:text-base ">{home_club} </span>vs
           <span className="text-sm md:text-base "> {away_club}</span>
           <div className="text-xs md:text-sm text-offwhite pt-[4px]">
