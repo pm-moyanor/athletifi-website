@@ -33,31 +33,33 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   return (
     // MATCH basic INFO
 
-    <div className="w-full flex justify-between items-center text-primary font-sourceSansPro md:mr-4">
-      <div className="flex justify-between items-center w-[250px] max-w-[220px] min-w-[200px] mr-2 ">
+    <div className="w-full flex justify-between items-center text-primary  md:mr-4">
+      <div className="flex justify-between items-center w-full max-w-[220px] min-w-[150px] mr-2 ">
         {home_club_logo !== null && (
-          <div className="relative w-16 h-16">
+          <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
             <Image src={home_club_logo} alt="Crest" layout="fill" />
           </div>
         )}
-        <div className="mx-[4px]">
+        <div className="mx-2 min-w-12 flex justify-between md:mx-4">
           <span>{home_score}</span> - <span>{away_score}</span>
         </div>
         {away_club_logo !== null && (
-          <div className="relative w-16 h-16">
+          <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
             <Image src={away_club_logo} alt="Crest" layout="fill" />
           </div>
         )}
       </div>
 
-      <div className="flex flex-col md:flex-row md:items-center w-full justify-center ">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-center">
         <div className="block max-w-full ml-[6px] md:m-auto">
-          <span className="text-base font-sourceSansPro">{home_club} </span>vs
-          <span className="text-base font-sourceSansPro"> {away_club}</span>
-          <div className="text-sm text-offwhite pt-[2px]">{datetime}</div>
+          <span className="text-sm md:text-base ">{home_club} </span>vs
+          <span className="text-sm md:text-base "> {away_club}</span>
+          <div className="text-xs md:text-sm text-offwhite pt-[4px]">
+            {datetime}
+          </div>
         </div>
         <button
-          className="w-28 h-[30px] px-2 bg-skyblue text-black text-sm rounded-30 mt-2 md:mt-0 "
+          className="w-28 h-[26px] md:h-[30px] px-2 bg-skyblue text-black text-sm rounded-30 mt-2 md:mt-0 ml-[4px]"
           onClick={handleSummaryClick}
         >
           summary
