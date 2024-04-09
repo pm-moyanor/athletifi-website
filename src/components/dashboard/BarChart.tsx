@@ -93,7 +93,7 @@ const StatsBarChart: React.FC<IRatingProps> = ({
           <ResponsiveContainer
             width={'100%'}
             height={isMobile ? 320 : 295}
-            debounce={50}
+            debounce={20}
           >
             <BarChart
               data={latest_player_ratings}

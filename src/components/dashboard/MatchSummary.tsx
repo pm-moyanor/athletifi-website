@@ -33,8 +33,8 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   return (
     // MATCH basic INFO
 
-    <div className="w-full flex justify-between items-center text-primary  md:mr-4">
-      <div className="flex justify-between items-center w-full max-w-[220px] min-w-[150px] mr-2 ">
+    <div className="w-full flex justify-around md:justify-between items-center text-primary  md:mr-4">
+      <div className="flex justify-between items-center w-full max-w-[200px] min-w-[140px] mr-2 ">
         {home_club_logo !== null && (
           <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
             <Image src={home_club_logo} alt="Crest" layout="fill" />
@@ -50,8 +50,8 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
         )}
       </div>
 
-      <div className="flex flex-col md:flex-row md:items-center md:justify-center">
-        <div className="block max-w-full ml-[6px] md:m-auto">
+      <div className=" flex flex-row flex-wrap items-center justify-between md:w-[600px] gap-2">
+        <div className="block ml-[6px] md:m-auto">
           <span className="text-sm md:text-base ">{home_club} </span>vs
           <span className="text-sm md:text-base "> {away_club}</span>
           <div className="text-xs md:text-sm text-offwhite pt-[4px]">
@@ -59,7 +59,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
           </div>
         </div>
         <button
-          className="w-28 h-[26px] md:h-[30px] px-2 bg-skyblue text-black text-sm rounded-30 mt-2 md:mt-0 ml-[4px]"
+          className="w-28 h-[26px] md:h-[30px] px-2 bg-skyblue text-black text-sm rounded-30 ml-[4px]"
           onClick={handleSummaryClick}
         >
           summary
@@ -69,53 +69,42 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
       {/* SUMMARY CARD */}
 
       {showRecap && (
-        <div className="bg-[#0b2230] shadow-lg fixed inset-0 w-full p-2 md:p-8 z-50 flex flex-col items-center overflow-y-auto">
-          <div className="flex justify-center md:justify-start items-center text-primary w-full font-sourceSansPro pb-4 md:max-w-[700px] lg:max-w-[1030px]">
-            <div className="flex flex-col md:flex-row  w-full justify-center md:justify-between items-center sm:max-w-[380px] md:max-w-[600px] mt-8 md:mt-2 ">
-              <div className="flex min-w-[190px] max-w-[190px] justify-center gap-4 items-center my-4">
-                {home_club_logo !== null && (
-                  <Image
-                    src={home_club_logo}
-                    alt="Crest"
-                    width={50}
-                    height={50}
-                    className="bg-slate-400 rounded-20"
-                  />
-                )}
-                <div className="font-semibold">
-                  <span>{home_score}</span> - <span>{away_score}</span>
+        <div className="bg-[#0b2230] shadow-lg fixed inset-0 w-full py-20 px-4 z-50 flex flex-col items-center overflow-y-auto">
+          <button
+            onClick={() => setShowRecap(false)}
+            className="flex justify-end w-full  max-w-[520px] md:max-w-[700px] lg:max-w-[1030px] mb-6"
+          >
+            <FontAwesomeIcon icon={faTimes} size="xl" />
+          </button>
+          <div className="w-full flex justify-start md:justify-between items-center text-primary mt-2 my-6 max-w-[520px] md:max-w-[600px]">
+            <div className="flex justify-between items-center w-full max-w-[200px] min-w-[140px] mr-2 ">
+              {home_club_logo !== null && (
+                <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
+                  <Image src={home_club_logo} alt="Crest" layout="fill" />
                 </div>
-                {away_club_logo !== null && (
-                  <Image
-                    src={away_club_logo}
-                    alt="Crest"
-                    width={50}
-                    height={50}
-                    className="bg-slate-400 rounded-20"
-                  />
-                )}
+              )}
+              <div className="mx-2 min-w-12 flex justify-between md:mx-4">
+                <span>{home_score}</span> - <span>{away_score}</span>
               </div>
+              {away_club_logo !== null && (
+                <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
+                  <Image src={away_club_logo} alt="Crest" layout="fill" />
+                </div>
+              )}
+            </div>
 
-              <div className=" flex justify-center gap-6 w-full">
-                <span className="font-semibold text-right  w-[140px]">
-                  {home_club}
-                </span>
-                <span className="">vs</span>
-
-                <span className="font-semibold text-left  w-[140px]">
-                  {away_club}
-                </span>
+            <div className=" flex flex-row flex-wrap items-center justify-between md:w-[600px] gap-2">
+              <div className="block ml-[6px] md:m-auto">
+                <span className="text-sm md:text-base ">{home_club} </span>vs
+                <span className="text-sm md:text-base "> {away_club}</span>
+                <div className="text-xs md:text-sm text-offwhite pt-[4px]">
+                  {datetime}
+                </div>
               </div>
             </div>
-            <button
-              onClick={() => setShowRecap(false)}
-              className="absolute top-6 right-6"
-            >
-              <FontAwesomeIcon icon={faTimes} size="xl" />
-            </button>
           </div>
 
-          <div className="flex flex-col py-8 max-w-[520px] sm:max-w-[520px] md:max-w-[700px] lg:max-w-[1030px] items-center justify-center px-2 w-full">
+          <div className="flex flex-col py-4 max-w-[520px] md:max-w-[700px] lg:max-w-[1030px] items-center justify-center w-full">
             <div className="flex flex-col-reverse sm:flex-col-reverse md:flex-row pb-8 w-full">
               <div className="w-full mt-6 md:mt-0">
                 <h2 className="text-[20px] font-semibold mb-2">Full Recap</h2>
@@ -124,17 +113,17 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                   {video_key ? (
                     <Video
                       src={process.env.S3_ROOT_URL + video_key}
-                      className="w-full h-full bg-slate-500 rounded-md"
+                      className="w-full h-full rounded-md"
                     />
                   ) : (
-                    <div className="w-full h-full bg-slate-500 rounded-md flex justify-center items-center">
+                    <div className="w-full h-fullflex justify-center items-center">
                       <p>No video currently available for this match</p>
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className="px-0 md:px-4 my-4 md:my-0 font-sourceSansPro md:w-4/6 ">
+              <div className="px-0 md:px-4 my-4 md:my-0  md:w-4/6 ">
                 <h3 className="text-[20px] font-semibold">Summary</h3>
                 {/* <div className="h-1 my-2 bg-partnersBorders" /> */}
                 <div className="text-sm text-offwhite my-4">
@@ -182,7 +171,9 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                         />
                       ) : (
                         <div className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px] flex justify-center items-center text-center">
-                          <p>No video currently available for this match</p>
+                          <p className="text-gray-500">
+                            No video currently available for this match
+                          </p>
                         </div>
                       )}
                       <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end  max-w-[320px]">
