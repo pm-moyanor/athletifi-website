@@ -122,7 +122,7 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
               soon
             </div>
           ) : (
-            <div className="flex justify-between items-center mt-10 md:mt-6">
+            <div className="flex justify-around items-center mt-10 md:mt-6">
               {player_ratings?.map((rating, idx) => (
                 <RatingBox
                   key={idx}
