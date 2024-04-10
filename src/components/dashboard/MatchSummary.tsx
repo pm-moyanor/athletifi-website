@@ -34,7 +34,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   return (
     // MATCH basic INFO
 
-    <div className="w-full flex md:justify-between items-center text-primary md:mr-4">
+    <div className="w-full flex justify-around lg:justify-between items-center text-primary ">
       <div className="flex justify-between items-center w-full max-w-[200px] min-w-[140px] mr-2">
         {home_club_logo !== null && (
           <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
@@ -51,7 +51,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
         )}
       </div>
 
-      <div className="flex flex-row flex-wrap items-center md:justify-around w-[600px] gap-2">
+      <div className="flex flex-col md:flex-row  md:items-center justify-center md:justify-around  gap-4 md:w-[600px] lg:w-full">
         <div className="ml-[6px]">
           <span className="text-sm md:text-base ">{home_club} </span>vs
           <span className="text-sm md:text-base "> {away_club}</span>

@@ -145,11 +145,11 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
                 </div>
               </div>
             </div>
-            <main className="flex flex-col items-center bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95">
+            <main className="w-full px-4 flex flex-col items-center bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95">
               <SeasonSection
                 seasonHighlights={dashboardData?.seasonHighlights}
               />
-              <span className="h-px bg-partnersBorders w-11/12 max-w-[1130px] my-8 md:my-4" />
+              <span className="h-px bg-partnersBorders w-full max-w-[1130px] my-8 md:my-4" />
               <PastMatchesLayout
                 past_matches={dashboardData?.matchesList}
                 teammates={dashboardData?.teammates}

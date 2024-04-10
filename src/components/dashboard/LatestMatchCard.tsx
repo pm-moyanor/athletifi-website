@@ -70,8 +70,8 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
                 </div>
               </div>
 
-              <div className="flex justify-end items-start w-full max-w-[450px] md:max-w-[500px] my-4 h-full self-center">
-                <div className="flex justify-end items-end h-full w-1/2">
+              <div className="flex justify-end items-center w-full max-w-[450px] md:max-w-[500px] my-4 h-full self-center">
+                <div className="flex justify-end items-center h-full w-1/2">
                   <div className="flex flex-col-reverse w-full md:flex-row items-center">
                     <p className="text-center md:mr-2 max-h-6 leading-5 text-sm md:text-base">
                       {home_club}
@@ -80,7 +80,7 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
                       <Image
                         src={home_club_logo}
                         alt="crest"
-                        className="mb-2 md:mb-0"
+                        className="mb-[6px] md:mb-0"
                         width={LOGO_SIZE}
                         height={LOGO_SIZE}
                         quality={75}
@@ -89,19 +89,19 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
                     )}
                   </div>
 
-                  <p className="text-lg h-full flex md:items-center pt-2 md:pt-0 px-2 md:px-4">{`${home_score}`}</p>
+                  <p className="text-lg h-full md:items-center pt-2 lg:pt-0 px-2 md:px-4">{`${home_score}`}</p>
                 </div>
                 <p className="px-2 h-full mt-4 md:mt-0 flex items-start md:items-center">
                   -
                 </p>
-                <div className="flex items-start h-full w-1/2">
-                  <p className="text-lg  h-full flex md:items-center pt-2 md:pt-0 px-2 md:px-4">{`${away_score}`}</p>
+                <div className="flex  md:items-center h-full w-1/2">
+                  <p className="text-lg  h-full flex md:items-center pt-2 lg:pt-0 px-2 md:px-4 ">{`${away_score}`}</p>
                   <div className="flex flex-col w-full md:flex-row items-center">
                     {!!away_club_logo && (
                       <Image
                         src={away_club_logo}
                         alt="crest"
-                        className="mb-2 md:mb-0"
+                        className="mb-[6px] md:mb-0"
                         width={LOGO_SIZE}
                         height={LOGO_SIZE}
                         quality={75}

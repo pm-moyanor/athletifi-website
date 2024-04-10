@@ -42,7 +42,7 @@ const SeasonSection: React.FC<ISeasonHighlights> = ({
 
   return (
     <>
-      <div className="w-full max-w-[1130px] sm:py-8 md:py-20 px-4 flex flex-col sm:flex-col md:flex-row justify-around items-center md:items-start">
+      <div className="w-full max-w-[1130px] sm:py-8 md:py-20 flex flex-col sm:flex-col md:flex-row justify-around items-center md:items-start">
         <SeasonHighlights seasonHighlights={seasonHighlights} />
         <ActionReelList actionReels={actionReels} />
       </div>
