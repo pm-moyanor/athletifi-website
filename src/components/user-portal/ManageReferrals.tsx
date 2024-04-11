@@ -51,13 +51,14 @@ export default function ManageReferrals() {
             className="flex justify-between items-center py-4 mx-4 border-b border-b-offwhite"
           >
             <div>{referral.name}</div>
+            <div>email</div>
             <div
               className="flex items-center cursor-pointer"
               onClick={() => handleRemoveReferral(idx)}
             >
               <div className="mx-4">remove</div>
               <FontAwesomeIcon
-                className="text-chartRed text-basemd md:text-3xl"
+                className="text-chartRed text-md md:text-3xl"
                 icon={faXmark}
               />
             </div>
@@ -73,7 +74,7 @@ export default function ManageReferrals() {
           <button className="flex items-center cursor-pointer" type="submit">
             <div className="mx-4">add</div>
             <FontAwesomeIcon
-              className="text-skyblue text-basemd md:text-3xl"
+              className="text-skyblue text-md md:text-3xl"
               icon={faPlus}
             />
           </button>
@@ -91,7 +92,7 @@ export default function ManageReferrals() {
             >
               <div className="mx-4">remove</div>
               <FontAwesomeIcon
-                className="text-chartRed text-basemd md:text-3xl"
+                className="text-chartRed text-md md:text-3xl"
                 icon={faXmark}
               />
             </div>
