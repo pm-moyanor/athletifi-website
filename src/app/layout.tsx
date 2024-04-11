@@ -8,10 +8,14 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Open_Sans } from 'next/font/google';
 
-// const GoogleAnalyticsWithNoSSR = dynamic(
-//   () => import('nextjs-google-analytics').then((mod) => mod.GoogleAnalytics),
-//   { ssr: false },
-// );
+// import { Amplify } from 'aws-amplify';
+
+// Amplify.configure({
+//   Auth: {
+//     Cognito: {
+//     },
+//   },
+// });
 
 const openSans = Open_Sans({
   subsets: ['latin'],

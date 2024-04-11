@@ -1,0 +1,14 @@
+[
+  {
+    "groupName": "athletifiTeamAdminUsers",
+    "precedence": 1
+  },
+  {
+    "groupName": "athletifiGeneralUsers",
+    "precedence": 2
+  },
+  {
+    "groupName": "athletifiReferralUsers",
+    "precedence": 3
+  }
+]

@@ -1,0 +1,155 @@
+{
+  "auth": {
+    "athletifiDashboardLogin": {
+      "customAuth": false,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "athletifiDashboardLoginCustomMessage",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "athletifiDashboardLoginPostConfirmation",
+          "triggerProvider": "Cognito"
+        }
+      ],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OPTIONAL",
+        "mfaTypes": [
+          "TOTP"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL",
+          "FAMILY_NAME",
+          "GIVEN_NAME"
+        ],
+        "socialProviders": [
+          "GOOGLE"
+        ],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    },
+    "userPoolGroups": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "athletifiDashboardLogin"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito-UserPool-Groups"
+    }
+  },
+  "function": {
+    "athletifiDashboardLoginCustomMessage": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "athletifiDashboardLoginPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_athletifiDashboardLogin_googleClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "athletifiDashboardLogin"
+        }
+      ]
+    },
+    "AMPLIFY_function_athletifiDashboardLoginCustomMessage_EMAILMESSAGE": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "athletifiDashboardLoginCustomMessage"
+        }
+      ]
+    },
+    "AMPLIFY_function_athletifiDashboardLoginCustomMessage_EMAILSUBJECT": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "athletifiDashboardLoginCustomMessage"
+        }
+      ]
+    },
+    "AMPLIFY_function_athletifiDashboardLoginCustomMessage_REDIRECTURL": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "athletifiDashboardLoginCustomMessage"
+        }
+      ]
+    },
+    "AMPLIFY_function_athletifiDashboardLoginCustomMessage_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "athletifiDashboardLoginCustomMessage"
+        }
+      ]
+    },
+    "AMPLIFY_function_athletifiDashboardLoginCustomMessage_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "athletifiDashboardLoginCustomMessage"
+        }
+      ]
+    },
+    "AMPLIFY_function_athletifiDashboardLoginPostConfirmation_GROUP": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "athletifiDashboardLoginPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_athletifiDashboardLoginPostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "athletifiDashboardLoginPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_athletifiDashboardLoginPostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "athletifiDashboardLoginPostConfirmation"
+        }
+      ]
+    }
+  }
+}

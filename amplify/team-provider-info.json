@@ -1,0 +1,38 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-athletifiwebsite-dev-41577-authRole",
+      "UnauthRoleArn": "arn:aws:iam::224898308309:role/amplify-athletifiwebsite-dev-41577-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::224898308309:role/amplify-athletifiwebsite-dev-41577-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-athletifiwebsite-dev-41577-deployment",
+      "UnauthRoleName": "amplify-athletifiwebsite-dev-41577-unauthRole",
+      "StackName": "amplify-athletifiwebsite-dev-41577",
+      "StackId": "arn:aws:cloudformation:us-east-2:224898308309:stack/amplify-athletifiwebsite-dev-41577/6b2eb690-f836-11ee-a0d9-069a0e453c8d",
+      "AmplifyAppId": "dnsxi8rj2xmaa",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-athletifiwebsite-dev-41577-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "athletifiDashboardLogin": {
+          "googleClientId": "594257084312-4uf0fqp0krn1f4vo73inv9uo4ie3pkm6.apps.googleusercontent.com"
+        },
+        "userPoolGroups": {}
+      },
+      "function": {
+        "athletifiDashboardLoginCustomMessage": {
+          "REDIRECTURL": "https://athleti.fi/welcome/",
+          "EMAILSUBJECT": "Welcome to AthletiFi",
+          "EMAILMESSAGE": "Welcome to AthletiFi! We're excited to have you on board and are eager to get you started on your journey through the world of youth soccer analytics and engagement. To complete your registration and activate your account, please confirm your email address by clicking the link:",
+          "deploymentBucketName": "amplify-athletifiwebsite-dev-41577-deployment",
+          "s3Key": "amplify-builds/athletifiDashboardLoginCustomMessage-59425a304c5276616e48-build.zip"
+        },
+        "athletifiDashboardLoginPostConfirmation": {
+          "GROUP": "athletifiGeneralUsers",
+          "deploymentBucketName": "amplify-athletifiwebsite-dev-41577-deployment",
+          "s3Key": "amplify-builds/athletifiDashboardLoginPostConfirmation-30635a5a45616e2f6573-build.zip"
+        }
+      }
+    }
+  }
+}
