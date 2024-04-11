@@ -58,9 +58,9 @@ const Charts = ({
     <>
       {is_goalkeeper !== null ? (
         <div className="stats-chart__container bg-cardsBackground">
-          <div className="flex text-sm md:text-md text-white border-b border-gray-500">
+          <div className="flex text-sm md:text-md text-primary border-b border-partnersBorders">
             <div
-              className={`flex justify-center w-full cursor-pointer rounded-tl-10 py-[14px] ${isLatestActive ? 'font-bold underline' : 'bg-cardsDark'}`}
+              className={`flex justify-center w-full cursor-pointer rounded-tl-10 py-[14px] ${isLatestActive ? 'font-semibold underline' : 'bg-cardsDark'}`}
               onClick={() => setIsLatestActive(true)}
             >
               <p className="px-3">View Latest Stats</p>
@@ -75,7 +75,7 @@ const Charts = ({
               />
             </div>
             <div
-              className={`flex justify-center w-full cursor-pointer rounded-tr-10 py-[14px] ${!isLatestActive ? 'font-bold underline' : 'bg-cardsDark'}`}
+              className={`flex justify-center w-full cursor-pointer rounded-tr-10 py-[14px] ${!isLatestActive ? 'font-semibold underline' : 'bg-cardsDark'}`}
               onClick={() => setIsLatestActive(false)}
             >
               <p className="px-3">View Trends</p>

@@ -3,9 +3,6 @@ import Image from 'next/image';
 
 import { motion } from 'framer-motion';
 
-const CARD_IMAGE_WIDTH: number = 485;
-const CARD_IMAGE_HEIGHT: number = 420;
-
 const FlipCard = ({ cardUrl }: { cardUrl: string }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -27,13 +24,18 @@ const FlipCard = ({ cardUrl }: { cardUrl: string }) => {
         stiffness: 100,
         damping: 15,
       }}
+      className="w-full h-full md:max-w-[300px] lg:max-w-[400px]"
     >
-      <div className={`inline-block relative md:max-w-96 lg:max-w-none`}>
+      <div className="relative w-full h-full ">
         <Image
           src={cardUrl}
           alt="Player card"
-          width={CARD_IMAGE_WIDTH}
-          height={CARD_IMAGE_HEIGHT}
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+          width={500}
+          height={300}
           quality={75}
           loading="lazy"
         />

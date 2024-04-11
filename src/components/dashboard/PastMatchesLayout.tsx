@@ -7,7 +7,7 @@ const PastMatchesLayout: React.FC<IPastMatchesLayoutProps> = ({
   teammates,
 }: IPastMatchesLayoutProps) => {
   return (
-    <div className="flex flex-col lg:flex-row justify-between my-4 items-center md:items-start w-full px-4 max-w-[620px] md:max-w-none lg:max-w-[1130px]">
+    <div className="h-full flex flex-col lg:flex-row justify-between my-4 items-center md:items-start w-full md:max-w-none lg:max-w-[1130px]">
       <PastMatches past_matches={past_matches} />
       <Teammates teammates={teammates} />
     </div>

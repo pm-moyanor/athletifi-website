@@ -54,11 +54,11 @@ const ActionReelList: React.FC<{ actionReels: IActionReel[] }> = ({
           </div>
         </div>
       ) : actionReels.length === 0 ? (
-        <div className="border-l-0 md:border-l max-w-[343px] md:max-w-[340px] lg:max-w-[420px] mt-6 md:mt-0 md:pl-4 border-gray-600">
+        <div className="border-l-0 md:border-l mt-6 md:mt-0 md:pl-4 border-gray-600 w-full">
           <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro mb-2">
             Top Action Reels
           </h3>
-          <div className="flex h-full text-gray-500 min-h-[480px] md:min-h-[450px] lg:min-h-[455px] my-4">
+          <div className="flex h-full text-gray-500 mt-4 max-w-96">
             We are working on getting more data. Come back soon to view
             highlight reels!
           </div>
