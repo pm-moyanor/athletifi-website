@@ -43,7 +43,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
   const [isFetchMessage, setFetchMessage] = useState<string | null>(null);
   const { cardId } = useParams();
   const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
-
+  console.log(dashboardData);
   useEffect(() => {
     fetchHelper(cardIdValue as string)
       .then((data) => {
