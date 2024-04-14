@@ -3,14 +3,14 @@
   "modules": [
     "verification-link"
   ],
-  "parentResource": "athletifiDashboardLogin",
-  "functionName": "athletifiDashboardLoginCustomMessage",
-  "resourceName": "athletifiDashboardLoginCustomMessage",
+  "parentResource": "athletifiAuth",
+  "functionName": "athletifiAuthCustomMessage",
+  "resourceName": "athletifiAuthCustomMessage",
   "parentStack": "auth",
   "triggerEnvs": "[\n  {\n    \"key\": \"RESOURCENAME\",\n    \"value\": \"resourceName\"\n  }\n]",
   "triggerDir": "/snapshot/amplify-cli/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/CustomMessage",
   "triggerTemplate": "CustomMessage.json.ejs",
   "triggerEventPath": "CustomMessage.event.json",
-  "roleName": "athletifiDashboardLoginCustomMessage",
+  "roleName": "athletifiAuthCustomMessage",
   "skipEdit": true
 }

@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Linux\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.10.3\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.10.3\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "REDIRECTURL": {
       "Type": "String",
@@ -75,12 +75,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "athletifiDashboardLoginCustomMessage",
+            "athletifiAuthCustomMessage",
             {
               "Fn::Join": [
                 "",
                 [
-                  "athletifiDashboardLoginCustomMessage",
+                  "athletifiAuthCustomMessage",
                   "-",
                   {
                     "Ref": "env"
@@ -139,12 +139,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "athletifiDashboardLoginCustomMessage",
+            "athletifiAuthCustomMessage",
             {
               "Fn::Join": [
                 "",
                 [
-                  "athletifiDashboardLoginCustomMessage",
+                  "athletifiAuthCustomMessage",
                   "-",
                   {
                     "Ref": "env"

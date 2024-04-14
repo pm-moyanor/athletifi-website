@@ -1,6 +1,6 @@
 {
   "auth": {
-    "athletifiDashboardLogin": {
+    "athletifiAuth": {
       "customAuth": false,
       "dependsOn": [
         {
@@ -9,7 +9,7 @@
             "Name"
           ],
           "category": "function",
-          "resourceName": "athletifiDashboardLoginCustomMessage",
+          "resourceName": "athletifiAuthCustomMessage",
           "triggerProvider": "Cognito"
         },
         {
@@ -18,7 +18,7 @@
             "Name"
           ],
           "category": "function",
-          "resourceName": "athletifiDashboardLoginPostConfirmation",
+          "resourceName": "athletifiAuthPostConfirmation",
           "triggerProvider": "Cognito"
         }
       ],
@@ -37,6 +37,7 @@
           "GIVEN_NAME"
         ],
         "socialProviders": [
+          "FACEBOOK",
           "GOOGLE"
         ],
         "usernameAttributes": [
@@ -59,7 +60,7 @@
             "IdentityPoolId"
           ],
           "category": "auth",
-          "resourceName": "athletifiDashboardLogin"
+          "resourceName": "athletifiAuth"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -67,87 +68,95 @@
     }
   },
   "function": {
-    "athletifiDashboardLoginCustomMessage": {
+    "athletifiAuthCustomMessage": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "athletifiDashboardLoginPostConfirmation": {
+    "athletifiAuthPostConfirmation": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
   "parameters": {
-    "AMPLIFY_auth_athletifiDashboardLogin_googleClientId": {
+    "AMPLIFY_auth_athletifiAuth_facebookAppId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "athletifiDashboardLogin"
+          "resourceName": "athletifiAuth"
         }
       ]
     },
-    "AMPLIFY_function_athletifiDashboardLoginCustomMessage_EMAILMESSAGE": {
+    "AMPLIFY_auth_athletifiAuth_googleClientId": {
       "usedBy": [
         {
-          "category": "function",
-          "resourceName": "athletifiDashboardLoginCustomMessage"
+          "category": "auth",
+          "resourceName": "athletifiAuth"
         }
       ]
     },
-    "AMPLIFY_function_athletifiDashboardLoginCustomMessage_EMAILSUBJECT": {
+    "AMPLIFY_function_athletifiAuthCustomMessage_EMAILMESSAGE": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "athletifiDashboardLoginCustomMessage"
+          "resourceName": "athletifiAuthCustomMessage"
         }
       ]
     },
-    "AMPLIFY_function_athletifiDashboardLoginCustomMessage_REDIRECTURL": {
+    "AMPLIFY_function_athletifiAuthCustomMessage_EMAILSUBJECT": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "athletifiDashboardLoginCustomMessage"
+          "resourceName": "athletifiAuthCustomMessage"
         }
       ]
     },
-    "AMPLIFY_function_athletifiDashboardLoginCustomMessage_deploymentBucketName": {
+    "AMPLIFY_function_athletifiAuthCustomMessage_REDIRECTURL": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "athletifiDashboardLoginCustomMessage"
+          "resourceName": "athletifiAuthCustomMessage"
         }
       ]
     },
-    "AMPLIFY_function_athletifiDashboardLoginCustomMessage_s3Key": {
+    "AMPLIFY_function_athletifiAuthCustomMessage_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "athletifiDashboardLoginCustomMessage"
+          "resourceName": "athletifiAuthCustomMessage"
         }
       ]
     },
-    "AMPLIFY_function_athletifiDashboardLoginPostConfirmation_GROUP": {
+    "AMPLIFY_function_athletifiAuthCustomMessage_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "athletifiDashboardLoginPostConfirmation"
+          "resourceName": "athletifiAuthCustomMessage"
         }
       ]
     },
-    "AMPLIFY_function_athletifiDashboardLoginPostConfirmation_deploymentBucketName": {
+    "AMPLIFY_function_athletifiAuthPostConfirmation_GROUP": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "athletifiDashboardLoginPostConfirmation"
+          "resourceName": "athletifiAuthPostConfirmation"
         }
       ]
     },
-    "AMPLIFY_function_athletifiDashboardLoginPostConfirmation_s3Key": {
+    "AMPLIFY_function_athletifiAuthPostConfirmation_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "athletifiDashboardLoginPostConfirmation"
+          "resourceName": "athletifiAuthPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_athletifiAuthPostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "athletifiAuthPostConfirmation"
         }
       ]
     }

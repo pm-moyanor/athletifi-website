@@ -1,36 +1,37 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-athletifiwebsite-dev-41577-authRole",
-      "UnauthRoleArn": "arn:aws:iam::224898308309:role/amplify-athletifiwebsite-dev-41577-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::224898308309:role/amplify-athletifiwebsite-dev-41577-authRole",
+      "AuthRoleName": "amplify-athletifiwebsite-dev-dd330-authRole",
+      "UnauthRoleArn": "arn:aws:iam::224898308309:role/amplify-athletifiwebsite-dev-dd330-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::224898308309:role/amplify-athletifiwebsite-dev-dd330-authRole",
       "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-athletifiwebsite-dev-41577-deployment",
-      "UnauthRoleName": "amplify-athletifiwebsite-dev-41577-unauthRole",
-      "StackName": "amplify-athletifiwebsite-dev-41577",
-      "StackId": "arn:aws:cloudformation:us-east-2:224898308309:stack/amplify-athletifiwebsite-dev-41577/6b2eb690-f836-11ee-a0d9-069a0e453c8d",
-      "AmplifyAppId": "dnsxi8rj2xmaa",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-athletifiwebsite-dev-41577-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "DeploymentBucketName": "amplify-athletifiwebsite-dev-dd330-deployment",
+      "UnauthRoleName": "amplify-athletifiwebsite-dev-dd330-unauthRole",
+      "StackName": "amplify-athletifiwebsite-dev-dd330",
+      "StackId": "arn:aws:cloudformation:us-east-2:224898308309:stack/amplify-athletifiwebsite-dev-dd330/bda4f390-f9f2-11ee-b480-02393562573b",
+      "AmplifyAppId": "ds5np5q15q36h",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-athletifiwebsite-dev-dd330-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
-        "athletifiDashboardLogin": {
+        "athletifiAuth": {
+          "facebookAppId": "1011835260562058",
           "googleClientId": "594257084312-4uf0fqp0krn1f4vo73inv9uo4ie3pkm6.apps.googleusercontent.com"
         },
         "userPoolGroups": {}
       },
       "function": {
-        "athletifiDashboardLoginCustomMessage": {
+        "athletifiAuthCustomMessage": {
           "REDIRECTURL": "https://athleti.fi/welcome/",
-          "EMAILSUBJECT": "Welcome to AthletiFi",
-          "EMAILMESSAGE": "Welcome to AthletiFi! We're excited to have you on board and are eager to get you started on your journey through the world of youth soccer analytics and engagement. To complete your registration and activate your account, please confirm your email address by clicking the link:",
-          "deploymentBucketName": "amplify-athletifiwebsite-dev-41577-deployment",
-          "s3Key": "amplify-builds/athletifiDashboardLoginCustomMessage-59425a304c5276616e48-build.zip"
+          "EMAILSUBJECT": "Welcome to AthletiFi! Please Confirm Your Email",
+          "EMAILMESSAGE": "Hello,\\n\\nThank you for signing up with AthletiFi! We're excited to have you join our community.\\n\\nTo complete your registration and activate your account, please confirm your email address by clicking the link:",
+          "deploymentBucketName": "amplify-athletifiwebsite-dev-dd330-deployment",
+          "s3Key": "amplify-builds/athletifiAuthCustomMessage-30344e3536726c435364-build.zip"
         },
-        "athletifiDashboardLoginPostConfirmation": {
+        "athletifiAuthPostConfirmation": {
           "GROUP": "athletifiGeneralUsers",
-          "deploymentBucketName": "amplify-athletifiwebsite-dev-41577-deployment",
-          "s3Key": "amplify-builds/athletifiDashboardLoginPostConfirmation-30635a5a45616e2f6573-build.zip"
+          "deploymentBucketName": "amplify-athletifiwebsite-dev-dd330-deployment",
+          "s3Key": "amplify-builds/athletifiAuthPostConfirmation-467a6f756b4c74646a6f-build.zip"
         }
       }
     }

@@ -1,8 +1,9 @@
 export type AmplifyDependentResourcesAttributes = {
   "auth": {
-    "athletifiDashboardLogin": {
+    "athletifiAuth": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
+      "FacebookWebClient": "string",
       "GoogleWebClient": "string",
       "HostedUIDomain": "string",
       "IdentityPoolId": "string",
@@ -19,14 +20,14 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "athletifiDashboardLoginCustomMessage": {
+    "athletifiAuthCustomMessage": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
       "Name": "string",
       "Region": "string"
     },
-    "athletifiDashboardLoginPostConfirmation": {
+    "athletifiAuthPostConfirmation": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",

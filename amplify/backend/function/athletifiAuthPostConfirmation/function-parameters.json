@@ -3,14 +3,14 @@
   "modules": [
     "add-to-group"
   ],
-  "parentResource": "athletifiDashboardLogin",
-  "functionName": "athletifiDashboardLoginPostConfirmation",
-  "resourceName": "athletifiDashboardLoginPostConfirmation",
+  "parentResource": "athletifiAuth",
+  "functionName": "athletifiAuthPostConfirmation",
+  "resourceName": "athletifiAuthPostConfirmation",
   "parentStack": "auth",
   "triggerEnvs": "[]",
   "triggerDir": "/snapshot/amplify-cli/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
   "triggerTemplate": "PostConfirmation.json.ejs",
   "triggerEventPath": "PostConfirmation.event.json",
-  "roleName": "athletifiDashboardLoginPostConfirmation",
+  "roleName": "athletifiAuthPostConfirmation",
   "skipEdit": true
 }
