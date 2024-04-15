@@ -172,7 +172,7 @@ export default function ManageReferrals() {
 
   return (
     <div
-      className={`${sourceSans3.className} flex flex-col mt-10 text-primary" id="manage-referrals`}
+      className={`${sourceSans3.className} flex flex-col mt-16 text-primary" id="manage-referrals`}
     >
       <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-4 shadow-portalNav">
         Manage Referrals
@@ -181,8 +181,10 @@ export default function ManageReferrals() {
       <div className="text-primary my-8 ">
         {/*=============== REFERRALS */}
 
-        <div className="text-[24px] font-semibold mt-12">My shared cards</div>
-        <div className="text-primary my-4">
+        <div className="text-md font-semibold leading-5 mx-2">
+          My shared cards
+        </div>
+        <div className="tfont-extralight mx-2 py-2 mb-2">
           Manage access to your guest list
         </div>
 
@@ -226,7 +228,7 @@ export default function ManageReferrals() {
                 </div>
               </div>
             </div>
-
+            <div className="h-1 bg-partnersBorders w-full opacity-20"></div>
             <div className=" w-full px-[4px] lg:ml-8  md:max-w-[500px]">
               <p className="font-extralight mt-2">
                 Manage guests for this card
@@ -234,7 +236,7 @@ export default function ManageReferrals() {
               {referral.guests.map((guest, index) => (
                 <div
                   key={index}
-                  className="flex justify-between items-center py-4 border-b border-partnersBorders border-opacity-50 text-sm
+                  className="flex justify-between items-center py-4 border-b border-partnersBorders border-opacity-20 text-sm
                   "
                 >
                   <div className="flex flex-col">
@@ -357,15 +359,17 @@ export default function ManageReferrals() {
           </div>
         ))}
         {/*=============== INVITATIONS */}
-        <div className="text-[24px] font-semibold mt-12">My Invitations</div>
-        <div className="text-primary my-4">
+        <div className="text-md font-semibold leading-5 mx-2 mt-8">
+          My Invitations
+        </div>
+        <div className="text-primary font-extralight mx-2 py-2 mb-2">
           View invitations to other users&apos; cards
         </div>
         {dummyDataInvites.map((invite, idx) => (
           <div
             key={idx}
             className="
-            rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-4"
+            rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-2 md:gap-4"
           >
             <div className="flex justify-start items-start min-w-[250px]">
               <div className="relative w-24 h-28 justify-end">
@@ -401,13 +405,13 @@ export default function ManageReferrals() {
                 </div>
               </div>
             </div>
-
+            <div className="h-1 bg-partnersBorders w-full opacity-20 md:w-0"></div>
             <div className="flex flex-col justify-between w-full mt-2 md:max-w-[500px] px-[4px] lg:ml-8 ">
               <div className=" items-start mt-0 w-full">
                 <p className=" font-extralight text-base ">Card owner</p>
                 <div className="flex justify-between items-start">
                   <div className="text-sm flex flex-col">
-                    <p className="mb-[2px] pt-4">{invite.inviterName}</p>
+                    <p className="mb-[2px] pt-2">{invite.inviterName}</p>
                     <p className="md:text-center font-extralight">
                       {invite.inviterEmail}
                     </p>
