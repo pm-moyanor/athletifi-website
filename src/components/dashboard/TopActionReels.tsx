@@ -1,10 +1,10 @@
 import { IActionReel } from '@/types/Dashboard.type';
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
-import Video from 'next-video';
+import MuxPlayer from '@mux/mux-player-react';
 
 const ActionReel: React.FC<IActionReel> = ({
-  video_key,
+  playback_id,
   thumbnail,
   title,
   description,
@@ -12,10 +12,10 @@ const ActionReel: React.FC<IActionReel> = ({
   return (
     <div className=" flex my-2 justify-start">
       <div className="relative w-full max-w-[230px] min-w-[180px] h-[120px] sm:h-[120px] md:h-[130px]">
-        {video_key && thumbnail && (
-          <Video
+        {playback_id && thumbnail && (
+          <MuxPlayer
             className="w-full h-full object-cover rounded rounded-5"
-            src={process.env.S3_ROOT_URL + video_key}
+            playbackId={playback_id}
             poster={thumbnail}
           />
         )}
