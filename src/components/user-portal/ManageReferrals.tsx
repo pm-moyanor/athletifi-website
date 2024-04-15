@@ -13,6 +13,9 @@ const sourceSans3 = Source_Sans_3({
   display: 'swap',
 });
 
+// might be worth to split this component in 2 (for guests and intitations), it's a bit long
+// the UI is updated and a dropdown to enter the info to invite to access the card. the rest of the logic is on hold till we change state handling strategy
+
 interface Guest {
   name: string;
   email: string;
@@ -144,6 +147,7 @@ export default function ManageReferrals() {
     setInvites(invites.filter((_, idx) => idx !== i));
   }
 
+  //====================================
   function useOutsideClick(
     ref: React.RefObject<HTMLElement>,
     callback: () => void,
@@ -164,6 +168,7 @@ export default function ManageReferrals() {
 
   const cardRef = useRef<HTMLDivElement>(null);
   useOutsideClick(cardRef, () => setIsToggle(false));
+  //=======================================
 
   return (
     <div
@@ -174,6 +179,8 @@ export default function ManageReferrals() {
       </h2>
 
       <div className="text-primary my-8 ">
+        {/*=============== REFERRALS */}
+
         <div className="text-[24px] font-semibold mt-12">My shared cards</div>
         <div className="text-primary my-4">
           Manage access to your guest list
@@ -273,6 +280,8 @@ export default function ManageReferrals() {
                   </>
                 )}
               </div>
+
+              {/*======== toggle input to send referral====== */}
               <AnimatePresence>
                 {isToggle[idx] && (
                   <motion.div
@@ -347,7 +356,7 @@ export default function ManageReferrals() {
             </div>
           </div>
         ))}
-
+        {/*=============== INVITATIONS */}
         <div className="text-[24px] font-semibold mt-12">My Invitations</div>
         <div className="text-primary my-4">
           View invitations to other users&apos; cards
