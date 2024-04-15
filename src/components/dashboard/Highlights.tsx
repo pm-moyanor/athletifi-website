@@ -1,6 +1,6 @@
 import React from 'react';
 import { UnderLineText } from '@/components/common/Icon';
-import Video from 'next-video';
+import MuxPlayer from '@mux/mux-player-react';
 
 interface VideoItem {
   src: string;
@@ -17,8 +17,6 @@ const videos: VideoItem[] = [
 const AOS_DURATION: number = 400;
 const AOS_DELAY: number = 300;
 const AOS_OFFSET: number = 100;
-const VIDEO_WIDTH: number = 300;
-const VIDEO_HEIGHT: number = 240;
 
 const Highlights: React.FC = () => {
   return (
@@ -43,10 +41,8 @@ const Highlights: React.FC = () => {
           <div className="flex flex-wrap justify-center items-center gap-6 p-5">
             {videos.map((video, index) => (
               <div key={index} className="my-2">
-                <Video
-                  src={video.src}
-                  width={VIDEO_WIDTH}
-                  height={VIDEO_HEIGHT}
+                <MuxPlayer
+                  playbackId={video.src}
                   poster={video.thumbnail}
                   className="mx-auto"
                 />
