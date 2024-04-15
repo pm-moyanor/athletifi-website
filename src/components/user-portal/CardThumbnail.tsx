@@ -105,12 +105,21 @@ const CardThumbnail: React.FC<IProfileProps> = ({
         </div>
 
         <div className="-mt-0 md:-mt-6 w-full md:w-1/2 h-56 md:h-36 relative">
-          <Image
-            src={card_url}
-            alt="Card Thumbnail"
-            layout="fill"
-            objectFit="contain"
-          />
+          {card_url ? (
+            <Image
+              src={card_url}
+              alt="Card Thumbnail"
+              layout="fill"
+              objectFit="contain"
+            />
+          ) : (
+            <Image
+              src={Card}
+              alt="Default Card Thumbnail"
+              layout="fill"
+              objectFit="contain"
+            />
+          )}
         </div>
       </div>
 

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { IProfileProps } from '@/types/Dashboard.type';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import FlipCard from './FlipCard';
+import FlipCard from '@/components/dashboard/FlipCard';
 
 const HeroBanner: React.FC<IProfileProps> = ({
   name,

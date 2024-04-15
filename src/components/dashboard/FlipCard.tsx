@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 import { motion } from 'framer-motion';
+interface FlipCardProps {
+  cardUrl: string | StaticImageData;
+}
 
-const FlipCard = ({ cardUrl }: { cardUrl: string }) => {
+const FlipCard: React.FC<FlipCardProps> = ({ cardUrl }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {

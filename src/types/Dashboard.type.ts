@@ -1,4 +1,5 @@
 import type { Payload } from 'recharts/types/component/DefaultLegendContent';
+import { StaticImageData } from 'next/image';
 
 export type PlayerDashboardProps = {
   params: { cardId: number };
@@ -53,7 +54,7 @@ export interface IProfileProps {
   gender?: string | null;
   coach?: string | null;
   bio?: string | null;
-  card_url?: string | null;
+  card_url?: string | StaticImageData | null;
 }
 
 export const emptyProfileProps: IProfileProps = {
