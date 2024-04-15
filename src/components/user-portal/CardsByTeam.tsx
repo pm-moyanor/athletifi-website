@@ -1,3 +1,5 @@
+//component to refactor when login logic is resolved, currently in the profile page
+
 const CardsByTeam = ({ team }) => (
   <div>
     {team.map((card, index) => (

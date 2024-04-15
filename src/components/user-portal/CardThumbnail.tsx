@@ -6,7 +6,7 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
-import Card from './../../../public/assets/img/png/jose-card-img.png';
+import Card from './../../../public/assets/img/png/anderson-card-img.png';
 import Image from 'next/image';
 import { IProfileProps } from '@/types/Dashboard.type';
 import { Source_Sans_3 } from 'next/font/google';
@@ -94,7 +94,7 @@ const CardThumbnail: React.FC<IProfileProps> = ({
       className="flex flex-col bg-cardsBackground min-w-[250px] w-full max-w-[320px] md:w-[350px] lg:w-[320px] min-h-[200px] rounded-lg justify-between p-0 mx-2 my-6 shadow-lg"
     >
       <div className="flex flex-col-reverse md:flex-row  justify-between min-h-[160px] mx-4 md:mx-0">
-        <div className="flex flex-col justify-start ml-0 md:ml-3 w-full md:w-1/2 mr-auto  mb-2 mt-4 md:mt-8">
+        <div className="flex flex-col justify-start ml-[4px] md:ml-3 w-full md:w-1/2 mr-auto  mb-4 mt-4 md:mt-8">
           <h2
             className={`${sourceSans3.className}  mb-2 font-bold text-[20px] text-primary relative mr-auto`}
           >
@@ -117,7 +117,7 @@ const CardThumbnail: React.FC<IProfileProps> = ({
           </p>
         </div>
 
-        <div className="-mt-0 md:-mt-6 w-full md:w-1/2 h-56 md:h-36 relative">
+        <div className="-mt-4 md:-mt-6 w-full md:w-1/2 h-[240px] md:h-36 relative">
           <Image
             src={card_url}
             alt="Card Thumbnail"
@@ -183,7 +183,7 @@ const CardThumbnail: React.FC<IProfileProps> = ({
                     name="name"
                     value={invitation.name}
                     placeholder="Type guest name here"
-                    className="h-8 text-sm bottom-0 left-0 w-full p-3 border rounded text-partnersBorders"
+                    className=" bg-opacity-20 h-8 text-sm bottom-0 left-0 w-full p-3 border rounded text-partnersBorders"
                     onChange={handleChange}
                   />
                   <input
