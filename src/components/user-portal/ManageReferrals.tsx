@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { motion, AnimatePresence } from 'framer-motion';
+
 import { Source_Sans_3 } from 'next/font/google';
 import Card from './../../../public/assets/img/png/anderson-card-img.png';
 const sourceSans3 = Source_Sans_3({
@@ -98,26 +100,80 @@ const dummyDataInvites = [
 ];
 
 export default function ManageReferrals() {
-  const [referrals, setReferrals] = useState<Referral>(dummyDataReferrals);
+  const [referrals, setReferrals] = useState<Referral[]>(dummyDataReferrals);
   const [invites, setInvites] = useState<Invite[]>(dummyDataInvites);
+  const [isToggle, setIsToggle] = useState(Array(referrals.length).fill(false));
 
-  function handleRemoveReferral(i: number) {
-    setReferrals(referrals.filter((_, idx) => idx !== i));
+  const [invitation, setInvitation] = useState<{ name: string; email: string }>(
+    {
+      name: '',
+      email: '',
+    },
+  );
+  const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInvitation((prevInvitation) => ({
+      ...prevInvitation,
+      [name]: value,
+    }));
+  };
+  //===============on hold till we decide on state manager
+  const emailSubmit = (e: FormEvent) => e.preventDefault();
+
+  const toggleEmailInput = (idx: number) => {
+    setIsToggle((prev) =>
+      prev.map((state, index) => (index === idx ? !state : state)),
+    );
+    if (emailSubmitted) {
+      setEmailSubmitted(false);
+      setInvitation({ name: '', email: '' });
+    }
+  };
+
+  function handleRemoveReferral(referralIdx: number, guestIdx: number) {
+    setReferrals((prevReferrals) => {
+      const updatedReferrals = [...prevReferrals];
+      updatedReferrals[referralIdx].guests.splice(guestIdx, 1);
+      return updatedReferrals;
+    });
   }
 
   function handleRemoveInvites(i: number) {
     setInvites(invites.filter((_, idx) => idx !== i));
   }
 
+  function useOutsideClick(
+    ref: React.RefObject<HTMLElement>,
+    callback: () => void,
+  ): void {
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (ref.current && !ref.current.contains(event.target as Node)) {
+          callback();
+        }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [ref, callback]);
+  }
+
+  const cardRef = useRef<HTMLDivElement>(null);
+  useOutsideClick(cardRef, () => setIsToggle(false));
+
   return (
     <div
       className={`${sourceSans3.className} flex flex-col mt-10 text-primary" id="manage-referrals`}
     >
-      <h2 className="rounded bg-cardsDark text-settingsGray py-2 shadow-portalNav">
+      <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-4 shadow-portalNav">
         Manage Referrals
       </h2>
 
-      <div className="text-primary pt-4 pb-16 ">
+      <div className="text-primary my-8 ">
         <div className="text-[24px] font-semibold mt-12">My shared cards</div>
         <div className="text-primary my-4">
           Manage access to your guest list
@@ -125,11 +181,12 @@ export default function ManageReferrals() {
 
         {referrals.map((referral, idx) => (
           <div
+            ref={cardRef}
             key={idx}
-            className="rounded bg-cardsDark p-2 md:py-10 mb-4 shadow-portalNav flex flex-row justify-between items-start flex-wrap"
+            className="rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-4"
           >
-            <div className="flex justify-start items-center py-6 md:py-0">
-              <div className="relative w-28 h-28 justify-end">
+            <div className="flex justify-start items-start min-w-[250px]">
+              <div className="relative w-24 h-28 justify-end">
                 <Image
                   src={referral.card.card_url}
                   alt="Card Thumbnail"
@@ -137,7 +194,7 @@ export default function ManageReferrals() {
                   objectFit="contain"
                 />
               </div>
-              <div className="flex mt-2 flex-col max-w-2/3">
+              <div className="flex mt-2 flex-col flex-shrink">
                 <h2
                   className={`mx-[6px] mb-[6px] font-bold text-md text-primary`}
                 >
@@ -145,15 +202,17 @@ export default function ManageReferrals() {
                 </h2>
                 <div className="mx-[6px] flex flex-col text-sm flex-1">
                   <p
-                    className={`  leading-5 text-primary opacity-80 relative `}
+                    className={`pb-1  leading-4 text-primary opacity-80 relative `}
                   >
                     {referral.card.club}
                   </p>
-                  <p className={`leading-5 text-primary opacity-80  relative`}>
+                  <p
+                    className={`pb-1 leading-4 text-primary opacity-80  relative`}
+                  >
                     {referral.card.team}
                   </p>
                   <p
-                    className={`leading-5 text-primary opacity-80 lg:max-w-769 relative `}
+                    className={`leading-4 text-primary opacity-80 lg:max-w-769 relative `}
                   >
                     {referral.card.number}
                   </p>
@@ -161,12 +220,14 @@ export default function ManageReferrals() {
               </div>
             </div>
 
-            <div className="mt-2 w-full md:w-7/12">
-              <p className="font-extralight">Manage guests for this card</p>
+            <div className=" w-full px-[4px] lg:ml-8  md:max-w-[500px]">
+              <p className="font-extralight mt-2">
+                Manage guests for this card
+              </p>
               {referral.guests.map((guest, index) => (
                 <div
                   key={index}
-                  className="flex justify-between items-center py-4 border-b border-partnersBorders border-opacity-50 text-sm max-w-[450px]
+                  className="flex justify-between items-center py-4 border-b border-partnersBorders border-opacity-50 text-sm
                   "
                 >
                   <div className="flex flex-col">
@@ -178,7 +239,7 @@ export default function ManageReferrals() {
 
                   <div
                     className="flex items-center cursor-pointer justify-end"
-                    onClick={() => handleRemoveReferral(idx)}
+                    onClick={() => handleRemoveReferral(idx, index)}
                   >
                     <div className="mx-[6px] md:mx-4">remove</div>
                     <FontAwesomeIcon
@@ -188,24 +249,101 @@ export default function ManageReferrals() {
                   </div>
                 </div>
               ))}
-              <div className=" flex justify-between items-center py-2">
-                <input
-                  type="text"
-                  name="new-referral"
-                  placeholder="New guest"
-                  className="text-sm text-offwhite border-0 bg-inherit py-3"
-                />
-                <button
-                  className="flex items-center cursor-pointer"
-                  type="submit"
-                >
-                  <div className="text-sm mx-[6px] md:mx-4">add</div>
-                  <FontAwesomeIcon
-                    className="text-skyblue text-md md:text-2xl"
-                    icon={faPlus}
-                  />
-                </button>
+
+              <div
+                className="w-full flex justify-between items-center"
+                onClick={() => toggleEmailInput(idx)}
+              >
+                {!isToggle[idx] && (
+                  <>
+                    <p> New guest</p>
+
+                    <button
+                      className="flex items-center cursor-pointer "
+                      type="submit"
+                    >
+                      <div className="flex justify-between items-center py-4 text-sm mx-[6px] md:mx-4">
+                        invite
+                      </div>
+                      <FontAwesomeIcon
+                        className=" text-skyblue text-md md:text-2xl"
+                        icon={faPlus}
+                      />
+                    </button>
+                  </>
+                )}
               </div>
+              <AnimatePresence>
+                {isToggle[idx] && (
+                  <motion.div
+                    key="content"
+                    initial="collapsed"
+                    animate="open"
+                    exit="collapsed"
+                    variants={{
+                      open: { height: 'auto' },
+                      collapsed: { height: 0 },
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      ease: [0.04, 0.62, 0.23, 0.98],
+                    }}
+                    className="w-full"
+                  >
+                    <motion.div
+                      key="form"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 100 }}
+                      exit={{ opacity: 0 }}
+                      transition={{
+                        duration: 0.08,
+                        ease: [0.04, 0.62, 0.23, 0.98],
+                      }}
+                      className="py-6"
+                    >
+                      <p className=" text-sm mb-6 text-start text-primary lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
+                        {emailSubmitted
+                          ? 'Invitation sent! Your card is now accessible to your guest. We will notify them shortly.'
+                          : 'Invite someone to view this player card by providing their information below.'}
+                      </p>
+                      {!emailSubmitted && (
+                        <form
+                          className="w-full flex flex-col gap-3 items-end"
+                          onSubmit={emailSubmit}
+                        >
+                          {invitation.name !== undefined &&
+                            invitation.email !== undefined && (
+                              <>
+                                <input
+                                  type="text"
+                                  name="name"
+                                  value={invitation.name}
+                                  placeholder="Type guest name here"
+                                  className=" bg-offwhite bg-opacity-10 h-8 text-sm bottom-0 left-0 w-full p-3 border border-partnersBorders rounded text-partnersBorders"
+                                  onChange={handleChange}
+                                />
+                                <input
+                                  type="email"
+                                  name="email"
+                                  value={invitation.email}
+                                  placeholder="Type email here"
+                                  className=" bg-offwhite bg-opacity-10 h-8 text-sm bottom-0 left-0 w-full p-3 border rounded border-partnersBorders text-partnersBorders"
+                                  onChange={handleChange}
+                                />
+                              </>
+                            )}
+                          <button
+                            type="submit"
+                            className="h-8 py-3 px-6 text-sm leading-6 flex items-center justify-center bg-darkerSkyBlue rounded"
+                          >
+                            Send invitation
+                          </button>
+                        </form>
+                      )}
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         ))}
@@ -217,10 +355,11 @@ export default function ManageReferrals() {
         {dummyDataInvites.map((invite, idx) => (
           <div
             key={idx}
-            className="flex flex-col md:flex-row justify-between rounded bg-cardsDark p-2 py-10 mb-4 shadow-portalNav"
+            className="
+            rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-4"
           >
-            <div className="flex justify-start items-center py-6 md:py-0">
-              <div className="relative w-28 h-28 justify-end">
+            <div className="flex justify-start items-start min-w-[250px]">
+              <div className="relative w-24 h-28 justify-end">
                 <Image
                   src={invite.card.card_url}
                   alt="Card Thumbnail"
@@ -228,21 +367,25 @@ export default function ManageReferrals() {
                   objectFit="contain"
                 />
               </div>
-              <div className="flex flex-col">
-                <h2 className={`mx-2 mb-2 font-bold text-md text-primary`}>
+              <div className="flex mt-2 flex-col flex-shrink">
+                <h2
+                  className={`mx-[6px] mb-[6px] font-bold text-md text-primary`}
+                >
                   {invite.card.name}
                 </h2>
-                <div className="mx-2  flex flex-col mb-2 text-sm flex-1">
+                <div className="mx-[6px] flex flex-col text-sm flex-1">
                   <p
-                    className={`  leading-5 text-primary opacity-80 relative `}
+                    className={`pb-1  leading-4 text-primary opacity-80 relative `}
                   >
                     {invite.card.club}
                   </p>
-                  <p className={`leading-5 text-primary opacity-80  relative`}>
+                  <p
+                    className={`pb-1 leading-4 text-primary opacity-80  relative`}
+                  >
                     {invite.card.team}
                   </p>
                   <p
-                    className={`leading-5 text-primary opacity-80 lg:max-w-769 relative `}
+                    className={`leading-4 text-primary opacity-80 lg:max-w-769 relative `}
                   >
                     {invite.card.number}
                   </p>
@@ -250,26 +393,29 @@ export default function ManageReferrals() {
               </div>
             </div>
 
-            <div className="flex flex-col justify-between md:w-7/12 mx-2">
-              <div className="text-sm flex flex-col items-start">
-                <p className=" font-extralight mb-2">Card owner</p>
-                <p className="mb-[2px]">{invite.inviterName}</p>
-                <p className="md:text-center font-extralight">
-                  {invite.inviterEmail}
-                </p>
-              </div>
-
-              <div
-                className="flex items-center cursor-pointer mt-4 self-end"
-                onClick={() => handleRemoveInvites(idx)}
-              >
-                <div className="mx-4 text-sm">
-                  I don&apos;t want access to this card
+            <div className="flex flex-col justify-between w-full mt-2 md:max-w-[500px] px-[4px] lg:ml-8 ">
+              <div className=" items-start mt-0 w-full">
+                <p className=" font-extralight text-base ">Card owner</p>
+                <div className="flex justify-between items-start">
+                  <div className="text-sm flex flex-col">
+                    <p className="mb-[2px] pt-4">{invite.inviterName}</p>
+                    <p className="md:text-center font-extralight">
+                      {invite.inviterEmail}
+                    </p>
+                  </div>
+                  <div
+                    className="flex items-center justify-end cursor-pointer"
+                    onClick={() => handleRemoveInvites(idx)}
+                  >
+                    <div className="text-sm py-4 mx-2 md:mx-4 text-end">
+                      decline
+                    </div>
+                    <FontAwesomeIcon
+                      className="text-chartRed text-md md:text-2xl"
+                      icon={faXmark}
+                    />
+                  </div>
                 </div>
-                <FontAwesomeIcon
-                  className="text-chartRed text-md md:text-2xl"
-                  icon={faXmark}
-                />
               </div>
             </div>
           </div>
