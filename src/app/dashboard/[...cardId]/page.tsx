@@ -21,6 +21,13 @@ import {
   transformRatingData,
 } from '@/app/utils/dashboardHelper';
 import DashboardFetchError from '@/components/dashboard/DashboardFetchError';
+import { Source_Sans_3 } from 'next/font/google';
+
+//next font variable
+const sourceSans3 = Source_Sans_3({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 interface PageProps {
   params: { cardId: string | number };
@@ -88,7 +95,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
 
   return (
     <>
-      <div className="overflow-hidden font-sourceSansPro">
+      <div className={`overflow-hidden ${sourceSans3.className}`}>
         <Navbar />
         {isFetchMessage ? (
           <DashboardFetchError message={isFetchMessage} />
@@ -104,8 +111,8 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
                 card_url={dashboardData?.playerProfile.card_url}
               />
             </div>
-            <div className="flex justify-center">
-              <div className="flex flex-col py-3 lg:py-6 mt-10 max-w-[650px] lg:max-w-[1130px] lg:grid md:grid-cols-11">
+            <div className="flex justify-center w-full">
+              <div className="w-full flex flex-col py-3 lg:py-2 mt-2 max-w-[650px] lg:max-w-[1130px] lg:grid md:grid-cols-11 lg:items-end">
                 <div className="mx-3 lg:col-start-8 lg:col-span-4 lg:my-2 lg:ml-0 lg:mr-6 order-1 lg:order-3">
                   <Profile
                     age={dashboardData?.playerProfile.age}
@@ -142,11 +149,11 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
                 </div>
               </div>
             </div>
-            <main className="flex flex-col items-center bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95">
+            <main className="w-full px-4 flex flex-col items-center bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] bg-opacity-95">
               <SeasonSection
                 seasonHighlights={dashboardData?.seasonHighlights}
               />
-              <span className="h-px bg-partnersBorders w-11/12 max-w-[1130px] my-8 md:my-4" />
+              <span className="h-px bg-partnersBorders w-full max-w-[1130px] my-8 md:my-4" />
               <PastMatchesLayout
                 past_matches={dashboardData?.matchesList}
                 teammates={dashboardData?.teammates}

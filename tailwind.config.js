@@ -36,6 +36,7 @@ module.exports = {
       },
       boxShadow: {
         'coach-shadow': '0 50px 60px 0px rgba(88, 133, 249, 0.10)',
+        portalNav: '-10px 8px 21px -20px #49545C',
       },
       colors: {
         bgnav: 'rgba(0, 8, 15, 0.10)',
@@ -50,6 +51,7 @@ module.exports = {
         partnersBorders: '#49545C',
         primary: '#FDFEFF',
         skyblue: '#00C5F4',
+        card_border: '#2B4A5C',
         //dashboard
         chartRed: '#DA393B',
         chartBlue: '#27B6BD',
@@ -60,6 +62,7 @@ module.exports = {
         cardsDark: '#032436',
         cardsDark2: '#032537',
         lineAtBase: '#11729C',
+        buttonCardBg: '#092C3E',
       },
       container: {
         center: true,

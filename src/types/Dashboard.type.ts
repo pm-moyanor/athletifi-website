@@ -150,14 +150,14 @@ export const emptyLatestMatchData: IMatchDataWithWeather = {
 };
 
 export interface IActionReel {
-  video_key: string | null;
+  playback_id: string | null;
   thumbnail: string | null;
   title: string | null;
   description: string | null;
 }
 
 export const emptyActionReel: IActionReel = {
-  video_key: null,
+  playback_id: null,
   thumbnail: null,
   title: null,
   description: null,
@@ -209,7 +209,7 @@ export interface IMatchDataExtended extends IMatchDataWithWeather {
   away_club: string | null;
   home_score: number | null;
   away_score: number | null;
-  video_key: string | null;
+  playback_id: string | null;
   highlight_urls: string[] | null;
   highlight_descriptions: string[] | null;
 }
@@ -225,7 +225,7 @@ export const emptyMatchData: IMatchDataExtended = {
   datetime: null,
   location: null,
   weather: { tempFahr: null },
-  video_key: null,
+  playback_id: null,
   highlight_urls: null,
   highlight_descriptions: null,
 };

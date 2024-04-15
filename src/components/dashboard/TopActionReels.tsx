@@ -1,10 +1,10 @@
 import { IActionReel } from '@/types/Dashboard.type';
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
-import Video from 'next-video';
+import MuxPlayer from '@mux/mux-player-react';
 
 const ActionReel: React.FC<IActionReel> = ({
-  video_key,
+  playback_id,
   thumbnail,
   title,
   description,
@@ -12,10 +12,10 @@ const ActionReel: React.FC<IActionReel> = ({
   return (
     <div className=" flex my-2 justify-start">
       <div className="relative w-full max-w-[230px] min-w-[180px] h-[120px] sm:h-[120px] md:h-[130px]">
-        {video_key && thumbnail && (
-          <Video
+        {playback_id && thumbnail && (
+          <MuxPlayer
             className="w-full h-full object-cover rounded rounded-5"
-            src={process.env.S3_ROOT_URL + video_key}
+            playbackId={playback_id}
             poster={thumbnail}
           />
         )}
@@ -54,11 +54,11 @@ const ActionReelList: React.FC<{ actionReels: IActionReel[] }> = ({
           </div>
         </div>
       ) : actionReels.length === 0 ? (
-        <div className="border-l-0 md:border-l max-w-[343px] md:max-w-[340px] lg:max-w-[420px] mt-6 md:mt-0 md:pl-4 border-gray-600">
+        <div className="border-l-0 md:border-l mt-6 md:mt-0 md:pl-4 border-gray-600 w-full">
           <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro mb-2">
             Top Action Reels
           </h3>
-          <div className="flex h-full text-gray-500 min-h-[480px] md:min-h-[450px] lg:min-h-[455px] my-4">
+          <div className="flex h-full text-gray-500 mt-4 max-w-96">
             We are working on getting more data. Come back soon to view
             highlight reels!
           </div>

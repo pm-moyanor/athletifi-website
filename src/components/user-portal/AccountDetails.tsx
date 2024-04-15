@@ -18,7 +18,7 @@ export default function AccountDetails() {
 
   return (
     <div className="flex flex-col mt-16 text-primary" id="account-details">
-      <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-2 md:px-4">
+      <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-2 md:px-4 shadow-portalNav">
         Account Details
       </h2>
       <div className="flex justify-between items-center py-4 mx-2 md:mx-4 mt-4">
