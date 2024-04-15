@@ -25,7 +25,7 @@ const SettingsPage = () => {
     >
       <div className="overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground ">
         <Navbar />
-        <main className="mx-2 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-base">
+        <main className="mx-4 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-base">
           <Header pageTitle={'Settings'} />
           <div className="w-full max-w-[880px] mx-auto">
             <AccountDetails />
