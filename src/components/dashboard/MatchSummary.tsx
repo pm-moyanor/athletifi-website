@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faCloud } from '@fortawesome/free-solid-svg-icons';
 import { IMatchDataExtended } from '@/types/Dashboard.type';
-import Video from 'next-video';
+import MuxPlayer from '@mux/mux-player-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
@@ -22,7 +22,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     datetime,
     location,
     weather,
-    video_key,
+    playback_id,
     // highlight_urls,
     highlight_descriptions,
   } = matchData;
@@ -121,9 +121,9 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                   <h2 className="text-[20px] font-semibold mb-2">Full Recap</h2>
                   <div className="h-1 mb-4 bg-partnersBorders" />
                   <div className="w-full h-full  min-w-[320px] max-h-[320px]">
-                    {video_key ? (
-                      <Video
-                        src={process.env.S3_ROOT_URL + video_key}
+                    {playback_id ? (
+                      <MuxPlayer
+                        playbackId={playback_id}
                         className="w-full h-full rounded-md"
                       />
                     ) : (
@@ -175,9 +175,9 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                         key={index}
                         className=" w-full sm my-2 md:m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
                       >
-                        {video_key ? (
-                          <Video
-                            src={process.env.S3_ROOT_URL + video_key}
+                        {playback_id ? (
+                          <MuxPlayer
+                            playbackId={playback_id}
                             className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
                           />
                         ) : (
