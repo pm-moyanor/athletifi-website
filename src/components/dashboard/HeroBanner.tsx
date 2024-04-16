@@ -7,6 +7,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { IProfileProps } from '@/types/Dashboard.type';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import FlipCard from './FlipCard';
+import { useDashboardData } from '@/states/dashboardStore';
 
 const HeroBanner: React.FC<IProfileProps> = ({
   name,
@@ -16,6 +17,21 @@ const HeroBanner: React.FC<IProfileProps> = ({
   team,
   card_url,
 }: IProfileProps) => {
+  const { dashboardData } = useDashboardData('vsa-23/481'); // replace 'myCardId' with the actual card ID
+  // if (dashboardData.fetchStatus === 'loading') {
+  //   console.log('loading');
+  // }
+
+  // if (dashboardData.fetchStatus === 'error') {
+  //   console.log('error');
+  // }
+
+  // if (dashboardData.data === null) {
+  //   console.log('data is null');
+  // }
+  if (dashboardData.data) {
+    console.log(dashboardData.data);
+  }
   const [isVisible, setIsVisible] = useState(true);
   const previousScrollY = useRef(0); // Ref to store previous scroll position
 
