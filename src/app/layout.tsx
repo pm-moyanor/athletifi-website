@@ -8,14 +8,11 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Open_Sans } from 'next/font/google';
 
-// import { Amplify } from 'aws-amplify';
+import { Amplify } from 'aws-amplify';
+import config from '@/amplifyconfiguration.json';
+import '@aws-amplify/ui-react/styles.css';
 
-// Amplify.configure({
-//   Auth: {
-//     Cognito: {
-//     },
-//   },
-// });
+Amplify.configure(config, { ssr: true });
 
 const openSans = Open_Sans({
   subsets: ['latin'],
