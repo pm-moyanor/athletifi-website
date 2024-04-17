@@ -30,7 +30,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     playback_id,
     highlights,
   } = matchData;
-
+  console.log(highlights);
   const handleSummaryClick = () => {
     setShowRecap(true);
   };
@@ -205,7 +205,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                           </div>
                         )}
                         <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end max-w-[320px]">
-                          <h3 className="text-base pt-2">{`Highlight-${index}`}</h3>
+                          <h3 className="text-base pt-2">{`Highlight ${index + 1}`}</h3>
                           <p className="text-sm text-offwhite m-px">
                             {highlight.clip_description}
                           </p>
