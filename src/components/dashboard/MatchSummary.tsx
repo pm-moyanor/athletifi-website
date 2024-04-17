@@ -189,33 +189,35 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                         key={index}
                         className="w-full sm my-2 md:m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
                       >
-                        {playback_id ? (
-                          <MuxPlayer
-                            playbackId={playback_id}
-                            className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
-                            startTime={convertToSeconds(
-                              highlight.start_timestamp,
-                            )}
-                          />
+                        {playback_id && highlight.start_timestamp ? (
+                          <>
+                            <MuxPlayer
+                              playbackId={playback_id}
+                              className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
+                              startTime={convertToSeconds(
+                                highlight.start_timestamp,
+                              )}
+                            />
+                            <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end max-w-[320px]">
+                              <h3 className="text-base pt-2">{`Highlight-${index}`}</h3>
+                              <p className="text-sm text-offwhite m-px">
+                                {highlight.clip_description}
+                              </p>
+                              <p className="text-sm text-gray-500 m-px">
+                                Duration: {highlight.duration}git
+                              </p>
+                              <p className="text-sm text-gray-500 m-px">
+                                Timestamp: {highlight.start_timestamp}
+                              </p>
+                            </div>
+                          </>
                         ) : (
                           <div className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px] flex justify-center items-center text-center">
                             <p className="text-gray-500">
-                              No video currently available for this match
+                              No highlight videos available for this match
                             </p>
                           </div>
                         )}
-                        <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end max-w-[320px]">
-                          <h3 className="text-base pt-2">{`Highlight-${index}`}</h3>
-                          <p className="text-sm text-offwhite m-px">
-                            {highlight.clip_description}
-                          </p>
-                          <p className="text-sm text-gray-500 m-px">
-                            Duration: {highlight.duration}git
-                          </p>
-                          <p className="text-sm text-gray-500 m-px">
-                            Timestamp: {highlight.start_timestamp}
-                          </p>
-                        </div>
                       </div>
                     ),
                   )}
