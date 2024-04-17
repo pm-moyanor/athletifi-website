@@ -6,7 +6,7 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
-import Card from './../../../public/assets/img/png/jose-card-img.png';
+// import Card from './../../../public/assets/img/png/jose-card-img.png';
 import Image from 'next/image';
 import { IProfileProps } from '@/types/Dashboard.type';
 import { Source_Sans_3 } from 'next/font/google';
@@ -24,7 +24,7 @@ const profileProps: IProfileProps = {
   number: '#22',
   club: 'villanova soccer',
   team: 'team 2009',
-  card_url: Card,
+  card_url: './../../../public/assets/img/png/jose-card-img.png',
 };
 
 function useOutsideClick(
@@ -114,7 +114,7 @@ const CardThumbnail: React.FC<IProfileProps> = ({
             />
           ) : (
             <Image
-              src={Card}
+              src={'./../../../public/assets/img/png/jose-card-img.png'}
               alt="Default Card Thumbnail"
               layout="fill"
               objectFit="contain"
