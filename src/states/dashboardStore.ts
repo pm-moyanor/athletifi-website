@@ -92,7 +92,7 @@ import {
   filterRatingData,
   transformRatingData,
 } from '@/app/utils/dashboardHelper';
-import NotFound from '@/app/not-found';
+import { notFound } from 'next/navigation';
 
 export interface DashboardState {
   data: DashboardData | null;
@@ -121,10 +121,10 @@ async function fetchDashboardData(
   try {
     const response = await fetch(`${baseURL}/dashboard/${cardId}`);
     if (!response.ok) {
-      return NotFound();
+      return notFound;
     }
     const data = await response.json();
-    console.log('Fetched data:', data, 'for cardId:', cardId);
+    // console.log('Fetched data:', data, 'for cardId:', cardId);
     const dataObject: DashboardData = {
       latestMatch: data.result.past_matches
         ? data.result.past_matches[0]
@@ -166,9 +166,6 @@ async function fetchDashboardData(
 export function useDashboardData(cardId: string) {
   const [dashboardData, setDashboardData] = useAtom(dashboardDataAtom);
 
-  // useEffect(() => {
-  //   fetchDashboardData(cardId, setDashboardData);
-  // }, [cardId, setDashboardData]);
   useEffect(() => {
     if (cardId) {
       fetchDashboardData(cardId, setDashboardData);

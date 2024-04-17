@@ -113,16 +113,7 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
             <div className="flex justify-center w-full">
               <div className="w-full flex flex-col py-3 lg:py-2 mt-2 max-w-[650px] lg:max-w-[1130px] lg:grid md:grid-cols-11 lg:items-end">
                 <div className="mx-3 lg:col-start-8 lg:col-span-4 lg:my-2 lg:ml-0 lg:mr-6 order-1 lg:order-3">
-                  <Profile
-                  // age={dashboardData?.playerProfile.age}
-                  // club={dashboardData?.playerProfile.club}
-                  // league={dashboardData?.playerProfile.league}
-                  // team={dashboardData?.playerProfile.team}
-                  // age_group={dashboardData?.playerProfile.age_group}
-                  // gender={dashboardData?.playerProfile.gender}
-                  // coach={dashboardData?.playerProfile.coach}
-                  // bio={dashboardData?.playerProfile.bio}
-                  />
+                  <Profile />
                 </div>
                 <div className="mb-4 mx-3 lg:col-start-1 lg:col-span-7 lg:my-2 lg:mx-4 order-2 lg:order-1">
                   <LatestMatch
