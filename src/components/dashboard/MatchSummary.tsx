@@ -6,6 +6,11 @@ import { IMatchDataExtended } from '@/types/Dashboard.type';
 import MuxPlayer from '@mux/mux-player-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+function convertToSeconds(timestamp: string): number {
+  const [hours, minutes, seconds] = timestamp.split(':').map(Number);
+  return hours * 3600 + minutes * 60 + seconds;
+}
+
 const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   matchData,
 }: {
@@ -23,8 +28,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     location,
     weather,
     playback_id,
-    // highlight_urls,
-    highlight_descriptions,
+    highlights,
   } = matchData;
 
   const handleSummaryClick = () => {
@@ -153,12 +157,15 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                     <h3 className="font-semibold py-2 text-[18px]">Title</h3>
                     {/* define generated text */}
                     <p className="text-sm font-thin">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      Duis aute irure dolor in reprehenderit in voluptate velit
-                      esse cillum dolore eu fugiat nulla pariatur.
+                      In a gripping showdown, the Villanova Soccer Academy 2009s
+                      faced off against Stellar FC 2009s, concluding in a 2-0
+                      victory for Stellar. he match saw Stellar dominate early,
+                      securing a lead with two quick goals in the first half, a
+                      margin they maintained throughout the game. While
+                      Villanova struggled to find the back of the net, Vidals
+                      efforts on the field were a silver lining, as he
+                      orchestrated several promising attacks and demonstrated
+                      strong defensive prowess.
                     </p>
                   </div>
                 </div>
@@ -169,16 +176,26 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                 </h3>
                 <div className="h-1 mb-4 bg-partnersBorders w-full"></div>
                 <div className="flex flex-col md:flex-row justify-between w-full max-w-none sm:max-w-[600px] md:max-w-none">
-                  {highlight_descriptions?.map(
-                    (description: string, index: number) => (
+                  {highlights?.map(
+                    (
+                      highlight: {
+                        clip_description: string;
+                        duration: string;
+                        start_timestamp: string;
+                      },
+                      index: number,
+                    ) => (
                       <div
                         key={index}
-                        className=" w-full sm my-2 md:m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
+                        className="w-full sm my-2 md:m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
                       >
                         {playback_id ? (
                           <MuxPlayer
                             playbackId={playback_id}
                             className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
+                            startTime={convertToSeconds(
+                              highlight.start_timestamp,
+                            )}
                           />
                         ) : (
                           <div className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px] flex justify-center items-center text-center">
@@ -187,10 +204,16 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                             </p>
                           </div>
                         )}
-                        <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end  max-w-[320px]">
+                        <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end max-w-[320px]">
                           <h3 className="text-base pt-2">{`Highlight-${index}`}</h3>
-                          <p className="text-sm text-offwhite m-px ">
-                            {description}
+                          <p className="text-sm text-offwhite m-px">
+                            {highlight.clip_description}
+                          </p>
+                          <p className="text-sm text-gray-500 m-px">
+                            Duration: {highlight.duration}git
+                          </p>
+                          <p className="text-sm text-gray-500 m-px">
+                            Timestamp: {highlight.start_timestamp}
                           </p>
                         </div>
                       </div>
