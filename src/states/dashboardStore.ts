@@ -85,7 +85,6 @@
 
 //   return { dashboardData, isFetchMessage };
 // }
-
 import { atom, useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { DashboardData } from '@/types/Dashboard.type';
@@ -93,6 +92,7 @@ import {
   filterRatingData,
   transformRatingData,
 } from '@/app/utils/dashboardHelper';
+import NotFound from '@/app/not-found';
 
 export interface DashboardState {
   data: DashboardData | null;
@@ -112,26 +112,19 @@ async function fetchDashboardData(
   cardId: string,
   set: (value: DashboardState) => void,
 ) {
-  // set({
-  //   data: null,
-  //   fetchStatus: 'loading',
-  //   errorMessage: null,
-  // });
+  set({
+    data: null,
+    fetchStatus: 'loading',
+    errorMessage: null,
+  });
 
   try {
     const response = await fetch(`${baseURL}/dashboard/${cardId}`);
     if (!response.ok) {
-      throw new Error('Data not found');
+      return NotFound();
     }
     const data = await response.json();
     console.log('Fetched data:', data, 'for cardId:', cardId);
-    // const data = await response.json();
-
-    // if (!cardId || !data) {
-    //   throw new Error('Data not found');
-    // }
-    // console.log(data);
-    // console.log(cardId);
     const dataObject: DashboardData = {
       latestMatch: data.result.past_matches
         ? data.result.past_matches[0]

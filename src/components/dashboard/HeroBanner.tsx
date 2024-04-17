@@ -8,6 +8,7 @@ import { IProfileProps } from '@/types/Dashboard.type';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import FlipCard from './FlipCard';
 import { useDashboardData } from '@/states/dashboardStore';
+import { useParams } from 'next/navigation';
 
 const HeroBanner: React.FC<IProfileProps> = ({
   name,
@@ -17,7 +18,9 @@ const HeroBanner: React.FC<IProfileProps> = ({
   team,
   card_url,
 }: IProfileProps) => {
-  const { dashboardData } = useDashboardData('vsa-23/481'); // replace 'myCardId' with the actual card ID
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue); // replace 'myCardId' with the actual card ID
   // if (dashboardData.fetchStatus === 'loading') {
   //   console.log('loading');
   // }
