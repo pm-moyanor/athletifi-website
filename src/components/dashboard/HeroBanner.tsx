@@ -4,7 +4,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { IProfileProps } from '@/types/Dashboard.type';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import FlipCard from './FlipCard';
 import { useDashboardData } from '@/states/dashboardStore';
@@ -13,7 +12,7 @@ import { useParams } from 'next/navigation';
 const HeroBanner: React.FC = () => {
   const { cardId } = useParams();
   const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
-  const { dashboardData } = useDashboardData(cardIdValue); // replace 'myCardId' with the actual card ID
+  const { dashboardData } = useDashboardData(cardIdValue);
 
   const playerProfile = dashboardData.data?.playerProfile;
 

@@ -95,6 +95,7 @@ import {
 import { notFound } from 'next/navigation';
 
 export interface DashboardState {
+  latestMatch: any;
   data: DashboardData | null;
   fetchStatus: 'idle' | 'loading' | 'success' | 'error';
   errorMessage: string | null;
