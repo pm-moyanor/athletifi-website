@@ -10,7 +10,7 @@ const PastMatches: React.FC = () => {
   const { cardId } = useParams();
   const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
   const { dashboardData } = useDashboardData(cardIdValue);
-  const past_matches = dashboardData?.data?.matchesList;
+  const past_matches = dashboardData.data?.matchesList;
   //check if in view
   const { ref: inViewRef, inView } = useInView({
     threshold: 0.7,
