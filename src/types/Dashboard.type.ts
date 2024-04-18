@@ -202,6 +202,12 @@ export const emptyVideoData: IVideo = {
   description: null,
 };
 
+interface IHighlight {
+  clip_description: string;
+  duration: string;
+  start_timestamp: string;
+}
+
 export interface IMatchDataExtended extends IMatchDataWithWeather {
   home_club_logo: string | null;
   away_club_logo: string | null;
@@ -210,8 +216,7 @@ export interface IMatchDataExtended extends IMatchDataWithWeather {
   home_score: number | null;
   away_score: number | null;
   playback_id: string | null;
-  highlight_urls: string[] | null;
-  highlight_descriptions: string[] | null;
+  highlights: IHighlight[] | null;
 }
 
 export const emptyMatchData: IMatchDataExtended = {
@@ -226,8 +231,7 @@ export const emptyMatchData: IMatchDataExtended = {
   location: null,
   weather: { tempFahr: null },
   playback_id: null,
-  highlight_urls: null,
-  highlight_descriptions: null,
+  highlights: null,
 };
 
 export interface ILatestPlayerRatings {
@@ -251,23 +255,23 @@ export const emptyLatestPlayerRatings: ILatestPlayerRatings = {
 };
 
 export interface DashboardData {
-  latestMatch: IMatchDataWithWeather | null; // replace 'any' with the type of your data
+  latestMatch: IMatchDataWithWeather | null;
   latestPlayerRating: IRating[] | null;
   playerRatings: IRatingRaw[] | null;
-  matchesList: IMatchDataExtended[]; // replace 'any' with the type of your data
-  playerProfile: IProfileProps; // replace 'any' with the type of your data
-  teammates: ITeammate[]; // replace 'any' with the type of your data
+  matchesList: IMatchDataExtended[];
+  playerProfile: IProfileProps;
+  teammates: ITeammate[];
   isGoalkeeper: boolean | null;
   seasonHighlights: string[] | null;
 }
 
 export const emptyDashboardData: DashboardData = {
-  latestMatch: emptyLatestMatchData, // replace 'any' with the type of your data
+  latestMatch: emptyLatestMatchData,
   latestPlayerRating: [],
   playerRatings: [],
-  matchesList: [emptyMatchData], // replace 'any' with the type of your data
-  playerProfile: emptyProfileProps, // replace 'any' with the type of your data
-  teammates: [emptyTeammate], // replace 'any' with the type of your data
+  matchesList: [emptyMatchData],
+  playerProfile: emptyProfileProps,
+  teammates: [emptyTeammate],
   isGoalkeeper: null,
   seasonHighlights: [''],
 };
