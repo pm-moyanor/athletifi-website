@@ -46,7 +46,7 @@ export default function Notifications() {
         {notificationSettings.map((setting, idx) => (
           <div
             key={idx}
-            className={`flex justify-between items-center py-4 mx-4 ${idx > 0 ? 'border-t border-t-offwhite' : ''}`}
+            className={`flex justify-between items-center py-4 mx-4 ${idx > 0 ? 'border-t border-t-partnersBorders border-opacity-20' : ''}`}
           >
             <div>{setting.name}</div>
             <div className="flex items-center cursor-pointer">

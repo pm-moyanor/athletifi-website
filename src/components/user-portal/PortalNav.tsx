@@ -83,7 +83,7 @@ export default function PortalNav({
           </Link>
         </p>
       </div>
-      <div className="flex border-t border-t-offwhite opacity-75 my-8"></div>
+      <div className="flex border-t border-t-partnersBorders my-8"></div>
       <div className="flex items-center my-2 mx-3 cursor-pointer">
         <FontAwesomeIcon
           className="text-skyblue mr-3"

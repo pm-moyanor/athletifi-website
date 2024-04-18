@@ -6,7 +6,7 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
-import Card from './../../../public/assets/img/png/jose-card-img.png';
+import Card from './../../../public/assets/img/png/anderson-card-img.png';
 import Image from 'next/image';
 import { IProfileProps } from '@/types/Dashboard.type';
 import { Source_Sans_3 } from 'next/font/google';
@@ -53,17 +53,25 @@ const CardThumbnail: React.FC<IProfileProps> = ({
   card_url,
 }) => {
   const [isToggle, setIsToggle] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>('');
+  const [invitation, setInvitation] = useState<{ name: string; email: string }>(
+    {
+      name: '',
+      email: '',
+    },
+  );
   const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+    const { name, value } = e.target;
+    setInvitation((prevInvitation) => ({
+      ...prevInvitation,
+      [name]: value,
+    }));
   };
-
   const emailSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (email) {
-      console.log(email);
+    if (invitation.email) {
+      console.log(invitation);
       setEmailSubmitted(true);
     } else {
       console.log('invalid email');
@@ -72,16 +80,21 @@ const CardThumbnail: React.FC<IProfileProps> = ({
 
   const toggleEmailInput = () => {
     setIsToggle(!isToggle);
+    if (emailSubmitted) {
+      setEmailSubmitted(false);
+      setInvitation({ name: '', email: '' });
+    }
   };
+
   const cardRef = useRef<HTMLDivElement>(null);
   useOutsideClick(cardRef, () => setIsToggle(false));
   return (
     <div
       ref={cardRef}
-      className="flex flex-col bg-cardsBackground min-w-[250px] w-full max-w-[320px] md:w-[350px] lg:w-[320px] min-h-[190px] rounded-lg justify-between p-0 mx-2 my-6 shadow-lg"
+      className="flex flex-col bg-cardsBackground min-w-[250px] w-full max-w-[320px] md:w-[350px] lg:w-[320px] min-h-[200px] rounded-lg justify-between p-0 mx-2 my-6 shadow-lg"
     >
       <div className="flex flex-col-reverse md:flex-row  justify-between min-h-[160px] mx-4 md:mx-0">
-        <div className="flex flex-col justify-start ml-0 md:ml-3 w-full md:w-1/2 mr-auto  mb-2 mt-4 md:mt-8">
+        <div className="flex flex-col justify-start ml-[4px] md:ml-3 w-full md:w-1/2 mr-auto  mb-4 mt-4 md:mt-8">
           <h2
             className={`${sourceSans3.className}  mb-2 font-bold text-[20px] text-primary relative mr-auto`}
           >
@@ -104,7 +117,7 @@ const CardThumbnail: React.FC<IProfileProps> = ({
           </p>
         </div>
 
-        <div className="-mt-0 md:-mt-6 w-full md:w-1/2 h-56 md:h-36 relative">
+        <div className="-mt-4 md:-mt-6 w-full md:w-1/2 h-[240px] md:h-36 relative">
           <Image
             src={card_url}
             alt="Card Thumbnail"
@@ -116,7 +129,7 @@ const CardThumbnail: React.FC<IProfileProps> = ({
 
       <div className="w-full flex justify-center border-t border-card_border h-12 ">
         <button
-          className={` text-primary ${sourceSans3.className} text-sm px-2 w-1/2 rounded-bl-10  bg-buttonCardBg `}
+          className={` text-primary ${sourceSans3.className} text-sm px-2 w-1/2 ${!isToggle ? 'rounded-bl-10' : ''}  bg-buttonCardBg `}
         >
           go to dashboard
         </button>
@@ -153,30 +166,40 @@ const CardThumbnail: React.FC<IProfileProps> = ({
                 duration: 0.08,
                 ease: [0.04, 0.62, 0.23, 0.98],
               }}
-              className="py-6"
+              className="py-6 px-2"
             >
-              <p className="px-3 text-sm mb-2 text-start text-primary lg:max-w-769 relative min-w-[256px]">
+              <p className="px-3 text-sm mb-6 text-start text-primary lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
                 {emailSubmitted
-                  ? 'Invitation sent! Your card is now accessible to your guest'
-                  : 'Enter the email of the recipient to share access to your card'}
+                  ? 'Invitation sent! Your card is now accessible to your guest. We will notify them shortly.'
+                  : 'Invite someone to view this player card by providing their information below.'}
               </p>
               {!emailSubmitted && (
                 <form
-                  className="w-full flex h-[40px] px-3"
+                  className="w-full flex flex-col px-3 gap-3 items-end"
                   onSubmit={emailSubmit}
                 >
                   <input
+                    type="text"
+                    name="name"
+                    value={invitation.name}
+                    placeholder="Type guest name here"
+                    className=" bg-opacity-20 h-8 text-sm bottom-0 left-0 w-full p-3 border rounded text-partnersBorders"
+                    onChange={handleChange}
+                  />
+                  <input
                     type="email"
-                    value={email}
+                    name="email"
+                    value={invitation.email}
                     placeholder="Type email here"
-                    className=" text-sm bottom-0 left-0 w-full p-3 border rounded-l text-partnersBorders"
+                    className="h-8 text-sm bottom-0 left-0 w-full p-3 border rounded text-partnersBorders"
                     onChange={handleChange}
                   />
                   <button
                     type="submit"
-                    className="w-1/6 p-3  font-semibold text-sm md:text-base leading-6 flex items-center justify-center bg-darkerSkyBlue rounded-r"
+                    className="h-8 py-3 px-6 text-sm leading-6 flex items-center justify-center bg-darkerSkyBlue rounded"
                   >
-                    <FontAwesomeIcon icon={faArrowRight} />
+                    Send invitation
+                    {/* <FontAwesomeIcon icon={faArrowRight} /> */}
                   </button>
                 </form>
               )}
