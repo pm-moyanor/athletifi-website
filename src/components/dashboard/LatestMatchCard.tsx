@@ -7,7 +7,7 @@ import {
   // faSnowflake,
 } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
-import { ILatestMatchProps, IRating } from '@/types/Dashboard.type';
+import { IRating } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
 import { useParams } from 'next/navigation';
 import { useDashboardData } from '@/states/dashboardStore';
@@ -39,7 +39,6 @@ const LatestMatch: React.FC = () => {
 
   const latestMatch = dashboardData.data?.latestMatch;
   const latestPlayerRatings = dashboardData.data?.latestPlayerRating;
-  console.log(latestPlayerRatings);
 
   return (
     <>
@@ -119,19 +118,17 @@ const LatestMatch: React.FC = () => {
               </div>
             </>
           )}
-          {latestPlayerRatings?.player_ratings === null ? (
+          {latestPlayerRatings === null ? (
             <div className="flex text-gray-500 justify-center items-center">
               We are currently working on getting more data. Please come back
               soon
             </div>
           ) : (
             <div className="flex justify-around items-center mt-10 md:mt-6">
-              {latestPlayerRatings?.player_ratings?.map((rating, idx) => (
+              {latestPlayerRatings?.map((rating, idx) => (
                 <RatingBox
                   key={idx}
-                  isLast={
-                    idx === latestPlayerRatings?.player_ratings.length - 1
-                  }
+                  isLast={idx === latestPlayerRatings.length - 1}
                   rating={rating}
                 />
               ))}
