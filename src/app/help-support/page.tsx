@@ -45,7 +45,7 @@ const HelpPage: FC<HelpPageProps> = () => {
               <div className="flex justify-center">
                 <Accordion faqData={[]} />
               </div>
-              <div className="h-px w-full bg-partnersBorders my-12"></div>
+              <div className="h-px w-full bg-partnersBorders opacity-20 my-12"></div>
               <div>
                 <p className="text-primary text-sm md:text-base mb-6">
                   Can’t find what you are looking for?
@@ -78,7 +78,7 @@ const HelpPage: FC<HelpPageProps> = () => {
                   </a>
                 </div>
               </div>
-              <div className="h-px w-full bg-partnersBorders my-12"></div>
+              <div className="h-px w-full bg-partnersBorders opacity-20 my-12"></div>
               <div className="" id="report-a-problem">
                 <div className="flex my-4">
                   <a
