@@ -3,11 +3,14 @@ import MatchSummary from './MatchSummary';
 import Skeleton from 'react-loading-skeleton';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { IPastMatches } from '@/types/Dashboard.type';
+import { useParams } from 'next/navigation';
+import { useDashboardData } from '@/states/dashboardStore';
 
-const PastMatches: React.FC<IPastMatches> = ({
-  past_matches,
-}: IPastMatches) => {
+const PastMatches: React.FC = () => {
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue);
+  const past_matches = dashboardData?.data?.matchesList;
   //check if in view
   const { ref: inViewRef, inView } = useInView({
     threshold: 0.7,
