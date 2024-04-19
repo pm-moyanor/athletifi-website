@@ -1,16 +1,16 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-athletifiwebsite-dev-dd330-authRole",
-      "UnauthRoleArn": "arn:aws:iam::224898308309:role/amplify-athletifiwebsite-dev-dd330-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::224898308309:role/amplify-athletifiwebsite-dev-dd330-authRole",
+      "AuthRoleName": "amplify-athletifiwebsite-dev-b8af6-authRole",
+      "UnauthRoleArn": "arn:aws:iam::224898308309:role/amplify-athletifiwebsite-dev-b8af6-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::224898308309:role/amplify-athletifiwebsite-dev-b8af6-authRole",
       "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-athletifiwebsite-dev-dd330-deployment",
-      "UnauthRoleName": "amplify-athletifiwebsite-dev-dd330-unauthRole",
-      "StackName": "amplify-athletifiwebsite-dev-dd330",
-      "StackId": "arn:aws:cloudformation:us-east-2:224898308309:stack/amplify-athletifiwebsite-dev-dd330/bda4f390-f9f2-11ee-b480-02393562573b",
+      "DeploymentBucketName": "amplify-athletifiwebsite-dev-b8af6-deployment",
+      "UnauthRoleName": "amplify-athletifiwebsite-dev-b8af6-unauthRole",
+      "StackName": "amplify-athletifiwebsite-dev-b8af6",
+      "StackId": "arn:aws:cloudformation:us-east-2:224898308309:stack/amplify-athletifiwebsite-dev-b8af6/d9d40c60-fdd8-11ee-848b-0a830b0a10ff",
       "AmplifyAppId": "ds5np5q15q36h",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-athletifiwebsite-dev-dd330-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-athletifiwebsite-dev-b8af6-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
@@ -24,14 +24,9 @@
         "athletifiAuthCustomMessage": {
           "REDIRECTURL": "https://athleti.fi/welcome/",
           "EMAILSUBJECT": "Welcome to AthletiFi! Please Confirm Your Email",
-          "EMAILMESSAGE": "Hello,\\n\\nThank you for signing up with AthletiFi! We're excited to have you join our community.\\n\\nTo complete your registration and activate your account, please confirm your email address by clicking the link:",
-          "deploymentBucketName": "amplify-athletifiwebsite-dev-dd330-deployment",
+          "EMAILMESSAGE": "Hello, Thank you for signing up with AthletiFi! We're excited to have you join our community. To complete your registration and activate your account, please confirm your email address by clicking the link:",
+          "deploymentBucketName": "amplify-athletifiwebsite-dev-b8af6-deployment",
           "s3Key": "amplify-builds/athletifiAuthCustomMessage-30344e3536726c435364-build.zip"
-        },
-        "athletifiAuthPostConfirmation": {
-          "GROUP": "athletifiGeneralUsers",
-          "deploymentBucketName": "amplify-athletifiwebsite-dev-dd330-deployment",
-          "s3Key": "amplify-builds/athletifiAuthPostConfirmation-467a6f756b4c74646a6f-build.zip"
         }
       }
     }

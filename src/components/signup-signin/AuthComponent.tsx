@@ -157,34 +157,40 @@ const formFields = {
     },
   },
   signUp: {
-    given_name: {
-      label: 'First Name:',
-      placeholder: 'Bruce',
+    name: {
+      label: 'Full Name:',
+      placeholder: 'Bruce Wayne',
       isRequired: true,
       order: 1,
     },
-    family_name: {
-      label: 'Last Name:',
-      placeholder: 'Wayne',
-      isRequired: true,
-      order: 2,
-    },
+    // given_name: {
+    //   label: 'First Name:',
+    //   placeholder: 'Bruce',
+    //   isRequired: true,
+    //   order: 1,
+    // },
+    // family_name: {
+    //   label: 'Last Name:',
+    //   placeholder: 'Wayne',
+    //   isRequired: true,
+    //   order: 2,
+    // },
     email: {
       label: 'Email:',
       placeholder: 'bruce@wayne.ent',
       isRequired: true,
-      order: 3,
+      order: 2,
     },
     password: {
       label: 'Password:',
       placeholder: 'Enter your Password',
       isRequired: true,
-      order: 4,
+      order: 3,
     },
     confirm_password: {
       label: 'Confirm Password:',
       isRequired: true,
-      order: 5,
+      order: 4,
     },
   },
   forceNewPassword: {

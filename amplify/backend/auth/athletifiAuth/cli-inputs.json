@@ -3,7 +3,7 @@
   "cognitoConfig": {
     "identityPoolName": "athletifiIdentityPool",
     "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "athletd143d145",
+    "resourceNameTruncated": "athlet131421ad",
     "userPoolName": "athletifiUserPool",
     "autoVerifiedAttributes": [
       "email"
@@ -21,26 +21,25 @@
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
       "email",
-      "family_name",
-      "given_name"
+      "name"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
       "email",
-      "family_name",
-      "given_name"
+      "name"
     ],
     "userpoolClientReadAttributes": [
       "email",
       "family_name",
       "given_name",
+      "name",
       "email_verified"
     ],
-    "userpoolClientLambdaRole": "athletd143d145_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "athlet131421ad_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": true,
-    "sharedId": "d143d145",
+    "sharedId": "131421ad",
     "resourceName": "athletifiAuth",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "manual",
@@ -57,9 +56,6 @@
     "triggers": {
       "CustomMessage": [
         "verification-link"
-      ],
-      "PostConfirmation": [
-        "add-to-group"
       ]
     },
     "hostedUI": true,
@@ -68,7 +64,7 @@
       "Facebook",
       "Google"
     ],
-    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"family_name\":\"last_name\",\"given_name\":\"first_name\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"family_name\":\"family_name\",\"given_name\":\"given_name\",\"username\":\"sub\"}}]",
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"name\":\"name\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"name\":\"name\",\"username\":\"sub\"}}]",
     "userPoolGroupList": [
       "athletifiTeamAdminUsers",
       "athletifiGeneralUsers",
@@ -100,24 +96,13 @@
           "Arn",
           "Name"
         ]
-      },
-      {
-        "category": "function",
-        "resourceName": "athletifiAuthPostConfirmation",
-        "triggerProvider": "Cognito",
-        "attributes": [
-          "Arn",
-          "Name"
-        ]
       }
     ],
-    "permissions": [
-      "{\n  \"policyName\": \"AddToGroupCognito\",\n  \"trigger\": \"PostConfirmation\",\n  \"effect\": \"Allow\",\n  \"actions\": [\n    \"cognito-idp:AdminAddUserToGroup\",\n    \"cognito-idp:GetGroup\",\n    \"cognito-idp:CreateGroup\"\n  ],\n  \"resource\": {\n    \"paramType\": \"!GetAtt\",\n    \"keys\": [\n      \"UserPool\",\n      \"Arn\"\n    ]\n  }\n}"
-    ],
-    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"CustomMessage\",\n    \"lambdaFunctionName\": \"athletifiAuthCustomMessage\"\n  },\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"athletifiAuthPostConfirmation\"\n  }\n]",
+    "permissions": [],
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"CustomMessage\",\n    \"lambdaFunctionName\": \"athletifiAuthCustomMessage\"\n  }\n]",
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://athleti.fi/profile/\",\"https://athleti.fi/auth/login/\",\"https://auth.athleti.fi/\",\"https://athleti.fi/\",\"http://localhost:3000/\",\"http://localhost:3000/\"],\"LogoutURLs\":[\"https://athleti.fi/\",\"https://auth.athleti.fi/\",\"https://athleti.fi/auth/logout/\",\"https://athleti.fi/goodbye/\",\"http://localhost:3000/\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://athleti.fi/profile/\",\"https://athleti.fi/auth/login/\",\"https://auth.athleti.fi/\",\"https://athleti.fi/\",\"http://localhost:3000/\"],\"LogoutURLs\":[\"https://athleti.fi/goodbye/\",\"https://auth.athleti.fi/\",\"https://athleti.fi/\",\"https://athleti.fi/auth/logout/\",\"http://localhost:3000/\"]}"
   }
 }
