@@ -34,7 +34,7 @@ export default function AccountDetails() {
           />
         </div>
       </div>
-      <div className="flex justify-between items-center py-4 mx-2 md:mx-4 border-t border-t-offwhite">
+      <div className="flex justify-between items-center py-4 mx-2 md:mx-4 border-t border-t-partnersBorders border-opacity-50">
         <div>password: **********</div>
         <div
           className="flex items-center cursor-pointer"
@@ -47,7 +47,7 @@ export default function AccountDetails() {
           />
         </div>
       </div>
-      <div className="flex justify-between items-center py-4 mx-2 md:mx-4 border-t border-t-offwhite">
+      <div className="flex justify-between items-center py-4 mx-2 md:mx-4 border-t border-t-partnersBorders border-opacity-50">
         <div className="text-xs">Delete Account</div>
         <FontAwesomeIcon
           className="text-chartRed cursor-pointer text-md md:text-2xl"
