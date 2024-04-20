@@ -17,6 +17,7 @@ import DashboardFetchError from '@/components/dashboard/DashboardFetchError';
 import { Source_Sans_3 } from 'next/font/google';
 import { Provider } from 'jotai';
 import { useDashboardData } from '@/states/dashboardStore';
+import { useParams } from 'next/navigation';
 
 //next font variable
 const sourceSans3 = Source_Sans_3({
@@ -30,14 +31,17 @@ interface PageProps {
 }
 
 const PlayerDashboardPage: NextPage<PageProps> = () => {
-  const { isFetchMessage } = useDashboardData();
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { fetchStatus, errorMessage } =
+    useDashboardData(cardIdValue).dashboardData;
 
   return (
     <Provider>
       <div className={`overflow-hidden ${sourceSans3.className}`}>
         <Navbar />
-        {isFetchMessage ? (
-          <DashboardFetchError message={isFetchMessage} />
+        {fetchStatus === 'error' ? (
+          <DashboardFetchError message={errorMessage} />
         ) : (
           <>
             <div className="bg-gradient-to-l from-cardsBackground via-[#032436]  to-[#032436] flex justify-center w-full border-collapse">

@@ -5,7 +5,6 @@ import {
   filterRatingData,
   transformRatingData,
 } from '@/app/utils/dashboardHelper';
-import { notFound } from 'next/navigation';
 
 export interface DashboardState {
   data: DashboardData | null;
@@ -36,7 +35,7 @@ async function fetchDashboardData(
   try {
     const response = await fetch(`${baseURL}/dashboard/${cardId}`);
     if (!response.ok) {
-      return notFound;
+      throw new Error('Data load error. Please try again.');
     }
     const data = await response.json();
     // Transform the fetched data into the desired shape
