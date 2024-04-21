@@ -122,7 +122,7 @@ const Accordion: FC<{ faqData: FAQData[] }> = () => {
                 )}
               </AnimatePresence>
               <div
-                className={`h-px ${idx < faqs.length - 1 ? ' bg-partnersBorders' : 'bg-transparent'}`}
+                className={`h-px ${idx < faqs.length - 1 ? ' bg-partnersBorders opacity-20' : 'bg-transparent'}`}
               ></div>
             </div>
           </div>

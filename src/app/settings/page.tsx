@@ -27,7 +27,7 @@ const SettingsPage = () => {
         <Navbar />
         <main className="mx-4 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-base">
           <Header pageTitle={'Settings'} />
-          <div className="w-full max-w-[880px] mx-auto">
+          <div className="w-full lg:max-w-[880px] mx-auto gap-4">
             <AccountDetails />
             <Notifications />
             <ManageReferrals />

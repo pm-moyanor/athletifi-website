@@ -7,10 +7,12 @@ import {
   // faSnowflake,
 } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
-import { ILatestMatchProps, IRating } from '@/types/Dashboard.type';
+import { IRating } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
+import { useParams } from 'next/navigation';
+import { useDashboardData } from '@/states/dashboardStore';
 
-const LOGO_SIZE = 50;
+const LOGO_SIZE = 54;
 
 const RatingBox = ({
   rating,
@@ -30,24 +32,20 @@ const RatingBox = ({
   );
 };
 
-const LatestMatch: React.FC<ILatestMatchProps> = ({
-  datetime,
-  location,
-  weather,
-  home_club,
-  home_club_logo,
-  home_score,
-  away_club,
-  away_club_logo,
-  away_score,
-  player_ratings,
-}: ILatestMatchProps) => {
+const LatestMatch: React.FC = () => {
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue);
+
+  const latestMatch = dashboardData.data?.latestMatch;
+  const latestPlayerRatings = dashboardData.data?.latestPlayerRating;
+
   return (
     <>
-      {home_score !== null ? (
-        <div className="bg-cardsBackground h-[310px] sm:h-[310px] md:h-56 flex flex-col justify-between p-4 relative w-full rounded-10 text-primary font-sourceSansPro">
-          {datetime === undefined ? (
-            <div className="bg-cardsBackground h-[310px] sm:h-[310px] md:h-56 flex flex-col relative w-full rounded-10 text-primary font-sourceSansPro">
+      {latestMatch?.home_score !== null ? (
+        <div className="bg-cardsBackground h-full flex flex-col justify-between p-4 relative w-full rounded-10 text-primary ">
+          {latestMatch?.datetime === undefined ? (
+            <div className="bg-cardsBackground h-[310px] sm:h-[310px] md:h-56 flex flex-col relative w-full rounded-10 text-primary ">
               <h1 className="text-[24px] font-semibold">Latest Match</h1>
               <div className="flex h-full text-gray-500 justify-center items-center">
                 We are working on getting more match data. Please come back soon
@@ -56,61 +54,81 @@ const LatestMatch: React.FC<ILatestMatchProps> = ({
             </div>
           ) : (
             <>
-              <h1 className="text-[24px] font-semibold">Latest Match</h1>
-              <div className="flex justify-center items-center">
-                <div className="flex flex-col md:flex-row items-center">
-                  <p className="px-4">{home_club}</p>
-                  {!!home_club_logo && (
-                    <Image
-                      src={home_club_logo}
-                      alt="crest"
-                      className=""
-                      width={LOGO_SIZE}
-                      height={LOGO_SIZE}
-                      quality={75}
-                      loading="lazy"
-                    />
-                  )}
-                </div>
-                <p className="px-4">{`${home_score} - ${away_score}`}</p>
-                <div className="flex flex-col md:flex-row-reverse items-center">
-                  <p className="px-4">{away_club}</p>
-                  {!!away_club_logo && (
-                    <Image
-                      src={away_club_logo}
-                      alt="crest"
-                      className=""
-                      width={LOGO_SIZE}
-                      height={LOGO_SIZE}
-                      quality={75}
-                      loading="lazy"
-                    />
-                  )}
+              <div className=" flex flex-col md:flex-row justify-between">
+                <h1 className="text-[24px] font-semibold">Latest Match</h1>
+                <div className="flex flex-col justify-between h-[68px] items-center md:items-end mt-4 md:mt-0 text-sm font-light">
+                  <p className="text-center md:text-right">
+                    {latestMatch?.datetime}
+                  </p>
+                  <p className="text-center md:text-right">
+                    {latestMatch?.location}
+                  </p>
+                  <div className="flex item-center items-center justify-center sm:justify-center md:justify-end">
+                    <div className=" w-6 text-center mr-2">
+                      <FontAwesomeIcon icon={faCloudRain} size="lg" />
+                    </div>
+                    <p className="">{latestMatch?.weather?.tempFahr}&deg;F</p>
+                  </div>
                 </div>
               </div>
-              <div className="flex flex-col justify-between h-[70px] text-center sm:relative sm:text-center md:absolute top-4 right-4 text-sm font-light">
-                <p className="text-center md:text-right">{datetime}</p>
-                <p className="text-center md:text-right">{location}</p>
-                <div className="flex item-center items-center justify-center sm:justify-center md:justify-end">
-                  <div className=" w-6 text-center mr-2">
-                    <FontAwesomeIcon icon={faCloudRain} size="lg" />
+
+              <div className="flex justify-end items-center w-full max-w-[450px] md:max-w-[500px] my-4 h-full self-center">
+                <div className="flex justify-end items-center h-full w-1/2">
+                  <div className="flex flex-col-reverse w-full md:flex-row items-center">
+                    <p className="text-center md:mr-2 max-h-6 leading-5 text-sm md:text-base">
+                      {latestMatch?.home_club}
+                    </p>
+                    {!!latestMatch?.home_club_logo && (
+                      <Image
+                        src={latestMatch?.home_club_logo}
+                        alt="crest"
+                        className="mb-[6px] md:mb-0"
+                        width={LOGO_SIZE}
+                        height={LOGO_SIZE}
+                        quality={75}
+                        loading="lazy"
+                      />
+                    )}
                   </div>
-                  <p className="">{weather?.tempFahr}&deg;F</p>
+
+                  <p className="text-lg h-full md:items-center pt-2 lg:pt-0 px-2 md:px-4">{`${latestMatch?.home_score}`}</p>
+                </div>
+                <p className="px-2 h-full mt-4 md:mt-0 flex items-start md:items-center">
+                  -
+                </p>
+                <div className="flex  md:items-center h-full w-1/2">
+                  <p className="text-lg  h-full flex md:items-center pt-2 lg:pt-0 px-2 md:px-4 ">{`${latestMatch?.away_score}`}</p>
+                  <div className="flex flex-col w-full md:flex-row items-center">
+                    {!!latestMatch?.away_club_logo && (
+                      <Image
+                        src={latestMatch?.away_club_logo}
+                        alt="crest"
+                        className="mb-[6px] md:mb-0"
+                        width={LOGO_SIZE}
+                        height={LOGO_SIZE}
+                        quality={75}
+                        loading="lazy"
+                      />
+                    )}
+                    <p className="text-center md:ml-2 max-h-6 leading-5 text-sm md:text-base">
+                      {latestMatch?.away_club}
+                    </p>
+                  </div>
                 </div>
               </div>
             </>
           )}
-          {player_ratings === null ? (
+          {latestPlayerRatings === null ? (
             <div className="flex text-gray-500 justify-center items-center">
               We are currently working on getting more data. Please come back
               soon
             </div>
           ) : (
-            <div className="flex justify-between items-center mb-2 sm:mb-4 md:mb-0 mx-1 sm:mx-6">
-              {player_ratings?.map((rating, idx) => (
+            <div className="flex justify-around items-center mt-10 md:mt-6">
+              {latestPlayerRatings?.map((rating, idx) => (
                 <RatingBox
                   key={idx}
-                  isLast={idx === player_ratings.length - 1}
+                  isLast={idx === latestPlayerRatings.length - 1}
                   rating={rating}
                 />
               ))}

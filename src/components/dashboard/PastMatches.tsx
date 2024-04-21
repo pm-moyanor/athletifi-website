@@ -3,16 +3,37 @@ import MatchSummary from './MatchSummary';
 import Skeleton from 'react-loading-skeleton';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { IPastMatches } from '@/types/Dashboard.type';
+import { useParams } from 'next/navigation';
+import { useDashboardData } from '@/states/dashboardStore';
 
-const PastMatches: React.FC<IPastMatches> = ({
-  past_matches,
-}: IPastMatches) => {
+const PastMatches: React.FC = () => {
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue);
+  const past_matches = dashboardData.data?.matchesList;
   //check if in view
   const { ref: inViewRef, inView } = useInView({
     threshold: 0.7,
     triggerOnce: true,
   });
+
+  function useOutsideClick(
+    ref: React.RefObject<HTMLElement>,
+    callback: () => void,
+  ): void {
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (ref.current && !ref.current.contains(event.target as Node)) {
+          callback();
+        }
+      };
+
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [ref, callback]);
+  }
 
   //varints to trigger animations with staggered effect
   const staggerVariants = {
@@ -29,7 +50,7 @@ const PastMatches: React.FC<IPastMatches> = ({
   return (
     <>
       {past_matches && past_matches[0]?.home_club_logo ? (
-        <div className="w-full px-0 md:px-4 lg:px-0 lg:w-2/3 lg:max-w-[640px] max-h-[550px] lg:max-h-[355px] overflow-auto">
+        <div className="w-full px-0 md:px-4 lg:px-0 lg:w-2/3 lg:max-w-[720px]  fixed-height h-full">
           <h2 className="text-primary font-semibold text-2xl mb-6 font-sourceSansPro">
             Past matches
           </h2>
@@ -62,7 +83,7 @@ const PastMatches: React.FC<IPastMatches> = ({
         </div>
       ) : past_matches === null ? (
         <div className="w-full px-0 md:px-4 lg:px-0 lg:w-2/3 lg:max-w-[640px]">
-          <h2 className="text-primary font-semibold text-2xl mb-6 font-sourceSansPro">
+          <h2 className="text-primary font-semibold text-2xl mb-6">
             Past matches
           </h2>
           <div className="text-gray-500 min-w-[343px] md:min-w-[778px] lg:min-w-[640px] min-h-[50px] mb-10 lg:mb-0">

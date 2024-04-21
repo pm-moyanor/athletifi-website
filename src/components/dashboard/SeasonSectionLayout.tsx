@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react';
 import SeasonHighlights from './SeasonHighlights';
 import { ActionReelList } from './TopActionReels';
-import {
-  IActionReel,
-  ISeasonHighlights,
-  emptyActionReel,
-} from '@/types/Dashboard.type';
+import { IActionReel, emptyActionReel } from '@/types/Dashboard.type';
 
 const dummyData: IActionReel[] = [
   // {
@@ -29,9 +25,7 @@ const dummyData: IActionReel[] = [
   // },
 ];
 
-const SeasonSection: React.FC<ISeasonHighlights> = ({
-  seasonHighlights,
-}: ISeasonHighlights) => {
+const SeasonSection: React.FC = () => {
   const [actionReels, setActionReels] = useState([emptyActionReel]);
 
   useEffect(() => {
@@ -42,9 +36,11 @@ const SeasonSection: React.FC<ISeasonHighlights> = ({
 
   return (
     <>
-      <div className="w-full max-w-[1130px] sm:py-8 md:py-20 px-4 flex flex-col sm:flex-col md:flex-row justify-around items-center md:items-start h-full">
-        <SeasonHighlights seasonHighlights={seasonHighlights} />
+      <div className="w-full max-w-[1130px] sm:py-8 md:py-20 flex flex-col sm:flex-col md:flex-row justify-around items-center md:items-start">
+        <SeasonHighlights />
         <ActionReelList actionReels={actionReels} />
+        {/* once actionReels are
+        ready, we could implement jotai */}
       </div>
     </>
   );

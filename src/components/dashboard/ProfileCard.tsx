@@ -1,60 +1,56 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { IProfileProps } from '@/types/Dashboard.type';
+import { useParams } from 'next/navigation';
+import { useDashboardData } from '@/states/dashboardStore';
 
-const Profile: React.FC<IProfileProps> = ({
-  age,
-  club,
-  league,
-  team,
-  age_group,
-  gender,
-  coach,
-  bio,
-}: IProfileProps) => {
+const Profile: React.FC = () => {
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue);
+  const profile = dashboardData.data?.playerProfile;
   return (
     <>
-      {age ? (
-        <div className="w-full h-[596px] bg-cardsBackground rounded-10 p-4 mb-4 -mt-8 sm:-mt-8 md:mt-0 lg:-mt-[96px] font-sourceSansPro overflow-scroll">
+      {profile?.age ? (
+        <div className="w-full h-[560px] bg-cardsBackground rounded-10 p-4 mb-4 mt-4 -mt-0 lg:mb-0 lg:-mt-[100px] flex flex-col">
           <h2 className="text-primary text-[24px] mb-4 font-semibold">
             Profile
           </h2>
           <table className="text-primary w-full divide-y divide-gray-200">
-            <tbody className="font-extralight text-base">
-              <tr className="border-b border-partnersBorders ">
-                <td className="text-left py-1.5">Age</td>
-                <td className="text-right min-w-24">{age}</td>
-              </tr>
-              <tr className="border-b border-partnersBorders py-4">
-                <td className="text-left py-1.5">Club</td>
-                <td className="text-right">{club}</td>
-              </tr>
-              <tr className="border-b border-partnersBorders py-4">
-                <td className="text-left py-1.5">League</td>
-                <td className="text-right ">{league}</td>
+            <tbody className="font-light text-base">
+              <tr className="border-b border-partnersBorders">
+                <td className="text-left py-2 px-[4px]">Age</td>
+                <td className="text-right min-w-24 px-[4px]">{profile?.age}</td>
               </tr>
               <tr className="border-b border-partnersBorders">
-                <td className="text-left py-1.5">Team name</td>
-                <td className="text-right">{team}</td>
+                <td className="text-left py-2 px-[4px]">Club</td>
+                <td className="text-right px-[4px]">{profile?.club}</td>
               </tr>
               <tr className="border-b border-partnersBorders">
-                <td className="text-left py-1.5">Age group</td>
-                <td className="text-right">{age_group}</td>
+                <td className="text-left py-2 px-[4px]">League</td>
+                <td className="text-right px-[4px]">{profile?.league}</td>
               </tr>
               <tr className="border-b border-partnersBorders">
-                <td className="text-left py-1.5">Gender</td>
-                <td className="text-right">{gender}</td>
+                <td className="text-left py-2 px-[4px]">Team name</td>
+                <td className="text-right px-[4px]">{profile?.team}</td>
+              </tr>
+              <tr className="border-b border-partnersBorders">
+                <td className="text-left py-2 px-[4px]">Age group</td>
+                <td className="text-right px-[4px]">{profile?.age_group}</td>
+              </tr>
+              <tr className="border-b border-partnersBorders">
+                <td className="text-left py-2 px-[4px]">Gender</td>
+                <td className="text-right px-[4px]">{profile?.gender}</td>
               </tr>
               <tr>
-                <td className="text-left py-1.5">Coach</td>
-                <td className="text-right">{coach}</td>
+                <td className="text-left py-2 px-[4px]">Coach</td>
+                <td className="text-right px-[4px]">{profile?.coach}</td>
               </tr>
             </tbody>
           </table>
-          <h3 className="text-primary text-md mt-6 mb-px">Bio</h3>
-          <p className="text-primary font-extralight text-sm min-w-[319px] md:min-w-[594px] lg:min-w-[354px]">
-            {bio}
-          </p>
+          <h3 className="text-primary text-[20px] mt-6 mb-2 w-full">Bio</h3>
+          <div className="h-full overflow-y-auto mb-4 ">
+            <p className="text-primary font-light text-base ">{profile?.bio}</p>
+          </div>
         </div>
       ) : (
         <div className="lg:-mt-[86px]">

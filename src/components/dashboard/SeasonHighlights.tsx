@@ -1,15 +1,19 @@
-import { ISeasonHighlights } from '@/types/Dashboard.type';
+import { useDashboardData } from '@/states/dashboardStore';
+import { useParams } from 'next/navigation';
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 
-const SeasonHighlights: React.FC<ISeasonHighlights> = ({
-  seasonHighlights,
-}: ISeasonHighlights) => {
+const SeasonHighlights: React.FC = () => {
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue);
+
+  const seasonHighlights = dashboardData.data?.seasonHighlights;
   return (
     <>
       {seasonHighlights && seasonHighlights[0] !== '' ? (
         <div
-          className="flex flex-col w-full md:w-1/2 ml-2 mr-4 md:mr-6 mb-4 py-8 md:py-0
+          className="flex flex-col w-full md:w-1/2 ml-2 mr-4 md:mr-6 mb-4 py-8 md:py-0 border-spacing-6
     md:my-0 items-center md:items-start md:max-h-[460px] max-w-[560px] md:max-w-[540px]"
         >
           <h2 className="leading-7 w-full text-[24px] md:text-lg text-primary font-[600] mb-2 text-top">
@@ -28,11 +32,11 @@ const SeasonHighlights: React.FC<ISeasonHighlights> = ({
           </div>
         </div>
       ) : seasonHighlights === null ? (
-        <div className="mt-[20px] md:mt-0 md:mr-[16px]">
+        <div className="w-full mt-[20px] md:mt-0 md:mr-[16px]">
           <h2 className="leading-7 w-full text-[24px] md:text-lg text-primary font-[600] mb-2 text-top">
             Season Highlights
           </h2>
-          <div className="flex h-full text-gray-500 min-w-[343px] md:min-w-[340px] lg:min-w-[420px] my-4">
+          <div className=" w-full flex h-full text-gray-500 max-w-96 my-4 ma">
             We are working on getting more data. Come back soon to view season
             highlights!
           </div>

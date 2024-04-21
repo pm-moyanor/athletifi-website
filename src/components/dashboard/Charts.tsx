@@ -2,12 +2,13 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
-import { IRatingProps } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
 import {
   FieldPlayerRatings,
   GoalKeeperRatings,
 } from '@/app/utils/dashboardHelper';
+import { useParams } from 'next/navigation';
+import { useDashboardData } from '@/states/dashboardStore';
 
 const StatsBarChartWithNoSSR = dynamic(
   () => import('@/components/dashboard/BarChart'),
@@ -34,11 +35,15 @@ const tabInfo = [
   },
 ];
 
-const Charts = ({
-  latest_player_ratings,
-  player_ratings,
-  is_goalkeeper,
-}: IRatingProps) => {
+const Charts = () => {
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue);
+
+  const latest_player_ratings = dashboardData.data?.latestPlayerRating;
+  const player_ratings = dashboardData.data?.playerRatings;
+  const is_goalkeeper = dashboardData.data?.isGoalkeeper;
+
   const isMobile = useMediaQuery('(max-width: 1024px)');
   const [isLatestActive, setIsLatestActive] = useState(true);
 
@@ -58,9 +63,9 @@ const Charts = ({
     <>
       {is_goalkeeper !== null ? (
         <div className="stats-chart__container bg-cardsBackground">
-          <div className="flex text-sm md:text-md text-white border-b border-gray-500">
+          <div className="flex text-sm md:text-md text-primary border-b border-partnersBorders">
             <div
-              className={`flex justify-center w-full cursor-pointer rounded-tl-10 py-[14px] ${isLatestActive ? 'font-bold underline' : 'bg-cardsDark'}`}
+              className={`flex justify-center w-full cursor-pointer rounded-tl-10 py-[14px] ${isLatestActive ? 'font-semibold underline' : 'bg-cardsDark'}`}
               onClick={() => setIsLatestActive(true)}
             >
               <p className="px-3">View Latest Stats</p>
@@ -75,7 +80,7 @@ const Charts = ({
               />
             </div>
             <div
-              className={`flex justify-center w-full cursor-pointer rounded-tr-10 py-[14px] ${!isLatestActive ? 'font-bold underline' : 'bg-cardsDark'}`}
+              className={`flex justify-center w-full cursor-pointer rounded-tr-10 py-[14px] ${!isLatestActive ? 'font-semibold underline' : 'bg-cardsDark'}`}
               onClick={() => setIsLatestActive(false)}
             >
               <p className="px-3">View Trends</p>

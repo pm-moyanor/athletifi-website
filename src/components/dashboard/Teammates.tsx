@@ -1,39 +1,45 @@
 import React from 'react';
 import Image from 'next/image';
-import { ITeammates } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
+import { useParams } from 'next/navigation';
+import { useDashboardData } from '@/states/dashboardStore';
 
-const Teammates: React.FC<ITeammates> = ({ teammates }: ITeammates) => {
+const Teammates: React.FC = () => {
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue);
+  const teammates = dashboardData?.data?.teammates;
   return (
     <>
       {teammates && teammates[0]?.name ? (
-        <div className="bg-cardsBackground p-4 w-full lg:w-[330px] rounded-10 my-12 lg:my-0 ml-0 lg:ml-6 shadow-md max-h-96 md:max-h-52 lg:max-h-96 overflow-auto">
-          <h2 className="text-primary font-semibold text-[20px] font-sourceSansPro">
+        <div className=" w-full my-12 lg:mt-0 mx-4 lg:w-[300px]">
+          <h2 className="text-primary font-semibold mb-6 text-[20px]">
             Teammates
           </h2>
-          <div className="h-1 bg-partnersBorders my-2" />
-          <div className=" grid grid-col-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-1 gap-px ">
+          {/* <div className="h-1 bg-partnersBorders my-4" /> */}
+
+          <div className="flex lg:flex-col max-h-96 overflow-auto gap-3">
             {teammates.map((teammate) => (
               <div
                 key={`${teammate.name}-${teammate.number}`}
-                className="flex items-center py-2 flex-row md:flex-col lg:flex-row"
+                className="flex items-center flex-col lg:flex-row bg-cardsBackground rounded-10 p-3 min-w-32 shadow-md"
               >
                 {teammate.avatar_url && teammate.name ? (
                   <Image
                     src={teammate.avatar_url}
                     alt={teammate.name}
-                    width={70}
-                    height={70}
-                    className="rounded-full bg-slate-500 md:mb-2"
+                    width={76}
+                    height={76}
+                    className="rounded-full bg-slate-500 mb-3 lg:mb-0"
                   />
                 ) : (
                   <></>
                 )}
-                <div className="ml-6 md:ml-0 lg:ml-4 flex flex-col items-start md:items-center lg:items-start">
-                  <p className="text-base text-primary font-sourceSansPro">
+                <div className="md:ml-0 lg:ml-4 mt-2 md:mt-0 flex flex-col items-center lg:items-start">
+                  <p className="text-base text-center text-primary">
                     {teammate.name}
                   </p>
-                  <p className="text-center inline-block max-w-full text-sm text-offwhite font-sourceSansPro">
+                  <p className="text-center inline-block max-w-full text-sm text-offwhite">
                     #{teammate.number}
                   </p>
                 </div>

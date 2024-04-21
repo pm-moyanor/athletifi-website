@@ -48,7 +48,7 @@ const StatsLineChart: React.FC<IRatingProps> = ({
 
   function CustomLegend() {
     return (
-      <div className="flex flex-row lg:flex-col justify-center lg:items-center flex-wrap">
+      <div className="flex flex-row lg:flex-col justify-center lg:items-center flex-wrap lg:mr-6">
         {chart_fields?.map((value, index) => (
           <div
             key={`line-item-${index}`}
@@ -134,8 +134,9 @@ const StatsLineChart: React.FC<IRatingProps> = ({
           <ResponsiveContainer width="100%" height={295}>
             <LineChart
               width={500}
-              height={300}
+              height={295}
               data={[...(player_ratings as IRatingProps[])].reverse()}
+              className=""
               margin={
                 isMobile
                   ? {
@@ -179,7 +180,7 @@ const StatsLineChart: React.FC<IRatingProps> = ({
                     type="monotone"
                     dataKey={attribute}
                     stroke={`${lineProps[i] ? DEFAULT_COLOR : attributeConfigs[j].color}`}
-                    strokeWidth={`${lineProps[i] ? '2' : lineProps.hover === attribute || !lineProps.hover ? '5' : '1'}`}
+                    strokeWidth={`${lineProps[i] ? '2' : lineProps.hover === attribute || !lineProps.hover ? '3' : '1'}`}
                     dot={false}
                     // hide={lineProps["attacking"] === true}
                   />
