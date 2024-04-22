@@ -40,6 +40,15 @@ const LatestMatch: React.FC = () => {
   const latestMatch = dashboardData.data?.latestMatch;
   const latestPlayerRatings = dashboardData.data?.latestPlayerRating;
 
+  const weatherIcon = latestMatch?.weather?.weatherIcon;
+  const iconNameWithoutExtension = weatherIcon?.split('.')[0];
+  const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
+
+  console.log(localWeatherIcon);
+  console.log(latestMatch?.weather);
+  console.log(latestMatch?.weather?.weatherIcon);
+  console.log(latestMatch);
+
   return (
     <>
       {latestMatch?.home_score !== null ? (
@@ -64,8 +73,13 @@ const LatestMatch: React.FC = () => {
                     {latestMatch?.location}
                   </p>
                   <div className="flex item-center items-center justify-center sm:justify-center md:justify-end">
-                    <div className=" w-6 text-center mr-2">
-                      <FontAwesomeIcon icon={faCloudRain} size="lg" />
+                    <div className=" w-6 text-center mr-1">
+                      <Image
+                        src={localWeatherIcon}
+                        alt="Weather Icon"
+                        width={100}
+                        height={100}
+                      />
                     </div>
                     <p className="">{latestMatch?.weather?.tempFahr}&deg;F</p>
                   </div>
