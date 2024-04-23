@@ -7,10 +7,10 @@ export default async function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { user, isSignedIn } = await isAuthenticated();
+  const { isSignedIn } = await isAuthenticated();
   return (
     <>
-      <Navbar isSignedIn={isSignedIn} user={user} />
+      <Navbar isSignedIn={isSignedIn} />
       {isSignedIn ? children : <AuthClient />}
     </>
   );

@@ -27,6 +27,9 @@
           "EMAILMESSAGE": "Hello, Thank you for signing up with AthletiFi! We're excited to have you join our community. To complete your registration and activate your account, please confirm your email address by clicking the link:",
           "deploymentBucketName": "amplify-athletifiwebsite-dev-b8af6-deployment",
           "s3Key": "amplify-builds/athletifiAuthCustomMessage-30344e3536726c435364-build.zip"
+        },
+        "athletifiAuthPostConfirmation": {
+          "GROUP": "athletifiGeneralUsers"
         }
       }
     }

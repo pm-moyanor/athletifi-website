@@ -17,6 +17,8 @@ import { signOut } from 'aws-amplify/auth';
 import { useRouter } from 'next/navigation';
 import { Hub } from 'aws-amplify/utils';
 
+import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
+
 //import { MotionConfig, motion } from 'framer-motion';
 
 //----------------animated button-----------------
@@ -99,11 +101,9 @@ import { Hub } from 'aws-amplify/utils';
 // };
 const linksStyle = `opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto`;
 
-const Navbar: React.FC<{ user: string; isSignedIn: boolean }> = ({
-  user,
+const Navbar: React.FC<{ isSignedIn: boolean }> = ({
   isSignedIn,
 }: {
-  user: string;
   isSignedIn: boolean;
 }) => {
   const [open, setOpen] = useState<boolean>(false);
@@ -112,20 +112,18 @@ const Navbar: React.FC<{ user: string; isSignedIn: boolean }> = ({
 
   const [isAuthN, setIsAuthN] = useState(isSignedIn);
   const [, startTransition] = useTransition();
+  const [userName, setUserName] = useState<string | undefined>('');
 
   const router = useRouter();
   useEffect(() => {
     const hubListenerCancel = Hub.listen('auth', (data) => {
       switch (data.payload.event) {
         case 'signedIn':
-          console.log(JSON.stringify(data));
           setIsAuthN(true);
-          startTransition(() => router.push('/profile'));
           startTransition(() => router.refresh());
           break;
         case 'signedOut':
           setIsAuthN(false);
-
           startTransition(() => router.push('/'));
           startTransition(() => router.refresh());
           break;
@@ -147,6 +145,14 @@ const Navbar: React.FC<{ user: string; isSignedIn: boolean }> = ({
     // clean up
     return () => window.removeEventListener('mouseup', handleOutSideClick);
   }, [showDropdown]);
+
+  useEffect(() => {
+    if (isAuthN) {
+      handleFetchUserAttributes().then((user) => {
+        setUserName(user?.name);
+      });
+    }
+  }, [isAuthN]);
 
   const handleSignOutSignIn = async () => {
     if (isAuthN) {
@@ -229,9 +235,7 @@ const Navbar: React.FC<{ user: string; isSignedIn: boolean }> = ({
                     className="flex items-center cursor-pointer"
                     onClick={() => setShowDropdown(!showDropdown)}
                   >
-                    <p className="text-base px-2 md:px-4">
-                      {user?.replace(/['"]+/g, '')}
-                    </p>
+                    <p className="text-base px-2 md:px-4">{userName}</p>
                     <FontAwesomeIcon icon={faChevronDown} />
                   </div>
                   {showDropdown && (

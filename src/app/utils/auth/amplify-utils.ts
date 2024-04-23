@@ -20,7 +20,6 @@ export const isAuthenticated = async () =>
     async operation(contextSpec) {
       try {
         const user = await getCurrentUser(contextSpec);
-        console.log(user);
         return {
           user: JSON.stringify(user.signInDetails?.loginId || user.username),
           isSignedIn: !!user,

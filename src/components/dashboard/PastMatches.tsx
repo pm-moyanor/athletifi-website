@@ -14,24 +14,6 @@ const PastMatches: React.FC<IPastMatches> = ({
     triggerOnce: true,
   });
 
-  function useOutsideClick(
-    ref: React.RefObject<HTMLElement>,
-    callback: () => void,
-  ): void {
-    useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (ref.current && !ref.current.contains(event.target as Node)) {
-          callback();
-        }
-      };
-
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }, [ref, callback]);
-  }
-
   //varints to trigger animations with staggered effect
   const staggerVariants = {
     hidden: { opacity: 0, y: 50 },
