@@ -1,5 +1,6 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+
+import React, { useState, useEffect, useRef, useTransition } from 'react';
 import Link from 'next/link';
 import {
   WhiteFacebookIcon,
@@ -11,6 +12,10 @@ import {
 } from '../common/Icon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+
+import { signOut } from 'aws-amplify/auth';
+import { useRouter } from 'next/navigation';
+import { Hub } from 'aws-amplify/utils';
 
 //import { MotionConfig, motion } from 'framer-motion';
 
@@ -94,12 +99,41 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 // };
 const linksStyle = `opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto`;
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<{ user: string; isSignedIn: boolean }> = ({
+  user,
+  isSignedIn,
+}: {
+  user: string;
+  isSignedIn: boolean;
+}) => {
   const [open, setOpen] = useState<boolean>(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [isLoggedIn] = useState(false);
-
   const dropdown = useRef<HTMLDivElement>(null);
+
+  const [isAuthN, setIsAuthN] = useState(isSignedIn);
+  const [, startTransition] = useTransition();
+
+  const router = useRouter();
+  useEffect(() => {
+    const hubListenerCancel = Hub.listen('auth', (data) => {
+      switch (data.payload.event) {
+        case 'signedIn':
+          console.log(JSON.stringify(data));
+          setIsAuthN(true);
+          startTransition(() => router.push('/profile'));
+          startTransition(() => router.refresh());
+          break;
+        case 'signedOut':
+          setIsAuthN(false);
+
+          startTransition(() => router.push('/'));
+          startTransition(() => router.refresh());
+          break;
+      }
+    });
+
+    return () => hubListenerCancel();
+  }, [router]);
 
   useEffect(() => {
     // only add the event listener when the dropdown is opened
@@ -114,7 +148,13 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('mouseup', handleOutSideClick);
   }, [showDropdown]);
 
-  function handleLogout() {}
+  const handleSignOutSignIn = async () => {
+    if (isAuthN) {
+      await signOut();
+    } else {
+      router.push('/login');
+    }
+  };
 
   return (
     <header>
@@ -183,24 +223,15 @@ const Navbar: React.FC = () => {
                 </Link>
               </li>
 
-              {!isLoggedIn ? (
-                <li>
-                  <div className="flex font-sourceSansPro flex-1 mt-8 md:mt-0 md:ml-12 justify-end max-w-[280px]">
-                    <button className=" text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
-                      <Link href="/login">Log in</Link>
-                    </button>
-                    <button className="text-darkgray ml-2 w-[100px]  bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
-                      <Link href="/register">Sign up</Link>
-                    </button>
-                  </div>
-                </li>
-              ) : (
+              {isAuthN ? (
                 <div className="hidden relative md:flex item text-primary">
                   <div
                     className="flex items-center cursor-pointer"
                     onClick={() => setShowDropdown(!showDropdown)}
                   >
-                    <p className="text-base px-2 md:px-4">Daniel Carrillo</p>
+                    <p className="text-base px-2 md:px-4">
+                      {user?.replace(/['"]+/g, '')}
+                    </p>
                     <FontAwesomeIcon icon={faChevronDown} />
                   </div>
                   {showDropdown && (
@@ -208,7 +239,7 @@ const Navbar: React.FC = () => {
                       ref={dropdown}
                       className="absolute flex flex-col justify-between w-48 h-60 top-8 right-px z-20 bg-cardsDark rounded px-4 py-8 "
                     >
-                      <Link href="/" className={`${linksStyle} mr-auto`}>
+                      <Link href="/profile" className={`${linksStyle} mr-auto`}>
                         My cards
                       </Link>
                       <Link
@@ -226,14 +257,25 @@ const Navbar: React.FC = () => {
                       </Link>
                       <div className="border-t border-t-offwhite opacity-75"></div>
                       <div
-                        className={`${linksStyle} mr-auto`}
-                        onClick={handleLogout}
+                        className={`${linksStyle} mr-auto cursor-pointer`}
+                        onClick={handleSignOutSignIn}
                       >
                         Logout
                       </div>
                     </div>
                   )}
                 </div>
+              ) : (
+                <li>
+                  <div className="flex font-sourceSansPro flex-1 mt-8 md:mt-0 md:ml-12 justify-end max-w-[280px]">
+                    <button className=" text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
+                      <Link href="/login">Log in</Link>
+                    </button>
+                    {/* <button className="text-darkgray ml-2 w-[100px]  bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
+                      <Link href="/register">Sign up</Link>
+                    </button> */}
+                  </div>
+                </li>
               )}
             </ul>
             {open && (

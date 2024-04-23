@@ -2,7 +2,6 @@
 
 import { FC } from 'react';
 import Link from 'next/link';
-import Navbar from '@/components/dashboard/NavBar';
 import BackToTop from '@/components/common/BackToTop';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/user-portal/Header';
@@ -32,7 +31,6 @@ const HelpPage: FC<HelpPageProps> = () => {
         exit={{ opacity: 0 }}
         className={`${sourceSans3.className} overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground w-full`}
       >
-        <Navbar />
         <main className="mx-4 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-sm md:text-base">
           <Header pageTitle={'Help & Support'} />
           <div className="flex justify-center">

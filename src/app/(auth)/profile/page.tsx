@@ -1,10 +1,10 @@
 'use client';
+
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import Header from '@/components/user-portal/Header';
-import Navbar from '@/components/dashboard/NavBar';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
 
 const populatedTeams = [
@@ -77,7 +77,6 @@ const Profile = () => {
       className="overflow-hidden "
     >
       <div className="absolute top-0 left-0 bg-gradient-to-r from-cardsDark2 to-cardsBackground h-[280px] lg:h-[330px] w-full -z-10"></div>
-      <Navbar />
       <main className="mx-2 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-base">
         <Header pageTitle={'My Cards'} />
         <motion.div

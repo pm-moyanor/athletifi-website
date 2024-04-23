@@ -12,7 +12,6 @@ import PastMatchesLayout from '@/components/dashboard/PastMatchesLayout';
 import Profile from '@/components/dashboard/ProfileCard';
 import SeasonSection from '@/components/dashboard/SeasonSectionLayout';
 
-import Navbar from '@/components/dashboard/NavBar';
 import BackToTop from '@/components/common/BackToTop';
 
 import { DashboardData, emptyDashboardData } from '@/types/Dashboard.type';
@@ -92,7 +91,6 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
   return (
     <>
       <div className={`overflow-hidden ${sourceSans3.className}`}>
-        <Navbar />
         {isFetchMessage ? (
           <DashboardFetchError message={isFetchMessage} />
         ) : (

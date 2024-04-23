@@ -1,6 +1,4 @@
-import { Amplify } from 'aws-amplify';
 import {
-  Authenticator,
   Button,
   Heading,
   Text,
@@ -8,11 +6,12 @@ import {
   useAuthenticator,
   useTheme,
 } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
-import config from '@/amplifyconfiguration.json';
-Amplify.configure(config);
 
-const components = {
+export const ComponentOverrides = {
+  Header() {
+    return <div className="mt-40"></div>;
+  },
+
   Footer() {
     const { tokens } = useTheme();
 
@@ -150,7 +149,7 @@ const components = {
   },
 };
 
-const formFields = {
+export const FormFieldsOverrides = {
   signIn: {
     username: {
       placeholder: 'Enter your email',
@@ -232,18 +231,3 @@ const formFields = {
     },
   },
 };
-
-export function AuthComponent() {
-  return (
-    <Authenticator components={components} formFields={formFields}>
-      {({ signOut, user }) => (
-        <main>
-          <h1>Hello {user?.username}</h1>
-          <button onClick={signOut}>Sign out</button>
-        </main>
-      )}
-    </Authenticator>
-  );
-}
-
-export default AuthComponent;

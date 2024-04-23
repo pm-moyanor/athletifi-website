@@ -220,3 +220,11 @@ input:checked + .slider:before {
 .toggle-scale {
   transform: scale(0.8)
 }
+
+.amplify-button--primary {
+  background-color: #113448 !important;
+}
+
+.amplify-button--primary:hover {
+  background-color: #00C5F4 !important;
+}

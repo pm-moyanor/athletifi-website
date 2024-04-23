@@ -1,18 +1,7 @@
-import Footer from '@/components/common/Footer';
-import Navbar from '@/components/dashboard/NavBar';
-import SignUpIn from '@/components/signup-signin/SignUpIn';
+import AuthClient from '@/components/auth/AuthClient';
 
 const LoginPage = () => {
-  return (
-    <div>
-      <Navbar />
-
-      <main>
-        <SignUpIn isSignupPage={false} />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <AuthClient />;
 };
 
 export default LoginPage;
