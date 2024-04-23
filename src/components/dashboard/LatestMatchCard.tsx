@@ -1,11 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  // faSun,
-  // faCloud,
-  faCloudRain,
-  // faSnowflake,
-} from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import { IRating } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
@@ -40,6 +33,10 @@ const LatestMatch: React.FC = () => {
   const latestMatch = dashboardData.data?.latestMatch;
   const latestPlayerRatings = dashboardData.data?.latestPlayerRating;
 
+  const weatherIcon = latestMatch?.weather?.weatherIcon;
+  const iconNameWithoutExtension = weatherIcon?.split('.')[0];
+  const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
+
   return (
     <>
       {latestMatch?.home_score !== null ? (
@@ -63,9 +60,14 @@ const LatestMatch: React.FC = () => {
                   <p className="text-center md:text-right">
                     {latestMatch?.location}
                   </p>
-                  <div className="flex item-center items-center justify-center sm:justify-center md:justify-end">
-                    <div className=" w-6 text-center mr-2">
-                      <FontAwesomeIcon icon={faCloudRain} size="lg" />
+                  <div className="flex items-center justify-center sm:justify-center md:justify-end">
+                    <div className=" w-6 text-center mr-1">
+                      <Image
+                        src={localWeatherIcon}
+                        alt="Weather Icon"
+                        width={100}
+                        height={100}
+                      />
                     </div>
                     <p className="">{latestMatch?.weather?.tempFahr}&deg;F</p>
                   </div>
