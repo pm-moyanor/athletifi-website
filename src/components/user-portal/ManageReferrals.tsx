@@ -228,7 +228,7 @@ export default function ManageReferrals() {
                 </div>
               </div>
             </div>
-            <div className="h-1 bg-partnersBorders w-full opacity-20"></div>
+            <div className="h-1 bg-partnersBorders w-full md:w-0 opacity-20"></div>
             <div className=" w-full px-[4px] lg:ml-8  md:max-w-[500px]">
               <p className="font-extralight mt-2">
                 Manage guests for this card

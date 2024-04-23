@@ -1,11 +1,22 @@
 'use client';
 import { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { IProfileProps } from '@/types/Dashboard.type';
 import Header from '@/components/user-portal/Header';
 import Navbar from '@/components/dashboard/NavBar';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
+import Card from './../../../public/assets/img/png/anderson-card-img.png';
+
+const profileProps: IProfileProps = {
+  name: 'Mariano Jose Alvarez',
+  number: '#22',
+  club: 'villanova soccer',
+  team: 'team 2009',
+  card_url: Card,
+};
 
 const populatedTeams = [
   {
@@ -74,19 +85,82 @@ const Profile = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="overflow-hidden "
+      className="overflow-hidden"
     >
       <div className="absolute top-0 left-0 bg-gradient-to-r from-cardsDark2 to-cardsBackground h-[280px] lg:h-[330px] w-full -z-10"></div>
       <Navbar />
       <main className="mx-2 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-base">
-        <Header pageTitle={'My Cards'} />
+        <Header pageTitle={'Cards'} />
         <motion.div
           variants={variants}
           initial="initial"
           animate="animate"
           className="flex flex-col items-center mt-4 md:pt-7"
         >
-          {populatedTeams.map((team, idx) => (
+          <motion.div
+            variants={variants}
+            className="overflow-hidden w-full max-w-[1030px] mb-4 text-primary bg-cardsDark shadow-lg rounded-10  flex flex-col px-4 py-8"
+          >
+            <h2 className=" font-semibold text-primary">My cards</h2>
+            <div className="h-1 w-full bg-partnersBorders opacity-50 my-2"></div>
+            <div className="flex justify-between flex-col md:flex-row items-center">
+              <div className="relative w-[300px] h-[350px] md:w-[160px] md:h-[210px]">
+                <Image
+                  src={Card}
+                  alt="Card Thumbnail"
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </div>
+              <div className="flex flex-col lg:flex-row gap-[12px] items-center flex-1 lg:justify-evenly">
+                <h2 className="leading-8 font-bold text-[28px] md:text-[24px] text-primary text-center">
+                  {profileProps.name}
+                </h2>
+
+                <div className="flex gap-4 ">
+                  <div className="w-16 h-18 relative">
+                    <Image
+                      src="/vecteezy_crest_1204211.png"
+                      alt="club crest"
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <div className="gap-1 flex flex-col text-sm">
+                    <p className={` text-primary opacity-80 relative `}>
+                      {profileProps.club}
+                    </p>
+                    <p className={` text-primary opacity-80  relative`}>
+                      {profileProps.team}
+                    </p>
+                    <p
+                      className={` text-primary opacity-80 lg:max-w-769 relative `}
+                    >
+                      {profileProps.number}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex md:flex-col my-12 md:mx-4 gap-2 items-center justify-center">
+                <button className="text-darkgray w-[130px] md:w-[160px] h-8 bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
+                  go to dashboard
+                </button>
+                <button className=" text-primary w-[130px] md:w-[160px] h-8 text-xs md:text-sm border border-offwhite  rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
+                  share access to card
+                </button>
+              </div>
+            </div>
+            <div className="py-4">
+              <h2 className="font-semibold text-primary">Shared with me</h2>
+              <div className="h-1 w-full bg-partnersBorders opacity-50 my-2"></div>
+              <div className="flex justify-around py-4">
+                <RenderCardThumbnail />
+                <RenderCardThumbnail />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* {populatedTeams.map((team, idx) => (
             <motion.div
               key={idx}
               variants={variants}
@@ -145,7 +219,7 @@ const Profile = () => {
                 )}
               </AnimatePresence>
             </motion.div>
-          ))}
+          ))} */}
         </motion.div>
       </main>
     </motion.div>
