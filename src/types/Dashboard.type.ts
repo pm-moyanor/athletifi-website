@@ -129,6 +129,7 @@ export interface IMatchData {
 
 export interface IMatchDataWithWeather extends IMatchData {
   weather?: {
+    weatherIcon?: string | null;
     tempFahr: number | null;
   };
 }

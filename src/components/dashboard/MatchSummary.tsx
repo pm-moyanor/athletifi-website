@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faCloud } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { IMatchDataExtended } from '@/types/Dashboard.type';
 import MuxPlayer from '@mux/mux-player-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -31,6 +31,9 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     highlights,
   } = matchData;
 
+  const weatherIcon = weather?.weatherIcon;
+  const iconNameWithoutExtension = weatherIcon?.split('.')[0];
+  const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
   const handleSummaryClick = () => {
     setShowRecap(true);
   };
@@ -144,9 +147,14 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                   <div className="text-sm text-offwhite my-4">
                     <p className="pb-[2px]">{datetime}</p>
                     <p className="pb-[2px]">{location}</p>
-                    <div className="flex">
-                      <div className="mr-2">
-                        <FontAwesomeIcon icon={faCloud} />
+                    <div className="flex items-center justify-start">
+                      <div className="w-6 text-center mr-1">
+                        <Image
+                          src={localWeatherIcon}
+                          alt="Weather Icon"
+                          width={100}
+                          height={100}
+                        />
                       </div>
                       <p>{weather?.tempFahr}</p>
                     </div>

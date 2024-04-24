@@ -1,9 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
-import { ITeammates } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
+import { useParams } from 'next/navigation';
+import { useDashboardData } from '@/states/dashboardStore';
 
-const Teammates: React.FC<ITeammates> = ({ teammates }: ITeammates) => {
+const Teammates: React.FC = () => {
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue);
+  const teammates = dashboardData?.data?.teammates;
   return (
     <>
       {teammates && teammates[0]?.name ? (
