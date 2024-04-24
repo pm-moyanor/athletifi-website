@@ -158,7 +158,7 @@ const Navbar: React.FC<{ isSignedIn: boolean }> = ({
     if (isAuthN) {
       await signOut();
     } else {
-      router.push('/login');
+      router.push('/profile');
     }
   };
 
@@ -273,7 +273,7 @@ const Navbar: React.FC<{ isSignedIn: boolean }> = ({
                 <li>
                   <div className="flex font-sourceSansPro flex-1 mt-8 md:mt-0 md:ml-12 justify-end max-w-[280px]">
                     <button className=" text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
-                      <Link href="/login">Log in</Link>
+                      <Link href="/profile">Log in</Link>
                     </button>
                     {/* <button className="text-darkgray ml-2 w-[100px]  bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
                       <Link href="/register">Sign up</Link>
