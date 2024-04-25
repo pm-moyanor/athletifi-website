@@ -2,12 +2,13 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
-import { IRatingProps } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
 import {
   FieldPlayerRatings,
   GoalKeeperRatings,
 } from '@/app/utils/dashboardHelper';
+import { useParams } from 'next/navigation';
+import { useDashboardData } from '@/states/dashboardStore';
 
 const StatsBarChartWithNoSSR = dynamic(
   () => import('@/components/dashboard/BarChart'),
@@ -34,11 +35,15 @@ const tabInfo = [
   },
 ];
 
-const Charts = ({
-  latest_player_ratings,
-  player_ratings,
-  is_goalkeeper,
-}: IRatingProps) => {
+const Charts = () => {
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue);
+
+  const latest_player_ratings = dashboardData.data?.latestPlayerRating;
+  const player_ratings = dashboardData.data?.playerRatings;
+  const is_goalkeeper = dashboardData.data?.isGoalkeeper;
+
   const isMobile = useMediaQuery('(max-width: 1024px)');
   const [isLatestActive, setIsLatestActive] = useState(true);
 
