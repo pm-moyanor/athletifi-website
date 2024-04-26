@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+.amplify-text,
+.amplify-input {
+  font-family: 'Source Sans 3', sans-serif;
+}
+
 .amplify-button--primary[type='submit'] {
   background-color: #00c5f4;
   border-radius: 50px;
@@ -40,5 +47,25 @@
 }
 
 .amplify-label {
+  font-size: 14px;
+}
+
+.amplify-heading--3 {
+  font-size: 24px;
+  margin: 0px !important;
+  padding: 0px !important;
+  text-align: center;
+}
+
+.amplify-field-group__control {
+  width: 100%;
+}
+
+.amplify-button--small {
+  padding-top: 16px;
+  text-decoration: underline;
+}
+
+p.amplify-text {
   font-size: 14px;
 }
