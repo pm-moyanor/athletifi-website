@@ -69,15 +69,7 @@ export const ComponentOverrides = {
   },
   ConfirmSignUp: {
     Header() {
-      const { tokens } = useTheme();
-      return (
-        <Heading
-          padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
-          level={3}
-        >
-          Confirm Sign-Up
-        </Heading>
-      );
+      return <Heading level={3}>Confirm Sign-Up</Heading>;
     },
     Footer() {
       return <></>;
@@ -85,15 +77,7 @@ export const ComponentOverrides = {
   },
   SetupTotp: {
     Header() {
-      const { tokens } = useTheme();
-      return (
-        <Heading
-          padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
-          level={3}
-        >
-          Enter Information:
-        </Heading>
-      );
+      return <Heading level={3}>Enter Information:</Heading>;
     },
     Footer() {
       return <></>;
@@ -103,11 +87,8 @@ export const ComponentOverrides = {
     Header() {
       const { tokens } = useTheme();
       return (
-        <Heading
-          padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
-          level={3}
-        >
-          Confirm Sign-In
+        <Heading padding={`0 0 ${tokens.space.xl} 0`} level={3}>
+          Two-factor authentication
         </Heading>
       );
     },
@@ -117,15 +98,7 @@ export const ComponentOverrides = {
   },
   ForgotPassword: {
     Header() {
-      const { tokens } = useTheme();
-      return (
-        <Heading
-          padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
-          level={3}
-        >
-          Forgot Password
-        </Heading>
-      );
+      return <Heading level={3}>Forgot Password</Heading>;
     },
     Footer() {
       return <></>;
@@ -133,15 +106,7 @@ export const ComponentOverrides = {
   },
   ConfirmResetPassword: {
     Header() {
-      const { tokens } = useTheme();
-      return (
-        <Heading
-          padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
-          level={3}
-        >
-          Confirm Reset Password
-        </Heading>
-      );
+      return <Heading level={3}>Confirm Reset Password</Heading>;
     },
     Footer() {
       return <></>;
@@ -205,7 +170,7 @@ export const FormFieldsOverrides = {
   confirmResetPassword: {
     confirmation_code: {
       placeholder: 'Enter your Confirmation Code:',
-      label: 'New Label',
+      label: 'Confirmation code',
       isRequired: false,
     },
     confirm_password: {
@@ -214,19 +179,19 @@ export const FormFieldsOverrides = {
   },
   setupTotp: {
     QR: {
-      totpIssuer: 'test issuer',
-      totpUsername: 'amplify_qr_test_user',
+      totpIssuer: 'AWSCognito',
+      totpUsername: 'user.attributes.email',
     },
     confirmation_code: {
-      label: 'New Label',
-      placeholder: 'Enter your Confirmation Code:',
+      label: '',
+      placeholder: 'Enter your Authenticator Code',
       isRequired: false,
     },
   },
   confirmSignIn: {
     confirmation_code: {
-      label: 'New Label',
-      placeholder: 'Enter your Confirmation Code:',
+      label: '',
+      placeholder: 'Enter your Authenticator Code',
       isRequired: false,
     },
   },

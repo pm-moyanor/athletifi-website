@@ -4,7 +4,7 @@ import axiosClient from '@/utils/axiosClient';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
-  const endpoint = `/adduser?amplifyId=${searchParams.get('amplifyId')}&name=${searchParams.get('name')}&email=${searchParams.get('email')}`;
+  const endpoint = `/adduser?name=${searchParams.get('name')}&email=${searchParams.get('email')}&amplify_id=${searchParams.get('amplify_id')}`;
   try {
     const response = await axiosClient.get(endpoint);
     const data = response.data;

@@ -9,6 +9,7 @@ import Notifications from '@/components/user-portal/Notifications';
 import ManageReferrals from '@/components/user-portal/ManageReferrals';
 import Header from '@/components/user-portal/Header';
 import { Source_Sans_3 } from 'next/font/google';
+
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
   display: 'swap',

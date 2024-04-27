@@ -2,35 +2,44 @@
 import 'src/styles/AuthStyles.css';
 import { Authenticator, ThemeProvider, useTheme } from '@aws-amplify/ui-react';
 import { ComponentOverrides, FormFieldsOverrides } from './AuthOverrides';
-import { signUp, type SignUpInput } from 'aws-amplify/auth';
+// import { signUp, type SignUpInput } from 'aws-amplify/auth';
 import { loginTheme, sourceSans3 } from './AuthTheme';
 
 const AuthClient = () => {
   const { tokens } = useTheme();
   console.log(tokens);
+  // const baseURL =
+  //   process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
+  // const postHelper = async (
+  //   email: string | undefined,
+  //   name: string | undefined,
+  //   amplify_id: string | undefined,
+  // ) => {
+  //   const response = await fetch(
+  //     `${baseURL}/addUser?email=${email}&name=${name}&amplify_id=${amplify_id}`,
+  //   );
+  //   const data = await response.json();
+  //   return data;
+  // };
 
-  const baseURL =
-    process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
-  const postHelper = async (
-    email: string | undefined,
-    name: string | undefined,
-  ) => {
-    const response = await fetch(
-      `${baseURL}/addUser?email=${email}&name=${name}`,
-    );
-    const data = await response.json();
-    return data;
-  };
+  // const services = {
+  //   async handleSignUp(formData: SignUpInput) {
+  //     const result = await signUp(formData);
 
-  const services = {
-    async handleSignUp(formData: SignUpInput) {
-      if (formData?.options?.userAttributes) {
-        const attributes = formData.options.userAttributes;
-        await postHelper(attributes.email, attributes.name);
-      }
-      return signUp(formData);
-    },
-  };
+  //     try {
+  //       if (formData?.options?.userAttributes) {
+  //         const attributes = formData.options.userAttributes;
+  //         await postHelper(attributes.email, attributes.name, result.userId);
+  //       }
+  //     } catch (err) {
+  //       console.log('Ran into a problem with storing user data', err);
+  //     }
+
+  //     return new Promise<SignUpOutput>((resolve) => {
+  //       resolve(result);
+  //     });
+  //   },
+  // };
 
   return (
     <div
@@ -49,7 +58,8 @@ const AuthClient = () => {
         <Authenticator
           components={ComponentOverrides}
           formFields={FormFieldsOverrides}
-          services={services}
+          socialProviders={['google', 'facebook']}
+          // services={services}
         />
       </ThemeProvider>
     </div>
@@ -57,15 +67,3 @@ const AuthClient = () => {
 };
 
 export default AuthClient;
-
-// {
-//   "username": "louis@athleti.fi",
-//   "password":"password123",
-//   "options": {
-//     "autoSignIn": true,
-//     "userAttributes": {
-//       "name": "Louis Choi",
-//       "email":"louis@athleti.fi"
-//     }
-//   }
-// }

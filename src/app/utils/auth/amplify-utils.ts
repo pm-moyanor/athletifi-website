@@ -22,11 +22,13 @@ export const isAuthenticated = async () =>
         const user = await getCurrentUser(contextSpec);
         return {
           user: JSON.stringify(user.signInDetails?.loginId || user.username),
+          signInMethod: user.signInDetails ? 'email' : 'social',
           isSignedIn: !!user,
         };
       } catch (error) {
         return {
           user: '',
+          signInMethod: '',
           isSignedIn: false,
         };
       }

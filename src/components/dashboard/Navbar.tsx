@@ -18,6 +18,7 @@ import { useRouter } from 'next/navigation';
 import { Hub } from 'aws-amplify/utils';
 
 import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
+import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
 
 //import { MotionConfig, motion } from 'framer-motion';
 
@@ -112,7 +113,7 @@ const Navbar: React.FC<{ isSignedIn: boolean }> = ({
 
   const [isAuthN, setIsAuthN] = useState(isSignedIn);
   const [, startTransition] = useTransition();
-  const [userName, setUserName] = useState<string | undefined>('');
+  const [username, setUsername] = useState<string>('');
 
   const router = useRouter();
   useEffect(() => {
@@ -149,7 +150,10 @@ const Navbar: React.FC<{ isSignedIn: boolean }> = ({
   useEffect(() => {
     if (isAuthN) {
       handleFetchUserAttributes().then((user) => {
-        setUserName(user?.name);
+        if (username !== user?.name) {
+          handlePostSignIn(user);
+        }
+        setUsername(user?.name || '');
       });
     }
   }, [isAuthN]);
@@ -235,7 +239,7 @@ const Navbar: React.FC<{ isSignedIn: boolean }> = ({
                     className="flex items-center cursor-pointer"
                     onClick={() => setShowDropdown(!showDropdown)}
                   >
-                    <p className="text-base px-2 md:px-4">{userName}</p>
+                    <p className="text-base px-2 md:px-4">{username}</p>
                     <FontAwesomeIcon icon={faChevronDown} />
                   </div>
                   {showDropdown && (

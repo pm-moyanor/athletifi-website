@@ -1,10 +1,8 @@
-import { fetchUserAttributes } from 'aws-amplify/auth';
+import {
+  fetchUserAttributes,
+  type FetchUserAttributesOutput,
+} from 'aws-amplify/auth';
 
-export default async function handleFetchUserAttributes() {
-  try {
-    const userAttributes = await fetchUserAttributes();
-    return userAttributes;
-  } catch (error) {
-    console.log(error);
-  }
+export default async function handleFetchUserAttributes(): Promise<FetchUserAttributesOutput> {
+  return await fetchUserAttributes();
 }
