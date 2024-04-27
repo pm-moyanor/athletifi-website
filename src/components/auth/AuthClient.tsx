@@ -1,13 +1,13 @@
 'use client';
 import 'src/styles/AuthStyles.css';
-import { Authenticator, ThemeProvider, useTheme } from '@aws-amplify/ui-react';
+import { Authenticator, ThemeProvider } from '@aws-amplify/ui-react';
 import { ComponentOverrides, FormFieldsOverrides } from './AuthOverrides';
 // import { signUp, type SignUpInput } from 'aws-amplify/auth';
 import { loginTheme, sourceSans3 } from './AuthTheme';
 
 const AuthClient = () => {
-  const { tokens } = useTheme();
-  console.log(tokens);
+  // const { tokens } = useTheme();
+  // console.log(tokens);
   // const baseURL =
   //   process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
   // const postHelper = async (

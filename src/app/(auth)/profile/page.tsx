@@ -46,19 +46,19 @@ const profileProps: IProfileProps = {
 //   },
 // ];
 //adjust when integrate data
-interface Team {
-  teamName: string;
-  cards: { id: number }[];
-}
+// interface Team {
+//   teamName: string;
+//   cards: { id: number }[];
+// }
 
 //dummy component to render cards by team
-const CardsByTeam = ({ team }: { team: Team }) => (
-  <div className="flex justify-center md:flex-row flex-wrap items-center md:items-start">
-    {team.cards.map((card, index) => (
-      <RenderCardThumbnail key={index} />
-    ))}
-  </div>
-);
+// const CardsByTeam = ({ team }: { team: Team }) => (
+//   <div className="flex justify-center md:flex-row flex-wrap items-center md:items-start">
+//     {team.cards.map((card, index) => (
+//       <RenderCardThumbnail key={index} />
+//     ))}
+//   </div>
+// );
 
 //motion variants to animate the team bars
 const variants = {

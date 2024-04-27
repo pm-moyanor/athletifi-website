@@ -76,13 +76,13 @@ const CardThumbnail: React.FC<IProfileProps> = ({
     }
   };
 
-  const toggleEmailInput = () => {
-    setIsToggle(!isToggle);
-    if (emailSubmitted) {
-      setEmailSubmitted(false);
-      setInvitation({ name: '', email: '' });
-    }
-  };
+  // const toggleEmailInput = () => {
+  //   setIsToggle(!isToggle);
+  //   if (emailSubmitted) {
+  //     setEmailSubmitted(false);
+  //     setInvitation({ name: '', email: '' });
+  //   }
+  // };
 
   const cardRef = useRef<HTMLDivElement>(null);
   useOutsideClick(cardRef, () => setIsToggle(false));
