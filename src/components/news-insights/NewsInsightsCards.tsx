@@ -5,7 +5,7 @@ import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
 // import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { PaginationArrow } from '../common/Icon';
+import { PaginationArrow } from '@/components/common/Icon';
 import NewsInsightsLoader from './NewsInsightsLoader';
 import { AllArticles, Category, NewsArticle } from '@/types/News.type';
 import { getNewsList } from '@/utils/ApiHelper';

@@ -43,15 +43,17 @@ const AuthClient = () => {
 
   return (
     <div
-      className={`bg-cardsDark ${sourceSans3.className} rounded-10 p-8 shadow-sm `}
+      className={`bg-cardsDark ${sourceSans3.className} md:p-8 shadow-sm flex justify-center`}
     >
       <ThemeProvider theme={loginTheme}>
         <div className="mb-12">
-          <p className="text-primary font-extralight leading-8">Welcome to</p>
+          <p className="text-primary font-extralight leading-8 mt-28">
+            Welcome to
+          </p>
           <h1
             className={`text-xl text-primary leading-8 ${sourceSans3.className}`}
           >
-            AthletifFi
+            AthletiFi
           </h1>
         </div>
 

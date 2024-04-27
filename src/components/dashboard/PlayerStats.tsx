@@ -1,5 +1,5 @@
 import React from 'react';
-import { UnderLineText } from '../common/Icon';
+import { UnderLineText } from '@/components/common/Icon';
 import type { PlayerStats } from '@/types/Player.type';
 
 const playerStats: PlayerStats = {

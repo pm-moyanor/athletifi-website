@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import BlueButton from '../common/BlueButton';
+import BlueButton from '@/components/common/BlueButton';
 import Link from 'next/link';
 
 const FOOTBALL_NET_IMAGE_WIDTH: number = 996;
