@@ -42,7 +42,7 @@ const AuthClient = () => {
           <h1
             className={`text-xl text-primary leading-8 ${sourceSans3.className}`}
           >
-            Athletifi
+            AthletifFi
           </h1>
         </div>
 
