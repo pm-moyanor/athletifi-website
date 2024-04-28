@@ -11,8 +11,6 @@ import Image from 'next/image';
 import { IProfileProps } from '@/types/Dashboard.type';
 import { Source_Sans_3 } from 'next/font/google';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
@@ -78,13 +76,13 @@ const CardThumbnail: React.FC<IProfileProps> = ({
     }
   };
 
-  const toggleEmailInput = () => {
-    setIsToggle(!isToggle);
-    if (emailSubmitted) {
-      setEmailSubmitted(false);
-      setInvitation({ name: '', email: '' });
-    }
-  };
+  // const toggleEmailInput = () => {
+  //   setIsToggle(!isToggle);
+  //   if (emailSubmitted) {
+  //     setEmailSubmitted(false);
+  //     setInvitation({ name: '', email: '' });
+  //   }
+  // };
 
   const cardRef = useRef<HTMLDivElement>(null);
   useOutsideClick(cardRef, () => setIsToggle(false));
@@ -117,13 +115,22 @@ const CardThumbnail: React.FC<IProfileProps> = ({
           </p>
         </div>
 
-        <div className="-mt-4 md:-mt-6 w-full md:w-1/2 h-[240px] md:h-36 relative">
-          <Image
-            src={card_url}
-            alt="Card Thumbnail"
-            layout="fill"
-            objectFit="contain"
-          />
+        <div className="-mt-0 md:-mt-6 w-full md:w-1/2 h-56 md:h-36 relative">
+          {card_url ? (
+            <Image
+              src={card_url}
+              alt="Card Thumbnail"
+              layout="fill"
+              objectFit="contain"
+            />
+          ) : (
+            <Image
+              src={Card}
+              alt="Default Card Thumbnail"
+              layout="fill"
+              objectFit="contain"
+            />
+          )}
         </div>
       </div>
 

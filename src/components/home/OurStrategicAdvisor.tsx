@@ -4,7 +4,7 @@
 
 import Image from 'next/image';
 import React from 'react';
-import BlueButton from '../common/BlueButton';
+import BlueButton from '@/components/common/BlueButton';
 import Link from 'next/link';
 
 const NET_IMAGE_WIDTH: number = 996;

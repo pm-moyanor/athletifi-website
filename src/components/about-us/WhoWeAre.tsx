@@ -5,8 +5,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { UnderLineText } from '../common/Icon';
-import { CenterBlueShadow } from '../common/Icon';
+import { UnderLineText } from '@/components/common/Icon';
+import { CenterBlueShadow } from '@/components/common/Icon';
 
 const GRID_IMAGE_WIDTH: number = 692;
 const GRID_IMAGE_HEIGHT: number = 200;

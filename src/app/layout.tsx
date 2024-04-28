@@ -8,10 +8,7 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Open_Sans } from 'next/font/google';
 
-// const GoogleAnalyticsWithNoSSR = dynamic(
-//   () => import('nextjs-google-analytics').then((mod) => mod.GoogleAnalytics),
-//   { ssr: false },
-// );
+import Auth from '@/components/auth/Auth';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -37,7 +34,7 @@ export default function RootLayout({
         <GoogleAnalytics gaId={gaId as string} />
         <AOSInitializerWithNoSSR />
         <SkeletonTheme baseColor="#032436" highlightColor="#525252">
-          {children}
+          <Auth>{children}</Auth>
         </SkeletonTheme>
       </body>
     </html>

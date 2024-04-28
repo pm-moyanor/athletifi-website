@@ -11,7 +11,6 @@ import LatestMatch from '@/components/dashboard/LatestMatchCard';
 import PastMatchesLayout from '@/components/dashboard/PastMatchesLayout';
 import Profile from '@/components/dashboard/ProfileCard';
 import SeasonSection from '@/components/dashboard/SeasonSectionLayout';
-import Navbar from '@/components/dashboard/NavBar';
 import BackToTop from '@/components/common/BackToTop';
 import DashboardFetchError from '@/components/dashboard/DashboardFetchError';
 import { Source_Sans_3 } from 'next/font/google';
@@ -39,7 +38,6 @@ const PlayerDashboardPage: NextPage<PageProps> = () => {
   return (
     <Provider>
       <div className={`overflow-hidden ${sourceSans3.className}`}>
-        <Navbar />
         {fetchStatus === 'error' ? (
           <DashboardFetchError message={errorMessage} />
         ) : (

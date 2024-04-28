@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import cardImage from '../../../public/assets/img/png/anderson-card-img.png';
+import cardImage from '@/../public/assets/img/png/anderson-card-img.png';
 
 const CARD_IMAGE_WIDTH: number = 500;
 const CARD_IMAGE_HEIGHT: number = 300;

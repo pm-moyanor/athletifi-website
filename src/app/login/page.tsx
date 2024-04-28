@@ -1,16 +1,11 @@
-import Footer from '@/components/common/Footer';
-import Navbar from '@/components/dashboard/NavBar';
-import SignUpIn from '@/components/signup-signin/SignUpIn';
+import AuthClient from '@/components/auth/AuthClient';
 
 const LoginPage = () => {
   return (
-    <div>
-      <Navbar />
-
-      <main>
-        <SignUpIn isSignupPage={false} />
-      </main>
-      <Footer />
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="">
+        <AuthClient />;
+      </div>
     </div>
   );
 };

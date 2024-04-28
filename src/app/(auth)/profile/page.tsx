@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -6,9 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 // import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { IProfileProps } from '@/types/Dashboard.type';
 import Header from '@/components/user-portal/Header';
-import Navbar from '@/components/dashboard/NavBar';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
-import Card from './../../../public/assets/img/png/anderson-card-img.png';
+import Card from '@/../public/assets/img/png/anderson-card-img.png';
 
 const profileProps: IProfileProps = {
   name: 'Mariano Jose Alvarez',
@@ -46,19 +46,19 @@ const profileProps: IProfileProps = {
 //   },
 // ];
 //adjust when integrate data
-interface Team {
-  teamName: string;
-  cards: { id: number }[];
-}
+// interface Team {
+//   teamName: string;
+//   cards: { id: number }[];
+// }
 
 //dummy component to render cards by team
-const CardsByTeam = ({ team }: { team: Team }) => (
-  <div className="flex justify-center md:flex-row flex-wrap items-center md:items-start">
-    {team.cards.map((card, index) => (
-      <RenderCardThumbnail key={index} />
-    ))}
-  </div>
-);
+// const CardsByTeam = ({ team }: { team: Team }) => (
+//   <div className="flex justify-center md:flex-row flex-wrap items-center md:items-start">
+//     {team.cards.map((card, index) => (
+//       <RenderCardThumbnail key={index} />
+//     ))}
+//   </div>
+// );
 
 //motion variants to animate the team bars
 const variants = {
@@ -115,7 +115,6 @@ const Profile = () => {
       className="overflow-hidden"
     >
       <div className="absolute top-0 left-0 bg-gradient-to-r from-cardsDark2 to-cardsBackground h-[280px] lg:h-[330px] w-full -z-10"></div>
-      <Navbar />
       <main className="mx-2 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-base">
         <Header pageTitle={'Cards'} />
         <motion.div

@@ -8,7 +8,7 @@ import {
   WhiteLinkedInIcon,
   WhiteTwitterIcon,
   WhiteWhatsAppIcon,
-} from '../common/Icon';
+} from '@/components/common/Icon';
 import { NewsContent, NewsArticle, NewsDetails } from '@/types/News.type';
 
 import Link from 'next/link';

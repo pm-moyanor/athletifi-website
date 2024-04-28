@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import FlipCard from './FlipCard';
+import FlipCard from '@/components/dashboard/FlipCard';
 import { useDashboardData } from '@/states/dashboardStore';
 import { useParams } from 'next/navigation';
 

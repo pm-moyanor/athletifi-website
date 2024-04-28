@@ -7,7 +7,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import BlueButton from '../common/BlueButton';
+import BlueButton from '@/components/common/BlueButton';
 import { NewsProps, NewsArticle, Category } from '@/types/News.type';
 
 const AOS_DURATION: number = 400;
