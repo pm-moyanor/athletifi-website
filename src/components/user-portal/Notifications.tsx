@@ -31,9 +31,11 @@ export default function Notifications() {
     getCurrentUser().then((user) => {
       setAmplifyId(user.username);
       fetchHelper(user.username).then((userPreferences) => {
-        setNotificationSettings(
-          transformNotificationPreferences(userPreferences.result),
-        );
+        if (JSON.stringify(userPreferences.result) !== '{}') {
+          setNotificationSettings(
+            transformNotificationPreferences(userPreferences.result),
+          );
+        }
       });
     });
   }, []);
@@ -43,8 +45,8 @@ export default function Notifications() {
       process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
 
     const postHelper = async (
-      amplify_id: string | null,
-      notification_type: string | null,
+      amplify_id: string,
+      notification_types: string[],
     ) => {
       const response = await fetch(`${baseURL}/notifications`, {
         method: 'POST',
@@ -53,7 +55,7 @@ export default function Notifications() {
         },
         body: JSON.stringify({
           amplify_id: amplify_id,
-          notification_type: notification_type,
+          notification_type: notification_types[0],
         }),
       });
       const data = await response.json();
@@ -61,11 +63,11 @@ export default function Notifications() {
     };
 
     const deleteHelper = async (
-      amplify_id: string | null,
-      notification_type: string | null,
+      amplify_id: string,
+      notification_types: string[],
     ) => {
       const response = await fetch(
-        `${baseURL}/notifications?amplify_id=${amplify_id}&notification_type=${notification_type}`,
+        `${baseURL}/notifications?amplify_id=${amplify_id}&notification_types=${JSON.stringify(notification_types)}`,
         {
           method: 'DELETE',
           headers: {
@@ -77,10 +79,12 @@ export default function Notifications() {
       return data;
     };
 
-    if (latestChange.value) {
-      postHelper(latestChange.amplify_id, latestChange.notification_type);
-    } else {
-      deleteHelper(latestChange.amplify_id, latestChange.notification_type);
+    if (latestChange.amplify_id && latestChange.notification_types) {
+      if (latestChange.value) {
+        postHelper(latestChange.amplify_id, latestChange.notification_types);
+      } else {
+        deleteHelper(latestChange.amplify_id, latestChange.notification_types);
+      }
     }
   }, [latestChange]);
 
@@ -98,8 +102,17 @@ export default function Notifications() {
     setNotificationSettings(tmp);
     setLatestChange({
       amplify_id: amplifyId,
-      notification_type: notificationType,
+      notification_types: [notificationType],
       value: tmp[notificationType],
+    });
+  }
+
+  function handleUnsubscribe() {
+    setNotificationSettings(emptyNotifications);
+    setLatestChange({
+      amplify_id: amplifyId,
+      notification_types: Object.keys(emptyNotifications),
+      value: false,
     });
   }
 
@@ -115,7 +128,7 @@ export default function Notifications() {
         {NotificationTitles.map((setting, idx) => (
           <div
             key={idx}
-            className={`flex justify-between items-center py-4 mx-4 ${idx > 0 ? 'border-t border-t-partnersBorders border-opacity-20' : ''}`}
+            className={`flex justify-between items-center py-4 mx-4 border-b border-b-partnersBorders border-opacity-20`}
           >
             <div>{setting.name}</div>
             <div className="flex items-center cursor-pointer">
@@ -140,6 +153,15 @@ export default function Notifications() {
             </div>
           </div>
         ))}
+        <div className={`flex justify-between items-center py-6 mx-4`}>
+          <div className="font-bold">Unsubscribe from all notifications</div>
+          <button
+            className="p-3 bg-red-600 hover:bg-red-800 rounded-10"
+            onClick={handleUnsubscribe}
+          >
+            Remove me
+          </button>
+        </div>
       </div>
     </div>
   );
