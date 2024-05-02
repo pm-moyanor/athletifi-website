@@ -127,18 +127,6 @@ export const FormFieldsOverrides = {
       isRequired: true,
       order: 1,
     },
-    // given_name: {
-    //   label: 'First Name:',
-    //   placeholder: 'Bruce',
-    //   isRequired: true,
-    //   order: 1,
-    // },
-    // family_name: {
-    //   label: 'Last Name:',
-    //   placeholder: 'Wayne',
-    //   isRequired: true,
-    //   order: 2,
-    // },
     email: {
       label: 'Email:',
       placeholder: 'bruce@wayne.ent',

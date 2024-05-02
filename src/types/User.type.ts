@@ -27,13 +27,16 @@ export const emptyNotifications: NotificationPreferences = {
 };
 
 export type LatestChange = {
-  amplify_id: string | null;
   notification_types: string[] | null;
   value: boolean | null;
 };
 
 export const emptyLatestChange: LatestChange = {
-  amplify_id: null,
   notification_types: null,
   value: null,
+};
+
+export type UserData = {
+  amplify_id: string | null;
+  notifications: NotificationPreferences | null;
 };
