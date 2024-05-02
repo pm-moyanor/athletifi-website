@@ -38,6 +38,7 @@ async function fetchUserData(
   currState: UserState,
   set: (value: UserState) => void,
 ) {
+  // Get authenticated user
   let amplify_id;
   if (currState.data) {
     amplify_id = currState.data.amplify_id;
@@ -139,6 +140,7 @@ export function useUserNotificationData() {
           userData.data?.amplify_id,
           latestChange.notification_types,
         ).then(() => {
+          // Manually construct updated userData state object after POST
           setUserData({
             ...userData,
             data: {
@@ -155,6 +157,7 @@ export function useUserNotificationData() {
           userData.data?.amplify_id,
           latestChange.notification_types,
         ).then(() => {
+          // Build object with update notification preferences
           const updateArray = (latestChange.notification_types as string[]).map(
             (key) => {
               return {
@@ -163,6 +166,7 @@ export function useUserNotificationData() {
             },
           );
           const updateObject = Object.assign({}, ...updateArray);
+          // Manually construct updated userData state object after DELETE
           setUserData({
             ...userData,
             data: {
