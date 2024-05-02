@@ -11,9 +11,17 @@ export default async function handlePostSignIn(
     name: string | undefined,
     amplify_id: string | undefined,
   ) => {
-    const response = await fetch(
-      `${baseURL}/addUser?email=${email}&name=${name}&amplify_id=${amplify_id}`,
-    );
+    const response = await fetch(`${baseURL}/addUser`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        amplify_id: amplify_id,
+        email: email,
+        name: name,
+      }),
+    });
     const data = await response.json();
     return data;
   };
