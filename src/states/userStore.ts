@@ -40,15 +40,16 @@ async function fetchUserData(
 ) {
   // Get authenticated user
   let amplify_id;
-  if (currState.data) {
-    amplify_id = currState.data.amplify_id;
-  } else {
+  try {
     const user = await getCurrentUser();
     amplify_id = user.username;
+  } catch (err) {
+    console.warn('User is currently not logged in. Skipping userData fetch');
+    return;
   }
 
   set({
-    data: currState.data,
+    data: amplify_id === currState.data?.amplify_id ? currState.data : null,
     fetchStatus: 'loading',
     errorMessage: null,
   });
@@ -84,7 +85,7 @@ async function fetchUserData(
 }
 
 // Custom hook to use the user data in a component
-export function useUserNotificationData() {
+export function useUserData() {
   // Use jotai's useAtom to manage the state
   const [userData, setUserData] = useAtom(userDataAtom);
   const [latestChange, setLatestChange] =
@@ -182,9 +183,18 @@ export function useUserNotificationData() {
     }
   }, [latestChange]);
 
+  function resetUserDataState() {
+    setUserData({
+      data: null,
+      fetchStatus: 'idle',
+      errorMessage: null,
+    });
+  }
+
   // Return the current state of the user data
   return {
     userData: userData,
     setLatestChange: setLatestChange,
+    resetUserDataState: resetUserDataState,
   };
 }

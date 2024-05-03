@@ -3,11 +3,11 @@ import {
   NotificationPreferences,
   emptyNotifications,
 } from '@/types/User.type';
-import { useUserNotificationData } from '@/states/userStore';
+import { useUserData } from '@/states/userStore';
 import { ChangeEvent } from 'react';
 
 export default function Notifications() {
-  const { userData, setLatestChange } = useUserNotificationData();
+  const { userData, setLatestChange } = useUserData();
 
   function handleChange(
     e: ChangeEvent<HTMLInputElement>,

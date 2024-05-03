@@ -19,6 +19,7 @@ import { Hub } from 'aws-amplify/utils';
 
 import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
 import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
+import { useUserData } from '@/states/userStore';
 
 //import { MotionConfig, motion } from 'framer-motion';
 
@@ -114,6 +115,7 @@ const Navbar: React.FC<{ isSignedIn: boolean }> = ({
   const [isAuthN, setIsAuthN] = useState(isSignedIn);
   const [, startTransition] = useTransition();
   const [username, setUsername] = useState<string>('');
+  const { resetUserDataState } = useUserData();
 
   const router = useRouter();
   useEffect(() => {
@@ -161,6 +163,7 @@ const Navbar: React.FC<{ isSignedIn: boolean }> = ({
   const handleSignOutSignIn = async () => {
     if (isAuthN) {
       await signOut();
+      resetUserDataState();
     } else {
       router.push('/profile');
     }
