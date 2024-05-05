@@ -1,37 +1,30 @@
-import { useState } from 'react';
-
-const dummyDataNotifications = [
-  {
-    idx: 0,
-    name: 'Referral Notifications',
-    isSet: true,
-  },
-  {
-    idx: 1,
-    name: 'AthletiFi Updates',
-    isSet: true,
-  },
-  {
-    idx: 2,
-    name: 'General Highlights',
-    isSet: false,
-  },
-  {
-    idx: 3,
-    name: 'My Player Updates',
-    isSet: true,
-  },
-];
+import {
+  NotificationTitles,
+  NotificationPreferences,
+  emptyNotifications,
+} from '@/types/User.type';
+import { useUserData } from '@/states/userStore';
+import { ChangeEvent } from 'react';
 
 export default function Notifications() {
-  const [notificationSettings, setNotificationSettings] = useState(
-    dummyDataNotifications,
-  );
+  const { userData, setLatestChange } = useUserData();
 
-  function handleChange(i: number) {
-    const updatedSettings = [...notificationSettings];
-    updatedSettings[i].isSet = !notificationSettings[i].isSet;
-    setNotificationSettings(updatedSettings);
+  function handleChange(
+    e: ChangeEvent<HTMLInputElement>,
+    notificationType: keyof NotificationPreferences,
+  ) {
+    e.preventDefault();
+    setLatestChange({
+      notification_types: [notificationType],
+      value: e.target.checked,
+    });
+  }
+
+  function handleUnsubscribe() {
+    setLatestChange({
+      notification_types: Object.keys(emptyNotifications),
+      value: false,
+    });
   }
 
   return (
@@ -43,10 +36,10 @@ export default function Notifications() {
         What would you like to be notified via email?
       </div>
       <div className="rounded bg-cardsDark shadow-portalNav">
-        {notificationSettings.map((setting, idx) => (
+        {NotificationTitles.map((setting, idx) => (
           <div
             key={idx}
-            className={`flex justify-between items-center py-4 mx-4 ${idx > 0 ? 'border-t border-t-partnersBorders border-opacity-20' : ''}`}
+            className={`flex justify-between items-center py-4 mx-4 border-b border-b-partnersBorders border-opacity-20`}
           >
             <div>{setting.name}</div>
             <div className="flex items-center cursor-pointer">
@@ -54,8 +47,19 @@ export default function Notifications() {
                 <label className="switch">
                   <input
                     type="checkbox"
-                    checked={setting.isSet}
-                    onChange={() => handleChange(idx)}
+                    checked={
+                      userData.data?.notifications
+                        ? userData.data.notifications[
+                            setting.value as keyof NotificationPreferences
+                          ]
+                        : false
+                    }
+                    onChange={(e) =>
+                      handleChange(
+                        e,
+                        setting.value as keyof NotificationPreferences,
+                      )
+                    }
                   />
                   <span className="slider round"></span>
                 </label>
@@ -63,6 +67,15 @@ export default function Notifications() {
             </div>
           </div>
         ))}
+        <div className={`flex justify-between items-center py-6 mx-4`}>
+          <div className="font-bold">Unsubscribe from all notifications</div>
+          <button
+            className="p-3 bg-red-600 hover:bg-red-800 rounded-10"
+            onClick={handleUnsubscribe}
+          >
+            Remove me
+          </button>
+        </div>
       </div>
     </div>
   );

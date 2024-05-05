@@ -17,8 +17,8 @@ import { signOut } from 'aws-amplify/auth';
 import { useRouter } from 'next/navigation';
 import { Hub } from 'aws-amplify/utils';
 
-import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
-import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
+import { useUserData } from '@/states/userStore';
+import UserNotificationsModal from '@/components/user-portal/UserNotificationsModal';
 
 //import { MotionConfig, motion } from 'framer-motion';
 
@@ -102,29 +102,28 @@ import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
 // };
 const linksStyle = `opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto`;
 
-const Navbar: React.FC<{ isSignedIn: boolean }> = ({
-  isSignedIn,
-}: {
-  isSignedIn: boolean;
-}) => {
+const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showInitNotifications, setShowInitNotifications] = useState(false);
   const dropdown = useRef<HTMLDivElement>(null);
 
-  const [isAuthN, setIsAuthN] = useState(isSignedIn);
   const [, startTransition] = useTransition();
-  const [username, setUsername] = useState<string>('');
+  const { userData, resetUserDataState } = useUserData();
 
   const router = useRouter();
   useEffect(() => {
     const hubListenerCancel = Hub.listen('auth', (data) => {
       switch (data.payload.event) {
         case 'signedIn':
-          setIsAuthN(true);
+          // Redirect user to initialize notification preferences upon first login
+          console.log('User signed in!');
+          console.log(userData.data);
+          if (userData.data && !userData.data.init_notifications)
+            setShowInitNotifications(true);
           startTransition(() => router.refresh());
           break;
         case 'signedOut':
-          setIsAuthN(false);
           startTransition(() => router.push('/'));
           startTransition(() => router.refresh());
           break;
@@ -147,20 +146,10 @@ const Navbar: React.FC<{ isSignedIn: boolean }> = ({
     return () => window.removeEventListener('mouseup', handleOutSideClick);
   }, [showDropdown]);
 
-  useEffect(() => {
-    if (isAuthN) {
-      handleFetchUserAttributes().then((user) => {
-        if (username !== user?.name) {
-          handlePostSignIn(user);
-        }
-        setUsername(user?.name || '');
-      });
-    }
-  }, [isAuthN]);
-
   const handleSignOutSignIn = async () => {
-    if (isAuthN) {
+    if (userData.data?.amplify_id) {
       await signOut();
+      resetUserDataState();
     } else {
       router.push('/profile');
     }
@@ -233,13 +222,15 @@ const Navbar: React.FC<{ isSignedIn: boolean }> = ({
                 </Link>
               </li>
 
-              {isAuthN ? (
+              {userData.data?.amplify_id !== null ? (
                 <div className="hidden relative md:flex item text-primary">
                   <div
                     className="flex items-center cursor-pointer"
                     onClick={() => setShowDropdown(!showDropdown)}
                   >
-                    <p className="text-base px-2 md:px-4">{username}</p>
+                    <p className="text-base px-2 md:px-4">
+                      {userData.data?.name}
+                    </p>
                     <FontAwesomeIcon icon={faChevronDown} />
                   </div>
                   {showDropdown && (
@@ -343,6 +334,11 @@ const Navbar: React.FC<{ isSignedIn: boolean }> = ({
           </div>
         </div>
       </div>
+      {showInitNotifications && (
+        <UserNotificationsModal
+          setShowInitNotifications={setShowInitNotifications}
+        />
+      )}
     </header>
   );
 };
