@@ -12,7 +12,7 @@ export default async function AuthLayout({
   return (
     <>
       <Provider>
-        <Navbar isSignedIn={isSignedIn} />
+        <Navbar />
         {isSignedIn ? children : <AuthClient />}
       </Provider>
     </>

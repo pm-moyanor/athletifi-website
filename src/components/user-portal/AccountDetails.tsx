@@ -10,18 +10,13 @@ import {
 import handleFetchMFAPreference from '@/app/utils/auth/handleFetchMFAPreference';
 import { type FetchMFAPreferenceOutput } from 'aws-amplify/auth';
 import handleTOTPSetup from '@/app/utils/auth/handleTOTPSetup';
-import { getCurrentUser } from 'aws-amplify/auth';
+import { useUserData } from '@/states/userStore';
 import RegisterMFA from '@/components/auth/RegisterMFA';
 import VerifyMFA from '@/components/auth/VerifyMFA';
 import EnabledMFAMessage from '@/components/auth/EnabledMFAMessage';
 
-const dummyDataUser = {
-  email: 'nameofuser@gmail.com',
-  password: '**********',
-};
-
 export default function AccountDetails() {
-  const [userData] = useState(dummyDataUser);
+  const { userData } = useUserData();
   const [qrState, setQRState] = useState('off');
   const [qrSrc, setQRSrc] = useState<string | null | undefined>(null);
   const [qrKey, setQRKey] = useState<string>('');
@@ -29,7 +24,6 @@ export default function AccountDetails() {
     enabled: undefined,
     preferred: undefined,
   });
-  const [authMethod, setAuthMethod] = useState<string>('');
 
   function handleUserChange() {}
 
@@ -49,29 +43,13 @@ export default function AccountDetails() {
     handleFetchMFAPreference().then((data) => setCurrentMFA(data));
   }, [qrState]);
 
-  useEffect(() => {
-    getCurrentUser().then((data) => {
-      if (
-        data.username.split('_').length > 1 &&
-        (data.username.split('_')[0] === 'google' ||
-          data.username.split('_')[0] === 'facebook')
-      ) {
-        setAuthMethod(data.username.split('_')[0]);
-      } else {
-        setAuthMethod('email');
-      }
-
-      return data;
-    });
-  });
-
   return (
     <div className="flex flex-col mt-16 text-primary" id="account-details">
       <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-2 md:px-4 shadow-portalNav">
         Account Details
       </h2>
       <div className="flex justify-between items-center py-4 mx-2 md:mx-4 mt-4">
-        <div>{userData.email}</div>
+        <div>{userData.data?.email}</div>
         <div
           className="flex items-center cursor-pointer"
           onClick={handleUserChange}
@@ -98,7 +76,7 @@ export default function AccountDetails() {
       </div>
       <div className="flex justify-between items-center py-4 mx-2 md:mx-4 border-t border-t-partnersBorders border-opacity-50">
         <div>Two-factor authentication</div>
-        {authMethod !== 'email' ? (
+        {userData.data?.auth_method !== 'email' ? (
           <div>2FA is not compatible with social sign-in</div>
         ) : currentMFA.enabled ? (
           <div
