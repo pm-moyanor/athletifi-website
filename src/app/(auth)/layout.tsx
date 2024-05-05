@@ -13,7 +13,7 @@ export default async function AuthLayout({
     <>
       <Provider>
         <Navbar />
-        {isSignedIn ? children : <AuthClient />}
+        {isSignedIn ? children : <AuthClient defaultScreen="" />}
       </Provider>
     </>
   );

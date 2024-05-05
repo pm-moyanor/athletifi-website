@@ -67,7 +67,7 @@ async function fetchUserData(
       }
 
       userAttributes = await handleFetchUserAttributes();
-      await handlePostSignIn(userAttributes);
+      await handlePostSignIn(userAttributes, 'inviteId goes here');
     } catch (err) {
       console.warn('User is currently not logged in. Skipping userData fetch');
       return;
