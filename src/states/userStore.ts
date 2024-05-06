@@ -1,4 +1,4 @@
-import { atom, useAtom } from 'jotai';
+import { atom, useAtom, useAtomValue } from 'jotai';
 import { useState, useEffect } from 'react';
 import { UserData, allNotificationsEnabled } from '@/types/User.type';
 import {
@@ -25,6 +25,8 @@ export const userDataAtom = atom<UserState>({
   errorMessage: null,
 });
 
+export const inviteIdAtom = atom<string | null>(null);
+
 function transformNotificationPreferences(dataArray: NotificationTypes[]) {
   const tmp = { ...emptyNotifications };
   dataArray.map((item: keyof NotificationPreferences) => {
@@ -39,6 +41,7 @@ const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
 async function fetchUserData(
   currState: UserState,
   set: (value: UserState) => void,
+  inviteId: string | null,
 ) {
   let amplify_id, userAttributes, auth_method;
   if (currState.data) {
@@ -67,7 +70,8 @@ async function fetchUserData(
       }
 
       userAttributes = await handleFetchUserAttributes();
-      await handlePostSignIn(userAttributes, 'inviteId goes here');
+
+      await handlePostSignIn(userAttributes, inviteId);
     } catch (err) {
       console.warn('User is currently not logged in. Skipping userData fetch');
       return;
@@ -121,10 +125,11 @@ export function useUserData() {
   const [userData, setUserData] = useAtom(userDataAtom);
   const [latestChange, setLatestChange] =
     useState<LatestChange>(emptyLatestChange);
+  const inviteId = useAtomValue(inviteIdAtom);
 
   // Fetch the user data whenever the amplify_id changes
   useEffect(() => {
-    fetchUserData(userData, setUserData);
+    fetchUserData(userData, setUserData, inviteId);
   }, []);
 
   useEffect(() => {

@@ -28,6 +28,7 @@ export default async function handlePostSignIn(
     });
 
     const data = await response.json();
+    console.log('data in lambda', data);
     return data;
   };
 

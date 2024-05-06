@@ -5,7 +5,13 @@ import { ComponentOverrides, FormFieldsOverrides } from './AuthOverrides';
 // import { signUp, type SignUpInput } from 'aws-amplify/auth';
 import { loginTheme, sourceSans3 } from './AuthTheme';
 import { useSearchParams } from 'next/navigation';
-import { useAuthenticator } from '@aws-amplify/ui-react';
+// import { useAuthenticator } from '@aws-amplify/ui-react';
+// import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
+// import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
+import { inviteIdAtom } from '@/states/userStore';
+import { useSetAtom } from 'jotai';
+import { useEffect } from 'react';
+import { SignUpInput, SignUpOutput, signUp } from 'aws-amplify/auth';
 import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
 import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
 
@@ -14,21 +20,27 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
   const inviteId = searchParams.get('invite_id') || null;
   const oauthCode = searchParams.get('code');
 
+  const setInviteId = useSetAtom(inviteIdAtom);
+
+  useEffect(() => {
+    setInviteId(inviteId);
+  }, [inviteId, setInviteId]);
+
   console.log('inviteId: ', inviteId);
   console.log('oauthCode: ', oauthCode);
-  const { route } = useAuthenticator((context) => [context.route]);
-  console.log(route);
+  // const { route } = useAuthenticator((context) => [context.route]);
+  // console.log(route);
   // if (route === 'authenticated') {
   // if (route === 'authenticated') {
-  if (oauthCode || route === 'authenticated') {
-    // Call Louis' function to send user data to the backend
-    handleFetchUserAttributes().then((user) => {
-      console.log('user:');
-      console.log(user);
-      handlePostSignIn(user, inviteId);
-    });
-    // redirect to the profile page
-  }
+  // if (oauthCode || route === 'authenticated') {
+  // Call Louis' function to send user data to the backend
+  // handleFetchUserAttributes().then((user) => {
+  //   console.log('user:');
+  //   console.log(user);
+  //   handlePostSignIn(user, inviteId);
+  // });
+  // redirect to the profile page
+  //}
   // const { tokens } = useTheme();
   // console.log(tokens);
   // const baseURL =
@@ -64,6 +76,22 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
   //   },
   // };
 
+  const services = {
+    async handleSignUp(formData: SignUpInput) {
+      try {
+        const result = await signUp(formData);
+        handleFetchUserAttributes().then((user) => {
+          handlePostSignIn(user, inviteId);
+        });
+        return new Promise<SignUpOutput>((resolve) => {
+          resolve(result);
+        });
+      } catch (error) {
+        console.error('Error signing up:', error);
+        throw error;
+      }
+    },
+  };
   return (
     <div
       className={`bg-cardsDark ${sourceSans3.className} md:p-8 shadow-sm flex justify-center`}
@@ -81,6 +109,7 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
         </div>
 
         <Authenticator
+          services={services}
           components={ComponentOverrides}
           formFields={FormFieldsOverrides}
           socialProviders={['google', 'facebook']}
