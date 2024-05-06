@@ -1,6 +1,10 @@
 'use client';
 import 'src/styles/AuthStyles.css';
-import { Authenticator, ThemeProvider } from '@aws-amplify/ui-react';
+import {
+  Authenticator,
+  ThemeProvider,
+  useAuthenticator,
+} from '@aws-amplify/ui-react';
 import { ComponentOverrides, FormFieldsOverrides } from './AuthOverrides';
 // import { signUp, type SignUpInput } from 'aws-amplify/auth';
 import { loginTheme, sourceSans3 } from './AuthTheme';
@@ -76,22 +80,55 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
   //   },
   // };
 
+  // const services = {
+  //   async handleSignUp(formData: SignUpInput) {
+  //     try {
+  //       const result = await signUp(formData);
+  //       handleFetchUserAttributes().then((user) => {
+  //         handlePostSignIn(user, inviteId);
+  //       });
+  //       return new Promise<SignUpOutput>((resolve) => {
+  //         resolve(result);
+  //       });
+  //     } catch (error) {
+  //       console.error('Error signing up:', error);
+  //       throw error;
+  //     }
+  //   },
+  // };
+  const { user, route } = useAuthenticator((context) => [
+    context.user,
+    context.route,
+  ]);
   const services = {
     async handleSignUp(formData: SignUpInput) {
       try {
         const result = await signUp(formData);
-        handleFetchUserAttributes().then((user) => {
-          handlePostSignIn(user, inviteId);
-        });
-        return new Promise<SignUpOutput>((resolve) => {
-          resolve(result);
-        });
+        // SignUp is successful, but user is not authenticated yet.
+        // Do not fetch attributes or call post sign-in here.
+        return result; // Just return the result indicating successful sign-up.
       } catch (error) {
         console.error('Error signing up:', error);
         throw error;
       }
     },
   };
+
+  // Listen for the sign-in event after user verifies their email and signs in
+  useEffect(() => {
+    if (user && route === 'authenticated') {
+      handleFetchUserAttributes()
+        .then((userAttributes) => {
+          handlePostSignIn(userAttributes, inviteId).catch((err) => {
+            console.error('Error in post sign-in:', err);
+          });
+        })
+        .catch((err) => {
+          console.error('Error fetching user attributes:', err);
+        });
+    }
+  }, [route, inviteId, user]);
+
   return (
     <div
       className={`bg-cardsDark ${sourceSans3.className} md:p-8 shadow-sm flex justify-center`}
