@@ -18,7 +18,7 @@ import { useRouter } from 'next/navigation';
 import { Hub } from 'aws-amplify/utils';
 
 import { useUserData } from '@/states/userStore';
-import UserNotificationsModal from '@/components/user-portal/UserNotificationsModal';
+import UserNotificationsModal from '../user-portal/UserNotificationsModal';
 
 //import { MotionConfig, motion } from 'framer-motion';
 
@@ -105,11 +105,11 @@ const linksStyle = `opacity-80 hover:opacity-100 duration-300 relative after:con
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [showInitNotifications, setShowInitNotifications] = useState(false);
+  const [closedModal, setClosedModal] = useState(false);
   const dropdown = useRef<HTMLDivElement>(null);
 
   const [, startTransition] = useTransition();
-  const { userData, resetUserDataState } = useUserData();
+  const { userData, resetUserDataState, setIsLoggedIn } = useUserData();
 
   const router = useRouter();
   useEffect(() => {
@@ -117,10 +117,7 @@ const Navbar: React.FC = () => {
       switch (data.payload.event) {
         case 'signedIn':
           // Redirect user to initialize notification preferences upon first login
-          console.log('User signed in!');
-          console.log(userData.data);
-          if (userData.data && !userData.data.init_notifications)
-            setShowInitNotifications(true);
+          setIsLoggedIn(true);
           startTransition(() => router.refresh());
           break;
         case 'signedOut':
@@ -334,11 +331,11 @@ const Navbar: React.FC = () => {
           </div>
         </div>
       </div>
-      {showInitNotifications && (
-        <UserNotificationsModal
-          setShowInitNotifications={setShowInitNotifications}
-        />
-      )}
+      {userData.data &&
+        userData.data.init_notifications === false &&
+        !closedModal && (
+          <UserNotificationsModal setClosedModal={setClosedModal} />
+        )}
     </header>
   );
 };
