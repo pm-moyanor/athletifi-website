@@ -1,4 +1,5 @@
 import { atom, useAtom, useAtomValue } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 import { useState, useEffect } from 'react';
 import { UserData, allNotificationsEnabled } from '@/types/User.type';
 import {
@@ -25,7 +26,9 @@ export const userDataAtom = atom<UserState>({
   errorMessage: null,
 });
 
-export const inviteIdAtom = atom<string | null>(null);
+// Now using persistence via atomWithStorage for invite_id:
+// export const inviteIdAtom = atom<string | null>(null);
+export const inviteIdAtom = atomWithStorage<string | null>('inviteId', null);
 
 function transformNotificationPreferences(dataArray: NotificationTypes[]) {
   const tmp = { ...emptyNotifications };
@@ -130,7 +133,7 @@ export function useUserData() {
   // Fetch the user data whenever the amplify_id changes
   useEffect(() => {
     fetchUserData(userData, setUserData, inviteId);
-  }, []);
+  }, [inviteId, setUserData, userData]);
 
   useEffect(() => {
     const baseURL =

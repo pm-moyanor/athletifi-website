@@ -9,97 +9,34 @@ import { ComponentOverrides, FormFieldsOverrides } from './AuthOverrides';
 // import { signUp, type SignUpInput } from 'aws-amplify/auth';
 import { loginTheme, sourceSans3 } from './AuthTheme';
 import { useSearchParams } from 'next/navigation';
-// import { useAuthenticator } from '@aws-amplify/ui-react';
-// import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
-// import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
 import { inviteIdAtom } from '@/states/userStore';
-import { useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { SignUpInput, SignUpOutput, signUp } from 'aws-amplify/auth';
+import { SignUpInput, /*SignUpOutput,*/ signUp } from 'aws-amplify/auth';
 import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
 import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
 
 const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
   const searchParams = useSearchParams();
-  const inviteId = searchParams.get('invite_id') || null;
   const oauthCode = searchParams.get('code');
 
-  const setInviteId = useSetAtom(inviteIdAtom);
+  const [inviteId, setInviteId] = useAtom(inviteIdAtom);
 
   useEffect(() => {
-    setInviteId(inviteId);
-  }, [inviteId, setInviteId]);
+    const storedInviteId = searchParams.get('invite_id');
+    if (storedInviteId) {
+      setInviteId(storedInviteId);
+    }
+  }, [searchParams, setInviteId]);
 
   console.log('inviteId: ', inviteId);
   console.log('oauthCode: ', oauthCode);
-  // const { route } = useAuthenticator((context) => [context.route]);
-  // console.log(route);
-  // if (route === 'authenticated') {
-  // if (route === 'authenticated') {
-  // if (oauthCode || route === 'authenticated') {
-  // Call Louis' function to send user data to the backend
-  // handleFetchUserAttributes().then((user) => {
-  //   console.log('user:');
-  //   console.log(user);
-  //   handlePostSignIn(user, inviteId);
-  // });
-  // redirect to the profile page
-  //}
-  // const { tokens } = useTheme();
-  // console.log(tokens);
-  // const baseURL =
-  //   process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
-  // const postHelper = async (
-  //   email: string | undefined,
-  //   name: string | undefined,
-  //   amplify_id: string | undefined,
-  // ) => {
-  //   const response = await fetch(
-  //     `${baseURL}/addUser?email=${email}&name=${name}&amplify_id=${amplify_id}`,
-  //   );
-  //   const data = await response.json();
-  //   return data;
-  // };
 
-  // const services = {
-  //   async handleSignUp(formData: SignUpInput) {
-  //     const result = await signUp(formData);
-
-  //     try {
-  //       if (formData?.options?.userAttributes) {
-  //         const attributes = formData.options.userAttributes;
-  //         await postHelper(attributes.email, attributes.name, result.userId);
-  //       }
-  //     } catch (err) {
-  //       console.log('Ran into a problem with storing user data', err);
-  //     }
-
-  //     return new Promise<SignUpOutput>((resolve) => {
-  //       resolve(result);
-  //     });
-  //   },
-  // };
-
-  // const services = {
-  //   async handleSignUp(formData: SignUpInput) {
-  //     try {
-  //       const result = await signUp(formData);
-  //       handleFetchUserAttributes().then((user) => {
-  //         handlePostSignIn(user, inviteId);
-  //       });
-  //       return new Promise<SignUpOutput>((resolve) => {
-  //         resolve(result);
-  //       });
-  //     } catch (error) {
-  //       console.error('Error signing up:', error);
-  //       throw error;
-  //     }
-  //   },
-  // };
   const { user, route } = useAuthenticator((context) => [
     context.user,
     context.route,
   ]);
+
   const services = {
     async handleSignUp(formData: SignUpInput) {
       try {
@@ -119,6 +56,10 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
     if (user && route === 'authenticated') {
       handleFetchUserAttributes()
         .then((userAttributes) => {
+          console.log(
+            'inviteId (inside handleFetchUserAttributes): ',
+            inviteId,
+          );
           handlePostSignIn(userAttributes, inviteId).catch((err) => {
             console.error('Error in post sign-in:', err);
           });

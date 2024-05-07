@@ -103,6 +103,6 @@
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://athleti.fi/profile/\",\"https://athleti.fi/auth/login/\",\"https://auth.athleti.fi/\",\"https://athleti.fi/\",\"http://localhost:3000/register/\"],\"LogoutURLs\":[\"https://athleti.fi/goodbye/\",\"https://auth.athleti.fi/\",\"https://athleti.fi/\",\"https://athleti.fi/auth/logout/\",\"http://localhost:3000/register/\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://athleti.fi/profile/\",\"https://athleti.fi/auth/login/\",\"https://auth.athleti.fi/\",\"https://athleti.fi/\",\"http://localhost:3000/profile/\",\"http://localhost:3000/login/\",\"http://localhost:3000/register/\"],\"LogoutURLs\":[\"https://athleti.fi/goodbye/\",\"https://auth.athleti.fi/\",\"https://athleti.fi/\",\"https://athleti.fi/auth/logout/\",\"http://localhost:3000/profile/\",\"http://localhost:3000/login/\",\"http://localhost:3000/register/\"]}"
   }
 }
