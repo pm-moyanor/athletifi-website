@@ -121,7 +121,7 @@ const Navbar: React.FC = () => {
           startTransition(() => router.refresh());
           break;
         case 'signedOut':
-          startTransition(() => router.push('/'));
+          startTransition(() => router.push('/logout'));
           startTransition(() => router.refresh());
           break;
       }
@@ -145,8 +145,8 @@ const Navbar: React.FC = () => {
 
   const handleSignOutSignIn = async () => {
     if (userData.data?.amplify_id) {
-      await signOut();
       resetUserDataState();
+      await signOut();
     } else {
       router.push('/profile');
     }

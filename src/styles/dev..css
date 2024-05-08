@@ -123,16 +123,16 @@
 
 /* ============================ Custom 404 - Not Found Page ================================= */
 
-.not-found__container {
+.default__container {
   min-height: 50vh;
 }
 
-.not-found__link {
+.redirect__link {
   color: #00c5f4;
   font-weight: 600;
 }
 
-.not-found__link:hover {
+.redirect__link:hover {
   text-decoration: underline;
 }
 
