@@ -1,4 +1,3 @@
-import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { useState, useEffect } from 'react';
 import { UserData, allNotificationsEnabled } from '@/types/User.type';
@@ -10,8 +9,10 @@ import {
   emptyLatestChange,
 } from '@/types/User.type';
 import { getCurrentUser } from 'aws-amplify/auth';
+import { Hub } from '@aws-amplify/core';
 import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
 import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
+import { atom, WritableAtom, PrimitiveAtom, useAtom } from 'jotai';
 
 export interface UserState {
   data: UserData | null;
@@ -26,9 +27,53 @@ export const userDataAtom = atom<UserState>({
   errorMessage: null,
 });
 
-// Now using persistence via atomWithStorage for invite_id:
-// export const inviteIdAtom = atom<string | null>(null);
-export const inviteIdAtom = atomWithStorage<string | null>('inviteId', null);
+// Define a function to check if the code is running in a browser environment
+const isBrowser = () => typeof window !== 'undefined';
+
+// Custom storage object with expiration
+const createStorageWithExpiration = (storage: Storage, expiration: number) => ({
+  getItem: (key: string) => {
+    if (!isBrowser()) return null; // Ensure storage is accessed only on the client side
+    const item = storage.getItem(key);
+    if (item) {
+      const { value, expiration: itemExpiration } = JSON.parse(item);
+      if (itemExpiration && itemExpiration < Date.now()) {
+        storage.removeItem(key);
+        return null;
+      }
+      return value;
+    }
+    return null;
+  },
+  setItem: (key: string, value: string | null) => {
+    if (!isBrowser()) return; // Ensure storage is accessed only on the client side
+    const item = {
+      value,
+      expiration: expiration ? Date.now() + expiration : null,
+    };
+    storage.setItem(key, JSON.stringify(item));
+  },
+  removeItem: (key: string) => {
+    if (!isBrowser()) return; // Ensure storage is accessed only on the client side
+    storage.removeItem(key);
+  },
+});
+
+// Define `inviteIdAtom` differently based on environment
+export let inviteIdAtom:
+  | WritableAtom<string | null, [string | null], void>
+  | PrimitiveAtom<string | null>;
+
+if (isBrowser()) {
+  const expirationInMs = 5 * 60 * 60 * 1000; // 5 hours in milliseconds
+  const storage = createStorageWithExpiration(localStorage, expirationInMs);
+
+  // atomWithStorage accepts a storage interface and utilizes a tuple for updates
+  inviteIdAtom = atomWithStorage<string | null>('inviteId', null, storage);
+} else {
+  // Simple atom that only stores a value without complex updates
+  inviteIdAtom = atom<string | null>(null);
+}
 
 function transformNotificationPreferences(dataArray: NotificationTypes[]) {
   const tmp = { ...emptyNotifications };
@@ -122,18 +167,44 @@ async function fetchUserData(
   }
 }
 
+enum AuthEvents {
+  SignIn = 'signIn',
+  SignOut = 'signOut',
+  SignUp = 'signUp',
+  SignInFailure = 'signIn_failure',
+  TokenRefresh = 'tokenRefresh',
+  TokenRefreshFailure = 'tokenRefresh_failure',
+  CustomOAuthState = 'customOAuthState',
+  SignedIn = 'signedIn',
+  SignedOut = 'signedOut',
+  SignInWithRedirect = 'signInWithRedirect',
+  SignInWithRedirectFailure = 'signInWithRedirect_failure',
+}
+
 // Custom hook to use the user data in a component
 export function useUserData() {
   // Use jotai's useAtom to manage the state
   const [userData, setUserData] = useAtom(userDataAtom);
   const [latestChange, setLatestChange] =
     useState<LatestChange>(emptyLatestChange);
-  const inviteId = useAtomValue(inviteIdAtom);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [inviteId, setInviteId] = useAtom(inviteIdAtom);
+
+  // Remove invite_id from localStorage when user logs out
+  useEffect(() => {
+    const unsubscribe = Hub.listen('auth', ({ payload: { event } }) => {
+      if (event === AuthEvents.SignedOut) {
+        setInviteId(null); // This will remove invite_id from localStorage
+      }
+    });
+
+    return unsubscribe;
+  }, [setInviteId]);
 
   // Fetch the user data whenever the amplify_id changes
   useEffect(() => {
     fetchUserData(userData, setUserData, inviteId);
-  }, [inviteId, setUserData, userData]);
+  }, [isLoggedIn]);
 
   useEffect(() => {
     const baseURL =
@@ -231,7 +302,7 @@ export function useUserData() {
         });
       }
     }
-  }, [latestChange]);
+  }, [latestChange, setUserData, userData]);
 
   function resetUserDataState() {
     setUserData({
@@ -245,6 +316,7 @@ export function useUserData() {
   return {
     userData: userData,
     setLatestChange: setLatestChange,
+    setIsLoggedIn: setIsLoggedIn,
     resetUserDataState: resetUserDataState,
   };
 }
