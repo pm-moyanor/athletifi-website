@@ -39,7 +39,7 @@ const LatestMatch: React.FC = () => {
 
   return (
     <>
-      {latestMatch?.home_score !== null ? (
+      {latestMatch?.datetime !== null && latestMatch?.datetime !== undefined ? (
         <div className="bg-cardsBackground h-full flex flex-col justify-between p-4 relative w-full rounded-10 text-primary ">
           {latestMatch?.datetime === undefined ? (
             <div className="bg-cardsBackground h-[310px] sm:h-[310px] md:h-56 flex flex-col relative w-full rounded-10 text-primary ">
