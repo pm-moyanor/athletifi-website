@@ -1,27 +1,48 @@
-import { IActionReel } from '@/types/Dashboard.type';
-import React from 'react';
+import { useParams } from 'next/navigation';
+import React, { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import MuxPlayer from '@mux/mux-player-react';
 
+import { useDashboardData } from '@/states/dashboardStore';
+import { IActionReel } from '@/types/Dashboard.type';
+import TopActionReelThumbnail from '@/components/dashboard/TopActionReelThumbnail';
+
 const ActionReel: React.FC<IActionReel> = ({
   playback_id,
-  thumbnail,
   title,
   description,
+  home_club_logo,
+  away_club_logo,
 }) => {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
   return (
-    <div className=" flex my-2 justify-start">
+    <div className="flex my-2 justify-start">
       <div className="relative w-full max-w-[230px] min-w-[180px] h-[120px] sm:h-[120px] md:h-[130px]">
-        {playback_id && thumbnail && (
-          <MuxPlayer
-            className="w-full h-full object-cover rounded rounded-5"
-            playbackId={playback_id}
-            poster={thumbnail}
-          />
+        {isVideoPlaying && playback_id ? (
+          <>
+            <MuxPlayer
+              className="w-full h-full object-cover rounded rounded-5"
+              playbackId={playback_id}
+              autoPlay={isVideoPlaying}
+            />
+            <time className="absolute bottom-2 right-2 bg-black text-primary px-1.5 text-sm font-light">
+              00:00
+            </time>
+          </>
+        ) : (
+          <div className="flex w-full h-full">
+            <div
+              className="cursor-pointer mx-[2px] flex-1"
+              onClick={() => setIsVideoPlaying(true)}
+            >
+              <TopActionReelThumbnail
+                home_logo={home_club_logo}
+                away_logo={away_club_logo}
+              />
+            </div>
+          </div>
         )}
-        <time className="absolute bottom-2 right-2 bg-black text-primary px-1.5 text-sm font-light">
-          00:00
-        </time>
       </div>
       <div className=" ml-2 flex flex-col justify-end w-full min-w-[130px] md:max-w-[230px]">
         <h4 className="text-sm font-semibold mb-2 text-primary font-sourceSansPro">
@@ -35,11 +56,12 @@ const ActionReel: React.FC<IActionReel> = ({
   );
 };
 
-const ActionReelList: React.FC<{ actionReels: IActionReel[] }> = ({
-  actionReels,
-}: {
-  actionReels: IActionReel[];
-}) => {
+const ActionReelList: React.FC = () => {
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue);
+  const actionReels = dashboardData.data?.topActionReels;
+
   return (
     <>
       {actionReels && actionReels[0]?.title ? (
@@ -53,7 +75,7 @@ const ActionReelList: React.FC<{ actionReels: IActionReel[] }> = ({
             ))}
           </div>
         </div>
-      ) : actionReels.length === 0 ? (
+      ) : actionReels?.length === 0 ? (
         <div className="border-l-0 md:border-l mt-6 md:mt-0 md:pl-4 border-gray-600 w-full">
           <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro mb-2">
             Top Action Reels
