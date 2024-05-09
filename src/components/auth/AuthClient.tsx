@@ -1,4 +1,5 @@
 'use client';
+
 import 'src/styles/AuthStyles.css';
 import { Authenticator, ThemeProvider } from '@aws-amplify/ui-react';
 import { ComponentOverrides, FormFieldsOverrides } from './AuthOverrides';
