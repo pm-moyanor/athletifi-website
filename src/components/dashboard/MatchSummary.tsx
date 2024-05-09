@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { IMatchDataExtended } from '@/types/Dashboard.type';
 import MuxPlayer from '@mux/mux-player-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -180,10 +180,10 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
               </div>
               <div className="flex flex-col mt-4 w-full">
                 <h3 className="text-[20px] font-semibold mt-12 md:mt-4 mb-2">
-                  Highlights
+                  Jump to highlights
                 </h3>
                 <div className="h-1 mb-4 bg-partnersBorders w-full"></div>
-                <div className="flex flex-col md:flex-row justify-between w-full max-w-none sm:max-w-[600px] md:max-w-none">
+                <div className="flex flex-col justify-start w-full gap-2">
                   {highlights?.map(
                     (
                       highlight: {
@@ -195,28 +195,43 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                     ) => (
                       <div
                         key={index}
-                        className="w-full sm my-2 md:m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
+                        className="flex flex-row sm:flex-row md:flex-col"
                       >
                         {playback_id && highlight.start_timestamp ? (
                           <>
-                            <MuxPlayer
+                            {/* <MuxPlayer
                               playbackId={playback_id}
                               className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
                               startTime={convertToSeconds(
                                 highlight.start_timestamp,
                               )}
-                            />
-                            <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end max-w-[320px]">
-                              <h3 className="text-base pt-2">{`Highlight-${index}`}</h3>
-                              <p className="text-sm text-offwhite m-px">
-                                {highlight.clip_description}
-                              </p>
-                              <p className="text-sm text-gray-500 m-px">
-                                Duration: {highlight.duration}git
-                              </p>
-                              <p className="text-sm text-gray-500 m-px">
-                                Timestamp: {highlight.start_timestamp}
-                              </p>
+                            /> */}
+                            <div className="flex justify-between bg-cardsBackground p-4 rounded-[5px] w-full">
+                              <div className="video-info text-primary flex flex-col">
+                                <div className="flex items-start">
+                                  <p className="text-sm text-offwhite mr-4 mt-[2px]">
+                                    {highlight.start_timestamp}
+                                  </p>
+                                  <div className="flex flex-col">
+                                    <h3 className="text-base mb-2">{`Highlight-${index}`}</h3>
+
+                                    <p className="text-sm text-offwhite m-px">
+                                      {highlight.clip_description}
+                                    </p>
+
+                                    <p className="text-sm text-gray-500 m-px">
+                                      Duration: {highlight.duration}git
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <button className="w-12 relative flex items-center justify-center h-full">
+                                <div className="rounded-full bg-primary h-8 w-8 border absolute"></div>
+                                <FontAwesomeIcon
+                                  icon={faPlayCircle}
+                                  className="text-skyblue h-8 w-8 absolute"
+                                />
+                              </button>
                             </div>
                           </>
                         ) : (
