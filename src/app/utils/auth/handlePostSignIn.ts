@@ -2,6 +2,7 @@ import { type FetchUserAttributesOutput } from 'aws-amplify/auth';
 
 export default async function handlePostSignIn(
   userAttributes: FetchUserAttributesOutput,
+  inviteId: string | null,
 ) {
   const baseURL =
     process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
@@ -11,6 +12,8 @@ export default async function handlePostSignIn(
     name: string | undefined,
     amplify_id: string | undefined,
   ) => {
+    console.log('inviteId inside postHelper in handlePostSignIn:');
+    console.log(inviteId);
     const response = await fetch(`${baseURL}/addUser`, {
       method: 'POST',
       headers: {
@@ -20,9 +23,12 @@ export default async function handlePostSignIn(
         amplify_id: amplify_id,
         email: email,
         name: name,
+        invite_id: inviteId,
       }),
     });
+
     const data = await response.json();
+    console.log('data in lambda', data);
     return data;
   };
 

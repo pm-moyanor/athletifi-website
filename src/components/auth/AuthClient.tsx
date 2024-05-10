@@ -1,45 +1,74 @@
 'use client';
 import 'src/styles/AuthStyles.css';
-import { Authenticator, ThemeProvider } from '@aws-amplify/ui-react';
+import {
+  Authenticator,
+  ThemeProvider,
+  useAuthenticator,
+} from '@aws-amplify/ui-react';
 import { ComponentOverrides, FormFieldsOverrides } from './AuthOverrides';
 // import { signUp, type SignUpInput } from 'aws-amplify/auth';
 import { loginTheme, sourceSans3 } from './AuthTheme';
+import { useSearchParams } from 'next/navigation';
+import { inviteIdAtom } from '@/states/userStore';
+import { useAtom } from 'jotai';
+import { useEffect } from 'react';
+import { SignUpInput, /*SignUpOutput,*/ signUp } from 'aws-amplify/auth';
+import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
+import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
 
-const AuthClient = () => {
-  // const { tokens } = useTheme();
-  // console.log(tokens);
-  // const baseURL =
-  //   process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
-  // const postHelper = async (
-  //   email: string | undefined,
-  //   name: string | undefined,
-  //   amplify_id: string | undefined,
-  // ) => {
-  //   const response = await fetch(
-  //     `${baseURL}/addUser?email=${email}&name=${name}&amplify_id=${amplify_id}`,
-  //   );
-  //   const data = await response.json();
-  //   return data;
-  // };
+const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
+  const searchParams = useSearchParams();
+  const oauthCode = searchParams.get('code');
 
-  // const services = {
-  //   async handleSignUp(formData: SignUpInput) {
-  //     const result = await signUp(formData);
+  const [inviteId, setInviteId] = useAtom(inviteIdAtom);
 
-  //     try {
-  //       if (formData?.options?.userAttributes) {
-  //         const attributes = formData.options.userAttributes;
-  //         await postHelper(attributes.email, attributes.name, result.userId);
-  //       }
-  //     } catch (err) {
-  //       console.log('Ran into a problem with storing user data', err);
-  //     }
+  useEffect(() => {
+    const storedInviteId = searchParams.get('invite_id');
+    if (storedInviteId) {
+      setInviteId(storedInviteId);
+    }
+  }, [searchParams, setInviteId]);
 
-  //     return new Promise<SignUpOutput>((resolve) => {
-  //       resolve(result);
-  //     });
-  //   },
-  // };
+  console.log('inviteId: ', inviteId);
+  console.log('oauthCode: ', oauthCode);
+
+  const { user, route } = useAuthenticator((context) => [
+    context.user,
+    context.route,
+  ]);
+
+  const services = {
+    async handleSignUp(formData: SignUpInput) {
+      try {
+        const result = await signUp(formData);
+        // SignUp is successful, but user is not authenticated yet.
+        // Do not fetch attributes or call post sign-in here.
+        return result; // Just return the result indicating successful sign-up.
+      } catch (error) {
+        console.error('Error signing up:', error);
+        throw error;
+      }
+    },
+  };
+
+  // Listen for the sign-in event after user verifies their email and signs in
+  useEffect(() => {
+    if (user && route === 'authenticated') {
+      handleFetchUserAttributes()
+        .then((userAttributes) => {
+          console.log(
+            'inviteId (inside handleFetchUserAttributes): ',
+            inviteId,
+          );
+          handlePostSignIn(userAttributes, inviteId).catch((err) => {
+            console.error('Error in post sign-in:', err);
+          });
+        })
+        .catch((err) => {
+          console.error('Error fetching user attributes:', err);
+        });
+    }
+  }, [route, inviteId, user]);
 
   return (
     <div
@@ -58,9 +87,13 @@ const AuthClient = () => {
         </div>
 
         <Authenticator
+          services={services}
           components={ComponentOverrides}
           formFields={FormFieldsOverrides}
           socialProviders={['google', 'facebook']}
+          initialState={
+            defaultScreen as 'signIn' | 'signUp' | 'forgotPassword' | undefined
+          }
           // services={services}
         />
       </ThemeProvider>
