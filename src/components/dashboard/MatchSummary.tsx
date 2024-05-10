@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTimes,
+  faPlayCircle,
+  faChevronLeft,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 import { IMatchDataExtended } from '@/types/Dashboard.type';
 import MuxPlayer from '@mux/mux-player-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Chrono } from 'react-chrono';
 
 function convertToSeconds(timestamp: string): number {
   const [hours, minutes, seconds] = timestamp.split(':').map(Number);
@@ -17,6 +23,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   matchData: IMatchDataExtended;
 }) => {
   const [showRecap, setShowRecap] = useState(false);
+
   const {
     home_club_logo,
     away_club_logo,
@@ -30,12 +37,28 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     playback_id,
     highlights,
   } = matchData;
-
+  const [currentItem, setCurrentItem] = useState(0);
+  const muxPlayerRef = useRef(null);
+  const [cuePoints, setCuePoints] = useState([]);
+  console.log(cuePoints.title);
   const weatherIcon = weather?.weatherIcon;
   const iconNameWithoutExtension = weatherIcon?.split('.')[0];
   const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
+
   const handleSummaryClick = () => {
     setShowRecap(true);
+  };
+
+  const handlePrevClick = () => {
+    setCurrentItem((prevItem) => Math.max(prevItem - 1, 0));
+  };
+
+  const handleNextClick = () => {
+    setCurrentItem((prevItem) => Math.min(prevItem + 1, highlights.length - 1));
+  };
+
+  const handleSetCurrentCue = (item) => {
+    setCuePoints(item);
   };
 
   return (
@@ -131,6 +154,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                     {playback_id ? (
                       <MuxPlayer
                         playbackId={playback_id}
+                        ref={muxPlayerRef}
                         className="w-full h-full rounded-md"
                       />
                     ) : (
@@ -143,7 +167,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
 
                 <div className="px-0 md:px-4 my-4 md:my-0  md:w-4/6 ">
                   <h3 className="text-[20px] font-semibold">Summary</h3>
-                  {/* <div className="h-1 my-2 bg-partnersBorders" /> */}
+
                   <div className="text-sm text-offwhite my-4">
                     <p className="pb-[2px]">{datetime}</p>
                     <p className="pb-[2px]">{location}</p>
@@ -179,10 +203,59 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                 </div>
               </div>
               <div className="flex flex-col mt-4 w-full">
-                <h3 className="text-[20px] font-semibold mt-12 md:mt-4 mb-2">
-                  Jump to highlights
-                </h3>
-                <div className="h-1 mb-4 bg-partnersBorders w-full"></div>
+                <div className="flex justify-between items-center bg-cardsBackground rounded-[5px] p-2">
+                  <h3 className="text-base font-semibold">
+                    Jump to highlights
+                  </h3>
+                  <div className="flex gap-8">
+                    <button
+                      onClick={handlePrevClick}
+                      disabled={currentItem === 0}
+                      className="text-skyblue"
+                    >
+                      <FontAwesomeIcon icon={faChevronLeft} />
+                    </button>
+                    <button
+                      onClick={handleNextClick}
+                      disabled={currentItem === highlights.length - 1}
+                      className="text-skyblue"
+                    >
+                      <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="w-full">
+                  <Chrono
+                    items={highlights?.map(
+                      (
+                        highlight: { start_timestamp: string },
+                        index: number,
+                      ) => ({
+                        title: highlight.start_timestamp,
+                      }),
+                    )}
+                    mode="HORIZONTAL"
+                    theme={{
+                      primary: '#00C5F4',
+                      secondary: '#FDFEFF',
+
+                      titleColor: '#B1B5B8',
+                      titleColorActive: '#032436',
+                      toolbarBgColor: 'none',
+                    }}
+                    fontSizes={{
+                      title: '14px',
+                    }}
+                    lineWidth={2}
+                    activeItemIndex={currentItem}
+                    hideControls
+                    timelineCircleDimension={4}
+                    cardLess
+                    onItemSelected={(item) => handleSetCurrentCue(item)}
+                  />
+                </div>
+
                 <div className="flex flex-col justify-start w-full gap-2">
                   {highlights?.map(
                     (
@@ -225,7 +298,12 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                                   </div>
                                 </div>
                               </div>
-                              <button className="w-12 relative flex items-center justify-center h-full">
+                              <button
+                                className="w-12 relative flex items-center justify-center h-full"
+                                onClick={() =>
+                                  handleSetCurrentCue(highlight.start_timestamp)
+                                }
+                              >
                                 <div className="rounded-full bg-primary h-8 w-8 border absolute"></div>
                                 <FontAwesomeIcon
                                   icon={faPlayCircle}
