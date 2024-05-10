@@ -121,6 +121,7 @@ const Navbar: React.FC = () => {
           startTransition(() => router.refresh());
           break;
         case 'signedOut':
+          setIsLoggedIn(false);
           startTransition(() => router.push('/logout'));
           startTransition(() => router.refresh());
           break;
@@ -144,11 +145,11 @@ const Navbar: React.FC = () => {
   }, [showDropdown]);
 
   const handleSignOutSignIn = async () => {
-    if (userData.data?.amplify_id) {
+    if (userData.data === null) {
+      router.push('/login');
+    } else {
       resetUserDataState();
       await signOut();
-    } else {
-      router.push('/profile');
     }
   };
 
@@ -219,7 +220,18 @@ const Navbar: React.FC = () => {
                 </Link>
               </li>
 
-              {userData.data?.amplify_id !== null ? (
+              {userData.data === null ? (
+                <li>
+                  <div className="flex font-sourceSansPro flex-1 mt-8 md:mt-0 md:ml-12 justify-end max-w-[280px]">
+                    <button className=" text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
+                      <Link href="/login">Log in</Link>
+                    </button>
+                    {/* <button className="text-darkgray ml-2 w-[100px]  bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
+                      <Link href="/register">Sign up</Link>
+                    </button> */}
+                  </div>
+                </li>
+              ) : (
                 <div className="hidden relative md:flex item text-primary">
                   <div
                     className="flex items-center cursor-pointer"
@@ -261,17 +273,6 @@ const Navbar: React.FC = () => {
                     </div>
                   )}
                 </div>
-              ) : (
-                <li>
-                  <div className="flex font-sourceSansPro flex-1 mt-8 md:mt-0 md:ml-12 justify-end max-w-[280px]">
-                    <button className=" text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
-                      <Link href="/profile">Log in</Link>
-                    </button>
-                    {/* <button className="text-darkgray ml-2 w-[100px]  bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
-                      <Link href="/register">Sign up</Link>
-                    </button> */}
-                  </div>
-                </li>
               )}
             </ul>
             {open && (
