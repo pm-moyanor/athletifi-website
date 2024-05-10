@@ -71,7 +71,7 @@ if (isBrowser()) {
   // atomWithStorage accepts a storage interface and utilizes a tuple for updates
   inviteIdAtom = atomWithStorage<string | null>('inviteId', null, storage);
 } else {
-  // Simple atom that only stores a value without complex updates. new atom
+  // Simple atom that only stores a value without complex updates.
   inviteIdAtom = atom<string | null>(null);
 }
 
