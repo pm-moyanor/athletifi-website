@@ -1,7 +1,8 @@
 import { atomWithStorage } from 'jotai/utils';
 import { useState, useEffect } from 'react';
-import { UserData, allNotificationsEnabled } from '@/types/User.type';
 import {
+  UserData,
+  allNotificationsEnabled,
   NotificationTypes,
   NotificationPreferences,
   emptyNotifications,
@@ -246,12 +247,12 @@ export function useUserData() {
     };
 
     if (userData.data?.amplify_id && latestChange.notification_types) {
-      if (latestChange.value) {
-        postHelper(
-          userData.data?.amplify_id,
-          latestChange.notification_types,
-        ).then(() => {
-          if ((latestChange.notification_types as string[])[0] === 'All') {
+      if ((latestChange.notification_types as string[])[0] === 'All') {
+        if (latestChange.value) {
+          postHelper(
+            userData.data?.amplify_id,
+            latestChange.notification_types,
+          ).then(() => {
             setUserData({
               ...userData,
               data: {
@@ -259,8 +260,27 @@ export function useUserData() {
                 notifications: allNotificationsEnabled,
               },
             });
-            console.log(userData);
-          } else {
+          });
+        } else {
+          deleteHelper(
+            userData.data?.amplify_id,
+            Object.keys(emptyNotifications),
+          ).then(() => {
+            setUserData({
+              ...userData,
+              data: {
+                ...(userData.data as UserData),
+                notifications: emptyNotifications,
+              },
+            });
+          });
+        }
+      } else {
+        if (latestChange.value) {
+          postHelper(
+            userData.data?.amplify_id,
+            latestChange.notification_types,
+          ).then(() => {
             // Manually construct updated userData state object after POST
             setUserData({
               ...userData,
@@ -272,34 +292,34 @@ export function useUserData() {
                 },
               },
             });
-          }
-        });
-      } else {
-        deleteHelper(
-          userData.data?.amplify_id,
-          latestChange.notification_types,
-        ).then(() => {
-          // Build object with update notification preferences
-          const updateArray = (latestChange.notification_types as string[]).map(
-            (key) => {
+          });
+        } else if (latestChange.value === false) {
+          deleteHelper(
+            userData.data?.amplify_id,
+            latestChange.notification_types,
+          ).then(() => {
+            // Build object with update notification preferences
+            const updateArray = (
+              latestChange.notification_types as string[]
+            ).map((key) => {
               return {
                 [key]: false,
               };
-            },
-          );
-          const updateObject = Object.assign({}, ...updateArray);
-          // Manually construct updated userData state object after DELETE
-          setUserData({
-            ...userData,
-            data: {
-              ...(userData.data as UserData),
-              notifications: {
-                ...(userData.data?.notifications as NotificationPreferences),
-                ...updateObject,
+            });
+            const updateObject = Object.assign({}, ...updateArray);
+            // Manually construct updated userData state object after DELETE
+            setUserData({
+              ...userData,
+              data: {
+                ...(userData.data as UserData),
+                notifications: {
+                  ...(userData.data?.notifications as NotificationPreferences),
+                  ...updateObject,
+                },
               },
-            },
+            });
           });
-        });
+        }
       }
     }
   }, [latestChange, setUserData, userData]);

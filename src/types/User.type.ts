@@ -39,7 +39,7 @@ export type LatestChange = {
 };
 
 export const emptyLatestChange: LatestChange = {
-  notification_types: null,
+  notification_types: [],
   value: null,
 };
 

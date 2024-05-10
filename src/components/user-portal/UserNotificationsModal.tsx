@@ -4,30 +4,38 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 import { useUserData } from '@/states/userStore';
 
+const DELAY_TIMEOUT = 3;
+
 const UserNotificationsModal = ({
-  setShowInitNotifications,
+  setClosedModal,
 }: {
-  setShowInitNotifications: React.Dispatch<React.SetStateAction<boolean>>;
+  setClosedModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const { userData, setLatestChange } = useUserData();
+  const { setLatestChange } = useUserData();
 
   async function enableNotifications() {
-    // ENABLE ALL NOTIFICATION TYPES FOR USER && SET INIT NOTIFICATIONS AS TRUE
+    // ENABLE ALL NOTIFICATION TYPES FOR USER && SET INIT NOTIFICATIONS AS TRUE (handled in lambda)
     // UPDATE STATE TO CONTAIN ALL NOTIFICATION TYPES
     setLatestChange({
       notification_types: ['All'],
       value: true,
     });
-    await new Promise((r) => setTimeout(r, 3000));
-
+    // Avoid closing modal before jotai state can be updated
+    await new Promise((r) => setTimeout(r, DELAY_TIMEOUT));
     // DISABLE MODAL
-    setShowInitNotifications(false);
+    setClosedModal(true);
   }
 
-  function disableNotifications() {
+  async function disableNotifications() {
+    // ENSURE ALL NOTIFICATIONS ARE DISABLED && SET INIT NOTIFICATIONS AS TRUE (handled in lambda)
+    setLatestChange({
+      notification_types: ['All'],
+      value: false,
+    });
+    // Avoid closing modal before jotai state can be updated
+    await new Promise((r) => setTimeout(r, DELAY_TIMEOUT));
     // DISABLE MODAL
-    setShowInitNotifications(false);
-    // SET INITIALIZED NOTIFICATIONS UNDER USER AS TRUE
+    setClosedModal(true);
   }
 
   return (
