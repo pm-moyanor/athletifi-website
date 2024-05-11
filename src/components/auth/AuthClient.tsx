@@ -28,6 +28,7 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
 
   useEffect(() => {
     const storedInviteId = searchParams.get('invite_id');
+
     if (storedInviteId) {
       setInviteId(storedInviteId);
     }
@@ -75,10 +76,6 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
     if (user && route === 'authenticated') {
       handleFetchUserAttributes()
         .then((userAttributes) => {
-          console.log(
-            'inviteId (inside handleFetchUserAttributes): ',
-            inviteId,
-          );
           handlePostSignIn(userAttributes, inviteId).catch((err) => {
             console.error('Error in post sign-in:', err);
           });
