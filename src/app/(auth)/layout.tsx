@@ -1,17 +1,17 @@
 import Navbar from '@/components/dashboard/Navbar';
-import { Provider } from 'jotai';
+import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
+import AuthClient from '@/components/auth/AuthClient';
 
 export default async function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { isSignedIn } = await isAuthenticated();
   return (
     <>
-      <Provider>
-        <Navbar />
-        {children}
-      </Provider>
+      <Navbar />
+      {isSignedIn ? children : <AuthClient defaultScreen={''} />}
     </>
   );
 }
