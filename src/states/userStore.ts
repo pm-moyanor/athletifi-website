@@ -202,6 +202,7 @@ export function useUserData() {
     const unsubscribe = Hub.listen('auth', ({ payload: { event } }) => {
       if (event === AuthEvents.SignedOut) {
         setInviteId(null); // This will remove invite_id from localStorage
+        console.log('user is signed out! Remove the inviteId!');
       }
     });
 
@@ -211,7 +212,7 @@ export function useUserData() {
   // Fetch the user data whenever the amplify_id changes
   useEffect(() => {
     fetchUserData(userData, setUserData, inviteId);
-  }, [isLoggedIn]);
+  }, [isLoggedIn, inviteId]);
 
   useEffect(() => {
     const baseURL =
