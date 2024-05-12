@@ -62,7 +62,7 @@ const Header: FC<HeaderProps> = ({ pageTitle }) => {
         <div className="flex justify-between text-primary md:hidden pb-3">
           <p className="text-base font-extralight px-2 md:px-4">{user.name}</p>
           <div className="flex items-center w-12 justify-between cursor-pointer mx-3">
-            <Link href="/profile">
+            <Link href="/login">
               <FontAwesomeIcon icon={faUser} className="text-skyblue mr-3 " />
             </Link>
 

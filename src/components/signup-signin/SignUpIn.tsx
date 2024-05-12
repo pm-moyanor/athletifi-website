@@ -76,7 +76,7 @@ const SignUpIn: React.FC<SignupProps> = ({ isSignupPage }) => {
             {isSignupPage ? (
               <>
                 <p className="text-primary font-extralight">Have an Account?</p>
-                <a href="/profile" className="text-skyblue">
+                <a href="/login" className="text-skyblue">
                   Sign in
                 </a>
               </>
