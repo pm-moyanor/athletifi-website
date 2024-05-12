@@ -2,7 +2,6 @@ import Image from 'next/image';
 
 const CLUB_LOGO_WIDTH = 50;
 const CLUB_LOGO_HEIGHT = 50;
-const BORDER_ANGLE = 30;
 
 export default function TopActionReelThumbnail({
   home_logo,
@@ -13,9 +12,9 @@ export default function TopActionReelThumbnail({
 }) {
   return (
     <div className="flex w-full h-full rounded-10 overflow-clip">
-      <div className="relative flex flex-1 justify-center items-center ">
+      <div className="relative flex flex-1 justify-center items-center">
         <div
-          className={`absolute right-2 w-[150%] h-[200%] z-20 rotate-[${BORDER_ANGLE}deg] bg-offwhite`}
+          className={`absolute right-2 w-[150%] h-[200%] z-20 rotate-[30deg] bg-offwhite`}
         ></div>
         {home_logo && (
           <Image
@@ -29,9 +28,9 @@ export default function TopActionReelThumbnail({
           />
         )}
       </div>
-      <div className="relative flex flex-1 justify-center items-center ">
+      <div className="relative flex flex-1 justify-center items-center">
         <div
-          className={`absolute left-2 w-[150%] h-[200%] z-25 rotate-[${BORDER_ANGLE}deg] bg-skyblue`}
+          className={`absolute left-2 w-[150%] h-[200%] z-25 rotate-[30deg] bg-skyblue`}
         ></div>
         {away_logo && (
           <Image
