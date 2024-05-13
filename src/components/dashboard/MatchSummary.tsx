@@ -10,12 +10,29 @@ import {
 import { IMatchDataExtended } from '@/types/Dashboard.type';
 import MuxPlayer from '@mux/mux-player-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Chrono } from 'react-chrono';
 
 function convertToSeconds(timestamp: string): number {
   const [hours, minutes, seconds] = timestamp.split(':').map(Number);
   return hours * 3600 + minutes * 60 + seconds;
 }
+
+const HorizontalTimeline = ({ dates }) => {
+  return (
+    <div className="relative flex flex-row items-center justify-around border-t border-t-partnersBorders">
+      <div className="w-[6px] h-[6px] bg-gray-300 rounded-full absolute -top-[4px] left-0"></div>
+      {dates.map((time, index) => (
+        <div
+          key={index}
+          className="relative flex flex-col items-center -m-[7px]"
+        >
+          <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
+          <div className="mt-2 text-sm text-gray-500">{time}</div>
+        </div>
+      ))}
+      <div className="w-[6px] h-[6px] bg-gray-300 rounded-full absolute -top-[4px] right-0"></div>
+    </div>
+  );
+};
 
 const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   matchData,
@@ -60,7 +77,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   const handleSetCurrentCue = (item) => {
     setCuePoints(item);
   };
-
+  console.log(highlights);
   return (
     // MATCH basic INFO
 
@@ -203,126 +220,35 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                 </div>
               </div>
               <div className="flex flex-col mt-4 w-full">
-                <div className="flex justify-between items-center bg-cardsBackground rounded-[5px] p-2">
+                <div className="flex justify-between items-center bg-cardsBackground rounded-[5px] p-2 mb-12">
                   <h3 className="text-base font-semibold">
                     Jump to highlights
                   </h3>
-                  <div className="flex gap-8">
-                    <button
-                      onClick={handlePrevClick}
-                      disabled={currentItem === 0}
-                      className="text-skyblue"
-                    >
-                      <FontAwesomeIcon icon={faChevronLeft} />
-                    </button>
-                    <button
-                      onClick={handleNextClick}
-                      disabled={currentItem === highlights.length - 1}
-                      className="text-skyblue"
-                    >
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </button>
-                  </div>
-                </div>
 
-                <div className="w-full">
-                  <Chrono
-                    items={highlights?.map(
-                      (
-                        highlight: { start_timestamp: string },
-                        index: number,
-                      ) => ({
-                        title: highlight.start_timestamp,
-                      }),
-                    )}
-                    mode="HORIZONTAL"
-                    theme={{
-                      primary: '#00C5F4',
-                      secondary: '#FDFEFF',
-
-                      titleColor: '#B1B5B8',
-                      titleColorActive: '#032436',
-                      toolbarBgColor: 'none',
-                    }}
-                    fontSizes={{
-                      title: '14px',
-                    }}
-                    lineWidth={2}
-                    activeItemIndex={currentItem}
-                    hideControls
-                    timelineCircleDimension={4}
-                    cardLess
-                    onItemSelected={(item) => handleSetCurrentCue(item)}
-                  />
-                </div>
-
-                <div className="flex flex-col justify-start w-full gap-2">
-                  {highlights?.map(
-                    (
-                      highlight: {
-                        clip_description: string;
-                        duration: string;
-                        start_timestamp: string;
-                      },
-                      index: number,
-                    ) => (
-                      <div
-                        key={index}
-                        className="flex flex-row sm:flex-row md:flex-col"
+                  {highlights && highlights.length > 1 && (
+                    <div className="flex gap-8 mr-2">
+                      <button
+                        onClick={handlePrevClick}
+                        disabled={currentItem === 0}
+                        className="text-skyblue"
                       >
-                        {playback_id && highlight.start_timestamp ? (
-                          <>
-                            {/* <MuxPlayer
-                              playbackId={playback_id}
-                              className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
-                              startTime={convertToSeconds(
-                                highlight.start_timestamp,
-                              )}
-                            /> */}
-                            <div className="flex justify-between bg-cardsBackground p-4 rounded-[5px] w-full">
-                              <div className="video-info text-primary flex flex-col">
-                                <div className="flex items-start">
-                                  <p className="text-sm text-offwhite mr-4 mt-[2px]">
-                                    {highlight.start_timestamp}
-                                  </p>
-                                  <div className="flex flex-col">
-                                    <h3 className="text-base mb-2">{`Highlight-${index}`}</h3>
-
-                                    <p className="text-sm text-offwhite m-px">
-                                      {highlight.clip_description}
-                                    </p>
-
-                                    <p className="text-sm text-gray-500 m-px">
-                                      Duration: {highlight.duration}git
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                              <button
-                                className="w-12 relative flex items-center justify-center h-full"
-                                onClick={() =>
-                                  handleSetCurrentCue(highlight.start_timestamp)
-                                }
-                              >
-                                <div className="rounded-full bg-primary h-8 w-8 border absolute"></div>
-                                <FontAwesomeIcon
-                                  icon={faPlayCircle}
-                                  className="text-skyblue h-8 w-8 absolute"
-                                />
-                              </button>
-                            </div>
-                          </>
-                        ) : (
-                          <div className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px] flex justify-center items-center text-center">
-                            <p className="text-gray-500">
-                              No highlight videos available for this match
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    ),
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                      </button>
+                      <button
+                        onClick={handleNextClick}
+                        disabled={currentItem === highlights.length - 1}
+                        className="text-skyblue"
+                      >
+                        <FontAwesomeIcon icon={faChevronRight} />
+                      </button>
+                    </div>
                   )}
                 </div>
+                <HorizontalTimeline
+                  dates={highlights.map(
+                    ({ start_timestamp }) => start_timestamp,
+                  )}
+                />
               </div>
             </div>
           </motion.div>
