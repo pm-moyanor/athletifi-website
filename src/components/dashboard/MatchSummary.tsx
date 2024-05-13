@@ -16,20 +16,35 @@ function convertToSeconds(timestamp: string): number {
   return hours * 3600 + minutes * 60 + seconds;
 }
 
-const HorizontalTimeline = ({ dates }) => {
+const HorizontalTimeline = ({ setCurrentItem, currentItem, dates }) => {
+  const handleClick = (index, time) => {
+    setCurrentItem(index);
+    console.log(convertToSeconds(time));
+  };
+
   return (
-    <div className="relative flex flex-row items-center justify-around border-t border-t-partnersBorders">
-      <div className="w-[6px] h-[6px] bg-gray-300 rounded-full absolute -top-[4px] left-0"></div>
+    <div className="relative flex flex-row items-center justify-around my-12">
+      <div className="absolute top-0 w-full h-1 bg-skyblue"></div>
+      <div className="w-[7px] h-[7px] bg-skyblue rounded-full absolute -top-[3px] left-0"></div>
       {dates.map((time, index) => (
         <div
           key={index}
           className="relative flex flex-col items-center -m-[7px]"
         >
-          <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
+          <div
+            onClick={() => handleClick(index, time)}
+            className={`rounded-full cursor-pointer ${
+              currentItem === index ? 'bg-skyblue' : 'bg-gray-300'
+            }`}
+            style={{
+              width: currentItem === index ? '15px' : '11px',
+              height: currentItem === index ? '15px' : '11px',
+            }}
+          ></div>
           <div className="mt-2 text-sm text-gray-500">{time}</div>
         </div>
       ))}
-      <div className="w-[6px] h-[6px] bg-gray-300 rounded-full absolute -top-[4px] right-0"></div>
+      <div className="w-[7px] h-[7px] bg-skyblue rounded-full absolute -top-[3px] right-0"></div>
     </div>
   );
 };
@@ -78,9 +93,8 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     setCuePoints(item);
   };
   console.log(highlights);
-  return (
-    // MATCH basic INFO
 
+  return (
     <div className="w-full flex justify-around lg:justify-between items-center text-primary ">
       <div className="flex justify-between items-center w-full max-w-[200px] min-w-[140px] mr-2">
         {home_club_logo !== null && (
@@ -220,7 +234,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                 </div>
               </div>
               <div className="flex flex-col mt-4 w-full">
-                <div className="flex justify-between items-center bg-cardsBackground rounded-[5px] p-2 mb-12">
+                <div className="flex justify-between items-center bg-cardsBackground rounded-[5px] p-2">
                   <h3 className="text-base font-semibold">
                     Jump to highlights
                   </h3>
@@ -244,11 +258,79 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                     </div>
                   )}
                 </div>
-                <HorizontalTimeline
-                  dates={highlights.map(
-                    ({ start_timestamp }) => start_timestamp,
-                  )}
-                />
+                {highlights?.length > 1 ? (
+                  <>
+                    <HorizontalTimeline
+                      currentItem={currentItem}
+                      setCurrentItem={setCurrentItem}
+                      dates={highlights.map(
+                        ({ start_timestamp }) => start_timestamp,
+                      )}
+                    />
+                    <div>
+                      {highlights?.map(
+                        (
+                          highlight: {
+                            clip_description: string;
+                            duration: string;
+                            start_timestamp: string;
+                          },
+                          index: number,
+                        ) => (
+                          <div
+                            key={index}
+                            className="flex flex-row sm:flex-row md:flex-col"
+                          >
+                            {playback_id && highlight.start_timestamp ? (
+                              <div className="flex justify-between bg-cardsBackground p-4 rounded-[5px] w-full mb-2">
+                                <div className="video-info text-primary flex flex-col">
+                                  <div className="flex items-start">
+                                    <p className="text-sm text-offwhite mr-4 mt-[2px]">
+                                      {highlight.start_timestamp}
+                                    </p>
+                                    <div className="flex flex-col">
+                                      <h3 className="text-base mb-2">{`Highlight-${index}`}</h3>
+
+                                      <p className="text-sm text-offwhite m-px">
+                                        {highlight.clip_description}
+                                      </p>
+
+                                      <p className="text-sm text-gray-500 m-px">
+                                        Duration: {highlight.duration}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <button
+                                  className="w-12 relative flex items-center justify-center h-full"
+                                  onClick={() => setCurrentItem(index)}
+                                >
+                                  <div className="rounded-full bg-primary h-8 w-8 border absolute"></div>
+                                  <FontAwesomeIcon
+                                    icon={faPlayCircle}
+                                    className="text-skyblue h-8 w-8 absolute"
+                                  />
+                                </button>
+                              </div>
+                            ) : (
+                              <div className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px] flex justify-center items-center text-center">
+                                <p className="text-gray-500">
+                                  No highlights available for this match
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        ),
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <div className="mt-8 bg-cardsBackground rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px] flex justify-center items-center text-center">
+                    <p className="text-gray-500">
+                      No highlight videos available for this match
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
