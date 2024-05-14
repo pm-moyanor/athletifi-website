@@ -70,16 +70,40 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     highlights,
   } = matchData;
   const [currentItem, setCurrentItem] = useState(0);
-  const muxPlayerRef = useRef(null);
-  const [cuePoints, setCuePoints] = useState([]);
-  console.log(cuePoints.title);
+  const muxPlayerRef = useRef<MuxPlayerElement | null>(null);
+
   const weatherIcon = weather?.weatherIcon;
   const iconNameWithoutExtension = weatherIcon?.split('.')[0];
   const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
 
+  const muxPlayerEl = document.getElementById('mux-player');
+  console.log(muxPlayerEl);
+  const cuePointsAr = [];
+  function addCuePointsToElement(cuePoints) {
+    if (muxPlayerEl) {
+      cuePoints.map((cue) => {
+        const cueTime = cue.start_timestamp;
+        const converted = convertToSeconds(cueTime);
+        console.log(converted);
+        cuePointsAr.push(converted);
+      });
+      muxPlayerEl.addCuePoints(cuePointsAr);
+      console.log(cuePointsAr);
+      muxPlayerEl.play();
+      cuePointChangeListener();
+    } else {
+      console.warn("MuxPlayer element not found. Cue points can't be added.");
+    }
+  }
   const handleSummaryClick = () => {
     setShowRecap(true);
   };
+
+  function cuePointChangeListener() {
+    if (muxPlayerEl) {
+      console.log('Active CuePoint!', muxPlayerEl.activeCuePoint);
+    }
+  }
 
   const handlePrevClick = () => {
     setCurrentItem((prevItem) => Math.max(prevItem - 1, 0));
@@ -88,11 +112,6 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   const handleNextClick = () => {
     setCurrentItem((prevItem) => Math.min(prevItem + 1, highlights.length - 1));
   };
-
-  const handleSetCurrentCue = (item) => {
-    setCuePoints(item);
-  };
-  console.log(highlights);
 
   return (
     <div className="w-full flex justify-around lg:justify-between items-center text-primary ">
@@ -184,6 +203,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                   <div className="w-full h-full  min-w-[320px] max-h-[320px]">
                     {playback_id ? (
                       <MuxPlayer
+                        id="mux-player"
                         playbackId={playback_id}
                         ref={muxPlayerRef}
                         className="w-full h-full rounded-md"
@@ -214,7 +234,14 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                       <p>{weather?.tempFahr}</p>
                     </div>
                   </div>
-
+                  <button
+                    onClick={() => {
+                      console.log(highlights);
+                      addCuePointsToElement(highlights);
+                    }}
+                  >
+                    click
+                  </button>
                   <div>
                     <div className="h-1 my-2 bg-partnersBorders text-primary" />
                     <h3 className="font-semibold py-2 text-[18px]">Title</h3>
