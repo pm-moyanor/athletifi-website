@@ -70,40 +70,47 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     highlights,
   } = matchData;
   const [currentItem, setCurrentItem] = useState(0);
-  const muxPlayerRef = useRef<MuxPlayerElement | null>(null);
+  const muxPlayerRef = useRef<MuxPlayer>(null);
 
   const weatherIcon = weather?.weatherIcon;
   const iconNameWithoutExtension = weatherIcon?.split('.')[0];
   const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
 
-  const muxPlayerEl = document.getElementById('mux-player');
-  console.log(muxPlayerEl);
-  const cuePointsAr = [];
-  function addCuePointsToElement(cuePoints) {
-    if (muxPlayerEl) {
-      cuePoints.map((cue) => {
-        const cueTime = cue.start_timestamp;
-        const converted = convertToSeconds(cueTime);
-        console.log(converted);
-        cuePointsAr.push(converted);
-      });
-      muxPlayerEl.addCuePoints(cuePointsAr);
-      console.log(cuePointsAr);
-      muxPlayerEl.play();
-      cuePointChangeListener();
+  const handlePlayClick = (index) => {
+    if (muxPlayerRef.current) {
+      const cuePoints = highlights
+        .map((highlight) => {
+          const convertedTime = convertToSeconds(highlight.start_timestamp);
+          if (isNaN(convertedTime) || !isFinite(convertedTime)) {
+            //catch incorrect time format
+            console.warn(`Invalid timestamp: ${highlight.start_timestamp}`);
+            return null; //null if isn't valid
+          }
+          return convertedTime;
+        })
+        .filter(Boolean); // Remove null values from invalid timestamps
+
+      if (cuePoints.length > 0) {
+        // Add cue points to th video
+        const track = muxPlayerRef.current.addTextTrack('captions', '', 'en');
+
+        cuePoints.forEach((cueTime) => {
+          const duration = 5; // do we need duration ?
+          const cue = new VTTCue(cueTime, cueTime + duration, 'your cue text');
+          track.addCue(cue);
+        });
+
+        muxPlayerRef.current.currentTime = cuePoints[index] || 0; // Play from the selected highlight, or from the start is outside the timeframe
+        muxPlayerRef.current.play(); // play the highlight cue
+      }
     } else {
       console.warn("MuxPlayer element not found. Cue points can't be added.");
     }
-  }
+  };
+
   const handleSummaryClick = () => {
     setShowRecap(true);
   };
-
-  function cuePointChangeListener() {
-    if (muxPlayerEl) {
-      console.log('Active CuePoint!', muxPlayerEl.activeCuePoint);
-    }
-  }
 
   const handlePrevClick = () => {
     setCurrentItem((prevItem) => Math.max(prevItem - 1, 0));
@@ -234,14 +241,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                       <p>{weather?.tempFahr}</p>
                     </div>
                   </div>
-                  <button
-                    onClick={() => {
-                      console.log(highlights);
-                      addCuePointsToElement(highlights);
-                    }}
-                  >
-                    click
-                  </button>
+
                   <div>
                     <div className="h-1 my-2 bg-partnersBorders text-primary" />
                     <h3 className="font-semibold py-2 text-[18px]">Title</h3>
@@ -316,21 +316,26 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                                       {highlight.start_timestamp}
                                     </p>
                                     <div className="flex flex-col">
-                                      <h3 className="text-base mb-2">{`Highlight-${index}`}</h3>
+                                      <h3 className="text-base mb-2">{`Highlight 0${index + 1}`}</h3>
 
                                       <p className="text-sm text-offwhite m-px">
                                         {highlight.clip_description}
                                       </p>
 
                                       <p className="text-sm text-gray-500 m-px">
-                                        Duration: {highlight.duration}
+                                        Duration:{' '}
+                                        {convertToSeconds(highlight.duration)}{' '}
+                                        seconds
                                       </p>
                                     </div>
                                   </div>
                                 </div>
                                 <button
                                   className="w-12 relative flex items-center justify-center h-full"
-                                  onClick={() => setCurrentItem(index)}
+                                  onClick={() => {
+                                    handlePlayClick(index);
+                                    setCurrentItem(index);
+                                  }}
                                 >
                                   <div className="rounded-full bg-primary h-8 w-8 border absolute"></div>
                                   <FontAwesomeIcon
