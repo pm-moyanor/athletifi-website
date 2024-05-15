@@ -22,41 +22,79 @@ const HorizontalTimeline = ({
   handlePlayClick,
   timestamps,
 }) => {
+  const timelineWidth = '100%';
+  const totalVideoDuration = 4600;
+  const timelineWidthNumber = parseFloat(timelineWidth);
+  const timeDivWidth =
+    (timelineWidthNumber / totalVideoDuration) *
+    convertToSeconds(timestamps[0]);
+  console.log('timelineWidth:', timelineWidth);
+  console.log('totalVideoDuration:', totalVideoDuration);
+  console.log(
+    'convertToSeconds(timestamps[0]):',
+    convertToSeconds(timestamps[0]),
+  );
+
   const handleClick = (index, time) => {
     setCurrentItem(index);
     console.log(convertToSeconds(time));
   };
 
   return (
-    <div className="relative flex flex-row items-center justify-around my-12">
-      <div className="absolute top-0 w-full h-1 bg-skyblue"></div>
+    <div className="relative flex flex-row items-center my-12">
+      <div
+        className="absolute top-0  h-1 bg-skyblue"
+        style={{ width: '100%' }} // Set the width to 100%
+      ></div>
       <div className="w-[7px] h-[7px] bg-skyblue rounded-full absolute -top-[3px] left-0"></div>
-      {timestamps.map((time, index) => (
-        <div
-          key={index}
-          className="relative flex flex-col items-center -m-[7px]"
-        >
+
+      <div className="absolute top-1/2 -left-[50%] transform translate-y-1/2 h-[1px] bg-skyblue"></div>
+      {timestamps.map((time, index) => {
+        const timeInSec = convertToSeconds(time);
+
+        const leftPosition = (timeInSec / totalVideoDuration) * 400;
+        console.log(leftPosition);
+        return (
           <div
-            onClick={() => {
-              handlePlayClick(index);
-              handleClick(index, time);
-            }}
-            className={`rounded-full cursor-pointer ${
-              currentItem === index ? 'bg-skyblue' : 'bg-gray-300'
-            }`}
-            style={{
-              width: currentItem === index ? '15px' : '11px',
-              height: currentItem === index ? '15px' : '11px',
-            }}
-          ></div>
-          <div className="mt-2 text-sm text-gray-500">{time}</div>
-        </div>
-      ))}
+            key={index}
+            className="relative flex flex-col items-center -m-[13px]"
+          >
+            <div
+              onClick={() => {
+                handlePlayClick(index);
+                handleClick(index, time);
+              }}
+              className={`rounded-full cursor-pointer ${
+                currentItem === index ? 'bg-skyblue' : 'bg-gray-300'
+              }`}
+              style={{
+                width: currentItem === index ? '15px' : '11px',
+                height: currentItem === index ? '15px' : '11px',
+                left: `${leftPosition - 5.5}px`,
+                position: 'absolute',
+                top: '50%',
+                transform: 'translateY(-50%)',
+              }}
+            ></div>
+            <div
+              className={` mt-2 text-sm text-offwhite`}
+              style={{
+                left: `${leftPosition - 24}px`,
+                position: 'absolute',
+                top: '16px',
+                transform: 'translateY(-50%)',
+              }}
+            >
+              {time}
+            </div>
+          </div>
+        );
+      })}
+
       <div className="w-[7px] h-[7px] bg-skyblue rounded-full absolute -top-[3px] right-0"></div>
     </div>
   );
 };
-
 const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   matchData,
 }: {
@@ -84,7 +122,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   const weatherIcon = weather?.weatherIcon;
   const iconNameWithoutExtension = weatherIcon?.split('.')[0];
   const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
-  console.log(highlights[0]);
+
   useEffect(() => {
     console.log(`Current Item Updated: ${currentItem}`);
     handlePlayClick(currentItem); //play the highlight when chevorns nav change the index
