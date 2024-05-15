@@ -188,18 +188,22 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
               duration: 0.2,
               ease: 'easeOut',
             }}
-            className="bg-[#0b2230] shadow-lg fixed inset-0 w-full py-6 md:py-20 px-2 md:px-4 z-50 flex flex-col items-center overflow-y-auto "
+            className="bg-[#0b2230] shadow-lg fixed inset-0 w-full py-6 md:py-10 px-4 z-50 flex flex-col items-center overflow-y-auto "
           >
-            <button
-              onClick={() => setShowRecap(false)}
-              className="flex justify-end w-full  md:max-w-[700px] lg:max-w-[1030px] mb-6 px-4"
-            >
-              <FontAwesomeIcon icon={faTimes} size="xl" />
-            </button>
-            <div className="w-full flex justify-start items-center text-primary mt-2 my-6 px-2 md:px-10 lg:max-w-[1030px] ">
-              <div className="flex justify-between items-center w-full max-w-[200px] min-w-[140px] mr-2 ">
+            <div className="w-full mb-4 bg-cardsBackground rounded-[5px] py-2 px-4 flex items-center justify-between lg:max-w-[1030px]">
+              {' '}
+              <h2 className="text-[20px] w-full lg:max-w-[1030px]">
+                Match Summary
+              </h2>
+              <button onClick={() => setShowRecap(false)} className="">
+                <FontAwesomeIcon icon={faTimes} size="xl" />
+              </button>
+            </div>
+
+            <div className="w-full flex flex-col md:flex-row justify-start items-center gap-4  text-primary mt-2 px-2 lg:max-w-[1030px] ">
+              <div className="flex justify-center items-center min-w-[280px] w-[280px] md:mr-2">
                 {home_club_logo !== null && (
-                  <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
+                  <div className="relative min-w-[75px] h-[75px]">
                     <Image src={home_club_logo} alt="Crest" layout="fill" />
                   </div>
                 )}
@@ -207,86 +211,76 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                   <span>{home_score}</span> - <span>{away_score}</span>
                 </div>
                 {away_club_logo !== null && (
-                  <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
+                  <div className="relative min-w-[75px] h-[75px]">
                     <Image src={away_club_logo} alt="Crest" layout="fill" />
                   </div>
                 )}
               </div>
 
-              <div className=" flex flex-row flex-wrap items-center justify-between md:w-[600px] gap-2">
-                <div className="block ml-[6px] md:m-auto">
-                  <span className="text-sm md:text-base ">{home_club} </span>vs
-                  <span className="text-sm md:text-base "> {away_club}</span>
-                  <div className="text-xs md:text-sm text-offwhite pt-[4px]">
-                    {datetime}
-                  </div>
-                </div>
+              <div className="text-[20px] flex flex-col md:flex-row  items-center justify-center md:gap-4 mt-4 md:mt-0 ">
+                <span className="">{home_club} </span>
+                <span className="text-skyblue">VS</span>
+                <span className=""> {away_club}</span>
               </div>
             </div>
-
-            <div className="relative flex flex-col py-4 px-4 md:px-10 lg:max-w-[1030px] items-center justify-center w-full">
-              <div className="flex flex-col-reverse sm:flex-col-reverse md:flex-row pb-8 w-full">
-                <div className="w-full mt-6 md:mt-0">
-                  <h2 className="text-[20px] font-semibold mb-2">Full Recap</h2>
-                  <div className="h-1 mb-4 bg-partnersBorders" />
-                  <div className="w-full h-full  min-w-[320px] max-h-[320px]">
-                    {playback_id ? (
-                      <MuxPlayer
-                        id="mux-player"
-                        playbackId={playback_id}
-                        ref={muxPlayerRef}
-                        className="w-full h-full rounded-md"
+            <div className=" w-full max-w-[1030px] my-4 md:my-8 border-t border-opacity-50 border-partnersBorders"></div>
+            <div className="relative flex flex-col pb-4  lg:max-w-[1030px] items-center justify-center w-full">
+              <div className="mb-12 mx-2  flex flex-col md:flex-row gap-4">
+                <div className="text-base text-primary min-w-[280px] w-[280px]">
+                  <p className="pb-[2px]">{datetime}hs</p>
+                  <p className="pb-[2px]">{location}</p>
+                  <div className="flex  items-center justify-start">
+                    <div className="w-6 text-center mr-1">
+                      <Image
+                        src={localWeatherIcon}
+                        alt="Weather Icon"
+                        width={100}
+                        height={100}
                       />
-                    ) : (
-                      <div className="w-full h-fullflex justify-center items-center">
-                        <p>No video currently available for this match</p>
-                      </div>
-                    )}
+                    </div>
+                    <p>{weather?.tempFahr}</p>
                   </div>
                 </div>
 
-                <div className="px-0 md:px-4 my-4 md:my-0  md:w-4/6 ">
-                  <h3 className="text-[20px] font-semibold">Summary</h3>
+                <div className="w-full mt-6 md:mt-0">
+                  <h3 className="font-semibold text-[18px] mb-2">Title</h3>
+                  {/* define generated text */}
+                  <p className="text-base tracking-wide font-light">
+                    In a gripping showdown, the Villanova Soccer Academy 2009s
+                    faced off against Stellar FC 2009s, concluding in a 2-0
+                    victory for Stellar. he match saw Stellar dominate early,
+                    securing a lead with two quick goals in the first half, a
+                    margin they maintained throughout the game. While Villanova
+                    struggled to find the back of the net, Vidals efforts on the
+                    field were a silver lining, as he orchestrated several
+                    promising attacks and demonstrated strong defensive prowess.
+                  </p>
+                </div>
+              </div>
 
-                  <div className="text-sm text-offwhite my-4">
-                    <p className="pb-[2px]">{datetime}</p>
-                    <p className="pb-[2px]">{location}</p>
-                    <div className="flex items-center justify-start">
-                      <div className="w-6 text-center mr-1">
-                        <Image
-                          src={localWeatherIcon}
-                          alt="Weather Icon"
-                          width={100}
-                          height={100}
-                        />
-                      </div>
-                      <p>{weather?.tempFahr}</p>
+              <div className="w-full mt-6 md:mt-0">
+                <h2 className="text-[20px] mb-4 bg-cardsBackground rounded-[5px] py-2 px-4">
+                  Full Recap
+                </h2>
+                {/* <div className="h-1 mb-4 bg-partnersBorders" /> */}
+                <div className="w-full h-full  min-w-[320px] max-h-[450px]">
+                  {playback_id ? (
+                    <MuxPlayer
+                      id="mux-player"
+                      playbackId={playback_id}
+                      ref={muxPlayerRef}
+                      className="w-full h-full rounded-md"
+                    />
+                  ) : (
+                    <div className="w-full h-fullflex justify-center items-center">
+                      <p>No video currently available for this match</p>
                     </div>
-                  </div>
-
-                  <div>
-                    <div className="h-1 my-2 bg-partnersBorders text-primary" />
-                    <h3 className="font-semibold py-2 text-[18px]">Title</h3>
-                    {/* define generated text */}
-                    <p className="text-sm font-thin">
-                      In a gripping showdown, the Villanova Soccer Academy 2009s
-                      faced off against Stellar FC 2009s, concluding in a 2-0
-                      victory for Stellar. he match saw Stellar dominate early,
-                      securing a lead with two quick goals in the first half, a
-                      margin they maintained throughout the game. While
-                      Villanova struggled to find the back of the net, Vidals
-                      efforts on the field were a silver lining, as he
-                      orchestrated several promising attacks and demonstrated
-                      strong defensive prowess.
-                    </p>
-                  </div>
+                  )}
                 </div>
               </div>
               <div className="flex flex-col mt-4 w-full">
-                <div className="flex justify-between items-center bg-cardsBackground rounded-[5px] p-2">
-                  <h3 className="text-base font-semibold">
-                    Jump to highlights
-                  </h3>
+                <div className="flex justify-between items-center bg-cardsBackground rounded-[5px] py-2 px-4">
+                  <h3 className="text-base">Jump to highlights</h3>
 
                   {highlights && highlights.length > 1 && (
                     <div className="flex gap-8 mr-2">
@@ -344,14 +338,14 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                                   className={`flex justify-between bg-cardsBackground p-4 rounded-[5px] w-full mb-2 items-center `}
                                 >
                                   <div className="video-info text-primary flex flex-col">
-                                    <div className="flex items-start">
+                                    <div className="flex items-start  tracking-wide ">
                                       <p className="text-sm text-offwhite mr-4 mt-[2px]">
                                         {highlight.start_timestamp}
                                       </p>
                                       <div className="flex flex-col">
                                         <h3 className="text-base mb-2">{`Highlight 0${index + 1}`}</h3>
 
-                                        <p className="text-sm text-offwhite m-px">
+                                        <p className="text-base font-light text-offwhitem-px">
                                           {highlight.clip_description}
                                         </p>
 
