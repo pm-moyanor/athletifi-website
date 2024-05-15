@@ -2,17 +2,7 @@
   "auth": {
     "athletifiAuth": {
       "customAuth": false,
-      "dependsOn": [
-        {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "athletifiAuthCustomMessage",
-          "triggerProvider": "Cognito"
-        }
-      ],
+      "dependsOn": [],
       "frontendAuthConfig": {
         "mfaConfiguration": "OPTIONAL",
         "mfaTypes": [
@@ -57,13 +47,7 @@
       "service": "Cognito-UserPool-Groups"
     }
   },
-  "function": {
-    "athletifiAuthCustomMessage": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    }
-  },
+  "function": {},
   "parameters": {
     "AMPLIFY_auth_athletifiAuth_facebookAppId": {
       "usedBy": [
@@ -78,46 +62,6 @@
         {
           "category": "auth",
           "resourceName": "athletifiAuth"
-        }
-      ]
-    },
-    "AMPLIFY_function_athletifiAuthCustomMessage_EMAILMESSAGE": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "athletifiAuthCustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_athletifiAuthCustomMessage_EMAILSUBJECT": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "athletifiAuthCustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_athletifiAuthCustomMessage_REDIRECTURL": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "athletifiAuthCustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_athletifiAuthCustomMessage_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "athletifiAuthCustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_athletifiAuthCustomMessage_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "athletifiAuthCustomMessage"
         }
       ]
     },
