@@ -20,7 +20,7 @@ const HorizontalTimeline = ({
   setCurrentItem,
   currentItem,
   handlePlayClick,
-  dates,
+  timestamps,
 }) => {
   const handleClick = (index, time) => {
     setCurrentItem(index);
@@ -31,7 +31,7 @@ const HorizontalTimeline = ({
     <div className="relative flex flex-row items-center justify-around my-12">
       <div className="absolute top-0 w-full h-1 bg-skyblue"></div>
       <div className="w-[7px] h-[7px] bg-skyblue rounded-full absolute -top-[3px] left-0"></div>
-      {dates.map((time, index) => (
+      {timestamps.map((time, index) => (
         <div
           key={index}
           className="relative flex flex-col items-center -m-[7px]"
@@ -78,12 +78,13 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     highlights,
   } = matchData;
   const [currentItem, setCurrentItem] = useState(0);
+  const [isHighlightPlaying, setIsHighlightPlaying] = useState(false);
   const muxPlayerRef = useRef<MuxPlayer>(null);
 
   const weatherIcon = weather?.weatherIcon;
   const iconNameWithoutExtension = weatherIcon?.split('.')[0];
   const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
-
+  console.log(highlights[0]);
   useEffect(() => {
     console.log(`Current Item Updated: ${currentItem}`);
     handlePlayClick(currentItem); //play the highlight when chevorns nav change the index
@@ -104,6 +105,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
         .filter(Boolean); // Remove null values from invalid timestamps
 
       if (cuePoints.length > 0) {
+        cuePoints.sort((a, b) => a - b); //correct non ascendant order
         // Add cue points to th video
         const track = muxPlayerRef.current.addTextTrack('captions', '', 'en');
 
@@ -115,6 +117,13 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
 
         muxPlayerRef.current.currentTime = cuePoints[index] || 0; // Play from the selected highlight, or from the start is outside the timeframe
         muxPlayerRef.current.play(); // play the highlight cue
+        setIsHighlightPlaying(true);
+        setTimeout(
+          () => {
+            setIsHighlightPlaying(false);
+          },
+          convertToSeconds(highlights[index].duration) * 1000,
+        );
       }
     } else {
       console.warn("MuxPlayer element not found. Cue points can't be added.");
@@ -304,7 +313,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                       currentItem={currentItem}
                       handlePlayClick={handlePlayClick}
                       setCurrentItem={setCurrentItem}
-                      dates={highlights.map(
+                      timestamps={highlights.map(
                         ({ start_timestamp }) => start_timestamp,
                       )}
                     />
@@ -323,41 +332,52 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                             className="flex flex-row sm:flex-row md:flex-col"
                           >
                             {playback_id && highlight.start_timestamp ? (
-                              <div className="flex justify-between bg-cardsBackground p-4 rounded-[5px] w-full mb-2">
-                                <div className="video-info text-primary flex flex-col">
-                                  <div className="flex items-start">
-                                    <p className="text-sm text-offwhite mr-4 mt-[2px]">
-                                      {highlight.start_timestamp}
-                                    </p>
-                                    <div className="flex flex-col">
-                                      <h3 className="text-base mb-2">{`Highlight 0${index + 1}`}</h3>
-
-                                      <p className="text-sm text-offwhite m-px">
-                                        {highlight.clip_description}
+                              <>
+                                <div key={index} />
+                                <div
+                                  key={index}
+                                  style={{
+                                    backgroundColor: `${currentItem === index && isHighlightPlaying ? '#092C3E' : ''}`, //scale while the highlight is running
+                                    transform: `${currentItem === index && isHighlightPlaying ? 'scale(1.03)' : 'scale(1)'}`,
+                                    transition: `${currentItem === index && isHighlightPlaying ? 'border 0.5s, transform 0.5s' : ''}`,
+                                  }}
+                                  className={`flex justify-between bg-cardsBackground p-4 rounded-[5px] w-full mb-2 items-center `}
+                                >
+                                  <div className="video-info text-primary flex flex-col">
+                                    <div className="flex items-start">
+                                      <p className="text-sm text-offwhite mr-4 mt-[2px]">
+                                        {highlight.start_timestamp}
                                       </p>
+                                      <div className="flex flex-col">
+                                        <h3 className="text-base mb-2">{`Highlight 0${index + 1}`}</h3>
 
-                                      <p className="text-sm text-gray-500 m-px">
-                                        Duration:{' '}
-                                        {convertToSeconds(highlight.duration)}{' '}
-                                        seconds
-                                      </p>
+                                        <p className="text-sm text-offwhite m-px">
+                                          {highlight.clip_description}
+                                        </p>
+
+                                        <p className="text-sm text-gray-500 m-px">
+                                          Duration:{' '}
+                                          {convertToSeconds(highlight.duration)}{' '}
+                                          seconds
+                                        </p>
+                                      </div>
                                     </div>
                                   </div>
+                                  <button
+                                    className="w-12 relative flex items-center justify-center h-full"
+                                    onClick={() => {
+                                      handlePlayClick(index);
+                                      setCurrentItem(index);
+                                    }}
+                                  >
+                                    <div className="rounded-full bg-primary h-8 w-8 absolute"></div>
+                                    <FontAwesomeIcon
+                                      icon={faPlayCircle}
+                                      className="text-skyblue h-8 w-8 absolute"
+                                    />
+                                  </button>
                                 </div>
-                                <button
-                                  className="w-12 relative flex items-center justify-center h-full"
-                                  onClick={() => {
-                                    handlePlayClick(index);
-                                    setCurrentItem(index);
-                                  }}
-                                >
-                                  <div className="rounded-full bg-primary h-8 w-8 border absolute"></div>
-                                  <FontAwesomeIcon
-                                    icon={faPlayCircle}
-                                    className="text-skyblue h-8 w-8 absolute"
-                                  />
-                                </button>
-                              </div>
+                              </>
                             ) : (
                               <div className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px] flex justify-center items-center text-center">
                                 <p className="text-gray-500">
