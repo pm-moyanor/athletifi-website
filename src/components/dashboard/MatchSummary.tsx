@@ -190,7 +190,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
             }}
             className="bg-[#0b2230] shadow-lg fixed inset-0 w-full py-6 md:py-10 px-4 z-50 flex flex-col items-center overflow-y-auto "
           >
-            <div className="w-full mb-4 bg-cardsBackground rounded-[5px] py-2 px-4 flex items-center justify-between lg:max-w-[1030px]">
+            <div className="w-full shadow-md mb-4 bg-cardsBackground rounded-[5px] py-2 px-4 flex items-center justify-between lg:max-w-[1030px]">
               {' '}
               <h2 className="text-[20px] w-full lg:max-w-[1030px]">
                 Match Summary
@@ -259,27 +259,30 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
               </div>
 
               <div className="w-full mt-6 md:mt-0">
-                <h2 className="text-[20px] mb-4 bg-cardsBackground rounded-[5px] py-2 px-4">
+                <h2 className="text-[20px] mb-4 bg-cardsBackground rounded-[5px] py-2 px-4 shadow-md">
                   Full Recap
                 </h2>
                 {/* <div className="h-1 mb-4 bg-partnersBorders" /> */}
-                <div className="w-full h-full  min-w-[320px] max-h-[450px]">
+                <div className="w-full relative rounded-10">
                   {playback_id ? (
-                    <MuxPlayer
-                      id="mux-player"
-                      playbackId={playback_id}
-                      ref={muxPlayerRef}
-                      className="w-full h-full rounded-md"
-                    />
+                    <div className="w-full h-full">
+                      <MuxPlayer
+                        id="mux-player"
+                        playbackId={playback_id}
+                        ref={muxPlayerRef}
+                        accent-color="#00C7FF"
+                        className=" w-full h-full"
+                      />
+                    </div>
                   ) : (
-                    <div className="w-full h-fullflex justify-center items-center">
+                    <div className="w-full h-full flex justify-center items-center">
                       <p>No video currently available for this match</p>
                     </div>
                   )}
                 </div>
               </div>
               <div className="flex flex-col mt-4 w-full">
-                <div className="flex justify-between items-center bg-cardsBackground rounded-[5px] py-2 px-4">
+                <div className="flex justify-between items-center bg-cardsBackground rounded-[5px] py-2 px-4 shadow-md">
                   <h3 className="text-base">Jump to highlights</h3>
 
                   {highlights && highlights.length > 1 && (
@@ -373,9 +376,10 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                                 </div>
                               </>
                             ) : (
-                              <div className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px] flex justify-center items-center text-center">
-                                <p className="text-gray-500">
-                                  No highlights available for this match
+                              <div className="bg-partnersBorders rounded-[4px] w-full min-h-[128px] md:max-w-[450px] flex justify-center items-center text-center">
+                                <p className="text-offwhite">
+                                  No highlights for this match yet. Stay tuned
+                                  for updates!
                                 </p>
                               </div>
                             )}
@@ -385,9 +389,9 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                     </div>
                   </>
                 ) : (
-                  <div className="mt-8 bg-cardsBackground rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px] flex justify-center items-center text-center">
-                    <p className="text-gray-500">
-                      No highlight videos available for this match
+                  <div className="mt-8 shadow-md mx-auto bg-cardsBackground bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[450px] flex justify-center items-center text-center">
+                    <p className="text-offwhite text-sm">
+                      No highlights for this match yet. Stay tuned for updates!
                     </p>
                   </div>
                 )}

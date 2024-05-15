@@ -11,7 +11,7 @@ const Profile: React.FC = () => {
   return (
     <>
       {profile?.age ? (
-        <div className="w-full h-[560px] bg-cardsBackground rounded-10 p-4 mb-4 mt-4 -mt-0 lg:mb-0 lg:-mt-[100px] flex flex-col">
+        <div className="w-full h-[560px] bg-cardsBackground rounded-10 p-4 mb-4 mt-4 -mt-0 lg:mb-0 lg:-mt-[100px] flex flex-col tracking-wide">
           <h2 className="text-primary text-[24px] mb-4 font-semibold">
             Profile
           </h2>

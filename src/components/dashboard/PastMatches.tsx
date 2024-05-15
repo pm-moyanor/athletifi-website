@@ -32,7 +32,7 @@ const PastMatches: React.FC = () => {
   return (
     <>
       {past_matches && past_matches[0]?.home_club_logo ? (
-        <div className="w-full px-0 md:px-4 lg:px-0 lg:w-2/3 lg:max-w-[720px]  fixed-height h-full">
+        <div className="w-full px-0 md:px-4 lg:px-0 lg:w-2/3 lg:max-w-[720px]  fixed-height h-full tracking-wide">
           <h2 className="text-primary font-semibold text-2xl mb-6 font-sourceSansPro">
             Past matches
           </h2>
