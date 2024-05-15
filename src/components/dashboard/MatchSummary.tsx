@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -16,7 +16,12 @@ function convertToSeconds(timestamp: string): number {
   return hours * 3600 + minutes * 60 + seconds;
 }
 
-const HorizontalTimeline = ({ setCurrentItem, currentItem, dates }) => {
+const HorizontalTimeline = ({
+  setCurrentItem,
+  currentItem,
+  handlePlayClick,
+  dates,
+}) => {
   const handleClick = (index, time) => {
     setCurrentItem(index);
     console.log(convertToSeconds(time));
@@ -32,7 +37,10 @@ const HorizontalTimeline = ({ setCurrentItem, currentItem, dates }) => {
           className="relative flex flex-col items-center -m-[7px]"
         >
           <div
-            onClick={() => handleClick(index, time)}
+            onClick={() => {
+              handlePlayClick(index);
+              handleClick(index, time);
+            }}
             className={`rounded-full cursor-pointer ${
               currentItem === index ? 'bg-skyblue' : 'bg-gray-300'
             }`}
@@ -75,6 +83,11 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   const weatherIcon = weather?.weatherIcon;
   const iconNameWithoutExtension = weatherIcon?.split('.')[0];
   const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
+
+  useEffect(() => {
+    console.log(`Current Item Updated: ${currentItem}`);
+    handlePlayClick(currentItem); //play the highlight when chevorns nav change the index
+  }, [currentItem]);
 
   const handlePlayClick = (index) => {
     if (muxPlayerRef.current) {
@@ -289,6 +302,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                   <>
                     <HorizontalTimeline
                       currentItem={currentItem}
+                      handlePlayClick={handlePlayClick}
                       setCurrentItem={setCurrentItem}
                       dates={highlights.map(
                         ({ start_timestamp }) => start_timestamp,
