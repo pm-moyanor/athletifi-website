@@ -22,10 +22,23 @@ const HorizontalTimeline = ({
   handlePlayClick,
   timestamps,
 }) => {
-  const timelineRef = useRef(null);
-  const timelineWidthNumber = useRef(0);
+  const timelineRef = useRef(window.innerWidth);
+  const [timelineWidth, setTimelineWidth] = useState(window.innerWidth);
 
-  const totalVideoDuration = 4600;
+  useEffect(() => {
+    setTimelineWidth(timelineRef.current?.offsetWidth || 0);
+
+    const handleResize = () => {
+      setTimelineWidth(timelineRef.current?.offsetWidth || 0);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [timestamps]);
+
+  console.log('width: ', timelineRef);
 
   const convertToSeconds = (timestamp) => {
     const [hours, minutes, seconds] = timestamp.split(':').map(Number);
@@ -33,8 +46,9 @@ const HorizontalTimeline = ({
   };
 
   const calculateLeftPosition = (time) => {
-    const totalVideoDuration = 4600; // Update this to match your actual video duration
+    const totalVideoDuration = 4600;
     const timelineWidth = timelineRef.current?.offsetWidth || 0;
+    console.log(timelineWidth);
     const timeInSec = convertToSeconds(time);
     return (timeInSec / totalVideoDuration) * timelineWidth;
   };
@@ -55,6 +69,7 @@ const HorizontalTimeline = ({
 
       <div className="absolute top-1/2 -left-[50%] transform translate-y-1/2 h-[1px] bg-skyblue"></div>
       {timestamps.map((time, index) => {
+        console.log(time);
         const leftPosition = calculateLeftPosition(time);
 
         return (
@@ -93,6 +108,7 @@ const HorizontalTimeline = ({
           </div>
         );
       })}
+      <div className="w-[7px] h-[7px] bg-skyblue rounded-full absolute -top-[3px] right-0"></div>
     </div>
   );
 };
@@ -365,14 +381,16 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                           index: number,
                         ) => (
                           <div
-                            key={index}
+                            key={`${highlight.clip_description}-${index}`}
                             className="flex flex-row sm:flex-row md:flex-col"
                           >
                             {playback_id && highlight.start_timestamp ? (
                               <>
-                                <div key={index} />
                                 <div
-                                  key={index}
+                                  key={`${highlight.clip_description}-info`}
+                                />
+                                <div
+                                  key={`${highlight.clip_description}-highlight`}
                                   style={{
                                     backgroundColor: `${currentItem === index && isHighlightPlaying ? '#092C3E' : ''}`, //scale while the highlight is running
                                     transform: `${currentItem === index && isHighlightPlaying ? 'scale(1.03)' : 'scale(1)'}`,
