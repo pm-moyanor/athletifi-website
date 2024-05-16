@@ -22,18 +22,22 @@ const HorizontalTimeline = ({
   handlePlayClick,
   timestamps,
 }) => {
-  const timelineWidth = '100%';
+  const timelineRef = useRef(null);
+  const timelineWidthNumber = useRef(0);
+
   const totalVideoDuration = 4600;
-  const timelineWidthNumber = parseFloat(timelineWidth);
-  const timeDivWidth =
-    (timelineWidthNumber / totalVideoDuration) *
-    convertToSeconds(timestamps[0]);
-  console.log('timelineWidth:', timelineWidth);
-  console.log('totalVideoDuration:', totalVideoDuration);
-  console.log(
-    'convertToSeconds(timestamps[0]):',
-    convertToSeconds(timestamps[0]),
-  );
+
+  const convertToSeconds = (timestamp) => {
+    const [hours, minutes, seconds] = timestamp.split(':').map(Number);
+    return hours * 3600 + minutes * 60 + seconds;
+  };
+
+  const calculateLeftPosition = (time) => {
+    const totalVideoDuration = 4600; // Update this to match your actual video duration
+    const timelineWidth = timelineRef.current?.offsetWidth || 0;
+    const timeInSec = convertToSeconds(time);
+    return (timeInSec / totalVideoDuration) * timelineWidth;
+  };
 
   const handleClick = (index, time) => {
     setCurrentItem(index);
@@ -44,16 +48,15 @@ const HorizontalTimeline = ({
     <div className="relative flex flex-row items-center my-12">
       <div
         className="absolute top-0  h-1 bg-skyblue"
-        style={{ width: '100%' }} // Set the width to 100%
+        ref={timelineRef}
+        style={{ width: '100%' }}
       ></div>
       <div className="w-[7px] h-[7px] bg-skyblue rounded-full absolute -top-[3px] left-0"></div>
 
       <div className="absolute top-1/2 -left-[50%] transform translate-y-1/2 h-[1px] bg-skyblue"></div>
       {timestamps.map((time, index) => {
-        const timeInSec = convertToSeconds(time);
+        const leftPosition = calculateLeftPosition(time);
 
-        const leftPosition = (timeInSec / totalVideoDuration) * 400;
-        console.log(leftPosition);
         return (
           <div
             key={index}
@@ -90,11 +93,10 @@ const HorizontalTimeline = ({
           </div>
         );
       })}
-
-      <div className="w-[7px] h-[7px] bg-skyblue rounded-full absolute -top-[3px] right-0"></div>
     </div>
   );
 };
+
 const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   matchData,
 }: {
