@@ -11,18 +11,25 @@ import { IMatchDataExtended } from '@/types/Dashboard.type';
 import MuxPlayer from '@mux/mux-player-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+interface HorizontalTimelineProps {
+  setCurrentItem: React.Dispatch<React.SetStateAction<number>>;
+  currentItem: number;
+  handlePlayClick: (index: number) => void;
+  timestamps: string[];
+}
+
 function convertToSeconds(timestamp: string): number {
   const [hours, minutes, seconds] = timestamp.split(':').map(Number);
   return hours * 3600 + minutes * 60 + seconds;
 }
 
-const HorizontalTimeline = ({
+const HorizontalTimeline: React.FC<HorizontalTimelineProps> = ({
   setCurrentItem,
   currentItem,
   handlePlayClick,
   timestamps,
 }) => {
-  const timelineRef = useRef(window.innerWidth);
+  const timelineRef = useRef<HTMLDivElement>(null);
   const [timelineWidth, setTimelineWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -38,24 +45,15 @@ const HorizontalTimeline = ({
     };
   }, [timestamps]);
 
-  console.log('width: ', timelineRef);
-
-  const convertToSeconds = (timestamp) => {
-    const [hours, minutes, seconds] = timestamp.split(':').map(Number);
-    return hours * 3600 + minutes * 60 + seconds;
-  };
-
-  const calculateLeftPosition = (time) => {
+  const calculateLeftPosition = (time: string): number => {
     const totalVideoDuration = 4600;
     const timelineWidth = timelineRef.current?.offsetWidth || 0;
-    console.log(timelineWidth);
     const timeInSec = convertToSeconds(time);
     return (timeInSec / totalVideoDuration) * timelineWidth;
   };
 
-  const handleClick = (index, time) => {
+  const handleClick = (index: number, time: string) => {
     setCurrentItem(index);
-    console.log(convertToSeconds(time));
   };
 
   return (
@@ -113,13 +111,17 @@ const HorizontalTimeline = ({
   );
 };
 
+const accentColors = ['#FC6713', '#27B6BD', '#DA393B', '#B09E03', '#5A54A2'];
+
+interface MatchSummaryProps {
+  matchData: IMatchDataExtended;
+}
+
 const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   matchData,
 }: {
   matchData: IMatchDataExtended;
 }) => {
-  const [showRecap, setShowRecap] = useState(false);
-
   const {
     home_club_logo,
     away_club_logo,
@@ -133,7 +135,8 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     playback_id,
     highlights,
   } = matchData;
-  const [currentItem, setCurrentItem] = useState(0);
+  const [showRecap, setShowRecap] = useState(false);
+  const [currentItem, setCurrentItem] = useState(-1);
   const [isHighlightPlaying, setIsHighlightPlaying] = useState(false);
   const muxPlayerRef = useRef<MuxPlayer>(null);
 
@@ -244,7 +247,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
               duration: 0.2,
               ease: 'easeOut',
             }}
-            className="bg-[#0b2230] shadow-lg fixed inset-0 w-full py-6 md:py-10 px-4 z-50 flex flex-col items-center overflow-y-auto "
+            className="bg-[#0b2230] shadow-lg fixed inset-0 w-full py-6 md:py-10 px-2 md:px-4 z-50 flex flex-col items-center overflow-y-auto "
           >
             <div className="w-full shadow-md mb-4 bg-cardsBackground rounded-[5px] py-2 px-4 flex items-center justify-between lg:max-w-[1030px]">
               {' '}
@@ -298,7 +301,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                   </div>
                 </div>
 
-                <div className="w-full mt-6 md:mt-0">
+                <div className="w-full mt-2 md:mt-0">
                   <h3 className="font-semibold text-[18px] mb-2">Title</h3>
                   {/* define generated text */}
                   <p className="text-base tracking-wide font-light">
@@ -394,13 +397,14 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                                   style={{
                                     backgroundColor: `${currentItem === index && isHighlightPlaying ? '#092C3E' : ''}`, //scale while the highlight is running
                                     transform: `${currentItem === index && isHighlightPlaying ? 'scale(1.03)' : 'scale(1)'}`,
-                                    transition: `${currentItem === index && isHighlightPlaying ? 'border 0.5s, transform 0.5s' : ''}`,
+                                    transition: `${currentItem === index && isHighlightPlaying ? 'transform 0.5s' : ''}`,
+                                    borderLeft: `8px solid ${accentColors[index + 1]}`,
                                   }}
                                   className={`flex justify-between bg-cardsBackground p-4 rounded-[5px] w-full mb-2 items-center `}
                                 >
-                                  <div className="video-info text-primary flex flex-col">
-                                    <div className="flex items-start  tracking-wide ">
-                                      <p className="text-sm text-offwhite mr-4 mt-[2px]">
+                                  <div className="video-info text-primary flex flex-col mr-2">
+                                    <div className="flex flex-col md:flex-row items-start  tracking-wide ">
+                                      <p className="text-sm text-offwhite mr-2 md:mr-4 mt-[2px]">
                                         {highlight.start_timestamp}
                                       </p>
                                       <div className="flex flex-col">
