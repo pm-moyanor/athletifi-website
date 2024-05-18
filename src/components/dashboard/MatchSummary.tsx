@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTimes,
   faPlayCircle,
+  faPauseCircle,
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
@@ -139,6 +140,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   const [currentItem, setCurrentItem] = useState(-1);
   const [isHighlightPlaying, setIsHighlightPlaying] = useState(false);
   const muxPlayerRef = useRef<MuxPlayer>(null);
+  const [highlightProgress, setHighlightProgress] = useState(0); // State for highlight progress
 
   const weatherIcon = weather?.weatherIcon;
   const iconNameWithoutExtension = weatherIcon?.split('.')[0];
@@ -184,6 +186,17 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
           convertToSeconds(highlights[index].duration) * 1000,
         );
       }
+      const duration = convertToSeconds(highlights[index].duration);
+      const interval = setInterval(() => {
+        setHighlightProgress((prevProgress) => {
+          if (prevProgress >= 100) {
+            clearInterval(interval);
+            setIsHighlightPlaying(false);
+            return 0;
+          }
+          return (prevProgress + 1) * (100 / duration);
+        });
+      }, 1000);
     } else {
       console.warn("MuxPlayer element not found. Cue points can't be added.");
     }
@@ -396,7 +409,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                                   key={`${highlight.clip_description}-highlight`}
                                   style={{
                                     backgroundColor: `${currentItem === index && isHighlightPlaying ? '#092C3E' : ''}`, //scale while the highlight is running
-                                    transform: `${currentItem === index && isHighlightPlaying ? 'scale(1.03)' : 'scale(1)'}`,
+                                    transform: `${currentItem === index && isHighlightPlaying ? 'scale(0.98)' : 'scale(1)'}`,
                                     transition: `${currentItem === index && isHighlightPlaying ? 'transform 0.5s' : ''}`,
                                     borderLeft: `8px solid ${accentColors[index + 1]}`,
                                   }}
@@ -422,6 +435,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                                       </div>
                                     </div>
                                   </div>
+
                                   <button
                                     className="w-12 relative flex items-center justify-center h-full"
                                     onClick={() => {
@@ -431,10 +445,23 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                                   >
                                     <div className="rounded-full bg-primary h-8 w-8 absolute"></div>
                                     <FontAwesomeIcon
-                                      icon={faPlayCircle}
+                                      icon={
+                                        isHighlightPlaying &&
+                                        currentItem === index
+                                          ? faPauseCircle
+                                          : faPlayCircle
+                                      }
                                       className="text-skyblue h-8 w-8 absolute"
                                     />
                                   </button>
+                                  <div className="w-full absolute bottom-0 left-0 rounded-full h-1 bg-partnersBorders mt-4">
+                                    <div
+                                      className="absolute top-0 left-0 bg-skyblue h-full rounded-full"
+                                      style={{
+                                        width: `${highlightProgress}%`,
+                                      }}
+                                    ></div>
+                                  </div>
                                 </div>
                               </>
                             ) : (
