@@ -69,11 +69,11 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
         const track = muxPlayerRef.current.addTextTrack('captions', '', 'en');
 
         cuePoints.forEach((cueTime) => {
-          const duration = 5000; // 5 seconds in milliseconds
+          const duration = convertToSeconds(highlights[index].duration);
           const cue = new VTTCue(
             cueTime / 1000,
             (cueTime + duration) / 1000,
-            'your cue text',
+            `Highlight ${index + 1}`,
           );
           track.addCue(cue);
         });
@@ -94,7 +94,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
 
       intervalRef.current = setInterval(() => {
         setHighlightProgress((prevProgress) => {
-          const increment = 100; // Update every 100 milliseconds
+          const increment = 100;
           if (prevProgress >= duration) {
             clearInterval(intervalRef.current);
             setIsHighlightPlaying(false);
@@ -102,11 +102,31 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
           }
           return prevProgress + increment;
         });
-      }, 100); // Update every 100 milliseconds
+      }, 100);
+
+      if (!muxPlayerRef.current.pauseListenerAdded) {
+        muxPlayerRef.current.addEventListener('pause', handlePause);
+        muxPlayerRef.current.pauseListenerAdded = true;
+      }
     } else {
       console.warn("MuxPlayer element not found. Cue points can't be added.");
     }
   };
+
+  // Function to handle pause
+  const handlePause = () => {
+    clearInterval(intervalRef.current);
+  };
+
+  useEffect(() => {
+    const currentRef = muxPlayerRef.current;
+
+    return () => {
+      if (currentRef) {
+        currentRef.removeEventListener('pause', handlePause);
+      }
+    };
+  }, []);
 
   const handleSummaryClick = () => {
     setShowRecap(true);
@@ -266,14 +286,18 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                   {highlights && highlights.length > 1 && (
                     <div className="flex gap-8 mr-2">
                       <button
-                        onClick={handlePrevClick}
+                        onClick={() => {
+                          handlePrevClick();
+                        }}
                         disabled={currentItem === 0}
                         className="text-skyblue"
                       >
                         <FontAwesomeIcon icon={faChevronLeft} />
                       </button>
                       <button
-                        onClick={handleNextClick}
+                        onClick={() => {
+                          handleNextClick();
+                        }}
                         disabled={currentItem === highlights.length - 1}
                         className="text-skyblue"
                       >
@@ -364,7 +388,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                                   <div className="w-full absolute bottom-0 left-0 rounded-full h-1 bg-partnersBorders mt-4">
                                     {currentItem === index && (
                                       <div
-                                        className="absolute left-0 top-0 h-full bg-blue-500"
+                                        className="absolute left-0 top-0 h-full bg-darkerSkyBlue"
                                         style={{
                                           width: `${(highlightProgress / convertToMilliseconds(highlights[index].duration)) * 100}%`,
                                           transition: 'width 0.1s linear',
