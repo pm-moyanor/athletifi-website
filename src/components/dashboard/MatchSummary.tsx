@@ -9,108 +9,14 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { IMatchDataExtended } from '@/types/Dashboard.type';
+import HorizontalTimeline from './HorizontalTimeline';
 import MuxPlayer from '@mux/mux-player-react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-interface HorizontalTimelineProps {
-  setCurrentItem: React.Dispatch<React.SetStateAction<number>>;
-  currentItem: number;
-  handlePlayClick: (index: number) => void;
-  timestamps: string[];
-}
 
 function convertToSeconds(timestamp: string): number {
   const [hours, minutes, seconds] = timestamp.split(':').map(Number);
   return hours * 3600 + minutes * 60 + seconds;
 }
-
-const HorizontalTimeline: React.FC<HorizontalTimelineProps> = ({
-  setCurrentItem,
-  currentItem,
-  handlePlayClick,
-  timestamps,
-}) => {
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const [timelineWidth, setTimelineWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    setTimelineWidth(timelineRef.current?.offsetWidth || 0);
-
-    const handleResize = () => {
-      setTimelineWidth(timelineRef.current?.offsetWidth || 0);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [timestamps]);
-
-  const calculateLeftPosition = (time: string): number => {
-    const totalVideoDuration = 4600;
-    const timelineWidth = timelineRef.current?.offsetWidth || 0;
-    const timeInSec = convertToSeconds(time);
-    return (timeInSec / totalVideoDuration) * timelineWidth;
-  };
-
-  const handleClick = (index: number, time: string) => {
-    setCurrentItem(index);
-  };
-
-  return (
-    <div className="relative flex flex-row items-center my-12">
-      <div
-        className="absolute top-0  h-1 bg-skyblue"
-        ref={timelineRef}
-        style={{ width: '100%' }}
-      ></div>
-      <div className="w-[7px] h-[7px] bg-skyblue rounded-full absolute -top-[3px] left-0"></div>
-
-      <div className="absolute top-1/2 -left-[50%] transform translate-y-1/2 h-[1px] bg-skyblue"></div>
-      {timestamps.map((time, index) => {
-        console.log(time);
-        const leftPosition = calculateLeftPosition(time);
-
-        return (
-          <div
-            key={index}
-            className="relative flex flex-col items-center -m-[13px]"
-          >
-            <div
-              onClick={() => {
-                handlePlayClick(index);
-                handleClick(index, time);
-              }}
-              className={`rounded-full cursor-pointer ${
-                currentItem === index ? 'bg-skyblue' : 'bg-gray-300'
-              }`}
-              style={{
-                width: currentItem === index ? '15px' : '11px',
-                height: currentItem === index ? '15px' : '11px',
-                left: `${leftPosition - 5.5}px`,
-                position: 'absolute',
-                top: '50%',
-                transform: 'translateY(-50%)',
-              }}
-            ></div>
-            <div
-              className={` mt-2 text-sm text-offwhite`}
-              style={{
-                left: `${leftPosition - 24}px`,
-                position: 'absolute',
-                top: '16px',
-                transform: 'translateY(-50%)',
-              }}
-            >
-              {time}
-            </div>
-          </div>
-        );
-      })}
-      <div className="w-[7px] h-[7px] bg-skyblue rounded-full absolute -top-[3px] right-0"></div>
-    </div>
-  );
-};
 
 const accentColors = ['#FC6713', '#27B6BD', '#DA393B', '#B09E03', '#5A54A2'];
 
@@ -141,62 +47,62 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   const [isHighlightPlaying, setIsHighlightPlaying] = useState(false);
   const muxPlayerRef = useRef<MuxPlayer>(null);
   const [highlightProgress, setHighlightProgress] = useState(0); // State for highlight progress
+  const intervalRef = useRef(null); // Ref to store interval ID
 
   const weatherIcon = weather?.weatherIcon;
   const iconNameWithoutExtension = weatherIcon?.split('.')[0];
   const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
 
-  useEffect(() => {
-    console.log(`Current Item Updated: ${currentItem}`);
-    handlePlayClick(currentItem); //play the highlight when chevorns nav change the index
-  }, [currentItem]);
+  function convertToMilliseconds(timestamp: string): number {
+    const [hours, minutes, seconds] = timestamp.split(':').map(Number);
+    return (hours * 3600 + minutes * 60 + seconds) * 1000;
+  }
 
   const handlePlayClick = (index) => {
     if (muxPlayerRef.current) {
       const cuePoints = highlights
-        .map((highlight) => {
-          const convertedTime = convertToSeconds(highlight.start_timestamp);
-          if (isNaN(convertedTime) || !isFinite(convertedTime)) {
-            //catch incorrect time format
-            console.warn(`Invalid timestamp: ${highlight.start_timestamp}`);
-            return null; //null if isn't valid
-          }
-          return convertedTime;
-        })
-        .filter(Boolean); // Remove null values from invalid timestamps
+        .map((highlight) => convertToMilliseconds(highlight.start_timestamp))
+        .filter((time) => !isNaN(time) && isFinite(time))
+        .sort((a, b) => a - b);
 
       if (cuePoints.length > 0) {
-        cuePoints.sort((a, b) => a - b); //correct non ascendant order
-        // Add cue points to th video
         const track = muxPlayerRef.current.addTextTrack('captions', '', 'en');
 
         cuePoints.forEach((cueTime) => {
-          const duration = 5; // do we need duration ?
-          const cue = new VTTCue(cueTime, cueTime + duration, 'your cue text');
+          const duration = 5000; // 5 seconds in milliseconds
+          const cue = new VTTCue(
+            cueTime / 1000,
+            (cueTime + duration) / 1000,
+            'your cue text',
+          );
           track.addCue(cue);
         });
 
-        muxPlayerRef.current.currentTime = cuePoints[index] || 0; // Play from the selected highlight, or from the start is outside the timeframe
-        muxPlayerRef.current.play(); // play the highlight cue
-        setIsHighlightPlaying(true);
-        setTimeout(
-          () => {
-            setIsHighlightPlaying(false);
-          },
-          convertToSeconds(highlights[index].duration) * 1000,
-        );
+        if (isHighlightPlaying && currentItem === index) {
+          muxPlayerRef.current.pause();
+        } else {
+          muxPlayerRef.current.currentTime = cuePoints[index] / 1000 || 0;
+          muxPlayerRef.current.play();
+        }
+
+        setIsHighlightPlaying(!isHighlightPlaying);
+        setCurrentItem(index);
       }
-      const duration = convertToSeconds(highlights[index].duration);
-      const interval = setInterval(() => {
+
+      const duration = convertToMilliseconds(highlights[index].duration);
+      clearInterval(intervalRef.current); // Clear previous interval
+
+      intervalRef.current = setInterval(() => {
         setHighlightProgress((prevProgress) => {
-          if (prevProgress >= 100) {
-            clearInterval(interval);
+          const increment = 100; // Update every 100 milliseconds
+          if (prevProgress >= duration) {
+            clearInterval(intervalRef.current);
             setIsHighlightPlaying(false);
             return 0;
           }
-          return (prevProgress + 1) * (100 / duration);
+          return prevProgress + increment;
         });
-      }, 1000);
+      }, 100); // Update every 100 milliseconds
     } else {
       console.warn("MuxPlayer element not found. Cue points can't be added.");
     }
@@ -382,6 +288,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                       currentItem={currentItem}
                       handlePlayClick={handlePlayClick}
                       setCurrentItem={setCurrentItem}
+                      convertToSeconds={convertToSeconds}
                       timestamps={highlights.map(
                         ({ start_timestamp }) => start_timestamp,
                       )}
@@ -455,12 +362,15 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                                     />
                                   </button>
                                   <div className="w-full absolute bottom-0 left-0 rounded-full h-1 bg-partnersBorders mt-4">
-                                    <div
-                                      className="absolute top-0 left-0 bg-skyblue h-full rounded-full"
-                                      style={{
-                                        width: `${highlightProgress}%`,
-                                      }}
-                                    ></div>
+                                    {currentItem === index && (
+                                      <div
+                                        className="absolute left-0 top-0 h-full bg-blue-500"
+                                        style={{
+                                          width: `${(highlightProgress / convertToMilliseconds(highlights[index].duration)) * 100}%`,
+                                          transition: 'width 0.1s linear',
+                                        }}
+                                      />
+                                    )}
                                   </div>
                                 </div>
                               </>
