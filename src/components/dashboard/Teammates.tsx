@@ -12,13 +12,8 @@ const Teammates: React.FC = () => {
   return (
     <>
       {teammates && teammates[0]?.name ? (
-        <div className=" w-full my-12 lg:mt-0 mx-4 lg:w-[300px]">
-          <h2 className="text-primary font-semibold mb-6 text-[20px]">
-            Teammates
-          </h2>
-          {/* <div className="h-1 bg-partnersBorders my-4" /> */}
-
-          <div className="flex lg:flex-col max-h-96 overflow-auto gap-3">
+        <div className=" w-full my-8 lg:my-12 lg:mt-0">
+          <div className="flex lg:flex-col gap-3 overflow-auto">
             {teammates.map((teammate) => (
               <div
                 key={`${teammate.name}-${teammate.number}`}

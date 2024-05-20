@@ -56,9 +56,9 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   });
 
   return (
-    <div className="w-full flex-col  justify-between items-center text-primary px-2">
+    <div className="w-full flex-col justify-between items-center text-primary px-2">
       {isFuture && (
-        <div className="flex justify-start gap-3 w-full mb-6">
+        <div className="flex justify-start gap-3 w-full 2sm:mb-6">
           <p className="text-sm md:text-base py-[4px]">{formattedDate}</p>
           {isThisWeek && (
             <p className="text-primary text-sm bg-chartRed font-semibold px-2 rounded-[3px] leading-7 shadow-sm">
@@ -68,43 +68,47 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
         </div>
       )}
 
-      <div className="flex items-center justify-between my-2 flex-col md:flex-row">
+      <div className="flex items-center justify-between my-2 flex-col 2sm:flex-row md:flex-row">
         {' '}
-        <div className="flex justify-between items-center w-full max-w-[200px] min-w-[200px] mr-2">
+        <div className="flex justify-between items-center w-full max-w-[200px] min-w-[200px] my-4 2sm:my-0 2sm:mr-2">
           {home_club_logo !== null && (
-            <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
+            <div className="relative w-[75px] 2sm:w-[60px] md:w-[65px] h-[75px] 2sm:h-[60px] md:h-[65px]">
               <Image src={home_club_logo} alt="Crest" layout="fill" />
             </div>
           )}
-          <div className="mx-[4px] min-w-12 flex justify-between md:mx-4">
+          <div className="mx-2 min-w-12 flex justify-between md:mx-3">
             <span>{home_score}</span> - <span>{away_score}</span>
           </div>
           {away_club_logo !== null && (
-            <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
+            <div className="relative w-[75px] 2sm:w-[60px] md:w-[65px] h-[75px] 2sm:h-[60px] md:h-[65px]">
               <Image src={away_club_logo} alt="Crest" layout="fill" />
             </div>
           )}
         </div>
-        <div className="flex-col justify-center items-center">
+        <div className="flex-col justify-center items-center mb-4 2sm:mb-0">
           <div className="relative flex flex-col md:flex-row md:items-center justify-center gap-4 w-full">
             <div className="flex-grow text-center md:text-right pr-2">
-              <span className="text-base md:text-base">{home_club}</span>
+              <span className="text-base 2sm:text-sm md:text-base">
+                {home_club}
+              </span>
             </div>
             <div className="absolute left-1/2 transform -translate-x-1/2 md:relative md:left-0 md:transform-none">
               <span className="text-skyblue">VS</span>
             </div>
             <div className="flex-grow text-center md:text-left pl-2 ">
-              <span className="text-base md:text-base">{away_club}</span>
+              <span className="text-base 2sm:text-sm md:text-base">
+                {away_club}
+              </span>
             </div>
           </div>
         </div>
         {isFuture ? (
-          <div className="text-sm text-offwhite text-center md:text-end min-w-[120px] flex flex-col gap-1 md:gap-[4px]">
-            <p>{formattedTime}</p>
+          <div className="text-sm text-offwhite text-center  min-w-[120px] md:gap-[4px]2sm:items-end flex flex-col items-center 2sm:text-end 2sm:items-end md:items-end mb-2">
+            <p className="text-center 2sm:text-end">{formattedTime}</p>
             <p>{location}</p>
             {isThisWeek && weather && (
-              <div className="flex items-center justify-center md:justify-end">
-                <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
+              <div className="flex items-center justify-center 2sm:justify-end">
+                <div className="relative w-[18px] md:w-[30px] h-[18px] md:h-[30px]">
                   <Image src={localWeatherIcon} alt="Crest" layout="fill" />
                 </div>
                 <span>{weather.tempCelc}°C</span>
@@ -112,10 +116,10 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
             )}
           </div>
         ) : (
-          <div className="flex flex-col items-center md:items-end">
+          <div className="flex flex-col items-center 2sm:items-end md:items-end">
             {' '}
             {!isFuture && (
-              <div className="flex flex-col items-center md:items-end mb-2">
+              <div className="flex flex-col items-center 2sm:text-end 2sm:items-end md:items-end mb-2">
                 {' '}
                 <div className="text-sm text-offwhite pt-[4px]">
                   {formattedDate}

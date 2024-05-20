@@ -151,10 +151,7 @@ const PastMatches: React.FC = () => {
   return (
     <>
       {past_matches && past_matches[0]?.home_club_logo ? (
-        <div className="w-full px-0 md:px-4 lg:px-0 lg:w-3/4 lg:max-w-[780px]  fixed-height h-full">
-          <h2 className="text-primary font-semibold text-md mb-6 bg-cardsDark px-4 py-2 shadow-portalNav rounded-[5px]">
-            Upcoming matches
-          </h2>
+        <div className="w-full px-0 md:px-4 lg:px-0">
           <motion.div
             ref={inViewRef}
             initial="hidden"
@@ -185,7 +182,7 @@ const PastMatches: React.FC = () => {
               </React.Fragment>
             ))}
           </motion.div>
-          <h2 className="text-primary font-semibold text-md mt-6 bg-cardsDark mb-6 px-4 py-2 shadow-portalNav rounded-[5px]">
+          <h2 className="text-primary font-semibold text-md mt-6 bg-cardsBackground mb-6 px-4 py-2 shadow-portalNav rounded-[5px] w-full">
             Past matches
           </h2>
           <motion.div
