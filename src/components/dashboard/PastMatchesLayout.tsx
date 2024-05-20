@@ -13,18 +13,18 @@ const PastMatchesLayout: React.FC = () => {
       }
     };
 
-    updateHeight(); // Initial height setting
-    window.addEventListener('resize', updateHeight); // Update height on window resize
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
 
-    return () => window.removeEventListener('resize', updateHeight); // Cleanup event listener
+    return () => window.removeEventListener('resize', updateHeight);
   }, []);
 
   return (
-    <div className="flex flex-col  w-full md:max-w-none lg:max-w-[1130px]">
+    <div className="flex flex-col  w-full md:max-w-none lg:max-w-[1130px] md:px-2">
       <div className="flex justify-between gap-8 pt-6">
         <h2 className="px-4 py-2 text-primary font-semibold w-full text-md bg-cardsBackground  shadow-portalNav rounded-[5px]">
           Upcoming matches
-        </h2>{' '}
+        </h2>
         <h2 className="hidden lg:block px-4 py-2 text-primary font-semibold  text-md lg:w-[350px] bg-cardsBackground  rounded-[5px]">
           Teammates
         </h2>

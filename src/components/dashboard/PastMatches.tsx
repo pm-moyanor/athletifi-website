@@ -151,7 +151,7 @@ const PastMatches: React.FC = () => {
   return (
     <>
       {past_matches && past_matches[0]?.home_club_logo ? (
-        <div className="w-full px-0 md:px-4 lg:px-0">
+        <div className="w-full ">
           <motion.div
             ref={inViewRef}
             initial="hidden"
