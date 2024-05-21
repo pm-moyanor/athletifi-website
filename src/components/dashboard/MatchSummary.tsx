@@ -3,13 +3,12 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTimes,
-  faPlayCircle,
-  faPauseCircle,
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { IMatchDataExtended } from '@/types/Dashboard.type';
 import HorizontalTimeline from './HorizontalTimeline';
+import SummaryHighlightCard from './SummaryHighlightCard';
 import MuxPlayer from '@mux/mux-player-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -24,11 +23,7 @@ interface MatchSummaryProps {
   matchData: IMatchDataExtended;
 }
 
-const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
-  matchData,
-}: {
-  matchData: IMatchDataExtended;
-}) => {
+const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
   const {
     home_club_logo,
     away_club_logo,
@@ -42,12 +37,13 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     playback_id,
     highlights,
   } = matchData;
+
   const [showRecap, setShowRecap] = useState(false);
-  const [currentItem, setCurrentItem] = useState(-1);
+  const [currentItem, setCurrentItem] = useState<number>(-1);
   const [isHighlightPlaying, setIsHighlightPlaying] = useState(false);
   const muxPlayerRef = useRef<MuxPlayer>(null);
-  const [highlightProgress, setHighlightProgress] = useState(0); // State for highlight progress
-  const intervalRef = useRef(null); // Ref to store interval ID
+  const [highlightProgress, setHighlightProgress] = useState<number>(0); // State for highlight progress
+  const intervalRef = useRef<NodeJS.Timeout | null>(null); // Ref to store interval ID
 
   const weatherIcon = weather?.weatherIcon;
   const iconNameWithoutExtension = weatherIcon?.split('.')[0];
@@ -58,7 +54,12 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     return (hours * 3600 + minutes * 60 + seconds) * 1000;
   }
 
-  const handlePlayClick = (index) => {
+  const handlePlayClick = (index: number) => {
+    if (!highlights) {
+      console.warn('Highlights are null or undefined.');
+      return;
+    }
+
     if (muxPlayerRef.current) {
       const cuePoints = highlights
         .map((highlight) => convertToMilliseconds(highlight.start_timestamp))
@@ -90,13 +91,13 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
       }
 
       const duration = convertToMilliseconds(highlights[index].duration);
-      clearInterval(intervalRef.current); // Clear previous interval
+      clearInterval(intervalRef.current!); // Clear previous interval
 
       intervalRef.current = setInterval(() => {
         setHighlightProgress((prevProgress) => {
           const increment = 100;
           if (prevProgress >= duration) {
-            clearInterval(intervalRef.current);
+            clearInterval(intervalRef.current!);
             setIsHighlightPlaying(false);
             return 0;
           }
@@ -115,7 +116,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
 
   // Function to handle pause
   const handlePause = () => {
-    clearInterval(intervalRef.current);
+    clearInterval(intervalRef.current!);
   };
 
   useEffect(() => {
@@ -137,7 +138,13 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   };
 
   const handleNextClick = () => {
-    setCurrentItem((prevItem) => Math.min(prevItem + 1, highlights.length - 1));
+    if (highlights) {
+      setCurrentItem((prevItem) =>
+        Math.min(prevItem + 1, highlights.length - 1),
+      );
+    } else {
+      console.log('no highlights available');
+    }
   };
 
   return (
@@ -265,7 +272,6 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                   {playback_id ? (
                     <div className="w-full h-full">
                       <MuxPlayer
-                        id="mux-player"
                         playbackId={playback_id}
                         ref={muxPlayerRef}
                         accent-color="#00C7FF"
@@ -306,7 +312,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                     </div>
                   )}
                 </div>
-                {highlights?.length > 1 ? (
+                {highlights && highlights.length > 1 ? (
                   <>
                     <HorizontalTimeline
                       currentItem={currentItem}
@@ -333,70 +339,19 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                           >
                             {playback_id && highlight.start_timestamp ? (
                               <>
-                                <div
-                                  key={`${highlight.clip_description}-info`}
+                                <SummaryHighlightCard
+                                  key={`${highlight.clip_description}-${index}`}
+                                  highlight={highlight}
+                                  index={index}
+                                  currentItem={currentItem}
+                                  isHighlightPlaying={isHighlightPlaying}
+                                  handlePlayClick={handlePlayClick}
+                                  setCurrentItem={setCurrentItem}
+                                  playback_id={playback_id}
+                                  accentColors={accentColors}
+                                  convertToMilliseconds={convertToMilliseconds}
+                                  highlightProgress={highlightProgress}
                                 />
-                                <div
-                                  key={`${highlight.clip_description}-highlight`}
-                                  style={{
-                                    backgroundColor: `${currentItem === index && isHighlightPlaying ? '#092C3E' : ''}`, //scale while the highlight is running
-                                    transform: `${currentItem === index && isHighlightPlaying ? 'scale(0.98)' : 'scale(1)'}`,
-                                    transition: `${currentItem === index && isHighlightPlaying ? 'transform 0.5s' : ''}`,
-                                    borderLeft: `8px solid ${accentColors[index + 1]}`,
-                                  }}
-                                  className={`flex justify-between bg-cardsBackground p-4 rounded-[5px] w-full mb-2 items-center `}
-                                >
-                                  <div className="video-info text-primary flex flex-col mr-2">
-                                    <div className="flex flex-col md:flex-row items-start  tracking-wide ">
-                                      <p className="text-sm text-offwhite mr-2 md:mr-4 mt-[2px]">
-                                        {highlight.start_timestamp}
-                                      </p>
-                                      <div className="flex flex-col">
-                                        <h3 className="text-base mb-2">{`Highlight 0${index + 1}`}</h3>
-
-                                        <p className="text-base font-light text-offwhitem-px">
-                                          {highlight.clip_description}
-                                        </p>
-
-                                        <p className="text-sm text-gray-500 m-px">
-                                          Duration:{' '}
-                                          {convertToSeconds(highlight.duration)}{' '}
-                                          seconds
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <button
-                                    className="w-12 relative flex items-center justify-center h-full"
-                                    onClick={() => {
-                                      handlePlayClick(index);
-                                      setCurrentItem(index);
-                                    }}
-                                  >
-                                    <div className="rounded-full bg-primary h-8 w-8 absolute"></div>
-                                    <FontAwesomeIcon
-                                      icon={
-                                        isHighlightPlaying &&
-                                        currentItem === index
-                                          ? faPauseCircle
-                                          : faPlayCircle
-                                      }
-                                      className="text-skyblue h-8 w-8 absolute"
-                                    />
-                                  </button>
-                                  <div className="w-full absolute bottom-0 left-0 rounded-full h-1 bg-partnersBorders mt-4">
-                                    {currentItem === index && (
-                                      <div
-                                        className="absolute left-0 top-0 h-full bg-darkerSkyBlue"
-                                        style={{
-                                          width: `${(highlightProgress / convertToMilliseconds(highlights[index].duration)) * 100}%`,
-                                          transition: 'width 0.1s linear',
-                                        }}
-                                      />
-                                    )}
-                                  </div>
-                                </div>
                               </>
                             ) : (
                               <div className="bg-partnersBorders rounded-[4px] w-full min-h-[128px] md:max-w-[450px] flex justify-center items-center text-center">
