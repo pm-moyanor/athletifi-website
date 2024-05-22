@@ -129,8 +129,13 @@ export interface IMatchData {
 
 export interface IMatchDataWithWeather extends IMatchData {
   weather?: {
+    date?: string | null;
+    location?: string | null;
+    precipIn?: number | null;
+    precipMm?: number | null;
     weatherIcon?: string | null;
-    tempFahr: number | null;
+    tempFahr?: number | null;
+    tempCelc?: number | null;
   };
 }
 
@@ -142,7 +147,7 @@ export const emptyLatestMatchData: IMatchDataWithWeather = {
   match_id: '',
   datetime: null,
   location: null,
-  weather: { tempFahr: null },
+  weather: { tempFahr: null, tempCelc: null },
   home_club: null,
   home_club_logo: null,
   home_score: null,
@@ -217,9 +222,12 @@ export interface IMatchDataExtended extends IMatchDataWithWeather {
   away_club_logo: string | null;
   home_club: string | null;
   away_club: string | null;
+  home_team?: string | null;
+  away_team?: string | null;
   home_score: number | null;
   away_score: number | null;
   playback_id: string | null;
+  video_key?: string | null;
   highlights: IHighlight[] | null;
 }
 
@@ -233,7 +241,7 @@ export const emptyMatchData: IMatchDataExtended = {
   away_score: null,
   datetime: null,
   location: null,
-  weather: { tempFahr: null },
+  weather: { tempFahr: null, tempCelc: null },
   playback_id: null,
   highlights: null,
 };
