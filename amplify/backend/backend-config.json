@@ -17,7 +17,6 @@
           "NAME"
         ],
         "socialProviders": [
-          "FACEBOOK",
           "GOOGLE"
         ],
         "usernameAttributes": [
