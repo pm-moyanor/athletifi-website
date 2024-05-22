@@ -12,7 +12,7 @@ const sourceSans3 = Source_Sans_3({
   display: 'swap',
 });
 
-const card_url = './../../../public/assets/img/png/anderson-card-img.png';
+const card_url = '/assets/img/png/anderson-card-img.png';
 
 // might be worth to split this component in 2 (for guests and intitations), it's a bit long
 // the UI is updated and a dropdown to enter the info to invite to access the card. the rest of the logic is on hold till we change state handling strategy
