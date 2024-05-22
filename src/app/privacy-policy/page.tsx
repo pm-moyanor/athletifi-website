@@ -4,15 +4,10 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import { SEO_CONFIG } from '@/utils/seoConfig';
 import PrivacyPolicy from '@/components/terms/PrivacyPolicy';
-import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SEO_CONFIG.privacyPolicy.websiteURL),
+export const metadata = {
   title: SEO_CONFIG.privacyPolicy.title,
-  openGraph: {
-    description: SEO_CONFIG.privacyPolicy.description,
-    images: SEO_CONFIG.privacyPolicy.image,
-  },
+  description: SEO_CONFIG.privacyPolicy.description,
 };
 
 const PrivacyPolicyPage = () => {

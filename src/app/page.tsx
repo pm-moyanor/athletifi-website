@@ -13,7 +13,6 @@ import BeyondNumbers from '@/components/home/BeyondNumbers';
 import HeroHomepage from '@/components/home/HeroHomepage';
 import { SEO_CONFIG } from '@/utils/seoConfig';
 import { getNewsList } from '@/utils/ApiHelper';
-import { Metadata } from 'next';
 
 const BackToTop = dynamic(() => import('@/components/common/BackToTop'), {
   ssr: false,
@@ -25,15 +24,15 @@ const Preloader = dynamic(() => import('@/components/common/Preloader'), {
 const IMAGE_WIDTH_HERO_GRID = 700;
 const IMAGE_HEIGHT_HERO_GRID = 700;
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SEO_CONFIG.home.websiteURL),
-  keywords: ['AthletiFi', 'Club Soccer', 'Club Football'], // TODO: update keywords
+// export const metadata = {
+const metadata = {
   title: SEO_CONFIG.home.title,
+  description: SEO_CONFIG.home.description,
   openGraph: {
-    description: SEO_CONFIG.home.description,
     images: SEO_CONFIG.home.image,
   },
 };
+console.log(`TODO: Implement metadata properly ${metadata}`);
 
 // Main function component for the home page
 export default async function Home() {

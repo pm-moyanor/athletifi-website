@@ -4,15 +4,10 @@ import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import { SEO_CONFIG } from '@/utils/seoConfig';
 import TermsOfUse from '@/components/terms/TermsOfUse';
-import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SEO_CONFIG.termsOfUse.websiteURL),
+export const metadata = {
   title: SEO_CONFIG.termsOfUse.title,
-  openGraph: {
-    description: SEO_CONFIG.termsOfUse.description,
-    images: SEO_CONFIG.termsOfUse.image,
-  },
+  description: SEO_CONFIG.termsOfUse.description,
 };
 
 const TermsOfUsePage = () => {
