@@ -344,7 +344,7 @@ export function useUserData() {
         }
       }
     }
-  }, [latestChange, setUserData, userData]);
+  }, [latestChange]);
 
   function resetUserDataState() {
     setUserData({
