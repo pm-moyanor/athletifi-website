@@ -10,21 +10,25 @@ import { ComponentOverrides, FormFieldsOverrides } from './AuthOverrides';
 // import { signUp, type SignUpInput } from 'aws-amplify/auth';
 import { loginTheme, sourceSans3 } from './AuthTheme';
 import { useSearchParams } from 'next/navigation';
-import { inviteIdAtom } from '@/states/userStore';
+import { inviteIdAtom, redirectAtom } from '@/states/userStore';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
-import { SignUpInput, /*SignUpOutput,*/ signUp } from 'aws-amplify/auth';
+import { useRouter } from 'next/navigation';
+import { SignUpInput, signUp } from 'aws-amplify/auth';
 import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
 import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
 
 const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const oauthCode = searchParams.get('code');
 
   const [inviteId, setInviteId] = useAtom(inviteIdAtom);
+  const [redirectUrl, setRedirectUrl] = useAtom(redirectAtom);
 
   useEffect(() => {
     const storedInviteId = searchParams.get('invite_id');
+
     if (storedInviteId) {
       setInviteId(storedInviteId);
     }
@@ -37,6 +41,21 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
     context.user,
     context.route,
   ]);
+
+  useEffect(() => {
+    const redirectPath = searchParams.get('redirect') || '/profile';
+    setRedirectUrl(redirectPath);
+  }, [searchParams, setRedirectUrl]);
+
+  useEffect(() => {
+    if (route === 'authenticated') {
+      if (redirectUrl === null) {
+        router.push('/profile');
+      } else {
+        router.push(redirectUrl);
+      }
+    }
+  }, [route, redirectUrl, router]);
 
   const services = {
     async handleSignUp(formData: SignUpInput) {
@@ -57,10 +76,6 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
     if (user && route === 'authenticated') {
       handleFetchUserAttributes()
         .then((userAttributes) => {
-          console.log(
-            'inviteId (inside handleFetchUserAttributes): ',
-            inviteId,
-          );
           handlePostSignIn(userAttributes, inviteId).catch((err) => {
             console.error('Error in post sign-in:', err);
           });

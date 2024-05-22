@@ -7,27 +7,29 @@ import Footer from '@/components/common/Footer';
 import Navbar from '@/components/dashboard/Navbar';
 import { useRouter } from 'next/navigation';
 import { useAuthenticator } from '@aws-amplify/ui-react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useAtom } from 'jotai';
+import { redirectAtom } from '@/states/userStore';
 
 const hero: Hero = {
   heading: '',
 };
 
 const ResolveAuthPage = () => {
-  const [nextRedirect, setNextRedirect] = useState<string | null>(null);
+  const [redirectUrl] = useAtom(redirectAtom);
 
   const router = useRouter();
   const { route } = useAuthenticator((context) => [context.route]);
 
   useEffect(() => {
-    setNextRedirect(localStorage.getItem('nextRedirect'));
-  }, []);
-
-  useEffect(() => {
-    if (route === 'authenticated' && nextRedirect) {
-      router.push(nextRedirect.replace(/"/g, ''));
+    if (route === 'authenticated') {
+      if (redirectUrl === null) {
+        router.push('/profile');
+      } else {
+        router.push(redirectUrl);
+      }
     }
-  }, [route, nextRedirect, router]);
+  }, [route, redirectUrl, router]);
 
   return (
     <>

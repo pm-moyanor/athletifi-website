@@ -18,14 +18,5 @@ export type AmplifyDependentResourcesAttributes = {
       "athletifiReferralUsersGroupRole": "string",
       "athletifiTeamAdminUsersGroupRole": "string"
     }
-  },
-  "function": {
-    "athletifiAuthCustomMessage": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "LambdaExecutionRoleArn": "string",
-      "Name": "string",
-      "Region": "string"
-    }
   }
 }

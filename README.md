@@ -1,28 +1,34 @@
 # AthletiFi Website
 
-This is the repository for the athleti.fi website.
+This is the repository for the AthletiFi platform. AthletiFi is a sports technology company focused on transforming youth soccer development and analytics. To that aim we have created a comprehensive platform that offers in-depth analytics and valuable features tailored to the needs of the youth soccer community.
 
-Our mission at AthletiFi is to redefine the way soccer fans engage with and support emerging talent in the world of soccer. We do this by creating digital sports trading cards that dynamically display a player's latest performance stats using AI-assisted video recognition technology.
+## Architecture Overview
 
-Each card represents a young player from elite soccer academies with whom we've partnered. By acquiring these player cards, fans can follow and support promising young athletes and follow their journey in a unique and engaging way. Additionally, the cards will be usable in an upcoming Web3 game, adding an extra layer of interactivity and fun.
+The AthletiFi Dashboard is built using the following architecture:
 
-Our project is about more than just player cards - it's about building a sustainable ecosystem that benefits players, academies, and communities. AthletiFi employs a revenue-sharing model where proceeds from the platform go directly back to supporting the young players.
+- **Frontend**: Next.js framework with Tailwind CSS for UI development
+- **Backend**: AWS Lambda functions and API Gateway for serverless API endpoints
+- **Database**: AWS RDS PostgreSQL for data storage
+- **Authentication**: AWS Amplify and Cognito for user authentication and authorization
+- **CMS**: Strapi for content management
 
-## Technology Stack
+The frontend communicates with the backend API endpoints to fetch and update data from the PostgreSQL database. AWS Amplify and Cognito handle user authentication and secure access to protected routes and resources. Strapi is used as the headless CMS for managing content.
 
-### Front-End Tools
+## Key Technologies
 
-- **Framework**: Next.js
-- **Programming Language**: TypeScript
-- **CSS Framework**: Tailwind
-- **Code Formatting**: ESLint and Prettier
+The AthletiFi project utilizes the following key technologies:
 
-### Back-End Tools
-
-- **CMS**: Strapi
-- **Database**: PostgreSQL hosted on AWS RDS
-- **Serverless Functions**: AWS Lambda
-- **API Management**: AWS API Gateway
+- **Next.js**: A React framework for server-side rendering, automatic code splitting, and simple client-side routing.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+- **AWS Lambda**: Serverless compute service for running backend code without provisioning or managing servers.
+- **AWS API Gateway**: Fully managed service for creating, publishing, and securing APIs at any scale.
+- **AWS RDS PostgreSQL**: Managed relational database service for storing structured data.
+- **AWS Amplify**: Development platform for building secure and scalable mobile and web applications.
+- **AWS Cognito**: User authentication and authorization service.
+- **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript.
+- **Jotai**: A primitive and flexible state management library for React.
+- **Recharts**: A composable charting library built on React components.
+- **Strapi**: A next-gen headless CMS for content-rich experiences.
 
 ## Getting Started
 
@@ -39,11 +45,7 @@ Our project is about more than just player cards - it's about building a sustain
    yarn dev
    ```
 
-4. Open `http://localhost:3000` with your browser to see the result.
-
-You can start editing the page by modifying pages/index.tsx. The page auto-updates as you edit the file.
-
-### Back-End Installation
+### Strapi CMS Setup
 
 1. Strapi is a next-gen headless CMS that allows for content-rich experiences.
 2. Create a new Strapi app:
@@ -57,6 +59,64 @@ You can start editing the page by modifying pages/index.tsx. The page auto-updat
    ```bash
    yarn run development
    ```
+
+## Amplify Setup
+
+To set up AWS Amplify for the AthletiFi project, follow these steps:
+
+1. Install the AWS Amplify CLI globally:
+
+   ```bash
+   yarn global add @aws-amplify/cli
+   ```
+
+2. Configure Amplify by running the following command:
+
+   ```bash
+   amplify configure
+   ```
+
+   This will open the AWS Management Console in your web browser.
+
+3. If prompted, click on "Open AWS Console" and sign in to your AWS account. If you don't have an account, you can create a new one.
+
+4. In the Amplify CLI, press Enter to continue.
+
+5. Specify the AWS Region for the Amplify project (e.g., `us-east-2`).
+
+6. Provide the access key ID and secret access key for your AWS IAM user. These credentials can be found in the provided CSV file. Be careful not to share or expose these sensitive credentials.
+
+7. Choose a profile name for the Amplify configuration (e.g., `default`).
+
+8. After the configuration is complete, run the following command to pull the existing Amplify project:
+
+   ```bash
+   amplify pull
+   ```
+
+9. When prompted, select the following options:
+   - Choose the AWS profile: `default`
+   - Choose the Amplify environment: `athletifi-website`
+   - Confirm the project setup
+   - Select code generation language: `javascript`
+   - Select framework: `react`
+   - Use the default `src` directory path
+   - Set the distribution directory path to `.next`
+   - Use `yarn` as the package manager
+   - Set the build command to `yarn build`
+   - Set the start command to `yarn start`
+
+10. After the Amplify project is pulled successfully, you can start the development server using:
+
+    ```bash
+    yarn dev
+    ```
+
+If you encounter any issues during the build process, make sure to run `yarn install` to install any missing dependencies.
+
+Note: The `amplify serve` command can be used to start the application using the Amplify server, but it requires a production build to be available in the `.next` directory. If you want to use `amplify serve`, make sure to run `yarn build` first.
+
+For more information on AWS Amplify and its setup process, refer to the official Amplify documentation: [AWS Amplify Docs](https://docs.amplify.aws/)
 
 ## ESLint and Prettier Setup for VS Code
 
@@ -93,3 +153,71 @@ Assuming you have already run `yarn install` which installs all the dependencies
      }
    }
    ```
+
+## File Structure
+
+The project follows a standard Next.js file structure:
+
+- **/app**: Contains the main Next.js pages and API routes.
+  - **/api**: Holds the backend API routes that connect to AWS Lambda functions.
+  - **/addUser**: Adds a new user.
+  - **/contact**: Handles contact/support requests.
+  - **/dashboard/[...cardId]**: Fetches data for a specific player dashboard based on their card ID.
+  - **/news/[slug]**: Retrieves a specific news article based on the slug.
+  - **/signup**: Handles user sign-up flow.
+  - **/user**: Manages user data and preferences.
+  - **/video**: Serves video content.
+- **/(auth)**: Contains auth-protected pages that require login.
+  - **/dashboard/[...cardId]**: The main dashboard page for an individual player.
+  - **/help-support**: Help and support pages.
+  - **/profile**: User profile management page.
+  - **/settings**: User account settings.
+- **/public**: Publicly hosted static files like images, fonts, and videos.
+- **/src**: Contains the application source code.
+  - **/components**: React components organized by feature/page.
+  - **/states**: Jotai global state atoms and custom hooks.
+  - **/styles**: Custom CSS stylesheets.
+  - **/types**: TypeScript type/interface definitions.
+  - **/utils**: Utility and helper functions.
+
+## Component Descriptions
+
+The AthletiFi project is organized into various components based on features and pages. Each component serves a specific purpose and is responsible for rendering a part of the user interface or handling specific functionality. Detailed descriptions of each component can be found in the [Component Descriptions](#component-descriptions) section.
+
+## API Routes
+
+The project includes several API routes that handle requests and communicate with the backend services. These routes are defined in the `/app/api` directory and include endpoints for user management, player dashboards, news articles, and more. Detailed descriptions of each API route can be found in the [API Routes](#api-routes) section.
+
+## Utility Functions
+
+The project includes various utility functions that provide helper functionalities and abstractions for common tasks. These functions are organized in the `/src/utils` directory and cover areas such as data transformation, API requests, authentication, and more. Detailed descriptions of each utility function can be found in the [Utility Functions](#utility-functions) section.
+
+## State Management
+
+The project uses Jotai for global state management. Jotai is a primitive and flexible state management library for React that allows you to define global state atoms and access them from any component. The state atoms and custom hooks are defined in the `/src/states` directory.
+
+## Styling
+
+The project uses Tailwind CSS for styling the user interface. Tailwind CSS provides a set of utility classes that can be composed to quickly build custom designs. The configuration for Tailwind CSS can be found in the `tailwind.config.js` file. Custom CSS styles are defined in the `/src/styles` directory.
+
+## Deployment
+
+The AthletiFi Dashboard is deployed using AWS Amplify. The deployment configuration is defined in the `amplify.yml` file. AWS Amplify provides a seamless way to deploy and manage the application, including provisioning the necessary AWS resources and handling continuous deployment.
+
+## Best Practices
+
+To ensure code quality and maintainability, the project follows various best practices:
+
+- Use TypeScript for type safety and improved developer experience.
+- Follow a consistent code style and naming conventions.
+- Use meaningful and descriptive names for components, functions, and variables.
+- Keep components small and focused on a single responsibility.
+- Use Jotai for global state management and avoid prop drilling.
+- Leverage Tailwind CSS for rapid UI development and consistency.
+- Write unit tests for critical components and functions.
+- Use Git for version control and follow a branching strategy.
+- Regularly update dependencies and address security vulnerabilities.
+
+## Troubleshooting
+
+If you encounter any issues or errors during development or deployment, refer to the [Troubleshooting](#troubleshooting) section for common solutions and debugging techniques. If the issue persists, reach out to the development team or consult the project's issue tracker for further assistance.

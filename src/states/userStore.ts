@@ -64,6 +64,10 @@ const createStorageWithExpiration = (storage: Storage, expiration: number) => ({
 export let inviteIdAtom:
   | WritableAtom<string | null, [string | null], void>
   | PrimitiveAtom<string | null>;
+// Define `redirectUrlAtom` differently based on environment
+export let redirectAtom:
+  | WritableAtom<string | null, [string | null], void>
+  | PrimitiveAtom<string | null>;
 
 if (isBrowser()) {
   const expirationInMs = 5 * 60 * 60 * 1000; // 5 hours in milliseconds
@@ -71,9 +75,11 @@ if (isBrowser()) {
 
   // atomWithStorage accepts a storage interface and utilizes a tuple for updates
   inviteIdAtom = atomWithStorage<string | null>('inviteId', null, storage);
+  redirectAtom = atomWithStorage<string | null>('redirectUrl', null, storage);
 } else {
   // Simple atom that only stores a value without complex updates.
   inviteIdAtom = atom<string | null>(null);
+  redirectAtom = atom<string | null>(null);
 }
 
 function transformNotificationPreferences(dataArray: NotificationTypes[]) {
@@ -196,6 +202,7 @@ export function useUserData() {
     const unsubscribe = Hub.listen('auth', ({ payload: { event } }) => {
       if (event === AuthEvents.SignedOut) {
         setInviteId(null); // This will remove invite_id from localStorage
+        console.log('user is signed out! Remove the inviteId!');
       }
     });
 
@@ -205,7 +212,7 @@ export function useUserData() {
   // Fetch the user data whenever the amplify_id changes
   useEffect(() => {
     fetchUserData(userData, setUserData, inviteId);
-  }, [isLoggedIn]);
+  }, [isLoggedIn, inviteId]);
 
   useEffect(() => {
     const baseURL =
@@ -322,7 +329,7 @@ export function useUserData() {
         }
       }
     }
-  }, [latestChange, setUserData, userData]);
+  }, [latestChange]);
 
   function resetUserDataState() {
     setUserData({
