@@ -27,9 +27,9 @@ const FlipCard: React.FC<FlipCardProps> = ({ cardUrl }) => {
         stiffness: 100,
         damping: 15,
       }}
-      className="w-full h-full md:max-w-[300px] lg:max-w-[400px]"
+      className="w-full h-full md:max-w-[400px] md:min-w-[250px] lg:min-w-[380px] lg:ml-4 mt-10 md:mt-0"
     >
-      <div className="relative w-full h-full ">
+      <div className="relative w-full h-auto">
         <Image
           src={cardUrl}
           alt="Player card"
