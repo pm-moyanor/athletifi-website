@@ -83,7 +83,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
           muxPlayerRef.current.pause();
         } else {
           muxPlayerRef.current.currentTime = cuePoints[index] / 1000 || 0;
-          muxPlayerRef.current.play();
+          muxPlayerRef.current.play(0);
         }
 
         setIsHighlightPlaying(!isHighlightPlaying);
@@ -91,7 +91,8 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
       }
 
       const duration = convertToMilliseconds(highlights[index].duration);
-      clearInterval(intervalRef.current!); // Clear previous interval
+      clearInterval(intervalRef.current!);
+      setHighlightProgress(0);
 
       intervalRef.current = setInterval(() => {
         setHighlightProgress((prevProgress) => {
@@ -116,7 +117,8 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
 
   // Function to handle pause
   const handlePause = () => {
-    clearInterval(intervalRef.current!);
+    clearInterval(intervalRef.current);
+    //setHighlightProgress(0);
   };
 
   useEffect(() => {
