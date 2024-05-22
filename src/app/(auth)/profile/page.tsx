@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,6 +9,10 @@ import { IProfileProps } from '@/types/Dashboard.type';
 import Header from '@/components/user-portal/Header';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
 import Card from '@/../public/assets/img/png/anderson-card-img.png';
+import { useAtom } from 'jotai';
+import { postHelperResponseAtom } from '@/states/userStore';
+import AlertModal from '@/components/common/AlertModal';
+import { AlertModalType } from '@/types/AlertModalType';
 
 const profileProps: IProfileProps = {
   name: 'Mariano Jose Alvarez',
@@ -70,6 +74,29 @@ const variants = {
 };
 
 const Profile = () => {
+  const [inviteData] = useAtom(postHelperResponseAtom);
+  const [inviteStatus, setInviteStatus] = useState<AlertModalType | null>();
+  // const [openModal, setOpenModal] = useState<boolean>(false);
+  console.log('inviteData object', inviteData);
+  useEffect(() => {
+    const hasShownModal = localStorage.getItem('hasShownModal');
+    if (!hasShownModal && inviteData && inviteData.invitation.invite_id) {
+      setInviteStatus({
+        title: 'Card Access Unavailable',
+        textBody: inviteData.invitation.invite_status,
+      });
+      // store invite id values in local storage to manage the hasShownModal boolean, in case the users sees the modal again after login. use an array.
+      localStorage.setItem('hasShownModal', 'true');
+      //wipe the local store after user logouts
+    }
+  }, [inviteData]);
+
+  console.log(inviteStatus);
+
+  const closeModal = () => {
+    setInviteStatus(null);
+  };
+
   // const [openIndex, setOpenIndex] = useState<boolean[]>(
   //   Array(populatedTeams.length).fill(false),
   // );
@@ -127,6 +154,13 @@ const Profile = () => {
             variants={variants}
             className="overflow-hidden w-full max-w-[1030px] mb-4 text-primary bg-cardsDark shadow-lg rounded-10  flex flex-col px-4 py-8"
           >
+            {inviteStatus && (
+              <AlertModal
+                title={inviteStatus.title}
+                textBody={inviteStatus.textBody}
+                onClose={closeModal}
+              />
+            )}
             <h2 className=" font-semibold text-primary">My cards</h2>
             <div className="flex flex-col">
               <div className="h-1 w-full bg-partnersBorders opacity-50 my-2"></div>
