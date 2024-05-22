@@ -81,6 +81,7 @@ const Profile = () => {
   useEffect(() => {
     const hasShownModal = localStorage.getItem('hasShownModal');
     if (!hasShownModal && inviteData && inviteData.invitation.invite_id) {
+      // TODO: create the appropriate message for users to see base on the keyword from the invite_status
       setInviteStatus({
         title: 'Card Access Unavailable',
         textBody: inviteData.invitation.invite_status,

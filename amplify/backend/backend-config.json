@@ -2,17 +2,7 @@
   "auth": {
     "athletifiAuth": {
       "customAuth": false,
-      "dependsOn": [
-        {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "athletifiAuthCustomMessage",
-          "triggerProvider": "Cognito"
-        }
-      ],
+      "dependsOn": [],
       "frontendAuthConfig": {
         "mfaConfiguration": "OPTIONAL",
         "mfaTypes": [
@@ -57,13 +47,7 @@
       "service": "Cognito-UserPool-Groups"
     }
   },
-  "function": {
-    "athletifiAuthCustomMessage": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    }
-  },
+  "function": {},
   "parameters": {
     "AMPLIFY_auth_athletifiAuth_facebookAppId": {
       "usedBy": [
