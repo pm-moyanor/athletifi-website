@@ -136,14 +136,18 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({ matchData }) => {
   };
 
   const handlePrevClick = () => {
-    setCurrentItem((prevItem) => Math.max(prevItem - 1, 0));
+    if (currentItem > 0) {
+      const newIndex = currentItem - 1;
+      setCurrentItem(newIndex);
+      handlePlayClick(newIndex);
+    }
   };
 
   const handleNextClick = () => {
-    if (highlights) {
-      setCurrentItem((prevItem) =>
-        Math.min(prevItem + 1, highlights.length - 1),
-      );
+    if (highlights && currentItem < highlights.length - 1) {
+      const newIndex = currentItem + 1;
+      setCurrentItem(newIndex);
+      handlePlayClick(newIndex);
     } else {
       console.log('no highlights available');
     }
