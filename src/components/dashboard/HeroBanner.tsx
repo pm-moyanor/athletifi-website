@@ -4,18 +4,18 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { IProfileProps } from '@/types/Dashboard.type';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import FlipCard from '@/components/dashboard/FlipCard';
+import { useDashboardData } from '@/states/dashboardStore';
+import { useParams } from 'next/navigation';
 
-const HeroBanner: React.FC<IProfileProps> = ({
-  name,
-  number,
-  club,
-  club_logo,
-  team,
-  card_url,
-}: IProfileProps) => {
+const HeroBanner: React.FC = () => {
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue);
+
+  const playerProfile = dashboardData.data?.playerProfile;
+
   const [isVisible, setIsVisible] = useState(true);
   const previousScrollY = useRef(0); // Ref to store previous scroll position
 
@@ -44,43 +44,68 @@ const HeroBanner: React.FC<IProfileProps> = ({
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
   };
 
+  const status = 'guest'; //  'owner' t test the owner label
   return (
     <SkeletonTheme baseColor="#113448" highlightColor="#525252">
-      <section className="relative items-center md:items-start flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[420px] lg:h-[370px] w-full md:max-w-[860px] lg:max-w-[1130px] px-4">
-        {club_logo ? (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: 'easeIn' }}
-            className=" md:w-2/3 lg:w-2/3 flex items-center md:items-start justify-center lg:justify-start mb-[10px] md:mt-[200px] lg:mb-[50px] max-w-[700px]"
-          >
-            <div className="relative w-[90px] md:w-[110px] h-[90px] md:h-[110px] min-w-[90px]  flex justify-center items-center">
-              <Image alt="club-logo" src={club_logo} layout="fill" />
-            </div>
+      <section className="relative items-center md:items-end flex flex-col-reverse md:flex-row justify-center md:justify-betweenh-screen md:h-[420px] lg:h-[370px] w-full md:max-w-[800px] lg:max-w-[1130px] px-6 ">
+        {playerProfile?.club_logo ? (
+          <div className="w-full flex flex-col md:flex-grow md:items-start lg:max-w-[640px]">
+            {cardId && (
+              <div className="flex mb-2 justify-center">
+                <h2 className="text-primary text-[20px] font-semibold">
+                  Card #{cardId[1]}
+                </h2>
+                <div
+                  className={`px-4 h-[30px] rounded-[5px] ml-3 flex items-center ${
+                    status === 'guest' ? 'bg-chartOrange' : 'bg-chartBlue'
+                  }`}
+                >
+                  <p className=" text-primary">
+                    {status === 'guest' ? 'Guest access' : 'Owner'}
+                  </p>
+                </div>
+              </div>
+            )}
+            <span className="block h-px w-full bg-partnersBorders my-[4px]" />
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: 'easeIn' }}
+              className=" flex items-center justify-center mb-12 md:mb-4 max-w-[700px] gap-[4px] tracking-wide"
+            >
+              <div className="relative w-[130px] h-[130px] min-w-[120px] flex justify-center items-center">
+                <Image
+                  alt="club-logo"
+                  src={playerProfile?.club_logo}
+                  layout="fill"
+                />
+              </div>
 
-            <div className="flex flex-col justify-center items-start pl-2 md:pl-4 md:w-full max-w-[576px]">
-              <h2 className=" font-bold text-lg md:text-lgl text-primary relative mb-1">
-                {name}
-              </h2>
-              <p className="text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative ">
-                {club}
-              </p>
-              <p className="text-sm md:text-base leading-4 text-start text-primary opacity-80 lg:max-w-769 relative ">
-                {`team ${team}`}
-              </p>
-              <p className="text-sm md:text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative ">
-                {`#${number}`}
-              </p>
-              <span className="hidden md:block h-px w-full my-4 bg-partnersBorders" />
-            </div>
-          </motion.div>
+              <div className="flex flex-col justify-center items-start ">
+                <h2 className=" font-bold text-[28px] md:text-lg2xl text-primary relative">
+                  {playerProfile?.name}
+                </h2>
+                <div className="flex flex-col justify-start leading-4 gap-2">
+                  <p className="text-base text-start text-primary font-light ">
+                    {playerProfile?.club}
+                  </p>
+                  <p className="text-base text-start text-primary font-light ">
+                    {`team ${playerProfile?.team}`}
+                  </p>
+                  <p className="text-base text-start text-primary font-light ">
+                    {`#${playerProfile?.number}`}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         ) : (
           <div className="w-full h-1"></div>
         )}
 
-        {card_url ? (
-          <div className="md:mt-20 lg:-mb-[255px]">
-            <FlipCard cardUrl={card_url} />
+        {playerProfile?.card_url ? (
+          <div className="md:-mb-[50px] lg:-mb-[255px]">
+            <FlipCard cardUrl={playerProfile?.card_url} />
           </div>
         ) : (
           <div className="mb-20 md:-mb-10 lg:mt-[100px]">

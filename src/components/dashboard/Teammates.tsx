@@ -1,19 +1,19 @@
 import React from 'react';
 import Image from 'next/image';
-import { ITeammates } from '@/types/Dashboard.type';
 import Skeleton from 'react-loading-skeleton';
+import { useParams } from 'next/navigation';
+import { useDashboardData } from '@/states/dashboardStore';
 
-const Teammates: React.FC<ITeammates> = ({ teammates }: ITeammates) => {
+const Teammates: React.FC = () => {
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue);
+  const teammates = dashboardData?.data?.teammates;
   return (
     <>
       {teammates && teammates[0]?.name ? (
-        <div className=" w-full my-12 lg:mt-0 mx-4 lg:w-[300px]">
-          <h2 className="text-primary font-semibold mb-6 text-[20px]">
-            Teammates
-          </h2>
-          {/* <div className="h-1 bg-partnersBorders my-4" /> */}
-
-          <div className="flex lg:flex-col max-h-96 overflow-auto gap-3">
+        <div className=" w-full my-8 lg:my-12 lg:mt-0">
+          <div className="flex lg:flex-col gap-3 overflow-auto">
             {teammates.map((teammate) => (
               <div
                 key={`${teammate.name}-${teammate.number}`}

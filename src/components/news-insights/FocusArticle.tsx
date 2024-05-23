@@ -1,7 +1,7 @@
 // This is the article that appears in the headline section (aka Hero) on top of the News page.
 import Link from 'next/link';
 import React from 'react';
-import BlueButton from '../common/BlueButton';
+import BlueButton from '@/components/common/BlueButton';
 import Image from 'next/image';
 import moment from 'moment';
 import { Articles, NewsArticle } from '@/types/News.type';

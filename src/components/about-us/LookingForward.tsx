@@ -4,7 +4,7 @@
 // It provides background information about the company and its team.
 
 import React from 'react';
-import { BlueShadow, UnderLineText } from '../common/Icon';
+import { BlueShadow, UnderLineText } from '@/components/common/Icon';
 import Image from 'next/image';
 
 const FOOTBALL_IMAGE_WIDTH: number = 176;

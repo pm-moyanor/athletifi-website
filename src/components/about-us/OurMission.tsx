@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { BlueShadow, UnderLineText } from '../common/Icon';
+import { BlueShadow, UnderLineText } from '@/components/common/Icon';
 
 const SHADOW_IMAGE_WIDTH: number = 500;
 const SHADOW_IMAGE_HEIGHT: number = 500;

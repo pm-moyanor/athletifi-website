@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faCloud } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { IMatchDataExtended } from '@/types/Dashboard.type';
 import MuxPlayer from '@mux/mux-player-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -11,11 +11,17 @@ function convertToSeconds(timestamp: string): number {
   return hours * 3600 + minutes * 60 + seconds;
 }
 
-const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
-  matchData,
-}: {
+interface MatchSummaryProps {
   matchData: IMatchDataExtended;
-}) => {
+  isFuture?: boolean;
+  isThisWeek?: boolean;
+}
+
+const MatchSummary: React.FC<MatchSummaryProps> = ({
+  matchData,
+  isFuture = false,
+  isThisWeek = false,
+}: MatchSummaryProps) => {
   const [showRecap, setShowRecap] = useState(false);
   const {
     home_club_logo,
@@ -30,45 +36,108 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
     playback_id,
     highlights,
   } = matchData;
-  console.log(highlights);
+
+  const weatherIcon = weather?.weatherIcon;
+  const iconNameWithoutExtension = weatherIcon?.split('.')[0];
+  const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
+
   const handleSummaryClick = () => {
     setShowRecap(true);
   };
+  const dateTime = new Date(datetime as string);
+  const formattedDate = dateTime.toLocaleDateString('en-GB', {
+    weekday: 'long',
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+  const formattedTime = dateTime.toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 
   return (
-    // MATCH basic INFO
+    <div className="w-full flex-col justify-between items-center text-primary px-2">
+      {isFuture && (
+        <div className="flex justify-start gap-3 w-full 2sm:mb-6">
+          <p className="text-sm md:text-base py-[4px]">{formattedDate}</p>
+          {isThisWeek && (
+            <p className="text-primary text-sm bg-chartRed font-semibold px-2 rounded-[3px] leading-7 shadow-sm">
+              This Week
+            </p>
+          )}
+        </div>
+      )}
 
-    <div className="w-full flex justify-around lg:justify-between items-center text-primary ">
-      <div className="flex justify-between items-center w-full max-w-[200px] min-w-[140px] mr-2">
-        {home_club_logo !== null && (
-          <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
-            <Image src={home_club_logo} alt="Crest" layout="fill" />
+      <div className="flex items-center justify-between my-2 flex-col 2sm:flex-row md:flex-row">
+        {' '}
+        <div className="flex justify-between items-center w-full max-w-[200px] min-w-[200px] my-4 2sm:my-0 2sm:mr-2">
+          {home_club_logo !== null && (
+            <div className="relative w-[75px] 2sm:w-[60px] md:w-[65px] h-[75px] 2sm:h-[60px] md:h-[65px]">
+              <Image src={home_club_logo} alt="Crest" layout="fill" />
+            </div>
+          )}
+          <div className="mx-2 min-w-12 flex justify-between md:mx-3">
+            <span>{home_score}</span> - <span>{away_score}</span>
+          </div>
+          {away_club_logo !== null && (
+            <div className="relative w-[75px] 2sm:w-[60px] md:w-[65px] h-[75px] 2sm:h-[60px] md:h-[65px]">
+              <Image src={away_club_logo} alt="Crest" layout="fill" />
+            </div>
+          )}
+        </div>
+        <div className="flex-col justify-center items-center mb-4 2sm:mb-0">
+          <div className="relative flex flex-col md:flex-row md:items-center justify-center gap-4 w-full">
+            <div className="flex-grow text-center md:text-right pr-2">
+              <span className="text-base 2sm:text-sm md:text-base">
+                {home_club}
+              </span>
+            </div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 md:relative md:left-0 md:transform-none">
+              <span className="text-skyblue">VS</span>
+            </div>
+            <div className="flex-grow text-center md:text-left pl-2 ">
+              <span className="text-base 2sm:text-sm md:text-base">
+                {away_club}
+              </span>
+            </div>
+          </div>
+        </div>
+        {isFuture ? (
+          <div className="text-sm text-offwhite text-center  min-w-[120px] md:gap-[4px]2sm:items-end flex flex-col items-center 2sm:text-end 2sm:items-end md:items-end mb-2">
+            <p className="text-center 2sm:text-end">{formattedTime}</p>
+            <p>{location}</p>
+            {isThisWeek && weather && (
+              <div className="flex items-center justify-center 2sm:justify-end">
+                <div className="relative w-[18px] md:w-[30px] h-[18px] md:h-[30px]">
+                  <Image src={localWeatherIcon} alt="Crest" layout="fill" />
+                </div>
+                <span>{weather.tempCelc}°C</span>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center 2sm:items-end md:items-end">
+            {' '}
+            {!isFuture && (
+              <div className="flex flex-col items-center 2sm:text-end 2sm:items-end md:items-end mb-2">
+                {' '}
+                <div className="text-sm text-offwhite pt-[4px]">
+                  {formattedDate}
+                </div>
+                <div className="text-sm text-offwhite pt-[4px]">
+                  {formattedTime}
+                </div>
+              </div>
+            )}
+            <button
+              className="-mr-[4px] w-[120px] h-[26px] md:h-[30px] px-2 bg-skyblue text-black text-sm rounded-30 ml-[4px] mt-4"
+              onClick={handleSummaryClick}
+            >
+              summary
+            </button>
           </div>
         )}
-        <div className="mx-2 min-w-12 flex justify-between md:mx-4">
-          <span>{home_score}</span> - <span>{away_score}</span>
-        </div>
-        {away_club_logo !== null && (
-          <div className="relative w-[55px] md:w-[65px] h-[55px] md:h-[65px]">
-            <Image src={away_club_logo} alt="Crest" layout="fill" />
-          </div>
-        )}
-      </div>
-
-      <div className="flex flex-col md:flex-row  md:items-center justify-center md:justify-around  gap-4 md:w-[600px] lg:w-full">
-        <div className="ml-[6px]">
-          <span className="text-sm md:text-base ">{home_club} </span>vs
-          <span className="text-sm md:text-base "> {away_club}</span>
-          <div className="text-xs md:text-sm text-offwhite pt-[4px]">
-            {datetime}
-          </div>
-        </div>
-        <button
-          className="w-28 h-[26px] md:h-[30px] px-2 bg-skyblue text-black text-sm rounded-30 ml-[4px]"
-          onClick={handleSummaryClick}
-        >
-          summary
-        </button>
       </div>
 
       {/* SUMMARY CARD */}
@@ -144,9 +213,14 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                   <div className="text-sm text-offwhite my-4">
                     <p className="pb-[2px]">{datetime}</p>
                     <p className="pb-[2px]">{location}</p>
-                    <div className="flex">
-                      <div className="mr-2">
-                        <FontAwesomeIcon icon={faCloud} />
+                    <div className="flex items-center justify-start">
+                      <div className="w-6 text-center mr-1">
+                        <Image
+                          src={localWeatherIcon}
+                          alt="Weather Icon"
+                          width={100}
+                          height={100}
+                        />
                       </div>
                       <p>{weather?.tempFahr}</p>
                     </div>
@@ -189,33 +263,35 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
                         key={index}
                         className="w-full sm my-2 md:m-2 md:max-w-[400px] flex flex-row sm:flex-row md:flex-col"
                       >
-                        {playback_id ? (
-                          <MuxPlayer
-                            playbackId={playback_id}
-                            className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
-                            startTime={convertToSeconds(
-                              highlight.start_timestamp,
-                            )}
-                          />
+                        {playback_id && highlight.start_timestamp ? (
+                          <>
+                            <MuxPlayer
+                              playbackId={playback_id}
+                              className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px]"
+                              startTime={convertToSeconds(
+                                highlight.start_timestamp,
+                              )}
+                            />
+                            <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end max-w-[320px]">
+                              <h3 className="text-base pt-2">{`Highlight-${index}`}</h3>
+                              <p className="text-sm text-offwhite m-px">
+                                {highlight.clip_description}
+                              </p>
+                              <p className="text-sm text-gray-500 m-px">
+                                Duration: {highlight.duration}git
+                              </p>
+                              <p className="text-sm text-gray-500 m-px">
+                                Timestamp: {highlight.start_timestamp}
+                              </p>
+                            </div>
+                          </>
                         ) : (
                           <div className="bg-partnersBorders rounded-[4px] w-1/2 sm:w-1/2 md:w-full min-h-[128px] max-w-[320px] flex justify-center items-center text-center">
                             <p className="text-gray-500">
-                              No video currently available for this match
+                              No highlight videos available for this match
                             </p>
                           </div>
                         )}
-                        <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end max-w-[320px]">
-                          <h3 className="text-base pt-2">{`Highlight ${index + 1}`}</h3>
-                          <p className="text-sm text-offwhite m-px">
-                            {highlight.clip_description}
-                          </p>
-                          <p className="text-sm text-gray-500 m-px">
-                            Duration: {highlight.duration}git
-                          </p>
-                          <p className="text-sm text-gray-500 m-px">
-                            Timestamp: {highlight.start_timestamp}
-                          </p>
-                        </div>
                       </div>
                     ),
                   )}

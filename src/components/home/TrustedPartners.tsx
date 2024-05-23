@@ -4,7 +4,7 @@ import {
   MsaIcon,
   FcSportsIcon,
   AjFootballFactoryIcon,
-} from '../common/Icon';
+} from '@/components/common/Icon';
 
 const AOS_DURATION: number = 400;
 const AOS_DELAY: number[] = [400, 600, 1000];

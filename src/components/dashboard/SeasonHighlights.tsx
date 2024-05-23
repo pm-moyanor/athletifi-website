@@ -1,10 +1,14 @@
-import { ISeasonHighlights } from '@/types/Dashboard.type';
+import { useDashboardData } from '@/states/dashboardStore';
+import { useParams } from 'next/navigation';
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 
-const SeasonHighlights: React.FC<ISeasonHighlights> = ({
-  seasonHighlights,
-}: ISeasonHighlights) => {
+const SeasonHighlights: React.FC = () => {
+  const { cardId } = useParams();
+  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  const { dashboardData } = useDashboardData(cardIdValue);
+
+  const seasonHighlights = dashboardData.data?.seasonHighlights;
   return (
     <>
       {seasonHighlights && seasonHighlights[0] !== '' ? (
