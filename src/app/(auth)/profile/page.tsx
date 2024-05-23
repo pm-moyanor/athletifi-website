@@ -8,14 +8,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { IProfileProps } from '@/types/Dashboard.type';
 import Header from '@/components/user-portal/Header';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
-import Card from '@/../public/assets/img/png/anderson-card-img.png';
+
+const card_url = '/assets/img/png/anderson-card-img.png';
 
 const profileProps: IProfileProps = {
   name: 'Mariano Jose Alvarez',
   number: '#22',
   club: 'villanova soccer',
   team: 'team 2009',
-  card_url: Card,
+  card_url: card_url,
 };
 
 // const populatedTeams = [
@@ -133,7 +134,7 @@ const Profile = () => {
               <div className="flex justify-between flex-col md:flex-row items-center">
                 <div className="relative w-[300px] h-[350px] md:w-[160px] md:h-[210px]">
                   <Image
-                    src={Card}
+                    src={card_url}
                     alt="Card Thumbnail"
                     layout="fill"
                     objectFit="contain"
