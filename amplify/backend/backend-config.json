@@ -63,14 +63,6 @@
           "resourceName": "athletifiAuth"
         }
       ]
-    },
-    "AMPLIFY_function_athletifiAuthPostConfirmation_GROUP": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "athletifiAuthPostConfirmation"
-        }
-      ]
     }
   }
 }
