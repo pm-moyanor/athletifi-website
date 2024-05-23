@@ -6,6 +6,7 @@ frontend:
         - yarn install
     build:
       commands:
+        - amplify pull --appId ds5np5q15q36h --envName dev
         - yarn build
   artifacts:
     baseDirectory: .next
