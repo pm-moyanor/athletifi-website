@@ -90,7 +90,7 @@ function transformNotificationPreferences(dataArray: NotificationTypes[]) {
   return tmp;
 }
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
+const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
 
 // Function to fetch user data from the API
 async function fetchUserData(
@@ -216,7 +216,7 @@ export function useUserData() {
 
   useEffect(() => {
     const baseURL =
-      process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
+      process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
 
     const postHelper = async (
       amplify_id: string,
