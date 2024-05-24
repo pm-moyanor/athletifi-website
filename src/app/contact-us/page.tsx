@@ -9,9 +9,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   metadataBase: new URL(SEO_CONFIG.contactUs.websiteURL),
   title: SEO_CONFIG.contactUs.title,
+  description: SEO_CONFIG.contactUs.description,
   openGraph: {
-    description: SEO_CONFIG.contactUs.description,
-    images: SEO_CONFIG.contactUs.image,
+    images: [{ url: SEO_CONFIG.contactUs.image }],
   },
 };
 
