@@ -9,9 +9,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   metadataBase: new URL(SEO_CONFIG.privacyPolicy.websiteURL),
   title: SEO_CONFIG.privacyPolicy.title,
+  description: SEO_CONFIG.privacyPolicy.description,
   openGraph: {
-    description: SEO_CONFIG.privacyPolicy.description,
-    images: SEO_CONFIG.privacyPolicy.image,
+    images: [{ url: SEO_CONFIG.privacyPolicy.image }],
   },
 };
 

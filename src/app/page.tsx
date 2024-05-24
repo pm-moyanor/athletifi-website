@@ -29,9 +29,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(SEO_CONFIG.home.websiteURL),
   keywords: ['AthletiFi', 'Club Soccer', 'Club Football'], // TODO: update keywords
   title: SEO_CONFIG.home.title,
+  description: SEO_CONFIG.home.description,
   openGraph: {
-    description: SEO_CONFIG.home.description,
-    images: SEO_CONFIG.home.image,
+    images: [{ url: SEO_CONFIG.home.image }],
   },
 };
 
