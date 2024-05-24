@@ -5,7 +5,7 @@ const baseUrl = 'https://athleti.fi';
 const aboutUsConfig: PageSEO = {
   description:
     "Discover AthletiFi's mission to transform the soccer world with dynamic digital trading cards. Dive into our journey, partnerships, and vision for the future of soccer.",
-  image: '/about_us_meta.png',
+  image: '/about_us_meta.jpg',
   title: 'About Us | Athletifi',
   websiteURL: `${baseUrl}/about-us`,
 };
@@ -20,7 +20,7 @@ const dashboardConfig: PageSEO = {
 const homeConfig: PageSEO = {
   description:
     "Experience the future of soccer with AthletiFi's digital player card collections. Collect, follow, and interact with elite youth soccer players in engaging ways. Welcome to the future of sports.",
-  image: '/lending_meta_img.webp',
+  image: '/home_meta.jpg',
   title: 'Athletifi | The Future of Sports',
   websiteURL: baseUrl,
 };
@@ -35,7 +35,7 @@ const newsConfig: PageSEO = {
 const signUpConfig: PageSEO = {
   description:
     "Sign-up for exclusive updates! Become part of the sport's revolution.",
-  image: '/sign_up_meta',
+  image: '/sign_up_meta.jpg',
   title: 'Start Your Journey | Join AthletiFi',
   websiteURL: `${baseUrl}/sign-up`,
 };
@@ -43,7 +43,7 @@ const signUpConfig: PageSEO = {
 // TODO: NEEDS AN UPDATED IMAGE SPECIFIC TO CONTACT-US SEO
 const contactUsConfig: PageSEO = {
   description: 'Get in Touch!',
-  image: '/sign_up_meta',
+  image: '/sign_up_meta.jpg',
   title: 'Contact the AthletiFi team',
   websiteURL: `${baseUrl}/contact-us`,
 };
