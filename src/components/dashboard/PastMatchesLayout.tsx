@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState } from 'react';
 
 const PastMatchesLayout: React.FC = () => {
   const [height, setHeight] = useState(0);
-  const pastMatchesRef = useRef(null);
+  const pastMatchesRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const updateHeight = () => {

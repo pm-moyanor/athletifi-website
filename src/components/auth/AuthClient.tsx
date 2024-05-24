@@ -106,7 +106,7 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
           services={services}
           components={ComponentOverrides}
           formFields={FormFieldsOverrides}
-          socialProviders={['google', 'facebook']}
+          socialProviders={['google']}
           initialState={
             defaultScreen as 'signIn' | 'signUp' | 'forgotPassword' | undefined
           }

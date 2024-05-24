@@ -6,11 +6,12 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
-import Card from './../../../public/assets/img/png/anderson-card-img.png';
 import Image from 'next/image';
 import { IProfileProps } from '@/types/Dashboard.type';
 import { Source_Sans_3 } from 'next/font/google';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const card_url = '/assets/img/png/anderson-card-img.png';
 
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
@@ -22,7 +23,7 @@ const profileProps: IProfileProps = {
   number: '#22',
   club: 'villanova soccer',
   team: 'team 2009',
-  card_url: Card,
+  card_url: card_url,
 };
 
 function useOutsideClick(
@@ -125,7 +126,7 @@ const CardThumbnail: React.FC<IProfileProps> = ({
             />
           ) : (
             <Image
-              src={Card}
+              src={card_url as string}
               alt="Default Card Thumbnail"
               layout="fill"
               objectFit="contain"

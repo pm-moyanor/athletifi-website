@@ -3,10 +3,11 @@ import MatchSummary from './MatchSummary';
 import Skeleton from 'react-loading-skeleton';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useParams } from 'next/navigation';
+import { IMatchDataExtended } from '@/types/Dashboard.type';
+// import { useParams } from 'next/navigation';
 //import { useDashboardData } from '@/states/dashboardStore';
 
-const dummyMatches = [
+const dummyMatches: IMatchDataExtended[] = [
   {
     away_club: 'Stellar FC',
     away_club_logo:
@@ -14,7 +15,7 @@ const dummyMatches = [
     away_score: 2,
     away_team: 'Stellar FC U14',
     datetime: '2023-04-24T12:00:00Z',
-    highlights: [{}, {}, {}],
+    highlights: [],
     home_club: 'Villanova Soccer Academy',
     home_club_logo:
       'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/vsa-logo.svg',
@@ -38,7 +39,7 @@ const dummyMatches = [
     away_score: 3,
     away_team: 'Galaxy FC U14',
     datetime: '2024-05-22T14:00:00Z',
-    highlights: [{}, {}, {}],
+    highlights: [],
     home_club: 'Inter Soccer Academy',
     home_club_logo:
       'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/stellar-fc-logo.svg',
@@ -62,7 +63,7 @@ const dummyMatches = [
     away_score: 1,
     away_team: 'Lunar FC U14',
     datetime: '2024-06-01T16:00:00Z',
-    highlights: [{}, {}, {}],
+    highlights: [],
     home_club: 'Solar Soccer Academy',
     home_club_logo:
       'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/stellar-fc-logo.svg',
@@ -86,7 +87,7 @@ const dummyMatches = [
     away_score: 0,
     away_team: 'Comet FC U14',
     datetime: '2024-05-17T18:00:00Z',
-    highlights: [{}, {}, {}],
+    highlights: [],
     home_club: 'Meteor Soccer Academy',
     home_club_logo:
       'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/stellar-fc-logo.svg',
@@ -105,9 +106,9 @@ const dummyMatches = [
   },
 ];
 
-const parseDate = (dateString) => new Date(dateString);
+const parseDate = (dateString: string) => new Date(dateString);
 
-const isThisWeek = (date) => {
+const isThisWeek = (date: Date) => {
   const now = new Date();
   const startOfWeek = new Date(now.setDate(now.getDate() - now.getDay()));
   const endOfWeek = new Date(now.setDate(now.getDate() - now.getDay() + 6));
@@ -115,20 +116,24 @@ const isThisWeek = (date) => {
 };
 
 const PastMatches: React.FC = () => {
-  const { cardId } = useParams();
-  const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
+  // const { cardId } = useParams();
+  // const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
   //const { dashboardData } = useDashboardData(cardIdValue);
   //const past_matches = dashboardData.data?.matchesList;
   const past_matches = dummyMatches;
   const today = new Date();
 
   const pastMatches =
-    past_matches?.filter((match) => parseDate(match.datetime) < today) || [];
+    past_matches?.filter(
+      (match) => parseDate(match.datetime as string) < today,
+    ) || [];
   const futureMatches =
-    past_matches?.filter((match) => parseDate(match.datetime) > today) || [];
-  const thisWeekMatches =
-    past_matches?.filter((match) => isThisWeek(parseDate(match.datetime))) ||
-    [];
+    past_matches?.filter(
+      (match) => parseDate(match.datetime as string) > today,
+    ) || [];
+  // const thisWeekMatches =
+  //   past_matches?.filter((match) => isThisWeek(parseDate(match.datetime))) ||
+  //   [];
 
   // Check if in view
   const { ref: inViewRef, inView } = useInView({
@@ -168,7 +173,7 @@ const PastMatches: React.FC = () => {
                   <MatchSummary
                     matchData={match}
                     isFuture={true}
-                    isThisWeek={isThisWeek(parseDate(match.datetime))}
+                    isThisWeek={isThisWeek(parseDate(match.datetime as string))}
                   />
                 </motion.div>
                 {index !== futureMatches.length - 1 && (

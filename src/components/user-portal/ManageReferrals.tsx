@@ -1,17 +1,18 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, ChangeEvent, FormEvent } from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
-
 import { Source_Sans_3 } from 'next/font/google';
-import Card from './../../../public/assets/img/png/anderson-card-img.png';
+
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
   display: 'swap',
 });
+
+const card_url = '/assets/img/png/anderson-card-img.png';
 
 // might be worth to split this component in 2 (for guests and intitations), it's a bit long
 // the UI is updated and a dropdown to enter the info to invite to access the card. the rest of the logic is on hold till we change state handling strategy
@@ -31,19 +32,19 @@ interface Referral {
   };
   guests: Guest[];
 }
-interface Invite {
+interface Invite extends Referral {
   cardId: string;
   inviter: Guest;
 }
 
-const dummyDataReferrals = [
+const dummyDataReferrals: Referral[] = [
   {
     card: {
       name: 'Salvador Carillo',
       number: '#22',
       club: 'villanova soccer',
       team: 'team 2009',
-      card_url: Card,
+      card_url: card_url,
     },
     guests: [
       {
@@ -62,7 +63,7 @@ const dummyDataReferrals = [
       number: '#22',
       club: 'villanova soccer',
       team: 'team 2009',
-      card_url: Card,
+      card_url: card_url,
     },
     guests: [
       {
@@ -77,35 +78,45 @@ const dummyDataReferrals = [
   },
 ];
 
-const dummyDataInvites = [
+const dummyDataInvites: Invite[] = [
   {
+    cardId: '',
     card: {
       name: 'Daniel Guilmore',
       number: '#22',
       club: 'villanova soccer',
       team: 'team 2009',
-      card_url: Card,
+      card_url: card_url,
     },
-    inviterName: 'Daniel Guilmore',
-    inviterEmail: 'daniel@example.com',
+    guests: [],
+    inviter: {
+      name: 'Daniel Guilmore',
+      email: 'daniel@example.com',
+    },
   },
   {
+    cardId: '',
     card: {
       name: 'Luis Sanchez',
       number: '#22',
       club: 'villanova soccer',
       team: 'team 2009',
-      card_url: Card,
+      card_url: card_url,
     },
-    inviterName: 'Lily Sanchez',
-    inviterEmail: 'lily@example.com',
+    guests: [],
+    inviter: {
+      name: 'Lily Sanchez',
+      email: 'lily@example.com',
+    },
   },
 ];
 
 export default function ManageReferrals() {
   const [referrals, setReferrals] = useState<Referral[]>(dummyDataReferrals);
   const [invites, setInvites] = useState<Invite[]>(dummyDataInvites);
-  const [isToggle, setIsToggle] = useState(Array(referrals.length).fill(false));
+  const [isToggle, setIsToggle] = useState<boolean[]>(
+    Array(referrals.length).fill(false),
+  );
 
   const [invitation, setInvitation] = useState<{ name: string; email: string }>(
     {
@@ -123,7 +134,7 @@ export default function ManageReferrals() {
     }));
   };
   //===============on hold till we decide on state manager
-  const emailSubmit = (e: FormEvent) => e.preventDefault();
+  const emailSubmit = (e: FormEvent<HTMLFormElement>) => e.preventDefault();
 
   const toggleEmailInput = (idx: number) => {
     setIsToggle((prev) =>
@@ -167,7 +178,7 @@ export default function ManageReferrals() {
   }
 
   const cardRef = useRef<HTMLDivElement>(null);
-  useOutsideClick(cardRef, () => setIsToggle(false));
+  useOutsideClick(cardRef, () => setIsToggle([false]));
   //=======================================
 
   return (
@@ -411,9 +422,9 @@ export default function ManageReferrals() {
                 <p className=" font-extralight text-base ">Card owner</p>
                 <div className="flex justify-between items-start">
                   <div className="text-sm flex flex-col">
-                    <p className="mb-[2px] pt-2">{invite.inviterName}</p>
+                    <p className="mb-[2px] pt-2">{invite.inviter.name}</p>
                     <p className="md:text-center font-extralight">
-                      {invite.inviterEmail}
+                      {invite.inviter.email}
                     </p>
                   </div>
                   <div

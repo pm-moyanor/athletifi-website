@@ -11,16 +11,17 @@ function convertToSeconds(timestamp: string): number {
   return hours * 3600 + minutes * 60 + seconds;
 }
 
-const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
-  matchData,
-
-  isFuture = false,
-  isThisWeek = false,
-}: {
+interface MatchSummaryProps {
   matchData: IMatchDataExtended;
   isFuture?: boolean;
   isThisWeek?: boolean;
-}) => {
+}
+
+const MatchSummary: React.FC<MatchSummaryProps> = ({
+  matchData,
+  isFuture = false,
+  isThisWeek = false,
+}: MatchSummaryProps) => {
   const [showRecap, setShowRecap] = useState(false);
   const {
     home_club_logo,
@@ -43,7 +44,7 @@ const MatchSummary: React.FC<{ matchData: IMatchDataExtended }> = ({
   const handleSummaryClick = () => {
     setShowRecap(true);
   };
-  const dateTime = new Date(datetime);
+  const dateTime = new Date(datetime as string);
   const formattedDate = dateTime.toLocaleDateString('en-GB', {
     weekday: 'long',
     day: '2-digit',
