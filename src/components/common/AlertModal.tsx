@@ -1,7 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { faBell } from '@fortawesome/free-regular-svg-icons';
+import {
+  faTriangleExclamation,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons';
 import { AlertModalType } from '@/types/AlertModalType';
 
 const AlertModal = ({
@@ -20,7 +22,7 @@ const AlertModal = ({
         />
         <div className="relative flex items-center justify-center w-1/4">
           <FontAwesomeIcon
-            icon={faBell}
+            icon={faTriangleExclamation}
             className="text-skyblue z-20 absolute"
             size="2xl"
           />
@@ -28,7 +30,7 @@ const AlertModal = ({
         </div>
         <div className="flex flex-col justify-around p-4 w-full">
           <h2 className="text-lg text-offwhite mt-4">{title}</h2>
-          <p className="text-md font-extralight text-offwhite -mt-4">
+          <p className="text-md font-extralight text-offwhite -mt-7">
             {textBody}
           </p>
         </div>

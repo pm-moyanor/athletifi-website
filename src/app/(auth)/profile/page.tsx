@@ -76,15 +76,31 @@ const variants = {
 const Profile = () => {
   const [inviteData] = useAtom(postHelperResponseAtom);
   const [inviteStatus, setInviteStatus] = useState<AlertModalType | null>();
-  // const [openModal, setOpenModal] = useState<boolean>(false);
-  console.log('inviteData object', inviteData);
+  console.log('inviteData', inviteData);
+  // console.log('inviteStatus', inviteStatus);
+
   useEffect(() => {
     const hasShownModal = localStorage.getItem('hasShownModal');
-    if (!hasShownModal && inviteData && inviteData.invitation.invite_id) {
+    if (
+      !hasShownModal &&
+      inviteData &&
+      inviteData.invitation.invite_id &&
+      inviteData.invitation.invite_status !== '1 ALREADY_ACCEPTED' &&
+      inviteData.invitation.invite_status !== 'SUCCESS'
+    ) {
+      let inviteMessage = null;
+      if (inviteData.invitation.invite_status === 'REVOKED') {
+        inviteMessage =
+          'We understand you were previously granted access to this card. However, the card owner has chosen to revoke your access privileges. We apologize for any inconvenience this may cause.';
+      } else if (inviteData.invitation.invite_status === 'EXPIRED') {
+        inviteMessage =
+          'The access you were granted to this card has now expired.  The card owner may choose to reinstate your access if they wish. Thank you for your understanding.';
+      }
+
       // TODO: create the appropriate message for users to see base on the keyword from the invite_status
       setInviteStatus({
         title: 'Card Access Unavailable',
-        textBody: inviteData.invitation.invite_status,
+        textBody: inviteMessage,
       });
       // store invite id values in local storage to manage the hasShownModal boolean, in case the users sees the modal again after login. use an array.
       localStorage.setItem('hasShownModal', 'true');
