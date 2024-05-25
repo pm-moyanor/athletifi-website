@@ -20,28 +20,27 @@ const PastMatches: React.FC = () => {
   const { cardId } = useParams();
   const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
   const { dashboardData } = useDashboardData(cardIdValue);
-  const past_matches = dashboardData.data?.matchesList;
+  const past_matches = dashboardData.data?.matchesList as IMatchDataExtended[];
 
   const today = new Date();
-  console.log(past_matches);
-  const pastMatches = past_matches?.filter(
-    (match) => parseDate(match.datetime as string) < today,
-  );
-  const futureMatches = past_matches?.filter(
-    (match) => parseDate(match.datetime as string) > today,
-  );
-  const thisWeekMatches = past_matches?.filter((match) =>
-    isThisWeek(parseDate(match.datetime)),
-  );
+  const pastMatches =
+    past_matches?.filter(
+      (match) => parseDate(match.datetime as string) < today,
+    ) ?? [];
+  const futureMatches =
+    past_matches?.filter(
+      (match) => parseDate(match.datetime as string) > today,
+    ) ?? [];
+
   // Check if in view
   const { ref: inViewRef, inView } = useInView({
-    threshold: 0.7,
+    threshold: 0.5,
     triggerOnce: true,
   });
 
   //varints to trigger animations with staggered effect
   const staggerVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -49,6 +48,11 @@ const PastMatches: React.FC = () => {
         staggerChildren: 0.2,
       },
     },
+  };
+  // Simple fade-in variant for headers
+  const fadeInVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1 } },
   };
 
   return (
@@ -62,6 +66,14 @@ const PastMatches: React.FC = () => {
             variants={staggerVariants}
             className="flex flex-col gap-2"
           >
+            {futureMatches?.length > 0 && (
+              <motion.h2
+                className="text-primary font-semibold text-md mt-6 bg-cardsBackground mb-6 px-4 py-2 shadow-portalNav rounded-[5px] w-full"
+                variants={fadeInVariants}
+              >
+                Upcoming Matches
+              </motion.h2>
+            )}
             {futureMatches.map((match, index) => (
               <React.Fragment key={index}>
                 <motion.div
@@ -85,9 +97,14 @@ const PastMatches: React.FC = () => {
               </React.Fragment>
             ))}
           </motion.div>
-          <h2 className="text-primary font-semibold text-md mt-6 bg-cardsBackground mb-6 px-4 py-2 shadow-portalNav rounded-[5px] w-full">
-            Past matches
-          </h2>
+          <motion.h2
+            className="text-primary font-semibold text-md mt-6 bg-cardsBackground mb-6 px-4 py-2 shadow-portalNav rounded-[5px] w-full"
+            variants={fadeInVariants}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+          >
+            Past Matches
+          </motion.h2>
           <motion.div
             ref={inViewRef}
             initial="hidden"
