@@ -51,10 +51,6 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
   const [highlightProgress, setHighlightProgress] = useState<number>(0); // State for highlight progress
   const intervalRef = useRef<NodeJS.Timeout | null>(null); // Ref to store interval ID
 
-  const weatherIcon = weather?.weatherIcon;
-  const iconNameWithoutExtension = weatherIcon?.split('.')[0];
-  const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
-
   function convertToMilliseconds(timestamp: string): number {
     const [hours, minutes, seconds] = timestamp.split(':').map(Number);
     return (hours * 3600 + minutes * 60 + seconds) * 1000;
@@ -175,6 +171,10 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
       console.log('no highlights available');
     }
   };
+
+  const iconNameWithoutExtension = weather?.weatherIcon?.split('.')[0];
+  const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
+
   return (
     <div className="w-full flex-col justify-between items-center text-primary px-2">
       {isFuture && (
