@@ -94,7 +94,13 @@ const Profile = () => {
           'We understand you were previously granted access to this card. However, the card owner has chosen to revoke your access privileges. We apologize for any inconvenience this may cause.';
       } else if (inviteData.invitation.invite_status === 'EXPIRED') {
         inviteMessage =
-          'The access you were granted to this card has now expired.  The card owner may choose to reinstate your access if they wish. Thank you for your understanding.';
+          'The access you were granted to this card has now expired. The card owner may choose to reinstate your access if they wish. Thank you for your understanding.';
+      } else if (
+        inviteData.invitation.invite_status === 'UNEXPECTED_STATUS' &&
+        inviteData.invitation.invite_status === 'NOT_FOUND'
+      ) {
+        inviteMessage =
+          "Oops! We encountered an issue processing your invitation. It's possible the invitation doesn't exist or there was a problem on our end. Please double-check the invitation details or contact the card owner for assistance.";
       }
 
       // TODO: create the appropriate message for users to see base on the keyword from the invite_status
