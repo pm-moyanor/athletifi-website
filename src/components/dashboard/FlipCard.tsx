@@ -10,7 +10,11 @@ const FlipCard: React.FC<FlipCardProps> = ({ cardUrl }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {
-    setIsFlipped((prevState) => !prevState);
+    const flipTimeout = setTimeout(() => {
+      setIsFlipped(true);
+    }, 250);
+
+    return () => clearTimeout(flipTimeout);
   }, []);
 
   return (
