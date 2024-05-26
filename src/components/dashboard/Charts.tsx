@@ -61,7 +61,7 @@ const Charts = () => {
 
   return (
     <>
-      {is_goalkeeper !== null ? (
+      {is_goalkeeper !== null && is_goalkeeper !== undefined ? (
         <div className="stats-chart__container bg-cardsBackground">
           <div className="flex text-sm md:text-md text-primary border-b border-partnersBorders">
             <div

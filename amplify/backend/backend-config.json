@@ -17,7 +17,6 @@
           "NAME"
         ],
         "socialProviders": [
-          "FACEBOOK",
           "GOOGLE"
         ],
         "usernameAttributes": [
@@ -62,46 +61,6 @@
         {
           "category": "auth",
           "resourceName": "athletifiAuth"
-        }
-      ]
-    },
-    "AMPLIFY_function_athletifiAuthCustomMessage_EMAILMESSAGE": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "athletifiAuthCustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_athletifiAuthCustomMessage_EMAILSUBJECT": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "athletifiAuthCustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_athletifiAuthCustomMessage_REDIRECTURL": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "athletifiAuthCustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_athletifiAuthCustomMessage_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "athletifiAuthCustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_athletifiAuthCustomMessage_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "athletifiAuthCustomMessage"
         }
       ]
     },

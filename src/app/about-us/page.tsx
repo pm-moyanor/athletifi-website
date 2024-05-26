@@ -9,11 +9,13 @@ import { Hero } from '@/types/CommonHero.type';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import { SEO_CONFIG } from '@/utils/seoConfig';
+import { Metadata } from 'next';
 
-export const metadata = {
+export const metadata: Metadata = {
+  metadataBase: new URL(SEO_CONFIG.aboutUs.websiteURL),
   title: SEO_CONFIG.aboutUs.title,
-  description: SEO_CONFIG.aboutUs.description,
   openGraph: {
+    description: SEO_CONFIG.aboutUs.description,
     images: SEO_CONFIG.aboutUs.image,
   },
 };

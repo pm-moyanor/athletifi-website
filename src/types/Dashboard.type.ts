@@ -129,8 +129,13 @@ export interface IMatchData {
 
 export interface IMatchDataWithWeather extends IMatchData {
   weather?: {
+    date?: string | null;
+    location?: string | null;
+    precipIn?: number | null;
+    precipMm?: number | null;
     weatherIcon?: string | null;
-    tempFahr: number | null;
+    tempFahr?: number | null;
+    tempCelc?: number | null;
   };
 }
 
@@ -142,7 +147,7 @@ export const emptyLatestMatchData: IMatchDataWithWeather = {
   match_id: '',
   datetime: null,
   location: null,
-  weather: { tempFahr: null },
+  weather: { tempFahr: null, tempCelc: null },
   home_club: null,
   home_club_logo: null,
   home_score: null,
@@ -153,16 +158,18 @@ export const emptyLatestMatchData: IMatchDataWithWeather = {
 
 export interface IActionReel {
   playback_id: string | null;
-  thumbnail: string | null;
   title: string | null;
   description: string | null;
+  home_club_logo: string | null;
+  away_club_logo: string | null;
 }
 
 export const emptyActionReel: IActionReel = {
   playback_id: null,
-  thumbnail: null,
   title: null,
   description: null,
+  home_club_logo: null,
+  away_club_logo: null,
 };
 
 export interface ITeammate {
@@ -215,9 +222,12 @@ export interface IMatchDataExtended extends IMatchDataWithWeather {
   away_club_logo: string | null;
   home_club: string | null;
   away_club: string | null;
+  home_team?: string | null;
+  away_team?: string | null;
   home_score: number | null;
   away_score: number | null;
   playback_id: string | null;
+  video_key?: string | null;
   highlights: IHighlight[] | null;
 }
 
@@ -231,7 +241,7 @@ export const emptyMatchData: IMatchDataExtended = {
   away_score: null,
   datetime: null,
   location: null,
-  weather: { tempFahr: null },
+  weather: { tempFahr: null, tempCelc: null },
   playback_id: null,
   highlights: null,
 };
@@ -260,22 +270,24 @@ export interface DashboardData {
   latestMatch: IMatchDataWithWeather | null;
   latestPlayerRating: IRating[] | null;
   playerRatings: IRatingRaw[] | null;
-  matchesList: IMatchDataExtended[];
-  playerProfile: IProfileProps;
-  teammates: ITeammate[];
+  matchesList: IMatchDataExtended[] | null;
+  playerProfile: IProfileProps | null;
+  teammates: ITeammate[] | null;
   isGoalkeeper: boolean | null;
   seasonHighlights: string[] | null;
+  topActionReels: IActionReel[] | null;
 }
 
 export const emptyDashboardData: DashboardData = {
-  latestMatch: emptyLatestMatchData,
-  latestPlayerRating: [],
-  playerRatings: [],
-  matchesList: [emptyMatchData],
-  playerProfile: emptyProfileProps,
-  teammates: [emptyTeammate],
+  latestMatch: null,
+  latestPlayerRating: null,
+  playerRatings: null,
+  matchesList: null,
+  playerProfile: null,
+  teammates: null,
   isGoalkeeper: null,
-  seasonHighlights: [''],
+  seasonHighlights: null,
+  topActionReels: null,
 };
 
 export interface ISeasonHighlights {
