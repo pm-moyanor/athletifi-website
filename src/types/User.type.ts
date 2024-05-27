@@ -48,6 +48,12 @@ export const allLatestChange: LatestChange = {
   value: true,
 };
 
+export enum DeleteStatus {
+  PENDING = 'pending',
+  COMPLETED = 'completed',
+  REJECTED = 'rejected',
+}
+
 export type UserData = {
   amplify_id: string | null;
   auth_method: string | null;
@@ -56,4 +62,5 @@ export type UserData = {
   email_verified: string | null;
   init_notifications: boolean | null;
   notifications: NotificationPreferences | null;
+  user_delete_status: DeleteStatus | null;
 };

@@ -90,7 +90,7 @@ function transformNotificationPreferences(dataArray: NotificationTypes[]) {
   return tmp;
 }
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
+const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 // Function to fetch user data from the API
 async function fetchUserData(
@@ -157,6 +157,7 @@ async function fetchUserData(
         data.result.notifications_enabled.length > 0
           ? transformNotificationPreferences(data.result.notifications_enabled)
           : emptyNotifications,
+      user_delete_status: data.result.delete_status,
     };
 
     set({
@@ -215,8 +216,7 @@ export function useUserData() {
   }, [isLoggedIn, inviteId]);
 
   useEffect(() => {
-    const baseURL =
-      process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
+    const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
     const postHelper = async (
       amplify_id: string,
