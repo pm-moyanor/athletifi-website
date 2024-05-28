@@ -85,7 +85,7 @@ const Profile = () => {
       !hasShownModal &&
       inviteData &&
       inviteData.invitation.invite_id &&
-      inviteData.invitation.invite_status !== '1 ALREADY_ACCEPTED' &&
+      // inviteData.invitation.invite_status !== 'ALREADY_ACCEPTED' &&
       inviteData.invitation.invite_status !== 'SUCCESS'
     ) {
       let inviteMessage = null;
@@ -101,9 +101,11 @@ const Profile = () => {
       ) {
         inviteMessage =
           "Oops! We encountered an issue processing your invitation. It's possible the invitation doesn't exist or there was a problem on our end. Please double-check the invitation details or contact the card owner for assistance.";
+      } else if (inviteData.invitation.invite_status === 'ALREADY_ACCEPTED') {
+        inviteMessage =
+          'This invitation has already been redeemed. If you believe this is an error, please contact our support team for assistance.';
       }
 
-      // TODO: create the appropriate message for users to see base on the keyword from the invite_status
       setInviteStatus({
         title: 'Card Access Unavailable',
         textBody: inviteMessage,

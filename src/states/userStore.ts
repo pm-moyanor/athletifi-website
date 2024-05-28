@@ -70,7 +70,7 @@ const createStorageWithExpiration = (storage: Storage, expiration: number) => ({
 //   (get, set, update) => set(postHelperResponseAtom, update),
 // );
 export const postHelperResponseAtom = atom<any>(null);
-
+//TODO: replace the any type with the actual type of the response from the postHelper function
 // Define `inviteIdAtom` differently based on environment
 export let inviteIdAtom:
   | WritableAtom<string | null, [string | null], void>
