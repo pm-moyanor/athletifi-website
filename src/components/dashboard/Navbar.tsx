@@ -129,7 +129,7 @@ const Navbar: React.FC = () => {
     });
 
     return () => hubListenerCancel();
-  }, [router]);
+  }, [router, setIsLoggedIn]);
 
   useEffect(() => {
     // only add the event listener when the dropdown is opened

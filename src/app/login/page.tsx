@@ -1,6 +1,7 @@
 // 'use client';
 
 import AuthClient from '@/components/auth/AuthClient';
+import { Suspense } from 'react';
 // import { useEffect } from 'react';
 // import { useRouter } from 'next/navigation';
 // import { useAuthenticator } from '@aws-amplify/ui-react';
@@ -32,7 +33,9 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="mt-10">
-        <AuthClient defaultScreen={''} />;
+        <Suspense>
+          <AuthClient defaultScreen={''} />;
+        </Suspense>
       </div>
     </div>
   );

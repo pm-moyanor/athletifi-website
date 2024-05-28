@@ -1,6 +1,7 @@
 import Navbar from '@/components/dashboard/Navbar';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 import AuthClient from '@/components/auth/AuthClient';
+import { Suspense } from 'react';
 
 export default async function AuthLayout({
   children,
@@ -11,7 +12,14 @@ export default async function AuthLayout({
   return (
     <>
       <Navbar />
-      {isSignedIn ? children : <AuthClient defaultScreen={''} />}
+
+      {isSignedIn ? (
+        children
+      ) : (
+        <Suspense>
+          <AuthClient defaultScreen={''} />
+        </Suspense>
+      )}
     </>
   );
 }
