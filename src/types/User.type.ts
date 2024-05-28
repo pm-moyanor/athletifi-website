@@ -54,6 +54,12 @@ export enum DeleteStatus {
   REJECTED = 'rejected',
 }
 
+export enum ViewDeleteRequestState {
+  INIT = 'init',
+  CHECK = 'check',
+  CONFIRMED = 'confirmed',
+}
+
 export type UserData = {
   amplify_id: string | null;
   auth_method: string | null;

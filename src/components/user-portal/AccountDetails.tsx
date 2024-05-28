@@ -14,19 +14,15 @@ import { useUserData } from '@/states/userStore';
 import RegisterMFA from '@/components/auth/RegisterMFA';
 import VerifyMFA from '@/components/auth/VerifyMFA';
 import EnabledMFAMessage from '@/components/auth/EnabledMFAMessage';
-import { DeleteStatus } from '@/types/User.type';
-
-const CHECK = 'check';
-const CONFIRMED = 'confirmed';
+import { ViewDeleteRequestState, DeleteStatus } from '@/types/User.type';
 
 export default function AccountDetails() {
   const { userData } = useUserData();
   const [qrState, setQRState] = useState('off');
   const [qrSrc, setQRSrc] = useState<string | null | undefined>(null);
   const [qrKey, setQRKey] = useState<string>('');
-  const [deleteRequestState, setDeleteRequestState] = useState<string | null>(
-    null,
-  );
+  const [deleteRequestState, setDeleteRequestState] =
+    useState<ViewDeleteRequestState>(ViewDeleteRequestState.INIT);
   const [currentMFA, setCurrentMFA] = useState<FetchMFAPreferenceOutput>({
     enabled: undefined,
     preferred: undefined,
@@ -69,7 +65,7 @@ export default function AccountDetails() {
   async function handleDeleteRequest() {
     if (userData.data?.amplify_id) {
       await postHelper(userData.data.amplify_id);
-      setDeleteRequestState(CONFIRMED);
+      setDeleteRequestState(ViewDeleteRequestState.CONFIRMED);
     }
   }
 
@@ -153,13 +149,13 @@ export default function AccountDetails() {
           </div>
         ) : (
           <div className="flex">
-            {deleteRequestState === CONFIRMED && (
+            {deleteRequestState === ViewDeleteRequestState.CONFIRMED && (
               <div className="text-skyblue text-sm">
                 Your request is logged. Expect a confirmation in 3-5 business
                 days.
               </div>
             )}
-            {deleteRequestState === CHECK && (
+            {deleteRequestState === ViewDeleteRequestState.CHECK && (
               <>
                 <div>
                   Account deletion is permanent and can take 3-5 business days
@@ -179,11 +175,13 @@ export default function AccountDetails() {
                 </button>
               </>
             )}
-            {deleteRequestState === null && (
+            {deleteRequestState === ViewDeleteRequestState.INIT && (
               <FontAwesomeIcon
                 className="text-chartRed cursor-pointer text-md md:text-2xl"
                 icon={faTrashCan}
-                onClick={() => setDeleteRequestState(CHECK)}
+                onClick={() =>
+                  setDeleteRequestState(ViewDeleteRequestState.CHECK)
+                }
               />
             )}
           </div>
