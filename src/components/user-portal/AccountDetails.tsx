@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPencil,
@@ -14,6 +14,22 @@ import { useUserData } from '@/states/userStore';
 import RegisterMFA from '@/components/auth/RegisterMFA';
 import VerifyMFA from '@/components/auth/VerifyMFA';
 import EnabledMFAMessage from '@/components/auth/EnabledMFAMessage';
+import { UpdatePwErrors } from '@/types/User.type';
+import { updatePassword } from 'aws-amplify/auth';
+
+import { ToastContainer, toast, ToastOptions } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+interface FormElements extends HTMLFormControlsCollection {
+  currentPw: HTMLInputElement;
+  newPw: HTMLInputElement;
+}
+
+interface UpdatePwFormElement extends HTMLFormElement {
+  readonly elements: FormElements;
+}
+
+const MINLEN = 8;
 
 export default function AccountDetails() {
   const { userData } = useUserData();
@@ -24,10 +40,70 @@ export default function AccountDetails() {
     enabled: undefined,
     preferred: undefined,
   });
+  const [viewUpdatePw, setViewUpdatePw] = useState(false);
+  const [submitDisabled, setSubmitDisabled] = useState(true);
+  const [currentPw, setCurrentPw] = useState('');
+  const [isCurrentPwValid, setIsCurrentPwValid] = useState(false);
+  const [newPw, setNewPw] = useState('');
+  const [isNewPwValid, setIsNewPwValid] = useState(false);
+  const [confirmPw, setConfirmPw] = useState('');
 
-  function handleUserChange() {}
+  async function handleUpdatePassword(
+    event: React.FormEvent<UpdatePwFormElement>,
+  ) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const oldPassword = form.elements.currentPw.value;
+    const newPassword = form.elements.newPw.value;
 
-  function handlePassChange() {}
+    const toastOptions: ToastOptions = {
+      draggable: false,
+      position: 'bottom-right',
+    };
+
+    try {
+      await updatePassword({ oldPassword, newPassword });
+      setViewUpdatePw(false);
+      toast.success('Password has been successfully updated!', toastOptions);
+    } catch (err) {
+      console.log(JSON.stringify(err));
+      const errMsg = renderErrorMessage(err.name);
+      toast.error(
+        `We hit a snag trying to update your password: ${errMsg}`,
+        toastOptions,
+      );
+    }
+  }
+
+  function handleCurrentPwChange(e: ChangeEvent<HTMLInputElement>) {
+    setCurrentPw(e.target.value);
+    if (currentPw.length >= MINLEN) {
+      setIsCurrentPwValid(true);
+    } else {
+      setIsCurrentPwValid(false);
+    }
+  }
+
+  function handleNewPwChange(e: ChangeEvent<HTMLInputElement>) {
+    setNewPw(e.target.value);
+    if (newPw.length >= MINLEN) {
+      setIsNewPwValid(true);
+    } else {
+      setIsNewPwValid(false);
+    }
+  }
+
+  function handleConfirmPwChange(e: ChangeEvent<HTMLInputElement>) {
+    setConfirmPw(e.target.value);
+  }
+
+  useEffect(() => {
+    if (isCurrentPwValid && isNewPwValid && newPw === confirmPw) {
+      setSubmitDisabled(false);
+    } else {
+      setSubmitDisabled(true);
+    }
+  }, [currentPw, newPw, confirmPw, isCurrentPwValid, isNewPwValid]);
 
   async function handleEnableTOTP() {
     handleTOTPSetup().then(({ src, key }) => {
@@ -43,6 +119,21 @@ export default function AccountDetails() {
     handleFetchMFAPreference().then((data) => setCurrentMFA(data));
   }, [qrState]);
 
+  function renderErrorMessage(param: UpdatePwErrors) {
+    switch (param) {
+      case UpdatePwErrors.INVALIDPW:
+        return 'Password needs to be atleast 8 characters';
+      case UpdatePwErrors.NOTAUTHORIZED:
+        return 'Your current password is incorrect';
+      case UpdatePwErrors.LIMITEXCEEDED:
+        return 'Too many attempts, try again later';
+      case UpdatePwErrors.EMPTYPW:
+        return 'New password is empty, please try again';
+      default:
+        return `Error ${param}`;
+    }
+  }
+
   return (
     <div className="flex flex-col mt-16 text-primary" id="account-details">
       <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-2 md:px-4 shadow-portalNav">
@@ -50,30 +141,68 @@ export default function AccountDetails() {
       </h2>
       <div className="flex justify-between items-center py-4 mx-2 md:mx-4 mt-4">
         <div>{userData.data?.email}</div>
-        <div
-          className="flex items-center cursor-pointer"
-          onClick={handleUserChange}
-        >
-          <div className="mx-2 md:mx-4">remove</div>
-          <FontAwesomeIcon
-            className="text-skyblue text-md md:text-2xl"
-            icon={faPencil}
-          />
-        </div>
       </div>
       <div className="flex justify-between items-center py-4 mx-2 md:mx-4 border-t border-t-partnersBorders border-opacity-50">
         <div>password: **********</div>
         <div
           className="flex items-center cursor-pointer"
-          onClick={handlePassChange}
+          onClick={() => {
+            setViewUpdatePw(!viewUpdatePw);
+            setSubmitDisabled(true);
+          }}
         >
-          <div className="mx-2 md:mx-4">remove</div>
+          <div className="mx-2 md:mx-4">change</div>
           <FontAwesomeIcon
             className="text-skyblue text-md md:text-2xl"
             icon={faPencil}
           />
         </div>
       </div>
+      {viewUpdatePw && (
+        <form
+          onSubmit={handleUpdatePassword}
+          className="flex flex-col mx-2 md:mx-4 py-3 gap-y-2"
+        >
+          <label htmlFor="currentPw">Current Password:</label>
+          <input
+            className="text-black py-1.5 px-3 rounded-10"
+            id="currentPw"
+            type="password"
+            onChange={handleCurrentPwChange}
+          />
+          <label htmlFor="newPw">New Password:</label>
+          <input
+            className="text-black py-1.5 px-3 rounded-10"
+            id="newPw"
+            type="password"
+            onChange={handleNewPwChange}
+          />
+          <label htmlFor="confirmNewPw">Confirm Password:</label>
+          <input
+            className="text-black py-1.5 px-3 rounded-10"
+            id="confirmNewPw"
+            type="password"
+            onChange={handleConfirmPwChange}
+          />
+          <button
+            className={`my-4 py-2 px-4 rounded-10 ${submitDisabled ? 'bg-settingsGray' : 'bg-skyblue hover:bg-sky-600'}`}
+            type="submit"
+            disabled={submitDisabled}
+          >
+            Submit
+          </button>
+          {newPw !== confirmPw && (
+            <div className="text-red-500">
+              Password confirmation does not match
+            </div>
+          )}
+          {(!isCurrentPwValid || !isNewPwValid) && (
+            <div className="text-red-500">
+              Passwords need to be 8 or more characters
+            </div>
+          )}
+        </form>
+      )}
       <div className="flex justify-between items-center py-4 mx-2 md:mx-4 border-t border-t-partnersBorders border-opacity-50">
         <div>Two-factor authentication</div>
         {userData.data?.auth_method !== 'email' ? (
@@ -120,6 +249,7 @@ export default function AccountDetails() {
           icon={faTrashCan}
         />
       </div>
+      <ToastContainer theme="dark" />
     </div>
   );
 }

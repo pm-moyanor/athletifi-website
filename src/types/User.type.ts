@@ -57,3 +57,10 @@ export type UserData = {
   init_notifications: boolean | null;
   notifications: NotificationPreferences | null;
 };
+
+export enum UpdatePwErrors {
+  INVALIDPW = 'InvalidPasswordException',
+  NOTAUTHORIZED = 'NotAuthorizedException',
+  LIMITEXCEEDED = 'LimitExceededException',
+  EMPTYPW = 'EmptyUpdatePassword',
+}
