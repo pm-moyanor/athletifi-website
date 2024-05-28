@@ -8,16 +8,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { IProfileProps } from '@/types/Dashboard.type';
 import Header from '@/components/user-portal/Header';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
-
-import Card from '@/../public/assets/img/png/anderson-card-img.png';
 import { useAtom } from 'jotai';
 import { postHelperResponseAtom } from '@/states/userStore';
 import AlertModal from '@/components/common/AlertModal';
 import { AlertModalType } from '@/types/AlertModalType';
-
-
 const card_url = '/assets/img/png/anderson-card-img.png';
-
 
 const profileProps: IProfileProps = {
   name: 'Mariano Jose Alvarez',
