@@ -3,11 +3,11 @@ import { Hero } from '@/types/CommonHero.type';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import ContactUsForm from '@/components/contact-us/ContactUsForm';
-import { SEO_CONFIG } from '@/utils/seoConfig';
+import { SEO_CONFIG, BASEURL } from '@/utils/seoConfig';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SEO_CONFIG.contactUs.websiteURL),
+  metadataBase: new URL(BASEURL),
   title: SEO_CONFIG.contactUs.title,
   description: SEO_CONFIG.contactUs.description,
   openGraph: {

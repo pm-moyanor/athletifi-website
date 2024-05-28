@@ -11,7 +11,7 @@ import TrustedPartners from '@/components/home/TrustedPartners';
 import PassiveEngagement from '@/components/home/PassiveEngagement';
 import BeyondNumbers from '@/components/home/BeyondNumbers';
 import HeroHomepage from '@/components/home/HeroHomepage';
-import { SEO_CONFIG } from '@/utils/seoConfig';
+import { SEO_CONFIG, BASEURL } from '@/utils/seoConfig';
 import { getNewsList } from '@/utils/ApiHelper';
 import { Metadata } from 'next';
 
@@ -26,7 +26,7 @@ const IMAGE_WIDTH_HERO_GRID = 700;
 const IMAGE_HEIGHT_HERO_GRID = 700;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SEO_CONFIG.home.websiteURL),
+  metadataBase: new URL(BASEURL),
   keywords: ['AthletiFi', 'Club Soccer', 'Club Football'], // TODO: update keywords
   title: SEO_CONFIG.home.title,
   description: SEO_CONFIG.home.description,
