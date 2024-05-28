@@ -169,7 +169,9 @@ export default function AccountDetails() {
                 </button>
                 <button
                   className="hover:text-skyblue hover:underline"
-                  onClick={() => setDeleteRequestState(null)}
+                  onClick={() =>
+                    setDeleteRequestState(ViewDeleteRequestState.INIT)
+                  }
                 >
                   No
                 </button>
