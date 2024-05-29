@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { IProfileProps } from '@/types/Dashboard.type';
 import Header from '@/components/user-portal/Header';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
-
+import { useAtom } from 'jotai';
+import { postHelperResponseAtom } from '@/states/userStore';
+import AlertModal from '@/components/common/AlertModal';
+import { AlertModalType } from '@/types/AlertModalType';
 const card_url = '/assets/img/png/anderson-card-img.png';
 
 const profileProps: IProfileProps = {
@@ -71,6 +74,54 @@ const variants = {
 };
 
 const Profile = () => {
+  const [inviteData] = useAtom(postHelperResponseAtom);
+  const [inviteStatus, setInviteStatus] = useState<AlertModalType | null>();
+  console.log('inviteData', inviteData);
+  // console.log('inviteStatus', inviteStatus);
+
+  useEffect(() => {
+    const hasShownModal = localStorage.getItem('hasShownModal');
+    if (
+      !hasShownModal &&
+      inviteData &&
+      inviteData.invitation.invite_id &&
+      // inviteData.invitation.invite_status !== 'ALREADY_ACCEPTED' &&
+      inviteData.invitation.invite_status !== 'SUCCESS'
+    ) {
+      let inviteMessage = null;
+      if (inviteData.invitation.invite_status === 'REVOKED') {
+        inviteMessage =
+          'We understand you were previously granted access to this card. However, the card owner has chosen to revoke your access privileges. We apologize for any inconvenience this may cause.';
+      } else if (inviteData.invitation.invite_status === 'EXPIRED') {
+        inviteMessage =
+          'The access you were granted to this card has now expired. The card owner may choose to reinstate your access if they wish. Thank you for your understanding.';
+      } else if (
+        inviteData.invitation.invite_status === 'UNEXPECTED_STATUS' &&
+        inviteData.invitation.invite_status === 'NOT_FOUND'
+      ) {
+        inviteMessage =
+          "Oops! We encountered an issue processing your invitation. It's possible the invitation doesn't exist or there was a problem on our end. Please double-check the invitation details or contact the card owner for assistance.";
+      } else if (inviteData.invitation.invite_status === 'ALREADY_ACCEPTED') {
+        inviteMessage =
+          'This invitation has already been redeemed. If you believe this is an error, please contact our support team for assistance.';
+      }
+
+      setInviteStatus({
+        title: 'Card Access Unavailable',
+        textBody: inviteMessage,
+      });
+      // store invite id values in local storage to manage the hasShownModal boolean, in case the users sees the modal again after login. use an array.
+      localStorage.setItem('hasShownModal', 'true');
+      //wipe the local store after user logouts
+    }
+  }, [inviteData]);
+
+  console.log(inviteStatus);
+
+  const closeModal = () => {
+    setInviteStatus(null);
+  };
+
   // const [openIndex, setOpenIndex] = useState<boolean[]>(
   //   Array(populatedTeams.length).fill(false),
   // );
@@ -128,6 +179,13 @@ const Profile = () => {
             variants={variants}
             className="overflow-hidden w-full max-w-[1030px] mb-4 text-primary bg-cardsDark shadow-lg rounded-10  flex flex-col px-4 py-8"
           >
+            {inviteStatus && (
+              <AlertModal
+                title={inviteStatus.title}
+                textBody={inviteStatus.textBody}
+                onClose={closeModal}
+              />
+            )}
             <h2 className=" font-semibold text-primary">My cards</h2>
             <div className="flex flex-col">
               <div className="h-1 w-full bg-partnersBorders opacity-50 my-2"></div>
