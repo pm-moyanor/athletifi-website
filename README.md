@@ -102,7 +102,6 @@ To set up AWS Amplify for the AthletiFi project, follow these steps:
    - Select framework: `react`
    - Use the default `src` directory path
    - Set the distribution directory path to `.next`
-   - Use `yarn` as the package manager
    - Set the build command to `yarn build`
    - Set the start command to `yarn start`
 
