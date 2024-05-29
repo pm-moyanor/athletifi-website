@@ -3,15 +3,14 @@ import { Hero } from '@/types/CommonHero.type';
 import Custom404 from '@/components/common/Custom404';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import { SEO_CONFIG, BASEURL } from '@/utils/seoConfig';
+import { SEO_CONFIG } from '@/utils/seoConfig';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(BASEURL),
   title: SEO_CONFIG.notFound.title,
   description: SEO_CONFIG.notFound.description,
   openGraph: {
-    images: [{ url: SEO_CONFIG.notFound.image }],
+    images: SEO_CONFIG.notFound.image,
   },
 };
 
