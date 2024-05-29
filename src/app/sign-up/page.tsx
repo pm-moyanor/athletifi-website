@@ -3,15 +3,14 @@ import { Hero } from '@/types/CommonHero.type';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import SignUpForm from '@/components/sign-up/SignUpForm';
-import { SEO_CONFIG, BASEURL } from '@/utils/seoConfig';
+import { SEO_CONFIG } from '@/utils/seoConfig';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(BASEURL),
   title: SEO_CONFIG.signUp.title,
   description: SEO_CONFIG.signUp.description,
   openGraph: {
-    images: [{ url: SEO_CONFIG.signUp.image }],
+    images: SEO_CONFIG.signUp.image,
   },
 };
 
