@@ -157,6 +157,7 @@ async function fetchUserData(
         data.result.notifications_enabled.length > 0
           ? transformNotificationPreferences(data.result.notifications_enabled)
           : emptyNotifications,
+      user_delete_status: data.result.delete_status,
     };
 
     set({
