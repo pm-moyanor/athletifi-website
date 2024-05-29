@@ -14,6 +14,7 @@ import { useUserData } from '@/states/userStore';
 import RegisterMFA from '@/components/auth/RegisterMFA';
 import VerifyMFA from '@/components/auth/VerifyMFA';
 import EnabledMFAMessage from '@/components/auth/EnabledMFAMessage';
+import { ViewDeleteRequestState, DeleteStatus } from '@/types/User.type';
 import { UpdatePwErrors } from '@/types/User.type';
 import { updatePassword } from 'aws-amplify/auth';
 
@@ -36,6 +37,8 @@ export default function AccountDetails() {
   const [qrState, setQRState] = useState('off');
   const [qrSrc, setQRSrc] = useState<string | null | undefined>(null);
   const [qrKey, setQRKey] = useState<string>('');
+  const [deleteRequestState, setDeleteRequestState] =
+    useState<ViewDeleteRequestState>(ViewDeleteRequestState.INIT);
   const [currentMFA, setCurrentMFA] = useState<FetchMFAPreferenceOutput>({
     enabled: undefined,
     preferred: undefined,
@@ -131,6 +134,29 @@ export default function AccountDetails() {
         return 'New password is empty, please try again';
       default:
         return `Error ${param}`;
+    }
+  }
+
+  const baseURL = process.env.NEXT_PUBLIC_API_URL;
+
+  const postHelper = async (amplify_id: string) => {
+    const response = await fetch(`${baseURL}/deleteUserRequest`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        amplify_id: amplify_id,
+      }),
+    });
+    const data = await response.json();
+    return data;
+  };
+
+  async function handleDeleteRequest() {
+    if (userData.data?.amplify_id) {
+      await postHelper(userData.data.amplify_id);
+      setDeleteRequestState(ViewDeleteRequestState.CONFIRMED);
     }
   }
 
@@ -243,11 +269,54 @@ export default function AccountDetails() {
       {qrState === 'verify-qr' && <VerifyMFA setQRState={setQRState} />}
       {qrState === 'enabled' && <EnabledMFAMessage />}
       <div className="flex justify-between items-center py-4 mx-2 md:mx-4 border-t border-t-partnersBorders border-opacity-50">
-        <div className="text-xs">Delete Account</div>
-        <FontAwesomeIcon
-          className="text-chartRed cursor-pointer text-md md:text-2xl"
-          icon={faTrashCan}
-        />
+        <div className="text-sm">Delete Account</div>
+        {userData.data?.user_delete_status === DeleteStatus.PENDING ||
+        userData.data?.user_delete_status === DeleteStatus.COMPLETED ? (
+          <div className="text-red-500 text-sm">
+            Your delete request is in progress. Our team will confirm with you
+            once completed.
+          </div>
+        ) : (
+          <div className="flex">
+            {deleteRequestState === ViewDeleteRequestState.CONFIRMED && (
+              <div className="text-skyblue text-sm">
+                Your request is logged. Expect a confirmation in 3-5 business
+                days.
+              </div>
+            )}
+            {deleteRequestState === ViewDeleteRequestState.CHECK && (
+              <>
+                <div>
+                  Account deletion is permanent and can take 3-5 business days
+                  to fully process. Continue?
+                </div>
+                <button
+                  className="mx-3 hover:text-skyblue hover:underline"
+                  onClick={handleDeleteRequest}
+                >
+                  Yes
+                </button>
+                <button
+                  className="hover:text-skyblue hover:underline"
+                  onClick={() =>
+                    setDeleteRequestState(ViewDeleteRequestState.INIT)
+                  }
+                >
+                  No
+                </button>
+              </>
+            )}
+            {deleteRequestState === ViewDeleteRequestState.INIT && (
+              <FontAwesomeIcon
+                className="text-chartRed cursor-pointer text-md md:text-2xl"
+                icon={faTrashCan}
+                onClick={() =>
+                  setDeleteRequestState(ViewDeleteRequestState.CHECK)
+                }
+              />
+            )}
+          </div>
+        )}
       </div>
       <ToastContainer theme="dark" />
     </div>

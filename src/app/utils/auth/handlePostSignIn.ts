@@ -4,8 +4,7 @@ export default async function handlePostSignIn(
   userAttributes: FetchUserAttributesOutput,
   inviteId: string | null,
 ) {
-  const baseURL =
-    process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000/api';
+  const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
   const postHelper = async (
     email: string | undefined,
