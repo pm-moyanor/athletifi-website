@@ -172,6 +172,8 @@ async function fetchUserData(
           ? transformNotificationPreferences(data.result.notifications_enabled)
           : emptyNotifications,
       user_delete_status: data.result.delete_status,
+      owned_cards: data.result.owned_cards,
+      guest_cards: data.result.guest_cards,
     };
 
     set({

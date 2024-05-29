@@ -60,6 +60,20 @@ export enum ViewDeleteRequestState {
   CONFIRMED = 'confirmed',
 }
 
+export type OwnedCards = {
+  card_id: string | null;
+  card_image_url: string | null;
+  dashboard_slug: string | null;
+};
+
+export type GuestCards = {
+  invite_id: string | null;
+  status: string | null;
+  card_id: string | null;
+  card_image_url: string | null;
+  dashboard_slug: string | null;
+};
+
 export type UserData = {
   amplify_id: string | null;
   auth_method: string | null;
@@ -69,4 +83,6 @@ export type UserData = {
   init_notifications: boolean | null;
   notifications: NotificationPreferences | null;
   user_delete_status: DeleteStatus | null;
+  owned_cards: OwnedCards | null;
+  guest_cards: GuestCards | null;
 };
