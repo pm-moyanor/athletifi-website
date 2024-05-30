@@ -87,6 +87,6 @@
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://athleti.fi/resolve-auth/\"],\"LogoutURLs\":[\"https://athleti.fi/logout/\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://www.athleti.fi/resolve-auth/\"],\"LogoutURLs\":[\"https://www.athleti.fi/logout/\"]}"
   }
 }
