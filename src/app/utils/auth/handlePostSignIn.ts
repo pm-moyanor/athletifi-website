@@ -27,7 +27,7 @@ export default async function handlePostSignIn(
     });
 
     const data = await response.json();
-    console.log('data in lambda', data);
+    console.log('data from lambda', data);
     return data;
   };
 
@@ -47,7 +47,12 @@ export default async function handlePostSignIn(
   }
 
   try {
-    await postHelper(userAttributes.email, userAttributes.name, amplify_id);
+    const data = await postHelper(
+      userAttributes.email,
+      userAttributes.name,
+      amplify_id,
+    );
+    return data;
   } catch (error) {
     console.error(error);
   }

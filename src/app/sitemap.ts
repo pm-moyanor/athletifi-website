@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://athleti.fi';
+  const baseUrl = 'https://www.athleti.fi';
   return [
     {
       url: baseUrl,

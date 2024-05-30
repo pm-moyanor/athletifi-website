@@ -13,7 +13,13 @@ import { getCurrentUser } from 'aws-amplify/auth';
 import { Hub } from '@aws-amplify/core';
 import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
 import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
-import { atom, WritableAtom, PrimitiveAtom, useAtom } from 'jotai';
+import {
+  atom,
+  WritableAtom,
+  PrimitiveAtom,
+  useAtom,
+  SetStateAction,
+} from 'jotai';
 
 export interface UserState {
   data: UserData | null;
@@ -59,11 +65,17 @@ const createStorageWithExpiration = (storage: Storage, expiration: number) => ({
     storage.removeItem(key);
   },
 });
-
+// export const postHelperResponseAtom = atom<any, any, void>(
+//   (get) => get(postHelperResponseAtom),
+//   (get, set, update) => set(postHelperResponseAtom, update),
+// );
+export const postHelperResponseAtom = atom<any>(null);
+//TODO: replace the any type with the actual type of the response from the postHelper function
 // Define `inviteIdAtom` differently based on environment
 export let inviteIdAtom:
   | WritableAtom<string | null, [string | null], void>
   | PrimitiveAtom<string | null>;
+
 // Define `redirectUrlAtom` differently based on environment
 export let redirectAtom:
   | WritableAtom<string | null, [string | null], void>
@@ -97,6 +109,7 @@ async function fetchUserData(
   currState: UserState,
   set: (value: UserState) => void,
   inviteId: string | null,
+  setPostHelperResponse: (value: SetStateAction<any>) => void,
 ) {
   let amplify_id, userAttributes, auth_method;
   if (currState.data) {
@@ -126,7 +139,8 @@ async function fetchUserData(
 
       userAttributes = await handleFetchUserAttributes();
 
-      await handlePostSignIn(userAttributes, inviteId);
+      const postData = await handlePostSignIn(userAttributes, inviteId);
+      setPostHelperResponse(postData);
     } catch (err) {
       console.warn('User is currently not logged in. Skipping userData fetch');
       return;
@@ -158,6 +172,8 @@ async function fetchUserData(
           ? transformNotificationPreferences(data.result.notifications_enabled)
           : emptyNotifications,
       user_delete_status: data.result.delete_status,
+      owned_cards: data.result.owned_cards,
+      guest_cards: data.result.guest_cards,
     };
 
     set({
@@ -197,6 +213,7 @@ export function useUserData() {
     useState<LatestChange>(emptyLatestChange);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [inviteId, setInviteId] = useAtom(inviteIdAtom);
+  const [, setPostHelperResponse] = useAtom(postHelperResponseAtom);
 
   // Remove invite_id from localStorage when user logs out
   useEffect(() => {
@@ -212,7 +229,7 @@ export function useUserData() {
 
   // Fetch the user data whenever the amplify_id changes
   useEffect(() => {
-    fetchUserData(userData, setUserData, inviteId);
+    fetchUserData(userData, setUserData, inviteId, setPostHelperResponse);
   }, [isLoggedIn, inviteId]);
 
   useEffect(() => {
