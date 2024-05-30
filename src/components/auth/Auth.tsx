@@ -16,7 +16,7 @@ const Auth = ({ children }: { children: React.ReactNode }) => {
     'custom redirectSignIn URL (Auth.tsx):',
     config.oauth.redirectSignIn,
   );
-  console.log('original redirectSignIn URL:', awsExports.oauth.redirectSignOut);
+  console.log('original redirectSignIn URL:', awsExports.oauth.redirectSignIn);
   return <Authenticator.Provider>{children}</Authenticator.Provider>;
 };
 

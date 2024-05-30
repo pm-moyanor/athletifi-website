@@ -36,13 +36,13 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
     }
   }, [searchParams, setInviteId]);
 
-  console.log('inviteId: ', inviteId);
-  console.log('oauthCode: ', oauthCode);
+  console.log('inviteId2: ', inviteId);
+  console.log('oauthCode2: ', oauthCode);
   console.log(
     'custom redirectSignIn URL (AuthClient.tsx):',
     config.oauth.redirectSignIn,
   );
-  console.log('original redirectSignIn URL:', awsExports.oauth.redirectSignOut);
+  console.log('original redirectSignIn URL:', awsExports.oauth.redirectSignIn);
   const { user, route } = useAuthenticator((context) => [
     context.user,
     context.route,
