@@ -217,6 +217,3 @@ To ensure code quality and maintainability, the project follows various best pra
 - Use Git for version control and follow a branching strategy.
 - Regularly update dependencies and address security vulnerabilities.
 
-## Troubleshooting
-
-If you encounter any issues or errors during development or deployment, refer to the [Troubleshooting](#troubleshooting) section for common solutions and debugging techniques. If the issue persists, reach out to the development team or consult the project's issue tracker for further assistance.
