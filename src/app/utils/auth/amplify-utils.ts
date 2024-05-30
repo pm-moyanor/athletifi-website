@@ -1,20 +1,21 @@
 import { createServerRunner } from '@aws-amplify/adapter-nextjs';
 // import config from '@/amplifyconfiguration.json';
-import awsExports from '@/aws-exports';
+// import awsExports from '@/aws-exports';
+import config from '@/custom-aws-exports';
 import { cookies } from 'next/headers';
 import { getCurrentUser } from 'aws-amplify/auth/server';
 import { generateServerClientUsingCookies } from '@aws-amplify/adapter-nextjs/data';
 
 export const cookieBasedClient = generateServerClientUsingCookies({
-  // config,
-  config: awsExports,
+  config,
+  // config: awsExports,
   cookies,
   authMode: 'userPool',
 });
 
 export const { runWithAmplifyServerContext } = createServerRunner({
-  // config,
-  config: awsExports,
+  config,
+  // config: awsExports,
 });
 
 export const isAuthenticated = async () =>
