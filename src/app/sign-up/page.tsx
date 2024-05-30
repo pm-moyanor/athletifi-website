@@ -7,10 +7,9 @@ import { SEO_CONFIG } from '@/utils/seoConfig';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SEO_CONFIG.signUp.websiteURL),
   title: SEO_CONFIG.signUp.title,
+  description: SEO_CONFIG.signUp.description,
   openGraph: {
-    description: SEO_CONFIG.signUp.description,
     images: SEO_CONFIG.signUp.image,
   },
 };
