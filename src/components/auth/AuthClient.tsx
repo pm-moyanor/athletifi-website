@@ -17,6 +17,8 @@ import { useRouter } from 'next/navigation';
 import { SignUpInput, signUp } from 'aws-amplify/auth';
 import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
 import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
+import awsExports from '@/aws-exports';
+import config from '@/custom-aws-exports';
 
 const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
   const router = useRouter();
@@ -36,7 +38,11 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
 
   console.log('inviteId: ', inviteId);
   console.log('oauthCode: ', oauthCode);
-
+  console.log(
+    'custom redirectSignIn URL (AuthClient.tsx):',
+    config.oauth.redirectSignIn,
+  );
+  console.log('original redirectSignIn URL:', awsExports.oauth.redirectSignOut);
   const { user, route } = useAuthenticator((context) => [
     context.user,
     context.route,
