@@ -28,7 +28,7 @@ The AthletiFi project utilizes the following key technologies:
 - **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript.
 - **Jotai**: A primitive and flexible state management library for React.
 - **Recharts**: A composable charting library built on React components.
-- **Strapi**: A next-gen headless CMS for content-rich experiences.
+- **Strapi**: Open-source headless CMS (Content Management System) for managing content via APIs.
 
 ## Getting Started
 
