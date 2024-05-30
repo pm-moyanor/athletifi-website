@@ -1,6 +1,6 @@
 import { PageSEO } from '@/types/Seo.type';
 
-export const BASEURL = 'https://athleti.fi';
+export const BASEURL = 'https://www.athleti.fi';
 
 const aboutUsConfig: PageSEO = {
   description:
