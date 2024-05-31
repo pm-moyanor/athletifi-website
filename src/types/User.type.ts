@@ -86,3 +86,10 @@ export type UserData = {
   owned_cards: OwnedCards | null;
   guest_cards: GuestCards | null;
 };
+
+export enum UpdatePwErrors {
+  INVALIDPW = 'InvalidPasswordException',
+  NOTAUTHORIZED = 'NotAuthorizedException',
+  LIMITEXCEEDED = 'LimitExceededException',
+  EMPTYPW = 'EmptyUpdatePassword',
+}
