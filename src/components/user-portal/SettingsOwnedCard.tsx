@@ -1,26 +1,72 @@
 import Image from 'next/image';
+import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useDashboardData } from '@/states/dashboardStore';
 
-const OwnedCard = ({
-  card,
-  guests,
-  idx,
-  isToggle,
-  toggleEmailInput,
-  emailSubmitted,
-  invitation,
-  handleChange,
-  emailSubmit,
-  handleRemoveGuest,
-}) => {
+const OwnedCard = ({ card, card_image_url, idx }) => {
+  const [isToggle, setIsToggle] = useState(false);
+  const [invitation, setInvitation] = useState({
+    name: '',
+    email: '',
+  });
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const toggleRef = useRef(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInvitation((prevInvitation) => ({
+      ...prevInvitation,
+      [name]: value,
+    }));
+  };
+
+  const emailSubmit = (e) => {
+    e.preventDefault();
+    const { name, email } = invitation;
+
+    if (name && email) {
+      console.log('Send invitation', name, email);
+      setEmailSubmitted(true);
+      setError('');
+      //send invite??
+    } else {
+      setError('Please fill out both the name and email fields.');
+    }
+  };
+
+  const toggleEmailInput = () => {
+    setIsToggle(!isToggle);
+    if (emailSubmitted) {
+      setEmailSubmitted(false);
+      setInvitation({ name: '', email: '' });
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (toggleRef.current && !toggleRef.current.contains(event.target)) {
+        setIsToggle(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const { dashboardData } = useDashboardData(card.dashboard_slug);
+  const playerProfile = dashboardData.data?.playerProfile;
+
   return (
     <div className="rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-4">
       <div className="flex justify-start items-start min-w-[250px]">
         <div className="relative w-24 h-28 justify-end">
           <Image
-            src={card.card_url}
+            src={card_image_url}
             alt="Card Thumbnail"
             layout="fill"
             objectFit="contain"
@@ -28,17 +74,17 @@ const OwnedCard = ({
         </div>
         <div className="flex mt-2 flex-col flex-shrink">
           <h2 className="mx-[6px] mb-[6px] font-bold text-md text-primary">
-            {card.name}
+            {playerProfile?.name}
           </h2>
           <div className="mx-[6px] flex flex-col text-sm flex-1">
             <p className="pb-1 leading-4 text-primary opacity-80 relative">
-              {card.club}
+              {playerProfile?.club}
             </p>
             <p className="pb-1 leading-4 text-primary opacity-80 relative">
-              {card.team}
+              {playerProfile?.team}
             </p>
             <p className="leading-4 text-primary opacity-80 lg:max-w-769 relative">
-              {card.number}
+              #{playerProfile?.number}
             </p>
           </div>
         </div>
@@ -46,7 +92,7 @@ const OwnedCard = ({
       <div className="h-1 bg-partnersBorders w-full md:w-0 opacity-20"></div>
       <div className="w-full px-[4px] lg:ml-8 md:max-w-[500px]">
         <p className="font-extralight mt-2">Manage guests for this card</p>
-        {guests.map((guest, index) => (
+        {/* {guests.map((guest, index) => (
           <div
             key={index}
             className="flex justify-between items-center py-4 border-b border-partnersBorders border-opacity-20 text-sm"
@@ -68,13 +114,13 @@ const OwnedCard = ({
               />
             </div>
           </div>
-        ))}
+        ))} */}
 
         <div
           className="w-full flex justify-between items-center"
-          onClick={() => toggleEmailInput(idx)}
+          onClick={toggleEmailInput}
         >
-          {!isToggle[idx] && (
+          {!isToggle && (
             <>
               <p> New guest</p>
               <button
@@ -94,8 +140,9 @@ const OwnedCard = ({
         </div>
 
         <AnimatePresence>
-          {isToggle[idx] && (
+          {isToggle && (
             <motion.div
+              ref={toggleRef}
               key="content"
               initial="collapsed"
               animate="open"
@@ -147,6 +194,7 @@ const OwnedCard = ({
                       className=" bg-offwhite bg-opacity-10 h-8 text-sm bottom-0 left-0 w-full p-3 border rounded border-partnersBorders text-partnersBorders"
                       onChange={handleChange}
                     />
+                    {error && <p className="text-red-500 text-sm">{error}</p>}
                     <button
                       type="submit"
                       className="h-8 py-3 px-6 text-sm leading-6 flex items-center justify-center bg-darkerSkyBlue rounded"

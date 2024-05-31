@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Source_Sans_3 } from 'next/font/google';
 import { useUserData } from '@/states/userStore';
@@ -14,130 +14,92 @@ const sourceSans3 = Source_Sans_3({
 
 const card_url = '/assets/img/png/anderson-card-img.png';
 
-interface Guest {
-  name: string;
-  email: string;
-}
+// const dummyDataReferrals: Referral[] = [
+//   {
+//     card: {
+//       name: 'Salvador Carillo',
+//       number: '#22',
+//       club: 'villanova soccer',
+//       team: 'team 2009',
+//       card_url: card_url,
+//     },
+//     guests: [
+//       {
+//         name: 'Gloria Carrillo',
+//         email: 'gloria@example.com',
+//       },
+//       {
+//         name: 'Andrew Carrillo',
+//         email: 'andrew@example.com',
+//       },
+//     ],
+//   },
+//   {
+//     card: {
+//       name: 'Salvador Carillo',
+//       number: '#22',
+//       club: 'villanova soccer',
+//       team: 'team 2009',
+//       card_url: card_url,
+//     },
+//     guests: [
+//       {
+//         name: 'Gloria Carrillo',
+//         email: 'gloria@example.com',
+//       },
+//       {
+//         name: 'Andrew Carrillo',
+//         email: 'andrew-carrillo@example.com',
+//       },
+//     ],
+//   },
+// ];
 
-interface Referral {
-  card: {
-    name: string;
-    number: string;
-    club: string;
-    team: string;
-    card_url: string;
-  };
-  guests: Guest[];
-}
-interface Invite extends Referral {
-  cardId: string;
-  inviter: Guest;
-}
-
-const dummyDataReferrals: Referral[] = [
-  {
-    card: {
-      name: 'Salvador Carillo',
-      number: '#22',
-      club: 'villanova soccer',
-      team: 'team 2009',
-      card_url: card_url,
-    },
-    guests: [
-      {
-        name: 'Gloria Carrillo',
-        email: 'gloria@example.com',
-      },
-      {
-        name: 'Andrew Carrillo',
-        email: 'andrew@example.com',
-      },
-    ],
-  },
-  {
-    card: {
-      name: 'Salvador Carillo',
-      number: '#22',
-      club: 'villanova soccer',
-      team: 'team 2009',
-      card_url: card_url,
-    },
-    guests: [
-      {
-        name: 'Gloria Carrillo',
-        email: 'gloria@example.com',
-      },
-      {
-        name: 'Andrew Carrillo',
-        email: 'andrew-carrillo@example.com',
-      },
-    ],
-  },
-];
-
-const dummyDataInvites: Invite[] = [
-  {
-    cardId: '',
-    card: {
-      name: 'Daniel Guilmore',
-      number: '#22',
-      club: 'villanova soccer',
-      team: 'team 2009',
-      card_url: card_url,
-    },
-    guests: [],
-    inviter: {
-      name: 'Daniel Guilmore',
-      email: 'daniel@example.com',
-    },
-  },
-  {
-    cardId: '',
-    card: {
-      name: 'Luis Sanchez',
-      number: '#22',
-      club: 'villanova soccer',
-      team: 'team 2009',
-      card_url: card_url,
-    },
-    guests: [],
-    inviter: {
-      name: 'Lily Sanchez',
-      email: 'lily@example.com',
-    },
-  },
-];
-
+// const dummyDataInvites: Invite[] = [
+//   {
+//     cardId: '',
+//     card: {
+//       name: 'Daniel Guilmore',
+//       number: '#22',
+//       club: 'villanova soccer',
+//       team: 'team 2009',
+//       card_url: card_url,
+//     },
+//     guests: [],
+//     inviter: {
+//       name: 'Daniel Guilmore',
+//       email: 'daniel@example.com',
+//     },
+//   },
+//   {
+//     cardId: '',
+//     card: {
+//       name: 'Luis Sanchez',
+//       number: '#22',
+//       club: 'villanova soccer',
+//       team: 'team 2009',
+//       card_url: card_url,
+//     },
+//     guests: [],
+//     inviter: {
+//       name: 'Lily Sanchez',
+//       email: 'lily@example.com',
+//     },
+//   },
+// ];
+let ownerCards = [];
+let guestCards = [];
 export default function ManageReferrals() {
-  const [referrals, setReferrals] = useState(dummyDataReferrals);
-  const [invites, setInvites] = useState(dummyDataInvites);
-  const [isToggle, setIsToggle] = useState(Array(referrals.length).fill(false));
+  const { userData } = useUserData();
+  const [referrals, setReferrals] = useState([]);
+  const [invites, setInvites] = useState([]);
 
-  const [invitation, setInvitation] = useState({
-    name: '',
-    email: '',
-  });
-  const [emailSubmitted, setEmailSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInvitation((prevInvitation) => ({
-      ...prevInvitation,
-      [name]: value,
-    }));
-  };
-
-  const emailSubmit = (e) => e.preventDefault();
-
-  const toggleEmailInput = (idx) => {
-    setIsToggle((prev) =>
-      prev.map((state, index) => (index === idx ? !state : state)),
-    );
-    if (emailSubmitted) {
-      setEmailSubmitted(false);
-      setInvitation({ name: '', email: '' });
+  useEffect(() => {
+    if (userData && userData.data) {
+      setReferrals(userData.data.owned_cards || []);
+      setInvites(userData.data.guest_cards || []);
     }
-  };
+  }, [userData]);
 
   const handleRemoveReferral = (referralIdx, guestIdx) => {
     setReferrals((prevReferrals) => {
@@ -147,13 +109,28 @@ export default function ManageReferrals() {
     });
   };
 
-  const handleRemoveInvites = (i) => {
-    setInvites(invites.filter((_, idx) => idx !== i));
+  const handleRemoveInvites = (inviteId) => {
+    setInvites((prevInvites) => {
+      const updatedInvites = prevInvites.filter(
+        (invite) => invite.invite_id !== inviteId,
+      );
+      console.log('Invite removed with ID:', inviteId); //update in table?
+      return updatedInvites;
+    });
   };
 
-  const { userData } = useUserData();
-  const ownerCards = userData.data?.owned_cards || [];
-  const guestCards = userData.data?.guest_cards || [];
+  console.log(userData.data);
+  ownerCards = [
+    {
+      card_id: '0040bccb-b97d-4dcc-926f-30232dd4966a',
+      card_image_url:
+        'https://athletifi-s3.s3.us-east-2.amazonaws.com/player-card-images/Jose%20Hernandez_10_standing_Bronze%20v2_front.webp',
+      dashboard_slug: 'vsa-23/276',
+    },
+  ];
+  console.log(ownerCards);
+  // ownerCards = userData.data?.owned_cards || [];
+  guestCards = userData.data?.guest_cards || [];
 
   return (
     <div
@@ -172,26 +149,18 @@ export default function ManageReferrals() {
         <div className="tfont-extralight mx-2 py-2 mb-2">
           Manage access to your guest list
         </div>
-
-        {referrals.map((referral, idx) => (
-          <>
-            <OwnedCard
-              key={idx}
-              card={referral.card}
-              guests={referral.guests}
-              idx={idx}
-              isToggle={isToggle}
-              toggleEmailInput={toggleEmailInput}
-              emailSubmitted={emailSubmitted}
-              invitation={invitation}
-              handleChange={handleChange}
-              emailSubmit={emailSubmit}
-              handleRemoveGuest={(guestIdx) =>
-                handleRemoveReferral(idx, guestIdx)
-              }
-            />
-          </>
-        ))}
+        {ownerCards &&
+          ownerCards.length > 0 &&
+          ownerCards.map((card, idx) => (
+            <>
+              <OwnedCard
+                key={idx}
+                card={card}
+                card_image_url={card.card_image_url}
+                idx={idx}
+              />
+            </>
+          ))}
         {/*=============== INVITATIONS */}
         <div className="text-md font-semibold leading-5 mx-2 mt-8">
           My Invitations
@@ -199,7 +168,7 @@ export default function ManageReferrals() {
         <div className="text-primary font-extralight mx-2 py-2 mb-2">
           View invitations to other users&apos; cards
         </div>
-        {invites.map((invite, idx) => (
+        {guestCards.map((invite, idx) => (
           <GuestCard
             key={idx}
             invite={invite}

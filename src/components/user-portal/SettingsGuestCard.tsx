@@ -1,8 +1,14 @@
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useDashboardData } from '@/states/dashboardStore';
 
 const GuestCard = ({ invite, idx, handleRemoveInvites }) => {
+  console.log(invite, invite.dashboard_slug);
+  const { dashboardData } = useDashboardData(invite.dashboard_slug);
+  const playerProfile = dashboardData.data?.playerProfile;
+
+  //RENDER CARD OF CARD OWNER (INVITEID)
   return (
     <div
       key={idx}
@@ -11,7 +17,7 @@ const GuestCard = ({ invite, idx, handleRemoveInvites }) => {
       <div className="flex justify-start items-start min-w-[250px]">
         <div className="relative w-24 h-28 justify-end">
           <Image
-            src={invite.card.card_url}
+            src={invite.card_image_url}
             alt="Card Thumbnail"
             layout="fill"
             objectFit="contain"
@@ -19,17 +25,17 @@ const GuestCard = ({ invite, idx, handleRemoveInvites }) => {
         </div>
         <div className="flex mt-2 flex-col flex-shrink">
           <h2 className="mx-[6px] mb-[6px] font-bold text-md text-primary">
-            {invite.card.name}
+            {playerProfile?.name}
           </h2>
           <div className="mx-[6px] flex flex-col text-sm flex-1">
             <p className="pb-1 leading-4 text-primary opacity-80 relative">
-              {invite.card.club}
+              {playerProfile?.club}
             </p>
             <p className="pb-1 leading-4 text-primary opacity-80 relative">
-              {invite.card.team}
+              {playerProfile?.team}
             </p>
             <p className="leading-4 text-primary opacity-80 lg:max-w-769 relative">
-              {invite.card.number}
+              #{playerProfile?.number}
             </p>
           </div>
         </div>
@@ -40,14 +46,14 @@ const GuestCard = ({ invite, idx, handleRemoveInvites }) => {
           <p className="font-extralight text-base">Card owner</p>
           <div className="flex justify-between items-start">
             <div className="text-sm flex flex-col">
-              <p className="mb-[2px] pt-2">{invite.inviter.name}</p>
-              <p className="md:text-center font-extralight">
+              {/*   <p className="mb-[2px] pt-2">{invite.inviter.name}</p>
+             <p className="md:text-center font-extralight">
                 {invite.inviter.email}
-              </p>
+              </p> */}
             </div>
             <div
               className="flex items-center justify-end cursor-pointer"
-              onClick={() => handleRemoveInvites(idx)}
+              onClick={() => handleRemoveInvites(invite.invite_id)}
             >
               <div className="text-sm py-4 mx-2 md:mx-4 text-end">decline</div>
               <FontAwesomeIcon
