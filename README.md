@@ -28,7 +28,7 @@ The AthletiFi project utilizes the following key technologies:
 - **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript.
 - **Jotai**: A primitive and flexible state management library for React.
 - **Recharts**: A composable charting library built on React components.
-- **Strapi**: A next-gen headless CMS for content-rich experiences.
+- **Strapi**: Open-source headless CMS (Content Management System) for managing content via APIs.
 
 ## Getting Started
 
@@ -102,7 +102,6 @@ To set up AWS Amplify for the AthletiFi project, follow these steps:
    - Select framework: `react`
    - Use the default `src` directory path
    - Set the distribution directory path to `.next`
-   - Use `yarn` as the package manager
    - Set the build command to `yarn build`
    - Set the start command to `yarn start`
 
@@ -218,6 +217,3 @@ To ensure code quality and maintainability, the project follows various best pra
 - Use Git for version control and follow a branching strategy.
 - Regularly update dependencies and address security vulnerabilities.
 
-## Troubleshooting
-
-If you encounter any issues or errors during development or deployment, refer to the [Troubleshooting](#troubleshooting) section for common solutions and debugging techniques. If the issue persists, reach out to the development team or consult the project's issue tracker for further assistance.

@@ -9,6 +9,8 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { Open_Sans } from 'next/font/google';
 import { Provider } from 'jotai';
 import Auth from '@/components/auth/Auth';
+import { SEO_CONFIG, BASEURL } from '@/utils/seoConfig';
+import { Metadata } from 'next';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -19,6 +21,16 @@ const AOSInitializerWithNoSSR = dynamic(
   () => import('@/utils/AOSInitializer'),
   { ssr: false },
 );
+
+export const metadata: Metadata = {
+  metadataBase: new URL(BASEURL),
+  keywords: ['AthletiFi', 'Club Soccer', 'Club Football'], // TODO: update keywords
+  title: SEO_CONFIG.home.title,
+  description: SEO_CONFIG.home.description,
+  openGraph: {
+    images: SEO_CONFIG.home.image,
+  },
+};
 
 export default function RootLayout({
   children,

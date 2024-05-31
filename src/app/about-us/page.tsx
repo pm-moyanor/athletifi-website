@@ -12,10 +12,9 @@ import { SEO_CONFIG } from '@/utils/seoConfig';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SEO_CONFIG.aboutUs.websiteURL),
   title: SEO_CONFIG.aboutUs.title,
+  description: SEO_CONFIG.aboutUs.description,
   openGraph: {
-    description: SEO_CONFIG.aboutUs.description,
     images: SEO_CONFIG.aboutUs.image,
   },
 };
