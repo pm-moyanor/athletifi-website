@@ -96,7 +96,7 @@ const Profile = () => {
         inviteMessage =
           'The access you were granted to this card has now expired. The card owner may choose to reinstate your access if they wish. Thank you for your understanding.';
       } else if (
-        inviteData.invitation.invite_status === 'UNEXPECTED_STATUS' &&
+        inviteData.invitation.invite_status === 'UNEXPECTED_STATUS' ||
         inviteData.invitation.invite_status === 'NOT_FOUND'
       ) {
         inviteMessage =

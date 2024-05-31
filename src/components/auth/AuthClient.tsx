@@ -17,7 +17,6 @@ import { useRouter } from 'next/navigation';
 import { SignUpInput, signUp } from 'aws-amplify/auth';
 import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
 import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
-import awsExports from '@/aws-exports';
 import config from '@/custom-aws-exports';
 
 const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
@@ -36,13 +35,13 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
     }
   }, [searchParams, setInviteId]);
 
-  console.log('inviteId2: ', inviteId);
-  console.log('oauthCode2: ', oauthCode);
+  console.log('(AuthClient.tsx) inviteId: ', inviteId);
+  console.log('oauthCode: ', oauthCode);
   console.log(
-    'custom redirectSignIn URL (AuthClient.tsx):',
+    '(AuthClient.tsx) custom redirectSignIn URL:',
     config.oauth.redirectSignIn,
   );
-  console.log('original redirectSignIn URL:', awsExports.oauth.redirectSignIn);
+  console.log('ʕ•̫͡•ʕ•̫͡•ʔ•̫͡•ʔ•̫͡•ʕ•̫͡•ʔ•̫͡•ʕ•̫͡•ʕ•̫͡•ʔ•̫͡•ʔ•̫͡•ʕ•̫͡•ʔ•̫͡•ʔ');
   const { user, route } = useAuthenticator((context) => [
     context.user,
     context.route,
@@ -99,7 +98,7 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
       <ThemeProvider theme={loginTheme}>
         <div className="mb-12">
           <p className="text-primary font-extralight leading-8 mt-28">
-            Signup for
+            Welcome to
           </p>
           <h1
             className={`text-xl text-primary leading-8 ${sourceSans3.className}`}

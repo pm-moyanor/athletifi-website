@@ -86,3 +86,17 @@ export type UserData = {
   owned_cards: OwnedCards | null;
   guest_cards: GuestCards | null;
 };
+
+export interface PostHelperResponse {
+  message: string;
+  user: {
+    id: string;
+    amplifyId: string;
+    email: string;
+    name: string;
+  };
+  invitation: {
+    invite_id: string | null;
+    invite_status: string | null;
+  };
+}

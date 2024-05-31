@@ -8,7 +8,9 @@ import {
   emptyNotifications,
   LatestChange,
   emptyLatestChange,
+  PostHelperResponse,
 } from '@/types/User.type';
+
 import { getCurrentUser } from 'aws-amplify/auth';
 import { Hub } from '@aws-amplify/core';
 import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
@@ -65,12 +67,9 @@ const createStorageWithExpiration = (storage: Storage, expiration: number) => ({
     storage.removeItem(key);
   },
 });
-// export const postHelperResponseAtom = atom<any, any, void>(
-//   (get) => get(postHelperResponseAtom),
-//   (get, set, update) => set(postHelperResponseAtom, update),
-// );
-export const postHelperResponseAtom = atom<any>(null);
-//TODO: replace the any type with the actual type of the response from the postHelper function
+
+export const postHelperResponseAtom = atom<PostHelperResponse | null>(null);
+
 // Define `inviteIdAtom` differently based on environment
 export let inviteIdAtom:
   | WritableAtom<string | null, [string | null], void>
@@ -109,7 +108,9 @@ async function fetchUserData(
   currState: UserState,
   set: (value: UserState) => void,
   inviteId: string | null,
-  setPostHelperResponse: (value: SetStateAction<any>) => void,
+  setPostHelperResponse: (
+    value: SetStateAction<PostHelperResponse | null>,
+  ) => void,
 ) {
   let amplify_id, userAttributes, auth_method;
   if (currState.data) {
@@ -140,6 +141,10 @@ async function fetchUserData(
       userAttributes = await handleFetchUserAttributes();
 
       const postData = await handlePostSignIn(userAttributes, inviteId);
+      console.log('postData', postData);
+      console.log('json stringify postData');
+
+      console.log(JSON.stringify(postData));
       setPostHelperResponse(postData);
     } catch (err) {
       console.warn('User is currently not logged in. Skipping userData fetch');

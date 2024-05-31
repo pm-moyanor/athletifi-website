@@ -52,6 +52,7 @@ export default async function handlePostSignIn(
       userAttributes.name,
       amplify_id,
     );
+    console.log('data from lambda', data);
     return data;
   } catch (error) {
     console.error(error);
