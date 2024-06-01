@@ -2,10 +2,17 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDashboardData } from '@/states/dashboardStore';
+import { GuestCards } from './types';
 
-const GuestCard = ({ invite, idx, handleRemoveInvites }) => {
+type GuestCardProps = {
+  invite: GuestCards;
+  idx: number;
+  handleRemoveInvites: (inviteId: string) => void;
+};
+
+const GuestCard = ({ invite, idx, handleRemoveInvites }: GuestCardProps) => {
   console.log(invite, invite.dashboard_slug);
-  const { dashboardData } = useDashboardData(invite.dashboard_slug);
+  const { dashboardData } = useDashboardData(invite.dashboard_slug || '');
   const playerProfile = dashboardData.data?.playerProfile;
 
   //RENDER CARD OF CARD OWNER (INVITEID)

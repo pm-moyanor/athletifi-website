@@ -6,6 +6,7 @@ import { Source_Sans_3 } from 'next/font/google';
 import { useUserData } from '@/states/userStore';
 import OwnedCard from './SettingsOwnedCard';
 import GuestCard from './SettingsGuestCard';
+import { UserData, OwnedCards, GuestCards } from './types';
 
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
@@ -87,12 +88,12 @@ const card_url = '/assets/img/png/anderson-card-img.png';
 //     },
 //   },
 // ];
-let ownerCards = [];
-let guestCards = [];
+const ownerCards = [];
+const guestCards = [];
 export default function ManageReferrals() {
   const { userData } = useUserData();
-  const [referrals, setReferrals] = useState([]);
-  const [invites, setInvites] = useState([]);
+  const [referrals, setReferrals] = useState<OwnedCards[]>([]);
+  const [invites, setInvites] = useState<GuestCards[]>([]);
 
   useEffect(() => {
     if (userData && userData.data) {
@@ -101,7 +102,7 @@ export default function ManageReferrals() {
     }
   }, [userData]);
 
-  const handleRemoveReferral = (referralIdx, guestIdx) => {
+  const handleRemoveReferral = (referralIdx: number, guestIdx: number) => {
     setReferrals((prevReferrals) => {
       const updatedReferrals = [...prevReferrals];
       updatedReferrals[referralIdx].guests.splice(guestIdx, 1);
@@ -109,7 +110,7 @@ export default function ManageReferrals() {
     });
   };
 
-  const handleRemoveInvites = (inviteId) => {
+  const handleRemoveInvites = (inviteId: string) => {
     setInvites((prevInvites) => {
       const updatedInvites = prevInvites.filter(
         (invite) => invite.invite_id !== inviteId,
@@ -120,17 +121,9 @@ export default function ManageReferrals() {
   };
 
   console.log(userData.data);
-  ownerCards = [
-    {
-      card_id: '0040bccb-b97d-4dcc-926f-30232dd4966a',
-      card_image_url:
-        'https://athletifi-s3.s3.us-east-2.amazonaws.com/player-card-images/Jose%20Hernandez_10_standing_Bronze%20v2_front.webp',
-      dashboard_slug: 'vsa-23/276',
-    },
-  ];
-  console.log(ownerCards);
-  // ownerCards = userData.data?.owned_cards || [];
-  guestCards = userData.data?.guest_cards || [];
+
+  const ownerCards: OwnedCards[] = userData.data?.owned_cards || [];
+  const guestCards: GuestCards[] = userData.data?.guest_cards || [];
 
   return (
     <div

@@ -4,8 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDashboardData } from '@/states/dashboardStore';
+import { OwnedCards } from '@/types/User.type';
 
-const OwnedCard = ({ card, card_image_url, idx }) => {
+type OwnedCardProps = {
+  card: OwnedCards;
+  card_image_url: string | null;
+  idx: number;
+};
+
+const OwnedCard = ({ card, card_image_url, idx }: OwnedCardProps) => {
   const [isToggle, setIsToggle] = useState(false);
   const [invitation, setInvitation] = useState({
     name: '',
@@ -13,7 +20,7 @@ const OwnedCard = ({ card, card_image_url, idx }) => {
   });
   const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [error, setError] = useState('');
-  const toggleRef = useRef(null);
+  const toggleRef = useRef<HTMLDivElement>(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
