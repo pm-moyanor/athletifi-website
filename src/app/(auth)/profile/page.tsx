@@ -13,6 +13,12 @@ import { postHelperResponseAtom } from '@/states/userStore';
 import AlertModal from '@/components/common/AlertModal';
 import { AlertModalType } from '@/types/AlertModalType';
 const card_url = '/assets/img/png/anderson-card-img.png';
+// import { userDataAtom } from '@/states/userStore';
+import { useAtomValue } from 'jotai';
+import {
+  ownedCardsDataAtom,
+  guestCardsDataAtom,
+} from '@/states/profileCardsDataStore';
 
 const profileProps: IProfileProps = {
   name: 'Mariano Jose Alvarez',
@@ -74,13 +80,20 @@ const variants = {
 };
 
 const Profile = () => {
+  const ownedCardsData = useAtomValue(ownedCardsDataAtom);
+  const guestCardsData = useAtomValue(guestCardsDataAtom);
   const [inviteData] = useAtom(postHelperResponseAtom);
   const [inviteStatus, setInviteStatus] = useState<AlertModalType | null>();
-  console.log('inviteData', inviteData);
-  // console.log('inviteStatus', inviteStatus);
 
+  console.log('ownedCardsData', ownedCardsData);
+  console.log('guestCardsData', guestCardsData);
+
+  // This useEffect hook runs whenever the inviteData changes
   useEffect(() => {
+    // Get the value of 'hasShownModal' from local storage
     const hasShownModal = localStorage.getItem('hasShownModal');
+
+    // If the modal has not been shown and there is valid invite data
     if (
       !hasShownModal &&
       inviteData &&
@@ -89,6 +102,8 @@ const Profile = () => {
       inviteData.invitation.invite_status !== 'SUCCESS'
     ) {
       let inviteMessage = null;
+
+      // Set the invite message based on the invite status
       if (inviteData.invitation.invite_status === 'REVOKED') {
         inviteMessage =
           'We understand you were previously granted access to this card. However, the card owner has chosen to revoke your access privileges. We apologize for any inconvenience this may cause.';
@@ -106,22 +121,24 @@ const Profile = () => {
           'This invitation has already been redeemed. If you believe this is an error, please contact our support team for assistance.';
       }
 
+      // Set the invite status state with the title and message
       setInviteStatus({
         title: 'Card Access Unavailable',
         textBody: inviteMessage,
       });
-      // store invite id values in local storage to manage the hasShownModal boolean, in case the users sees the modal again after login. use an array.
-      localStorage.setItem('hasShownModal', 'true');
-      //wipe the local store after user logouts
-    }
-  }, [inviteData]);
 
+      // Store a flag in local storage to indicate that the modal has been shown
+      localStorage.setItem('hasShownModal', 'true');
+    }
+  }, [inviteData]); // This hook depends on the inviteData
+
+  // Log the invite status for debugging
   console.log(inviteStatus);
 
+  // Function to close the modal by setting the invite status to null
   const closeModal = () => {
     setInviteStatus(null);
   };
-
   // const [openIndex, setOpenIndex] = useState<boolean[]>(
   //   Array(populatedTeams.length).fill(false),
   // );

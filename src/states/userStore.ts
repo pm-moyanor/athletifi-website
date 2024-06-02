@@ -109,7 +109,7 @@ async function fetchUserData(
   currState: UserState,
   set: (value: UserState) => void,
   inviteId: string | null,
-  setPostHelperResponse: (value: SetStateAction<any>) => void,
+  setPostHelperResponse: (value: SetStateAction<UserState>) => void, // Specify the type of value as SetStateAction<UserState>
 ) {
   let amplify_id, userAttributes, auth_method;
   if (currState.data) {
