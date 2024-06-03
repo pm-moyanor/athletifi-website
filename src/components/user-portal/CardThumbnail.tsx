@@ -109,105 +109,122 @@ const CardThumbnail: React.FC<{
               <p className="font-extralight mt-2">
                 Manage guests for this card
               </p>
-              {/* Guest list management would go here */}
-              <div
-                className="w-full flex justify-between items-center"
-                onClick={() => setIsToggle(!isToggle)}
-              >
-                {!isToggle && (
-                  <>
-                    <p>New guest</p>
-                    <button
-                      className="flex items-center cursor-pointer"
-                      type="submit"
-                    >
-                      <div className="flex justify-between items-center py-4 text-sm mx-[6px] md:mx-4">
-                        invite
-                      </div>
-                      <FontAwesomeIcon
-                        className=" text-skyblue text-md md:text-2xl"
-                        icon={faPlus}
-                      />
-                    </button>
-                  </>
-                )}
-              </div>
-              <AnimatePresence>
-                {isToggle && (
-                  <motion.div
-                    key="content"
-                    initial="collapsed"
-                    animate="open"
-                    exit="collapsed"
-                    variants={{
-                      open: { height: 'auto' },
-                      collapsed: { height: 0 },
-                    }}
-                    transition={{
-                      duration: 0.6,
-                      ease: [0.04, 0.62, 0.23, 0.98],
-                    }}
-                    className="w-full"
+              {/* add list of guests / render conditionally */}
+
+              <div className="mt-4">
+                <div className="flex justify-between">
+                  <p>invited@gmail.com</p>
+                  <div
+                    className="flex items-center cursor-pointer justify-end"
+                    // onClick={() => handleRemoveReferral(idx, index)}
                   >
+                    <div className="mx-[6px] md:mx-4">revoke</div>
+                    <FontAwesomeIcon
+                      className="text-chartRed text-md md:text-2xl"
+                      icon={faXmark}
+                    />
+                  </div>
+                </div>
+
+                <div
+                  className="w-full flex justify-between items-center"
+                  onClick={() => setIsToggle(!isToggle)}
+                >
+                  {!isToggle && (
+                    <>
+                      <p>New guest</p>
+                      <button
+                        className="flex items-center cursor-pointer"
+                        type="submit"
+                      >
+                        <div className="flex justify-between items-center py-4 text-sm mx-[6px] md:mx-4">
+                          invite
+                        </div>
+                        <FontAwesomeIcon
+                          className=" text-skyblue text-md md:text-2xl"
+                          icon={faPlus}
+                        />
+                      </button>
+                    </>
+                  )}
+                </div>
+                <AnimatePresence>
+                  {isToggle && (
                     <motion.div
-                      key="form"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 100 }}
-                      exit={{ opacity: 0 }}
+                      key="content"
+                      initial="collapsed"
+                      animate="open"
+                      exit="collapsed"
+                      variants={{
+                        open: { height: 'auto' },
+                        collapsed: { height: 0 },
+                      }}
                       transition={{
-                        duration: 0.08,
+                        duration: 0.6,
                         ease: [0.04, 0.62, 0.23, 0.98],
                       }}
-                      className="py-6"
+                      className="w-full"
                     >
-                      <p className="text-sm mb-6 text-start text-primary lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
-                        {emailSubmitted
-                          ? 'Invitation sent! Your card is now accessible to your guest. We will notify them shortly.'
-                          : 'Invite someone to view this player card by providing their information below.'}
-                      </p>
-                      {!emailSubmitted && (
-                        <form
-                          className="w-full flex flex-col gap-3 items-end"
-                          onSubmit={emailSubmit}
-                        >
-                          <input
-                            type="text"
-                            name="name"
-                            value={invitation.name}
-                            placeholder="Type guest name here"
-                            className="bg-offwhite bg-opacity-10 h-8 text-sm bottom-0 left-0 w-full p-3 border border-partnersBorders rounded text-partnersBorders"
-                            onChange={handleChange}
-                          />
-                          <input
-                            type="email"
-                            name="email"
-                            value={invitation.email}
-                            placeholder="Type email here"
-                            className="bg-offwhite bg-opacity-10 h-8 text-sm bottom-0 left-0 w-full p-3 border rounded border-partnersBorders text-partnersBorders"
-                            onChange={handleChange}
-                          />
-                          {/* {error && <p className="text-red-500 text-sm">{error}</p>} */}
-                          <div className="flex gap-2">
-                            <button
-                              type="submit"
-                              className="h-8 py-3 px-6 text-sm leading-6 flex items-center justify-center bg-darkerSkyBlue rounded"
-                            >
-                              Send invitation
-                            </button>
-                            <button
-                              type="button"
-                              className="h-8 py-3 px-6 text-sm leading-6 flex items-center justify-center bg-chartRed rounded text-white"
-                              onClick={() => setIsToggle(false)}
-                            >
-                              Cancel
-                            </button>
-                          </div>
-                        </form>
-                      )}
+                      <motion.div
+                        key="form"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 100 }}
+                        exit={{ opacity: 0 }}
+                        transition={{
+                          duration: 0.08,
+                          ease: [0.04, 0.62, 0.23, 0.98],
+                        }}
+                        className="py-6"
+                      >
+                        <p className="text-sm mb-6 text-start text-primary lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
+                          {emailSubmitted
+                            ? 'Invitation sent! Your card is now accessible to your guest. We will notify them shortly.'
+                            : 'Invite someone to view this player card by providing their information below.'}
+                        </p>
+                        {!emailSubmitted && (
+                          <form
+                            className="w-full flex flex-col gap-3 items-end"
+                            onSubmit={emailSubmit}
+                          >
+                            <input
+                              type="text"
+                              name="name"
+                              value={invitation.name}
+                              placeholder="Type guest name here"
+                              className="bg-offwhite bg-opacity-10 h-8 text-sm bottom-0 left-0 w-full p-3 border border-partnersBorders rounded text-partnersBorders"
+                              onChange={handleChange}
+                            />
+                            <input
+                              type="email"
+                              name="email"
+                              value={invitation.email}
+                              placeholder="Type email here"
+                              className="bg-offwhite bg-opacity-10 h-8 text-sm bottom-0 left-0 w-full p-3 border rounded border-partnersBorders text-partnersBorders"
+                              onChange={handleChange}
+                            />
+                            {/* {error && <p className="text-red-500 text-sm">{error}</p>} */}
+                            <div className="flex gap-2">
+                              <button
+                                type="submit"
+                                className="h-8 py-3 px-6 text-sm leading-6 flex items-center justify-center bg-darkerSkyBlue rounded"
+                              >
+                                Send invitation
+                              </button>
+                              <button
+                                type="button"
+                                className="h-8 py-3 px-6 text-sm leading-6 flex items-center justify-center bg-chartRed rounded text-white"
+                                onClick={() => setIsToggle(false)}
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </form>
+                        )}
+                      </motion.div>
                     </motion.div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </div>
         ) : (
