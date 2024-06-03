@@ -127,6 +127,7 @@ const Profile = () => {
                       key={idx}
                       cardData={cardData.result}
                       isOwned={true}
+                      inSettings={false}
                     />
                   ))}
                 </div>
@@ -148,6 +149,7 @@ const Profile = () => {
                       key={idx}
                       cardData={cardData.result}
                       isOwned={false}
+                      inSettings={false}
                     />
                   ))}
                 </div>
