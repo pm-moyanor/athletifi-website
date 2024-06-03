@@ -237,9 +237,7 @@ const Navbar: React.FC = () => {
                     className="flex items-center cursor-pointer"
                     onClick={() => setShowDropdown(!showDropdown)}
                   >
-                    <p className="text-base px-2 md:px-4">
-                      {userData.data?.name}
-                    </p>
+                    <p className="text-base px-2">{userData.data?.name}</p>
                     <FontAwesomeIcon icon={faChevronDown} />
                   </div>
                   {showDropdown && (
