@@ -36,7 +36,8 @@ const Profile = () => {
   const [inviteStatus, setInviteStatus] = useState<AlertModalType | null>();
 
   //console.log('ownedCardsData', ownedCardsData[0]);
-  console.log('guestCardsData', guestCardsData);
+  console.log('guestCardsData in profile', guestCardsData);
+  console.log('ownedCardsData in profile', ownedCardsData);
 
   // This useEffect hook runs whenever the inviteData changes
   useEffect(() => {
@@ -83,7 +84,7 @@ const Profile = () => {
   }, [inviteData]); // This hook depends on the inviteData
 
   // Log the invite status for debugging
-  console.log(inviteStatus);
+  // console.log(inviteStatus);
 
   // Function to close the modal by setting the invite status to null
   const closeModal = () => {
@@ -110,6 +111,13 @@ const Profile = () => {
           animate="animate"
           className="flex flex-col items-center mt-4 md:pt-7"
         >
+          {inviteStatus && (
+            <AlertModal
+              title={inviteStatus.title}
+              textBody={inviteStatus.textBody}
+              onClose={closeModal}
+            />
+          )}
           <motion.div
             variants={variants}
             className="overflow-hidden w-full max-w-[1030px] mb-4 text-primary bg-cardsDark shadow-lg rounded-10 flex flex-col px-2 md:px-4 py-8"

@@ -24,11 +24,18 @@ export const ownedCardsDataAtom = atom(async (get) => {
   const userData = get(userDataAtom);
   // Get the slugs of the owned dashboards
   const ownedCardSlugs = Array.isArray(userData?.data?.owned_cards)
-    ? userData?.data?.owned_cards.map((card) => card.dashboard_slug)
+    ? userData?.data?.owned_cards
     : [];
   // Fetch the data for each owned dashboard
   return await Promise.all(
-    ownedCardSlugs.map((slug) => get(dashboardDataAtom(slug))),
+    ownedCardSlugs.map(async (card) => {
+      const dashboardData = await get(dashboardDataAtom(card.dashboard_slug));
+      return {
+        ...dashboardData,
+        ownedCardInfo: card,
+        // email: userData?.data?.email,
+      };
+    }),
   );
 });
 
@@ -37,12 +44,19 @@ export const ownedCardsDataAtom = atom(async (get) => {
 export const guestCardsDataAtom = atom(async (get) => {
   // Get the user's data
   const userData = get(userDataAtom);
-  // Get the slugs of the guest dashboards
-  const guestCardSlugs = Array.isArray(userData?.data?.guest_cards)
-    ? userData?.data?.guest_cards.map((card) => card.dashboard_slug)
+  // Get the guest cards
+  const guestCards = Array.isArray(userData?.data?.guest_cards)
+    ? userData?.data?.guest_cards
     : [];
-  // Fetch the data for each guest dashboard
+  // Fetch the data for each guest dashboard and include the guest card info and guest's email
   return await Promise.all(
-    guestCardSlugs.map((slug) => get(dashboardDataAtom(slug))),
+    guestCards.map(async (card) => {
+      const dashboardData = await get(dashboardDataAtom(card.dashboard_slug));
+      return {
+        ...dashboardData,
+        guestCardInfo: card,
+        email: userData?.data?.email,
+      };
+    }),
   );
 });

@@ -12,6 +12,9 @@ import { Source_Sans_3 } from 'next/font/google';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
+import { guestCardActionAtom } from '@/states/cardStatusStore';
 
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
@@ -41,6 +44,9 @@ const CardThumbnail: React.FC<{
   isOwned: boolean;
   inSettings: boolean;
 }> = ({ cardData, isOwned, inSettings }) => {
+  const guestCardAction = useAtom(guestCardActionAtom);
+  console.log('cardData in the  cardThumbnail', cardData);
+
   const [isToggle, setIsToggle] = useState<boolean>(false);
   const [invitation, setInvitation] = useState<{ name: string; email: string }>( //stored data from form
     {
@@ -51,7 +57,7 @@ const CardThumbnail: React.FC<{
   const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false); //to render success message when submit
 
   const { name, team, club, card_url, number, club_logo } = cardData;
-  console.log(cardData);
+  //console.log(cardData);
 
   ////////////////////////////////////////store the name and email to send the invitation
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
