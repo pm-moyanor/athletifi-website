@@ -107,23 +107,24 @@ export default function ManageReferrals() {
     }
   }, [userData]);
 
-  const handleRemoveReferral = (referralIdx: number, guestIdx: number) => {
-    setReferrals((prevReferrals) => {
-      const updatedReferrals = [...prevReferrals];
-      updatedReferrals[referralIdx].guests.splice(guestIdx, 1);
-      return updatedReferrals;
-    });
-  };
+  //these functions handle the ui for the list of invitations and guests. on hold till the atom is ready, might not use it
+  // const handleRemoveReferral = (referralIdx: number, guestIdx: number) => {
+  //   setReferrals((prevReferrals) => {
+  //     const updatedReferrals = [...prevReferrals];
+  //     updatedReferrals[referralIdx].guests.splice(guestIdx, 1);
+  //     return updatedReferrals;
+  //   });
+  // };
 
-  const handleRemoveInvites = (inviteId: string) => {
-    setInvites((prevInvites) => {
-      const updatedInvites = prevInvites.filter(
-        (invite) => invite.invite_id !== inviteId,
-      );
-      console.log('Invite removed with ID:', inviteId); //update in table?
-      return updatedInvites;
-    });
-  };
+  // const handleRemoveInvites = (inviteId: string) => {
+  //   setInvites((prevInvites) => {
+  //     const updatedInvites = prevInvites.filter(
+  //       (invite) => invite.invite_id !== inviteId,
+  //     );
+  //
+  //     return updatedInvites;
+  //   });
+  // };
 
   console.log(userData.data);
 

@@ -42,16 +42,18 @@ const CardThumbnail: React.FC<{
   inSettings: boolean;
 }> = ({ cardData, isOwned, inSettings }) => {
   const [isToggle, setIsToggle] = useState<boolean>(false);
-  const [invitation, setInvitation] = useState<{ name: string; email: string }>(
+  const [invitation, setInvitation] = useState<{ name: string; email: string }>( //stored data from form
     {
       name: '',
       email: '',
     },
   );
-  const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false);
+  const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false); //to render success message when submit
 
   const { name, team, club, card_url, number, club_logo } = cardData;
   console.log(cardData);
+
+  ////////////////////////////////////////store the name and email to send the invitation
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInvitation((prevInvitation) => ({
@@ -69,8 +71,9 @@ const CardThumbnail: React.FC<{
       console.log('invalid email');
     }
   };
+  ////////////////////////////////////////////
 
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null); //track element to click outside the form
   useOutsideClick(cardRef, () => setIsToggle(false));
 
   return (
@@ -228,6 +231,7 @@ const CardThumbnail: React.FC<{
             </div>
           </div>
         ) : (
+          // render owend cards in profila page
           <div className="flex justify-between flex-col md:flex-row items-center w-full">
             <div className="relative w-[300px] h-[350px] md:w-[160px] md:h-[210px]">
               {card_url ? (
@@ -360,6 +364,7 @@ const CardThumbnail: React.FC<{
           </div>
         )
       ) : inSettings ? (
+        // render guest card in settings
         <div className="rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-2 md:gap-4">
           <div className="flex justify-start items-start min-w-[250px]">
             <div className="relative w-24 h-28 justify-end">
@@ -393,14 +398,15 @@ const CardThumbnail: React.FC<{
               <p className="font-extralight text-base">Card owner</p>
               <div className="flex justify-between items-start">
                 <div className="text-sm flex flex-col">
-                  {/*   <p className="mb-[2px] pt-2">{invite.inviter.name}</p>
+                  {/* ///////// render ower of card that gave access to user  //////
+                   <p className="mb-[2px] pt-2">{inviter}</p>
                    <p className="md:text-center font-extralight">
-                      {invite.inviter.email}
+                      {inviter.email}
                     </p> */}
                 </div>
                 <div
                   className="flex items-center justify-end cursor-pointer"
-                  onClick={() => handleRemoveInvites(invite.invite_id)}
+                  //onClick={() => handleRemoveInvites(inviter}  handle revoke
                 >
                   <div className="text-sm py-4 mx-2 md:mx-4 text-end">
                     decline
@@ -415,6 +421,7 @@ const CardThumbnail: React.FC<{
           </div>
         </div>
       ) : (
+        // render guest card in profile page
         <div className="flex flex-col bg-cardsBackground min-w-[250px] w-full max-w-[280px] md:w-[350px] lg:w-[320px] min-h-[200px] rounded-lg justify-between p-0 my-6 shadow-lg">
           <div className="flex flex-col-reverse md:flex-row justify-between min-h-[160px] mx-4 md:mx-0">
             <div className="flex flex-col justify-start ml-[4px] md:ml-3 w-full md:w-1/2 mr-auto mb-2 mt-4 md:mt-8">
