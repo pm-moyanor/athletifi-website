@@ -174,6 +174,7 @@ async function fetchUserData(
       user_delete_status: data.result.delete_status,
       owned_cards: data.result.owned_cards,
       guest_cards: data.result.guest_cards,
+      invites: data.result.invites,
     };
 
     set({

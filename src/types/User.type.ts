@@ -74,6 +74,15 @@ export type GuestCards = {
   dashboard_slug: string | null;
 };
 
+export type Invites = {
+  invite_id: string | null;
+  guest_email: string | null;
+  guest_id: string | null;
+  invite_status: string | null;
+  card_image_id: string | null;
+  card_image_url: string | null;
+};
+
 export type UserData = {
   amplify_id: string | null;
   auth_method: string | null;
@@ -85,4 +94,5 @@ export type UserData = {
   user_delete_status: DeleteStatus | null;
   owned_cards: OwnedCards | null;
   guest_cards: GuestCards | null;
+  invites: Invites | null;
 };
