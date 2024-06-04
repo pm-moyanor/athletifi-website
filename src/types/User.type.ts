@@ -74,13 +74,13 @@ export type GuestCards = {
   dashboard_slug: string | null;
 };
 
-export type Invite = {
-  invite_id: string;
-  guest_email: string;
+export type Invites = {
+  invite_id: string | null;
+  guest_email: string | null;
   guest_id: string | null;
-  invite_status: string;
-  card_image_id: string;
-  card_image_url: string;
+  invite_status: string | null;
+  card_image_id: string | null;
+  card_image_url: string | null;
 };
 
 export type UserData = {
@@ -94,7 +94,7 @@ export type UserData = {
   user_delete_status: DeleteStatus | null;
   owned_cards: OwnedCards | null;
   guest_cards: GuestCards | null;
-  invites: Invite[] | null;
+  invites: Invites | null;
 };
 
 export enum UpdatePwErrors {
