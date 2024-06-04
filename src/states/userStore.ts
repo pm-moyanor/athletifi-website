@@ -152,12 +152,14 @@ async function fetchUserData(
     fetchStatus: 'loading',
     errorMessage: null,
   });
-
+  console.log('amplifyId', amplify_id);
   try {
     const response = await fetch(`${baseURL}/user?amplify_id=${amplify_id}`);
+
     if (!response.ok) {
       throw new Error('Data load error. Please try again.');
     }
+    console.log('RESPONSE', response);
     const data = await response.json();
 
     const dataObject: UserData = {
@@ -174,8 +176,9 @@ async function fetchUserData(
       user_delete_status: data.result.delete_status,
       owned_cards: data.result.owned_cards,
       guest_cards: data.result.guest_cards,
+      invites: data.result.invites,
     };
-
+    console.log('DATAOBJ', dataObject);
     set({
       data: dataObject,
       fetchStatus: 'success',
@@ -209,6 +212,7 @@ enum AuthEvents {
 export function useUserData() {
   // Use jotai's useAtom to manage the state
   const [userData, setUserData] = useAtom(userDataAtom);
+  console.log('userdata in fetch', userData);
   const [latestChange, setLatestChange] =
     useState<LatestChange>(emptyLatestChange);
   const [isLoggedIn, setIsLoggedIn] = useState(false);

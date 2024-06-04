@@ -94,11 +94,18 @@ const card_url = '/assets/img/png/anderson-card-img.png';
 // ];
 
 export default function ManageReferrals() {
-  const { userData } = useUserData();
   const [referrals, setReferrals] = useState<OwnedCards[]>([]);
   const [invites, setInvites] = useState<GuestCards[]>([]);
   const ownedCardsData = useAtomValue(ownedCardsDataAtom);
   const guestCardsData = useAtomValue(guestCardsDataAtom);
+
+  const { userData } = useUserData();
+
+  useEffect(() => {
+    if (userData?.data) {
+      console.log('User data:', userData.data);
+    }
+  }, [userData]);
 
   useEffect(() => {
     if (userData && userData.data) {

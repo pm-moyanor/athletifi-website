@@ -125,7 +125,7 @@ const Header: React.FC = () => {
   // const socialIconDropDown = () => {
   //   setNavSocialIcon(!navSocialIcon);
   // };
-  console.log(showDropdown);
+
   const linksStyle = `opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto`;
 
   return (
