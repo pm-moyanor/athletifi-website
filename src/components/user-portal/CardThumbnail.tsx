@@ -15,9 +15,8 @@ import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAtomValue } from 'jotai';
 import { useAtom } from 'jotai';
 import { guestCardActionAtom } from '@/states/cardStatusStore';
-//import list of invites
+//import list
 import { invitesDataAtom } from '@/states/invitesDataStore';
-
 import { useUserData } from '@/states/userStore';
 
 const sourceSans3 = Source_Sans_3({
@@ -264,59 +263,61 @@ const CardThumbnail: React.FC<{
           </div>
         ) : (
           // render owend cards in profila page
-          <div className="flex justify-between flex-col md:flex-row items-center w-full">
-            <div className="relative w-[300px] h-[350px] md:w-[160px] md:h-[210px]">
-              {card_url ? (
-                <Image
-                  src={card_url}
-                  alt="Card Thumbnail"
-                  layout="fill"
-                  objectFit="contain"
-                />
-              ) : (
-                <Image
-                  src={card_url as string}
-                  alt="Default Card Thumbnail"
-                  layout="fill"
-                  objectFit="contain"
-                />
-              )}
-            </div>
-            <div className="flex flex-col lg:flex-row gap-[12px] items-center flex-1 lg:justify-evenly">
-              <h2 className="leading-8 font-bold text-[28px] md:text-[24px] text-primary text-center">
-                {name}
-              </h2>
-
-              <div className="flex gap-4">
-                <div className="w-16 h-18 relative">
+          <>
+            <div className="flex justify-between flex-col md:flex-row items-center w-full">
+              <div className="relative w-[300px] h-[350px] md:w-[160px] md:h-[210px]">
+                {card_url ? (
                   <Image
-                    src={club_logo as string}
-                    alt="club crest"
+                    src={card_url}
+                    alt="Card Thumbnail"
                     layout="fill"
                     objectFit="contain"
                   />
-                </div>
-                <div className="gap-1 flex flex-col text-sm">
-                  <p className={`text-primary opacity-80 relative`}>{club}</p>
-                  <p className={`text-primary opacity-80 relative`}>{team}</p>
-                  <p
-                    className={`text-primary opacity-80 lg:max-w-769 relative`}
-                  >
-                    #{number}
-                  </p>
+                ) : (
+                  <Image
+                    src={card_url as string}
+                    alt="Default Card Thumbnail"
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                )}
+              </div>
+              <div className="flex flex-col lg:flex-row gap-[12px] items-center flex-1 lg:justify-evenly">
+                <h2 className="leading-8 font-bold text-[28px] md:text-[24px] text-primary text-center">
+                  {name}
+                </h2>
+
+                <div className="flex gap-4">
+                  <div className="w-16 h-18 relative">
+                    <Image
+                      src={club_logo as string}
+                      alt="club crest"
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <div className="gap-1 flex flex-col text-sm">
+                    <p className={`text-primary opacity-80 relative`}>{club}</p>
+                    <p className={`text-primary opacity-80 relative`}>{team}</p>
+                    <p
+                      className={`text-primary opacity-80 lg:max-w-769 relative`}
+                    >
+                      #{number}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="flex md:flex-col my-8 md:mx-4 gap-2 items-center justify-center">
-              <button className="text-darkgray w-[146px] md:w-[160px] h-8 bg-skyblue text-xs md:text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
-                go to dashboard
-              </button>
-              <button
-                className="text-primary w-[146px] md:w-[160px] h-8 text-xs md:text-sm border border-offwhite rounded-full font-extralight bg-transparent hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out"
-                onClick={() => setIsToggle(!isToggle)}
-              >
-                share access to card
-              </button>
+              <div className="flex md:flex-col my-6 md:mx-4 gap-2 items-center justify-center">
+                <button className="text-darkgray w-[146px] md:w-[160px] h-8 bg-skyblue text-xs md:text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
+                  go to dashboard
+                </button>
+                <button
+                  className="text-primary w-[146px] md:w-[160px] h-8 text-xs md:text-sm border border-offwhite rounded-full font-extralight bg-transparent hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out"
+                  onClick={() => setIsToggle(!isToggle)}
+                >
+                  share access to card
+                </button>
+              </div>
             </div>
             <AnimatePresence>
               {isToggle && (
@@ -333,7 +334,7 @@ const CardThumbnail: React.FC<{
                     duration: 0.6,
                     ease: [0.04, 0.62, 0.23, 0.98],
                   }}
-                  className="px-3 w-full self-center md:self-end max-w-[500px] md:max-w-none"
+                  className="px-3 w-full flex justify-center md:justify-end max-w-[980px] md:max-w-none"
                 >
                   <motion.div
                     key="form"
@@ -344,9 +345,11 @@ const CardThumbnail: React.FC<{
                       duration: 0.08,
                       ease: [0.04, 0.62, 0.23, 0.98],
                     }}
-                    className="mt-2 mb-8 flex flex-col lg:flex-row justify-end lg:items-center lg:gap-3"
+                    className="mt-2 mb-8 flex flex-col justify-end lg:gap-3 "
                   >
-                    <p className="text-sm mb-2 lg:mb-0 text-offwhite relative min-w-[216px] transition-opacity duration-300 opacity-100 md:mr-4">
+                    <p
+                      className={`text-sm mb-2 lg:mb-0 text-offwhite relative min-w-[216px] transition-opacity duration-300 opacity-100 md:mr-4 ${emailSubmitted ? 'bg-cardsDark rounded-10' : ''}`}
+                    >
                       {emailSubmitted
                         ? 'Invitation sent! Your card is now accessible to your guest. We will notify them shortly.'
                         : 'Invite someone to view this card'}
@@ -361,7 +364,7 @@ const CardThumbnail: React.FC<{
                           name="name"
                           value={invitation.name}
                           placeholder="Type guest name here"
-                          className="h-8 text-sm bottom-0 left-0 w-full md:max-w-[360px] p-3 border border-partnersBorders rounded text-partnersBorders bg-cardsBackground"
+                          className="h-8 text-sm bottom-0 left-0 w-full md:max-w-[460px] p-3 border border-partnersBorders rounded text-partnersBorders bg-cardsBackground"
                           onChange={handleChange}
                         />
                         <input
@@ -369,13 +372,13 @@ const CardThumbnail: React.FC<{
                           name="email"
                           value={invitation.email}
                           placeholder="Type email here"
-                          className="h-8 text-sm bottom-0 left-0 w-full md:max-w-[360px] p-3 border border-partnersBorders rounded text-partnersBorders bg-cardsBackground"
+                          className="h-8 text-sm bottom-0 left-0 w-full md:max-w-[460px] p-3 border border-partnersBorders rounded text-partnersBorders bg-cardsBackground"
                           onChange={handleChange}
                         />
                         <div className="flex gap-2">
                           <button
                             type="submit"
-                            className="h-8 py-3 px-6 text-sm leading-6 flex items-center justify-center bg-darkerSkyBlue rounded"
+                            className="py-3 px-6 w-[146px] md:w-[150px] h-8 text-xs md:text-sm leading-6 flex items-center justify-center bg-darkerSkyBlue rounded "
                           >
                             Send invitation
                           </button>
@@ -393,7 +396,7 @@ const CardThumbnail: React.FC<{
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </>
         )
       ) : inSettings ? (
         // render guest card in settings
