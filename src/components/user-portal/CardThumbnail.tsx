@@ -15,6 +15,7 @@ import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAtomValue } from 'jotai';
 import { useAtom } from 'jotai';
 import { guestCardActionAtom } from '@/states/cardStatusStore';
+import { invitesDataAtom } from '@/states/invitesDataStore';
 
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
@@ -44,6 +45,7 @@ const CardThumbnail: React.FC<{
   isOwned: boolean;
   inSettings: boolean;
 }> = ({ cardData, isOwned, inSettings }) => {
+  // const { revokeGuest } = useUserData();
   const guestCardAction = useAtom(guestCardActionAtom);
   console.log('cardData in the  cardThumbnail', cardData);
 
@@ -57,7 +59,8 @@ const CardThumbnail: React.FC<{
   const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false); //to render success message when submit
 
   const { name, team, club, card_url, number, club_logo } = cardData;
-  //console.log(cardData);
+  //atom to render the invites
+  const invites = useAtomValue(invitesDataAtom);
 
   ////////////////////////////////////////store the name and email to send the invitation
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -87,7 +90,7 @@ const CardThumbnail: React.FC<{
       {isOwned ? (
         inSettings ? (
           <div className="rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-4">
-            <div className="flex justify-start items-start min-w-[250px]">
+            <div className="flex justify-start items-start min-w-[260px]">
               <div className="relative w-24 h-28 justify-end">
                 <Image
                   src={card_url}
@@ -114,29 +117,45 @@ const CardThumbnail: React.FC<{
               </div>
             </div>
             <div className="h-1 bg-partnersBorders w-full md:w-0 opacity-20"></div>
-            <div className="w-full px-[4px] lg:ml-8 md:max-w-[500px]">
+            <div className="w-full px-2px md:px-[4px] lg:ml-6 md:max-w-[520px]">
               <p className="font-extralight mt-2">
                 Manage guests for this card
               </p>
               {/* add list of guests / render conditionally */}
 
               <div className="mt-4">
-                <div className="flex justify-between">
-                  <p>invited@gmail.com</p>
-                  <div
-                    className="flex items-center cursor-pointer justify-end"
-                    // onClick={() => handleRemoveReferral(idx, index)}
-                  >
-                    <div className="mx-[6px] md:mx-4">revoke</div>
-                    <FontAwesomeIcon
-                      className="text-chartRed text-md md:text-2xl"
-                      icon={faXmark}
-                    />
-                  </div>
+                <div className="flex flex-col gap-4">
+                  {invites.map((invite, idx) => (
+                    <div
+                      key={idx}
+                      className="flex justify-between min-h-10 items-end"
+                    >
+                      <div className="flex flex-wrap gap-2 items-end max-w-[220px] md:max-w-none">
+                        <p className="text-sm md:text-base max-w-[220px] md:max-w-none break-words">
+                          {invite.guest_email}
+                        </p>
+                        {invite.invite_status === 'pending' && (
+                          <span className="text-xs md:text-sm bg-chartYellow rounded-[4px] px-2 py-[4px]">
+                            Pending
+                          </span>
+                        )}
+                      </div>
+                      <div
+                        className="flex items-center cursor-pointer justify-end"
+                        //onClick={() => handleRevoke(invite.invite_id)}
+                      >
+                        <div className="mx-[6px] md:mx-4">revoke</div>
+                        <FontAwesomeIcon
+                          className="text-chartRed text-md md:text-2xl"
+                          icon={faXmark}
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
                 <div
-                  className="w-full flex justify-between items-center"
+                  className="w-full flex justify-between items-center mt-4"
                   onClick={() => setIsToggle(!isToggle)}
                 >
                   {!isToggle && (
