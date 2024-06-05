@@ -133,7 +133,8 @@ const Profile = () => {
                   {ownedCardsData.map((cardData, idx) => (
                     <RenderCardThumbnail
                       key={idx}
-                      cardData={cardData.result}
+                      // userData={cardData}
+                      cardData={cardData}
                       isOwned={true}
                       inSettings={false}
                     />
@@ -155,7 +156,7 @@ const Profile = () => {
                   {guestCardsData.map((cardData, idx) => (
                     <RenderCardThumbnail
                       key={idx}
-                      cardData={cardData.result}
+                      cardData={cardData}
                       isOwned={false}
                       inSettings={false}
                     />

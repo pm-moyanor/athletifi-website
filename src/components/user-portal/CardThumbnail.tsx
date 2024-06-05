@@ -13,11 +13,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAtomValue } from 'jotai';
-import { useAtom } from 'jotai';
-import { guestCardActionAtom } from '@/states/cardStatusStore';
 //import list
 import { invitesDataAtom } from '@/states/invitesDataStore';
-import { useUserData } from '@/states/userStore';
 
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
@@ -43,13 +40,13 @@ function useOutsideClick(
 }
 
 const CardThumbnail: React.FC<{
-  cardData: IProfileProps;
+  cardData: any;
   isOwned: boolean;
   inSettings: boolean;
 }> = ({ cardData, isOwned, inSettings }) => {
   // const { revokeGuest } = useUserData(); not defined yet, keep comment for now
-  const guestCardAction = useAtom(guestCardActionAtom);
-  console.log('cardData in the  cardThumbnail', cardData);
+
+  console.log('cardData in the cardThumbnail', cardData);
 
   const [isToggle, setIsToggle] = useState<boolean>(false);
   const [invitation, setInvitation] = useState<{ name: string; email: string }>( //stored data from form
@@ -60,10 +57,10 @@ const CardThumbnail: React.FC<{
   );
   const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false); //to render success message when submit
 
-  const { name, team, club, card_url, number, club_logo } = cardData;
+  const { name, team, club, card_url, number, club_logo } = cardData.result;
   //atom to render the invites
   const invites = useAtomValue(invitesDataAtom);
-  const { revokeGuest } = useUserData();
+  // const { revokeGuest } = useUserData();
 
   ////////////////////////////////////////store the name and email to send the invitation
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -97,7 +94,7 @@ const CardThumbnail: React.FC<{
             <div className="flex justify-start items-start min-w-[260px]">
               <div className="relative w-24 h-28 justify-end">
                 <Image
-                  src={card_url}
+                  src={card_url as string}
                   alt="Card Thumbnail"
                   layout="fill"
                   objectFit="contain"
@@ -147,7 +144,7 @@ const CardThumbnail: React.FC<{
                       </div>
                       <div
                         className="flex items-center cursor-pointer justify-end"
-                        onClick={() => revokeGuest(invite.invite_id)}
+                        // onClick={() => revokeGuest(invite.invite_id)}
                       >
                         {/* change status? or delete from list, not defined yet */}
                         <div className="mx-[6px] md:mx-4">revoke</div>
@@ -404,7 +401,7 @@ const CardThumbnail: React.FC<{
           <div className="flex justify-start items-start min-w-[250px]">
             <div className="relative w-24 h-28 justify-end">
               <Image
-                src={card_url}
+                src={card_url as string} // Cast card_url to string
                 alt="Card Thumbnail"
                 layout="fill"
                 objectFit="contain"
@@ -511,7 +508,7 @@ const CardThumbnail: React.FC<{
 };
 
 const RenderCardThumbnail: React.FC<{
-  cardData: IProfileProps | null | undefined;
+  cardData: any | null | undefined;
   isOwned: boolean;
   inSettings: boolean;
 }> = ({ cardData, isOwned, inSettings }) => {
