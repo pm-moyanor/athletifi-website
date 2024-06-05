@@ -30,7 +30,6 @@ const Header: React.FC = () => {
 
   const router = useRouter();
   const { userData, resetUserDataState, setIsLoggedIn } = useUserData();
-  console.log(userData);
 
   useEffect(() => {
     const hubListenerCancel = Hub.listen('auth', (data) => {

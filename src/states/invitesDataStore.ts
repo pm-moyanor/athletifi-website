@@ -1,6 +1,7 @@
 import { atom } from 'jotai';
 import { userDataAtom } from '@/states/userStore';
 
+//FETCH INVITES
 export const invitesDataAtom = atom((get) => {
   const userData = get(userDataAtom);
   const invites = Array.isArray(userData?.data?.invites)

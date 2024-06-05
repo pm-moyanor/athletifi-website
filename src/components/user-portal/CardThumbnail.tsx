@@ -15,7 +15,10 @@ import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAtomValue } from 'jotai';
 import { useAtom } from 'jotai';
 import { guestCardActionAtom } from '@/states/cardStatusStore';
+//import list of invites
 import { invitesDataAtom } from '@/states/invitesDataStore';
+
+import { useUserData } from '@/states/userStore';
 
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
@@ -45,7 +48,7 @@ const CardThumbnail: React.FC<{
   isOwned: boolean;
   inSettings: boolean;
 }> = ({ cardData, isOwned, inSettings }) => {
-  // const { revokeGuest } = useUserData();
+  // const { revokeGuest } = useUserData(); not defined yet, keep comment for now
   const guestCardAction = useAtom(guestCardActionAtom);
   console.log('cardData in the  cardThumbnail', cardData);
 
@@ -61,6 +64,7 @@ const CardThumbnail: React.FC<{
   const { name, team, club, card_url, number, club_logo } = cardData;
   //atom to render the invites
   const invites = useAtomValue(invitesDataAtom);
+  const { revokeGuest } = useUserData();
 
   ////////////////////////////////////////store the name and email to send the invitation
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -80,6 +84,7 @@ const CardThumbnail: React.FC<{
       console.log('invalid email');
     }
   };
+
   ////////////////////////////////////////////
 
   const cardRef = useRef<HTMLDivElement>(null); //track element to click outside the form
@@ -122,7 +127,7 @@ const CardThumbnail: React.FC<{
                 Manage guests for this card
               </p>
               {/* add list of guests / render conditionally */}
-
+              {/* filter the guests to the rendered card */}
               <div className="mt-4">
                 <div className="flex flex-col gap-4">
                   {invites.map((invite, idx) => (
@@ -134,6 +139,7 @@ const CardThumbnail: React.FC<{
                         <p className="text-sm md:text-base max-w-[220px] md:max-w-none break-words">
                           {invite.guest_email}
                         </p>
+                        {/* if status is pending, add label */}
                         {invite.invite_status === 'pending' && (
                           <span className="text-xs md:text-sm bg-chartYellow rounded-[4px] px-2 py-[4px]">
                             Pending
@@ -142,8 +148,9 @@ const CardThumbnail: React.FC<{
                       </div>
                       <div
                         className="flex items-center cursor-pointer justify-end"
-                        //onClick={() => handleRevoke(invite.invite_id)}
+                        onClick={() => revokeGuest(invite.invite_id)}
                       >
+                        {/* change status? or delete from list, not defined yet */}
                         <div className="mx-[6px] md:mx-4">revoke</div>
                         <FontAwesomeIcon
                           className="text-chartRed text-md md:text-2xl"

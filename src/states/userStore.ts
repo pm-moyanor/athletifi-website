@@ -210,40 +210,6 @@ enum AuthEvents {
   SignInWithRedirectFailure = 'signInWithRedirect_failure',
 }
 
-async function revokeGuest(inviteId: string) {
-  try {
-    const response = await fetch(`${baseURL}/invites/${inviteId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to revoke guest invitation');
-    }
-
-    // Update the state to reflect the revoked invitation
-    setUserData((prevUserData) => {
-      if (!prevUserData.data) return prevUserData;
-
-      const updatedInvites = prevUserData.data.invites.filter(
-        (invite) => invite.invite_id !== inviteId,
-      );
-
-      return {
-        ...prevUserData,
-        data: {
-          ...prevUserData.data,
-          invites: updatedInvites,
-        },
-      };
-    });
-  } catch (error) {
-    console.error('Error revoking guest:', error);
-  }
-}
-
 // Custom hook to use the user data in a component
 export function useUserData() {
   // Use jotai's useAtom to manage the state
@@ -394,6 +360,48 @@ export function useUserData() {
       fetchStatus: 'idle',
       errorMessage: null,
     });
+  }
+
+  //REVOKE INVITE
+
+  async function revokeGuest(inviteId: string) {
+    console.log('REVOKED', inviteId);
+    // try {
+    //   const response = await fetch(
+    //     `${baseURL}/user?amplify_id=a1fb7590-9031-7098-1297-f360d0c332c9`,
+    //     {
+    //       method: 'PATCH',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({ invite_status: 'revoked' }),
+    //     },
+    //   );
+
+    //   if (!response.ok) {
+    //     throw new Error('Failed to revoke guest invitation');
+    //   }
+
+    //   setUserData((prevUserData) => {
+    //     if (!prevUserData.data) return prevUserData;
+
+    //     const updatedInvites = prevUserData.data.invites.map((invite) =>
+    //       invite.invite_id === inviteId
+    //         ? { ...invite, invite_status: 'revoked' }
+    //         : invite,
+    //     );
+    //     console.log('changed status to revoked', updatedInvites);
+    //     return {
+    //       ...prevUserData,
+    //       data: {
+    //         ...prevUserData.data,
+    //         invites: updatedInvites,
+    //       },
+    //     };
+    //   });
+    // } catch (error) {
+    //   console.error('Error revoking guest:', error);
+    // }
   }
 
   // Return the current state of the user data
