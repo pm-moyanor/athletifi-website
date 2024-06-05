@@ -154,9 +154,7 @@ async function fetchUserData(
   });
 
   try {
-    const response = await fetch(
-      `${baseURL}/user?amplify_id=a1fb7590-9031-7098-1297-f360d0c332c9`,
-    );
+    const response = await fetch(`${baseURL}/user?amplify_id=${amplify_id}`);
     console.log('API Response:', response);
     if (!response.ok) {
       throw new Error('Data load error. Please try again.');
