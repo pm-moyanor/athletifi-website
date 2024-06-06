@@ -12,9 +12,10 @@ import { Source_Sans_3 } from 'next/font/google';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useAtom } from 'jotai';
 //import list
 import { invitesDataAtom } from '@/states/invitesDataStore';
+import { inviteRevokeActionAtom } from '@/states/InviteRevokeStore';
 
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
@@ -45,8 +46,20 @@ const CardThumbnail: React.FC<{
   inSettings: boolean;
 }> = ({ cardData, isOwned, inSettings }) => {
   // const { revokeGuest } = useUserData(); not defined yet, keep comment for now
+  const [, inviteRevokeAction] = useAtom(inviteRevokeActionAtom);
 
   console.log('cardData in the cardThumbnail', cardData);
+  // this is the function i craeted to test the logic of the revoke and invite. the action adn guest_email params are manually set. 
+  const triggerRevokeOrInvite = () => {
+    console.log('clicked');
+    inviteRevokeAction({
+      action: 'revoke', // this is either 'revoke' or 'invite'.
+      guest_email: 'haacny86+agudelo@gmail.com',
+      card_image_id: cardData.guestCardInfo.card_id, // this card_image_id need to change according to the action. revoke the info is gotten from guest cards while invite from the owned cards.
+      //card_image_id: cardData.ownedCardInfo.card_id, // this card_image_id need to change according to the action. revoke the info is gotten from guest cards while invite from the owned cards.
+      inviteId: cardData.guestCardInfo.invite_id,
+    });
+  };
 
   const [isToggle, setIsToggle] = useState<boolean>(false);
   const [invitation, setInvitation] = useState<{ name: string; email: string }>( //stored data from form
@@ -497,7 +510,10 @@ const CardThumbnail: React.FC<{
             </div>
           </div>
           <div className="w-full flex justify-end pb-4 pr-4">
-            <button className="text-darkgray w-[130px] md:w-[160px] h-8 bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
+            <button
+              onClick={triggerRevokeOrInvite}
+              className="text-darkgray w-[130px] md:w-[160px] h-8 bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out"
+            >
               go to dashboard
             </button>
           </div>
