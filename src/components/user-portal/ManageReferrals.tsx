@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-
 import { Source_Sans_3 } from 'next/font/google';
 import { useUserData } from '@/states/userStore';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
@@ -19,121 +18,16 @@ const sourceSans3 = Source_Sans_3({
 
 const card_url = '/assets/img/png/anderson-card-img.png';
 
-// const dummyDataReferrals: Referral[] = [
-//   {
-//     card: {
-//       name: 'Salvador Carillo',
-//       number: '#22',
-//       club: 'villanova soccer',
-//       team: 'team 2009',
-//       card_url: card_url,
-//     },
-//     guests: [
-//       {
-//         name: 'Gloria Carrillo',
-//         email: 'gloria@example.com',
-//       },
-//       {
-//         name: 'Andrew Carrillo',
-//         email: 'andrew@example.com',
-//       },
-//     ],
-//   },
-//   {
-//     card: {
-//       name: 'Salvador Carillo',
-//       number: '#22',
-//       club: 'villanova soccer',
-//       team: 'team 2009',
-//       card_url: card_url,
-//     },
-//     guests: [
-//       {
-//         name: 'Gloria Carrillo',
-//         email: 'gloria@example.com',
-//       },
-//       {
-//         name: 'Andrew Carrillo',
-//         email: 'andrew-carrillo@example.com',
-//       },
-//     ],
-//   },
-// ];
 
-// const dummyDataInvites: Invite[] = [
-//   {
-//     cardId: '',
-//     card: {
-//       name: 'Daniel Guilmore',
-//       number: '#22',
-//       club: 'villanova soccer',
-//       team: 'team 2009',
-//       card_url: card_url,
-//     },
-//     guests: [],
-//     inviter: {
-//       name: 'Daniel Guilmore',
-//       email: 'daniel@example.com',
-//     },
-//   },
-//   {
-//     cardId: '',
-//     card: {
-//       name: 'Luis Sanchez',
-//       number: '#22',
-//       club: 'villanova soccer',
-//       team: 'team 2009',
-//       card_url: card_url,
-//     },
-//     guests: [],
-//     inviter: {
-//       name: 'Lily Sanchez',
-//       email: 'lily@example.com',
-//     },
-//   },
-// ];
 
 export default function ManageReferrals() {
-  const [referrals, setReferrals] = useState<OwnedCards[]>([]);
-  const [invites, setInvites] = useState<GuestCards[]>([]);
+
   const ownedCardsData = useAtomValue(ownedCardsDataAtom);
   const guestCardsData = useAtomValue(guestCardsDataAtom);
 
-  const { userData } = useUserData();
+  // const { userData } = useUserData();
 
-  useEffect(() => {
-    if (userData?.data) {
-      console.log('User data:', userData.data);
-    }
-  }, [userData]);
 
-  useEffect(() => {
-    if (userData && userData.data) {
-      setReferrals(userData.data.owned_cards || []);
-      setInvites(userData.data.guest_cards || []);
-    }
-  }, [userData]);
-
-  //these functions handle the ui for the list of invitations and guests. on hold till the atom is ready, might not use it
-  // const handleRemoveReferral = (referralIdx: number, guestIdx: number) => {
-  //   setReferrals((prevReferrals) => {
-  //     const updatedReferrals = [...prevReferrals];
-  //     updatedReferrals[referralIdx].guests.splice(guestIdx, 1);
-  //     return updatedReferrals;
-  //   });
-  // };
-
-  // const handleRemoveInvites = (inviteId: string) => {
-  //   setInvites((prevInvites) => {
-  //     const updatedInvites = prevInvites.filter(
-  //       (invite) => invite.invite_id !== inviteId,
-  //     );
-  //
-  //     return updatedInvites;
-  //   });
-  // };
-
-  console.log(userData.data);
 
   return (
     <div
@@ -156,7 +50,7 @@ export default function ManageReferrals() {
           ownedCardsData.map((cardData, idx) => (
             <RenderCardThumbnail
               key={idx}
-              cardData={cardData.result}
+              cardData={cardData}
               isOwned={true}
               inSettings={true}
             />
@@ -175,7 +69,7 @@ export default function ManageReferrals() {
           guestCardsData.map((cardData, idx) => (
             <RenderCardThumbnail
               key={idx}
-              cardData={cardData.result}
+              cardData={cardData}
               isOwned={false}
               inSettings={true}
             />

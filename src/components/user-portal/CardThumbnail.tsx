@@ -13,7 +13,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAtomValue, useAtom } from 'jotai';
-//import list
 import { invitesDataAtom } from '@/states/invitesDataStore';
 import { inviteRevokeActionAtom } from '@/states/InviteRevokeStore';
 
@@ -49,17 +48,17 @@ const CardThumbnail: React.FC<{
   const [, inviteRevokeAction] = useAtom(inviteRevokeActionAtom);
 
   console.log('cardData in the cardThumbnail', cardData);
-  // this is the function i craeted to test the logic of the revoke and invite. the action adn guest_email params are manually set. 
-  const triggerRevokeOrInvite = () => {
-    console.log('clicked');
-    inviteRevokeAction({
-      action: 'revoke', // this is either 'revoke' or 'invite'.
-      guest_email: 'haacny86+agudelo@gmail.com',
-      card_image_id: cardData.guestCardInfo.card_id, // this card_image_id need to change according to the action. revoke the info is gotten from guest cards while invite from the owned cards.
-      //card_image_id: cardData.ownedCardInfo.card_id, // this card_image_id need to change according to the action. revoke the info is gotten from guest cards while invite from the owned cards.
-      inviteId: cardData.guestCardInfo.invite_id,
-    });
-  };
+//  this is the function i craeted to test the logic of the revoke and invite. the action adn guest_email params are manually set.
+  // const triggerRevokeOrInvite = () => {
+  //   console.log('clicked');
+  //   inviteRevokeAction({
+  //     action: 'revoke', // this is either 'revoke' or 'invite'.
+  //     guest_email: 'haacny86+agudelo@gmail.com',
+  //     card_image_id: cardData.guestCardInfo.card_id, // this card_image_id need to change according to the action. revoke the info is gotten from guest cards while invite from the owned cards.
+  //     //card_image_id: cardData.ownedCardInfo.card_id, // this card_image_id need to change according to the action. revoke the info is gotten from guest cards while invite from the owned cards.
+  //     inviteId: cardData.guestCardInfo.invite_id,
+  //   });
+  // };
 
   const [isToggle, setIsToggle] = useState<boolean>(false);
   const [invitation, setInvitation] = useState<{ name: string; email: string }>( //stored data from form
@@ -73,7 +72,6 @@ const CardThumbnail: React.FC<{
   const { name, team, club, card_url, number, club_logo } = cardData.result;
   //atom to render the invites
   const invites = useAtomValue(invitesDataAtom);
-  // const { revokeGuest } = useUserData();
 
   ////////////////////////////////////////store the name and email to send the invitation
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -87,14 +85,47 @@ const CardThumbnail: React.FC<{
   const emailSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (invitation.email) {
-      setEmailSubmitted(true);
-      setInvitation({ name: '', email: '' }); // Reset the form after submission
+      inviteRevokeAction({
+        action: 'invite',
+        guest_email: invitation.email,
+        card_image_id: cardData.ownedCardInfo.card_id,
+      })
+        .then(() => {
+          setEmailSubmitted(true);
+          setInvitation({ name: '', email: '' });
+  
+          // Delay the toggle by 2 seconds
+          return new Promise<void>((resolve) => {
+            setTimeout(() => {
+              setIsToggle(false);
+              resolve();
+            }, 3000);
+          });
+        })
+        .catch((error) => console.error('Failed to send invitation', error));
     } else {
       console.log('invalid email');
     }
   };
 
+  const triggerRevokeOrInvite = (inviteId: string) => {
+    inviteRevokeAction({
+      action: 'revoke',
+      inviteId: inviteId,
+    })
+      .then(() => console.log('Revoke successful'))
+      .catch((error) => console.error('Failed to revoke invitation', error));
+  };
+
   ////////////////////////////////////////////
+
+  const formRef = useRef<HTMLDivElement>(null); // Track the form element
+  useOutsideClick(formRef, () => {
+    if (emailSubmitted) {
+      setIsToggle(false);
+      setEmailSubmitted(false); // Reset the emailSubmitted state
+    }
+  });
 
   const cardRef = useRef<HTMLDivElement>(null); //track element to click outside the form
   useOutsideClick(cardRef, () => setIsToggle(false));
@@ -139,12 +170,14 @@ const CardThumbnail: React.FC<{
               {/* filter the guests to the rendered card */}
               <div className="mt-4">
                 <div className="flex flex-col gap-4">
-                  {invites.map((invite, idx) => (
+                 {invites
+                    .filter((invite) => invite.card_image_id === cardData.ownedCardInfo.card_id)
+                    .map((invite, idx) => (
                     <div
                       key={idx}
-                      className="flex justify-between min-h-10 items-end"
+                      className="flex justify-between min-h-12 items-center"
                     >
-                      <div className="flex flex-wrap gap-2 items-end max-w-[220px] md:max-w-none">
+                      <div className="flex flex-wrap gap-2 items-center max-w-[220px] md:max-w-none">
                         <p className="text-sm md:text-base max-w-[220px] md:max-w-none break-words">
                           {invite.guest_email}
                         </p>
@@ -154,13 +187,17 @@ const CardThumbnail: React.FC<{
                             Pending
                           </span>
                         )}
+                        {invite.invite_status === 'revoked' && (
+                          <span className="text-xs md:text-sm bg-chartRed rounded-[4px] px-2 py-[4px]">
+                            Revoked
+                          </span>
+                        )}
                       </div>
                       <div
                         className="flex items-center cursor-pointer justify-end"
-                        // onClick={() => revokeGuest(invite.invite_id)}
+                        onClick={() => triggerRevokeOrInvite(invite.invite_id)}
                       >
-                        {/* change status? or delete from list, not defined yet */}
-                        <div className="mx-[6px] md:mx-4">revoke</div>
+                      <div className={`mx-[6px] md:mx-4 ${invite.invite_status === 'revoked' ? 'opacity-50' : ''}`}>revoke</div>
                         <FontAwesomeIcon
                           className="text-chartRed text-md md:text-2xl"
                           icon={faXmark}
@@ -173,6 +210,7 @@ const CardThumbnail: React.FC<{
                 <div
                   className="w-full flex justify-between items-center mt-4"
                   onClick={() => setIsToggle(!isToggle)}
+                  ref={cardRef}
                 >
                   {!isToggle && (
                     <>
@@ -274,7 +312,7 @@ const CardThumbnail: React.FC<{
         ) : (
           // render owend cards in profila page
           <>
-            <div className="flex justify-between flex-col md:flex-row items-center w-full">
+            <div className="flex justify-between flex-col md:flex-row items-center w-full" >
               <div className="relative w-[300px] h-[350px] md:w-[160px] md:h-[210px]">
                 {card_url ? (
                   <Image
@@ -318,11 +356,11 @@ const CardThumbnail: React.FC<{
                 </div>
               </div>
               <div className="flex md:flex-col my-6 md:mx-4 gap-2 items-center justify-center">
-                <button className="text-darkgray w-[146px] md:w-[160px] h-8 bg-skyblue text-xs md:text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
+                <button className="text-darkgray w-[140px] md:w-[160px] h-8 bg-skyblue text-xs md:text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
                   go to dashboard
                 </button>
                 <button
-                  className="text-primary w-[146px] md:w-[160px] h-8 text-xs md:text-sm border border-offwhite rounded-full font-extralight bg-transparent hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out"
+                  className="text-primary w-[140px] md:w-[160px] h-8 text-xs md:text-sm border border-offwhite rounded-full font-extralight bg-transparent hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out"
                   onClick={() => setIsToggle(!isToggle)}
                 >
                   share access to card
@@ -511,7 +549,7 @@ const CardThumbnail: React.FC<{
           </div>
           <div className="w-full flex justify-end pb-4 pr-4">
             <button
-              onClick={triggerRevokeOrInvite}
+             // onClick={triggerRevokeOrInvite}
               className="text-darkgray w-[130px] md:w-[160px] h-8 bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out"
             >
               go to dashboard
