@@ -46,7 +46,6 @@ const CardThumbnail: React.FC<{
   isOwned: boolean;
   inSettings: boolean;
 }> = ({ cardData, isOwned, inSettings }) => {
-  // const { revokeGuest } = useUserData(); not defined yet, keep comment for now
   const [, inviteRevokeAction] = useAtom(inviteRevokeActionAtom);
 
   console.log('cardData in the cardThumbnail', cardData);
@@ -83,7 +82,7 @@ const CardThumbnail: React.FC<{
       [name]: value,
     }));
   };
-
+//when submit, action to "invite", render success message, clear from and close toggle
   const emailSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (invitation.email) {
@@ -111,7 +110,7 @@ const CardThumbnail: React.FC<{
       console.log('invalid email');
     }
   };
-///////////////////////revoke
+/////////////////////// action to "revoke" 
   const triggerRevokeOrInvite = (inviteId: string) => {
     inviteRevokeAction({
       action: 'revoke',

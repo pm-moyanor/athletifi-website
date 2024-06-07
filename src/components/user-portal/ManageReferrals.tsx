@@ -56,7 +56,8 @@ export default function ManageReferrals() {
             />
           ))
         ) : (
-          <p className="text-primary opacity-80 p-2">No cards.</p>
+          <p className="text-primary opacity-80 p-2">    You currently do not own any cards. Once you have one, it will be displayed here.
+          </p>
         )}
         {/*=============== INVITATIONS */}
         <div className="text-md font-semibold leading-5 mx-2 mt-8">
@@ -76,7 +77,7 @@ export default function ManageReferrals() {
           ))
         ) : (
           <p className="text-primary opacity-80 p-2">
-            No cards shared with you.
+          No cards have been shared with you yet. Once someone shares a card with you, it will appear here.
           </p>
         )}
       </div>

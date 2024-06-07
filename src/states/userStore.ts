@@ -154,7 +154,9 @@ async function fetchUserData(
   });
 
   try {
-    const response = await fetch(`${baseURL}/user?amplify_id=${amplify_id}`);
+    const response = await fetch(
+      `${baseURL}/user?amplify_id=${amplify_id}`,
+    );
     if (!response.ok) {
       throw new Error('Data load error. Please try again.');
     }
@@ -358,47 +360,6 @@ export function useUserData() {
     });
   }
 
-  //REVOKE INVITE
-
-  //async function revokeGuest(inviteId: string) {
-  // console.log('REVOKED', inviteId);
-  // try {
-  //   const response = await fetch(
-  //     `${baseURL}/user?amplify_id=a1fb7590-9031-7098-1297-f360d0c332c9`,
-  //     {
-  //       method: 'PATCH',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ invite_status: 'revoked' }),
-  //     },
-  //   );
-
-  //   if (!response.ok) {
-  //     throw new Error('Failed to revoke guest invitation');
-  //   }
-
-  //   setUserData((prevUserData) => {
-  //     if (!prevUserData.data) return prevUserData;
-
-  //     const updatedInvites = prevUserData.data.invites.map((invite) =>
-  //       invite.invite_id === inviteId
-  //         ? { ...invite, invite_status: 'revoked' }
-  //         : invite,
-  //     );
-  //     console.log('changed status to revoked', updatedInvites);
-  //     return {
-  //       ...prevUserData,
-  //       data: {
-  //         ...prevUserData.data,
-  //         invites: updatedInvites,
-  //       },
-  //     };
-  //   });
-  // } catch (error) {
-  //   console.error('Error revoking guest:', error);
-  // }
-  //}
 
   // Return the current state of the user data
   return {
@@ -406,6 +367,5 @@ export function useUserData() {
     setLatestChange: setLatestChange,
     setIsLoggedIn: setIsLoggedIn,
     resetUserDataState: resetUserDataState,
-    //revokeGuest,
   };
 }
