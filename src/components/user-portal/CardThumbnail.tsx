@@ -21,6 +21,8 @@ const sourceSans3 = Source_Sans_3({
   display: 'swap',
 });
 
+
+
 function useOutsideClick(
   ref: React.RefObject<HTMLElement>,
   callback: () => void,
@@ -73,7 +75,7 @@ const CardThumbnail: React.FC<{
   //atom to render the invites
   const invites = useAtomValue(invitesDataAtom);
 
-  ////////////////////////////////////////store the name and email to send the invitation
+  ////////////////////////////////////////email invite 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInvitation((prevInvitation) => ({
@@ -98,16 +100,18 @@ const CardThumbnail: React.FC<{
           return new Promise<void>((resolve) => {
             setTimeout(() => {
               setIsToggle(false);
+              setEmailSubmitted(false); 
               resolve();
             }, 3000);
           });
+       
         })
         .catch((error) => console.error('Failed to send invitation', error));
     } else {
       console.log('invalid email');
     }
   };
-
+///////////////////////revoke
   const triggerRevokeOrInvite = (inviteId: string) => {
     inviteRevokeAction({
       action: 'revoke',
@@ -178,9 +182,7 @@ const CardThumbnail: React.FC<{
                       className="flex justify-between min-h-12 items-center"
                     >
                       <div className="flex flex-wrap gap-2 items-center max-w-[220px] md:max-w-none">
-                        <p className="text-sm md:text-base max-w-[220px] md:max-w-none break-words">
-                          {invite.guest_email}
-                        </p>
+                    
                         {/* if status is pending, add label */}
                         {invite.invite_status === 'pending' && (
                           <span className="text-xs md:text-sm bg-chartYellow rounded-[4px] px-2 py-[4px]">
@@ -192,6 +194,14 @@ const CardThumbnail: React.FC<{
                             Revoked
                           </span>
                         )}
+                           {invite.invite_status === 'accepted' && (
+                          <span className="text-xs md:text-sm bg-chartBlue rounded-[4px] px-2 py-[4px]">
+                          Accepted
+                          </span>
+                            )}
+                            <p className="text-sm md:text-base max-w-[220px] md:max-w-none break-words">
+                          {invite.guest_email}
+                        </p>
                       </div>
                       <div
                         className="flex items-center cursor-pointer justify-end"
@@ -273,7 +283,7 @@ const CardThumbnail: React.FC<{
                               name="name"
                               value={invitation.name}
                               placeholder="Type guest name here"
-                              className="bg-offwhite bg-opacity-10 h-8 text-sm bottom-0 left-0 w-full p-3 border border-partnersBorders rounded text-partnersBorders"
+                              className="h-8 text-sm bottom-0 left-0 w-full md:max-w-[460px] p-3 border border-partnersBorders rounded text-offwhite focus:text-primary bg-cardsBackground"
                               onChange={handleChange}
                             />
                             <input
@@ -281,7 +291,7 @@ const CardThumbnail: React.FC<{
                               name="email"
                               value={invitation.email}
                               placeholder="Type email here"
-                              className="bg-offwhite bg-opacity-10 h-8 text-sm bottom-0 left-0 w-full p-3 border rounded border-partnersBorders text-partnersBorders"
+                              className="h-8 text-sm bottom-0 left-0 w-full md:max-w-[460px] p-3 border border-partnersBorders rounded text-offwhite focus:text-primary bg-cardsBackground"
                               onChange={handleChange}
                             />
                             {/* {error && <p className="text-red-500 text-sm">{error}</p>} */}
@@ -412,7 +422,7 @@ const CardThumbnail: React.FC<{
                           name="name"
                           value={invitation.name}
                           placeholder="Type guest name here"
-                          className="h-8 text-sm bottom-0 left-0 w-full md:max-w-[460px] p-3 border border-partnersBorders rounded text-partnersBorders bg-cardsBackground"
+                          className="h-8 text-sm bottom-0 left-0 w-full md:max-w-[460px] p-3 border border-partnersBorders rounded text-offwhite focus:text-primary bg-cardsBackground"
                           onChange={handleChange}
                         />
                         <input
@@ -420,7 +430,7 @@ const CardThumbnail: React.FC<{
                           name="email"
                           value={invitation.email}
                           placeholder="Type email here"
-                          className="h-8 text-sm bottom-0 left-0 w-full md:max-w-[460px] p-3 border border-partnersBorders rounded text-partnersBorders bg-cardsBackground"
+                          className="h-8 text-sm bottom-0 left-0 w-full md:max-w-[460px] p-3 border border-partnersBorders rounded text-offwhite focus:text-primary bg-cardsBackground"
                           onChange={handleChange}
                         />
                         <div className="flex gap-2">
