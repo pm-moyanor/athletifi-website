@@ -173,15 +173,15 @@ const CardThumbnail: React.FC<{
               {/* add list of guests / render conditionally */}
               {/* filter the guests to the rendered card */}
               <div className="mt-4">
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col">
                  {invites
                     .filter((invite) => invite.card_image_id === cardData.ownedCardInfo.card_id)
                     .map((invite, idx) => (
                     <div
                       key={idx}
-                      className="flex justify-between min-h-12 items-center"
+                      className="flex justify-between min-h-12 items-center border-b border-partnersBorders border-opacity-50 py-6"
                     >
-                      <div className="flex flex-wrap gap-2 items-center max-w-[220px] md:max-w-none">
+                      <div className="flex flex-wrap gap-2 items-center max-w-[260px] md:max-w-none">
                     
                         {/* if status is pending, add label */}
                         {invite.invite_status === 'pending' && (
@@ -239,6 +239,7 @@ const CardThumbnail: React.FC<{
                       </button>
                     </>
                   )}
+          
                 </div>
                 <AnimatePresence>
                   {isToggle && (
@@ -313,9 +314,13 @@ const CardThumbnail: React.FC<{
                           </form>
                         )}
                       </motion.div>
+
+                   
                     </motion.div>
                   )}
+                  
                 </AnimatePresence>
+         
               </div>
             </div>
           </div>
