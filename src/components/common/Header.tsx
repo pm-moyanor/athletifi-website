@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, startTransition } from 'react';
 import Link from 'next/link';
 import {
   // ArrowButton,
@@ -64,13 +64,16 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('mouseup', handleOutSideClick);
   }, [showDropdown]);
 
+
   const handleSignOutSignIn = async () => {
     if (userData.data === null) {
       router.push('/login');
     } else {
       resetUserDataState();
       await signOut();
+      router.push('/'); // Redirect to home before closing the toggle
     }
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -232,18 +235,18 @@ const Header: React.FC = () => {
                   </div>
                 ) : (
                   <div className="flex flex-col gap-25 items-center text-primary md:hidden mt-2 md:mt-0 w-full">
-                    <Link href="/profile" className={`${linksStyle}`}>
+                    <Link href="/profile"  onClick={() => setOpen(false)} className={`${linksStyle}`}>
                       My cards
                     </Link>
-                    <Link href="/settings" className={`${linksStyle}`}>
+                    <Link href="/settings"  onClick={() => setOpen(false)} className={`${linksStyle}`}>
                       Settings
                     </Link>
-                    <Link href="/help-support" className={`${linksStyle}`}>
+                    <Link href="/help-support"  onClick={() => setOpen(false)} className={`${linksStyle}`}>
                       Help & Support
                     </Link>
                     <div className="border-t border-t-partnersBorders opacity-80 w-1/3"></div>
                     <div
-                      className={`${linksStyle}  cursor-pointer`}
+                      className={`${linksStyle}   cursor-pointer`}
                       onClick={handleSignOutSignIn}
                     >
                       Logout
@@ -251,7 +254,8 @@ const Header: React.FC = () => {
                   </div>
                 )}
                 {userData.data === null ? (
-                  <div className="flex items-center gap-2 md:ml-4 mt-6 md:mt-0 hidden md:flex">
+                 <div className={`relative items-center text-primary ${userData.data === null ? 'hidden' : 'md:flex'}`}>
+
                     <Link href="/login">
                       <button className="text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
                         Log in
