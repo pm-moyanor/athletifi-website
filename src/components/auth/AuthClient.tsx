@@ -94,11 +94,11 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
 
   return (
     <div
-      className={`bg-cardsDark ${sourceSans3.className} md:p-8 shadow-sm flex justify-center`}
+      className={`bg-cardsDark ${sourceSans3.className} p-4 md:p-8 shadow-sm flex justify-center rounded-10 mt-16`}
     >
       <ThemeProvider theme={loginTheme}>
         <div className="mb-12">
-          <p className="text-primary font-extralight leading-8 mt-28">
+          <p className="text-primary font-extralight leading-8 mt-12">
             Signup for
           </p>
           <h1
