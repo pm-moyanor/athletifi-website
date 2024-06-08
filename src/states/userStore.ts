@@ -154,9 +154,7 @@ async function fetchUserData(
   });
 
   try {
-    const response = await fetch(
-      `${baseURL}/user?amplify_id=${amplify_id}`,
-    );
+    const response = await fetch(`${baseURL}/user?amplify_id=${amplify_id}`);
     if (!response.ok) {
       throw new Error('Data load error. Please try again.');
     }
@@ -359,7 +357,6 @@ export function useUserData() {
       errorMessage: null,
     });
   }
-
 
   // Return the current state of the user data
   return {

@@ -21,8 +21,6 @@ const sourceSans3 = Source_Sans_3({
   display: 'swap',
 });
 
-
-
 function useOutsideClick(
   ref: React.RefObject<HTMLElement>,
   callback: () => void,
@@ -47,9 +45,8 @@ const CardThumbnail: React.FC<{
   inSettings: boolean;
 }> = ({ cardData, isOwned, inSettings }) => {
   const [, inviteRevokeAction] = useAtom(inviteRevokeActionAtom);
-
   console.log('cardData in the cardThumbnail', cardData);
-//  this is the function i craeted to test the logic of the revoke and invite. the action adn guest_email params are manually set.
+  //  this is the function i craeted to test the logic of the revoke and invite. the action adn guest_email params are manually set.
   // const triggerRevokeOrInvite = () => {
   //   console.log('clicked');
   //   inviteRevokeAction({
@@ -60,6 +57,8 @@ const CardThumbnail: React.FC<{
   //     inviteId: cardData.guestCardInfo.invite_id,
   //   });
   // };
+
+  //filter card status
 
   const [isToggle, setIsToggle] = useState<boolean>(false);
   const [invitation, setInvitation] = useState<{ name: string; email: string }>( //stored data from form
@@ -74,7 +73,7 @@ const CardThumbnail: React.FC<{
   //atom to render the invites
   const invites = useAtomValue(invitesDataAtom);
 
-  ////////////////////////////////////////email invite 
+  ////////////////////////////////////////email invite
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInvitation((prevInvitation) => ({
@@ -82,7 +81,7 @@ const CardThumbnail: React.FC<{
       [name]: value,
     }));
   };
-//when submit, action to "invite", render success message, clear from and close toggle
+  //when submit, action to "invite", render success message, clear from and close toggle
   const emailSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (invitation.email) {
@@ -94,23 +93,22 @@ const CardThumbnail: React.FC<{
         .then(() => {
           setEmailSubmitted(true);
           setInvitation({ name: '', email: '' });
-  
+
           // Delay the toggle by 2 seconds
           return new Promise<void>((resolve) => {
             setTimeout(() => {
               setIsToggle(false);
-              setEmailSubmitted(false); 
+              setEmailSubmitted(false);
               resolve();
             }, 3000);
           });
-       
         })
         .catch((error) => console.error('Failed to send invitation', error));
     } else {
       console.log('invalid email');
     }
   };
-/////////////////////// action to "revoke" 
+  /////////////////////// action to "revoke"
   const triggerRevokeOrInvite = (inviteId: string) => {
     inviteRevokeAction({
       action: 'revoke',
@@ -173,47 +171,55 @@ const CardThumbnail: React.FC<{
               {/* filter the guests to the rendered card */}
               <div className="mt-4">
                 <div className="flex flex-col">
-                 {invites
-                    .filter((invite) => invite.card_image_id === cardData.ownedCardInfo.card_id)
+                  {invites
+                    .filter(
+                      (invite) =>
+                        invite.card_image_id === cardData.ownedCardInfo.card_id,
+                    )
                     .map((invite, idx) => (
-                    <div
-                      key={idx}
-                      className="flex justify-between min-h-12 items-center border-b border-partnersBorders border-opacity-50 py-6"
-                    >
-                      <div className="flex flex-wrap gap-2 items-center max-w-[260px] md:max-w-none">
-                    
-                        {/* if status is pending, add label */}
-                        {invite.invite_status === 'pending' && (
-                          <span className="text-xs md:text-sm bg-chartYellow rounded-[4px] px-2 py-[4px]">
-                            Pending
-                          </span>
-                        )}
-                        {invite.invite_status === 'revoked' && (
-                          <span className="text-xs md:text-sm bg-chartRed rounded-[4px] px-2 py-[4px]">
-                            Revoked
-                          </span>
-                        )}
-                           {invite.invite_status === 'accepted' && (
-                          <span className="text-xs md:text-sm bg-chartBlue rounded-[4px] px-2 py-[4px]">
-                          Accepted
-                          </span>
-                            )}
-                            <p className="text-sm md:text-base max-w-[220px] md:max-w-none break-words">
-                          {invite.guest_email}
-                        </p>
-                      </div>
                       <div
-                        className="flex items-center cursor-pointer justify-end"
-                        onClick={() => triggerRevokeOrInvite(invite.invite_id)}
+                        key={idx}
+                        className="flex justify-between min-h-12 items-center border-b border-partnersBorders border-opacity-50 py-6"
                       >
-                      <div className={`mx-[6px] md:mx-4 ${invite.invite_status === 'revoked' ? 'opacity-50' : ''}`}>revoke</div>
-                        <FontAwesomeIcon
-                          className="text-chartRed text-md md:text-2xl"
-                          icon={faXmark}
-                        />
+                        <div className="flex flex-wrap gap-2 items-center max-w-[260px] md:max-w-none">
+                          {/* if status is pending, add label */}
+                          {invite.invite_status === 'pending' && (
+                            <span className="text-xs md:text-sm bg-chartYellow rounded-[4px] px-2 py-[4px]">
+                              Pending
+                            </span>
+                          )}
+                          {invite.invite_status === 'revoked' && (
+                            <span className="text-xs md:text-sm bg-chartRed rounded-[4px] px-2 py-[4px]">
+                              Revoked
+                            </span>
+                          )}
+                          {invite.invite_status === 'accepted' && (
+                            <span className="text-xs md:text-sm bg-chartBlue rounded-[4px] px-2 py-[4px]">
+                              Accepted
+                            </span>
+                          )}
+                          <p className="text-sm md:text-base max-w-[220px] md:max-w-none break-words">
+                            {invite.guest_email}
+                          </p>
+                        </div>
+                        <div
+                          className="flex items-center cursor-pointer justify-end"
+                          onClick={() =>
+                            triggerRevokeOrInvite(invite.invite_id)
+                          }
+                        >
+                          <div
+                            className={`mx-[6px] md:mx-4 ${invite.invite_status === 'revoked' ? 'opacity-50' : ''}`}
+                          >
+                            revoke
+                          </div>
+                          <FontAwesomeIcon
+                            className="text-chartRed text-md md:text-2xl"
+                            icon={faXmark}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
 
                 <div
@@ -238,7 +244,6 @@ const CardThumbnail: React.FC<{
                       </button>
                     </>
                   )}
-          
                 </div>
                 <AnimatePresence>
                   {isToggle && (
@@ -313,20 +318,16 @@ const CardThumbnail: React.FC<{
                           </form>
                         )}
                       </motion.div>
-
-                   
                     </motion.div>
                   )}
-                  
                 </AnimatePresence>
-         
               </div>
             </div>
           </div>
         ) : (
           // render owend cards in profila page
           <>
-            <div className="flex justify-between flex-col md:flex-row items-center w-full" >
+            <div className="flex justify-between flex-col md:flex-row items-center w-full">
               <div className="relative w-[300px] h-[350px] md:w-[160px] md:h-[210px]">
                 {card_url ? (
                   <Image
@@ -563,7 +564,7 @@ const CardThumbnail: React.FC<{
           </div>
           <div className="w-full flex justify-end pb-4 pr-4">
             <button
-             // onClick={triggerRevokeOrInvite}
+              // onClick={triggerRevokeOrInvite}
               className="text-darkgray w-[130px] md:w-[160px] h-8 bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out"
             >
               go to dashboard

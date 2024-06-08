@@ -35,9 +35,14 @@ const Profile = () => {
   const [inviteData] = useAtom(postHelperResponseAtom);
   const [inviteStatus, setInviteStatus] = useState<AlertModalType | null>();
 
-  //console.log('ownedCardsData', ownedCardsData[0]);
   console.log('guestCardsData in profile', guestCardsData);
   console.log('ownedCardsData in profile', ownedCardsData);
+  const filterAcceptedGuestCards = (cards: any) => {
+    return cards.filter(
+      (card: any) => card.guestCardInfo.status === 'accepted',
+    );
+  };
+  const acceptedGuestCards = filterAcceptedGuestCards(guestCardsData);
 
   // This useEffect hook runs whenever the inviteData changes
   useEffect(() => {
@@ -130,15 +135,22 @@ const Profile = () => {
               <div className="h-1 w-full bg-partnersBorders opacity-50 my-2"></div>
               {ownedCardsData.length > 0 ? (
                 <div className="flex flex-wrap w-full gap-4">
-                  {ownedCardsData.map((cardData, idx) => (
-                    <RenderCardThumbnail
-                      key={idx}
-                      // userData={cardData}
-                      cardData={cardData}
-                      isOwned={true}
-                      inSettings={false}
-                    />
-                  ))}
+                  {ownedCardsData.map(
+                    (cardData: any, idx: React.Key | null | undefined) => {
+                      if (!cardData) {
+                        return null;
+                      }
+                      return (
+                        <RenderCardThumbnail
+                          key={idx}
+                          // userData={cardData}
+                          cardData={cardData}
+                          isOwned={true}
+                          inSettings={false}
+                        />
+                      );
+                    },
+                  )}
                 </div>
               ) : (
                 <p className="text-primary opacity-80 p-2">
@@ -151,16 +163,23 @@ const Profile = () => {
                 Shared with me
               </h2>
               <div className="h-1 w-full bg-partnersBorders opacity-50 my-2"></div>
-              {guestCardsData.length > 0 ? (
+              {acceptedGuestCards.length > 0 ? (
                 <div className="flex justify-start py-2 overflow-x-auto hide-scrollbar gap-4">
-                  {guestCardsData.map((cardData, idx) => (
-                    <RenderCardThumbnail
-                      key={idx}
-                      cardData={cardData}
-                      isOwned={false}
-                      inSettings={false}
-                    />
-                  ))}
+                  {acceptedGuestCards.map(
+                    (cardData: any, idx: React.Key | null | undefined) => {
+                      if (!cardData) {
+                        return null;
+                      }
+                      return (
+                        <RenderCardThumbnail
+                          key={idx}
+                          cardData={cardData}
+                          isOwned={false}
+                          inSettings={false}
+                        />
+                      );
+                    },
+                  )}
                 </div>
               ) : (
                 <p className="text-primary opacity-80 p-2">
