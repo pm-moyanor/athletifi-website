@@ -18,16 +18,18 @@ const sourceSans3 = Source_Sans_3({
 
 const card_url = '/assets/img/png/anderson-card-img.png';
 
-
-
 export default function ManageReferrals() {
-
   const ownedCardsData = useAtomValue(ownedCardsDataAtom);
   const guestCardsData = useAtomValue(guestCardsDataAtom);
-
+  console.log('guestCardsData in manageReferrals', guestCardsData);
+  console.log('ownedCardsData in manageReferrals', ownedCardsData);
+  const filterAcceptedGuestCards = (cards: any) => {
+    return cards.filter(
+      (card: any) => card.guestCardInfo.status === 'accepted',
+    );
+  };
+  const acceptedGuestCards = filterAcceptedGuestCards(guestCardsData);
   // const { userData } = useUserData();
-
-
 
   return (
     <div
@@ -47,16 +49,34 @@ export default function ManageReferrals() {
           Manage access to your guest list
         </div>
         {ownedCardsData.length > 0 ? (
-          ownedCardsData.map((cardData, idx) => (
-            <RenderCardThumbnail
-              key={idx}
-              cardData={cardData}
-              isOwned={true}
-              inSettings={true}
-            />
-          ))
+          <div className="flex flex-wrap w-full gap-4">
+            {ownedCardsData.map(
+              (cardData: any, idx: React.Key | null | undefined) => {
+                if (!cardData.ownedCardInfo.card_id) {
+                  return (
+                    <p key={idx} className="text-primary opacity-80 p-2">
+                      You currently do not own any cards. Once you have one, it
+                      will be displayed here.
+                    </p>
+                  );
+                }
+                return (
+                  <RenderCardThumbnail
+                    key={idx}
+                    // userData={cardData}
+                    cardData={cardData}
+                    isOwned={true}
+                    inSettings={true}
+                  />
+                );
+              },
+            )}
+          </div>
         ) : (
-          <p className="text-primary opacity-80 p-2">    You currently do not own any cards. Once you have one, it will be displayed here.
+          <p className="text-primary opacity-80 p-2">
+            {' '}
+            You currently do not own any cards. Once you have one, it will be
+            displayed here.
           </p>
         )}
         {/*=============== INVITATIONS */}
@@ -66,18 +86,28 @@ export default function ManageReferrals() {
         <div className="text-primary font-extralight mx-2 py-2 mb-2">
           View invitations to other users&apos; cards
         </div>
-        {guestCardsData.length > 0 ? (
-          guestCardsData.map((cardData, idx) => (
-            <RenderCardThumbnail
-              key={idx}
-              cardData={cardData}
-              isOwned={false}
-              inSettings={true}
-            />
-          ))
+        {acceptedGuestCards.length > 0 ? (
+          <div className="flex justify-start py-2 overflow-x-auto hide-scrollbar gap-4">
+            {acceptedGuestCards.map(
+              (cardData: any, idx: React.Key | null | undefined) => {
+                if (!cardData) {
+                  return null;
+                }
+                return (
+                  <RenderCardThumbnail
+                    key={idx}
+                    cardData={cardData}
+                    isOwned={false}
+                    inSettings={true}
+                  />
+                );
+              },
+            )}
+          </div>
         ) : (
           <p className="text-primary opacity-80 p-2">
-          No cards have been shared with you yet. Once someone shares a card with you, it will appear here.
+            No cards have been shared with you yet. Once someone shares a card
+            with you, it will appear here.
           </p>
         )}
       </div>

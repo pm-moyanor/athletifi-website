@@ -137,8 +137,16 @@ const Profile = () => {
                 <div className="flex flex-wrap w-full gap-4">
                   {ownedCardsData.map(
                     (cardData: any, idx: React.Key | null | undefined) => {
-                      if (!cardData) {
-                        return null;
+                      console.log(
+                        'cardData in loop',
+                        cardData.ownedCardInfo.card_id,
+                      );
+                      if (!cardData.ownedCardInfo.card_id) {
+                        return (
+                          <p key={idx} className="text-primary opacity-80 p-2">
+                            You have no cards.
+                          </p>
+                        );
                       }
                       return (
                         <RenderCardThumbnail
