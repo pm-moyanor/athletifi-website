@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react';
 import { Source_Sans_3 } from 'next/font/google';
 import { useUserData } from '@/states/userStore';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
-
+import { invitesDataAtom } from '@/states/invitesDataStore';
 import { useAtomValue } from 'jotai';
 import {
   ownedCardsDataAtom,
   guestCardsDataAtom,
 } from '@/states/profileCardsDataStore';
+import { Invites } from '@/types/User.type';
+
 
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
@@ -23,13 +25,23 @@ export default function ManageReferrals() {
   const guestCardsData = useAtomValue(guestCardsDataAtom);
   console.log('guestCardsData in manageReferrals', guestCardsData);
   console.log('ownedCardsData in manageReferrals', ownedCardsData);
+
+  const invites = useAtomValue(invitesDataAtom);
+
+
   const filterAcceptedGuestCards = (cards: any) => {
     return cards.filter(
       (card: any) => card.guestCardInfo.status === 'accepted',
     );
   };
   const acceptedGuestCards = filterAcceptedGuestCards(guestCardsData);
-  // const { userData } = useUserData();
+
+
+  const getInviterInfo = (inviteId: string | null) => {
+    const invite = invites.find((invite: Invites) => invite.invite_id === inviteId);
+    return invite ? { inviterEmail: invite.inviter_email ?? '' } : { inviterEmail: '' };
+  };
+
 
   return (
     <div
@@ -93,12 +105,14 @@ export default function ManageReferrals() {
                 if (!cardData) {
                   return null;
                 }
+                const { inviterEmail } = getInviterInfo(cardData.guestCardInfo.card_id);
                 return (
                   <RenderCardThumbnail
                     key={idx}
                     cardData={cardData}
                     isOwned={false}
                     inSettings={true}
+                    inviterEmail={getInviterInfo(cardData.invite_id).inviterEmail}
                   />
                 );
               },

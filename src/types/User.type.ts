@@ -77,6 +77,7 @@ export type GuestCards = {
 export type Invites = {
   invite_id: string | null;
   guest_email: string | null;
+  inviter_email: string | null;
   guest_id: string | null;
   invite_status: string | null;
   card_image_id: string | null;

@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState ,startTransition} from 'react';
 import Link from 'next/link';
 import {
   WhiteFacebookIcon,
@@ -30,7 +30,7 @@ const Header: React.FC = () => {
 
   const router = useRouter();
   const { userData, resetUserDataState, setIsLoggedIn } = useUserData();
-  console.log(userData);
+
 
   useEffect(() => {
     const hubListenerCancel = Hub.listen('auth', (data) => {
@@ -125,7 +125,7 @@ const Header: React.FC = () => {
   // const socialIconDropDown = () => {
   //   setNavSocialIcon(!navSocialIcon);
   // };
-  console.log(showDropdown);
+
   const linksStyle = `opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto`;
 
   return (
@@ -252,7 +252,7 @@ const Header: React.FC = () => {
                   </div>
                 )}
                 {userData.data === null ? (
-                  <div className="flex items-center gap-2 md:ml-4 mt-6 md:mt-0 hidden md:flex">
+                  <div className="items-center gap-2 md:ml-4 mt-6 md:mt-0 hidden md:flex">
                     <Link href="/login">
                       <button className="text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
                         Log in
