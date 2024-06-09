@@ -119,8 +119,18 @@ console.log(invites)
       .catch((error) => console.error('Failed to revoke invitation', error));
   };
 
-  ////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////
+  //IN CASE THE LOGIC IS THE SAME, ADD ACTION DECLINE ?
+  const triggerDecline = (inviteId: string) => {
+    inviteRevokeAction({
+      action: 'decline',
+      inviteId: inviteId,
+    })
+      .then(() => console.log('Decline successful'))
+      .catch((error) => console.error('Failed to decline invitation', error));
+  };
 
+  //////////////////////////////////////////////
   const formRef = useRef<HTMLDivElement>(null); // Track the form element
   useOutsideClick(formRef, () => {
     if (emailSubmitted) {
