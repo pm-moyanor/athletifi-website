@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState ,startTransition} from 'react';
+import React, { useEffect, useRef, useState, startTransition } from 'react';
 import Link from 'next/link';
 import {
   WhiteFacebookIcon,
@@ -30,7 +30,6 @@ const Header: React.FC = () => {
 
   const router = useRouter();
   const { userData, resetUserDataState, setIsLoggedIn } = useUserData();
-
 
   useEffect(() => {
     const hubListenerCancel = Hub.listen('auth', (data) => {
@@ -233,13 +232,25 @@ const Header: React.FC = () => {
                   </div>
                 ) : (
                   <div className="flex flex-col gap-25 items-center text-primary md:hidden mt-2 md:mt-0 w-full">
-                    <Link href="/profile" className={`${linksStyle}`}>
+                    <Link
+                      href="/profile"
+                      className={`${linksStyle}`}
+                      onClick={() => setOpen(false)}
+                    >
                       My cards
                     </Link>
-                    <Link href="/settings" className={`${linksStyle}`}>
+                    <Link
+                      href="/settings"
+                      className={`${linksStyle}`}
+                      onClick={() => setOpen(false)}
+                    >
                       Settings
                     </Link>
-                    <Link href="/help-support" className={`${linksStyle}`}>
+                    <Link
+                      href="/help-support"
+                      className={`${linksStyle}`}
+                      onClick={() => setOpen(false)}
+                    >
                       Help & Support
                     </Link>
                     <div className="border-t border-t-partnersBorders opacity-80 w-1/3"></div>
@@ -253,13 +264,17 @@ const Header: React.FC = () => {
                 )}
                 {userData.data === null ? (
                   <div className="items-center gap-2 md:ml-4 mt-6 md:mt-0 hidden md:flex">
-                    <Link href="/login">
-                      <button className="text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
+                    <Link href="/login" onClick={() => setOpen(false)}>
+                      <button className="text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out"
+                       onClick={() => setOpen(false)}
+                       >
                         Log in
                       </button>
                     </Link>
                     <Link href="/register">
-                      <button className="text-darkgray w-[100px] h-8 bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
+                      <button className="text-darkgray w-[100px] h-8 bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out"
+                       onClick={() => setOpen(false)}
+                       >
                         Sign up
                       </button>
                     </Link>
@@ -308,7 +323,7 @@ const Header: React.FC = () => {
                     )}
                   </div>
                 )}
-            
+
                 <div className={`absolute bottom-4 left w-4/5 md:hidden `}>
                   <div className="h-1 bg-partnersBorders  mb-6" />
                   <div className="">
@@ -361,7 +376,6 @@ const Header: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
               </ul>
             </div>
           </div>
