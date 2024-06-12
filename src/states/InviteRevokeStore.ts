@@ -18,7 +18,6 @@ export const inviteRevokeActionAtom = atom(
     }
 
     const data = await response.json();
-    console.log('data in the inviteRemoveAtom', data);
     return data;
   },
 );

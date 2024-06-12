@@ -16,8 +16,8 @@ import { useAtom } from 'jotai';
 import { postHelperResponseAtom } from '@/states/userStore';
 import AlertModal from '@/components/common/AlertModal';
 import { AlertModalType } from '@/types/AlertModalType';
-import { GuestCards } from '@/types/User.type';
-import { ICardData } from '@/types/Dashboard.type';
+import { GuestCards, OwnedCards } from '@/types/User.type';
+import { ICardData, IProfileProps } from '@/types/Dashboard.type';
 
 // import { userDataAtom } from '@/states/userStore';
 import { useAtomValue } from 'jotai';
@@ -35,6 +35,12 @@ const variants = {
   },
 };
 
+interface ICardData {
+  result: IProfileProps;
+  ownedCardInfo: OwnedCards;
+  guestCardInfo: GuestCards;
+}
+
 const Profile = () => {
   const ownedCardsData = useAtomValue(ownedCardsDataAtom) as ICardData[];
   const guestCardsData = useAtomValue(guestCardsDataAtom) as GuestCards[];
@@ -43,10 +49,10 @@ const Profile = () => {
 
   console.log('guestCardsData in profile', guestCardsData);
   console.log('ownedCardsData in profile', ownedCardsData);
-  const filterAcceptedGuestCards = (cards: GuestCards[]) => {
-    return cards.filter((card: GuestCards) => card.status === 'accepted');
-  };
-  const acceptedGuestCards = filterAcceptedGuestCards(guestCardsData);
+
+  const acceptedGuestCards = guestCardsData.filter(
+    (card) => card.guestCardInfo.status === 'accepted',
+  );
 
   // This useEffect hook runs whenever the inviteData changes
   useEffect(() => {

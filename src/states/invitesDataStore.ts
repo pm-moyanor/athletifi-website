@@ -7,6 +7,5 @@ export const invitesDataAtom = atom((get) => {
   const invites = Array.isArray(userData?.data?.invites)
     ? userData.data.invites
     : [];
-  //console.log('userdata in invites:', userData);
   return invites;
 });

@@ -29,11 +29,11 @@ export default function ManageReferrals() {
   console.log('guestCardsData in manageReferrals', guestCardsData);
   console.log('ownedCardsData in manageReferrals', ownedCardsData);
 
-  const filterAcceptedGuestCards = (cards: GuestCards[]) => {
-    return cards.filter((card: GuestCards) => card.status === 'accepted');
-  };
-  const acceptedGuestCards = filterAcceptedGuestCards(guestCardsData);
+  const acceptedGuestCards = guestCardsData.filter(
+    (card) => card.guestCardInfo.status === 'accepted',
+  );
 
+  console.log('acceptedGuestCards in manageReferrals', acceptedGuestCards);
   return (
     <div
       className={`${sourceSans3.className} flex flex-col mt-16 text-primary`}
