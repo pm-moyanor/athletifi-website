@@ -15,6 +15,7 @@ import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useAtomValue, useAtom } from 'jotai';
 import { invitesDataAtom } from '@/states/invitesDataStore';
 import { inviteRevokeActionAtom } from '@/states/InviteRevokeStore';
+import { useRouter } from 'next/navigation';
 
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
@@ -45,6 +46,7 @@ const CardThumbnail: React.FC<{
   inSettings: boolean;
 }> = ({ cardData, isOwned, inSettings }) => {
   const [, inviteRevokeAction] = useAtom(inviteRevokeActionAtom);
+  const router = useRouter();
   console.log('cardData in the cardThumbnail', cardData);
   //  this is the function i craeted to test the logic of the revoke and invite. the action adn guest_email params are manually set.
   // const triggerRevokeOrInvite = () => {
@@ -71,6 +73,12 @@ const CardThumbnail: React.FC<{
   const [declinedInviteId, setDeclinedInviteId] = useState<string | null>(null);
 
   const { name, team, club, card_url, number, club_logo } = cardData.result;
+
+  const handleGoToDashboard = (slug: string) => {
+    //go to dashboard click
+    router.push(`/dashboard/${slug}`);
+  };
+
   //atom to render the invites
   const invites = useAtomValue(invitesDataAtom);
   console.log(invites);
@@ -148,7 +156,12 @@ const CardThumbnail: React.FC<{
         inSettings ? (
           <div className="rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-4">
             <div className="flex justify-start items-start min-w-[260px]">
-              <div className="relative w-24 h-28 justify-end">
+              <div
+                className="relative w-24 h-28 justify-end"
+                onClick={() =>
+                  handleGoToDashboard(cardData?.ownedCardInfo.dashboard_slug)
+                }
+              >
                 <Image
                   src={card_url as string}
                   alt="Card Thumbnail"
@@ -380,7 +393,12 @@ const CardThumbnail: React.FC<{
                 </div>
               </div>
               <div className="flex md:flex-col my-6 md:mx-4 gap-2 items-center justify-center">
-                <button className="text-darkgray w-[140px] md:w-[160px] h-8 bg-skyblue text-xs md:text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
+                <button
+                  className="text-darkgray w-[140px] md:w-[160px] h-8 bg-skyblue text-xs md:text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out"
+                  onClick={() =>
+                    handleGoToDashboard(cardData?.ownedCardInfo.dashboard_slug)
+                  }
+                >
                   go to dashboard
                 </button>
                 <button
@@ -474,7 +492,12 @@ const CardThumbnail: React.FC<{
         // render guest card in settings
         <div className="rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-2 md:gap-4">
           <div className="flex justify-start items-start min-w-[250px]">
-            <div className="relative w-24 h-28 justify-end">
+            <div
+              className="relative w-24 h-28 justify-end"
+              onClick={() =>
+                handleGoToDashboard(cardData?.guestCardInfo.dashboard_slug)
+              }
+            >
               <Image
                 src={card_url as string} // Cast card_url to string
                 alt="Card Thumbnail"
@@ -581,6 +604,9 @@ const CardThumbnail: React.FC<{
           <div className="w-full flex justify-end pb-4 pr-4">
             <button
               // onClick={triggerRevokeOrInvite}
+              onClick={() =>
+                handleGoToDashboard(cardData?.guestCardInfo.dashboard_slug)
+              }
               className="text-darkgray w-[130px] md:w-[160px] h-8 bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out"
             >
               go to dashboard

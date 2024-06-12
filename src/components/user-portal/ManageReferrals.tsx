@@ -10,7 +10,6 @@ import {
   ownedCardsDataAtom,
   guestCardsDataAtom,
 } from '@/states/profileCardsDataStore';
-import { Invites } from '@/types/User.type';
 
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
@@ -24,8 +23,6 @@ export default function ManageReferrals() {
   const guestCardsData = useAtomValue(guestCardsDataAtom);
   console.log('guestCardsData in manageReferrals', guestCardsData);
   console.log('ownedCardsData in manageReferrals', ownedCardsData);
-
-  const invites = useAtomValue(invitesDataAtom);
 
   const filterAcceptedGuestCards = (cards: any) => {
     return cards.filter(
