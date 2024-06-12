@@ -12,7 +12,6 @@ import {
 } from '@/states/profileCardsDataStore';
 import { Invites } from '@/types/User.type';
 
-
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
   display: 'swap',
@@ -28,20 +27,12 @@ export default function ManageReferrals() {
 
   const invites = useAtomValue(invitesDataAtom);
 
-
   const filterAcceptedGuestCards = (cards: any) => {
     return cards.filter(
       (card: any) => card.guestCardInfo.status === 'accepted',
     );
   };
   const acceptedGuestCards = filterAcceptedGuestCards(guestCardsData);
-
-
-  const getInviterInfo = (inviteId: string | null) => {
-    const invite = invites.find((invite: Invites) => invite.invite_id === inviteId);
-    return invite ? { inviterEmail: invite.inviter_email ?? '' } : { inviterEmail: '' };
-  };
-
 
   return (
     <div
@@ -105,14 +96,13 @@ export default function ManageReferrals() {
                 if (!cardData) {
                   return null;
                 }
-                const { inviterEmail } = getInviterInfo(cardData.guestCardInfo.card_id);
+
                 return (
                   <RenderCardThumbnail
                     key={idx}
                     cardData={cardData}
                     isOwned={false}
                     inSettings={true}
-                    inviterEmail={getInviterInfo(cardData.invite_id).inviterEmail}
                   />
                 );
               },

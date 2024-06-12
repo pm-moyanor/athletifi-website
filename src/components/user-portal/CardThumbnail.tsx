@@ -43,8 +43,7 @@ const CardThumbnail: React.FC<{
   cardData: any;
   isOwned: boolean;
   inSettings: boolean;
-  inviterEmail:any;
-}> = ({ cardData, isOwned, inSettings,inviterEmail }) => {
+}> = ({ cardData, isOwned, inSettings }) => {
   const [, inviteRevokeAction] = useAtom(inviteRevokeActionAtom);
   console.log('cardData in the cardThumbnail', cardData);
   //  this is the function i craeted to test the logic of the revoke and invite. the action adn guest_email params are manually set.
@@ -73,7 +72,7 @@ const CardThumbnail: React.FC<{
   const { name, team, club, card_url, number, club_logo } = cardData.result;
   //atom to render the invites
   const invites = useAtomValue(invitesDataAtom);
-console.log(invites)
+  console.log(invites);
   ////////////////////////////////////////email invite
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -143,7 +142,7 @@ console.log(invites)
   useOutsideClick(cardRef, () => setIsToggle(false));
 
   return (
-    <div ref={cardRef} className={`${isOwned ? 'w-full' : ''}`}>
+    <div ref={cardRef} className={`${isOwned || inSettings ? 'w-full' : ''}`}>
       {isOwned ? (
         inSettings ? (
           <div className="rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-4">
@@ -505,17 +504,17 @@ console.log(invites)
           <div className="flex flex-col justify-between w-full mt-2 md:max-w-[500px] px-[4px] lg:ml-8">
             <div className="items-start mt-0 w-full">
               <p className="font-extralight text-base">Card owner</p>
-              <div className="flex justify-between items-start">
+              <div className="flex justify-between items-center">
                 <div className="text-sm flex flex-col">
-                  {/* ///////// render ower of card that gave access to user  ////// */}
-            
-                   <p className="md:text-center font-extralight">
-               {inviterEmail}
-                    </p>
+                  <p className="md:text-center font-extralight">
+                    {cardData?.guestCardInfo?.inviter_email}
+                  </p>
                 </div>
                 <div
                   className="flex items-center justify-end cursor-pointer"
-                  onClick={() => console.log(inviterEmail)}
+                  onClick={() =>
+                    console.log('decline succesfull, change status')
+                  }
                 >
                   <div className="text-sm py-4 mx-2 md:mx-4 text-end">
                     decline
@@ -591,14 +590,7 @@ const RenderCardThumbnail: React.FC<{
   cardData: any | null | undefined;
   isOwned: boolean;
   inSettings: boolean;
-  inviterEmail?: string | null | undefined;
-
-  
-}> = ({  cardData,
-  isOwned,
-  inSettings,
-  inviterEmail,
-}) => {
+}> = ({ cardData, isOwned, inSettings }) => {
   if (!cardData) {
     return (
       <div className="card-thumbnail-error">Card data is not available.</div>
@@ -607,10 +599,9 @@ const RenderCardThumbnail: React.FC<{
 
   return (
     <CardThumbnail
-    cardData={cardData}
-    isOwned={isOwned}
-    inSettings={inSettings}
-    inviterEmail={inviterEmail}
+      cardData={cardData}
+      isOwned={isOwned}
+      inSettings={inSettings}
     />
   );
 };
