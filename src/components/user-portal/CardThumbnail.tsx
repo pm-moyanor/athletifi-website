@@ -68,6 +68,7 @@ const CardThumbnail: React.FC<{
     },
   );
   const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false); //to render success message when submit
+  const [declinedInviteId, setDeclinedInviteId] = useState<string | null>(null);
 
   const { name, team, club, card_url, number, club_logo } = cardData.result;
   //atom to render the invites
@@ -212,22 +213,20 @@ const CardThumbnail: React.FC<{
                             {invite.guest_email}
                           </p>
                         </div>
-                        <div
-                          className="flex items-center cursor-pointer justify-end"
-                          onClick={() =>
-                            triggerRevokeOrInvite(invite.invite_id)
-                          }
-                        >
+                        {invite.invite_status !== 'revoked' && (
                           <div
-                            className={`mx-[6px] md:mx-4 ${invite.invite_status === 'revoked' ? 'opacity-50' : ''}`}
+                            className="flex items-center cursor-pointer justify-end"
+                            onClick={() =>
+                              triggerRevokeOrInvite(invite.invite_id)
+                            }
                           >
-                            revoke
+                            <div className={`mx-[6px] md:mx-4`}>revoke</div>
+                            <FontAwesomeIcon
+                              className="text-chartRed text-md md:text-2xl"
+                              icon={faXmark}
+                            />
                           </div>
-                          <FontAwesomeIcon
-                            className="text-chartRed text-md md:text-2xl"
-                            icon={faXmark}
-                          />
-                        </div>
+                        )}
                       </div>
                     ))}
                 </div>
@@ -512,9 +511,11 @@ const CardThumbnail: React.FC<{
                 </div>
                 <div
                   className="flex items-center justify-end cursor-pointer"
-                  onClick={() =>
-                    console.log('decline succesfull, change status')
-                  }
+                  onClick={() => {
+                    console.log('decline successful, change status');
+                    //triggerDecline(invite.invite_id);
+                    setDeclinedInviteId(cardData?.guestCardInfo.invite_id);
+                  }}
                 >
                   <div className="text-sm py-4 mx-2 md:mx-4 text-end">
                     decline
@@ -525,6 +526,11 @@ const CardThumbnail: React.FC<{
                   />
                 </div>
               </div>
+              {declinedInviteId === cardData?.guestCardInfo.invite_id && (
+                <p className="text-xs text-primary mt-1">
+                  We will notify the owner you decline this invitation
+                </p>
+              )}
             </div>
           </div>
         </div>
