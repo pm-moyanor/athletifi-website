@@ -1,17 +1,23 @@
 'use client';
 
-import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import React, {
+  useState,
+  // ChangeEvent, FormEvent,
+  useEffect,
+} from 'react';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { IProfileProps } from '@/types/Dashboard.type';
+//import { IProfileProps } from '@/types/Dashboard.type';
 import Header from '@/components/user-portal/Header';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
 import { useAtom } from 'jotai';
 import { postHelperResponseAtom } from '@/states/userStore';
 import AlertModal from '@/components/common/AlertModal';
 import { AlertModalType } from '@/types/AlertModalType';
+import { GuestCards } from '@/types/User.type';
+import { ICardData } from '@/types/Dashboard.type';
 
 // import { userDataAtom } from '@/states/userStore';
 import { useAtomValue } from 'jotai';
@@ -30,17 +36,15 @@ const variants = {
 };
 
 const Profile = () => {
-  const ownedCardsData = useAtomValue(ownedCardsDataAtom);
-  const guestCardsData = useAtomValue(guestCardsDataAtom);
+  const ownedCardsData = useAtomValue(ownedCardsDataAtom) as ICardData[];
+  const guestCardsData = useAtomValue(guestCardsDataAtom) as GuestCards[];
   const [inviteData] = useAtom(postHelperResponseAtom);
   const [inviteStatus, setInviteStatus] = useState<AlertModalType | null>();
 
   console.log('guestCardsData in profile', guestCardsData);
   console.log('ownedCardsData in profile', ownedCardsData);
-  const filterAcceptedGuestCards = (cards: any) => {
-    return cards.filter(
-      (card: any) => card.guestCardInfo.status === 'accepted',
-    );
+  const filterAcceptedGuestCards = (cards: GuestCards[]) => {
+    return cards.filter((card: GuestCards) => card.status === 'accepted');
   };
   const acceptedGuestCards = filterAcceptedGuestCards(guestCardsData);
 
@@ -136,7 +140,10 @@ const Profile = () => {
               {ownedCardsData.length > 0 ? (
                 <div className="flex flex-wrap w-full gap-4">
                   {ownedCardsData.map(
-                    (cardData: any, idx: React.Key | null | undefined) => {
+                    (
+                      cardData: ICardData,
+                      idx: React.Key | null | undefined,
+                    ) => {
                       console.log(
                         'cardData in loop',
                         cardData.ownedCardInfo.card_id,
@@ -174,7 +181,10 @@ const Profile = () => {
               {acceptedGuestCards.length > 0 ? (
                 <div className="flex justify-start py-2 overflow-x-auto hide-scrollbar gap-4">
                   {acceptedGuestCards.map(
-                    (cardData: any, idx: React.Key | null | undefined) => {
+                    (
+                      cardData: GuestCards,
+                      idx: React.Key | null | undefined,
+                    ) => {
                       if (!cardData) {
                         return null;
                       }

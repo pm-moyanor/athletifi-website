@@ -293,3 +293,16 @@ export const emptyDashboardData: DashboardData = {
 export interface ISeasonHighlights {
   seasonHighlights: string[] | null;
 }
+
+export interface ICardData {
+  result: IProfileProps;
+  ownedCardInfo: {
+    card_id: string;
+    dashboard_slug: string;
+  };
+  guestCardInfo: {
+    invite_id: string;
+    dashboard_slug: string;
+    inviter_email: string;
+  };
+}

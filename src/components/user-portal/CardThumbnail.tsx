@@ -7,7 +7,7 @@ import React, {
   useEffect,
 } from 'react';
 import Image from 'next/image';
-import { IProfileProps } from '@/types/Dashboard.type';
+import { ICardData } from '@/types/Dashboard.type';
 import { Source_Sans_3 } from 'next/font/google';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,6 +21,12 @@ const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
   display: 'swap',
 });
+
+interface ICardThumbnailProps {
+  cardData: ICardData;
+  isOwned: boolean;
+  inSettings: boolean;
+}
 
 function useOutsideClick(
   ref: React.RefObject<HTMLElement>,
@@ -40,27 +46,14 @@ function useOutsideClick(
   }, [ref, callback]);
 }
 
-const CardThumbnail: React.FC<{
-  cardData: any;
-  isOwned: boolean;
-  inSettings: boolean;
-}> = ({ cardData, isOwned, inSettings }) => {
+const CardThumbnail: React.FC<ICardThumbnailProps> = ({
+  cardData,
+  isOwned,
+  inSettings,
+}) => {
   const [, inviteRevokeAction] = useAtom(inviteRevokeActionAtom);
   const router = useRouter();
   console.log('cardData in the cardThumbnail', cardData);
-  //  this is the function i craeted to test the logic of the revoke and invite. the action adn guest_email params are manually set.
-  // const triggerRevokeOrInvite = () => {
-  //   console.log('clicked');
-  //   inviteRevokeAction({
-  //     action: 'revoke', // this is either 'revoke' or 'invite'.
-  //     guest_email: 'haacny86+agudelo@gmail.com',
-  //     card_image_id: cardData.guestCardInfo.card_id, // this card_image_id need to change according to the action. revoke the info is gotten from guest cards while invite from the owned cards.
-  //     //card_image_id: cardData.ownedCardInfo.card_id, // this card_image_id need to change according to the action. revoke the info is gotten from guest cards while invite from the owned cards.
-  //     inviteId: cardData.guestCardInfo.invite_id,
-  //   });
-  // };
-
-  //filter card status
 
   const [isToggle, setIsToggle] = useState<boolean>(false);
   const [invitation, setInvitation] = useState<{ name: string; email: string }>( //stored data from form
@@ -536,7 +529,7 @@ const CardThumbnail: React.FC<{
                   className="flex items-center justify-end cursor-pointer"
                   onClick={() => {
                     console.log('decline successful, change status');
-                    //triggerDecline(invite.invite_id);
+                    triggerDecline(cardData?.guestCardInfo.invite_id);
                     setDeclinedInviteId(cardData?.guestCardInfo.invite_id);
                   }}
                 >
@@ -619,7 +612,7 @@ const CardThumbnail: React.FC<{
 };
 
 const RenderCardThumbnail: React.FC<{
-  cardData: any | null | undefined;
+  cardData: ICardData | null | undefined;
   isOwned: boolean;
   inSettings: boolean;
 }> = ({ cardData, isOwned, inSettings }) => {
