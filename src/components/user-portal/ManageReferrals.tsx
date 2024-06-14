@@ -24,16 +24,12 @@ const sourceSans3 = Source_Sans_3({
 
 export default function ManageReferrals() {
   const ownedCardsData = useAtomValue(ownedCardsDataAtom) as ICardData[];
-  const guestCardsData = useAtomValue(guestCardsDataAtom) as GuestCards[];
-
-  console.log('guestCardsData in manageReferrals', guestCardsData);
-  console.log('ownedCardsData in manageReferrals', ownedCardsData);
+  const guestCardsData = useAtomValue(guestCardsDataAtom) as ICardData[];
 
   const acceptedGuestCards = guestCardsData.filter(
     (card) => card.guestCardInfo.status === 'accepted',
   );
 
-  console.log('acceptedGuestCards in manageReferrals', acceptedGuestCards);
   return (
     <div
       className={`${sourceSans3.className} flex flex-col mt-16 text-primary`}
@@ -92,7 +88,7 @@ export default function ManageReferrals() {
         {acceptedGuestCards.length > 0 ? (
           <div className="flex justify-start py-2 overflow-x-auto hide-scrollbar gap-4">
             {acceptedGuestCards.map(
-              (cardData: GuestCards, idx: React.Key | null | undefined) => {
+              (cardData: ICardData, idx: React.Key | null | undefined) => {
                 if (!cardData) {
                   return null;
                 }

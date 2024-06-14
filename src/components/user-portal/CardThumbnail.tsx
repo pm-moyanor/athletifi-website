@@ -7,7 +7,6 @@ import React, {
   useEffect,
 } from 'react';
 import Image from 'next/image';
-import { ICardData } from '@/types/Dashboard.type';
 import { Source_Sans_3 } from 'next/font/google';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,11 +15,19 @@ import { useAtomValue, useAtom } from 'jotai';
 import { invitesDataAtom } from '@/states/invitesDataStore';
 import { inviteRevokeActionAtom } from '@/states/InviteRevokeStore';
 import { useRouter } from 'next/navigation';
+import { IProfileProps } from '@/types/Dashboard.type';
+import { GuestCards, OwnedCards } from '@/types/User.type';
 
 const sourceSans3 = Source_Sans_3({
   subsets: ['latin'],
   display: 'swap',
 });
+
+interface ICardData {
+  result: IProfileProps;
+  ownedCardInfo: OwnedCards;
+  guestCardInfo: GuestCards;
+}
 
 interface ICardThumbnailProps {
   cardData: ICardData;
@@ -53,7 +60,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
 }) => {
   const [, inviteRevokeAction] = useAtom(inviteRevokeActionAtom);
   const router = useRouter();
-  console.log('cardData in the cardThumbnail', cardData);
 
   const [isToggle, setIsToggle] = useState<boolean>(false);
   const [invitation, setInvitation] = useState<{ name: string; email: string }>( //stored data from form
@@ -67,14 +73,13 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
 
   const { name, team, club, card_url, number, club_logo } = cardData.result;
 
-  const handleGoToDashboard = (slug: string) => {
+  const handleGoToDashboard = (slug: string | null) => {
     //go to dashboard click
     router.push(`/dashboard/${slug}`);
   };
 
   //atom to render the invites
   const invites = useAtomValue(invitesDataAtom);
-  console.log(invites);
   ////////////////////////////////////////email invite
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -111,7 +116,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
     }
   };
   /////////////////////// action to "revoke"
-  const triggerRevokeOrInvite = (inviteId: string) => {
+  const triggerRevokeOrInvite = (inviteId: string | null) => {
     inviteRevokeAction({
       action: 'revoke',
       inviteId: inviteId,
@@ -122,7 +127,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
 
   ///////////////////////////////////////////////////////////////////////////////////
   //IN CASE THE LOGIC IS THE SAME, ADD ACTION DECLINE ?
-  const triggerDecline = (inviteId: string) => {
+  const triggerDecline = (inviteId: string | null) => {
     inviteRevokeAction({
       action: 'decline',
       inviteId: inviteId,

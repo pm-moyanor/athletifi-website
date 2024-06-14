@@ -17,7 +17,7 @@ import { postHelperResponseAtom } from '@/states/userStore';
 import AlertModal from '@/components/common/AlertModal';
 import { AlertModalType } from '@/types/AlertModalType';
 import { GuestCards, OwnedCards } from '@/types/User.type';
-import { ICardData, IProfileProps } from '@/types/Dashboard.type';
+import { IProfileProps } from '@/types/Dashboard.type';
 
 // import { userDataAtom } from '@/states/userStore';
 import { useAtomValue } from 'jotai';
@@ -43,12 +43,9 @@ interface ICardData {
 
 const Profile = () => {
   const ownedCardsData = useAtomValue(ownedCardsDataAtom) as ICardData[];
-  const guestCardsData = useAtomValue(guestCardsDataAtom) as GuestCards[];
+  const guestCardsData = useAtomValue(guestCardsDataAtom) as ICardData[];
   const [inviteData] = useAtom(postHelperResponseAtom);
   const [inviteStatus, setInviteStatus] = useState<AlertModalType | null>();
-
-  console.log('guestCardsData in profile', guestCardsData);
-  console.log('ownedCardsData in profile', ownedCardsData);
 
   const acceptedGuestCards = guestCardsData.filter(
     (card) => card.guestCardInfo.status === 'accepted',
@@ -150,10 +147,6 @@ const Profile = () => {
                       cardData: ICardData,
                       idx: React.Key | null | undefined,
                     ) => {
-                      console.log(
-                        'cardData in loop',
-                        cardData.ownedCardInfo.card_id,
-                      );
                       if (!cardData.ownedCardInfo.card_id) {
                         return (
                           <p key={idx} className="text-primary opacity-80 p-2">
@@ -188,7 +181,7 @@ const Profile = () => {
                 <div className="flex justify-start py-2 overflow-x-auto hide-scrollbar gap-4">
                   {acceptedGuestCards.map(
                     (
-                      cardData: GuestCards,
+                      cardData: ICardData,
                       idx: React.Key | null | undefined,
                     ) => {
                       if (!cardData) {

@@ -74,7 +74,6 @@ export type GuestCards = {
   dashboard_slug: string | null;
   inviter_email: string | null;
 };
-
 export type Invites = {
   invite_id: string | null;
   guest_email: string | null;
