@@ -72,7 +72,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
   const [declinedInviteId, setDeclinedInviteId] = useState<string | null>(null);
 
   const { name, team, club, card_url, number, club_logo } = cardData.result;
-
+  console.log(cardData.result.name);
   const handleGoToDashboard = (slug: string | null) => {
     //go to dashboard click
     router.push(`/dashboard/${slug}`);
@@ -116,10 +116,14 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
     }
   };
   /////////////////////// action to "revoke"
-  const triggerRevokeOrInvite = (inviteId: string | null) => {
+  const triggerRevokeOrInvite = (
+    inviteId: string | null,
+    card_name?: string | null,
+  ) => {
     inviteRevokeAction({
       action: 'revoke',
       inviteId: inviteId,
+      card_name: card_name,
     })
       .then(() => console.log('Revoke successful'))
       .catch((error) => console.error('Failed to revoke invitation', error));
@@ -127,10 +131,17 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
 
   ///////////////////////////////////////////////////////////////////////////////////
   //IN CASE THE LOGIC IS THE SAME, ADD ACTION DECLINE ?
-  const triggerDecline = (inviteId: string | null) => {
+  const triggerDecline = (
+    inviteId: string | null,
+    owner_email?: string | null,
+    card_name?: string | null,
+  ) => {
+    console.log(owner_email);
     inviteRevokeAction({
-      action: 'decline',
+      action: 'revoke',
       inviteId: inviteId,
+      owner_email: owner_email,
+      card_name: card_name,
     })
       .then(() => console.log('Decline successful'))
       .catch((error) => console.error('Failed to decline invitation', error));
@@ -228,7 +239,10 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                           <div
                             className="flex items-center cursor-pointer justify-end"
                             onClick={() =>
-                              triggerRevokeOrInvite(invite.invite_id)
+                              triggerRevokeOrInvite(
+                                invite.invite_id,
+                                cardData?.result.name,
+                              )
                             }
                           >
                             <div className={`mx-[6px] md:mx-4`}>revoke</div>
@@ -534,7 +548,11 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                   className="flex items-center justify-end cursor-pointer"
                   onClick={() => {
                     console.log('decline successful, change status');
-                    triggerDecline(cardData?.guestCardInfo.invite_id);
+                    triggerDecline(
+                      cardData?.guestCardInfo.invite_id,
+                      cardData?.guestCardInfo.inviter_email,
+                      cardData?.result.name,
+                    );
                     setDeclinedInviteId(cardData?.guestCardInfo.invite_id);
                   }}
                 >

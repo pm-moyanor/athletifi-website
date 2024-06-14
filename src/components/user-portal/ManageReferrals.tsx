@@ -96,7 +96,7 @@ export default function ManageReferrals() {
                 return (
                   <RenderCardThumbnail
                     key={idx}
-                    cardData={cardData as unknown as ICardData}
+                    cardData={cardData}
                     isOwned={false}
                     inSettings={true}
                   />
