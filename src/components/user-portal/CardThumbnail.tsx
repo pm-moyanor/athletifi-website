@@ -69,6 +69,13 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
     },
   );
   const [emailSubmitted, setEmailSubmitted] = useState<boolean>(false); //to render success message when submit
+  const [dupeInvite, setDupeInvite] = useState<{
+    isDupe: boolean;
+    email: string;
+  }>({
+    isDupe: false,
+    email: '',
+  });
   const [declinedInviteId, setDeclinedInviteId] = useState<string | null>(null);
 
   const { name, team, club, card_url, number, club_logo } = cardData.result;
@@ -97,18 +104,40 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
         guest_email: invitation.email,
         card_image_id: cardData.ownedCardInfo.card_id,
       })
-        .then(() => {
-          setEmailSubmitted(true);
-          setInvitation({ name: '', email: '' });
+        .then((response) => {
+          if (
+            response.message ===
+            'WARNING: Invite to the same guest is already pending. No changes made.'
+          ) {
+            setDupeInvite({
+              isDupe: true,
+              email: invitation.email,
+            });
+            setInvitation({ name: '', email: '' });
 
-          // Delay the toggle by 2 seconds
-          return new Promise<void>((resolve) => {
-            setTimeout(() => {
-              setIsToggle(false);
-              setEmailSubmitted(false);
-              resolve();
-            }, 3000);
-          });
+            // Delay the toggle by 5 seconds
+            return new Promise<void>((resolve) => {
+              setTimeout(() => {
+                setDupeInvite({
+                  isDupe: false,
+                  email: '',
+                });
+                resolve();
+              }, 5000);
+            });
+          } else {
+            setEmailSubmitted(true);
+            setInvitation({ name: '', email: '' });
+
+            // Delay the toggle by 2 seconds
+            return new Promise<void>((resolve) => {
+              setTimeout(() => {
+                setIsToggle(false);
+                setEmailSubmitted(false);
+                resolve();
+              }, 3000);
+            });
+          }
         })
         .catch((error) => console.error('Failed to send invitation', error));
     } else {
@@ -351,6 +380,13 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                             </div>
                           </form>
                         )}
+                        {dupeInvite.isDupe && (
+                          <p className="text-sm mb-6 text-start text-red-600 lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
+                            WARNING: You already have a pending invite with{' '}
+                            <strong>{dupeInvite.email}</strong>. Invite another
+                            user.
+                          </p>
+                        )}
                       </motion.div>
                     </motion.div>
                   )}
@@ -454,7 +490,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                     >
                       {emailSubmitted
                         ? 'Invitation sent! Your card is now accessible to your guest. We will notify them shortly.'
-                        : 'Invite someone to view this card'}
+                        : 'Invite someone to view this player card by providing their information below.'}
                     </p>
                     {!emailSubmitted && (
                       <form
@@ -493,6 +529,13 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                           </button>
                         </div>
                       </form>
+                    )}
+                    {dupeInvite.isDupe && (
+                      <p className="text-sm mb-6 text-start text-red-600 lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
+                        WARNING: You already have a pending invite with{' '}
+                        <strong>{dupeInvite.email}</strong>. Invite another
+                        user.
+                      </p>
                     )}
                   </motion.div>
                 </motion.div>

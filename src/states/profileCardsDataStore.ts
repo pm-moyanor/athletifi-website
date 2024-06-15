@@ -29,12 +29,18 @@ export const ownedCardsDataAtom = atom(async (get) => {
   // Fetch the data for each owned dashboard
   return await Promise.all(
     ownedCardSlugs.map(async (card) => {
-      const dashboardData = await get(dashboardDataAtom(card.dashboard_slug));
-      return {
-        ...dashboardData,
-        ownedCardInfo: card,
-        // email: userData?.data?.email,
-      };
+      if (card.dashboard_slug) {
+        const dashboardData = await get(dashboardDataAtom(card.dashboard_slug));
+        return {
+          ...dashboardData,
+          ownedCardInfo: card,
+          // email: userData?.data?.email,
+        };
+      } else {
+        return {
+          ownedCardInfo: card,
+        };
+      }
     }),
   );
 });
@@ -51,12 +57,18 @@ export const guestCardsDataAtom = atom(async (get) => {
   // Fetch the data for each guest dashboard and include the guest card info and guest's email
   return await Promise.all(
     guestCards.map(async (card) => {
-      const dashboardData = await get(dashboardDataAtom(card.dashboard_slug));
-      return {
-        ...dashboardData,
-        guestCardInfo: card,
-        email: userData?.data?.email,
-      };
+      if (card.dashboard_slug) {
+        const dashboardData = await get(dashboardDataAtom(card.dashboard_slug));
+        return {
+          ...dashboardData,
+          guestCardInfo: card,
+          email: userData?.data?.email,
+        };
+      } else {
+        return {
+          ownedCardInfo: card,
+        };
+      }
     }),
   );
 });
