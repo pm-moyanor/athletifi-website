@@ -423,9 +423,9 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                         )}
                         {dupeInvite.isDupe && (
                           <p className="text-sm mb-6 text-start text-red-600 lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
-                            WARNING: You already have a pending invite with{' '}
-                            <strong>{dupeInvite.email}</strong>. Invite another
-                            user.
+                            WARNING: This user{' '}
+                            <strong>{dupeInvite.email}</strong> is already an
+                            active guest for this card.
                           </p>
                         )}
                       </motion.div>
@@ -573,9 +573,8 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                     )}
                     {dupeInvite.isDupe && (
                       <p className="text-sm mb-6 text-start text-red-600 lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
-                        WARNING: You already have a pending invite with{' '}
-                        <strong>{dupeInvite.email}</strong>. Invite another
-                        user.
+                        WARNING: This user <strong>{dupeInvite.email}</strong>{' '}
+                        is already an active guest for this card.
                       </p>
                     )}
                   </motion.div>
