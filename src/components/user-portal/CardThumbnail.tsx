@@ -54,7 +54,7 @@ function useOutsideClick(
   }, [ref, callback]);
 }
 /////////////////////filter only invites for this card, filter the duplicated emails.
-const filterAndKeepLastInvite = (
+const filterAndKeepBestInvite = (
   invites: Invites[],
   cardId: string | null,
 ): Invites[] => {
@@ -62,13 +62,21 @@ const filterAndKeepLastInvite = (
 
   const inviteMap: { [email: string]: Invites } = {};
 
-  // Iterate over invites and keep only the last one for each email
   invites
     .filter((invite) => invite.card_image_id === cardId)
     .forEach((invite) => {
       const email = invite.guest_email;
       if (email) {
-        inviteMap[email] = invite;
+        // If there's no existing invite, or the current one is better, replace it
+        if (
+          !inviteMap[email] ||
+          (invite.invite_status !== 'revoked' &&
+            inviteMap[email].invite_status === 'revoked') ||
+          (invite.invite_status === 'accepted' &&
+            inviteMap[email].invite_status === 'pending')
+        ) {
+          inviteMap[email] = invite;
+        }
       }
     });
 
@@ -81,7 +89,7 @@ const getFilteredInvites = (
 ): Invites[] => {
   const cardId = cardData.ownedCardInfo?.card_id;
   if (cardId) {
-    return filterAndKeepLastInvite(invites, cardId);
+    return filterAndKeepBestInvite(invites, cardId);
   }
   return [];
 };
@@ -110,6 +118,9 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
     email: '',
   });
   const [declinedInviteId, setDeclinedInviteId] = useState<string | null>(null);
+  const [revokeSubmittedId, setRevokeSubmittedId] = useState<string | null>(
+    null,
+  );
   const { name, team, club, card_url, number, club_logo } = cardData.result;
   console.log(cardData.result.name);
   const handleGoToDashboard = (slug: string | null) => {
@@ -186,22 +197,31 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
     status?: string | null,
   ) => {
     const matchingInvite = invites.find(
-      (invite) => inviteId === invite.inviteId && status === 'revoked',
+      (invite) => inviteId === invite.invite_id && status === 'revoked',
     );
 
-    console.log('triggered', matchingInvite);
     if (matchingInvite) {
       console.warn('Invitation already revoked for this email address.');
       return;
     }
-    // inviteRevokeAction({
-    //   action: 'revoke',
-    //   inviteId: inviteId,
-    //   card_name: card_name,
-    // })
-    //   .then(() => console.log('Revoke successful'))
-    //   .catch((error) => console.error('Failed to revoke invitation', error));
-    // window.location.reload();
+
+    inviteRevokeAction({
+      action: 'revoke',
+      invite_id: inviteId,
+      card_name: card_name,
+    })
+      .then(async () => {
+        console.log('Revoke successful');
+        setRevokeSubmittedId(inviteId); // Set state to display the notification under the corresponding email
+        await new Promise<void>((resolve) => {
+          setTimeout(() => {
+            setRevokeSubmittedId(null);
+            resolve();
+          }, 3000);
+        });
+        window.location.reload(); // Reload to update UI
+      })
+      .catch((error) => console.log('Failed to revoke invitation', error));
   };
 
   ///////////////////////////////////////////////////////////////////////////////////
@@ -211,7 +231,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
     owner_email?: string | null,
     card_name?: string | null,
   ) => {
-    console.log(owner_email, status);
+    console.log(owner_email);
     inviteRevokeAction({
       action: 'revoke',
       inviteId: inviteId,
@@ -281,46 +301,53 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                   {filteredInvites.map((invite, idx) => (
                     <div
                       key={idx}
-                      className="flex justify-between min-h-12 items-center border-b border-partnersBorders border-opacity-50 py-6"
+                      className="flex flex-col py-6 border-b border-partnersBorders border-opacity-50"
                     >
-                      <div className="flex flex-wrap gap-2 items-center max-w-[260px] md:max-w-none">
-                        {/* if status is pending, add label */}
-                        {invite.invite_status === 'pending' && (
-                          <span className="text-xs md:text-sm bg-chartYellow rounded-[4px] px-2 py-[4px]">
-                            Pending
-                          </span>
-                        )}
-                        {invite.invite_status === 'revoked' && (
-                          <span className="text-xs md:text-sm bg-chartRed rounded-[4px] px-2 py-[4px]">
-                            Revoked
-                          </span>
-                        )}
-                        {invite.invite_status === 'accepted' && (
-                          <span className="text-xs md:text-sm bg-chartBlue rounded-[4px] px-2 py-[4px]">
-                            Accepted
-                          </span>
-                        )}
-                        <p className="text-sm md:text-base max-w-[220px] md:max-w-none break-words">
-                          {invite.guest_email}
-                        </p>
-                      </div>
-                      {invite.invite_status !== 'revoked' && (
-                        <div
-                          className="flex items-center cursor-pointer justify-end"
-                          onClick={() => {
-                            triggerRevokeOrInvite(
-                              invite.invite_id,
-                              cardData?.result.name,
-                              invite.invite_status,
-                            );
-                          }}
-                        >
-                          <div className={`mx-[6px] md:mx-4`}>revoke</div>
-                          <FontAwesomeIcon
-                            className="text-chartRed text-md md:text-2xl"
-                            icon={faXmark}
-                          />
+                      <div className="flex  justify-between min-h-12 items-center  ">
+                        <div className="flex flex-wrap gap-2 items-center max-w-[260px] md:max-w-none">
+                          {invite.invite_status === 'pending' && (
+                            <span className="text-xs md:text-sm bg-chartYellow rounded-[4px] px-2 py-[4px]">
+                              Pending
+                            </span>
+                          )}
+                          {invite.invite_status === 'revoked' && (
+                            <span className="text-xs md:text-sm bg-chartRed rounded-[4px] px-2 py-[4px]">
+                              Revoked
+                            </span>
+                          )}
+                          {invite.invite_status === 'accepted' && (
+                            <span className="text-xs md:text-sm bg-chartBlue rounded-[4px] px-2 py-[4px]">
+                              Accepted
+                            </span>
+                          )}
+                          <p className="text-sm md:text-base max-w-[220px] md:max-w-none break-words">
+                            {invite.guest_email}
+                          </p>
                         </div>
+                        {invite.invite_status !== 'revoked' && (
+                          <div
+                            className="flex items-center cursor-pointer justify-end"
+                            onClick={() => {
+                              triggerRevokeOrInvite(
+                                invite.invite_id,
+                                cardData?.result.name,
+                                invite.invite_status,
+                              );
+                            }}
+                          >
+                            <div className={`mx-[6px] md:mx-4`}>revoke</div>
+                            <FontAwesomeIcon
+                              className="text-chartRed text-md md:text-2xl"
+                              icon={faXmark}
+                            />
+                          </div>
+                        )}
+                      </div>
+                      {revokeSubmittedId === invite.invite_id && (
+                        <p className="text-xs text-offwhite mt-2 text-end">
+                          Revoked successfully. We will notify your guest
+                          shortly.
+                        </p>
                       )}
                     </div>
                   ))}
