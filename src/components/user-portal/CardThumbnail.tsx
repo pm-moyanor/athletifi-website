@@ -194,34 +194,21 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
   const triggerRevokeOrInvite = (
     inviteId: string | null,
     card_name?: string | null,
-    status?: string | null,
   ) => {
-    const matchingInvite = invites.find(
-      (invite) => inviteId === invite.invite_id && status === 'revoked',
-    );
-
-    if (matchingInvite) {
-      console.warn('Invitation already revoked for this email address.');
-      return;
-    }
-
     inviteRevokeAction({
       action: 'revoke',
-      invite_id: inviteId,
+      inviteId: inviteId,
       card_name: card_name,
     })
-      .then(async () => {
+      .then(() => {
         console.log('Revoke successful');
-        setRevokeSubmittedId(inviteId); // Set state to display the notification under the corresponding email
-        await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            setRevokeSubmittedId(null);
-            resolve();
-          }, 3000);
-        });
-        window.location.reload(); // Reload to update UI
+        setRevokeSubmittedId(inviteId);
+        setTimeout(() => {
+          setRevokeSubmittedId(null);
+          window.location.reload(); // Reload to update UI
+        }, 3000);
       })
-      .catch((error) => console.log('Failed to revoke invitation', error));
+      .catch((error) => console.error('Failed to revoke invitation', error));
   };
 
   ///////////////////////////////////////////////////////////////////////////////////
@@ -238,7 +225,14 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
       owner_email: owner_email,
       card_name: card_name,
     })
-      .then(() => console.log('Decline successful'))
+      .then(() => {
+        console.log('Decline successful');
+        setDeclinedInviteId(inviteId);
+        setTimeout(() => {
+          setRevokeSubmittedId(null);
+          window.location.reload(); // Reload to update UI
+        }, 3000);
+      })
       .catch((error) => console.error('Failed to decline invitation', error));
   };
 
@@ -331,7 +325,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                               triggerRevokeOrInvite(
                                 invite.invite_id,
                                 cardData?.result.name,
-                                invite.invite_status,
                               );
                             }}
                           >
