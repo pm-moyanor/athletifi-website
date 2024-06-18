@@ -9,7 +9,7 @@ import { useDashboardData } from '@/states/dashboardStore';
 
 const parseDate = (dateString: string) => new Date(dateString);
 
-const isThisWeek = (date: Date) => {
+const isThisWeek = (date: number | Date) => {
   const now = new Date();
   const startOfWeek = new Date(now.setDate(now.getDate() - now.getDay()));
   const endOfWeek = new Date(now.setDate(now.getDate() - now.getDay() + 6));
@@ -34,13 +34,13 @@ const PastMatches: React.FC = () => {
 
   // Check if in view
   const { ref: inViewRef, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0.3,
     triggerOnce: true,
   });
 
   //varints to trigger animations with staggered effect
   const staggerVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
@@ -49,68 +49,58 @@ const PastMatches: React.FC = () => {
       },
     },
   };
-  // Simple fade-in variant for headers
-  const fadeInVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 1 } },
-  };
 
   return (
     <>
       {past_matches && past_matches[0]?.home_club_logo ? (
         <div className="w-full ">
-          <motion.div
-            ref={inViewRef}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            variants={staggerVariants}
-            className="flex flex-col gap-2"
-          >
-            {futureMatches?.length > 0 && (
-              <motion.h2
-                className="text-primary font-semibold text-md mt-6 bg-cardsBackground mb-6 px-4 py-2 shadow-portalNav rounded-[5px] w-full"
-                variants={fadeInVariants}
-              >
-                Upcoming Matches
-              </motion.h2>
-            )}
-            {futureMatches.map((match, index) => (
-              <React.Fragment key={index}>
-                <motion.div
-                  variants={staggerVariants}
-                  className="overflow-hidden"
-                >
-                  <MatchSummary
-                    matchData={match}
-                    isFuture={true}
-                    isThisWeek={isThisWeek(parseDate(match.datetime as string))}
-                  />
-                </motion.div>
-                {index !== futureMatches.length - 1 && (
-                  <motion.span
-                    initial="hidden"
-                    animate={inView ? 'visible' : 'hidden'}
+          {futureMatches.length > 0 ? (
+            <motion.div
+              ref={inViewRef}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              variants={staggerVariants}
+              className="flex flex-col gap-2"
+            >
+              {futureMatches.map((match, index) => (
+                <React.Fragment key={index}>
+                  <motion.div
                     variants={staggerVariants}
-                    className="h-px bg-partnersBorders inline-block min-w-min"
-                  ></motion.span>
-                )}
-              </React.Fragment>
-            ))}
-          </motion.div>
-          <motion.h2
-            className="text-primary font-semibold text-md mt-6 bg-cardsBackground mb-6 px-4 py-2 shadow-portalNav rounded-[5px] w-full"
-            variants={fadeInVariants}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-          >
-            Past Matches
-          </motion.h2>
+                    className="overflow-hidden"
+                  >
+                    <MatchSummary
+                      matchData={match}
+                      isFuture={true}
+                      isThisWeek={isThisWeek(
+                        parseDate(match.datetime as string),
+                      )}
+                    />
+                  </motion.div>
+                  {index !== futureMatches.length - 1 && (
+                    <motion.span
+                      initial="hidden"
+                      animate={inView ? 'visible' : 'hidden'}
+                      variants={staggerVariants}
+                      className="h-px bg-partnersBorders inline-block min-w-min"
+                    ></motion.span>
+                  )}
+                </React.Fragment>
+              ))}
+            </motion.div>
+          ) : (
+            <div className="text-gray-500 min-w-[343px] md:min-w-[778px] lg:min-w-[640px] min-h-[50px] ml-4 mb-10 lg:mb-0">
+              No future matches scheduled.
+            </div>
+          )}
+          <h2 className="text-primary font-semibold text-md mt-6 bg-cardsBackground mb-6 px-4 py-2 shadow-portalNav rounded-[5px] w-full">
+            Past matches
+          </h2>
           <motion.div
             ref={inViewRef}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
             variants={staggerVariants}
-            className="flex flex-col"
+            className="flex flex-col gap-4"
           >
             {pastMatches.map((match, index) => (
               <React.Fragment key={index}>

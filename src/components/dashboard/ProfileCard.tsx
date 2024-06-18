@@ -11,7 +11,7 @@ const Profile: React.FC = () => {
   return (
     <>
       {profile?.age ? (
-        <div className="w-full h-[560px] bg-cardsBackground rounded-10 p-4 mb-4 mt-4 -mt-0 lg:mb-0 lg:-mt-[100px] flex flex-col tracking-wide">
+        <div className="w-full h-[560px] bg-cardsBackground rounded-10 p-4 mb-4 mt-4  lg:mb-0 lg:-mt-[100px] flex flex-col tracking-wide">
           <h2 className="text-primary text-[24px] mb-4 font-semibold">
             Profile
           </h2>
@@ -49,7 +49,9 @@ const Profile: React.FC = () => {
           </table>
           <h3 className="text-primary text-[20px] mt-6 mb-2 w-full">Bio</h3>
           <div className="h-full overflow-y-auto mb-4 ">
-            <p className="text-primary font-light text-base ">{profile?.bio}</p>
+            <p className="text-primary font-light text-base pl-[4px] pr-2">
+              {profile?.bio}
+            </p>
           </div>
         </div>
       ) : (
