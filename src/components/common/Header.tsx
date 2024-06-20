@@ -1,14 +1,14 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, startTransition } from 'react';
 import Link from 'next/link';
 import {
-  // ArrowButton,
-  // FacebookIcon,
-  // LinkedInIcon,
-  // TikTokIcon,
-  // TwitterIcon,
+  WhiteFacebookIcon,
+  WhiteInstaIcon,
+  WhiteLinkedInIcon,
+  TikTokIcon,
+  WhiteTwitterIcon,
   PageLogo,
-} from './Icon';
+} from '@/components/common/Icon';
 //import SocialPopUp from './SocialPopUp';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
@@ -30,7 +30,6 @@ const Header: React.FC = () => {
 
   const router = useRouter();
   const { userData, resetUserDataState, setIsLoggedIn } = useUserData();
-  console.log(userData);
 
   useEffect(() => {
     const hubListenerCancel = Hub.listen('auth', (data) => {
@@ -125,7 +124,7 @@ const Header: React.FC = () => {
   // const socialIconDropDown = () => {
   //   setNavSocialIcon(!navSocialIcon);
   // };
-  console.log(showDropdown);
+
   const linksStyle = `opacity-80 hover:opacity-100 duration-300 relative after:content-[''] after:absolute after:w-0 hover:after:w-full after:h-2pixel after:-bottom-1 after:right-0 after:bg-shadow_blue after:rounded-md after:transition-all after:duration-300 after:ease-out hover:after:left-0 hover:after:right-auto`;
 
   return (
@@ -233,13 +232,25 @@ const Header: React.FC = () => {
                   </div>
                 ) : (
                   <div className="flex flex-col gap-25 items-center text-primary md:hidden mt-2 md:mt-0 w-full">
-                    <Link href="/profile" className={`${linksStyle}`}>
+                    <Link
+                      href="/profile"
+                      className={`${linksStyle}`}
+                      onClick={() => setOpen(false)}
+                    >
                       My cards
                     </Link>
-                    <Link href="/settings" className={`${linksStyle}`}>
+                    <Link
+                      href="/settings"
+                      className={`${linksStyle}`}
+                      onClick={() => setOpen(false)}
+                    >
                       Settings
                     </Link>
-                    <Link href="/help-support" className={`${linksStyle}`}>
+                    <Link
+                      href="/help-support"
+                      className={`${linksStyle}`}
+                      onClick={() => setOpen(false)}
+                    >
                       Help & Support
                     </Link>
                     <div className="border-t border-t-partnersBorders opacity-80 w-1/3"></div>
@@ -252,14 +263,18 @@ const Header: React.FC = () => {
                   </div>
                 )}
                 {userData.data === null ? (
-                  <div className="flex items-center gap-2 md:ml-4 mt-6 md:mt-0 hidden md:flex">
-                    <Link href="/login">
-                      <button className="text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
+                  <div className="items-center gap-2 md:ml-4 mt-6 md:mt-0 hidden md:flex">
+                    <Link href="/login" onClick={() => setOpen(false)}>
+                      <button className="text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out"
+                       onClick={() => setOpen(false)}
+                       >
                         Log in
                       </button>
                     </Link>
                     <Link href="/register">
-                      <button className="text-darkgray w-[100px] h-8 bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out">
+                      <button className="text-darkgray w-[100px] h-8 bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out"
+                       onClick={() => setOpen(false)}
+                       >
                         Sign up
                       </button>
                     </Link>
@@ -308,6 +323,59 @@ const Header: React.FC = () => {
                     )}
                   </div>
                 )}
+
+                <div className={`absolute bottom-4 left w-4/5 md:hidden `}>
+                  <div className="h-1 bg-partnersBorders  mb-6" />
+                  <div className="">
+                    <div className="flex gap-4 justify-center">
+                      <Link
+                        aria-label="Tik-Tok"
+                        className="hover:-translate-y-1 transition duration-300 ease-out"
+                        href="https://www.tiktok.com/@athletifi"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <TikTokIcon />
+                      </Link>
+                      <Link
+                        aria-label="facebook"
+                        className="hover:-translate-y-1 transition duration-300 ease-out"
+                        href="https://www.facebook.com/profile.php?id=61553263775533"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <WhiteFacebookIcon />
+                      </Link>
+                      <Link
+                        aria-label="twitter"
+                        className="hover:-translate-y-1 transition duration-300 ease-out"
+                        href="https://twitter.com/Athletifi"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <WhiteTwitterIcon />
+                      </Link>
+                      <Link
+                        aria-label="instagram"
+                        className="hover:-translate-y-1 transition duration-300 ease-out"
+                        href="https://www.instagram.com/athletifi/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <WhiteInstaIcon />
+                      </Link>
+                      <Link
+                        aria-label="linkedin"
+                        className="hover:-translate-y-1 transition duration-300 ease-out"
+                        href="https://www.linkedin.com/company/athletifi/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <WhiteLinkedInIcon />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
               </ul>
             </div>
           </div>

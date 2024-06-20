@@ -72,6 +72,7 @@ const createStorageWithExpiration = (storage: Storage, expiration: number) => ({
 export const postHelperResponseAtom = atom<any>(null);
 //TODO: replace the any type with the actual type of the response from the postHelper function
 // Define `inviteIdAtom` differently based on environment
+
 export let inviteIdAtom:
   | WritableAtom<string | null, [string | null], void>
   | PrimitiveAtom<string | null>;
@@ -158,6 +159,7 @@ async function fetchUserData(
     if (!response.ok) {
       throw new Error('Data load error. Please try again.');
     }
+
     const data = await response.json();
 
     const dataObject: UserData = {
@@ -176,7 +178,6 @@ async function fetchUserData(
       guest_cards: data.result.guest_cards,
       invites: data.result.invites,
     };
-
     set({
       data: dataObject,
       fetchStatus: 'success',
@@ -210,6 +211,7 @@ enum AuthEvents {
 export function useUserData() {
   // Use jotai's useAtom to manage the state
   const [userData, setUserData] = useAtom(userDataAtom);
+
   const [latestChange, setLatestChange] =
     useState<LatestChange>(emptyLatestChange);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -221,6 +223,7 @@ export function useUserData() {
     const unsubscribe = Hub.listen('auth', ({ payload: { event } }) => {
       if (event === AuthEvents.SignedOut) {
         setInviteId(null); // This will remove invite_id from localStorage
+        setPostHelperResponse(null);
         console.log('user is signed out! Remove the inviteId!');
       }
     });

@@ -1,17 +1,23 @@
 'use client';
 
-import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import React, {
+  useState,
+  // ChangeEvent, FormEvent,
+  useEffect,
+} from 'react';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { IProfileProps } from '@/types/Dashboard.type';
+//import { IProfileProps } from '@/types/Dashboard.type';
 import Header from '@/components/user-portal/Header';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
 import { useAtom } from 'jotai';
 import { postHelperResponseAtom } from '@/states/userStore';
 import AlertModal from '@/components/common/AlertModal';
 import { AlertModalType } from '@/types/AlertModalType';
+import { GuestCards, OwnedCards } from '@/types/User.type';
+import { IProfileProps } from '@/types/Dashboard.type';
 
 // import { userDataAtom } from '@/states/userStore';
 import { useAtomValue } from 'jotai';
@@ -29,60 +35,75 @@ const variants = {
   },
 };
 
+interface ICardData {
+  result: IProfileProps;
+  ownedCardInfo: OwnedCards;
+  guestCardInfo: GuestCards;
+}
+
 const Profile = () => {
-  const ownedCardsData = useAtomValue(ownedCardsDataAtom);
-  const guestCardsData = useAtomValue(guestCardsDataAtom);
+  const ownedCardsData = useAtomValue(ownedCardsDataAtom) as ICardData[];
+  const guestCardsData = useAtomValue(guestCardsDataAtom) as ICardData[];
   const [inviteData] = useAtom(postHelperResponseAtom);
   const [inviteStatus, setInviteStatus] = useState<AlertModalType | null>();
+  const [hasSetState, setHasSetState] = useState(false);
 
-  //console.log('ownedCardsData', ownedCardsData[0]);
-  console.log('guestCardsData', guestCardsData);
+  const acceptedGuestCards = guestCardsData.filter(
+    (card) => card.guestCardInfo.status === 'accepted',
+  );
 
   // This useEffect hook runs whenever the inviteData changes
   useEffect(() => {
     // Get the value of 'hasShownModal' from local storage
     const hasShownModal = localStorage.getItem('hasShownModal');
-
     // If the modal has not been shown and there is valid invite data
     if (
       !hasShownModal &&
       inviteData &&
       inviteData.invitation.invite_id &&
-      // inviteData.invitation.invite_status !== 'ALREADY_ACCEPTED' &&
-      inviteData.invitation.invite_status !== 'SUCCESS'
+      hasSetState === false
+      // inviteData.invitation.invite_status !== 'SUCCESS'
     ) {
-      let inviteMessage = null;
+      let inviteTitle: null | string = null;
+      let inviteMessage: null | string = null;
 
       // Set the invite message based on the invite status
       if (inviteData.invitation.invite_status === 'REVOKED') {
+        inviteTitle = 'Card Access Revoked';
         inviteMessage =
           'We understand you were previously granted access to this card. However, the card owner has chosen to revoke your access privileges. We apologize for any inconvenience this may cause.';
       } else if (inviteData.invitation.invite_status === 'EXPIRED') {
+        inviteTitle = 'Invitation Expired';
         inviteMessage =
           'The access you were granted to this card has now expired. The card owner may choose to reinstate your access if they wish. Thank you for your understanding.';
       } else if (
-        inviteData.invitation.invite_status === 'UNEXPECTED_STATUS' &&
+        inviteData.invitation.invite_status === 'UNEXPECTED_STATUS' ||
         inviteData.invitation.invite_status === 'NOT_FOUND'
       ) {
+        inviteTitle = 'Invitation Error';
         inviteMessage =
           "Oops! We encountered an issue processing your invitation. It's possible the invitation doesn't exist or there was a problem on our end. Please double-check the invitation details or contact the card owner for assistance.";
       } else if (inviteData.invitation.invite_status === 'ALREADY_ACCEPTED') {
+        inviteTitle = 'Invitation Already Accepted';
         inviteMessage =
           'This invitation has already been redeemed. If you believe this is an error, please contact our support team for assistance.';
+      } else if (inviteData.invitation.invite_status === 'SUCCESS') {
+        inviteTitle = 'Invitation Success';
+        inviteMessage =
+          'You have successfully accepted the invitation to access this card. You can now view and manage this card from your dashboard.';
       }
 
       // Set the invite status state with the title and message
       setInviteStatus({
-        title: 'Card Access Unavailable',
+        title: inviteTitle,
         textBody: inviteMessage,
       });
-
       // Store a flag in local storage to indicate that the modal has been shown
       localStorage.setItem('hasShownModal', 'true');
+      setHasSetState(true);
     }
   }, [inviteData]); // This hook depends on the inviteData
 
-  // Log the invite status for debugging
   console.log(inviteStatus);
 
   // Function to close the modal by setting the invite status to null
@@ -110,6 +131,13 @@ const Profile = () => {
           animate="animate"
           className="flex flex-col items-center mt-4 md:pt-7"
         >
+          {inviteStatus && (
+            <AlertModal
+              title={inviteStatus.title}
+              textBody={inviteStatus.textBody}
+              onClose={closeModal}
+            />
+          )}
           <motion.div
             variants={variants}
             className="overflow-hidden w-full max-w-[1030px] mb-4 text-primary bg-cardsDark shadow-lg rounded-10 flex flex-col px-2 md:px-4 py-8"
@@ -122,14 +150,29 @@ const Profile = () => {
               <div className="h-1 w-full bg-partnersBorders opacity-50 my-2"></div>
               {ownedCardsData.length > 0 ? (
                 <div className="flex flex-wrap w-full gap-4">
-                  {ownedCardsData.map((cardData, idx) => (
-                    <RenderCardThumbnail
-                      key={idx}
-                      cardData={cardData.result}
-                      isOwned={true}
-                      inSettings={false}
-                    />
-                  ))}
+                  {ownedCardsData.map(
+                    (
+                      cardData: ICardData,
+                      idx: React.Key | null | undefined,
+                    ) => {
+                      if (!cardData.ownedCardInfo.card_id) {
+                        return (
+                          <p key={idx} className="text-primary opacity-80 p-2">
+                            You have no cards.
+                          </p>
+                        );
+                      }
+                      return (
+                        <RenderCardThumbnail
+                          key={idx}
+                          // userData={cardData}
+                          cardData={cardData}
+                          isOwned={true}
+                          inSettings={false}
+                        />
+                      );
+                    },
+                  )}
                 </div>
               ) : (
                 <p className="text-primary opacity-80 p-2">
@@ -142,16 +185,26 @@ const Profile = () => {
                 Shared with me
               </h2>
               <div className="h-1 w-full bg-partnersBorders opacity-50 my-2"></div>
-              {guestCardsData.length > 0 ? (
+              {acceptedGuestCards.length > 0 ? (
                 <div className="flex justify-start py-2 overflow-x-auto hide-scrollbar gap-4">
-                  {guestCardsData.map((cardData, idx) => (
-                    <RenderCardThumbnail
-                      key={idx}
-                      cardData={cardData.result}
-                      isOwned={false}
-                      inSettings={false}
-                    />
-                  ))}
+                  {acceptedGuestCards.map(
+                    (
+                      cardData: ICardData,
+                      idx: React.Key | null | undefined,
+                    ) => {
+                      if (!cardData) {
+                        return null;
+                      }
+                      return (
+                        <RenderCardThumbnail
+                          key={idx}
+                          cardData={cardData}
+                          isOwned={false}
+                          inSettings={false}
+                        />
+                      );
+                    },
+                  )}
                 </div>
               ) : (
                 <p className="text-primary opacity-80 p-2">
