@@ -29,8 +29,8 @@ const PastMatchesLayout: React.FC = () => {
           Teammates
         </h2>
       </div>
-      <div className=" flex flex-col lg:flex-row justify-between my-4 items-center md:items-start min-h-min gap-8 mb-12">
-        <div ref={pastMatchesRef} className="w-full mb-8">
+      <div className=" flex flex-col lg:flex-row justify-between my-8 items-center md:items-start min-h-min gap-8 mb-12">
+        <div ref={pastMatchesRef} className="w-full mb-12">
           <PastMatches />
         </div>
         <div

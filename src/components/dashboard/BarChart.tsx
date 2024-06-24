@@ -85,8 +85,8 @@ const StatsBarChart: React.FC<IRatingProps> = ({
     <>
       {latest_player_ratings === null ? (
         <div className="flex w-full justify-center text-gray-500">
-          We are working on getting more stats for this player. Please come back
-          soon to view the full experience!
+          We&apos;re gathering the latest performance stats for your player.
+          Check back soon for the updates!
         </div>
       ) : (
         <>

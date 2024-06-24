@@ -53,10 +53,15 @@ export default function ManageReferrals() {
               (cardData: ICardData, idx: React.Key | null | undefined) => {
                 if (!cardData.ownedCardInfo.card_id) {
                   return (
-                    <p key={idx} className="text-primary opacity-80 p-2">
-                      You currently do not own any cards. Once you have one, it
-                      will be displayed here.
-                    </p>
+                    <div
+                      key={idx}
+                      className="mt-8 shadow-md mx-auto bg-cardsDark bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[450px] flex justify-center items-center text-center"
+                    >
+                      <p className="text-primary text-sm opacity-80 p-6">
+                        You currently do not own any cards. Once you have one,
+                        it will be displayed here.
+                      </p>
+                    </div>
                   );
                 }
                 return (
@@ -72,11 +77,12 @@ export default function ManageReferrals() {
             )}
           </div>
         ) : (
-          <p className="text-primary opacity-80 p-2">
-            {' '}
-            You currently do not own any cards. Once you have one, it will be
-            displayed here.
-          </p>
+          <div className="mt-8 shadow-md mx-auto bg-cardsDark bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[450px] flex justify-center items-center text-center">
+            <p className="text-primary text-sm opacity-80 p-6">
+              You currently do not own any cards. Once you have one, it will be
+              displayed here.
+            </p>
+          </div>
         )}
         {/*=============== INVITATIONS */}
         <div className="text-md font-semibold leading-5 mx-2 mt-8">
@@ -105,10 +111,12 @@ export default function ManageReferrals() {
             )}
           </div>
         ) : (
-          <p className="text-primary opacity-80 p-2">
-            No cards have been shared with you yet. Once someone shares a card
-            with you, it will appear here.
-          </p>
+          <div className="mt-8 shadow-md mx-auto bg-cardsDark bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[450px] flex justify-center items-center text-center">
+            <p className="text-primary text-sm opacity-80 p-6">
+              No cards have been shared with you yet. Once someone shares a card
+              with you, it will appear here.
+            </p>
+          </div>
         )}
       </div>
     </div>

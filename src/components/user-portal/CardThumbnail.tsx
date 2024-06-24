@@ -5,6 +5,7 @@ import React, {
   FormEvent,
   useRef,
   useEffect,
+  useCallback,
 } from 'react';
 import Image from 'next/image';
 import { Source_Sans_3 } from 'next/font/google';
@@ -101,6 +102,8 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
 }) => {
   const [, inviteRevokeAction] = useAtom(inviteRevokeActionAtom);
   const router = useRouter();
+  const [refreshKey, setRefreshKey] = useState(0); // State to trigger re-render
+  const [filteredInvites, setFilteredInvites] = useState<Invites[]>([]);
 
   const [isToggle, setIsToggle] = useState<boolean>(false);
   const [invitation, setInvitation] = useState<{ name: string; email: string }>( //stored data from form
@@ -129,8 +132,13 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
   };
 
   //atom to render the invites
-  const invites = useAtomValue(invitesDataAtom);
-  const filteredInvites = getFilteredInvites(invites, cardData);
+  const allInvites = useAtomValue(invitesDataAtom); // Fetch all invites
+  console.log(cardData.guestCardInfo);
+  // Filter invites whenever refreshKey changes
+  useEffect(() => {
+    const filtered = getFilteredInvites(allInvites, cardData);
+    setFilteredInvites([...filtered]);
+  }, [allInvites, cardData, refreshKey]);
 
   ////////////////////////////////////////email invite
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -179,8 +187,8 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
               setTimeout(() => {
                 setIsToggle(false);
                 setEmailSubmitted(false);
+                setRefreshKey((prevKey) => prevKey + 1);
                 resolve();
-                window.location.reload();
               }, 3000);
             });
           }
@@ -205,7 +213,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
         setRevokeSubmittedId(inviteId);
         setTimeout(() => {
           setRevokeSubmittedId(null);
-          window.location.reload(); // Reload to update UI
+          setRefreshKey((prevKey) => prevKey + 1);
         }, 3000);
       })
       .catch((error) => console.error('Failed to revoke invitation', error));
@@ -230,8 +238,8 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
         setDeclinedInviteId(inviteId);
         setTimeout(() => {
           setRevokeSubmittedId(null);
-          window.location.reload(); // Reload to update UI
         }, 3000);
+        triggerReRender();
       })
       .catch((error) => console.error('Failed to decline invitation', error));
   };
@@ -247,7 +255,9 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
 
   const cardRef = useRef<HTMLDivElement>(null); //track element to click outside the form
   useOutsideClick(cardRef, () => setIsToggle(false));
-
+  const triggerReRender = useCallback(() => {
+    setRefreshKey((prevKey) => prevKey + 1);
+  }, []);
   return (
     <div ref={cardRef} className={`${isOwned || inSettings ? 'w-full' : ''}`}>
       {isOwned ? (

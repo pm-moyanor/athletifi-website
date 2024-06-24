@@ -126,8 +126,8 @@ const StatsLineChart: React.FC<IRatingProps> = ({
     <>
       {player_ratings === null || player_ratings?.length === 1 ? (
         <div className="flex w-full justify-center text-gray-500 px-8">
-          We are working on getting more stats for your player. Please come back
-          soon!
+          We&apos;re tracking your player&apos;s progress and trends over time.
+          Check back soon to see the updated stats!
         </div>
       ) : (
         <>
