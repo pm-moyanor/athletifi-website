@@ -36,7 +36,7 @@ const SeasonHighlights: React.FC = () => {
           <h2 className="leading-7 w-full text-[24px] md:text-lg text-primary font-[600] mb-2 text-top">
             Season Highlights
           </h2>
-          <div className=" w-full flex h-full text-gray-500 max-w-96 my-4">
+          <div className="mt-6 mb-12 shadow-md bg-cardsBackground bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[420px] flex justify-center items-center text-primary opacity-80 text-sm p-6">
             Hang tight! We&apos;re gathering all the exciting moments from this
             season. Check back soon to see the highlights! Plus, we&apos;ll
             notify you as soon as the data is ready. Stay tuned!

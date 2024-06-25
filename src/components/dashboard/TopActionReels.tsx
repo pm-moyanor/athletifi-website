@@ -80,7 +80,7 @@ const ActionReelList: React.FC = () => {
           <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro mb-2">
             Top Action Reels
           </h3>
-          <div className="flex h-full text-gray-500 mt-4 max-w-96">
+          <div className="mt-8 shadow-md mx-auto bg-cardsDark bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[420px] flex justify-center items-center text-center text-primary text-sm p-6">
             Exciting things are coming! We&apos;re putting together the best
             action reels from this season just for you. Check back soon to watch
             the highlights! We&apos;ll also send you a notification as soon as

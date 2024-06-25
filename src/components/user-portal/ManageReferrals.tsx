@@ -55,7 +55,7 @@ export default function ManageReferrals() {
                   return (
                     <div
                       key={idx}
-                      className="mt-8 shadow-md mx-auto bg-cardsDark bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[450px] flex justify-center items-center text-center"
+                      className="my-8 shadow-md mx-auto bg-cardsDark bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[450px] flex justify-center items-center text-center"
                     >
                       <p className="text-primary text-sm opacity-80 p-6">
                         You currently do not own any cards. Once you have one,

@@ -20,7 +20,7 @@ const PastMatchesLayout: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col  w-full md:max-w-none lg:max-w-[1130px] md:px-2">
+    <div className="flex flex-col w-full md:max-w-none lg:max-w-[1130px] md:px-2 md:mt-8">
       <div className="flex justify-between gap-8 pt-6">
         <h2 className="px-4 py-2 text-primary font-semibold w-full text-md bg-cardsBackground  shadow-portalNav rounded-[5px]">
           Upcoming matches

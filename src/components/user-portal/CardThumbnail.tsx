@@ -265,7 +265,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
           <div className="rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-4">
             <div className="flex justify-start items-start min-w-[260px]">
               <div
-                className="relative w-24 h-28 justify-end"
+                className="relative w-24 h-28 justify-end cursor-pointer"
                 onClick={() =>
                   handleGoToDashboard(cardData?.ownedCardInfo.dashboard_slug)
                 }
@@ -452,10 +452,9 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                           </form>
                         )}
                         {dupeInvite.isDupe && (
-                          <p className="text-sm mb-6 text-start text-red-600 lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
-                            WARNING: This user{' '}
-                            <strong>{dupeInvite.email}</strong> is already an
-                            active guest for this card.
+                          <p className="text-sm mb-6 text-start text-chartYellow lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
+                            This user <strong>{dupeInvite.email}</strong> is
+                            already an active guest for this card.
                           </p>
                         )}
                       </motion.div>
@@ -602,9 +601,9 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                       </form>
                     )}
                     {dupeInvite.isDupe && (
-                      <p className="text-sm mb-6 text-start text-red-600 lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
-                        WARNING: This user <strong>{dupeInvite.email}</strong>{' '}
-                        is already an active guest for this card.
+                      <p className="text-sm mb-6 text-start text-chartYellow lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
+                        This user <strong>{dupeInvite.email}</strong> is already
+                        an active guest for this card.
                       </p>
                     )}
                   </motion.div>
@@ -618,7 +617,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
         <div className="rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-2 md:gap-4">
           <div className="flex justify-start items-start min-w-[250px]">
             <div
-              className="relative w-24 h-28 justify-end"
+              className="relative w-24 h-28 justify-end cursor-pointer"
               onClick={() =>
                 handleGoToDashboard(cardData?.guestCardInfo.dashboard_slug)
               }

@@ -88,7 +88,7 @@ const PastMatches: React.FC = () => {
               ))}
             </motion.div>
           ) : (
-            <div className="text-gray-500 min-w-[343px] md:min-w-[778px] lg:min-w-[640px] min-h-[50px] ml-4 mb-10 lg:mb-0">
+            <div className="mt-6 mb-12 shadow-md mx-auto bg-cardsBackground  bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[420px] flex justify-center items-center  text-primary opacity-80 text-sm p-6">
               Upcoming match details aren&apos;t available yet. Stay tuned!
               We&apos;ll update you with all the information as soon as the
               games are scheduled.
@@ -130,7 +130,7 @@ const PastMatches: React.FC = () => {
             Past matches
           </h2>
           <div className="text-gray-500 min-w-[343px] md:min-w-[778px] lg:min-w-[640px] min-h-[50px] mb-10 lg:mb-0">
-            <div>
+            <div className="mt-6 mb-12 shadow-md mx-auto bg-cardsBackground  bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[420px] flex justify-center items-center text-primary opacity-80 text-sm p-6">
               We&apos;re still gathering the data from past matches. Please
               check back soon to see all the details!
             </div>
