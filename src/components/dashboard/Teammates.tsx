@@ -50,8 +50,8 @@ const Teammates: React.FC = () => {
           </h2>
           <div className="h-1 bg-partnersBorders my-2" />
           <div className="text-gray-500 min-w-[343px] md:min-w-[778px] lg:min-w-[330px] min-h-[150px]">
-            We are working on getting more teammate data for your player. Please
-            come back soon!
+            We are gathering details about the team. Please check back soon for
+            updates!
           </div>
         </div>
       ) : (
