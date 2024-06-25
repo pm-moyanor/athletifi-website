@@ -5,6 +5,7 @@ import React, {
   FormEvent,
   useRef,
   useEffect,
+  useCallback,
 } from 'react';
 import Image from 'next/image';
 import { Source_Sans_3 } from 'next/font/google';
@@ -101,6 +102,8 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
 }) => {
   const [, inviteRevokeAction] = useAtom(inviteRevokeActionAtom);
   const router = useRouter();
+  const [refreshKey, setRefreshKey] = useState(0); // State to trigger re-render
+  const [filteredInvites, setFilteredInvites] = useState<Invites[]>([]);
 
   const [isToggle, setIsToggle] = useState<boolean>(false);
   const [invitation, setInvitation] = useState<{ name: string; email: string }>( //stored data from form
@@ -129,8 +132,13 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
   };
 
   //atom to render the invites
-  const invites = useAtomValue(invitesDataAtom);
-  const filteredInvites = getFilteredInvites(invites, cardData);
+  const allInvites = useAtomValue(invitesDataAtom); // Fetch all invites
+  console.log(cardData.guestCardInfo);
+  // Filter invites whenever refreshKey changes
+  useEffect(() => {
+    const filtered = getFilteredInvites(allInvites, cardData);
+    setFilteredInvites([...filtered]);
+  }, [allInvites, cardData, refreshKey]);
 
   ////////////////////////////////////////email invite
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -179,8 +187,8 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
               setTimeout(() => {
                 setIsToggle(false);
                 setEmailSubmitted(false);
+                setRefreshKey((prevKey) => prevKey + 1);
                 resolve();
-                window.location.reload();
               }, 3000);
             });
           }
@@ -205,7 +213,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
         setRevokeSubmittedId(inviteId);
         setTimeout(() => {
           setRevokeSubmittedId(null);
-          window.location.reload(); // Reload to update UI
+          setRefreshKey((prevKey) => prevKey + 1);
         }, 3000);
       })
       .catch((error) => console.error('Failed to revoke invitation', error));
@@ -230,8 +238,8 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
         setDeclinedInviteId(inviteId);
         setTimeout(() => {
           setRevokeSubmittedId(null);
-          window.location.reload(); // Reload to update UI
         }, 3000);
+        triggerReRender();
       })
       .catch((error) => console.error('Failed to decline invitation', error));
   };
@@ -247,7 +255,9 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
 
   const cardRef = useRef<HTMLDivElement>(null); //track element to click outside the form
   useOutsideClick(cardRef, () => setIsToggle(false));
-
+  const triggerReRender = useCallback(() => {
+    setRefreshKey((prevKey) => prevKey + 1);
+  }, []);
   return (
     <div ref={cardRef} className={`${isOwned || inSettings ? 'w-full' : ''}`}>
       {isOwned ? (
@@ -255,7 +265,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
           <div className="rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-4">
             <div className="flex justify-start items-start min-w-[260px]">
               <div
-                className="relative w-24 h-28 justify-end"
+                className="relative w-24 h-28 justify-end cursor-pointer"
                 onClick={() =>
                   handleGoToDashboard(cardData?.ownedCardInfo.dashboard_slug)
                 }
@@ -442,10 +452,9 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                           </form>
                         )}
                         {dupeInvite.isDupe && (
-                          <p className="text-sm mb-6 text-start text-red-600 lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
-                            WARNING: This user{' '}
-                            <strong>{dupeInvite.email}</strong> is already an
-                            active guest for this card.
+                          <p className="text-sm mb-6 text-start text-chartYellow lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
+                            This user <strong>{dupeInvite.email}</strong> is
+                            already an active guest for this card.
                           </p>
                         )}
                       </motion.div>
@@ -592,9 +601,9 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                       </form>
                     )}
                     {dupeInvite.isDupe && (
-                      <p className="text-sm mb-6 text-start text-red-600 lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
-                        WARNING: This user <strong>{dupeInvite.email}</strong>{' '}
-                        is already an active guest for this card.
+                      <p className="text-sm mb-6 text-start text-chartYellow lg:max-w-769 relative min-w-[256px] transition-opacity duration-300 opacity-100">
+                        This user <strong>{dupeInvite.email}</strong> is already
+                        an active guest for this card.
                       </p>
                     )}
                   </motion.div>
@@ -608,7 +617,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
         <div className="rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-2 md:gap-4">
           <div className="flex justify-start items-start min-w-[250px]">
             <div
-              className="relative w-24 h-28 justify-end"
+              className="relative w-24 h-28 justify-end cursor-pointer"
               onClick={() =>
                 handleGoToDashboard(cardData?.guestCardInfo.dashboard_slug)
               }
@@ -660,7 +669,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                   }}
                 >
                   <div className="text-sm py-4 mx-2 md:mx-4 text-end">
-                    decline
+                    Opt out
                   </div>
                   <FontAwesomeIcon
                     className="text-chartRed text-md md:text-2xl"

@@ -65,9 +65,9 @@ const ActionReelList: React.FC = () => {
   return (
     <>
       {actionReels && actionReels[0]?.title ? (
-        <div className="md:h-[480px] flex flex-col items-start md:items-center w-full md:w-1/2 max-w-[560px] my-8 md:my-0">
+        <div className="flex flex-col items-start md:items-end w-full md:w-1/2 max-w-[560px] my-8 md:my-0">
           <div className=" flex flex-col md:overflow-auto items-center">
-            <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro mb-2">
+            <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro mb-4">
               Top Action Reels
             </h3>
             {actionReels.map((actionReel: IActionReel, index: number) => (
@@ -80,9 +80,11 @@ const ActionReelList: React.FC = () => {
           <h3 className="w-full text-primary text-md font-semibold font-sourceSansPro mb-2">
             Top Action Reels
           </h3>
-          <div className="flex h-full text-gray-500 mt-4 max-w-96">
-            We are working on getting more data. Come back soon to view
-            highlight reels!
+          <div className="mt-8 shadow-md mx-auto bg-cardsDark bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[420px] flex justify-center items-center text-center text-primary text-sm p-6">
+            Exciting things are coming! We&apos;re putting together the best
+            action reels from this season just for you. Check back soon to watch
+            the highlights! We&apos;ll also send you a notification as soon as
+            the clips are ready. Stay tuned!
           </div>
         </div>
       ) : (
