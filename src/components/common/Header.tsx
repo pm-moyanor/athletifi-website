@@ -18,6 +18,7 @@ import { useRouter } from 'next/navigation';
 import { Hub } from 'aws-amplify/utils';
 
 import { useUserData } from '@/states/userStore';
+import UserNotificationsModal from '@/components/user-portal/UserNotificationsModal';
 
 const SCROLL_THRESHOLD: number = 200;
 
@@ -25,6 +26,7 @@ const Header: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [path, setPath] = useState<string>('');
   const [showDropdown, setShowDropdown] = useState(false);
+  const [closedModal, setClosedModal] = useState(false);
 
   const dropdown = useRef<HTMLDivElement>(null);
 
@@ -265,16 +267,18 @@ const Header: React.FC = () => {
                 {userData.data === null ? (
                   <div className="items-center gap-2 md:ml-4 mt-6 md:mt-0 hidden md:flex">
                     <Link href="/login" onClick={() => setOpen(false)}>
-                      <button className="text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out"
-                       onClick={() => setOpen(false)}
-                       >
+                      <button
+                        className="text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out"
+                        onClick={() => setOpen(false)}
+                      >
                         Log in
                       </button>
                     </Link>
                     <Link href="/register">
-                      <button className="text-darkgray w-[100px] h-8 bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out"
-                       onClick={() => setOpen(false)}
-                       >
+                      <button
+                        className="text-darkgray w-[100px] h-8 bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out"
+                        onClick={() => setOpen(false)}
+                      >
                         Sign up
                       </button>
                     </Link>
@@ -381,6 +385,11 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
+      {userData.data &&
+        userData.data.init_notifications === false &&
+        !closedModal && (
+          <UserNotificationsModal setClosedModal={setClosedModal} />
+        )}
     </header>
   );
 };
