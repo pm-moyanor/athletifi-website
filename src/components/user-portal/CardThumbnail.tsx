@@ -669,7 +669,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                   }}
                 >
                   <div className="text-sm py-4 mx-2 md:mx-4 text-end">
-                    decline
+                    Opt out
                   </div>
                   <FontAwesomeIcon
                     className="text-chartRed text-md md:text-2xl"
