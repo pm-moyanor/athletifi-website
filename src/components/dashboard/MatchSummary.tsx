@@ -434,8 +434,9 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
                             ) : (
                               <div className="bg-partnersBorders rounded-[4px] w-full min-h-[128px] md:max-w-[450px] flex justify-center items-center text-center">
                                 <p className="text-offwhite">
-                                  No highlights for this match yet. Stay tuned
-                                  for updates!
+                                  No highlights for this match yet, but stay
+                                  tuned! We&apos;ll bring you all the exciting
+                                  moments soon. Check back later for updates!
                                 </p>
                               </div>
                             )}
@@ -447,7 +448,9 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
                 ) : (
                   <div className="mt-8 shadow-md mx-auto bg-cardsBackground bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[450px] flex justify-center items-center text-center">
                     <p className="text-offwhite text-sm">
-                      No highlights for this match yet. Stay tuned for updates!
+                      No highlights for this match yet, but stay tuned!
+                      We&apos;ll bring you all the exciting moments soon. Check
+                      back later for updates!
                     </p>
                   </div>
                 )}

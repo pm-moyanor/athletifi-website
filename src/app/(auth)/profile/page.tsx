@@ -25,6 +25,7 @@ import {
   ownedCardsDataAtom,
   guestCardsDataAtom,
 } from '@/states/profileCardsDataStore';
+import Preloader from '@/components/common/Preloader';
 
 //motion variants to animate the team bars
 const variants = {
@@ -116,106 +117,121 @@ const Profile = () => {
 
   // ADD SKELETON
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="overflow-hidden"
-    >
-      <div className="absolute top-0 left-0 bg-gradient-to-r from-cardsDark2 to-cardsBackground h-[280px] lg:h-[330px] w-full -z-10"></div>
-      <main className="mx-2 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-base">
-        <Header pageTitle={'Cards'} />
-        <motion.div
-          variants={variants}
-          initial="initial"
-          animate="animate"
-          className="flex flex-col items-center mt-4 md:pt-7"
-        >
-          {inviteStatus && (
-            <AlertModal
-              title={inviteStatus.title}
-              textBody={inviteStatus.textBody}
-              onClose={closeModal}
-            />
-          )}
+    <>
+      <Preloader />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="overflow-hidden"
+      >
+        <div className="absolute top-0 left-0 bg-gradient-to-r from-cardsDark2 to-cardsBackground h-[280px] lg:h-[330px] w-full -z-10"></div>
+        <main className="mx-2 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-base">
+          <Header pageTitle={'Cards'} />
           <motion.div
             variants={variants}
-            className="overflow-hidden w-full max-w-[1030px] mb-4 text-primary bg-cardsDark shadow-lg rounded-10 flex flex-col px-2 md:px-4 py-8"
+            initial="initial"
+            animate="animate"
+            className="flex flex-col items-center mt-4 md:pt-7"
           >
-            <h2 className="font-semibold text-md text-primary p-2 pt-0">
-              My cards
-            </h2>
-
-            <div className="flex flex-col">
-              <div className="h-1 w-full bg-partnersBorders opacity-50 my-2"></div>
-              {ownedCardsData.length > 0 ? (
-                <div className="flex flex-wrap w-full gap-4">
-                  {ownedCardsData.map(
-                    (
-                      cardData: ICardData,
-                      idx: React.Key | null | undefined,
-                    ) => {
-                      if (!cardData.ownedCardInfo.card_id) {
-                        return (
-                          <p key={idx} className="text-primary opacity-80 p-2">
-                            You have no cards.
-                          </p>
-                        );
-                      }
-                      return (
-                        <RenderCardThumbnail
-                          key={idx}
-                          // userData={cardData}
-                          cardData={cardData}
-                          isOwned={true}
-                          inSettings={false}
-                        />
-                      );
-                    },
-                  )}
-                </div>
-              ) : (
-                <p className="text-primary opacity-80 p-2">
-                  You have no cards.
-                </p>
-              )}
-            </div>
-            <div className="pt-6">
+            {inviteStatus && (
+              <AlertModal
+                title={inviteStatus.title}
+                textBody={inviteStatus.textBody}
+                onClose={closeModal}
+              />
+            )}
+            <motion.div
+              variants={variants}
+              className="overflow-hidden w-full max-w-[1030px] mb-4 text-primary bg-cardsDark shadow-lg rounded-10 flex flex-col px-2 md:px-4 py-8"
+            >
               <h2 className="font-semibold text-md text-primary p-2 pt-0">
-                Shared with me
+                My cards
               </h2>
-              <div className="h-1 w-full bg-partnersBorders opacity-50 my-2"></div>
-              {acceptedGuestCards.length > 0 ? (
-                <div className="flex justify-start py-2 overflow-x-auto hide-scrollbar gap-4">
-                  {acceptedGuestCards.map(
-                    (
-                      cardData: ICardData,
-                      idx: React.Key | null | undefined,
-                    ) => {
-                      if (!cardData) {
-                        return null;
-                      }
-                      return (
-                        <RenderCardThumbnail
-                          key={idx}
-                          cardData={cardData}
-                          isOwned={false}
-                          inSettings={false}
-                        />
-                      );
-                    },
-                  )}
-                </div>
-              ) : (
-                <p className="text-primary opacity-80 p-2">
-                  No cards shared with you.
-                </p>
-              )}
-            </div>
+
+              <div className="flex flex-col">
+                <div className="h-1 w-full bg-partnersBorders opacity-50 my-2"></div>
+                {ownedCardsData.length > 0 ? (
+                  <div className="flex flex-wrap w-full gap-4">
+                    {ownedCardsData.map(
+                      (
+                        cardData: ICardData,
+                        idx: React.Key | null | undefined,
+                      ) => {
+                        if (!cardData.ownedCardInfo.card_id) {
+                          return (
+                            <div
+                              key={idx}
+                              className="mt-8 shadow-md mx-auto bg-cardsBackground  bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[420px] flex justify-center items-center text-center"
+                            >
+                              <p className="text-primary text-sm opacity-80 p-6">
+                                You currently do not own any cards. Once you
+                                have one, it will be displayed here.
+                              </p>
+                            </div>
+                          );
+                        }
+                        return (
+                          <RenderCardThumbnail
+                            key={idx}
+                            // userData={cardData}
+                            cardData={cardData}
+                            isOwned={true}
+                            inSettings={false}
+                          />
+                        );
+                      },
+                    )}
+                  </div>
+                ) : (
+                  <div className="mt-8 shadow-md mx-auto bg-cardsBackground  bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[420px] flex justify-center items-center text-center">
+                    <p className="text-primary text-sm opacity-80 p-6">
+                      You currently do not own any cards. Once you have one, it
+                      will be displayed here.
+                    </p>
+                  </div>
+                )}
+              </div>
+              <div className="pt-6">
+                <h2 className="font-semibold text-md text-primary p-2 pt-0">
+                  Shared with me
+                </h2>
+                <div className="h-1 w-full bg-partnersBorders opacity-50 my-2"></div>
+                {acceptedGuestCards.length > 0 ? (
+                  <div className="flex justify-start py-2 overflow-x-auto hide-scrollbar gap-4">
+                    {acceptedGuestCards.map(
+                      (
+                        cardData: ICardData,
+                        idx: React.Key | null | undefined,
+                      ) => {
+                        if (!cardData) {
+                          return null;
+                        }
+                        return (
+                          <RenderCardThumbnail
+                            key={idx}
+                            cardData={cardData}
+                            isOwned={false}
+                            inSettings={false}
+                          />
+                        );
+                      },
+                    )}
+                  </div>
+                ) : (
+                  <div className="mt-8 shadow-md mx-auto bg-cardsBackground bg-opacity-20 rounded-[4px] w-full min-h-[128px] md:max-w-[450px] flex justify-center items-center text-center">
+                    <p className="text-primary text-sm opacity-80 p-6">
+                      No cards have been shared with you yet. Once someone
+                      shares a card with you, it will appear here.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      </main>
-    </motion.div>
+        </main>
+      </motion.div>
+    </>
   );
 };
 

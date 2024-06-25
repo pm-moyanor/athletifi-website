@@ -45,8 +45,9 @@ const LatestMatch: React.FC = () => {
             <div className="bg-cardsBackground h-[310px] sm:h-[310px] md:h-56 flex flex-col relative w-full rounded-10 text-primary ">
               <h1 className="text-[24px] font-semibold">Latest Match</h1>
               <div className="flex h-full text-gray-500 justify-center items-center">
-                We are working on getting more match data. Please come back soon
-                to view the full experience.
+                We&apos;re gathering the latest performance and match details of
+                your player. Please check back soon to see all the exciting
+                updates!
               </div>
             </div>
           ) : (
