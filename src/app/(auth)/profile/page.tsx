@@ -105,8 +105,6 @@ const Profile = () => {
     }
   }, [inviteData]); // This hook depends on the inviteData
 
-  console.log(inviteStatus);
-
   // Function to close the modal by setting the invite status to null
   const closeModal = () => {
     setInviteStatus(null);

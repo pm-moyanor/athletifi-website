@@ -38,7 +38,6 @@ import UserNotificationsModal from '../user-portal/UserNotificationsModal';
 //         initial={false}
 //         animate={open ? 'open' : 'closed'}
 //         onClick={() => {
-//           console.log('clicked');
 //           setOpen(!open);
 //         }}
 //         className="relative h-16 w-16 hover:partnersBorders"

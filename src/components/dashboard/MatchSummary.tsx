@@ -168,7 +168,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
       setCurrentItem(newIndex);
       handlePlayClick(newIndex);
     } else {
-      console.log('no highlights available');
+      console.warn('no highlights available');
     }
   };
 
