@@ -7,7 +7,6 @@ import {
   useAuthenticator,
 } from '@aws-amplify/ui-react';
 import { ComponentOverrides, FormFieldsOverrides } from './AuthOverrides';
-// import { signUp, type SignUpInput } from 'aws-amplify/auth';
 import { loginTheme, sourceSans3 } from './AuthTheme';
 import { useSearchParams } from 'next/navigation';
 import { inviteIdAtom, redirectAtom } from '@/states/userStore';
@@ -17,13 +16,10 @@ import { useRouter } from 'next/navigation';
 import { SignUpInput, signUp } from 'aws-amplify/auth';
 import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
 import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
-import awsExports from '@/aws-exports';
-import config from '@/custom-aws-exports';
 
 const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const oauthCode = searchParams.get('code');
 
   const [inviteId, setInviteId] = useAtom(inviteIdAtom);
   const [redirectUrl, setRedirectUrl] = useAtom(redirectAtom);
@@ -35,14 +31,6 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
       setInviteId(storedInviteId);
     }
   }, [searchParams, setInviteId]);
-
-  console.log('inviteId2: ', inviteId);
-  console.log('oauthCode2: ', oauthCode);
-  console.log(
-    'custom redirectSignIn URL (AuthClient.tsx):',
-    config.oauth.redirectSignIn,
-  );
-  console.log('original redirectSignIn URL:', awsExports.oauth.redirectSignIn);
   const { user, route } = useAuthenticator((context) => [
     context.user,
     context.route,
@@ -112,7 +100,6 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
           services={services}
           components={ComponentOverrides}
           formFields={FormFieldsOverrides}
-          socialProviders={['google']}
           initialState={
             defaultScreen as 'signIn' | 'signUp' | 'forgotPassword' | undefined
           }

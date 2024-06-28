@@ -224,7 +224,6 @@ export function useUserData() {
       if (event === AuthEvents.SignedOut) {
         setInviteId(null); // This will remove invite_id from localStorage
         setPostHelperResponse(null);
-        console.log('user is signed out! Remove the inviteId!');
       }
     });
 
