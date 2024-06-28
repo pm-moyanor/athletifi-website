@@ -196,7 +196,7 @@ const Profile = () => {
                 </h2>
                 <div className="h-1 w-full bg-partnersBorders opacity-50 my-2"></div>
                 {acceptedGuestCards.length > 0 ? (
-                  <div className="flex justify-start py-2 overflow-x-auto hide-scrollbar gap-4">
+                  <div className="flex justify-center md:justify-start py-2 overflow-x-auto hide-scrollbar gap-4">
                     {acceptedGuestCards.map(
                       (
                         cardData: ICardData,
