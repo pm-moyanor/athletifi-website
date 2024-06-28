@@ -3,11 +3,15 @@ import { useMediaQuery } from '@/app/utils/useMediaQuery';
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChevronDown,
+  faChevronLeft,
+} from '@fortawesome/free-solid-svg-icons';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import FlipCard from '@/components/dashboard/FlipCard';
 import { useDashboardData } from '@/states/dashboardStore';
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
 
 const HeroBanner: React.FC = () => {
   const { cardId } = useParams();
@@ -52,9 +56,20 @@ const HeroBanner: React.FC = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, ease: 'easeIn' }}
-            className=" md:w-2/3 lg:w-2/3 flex items-center justify-center lg:justify-start mb-[10px] md:mt-[200px] lg:mb-[50px] max-w-[700px]"
+            className="md:w-2/3 lg:w-2/3 flex items-center justify-center lg:justify-start mb-[10px] md:mt-[200px] lg:mb-[50px] max-w-[700px]"
           >
-            <div className="relative w-[120px] md:w-[150px] h-[120px] md:h-[150px] min-w-[100px]  flex justify-center items-center">
+            <div className="relative w-[120px] md:w-[150px] h-[120px] md:h-[150px] min-w-[100px] flex justify-center items-center">
+              <Link
+                href="/profile"
+                className="hidden md:block relative -top-125 z-50 cursor-pointer hover:underline min-w-176 text-skyblue"
+              >
+                <FontAwesomeIcon
+                  className="ml-10 mr-3 lg:mx-3"
+                  icon={faChevronLeft}
+                  size="sm"
+                />
+                <span className="text-md font-medium">Back to profile</span>
+              </Link>
               <Image
                 alt="club-logo"
                 src={playerProfile?.club_logo}
@@ -87,10 +102,10 @@ const HeroBanner: React.FC = () => {
             <FlipCard cardUrl={playerProfile?.card_url} />
           </div>
         ) : (
-          <div className="mb-20 mt-100">
+          <div className="mb-20 mt-100 lg:mt-150">
             <div className="flex items-center">
               <Skeleton
-                className="min-w-[350px] min-h-[350px] md:min-w-[320px] md:min-h-[320px] lg:min-h-[420px] lg:min-w-[420px]"
+                className="min-w-[350px] min-h-[350px] md:min-w-[300px] md:min-h-[300px] lg:min-h-[380px] lg:min-w-[380px]"
                 circle
               />
             </div>
