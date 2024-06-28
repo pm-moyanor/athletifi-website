@@ -80,28 +80,39 @@ export default function AccountDetails() {
 
   function handleCurrentPwChange(e: ChangeEvent<HTMLInputElement>) {
     setCurrentPw(e.target.value);
-    if (currentPw.length >= MINLEN) {
+  }
+
+  useEffect(() => {
+    if (currentPw !== '' && currentPw.length > MINLEN - 1) {
       setIsCurrentPwValid(true);
     } else {
       setIsCurrentPwValid(false);
     }
-  }
+  }, [currentPw]);
 
   function handleNewPwChange(e: ChangeEvent<HTMLInputElement>) {
     setNewPw(e.target.value);
-    if (newPw.length >= MINLEN) {
+  }
+
+  useEffect(() => {
+    if (newPw !== '' && newPw.length >= MINLEN) {
       setIsNewPwValid(true);
     } else {
       setIsNewPwValid(false);
     }
-  }
+  }, [newPw]);
 
   function handleConfirmPwChange(e: ChangeEvent<HTMLInputElement>) {
     setConfirmPw(e.target.value);
   }
 
   useEffect(() => {
-    if (isCurrentPwValid && isNewPwValid && newPw === confirmPw) {
+    if (
+      newPw !== '' &&
+      isCurrentPwValid &&
+      isNewPwValid &&
+      newPw === confirmPw
+    ) {
       setSubmitDisabled(false);
     } else {
       setSubmitDisabled(true);
@@ -217,12 +228,12 @@ export default function AccountDetails() {
           >
             Submit
           </button>
-          {newPw !== confirmPw && (
+          {newPw !== '' && confirmPw !== '' && newPw !== confirmPw && (
             <div className="text-red-500">
               Password confirmation does not match
             </div>
           )}
-          {(!isCurrentPwValid || !isNewPwValid) && (
+          {newPw !== '' && newPw.length < MINLEN && (
             <div className="text-red-500">
               Passwords need to be 8 or more characters
             </div>
