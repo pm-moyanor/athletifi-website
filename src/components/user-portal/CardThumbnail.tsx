@@ -125,7 +125,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
     null,
   );
   const { name, team, club, card_url, number, club_logo } = cardData.result;
-  console.log(cardData.result.name);
   const handleGoToDashboard = (slug: string | null) => {
     //go to dashboard click
     router.push(`/dashboard/${slug}`);
@@ -133,7 +132,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
 
   //atom to render the invites
   const allInvites = useAtomValue(invitesDataAtom); // Fetch all invites
-  console.log(cardData.guestCardInfo);
   // Filter invites whenever refreshKey changes
   useEffect(() => {
     const filtered = getFilteredInvites(allInvites, cardData);
@@ -195,7 +193,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
         })
         .catch((error) => console.error('Failed to send invitation', error));
     } else {
-      console.log('invalid email');
+      console.warn('invalid email');
     }
   };
   /////////////////////// action to "revoke"
@@ -209,7 +207,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
       card_name: card_name,
     })
       .then(() => {
-        console.log('Revoke successful');
         setRevokeSubmittedId(inviteId);
         setTimeout(() => {
           setRevokeSubmittedId(null);
@@ -226,7 +223,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
     owner_email?: string | null,
     card_name?: string | null,
   ) => {
-    console.log(owner_email);
     inviteRevokeAction({
       action: 'revoke',
       inviteId: inviteId,
@@ -234,7 +230,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
       card_name: card_name,
     })
       .then(() => {
-        console.log('Decline successful');
         setDeclinedInviteId(inviteId);
         setTimeout(() => {
           setRevokeSubmittedId(null);
@@ -659,7 +654,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                 <div
                   className="flex items-center justify-end cursor-pointer"
                   onClick={() => {
-                    console.log('decline successful, change status');
                     triggerDecline(
                       cardData?.guestCardInfo.invite_id,
                       cardData?.guestCardInfo.inviter_email,

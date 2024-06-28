@@ -69,7 +69,7 @@ export default function AccountDetails() {
       setViewUpdatePw(false);
       toast.success('Password has been successfully updated!', toastOptions);
     } catch (err) {
-      console.log(JSON.stringify(err));
+      console.error(JSON.stringify(err));
       const errMsg = renderErrorMessage(err.name);
       toast.error(
         `We hit a snag trying to update your password: ${errMsg}`,
