@@ -45,9 +45,9 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
     setShowRecap(true);
   };
   const dateTime = new Date(datetime as string);
-  const formattedDate = dateTime.toLocaleDateString('en-GB', {
+  const formattedDate = dateTime.toLocaleDateString('en-US', {
     weekday: 'long',
-    day: '2-digit',
+    day: 'numeric',
     month: 'short',
     year: 'numeric',
   });
@@ -182,7 +182,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
                   <span className="text-sm md:text-base ">{home_club} </span>vs
                   <span className="text-sm md:text-base "> {away_club}</span>
                   <div className="text-xs md:text-sm text-offwhite pt-[4px]">
-                    {datetime}
+                    {formattedDate}
                   </div>
                 </div>
               </div>
@@ -273,7 +273,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
                               )}
                             />
                             <div className="video-info text-primary ml-2 w-1/2 sm:w-1/2 md:w-full flex flex-col justify-end max-w-[320px]">
-                              <h3 className="text-base pt-2">{`Highlight-${index}`}</h3>
+                              <h3 className="text-base pt-2">{`Highlight - ${index + 1}`}</h3>
                               <p className="text-sm text-offwhite m-px">
                                 {highlight.clip_description}
                               </p>
