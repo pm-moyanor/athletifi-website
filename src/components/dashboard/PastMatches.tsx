@@ -14,22 +14,44 @@ const dummyMatches: IMatchDataExtended[] = [
       'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/stellar-fc-logo.svg',
     away_score: 2,
     away_team: 'Stellar FC U14',
-    datetime: '2023-04-24T12:00:00Z',
-    highlights: [],
+    datetime: '2024-04-24T12:00:00Z',
+    highlights: [
+      {
+        clip_description:
+          "Stellar FC's first goal - a beautiful header from a corner kick",
+        duration: '00:00:15',
+        start_timestamp: '00:15:30',
+      },
+      {
+        clip_description: "VSA's near miss - shot hits the crossbar",
+        duration: '00:00:12',
+        start_timestamp: '00:37:45',
+      },
+      {
+        clip_description: 'Stellar FC scores their second goal on a breakaway',
+        duration: '00:00:18',
+        start_timestamp: '01:05:20',
+      },
+    ],
     home_club: 'Villanova Soccer Academy',
     home_club_logo:
       'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/vsa-logo.svg',
-    home_score: 2,
+    home_score: 0,
     home_team: 'VSA 2009s',
     location: 'Philadelphia, PA',
     playback_id: 'qVe4r2Bp2BIB7H23i1ZajlCxP47kjRuCusmfUdqc4lc',
     video_key: 'match_videos/pixellot_video_2.mp4',
     weather: {
-      date: '2023-04-24',
+      date: '2024-04-24',
       location: 'Philadelphia, PA',
       precipIn: 0,
       precipMm: 0.1,
       tempCelc: 17.8,
+      tempFahr: 64.0,
+      weatherDesc: 'Cloudy skies',
+      weatherIcon: 'Cloudy.gif',
+      windSpeedKmh: 20,
+      windSpeedMph: 12,
     },
   },
   {
@@ -39,7 +61,24 @@ const dummyMatches: IMatchDataExtended[] = [
     away_score: 3,
     away_team: 'Galaxy FC U14',
     datetime: '2024-05-22T14:00:00Z',
-    highlights: [],
+    highlights: [
+      {
+        clip_description:
+          'Galaxy FC opens the scoring with a long-range strike',
+        duration: '00:00:20',
+        start_timestamp: '00:10:15',
+      },
+      {
+        clip_description: 'Inter Soccer Academy equalizes with a penalty kick',
+        duration: '00:00:25',
+        start_timestamp: '00:30:40',
+      },
+      {
+        clip_description: 'Galaxy FC scores two quick goals in succession',
+        duration: '00:00:30',
+        start_timestamp: '01:15:00',
+      },
+    ],
     home_club: 'Inter Soccer Academy',
     home_club_logo:
       'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/stellar-fc-logo.svg',
@@ -54,6 +93,11 @@ const dummyMatches: IMatchDataExtended[] = [
       precipIn: 0,
       precipMm: 0,
       tempCelc: 20,
+      tempFahr: 68.0,
+      weatherDesc: 'Cloudy skies',
+      weatherIcon: 'Cloudy.gif',
+      windSpeedKmh: 15,
+      windSpeedMph: 9,
     },
   },
   {
@@ -63,7 +107,30 @@ const dummyMatches: IMatchDataExtended[] = [
     away_score: 1,
     away_team: 'Lunar FC U14',
     datetime: '2024-06-01T16:00:00Z',
-    highlights: [],
+    highlights: [
+      {
+        clip_description: 'Solar Soccer Academy scores an early goal',
+        duration: '00:00:15',
+        start_timestamp: '00:05:30',
+      },
+      {
+        clip_description: 'Lunar FC goalkeeper makes a spectacular save',
+        duration: '00:00:12',
+        start_timestamp: '00:25:15',
+      },
+      {
+        clip_description:
+          'Solar Soccer Academy scores three goals in quick succession',
+        duration: '00:00:45',
+        start_timestamp: '00:55:00',
+      },
+      {
+        clip_description:
+          'Lunar FC scores a consolation goal in the final minutes',
+        duration: '00:00:18',
+        start_timestamp: '01:25:30',
+      },
+    ],
     home_club: 'Solar Soccer Academy',
     home_club_logo:
       'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/stellar-fc-logo.svg',
@@ -78,6 +145,11 @@ const dummyMatches: IMatchDataExtended[] = [
       precipIn: 0,
       precipMm: 0,
       tempCelc: 22,
+      tempFahr: 71.6,
+      weatherDesc: 'Cloudy skies',
+      weatherIcon: 'Cloudy.gif',
+      windSpeedKmh: 18,
+      windSpeedMph: 11,
     },
   },
   {
@@ -87,7 +159,30 @@ const dummyMatches: IMatchDataExtended[] = [
     away_score: 0,
     away_team: 'Comet FC U14',
     datetime: '2024-05-17T18:00:00Z',
-    highlights: [],
+    highlights: [
+      {
+        clip_description: 'Meteor Soccer Academy scores from a free kick',
+        duration: '00:00:20',
+        start_timestamp: '00:20:10',
+      },
+      {
+        clip_description: 'Comet FC hits the post in a close attempt',
+        duration: '00:00:15',
+        start_timestamp: '00:40:30',
+      },
+      {
+        clip_description:
+          'Meteor Soccer Academy doubles their lead with a header',
+        duration: '00:00:18',
+        start_timestamp: '01:10:45',
+      },
+      {
+        clip_description:
+          'Meteor Soccer Academy seals the win with a late goal',
+        duration: '00:00:22',
+        start_timestamp: '01:30:15',
+      },
+    ],
     home_club: 'Meteor Soccer Academy',
     home_club_logo:
       'https://athletifi-s3.s3.us-east-2.amazonaws.com/logos/stellar-fc-logo.svg',
@@ -102,6 +197,11 @@ const dummyMatches: IMatchDataExtended[] = [
       precipIn: 0,
       precipMm: 0,
       tempCelc: 18,
+      tempFahr: 64.4,
+      weatherDesc: 'Cloudy skies',
+      weatherIcon: 'Cloudy.gif',
+      windSpeedKmh: 22,
+      windSpeedMph: 14,
     },
   },
 ];
