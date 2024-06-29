@@ -125,6 +125,7 @@ export interface IMatchData {
   away_club?: string | null;
   away_club_logo?: string | null;
   away_score?: number | null;
+  match_summary?: string | null;
 }
 
 export interface IMatchDataWithWeather extends IMatchData {
@@ -154,6 +155,7 @@ export const emptyLatestMatchData: IMatchDataWithWeather = {
   away_club: null,
   away_club_logo: null,
   away_score: null,
+  match_summary: null,
 };
 
 export interface IActionReel {
@@ -226,6 +228,7 @@ export interface IMatchDataExtended extends IMatchDataWithWeather {
   away_team?: string | null;
   home_score: number | null;
   away_score: number | null;
+  match_summary: string | null;
   playback_id: string | null;
   video_key?: string | null;
   highlights: IHighlight[] | null;
@@ -239,6 +242,7 @@ export const emptyMatchData: IMatchDataExtended = {
   away_club: null,
   home_score: null,
   away_score: null,
+  match_summary: null,
   datetime: null,
   location: null,
   weather: { tempFahr: null, tempCelc: null },
