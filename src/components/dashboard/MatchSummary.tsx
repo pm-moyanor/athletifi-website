@@ -172,9 +172,10 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
       console.warn('no highlights available');
     }
   };
-
   const iconNameWithoutExtension = weather?.weatherIcon?.split('.')[0];
+
   const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
+  console.log(`weather 178 matchsummary.tsx`, localWeatherIcon);
 
   return (
     <div className="w-full flex-col justify-between items-center text-primary px-2">
@@ -313,17 +314,19 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
                 <div className="text-base text-primary min-w-[280px] w-[280px]">
                   <p className="pb-[2px]">{datetime}hs</p>
                   <p className="pb-[2px]">{location}</p>
-                  <div className="flex  items-center justify-start">
-                    <div className="w-6 text-center mr-1">
-                      <Image
-                        src={localWeatherIcon}
-                        alt="Weather Icon"
-                        width={100}
-                        height={100}
-                      />
+                  {weather && (
+                    <div className="flex  items-center justify-start">
+                      <div className="w-6 text-center mr-1">
+                        <Image
+                          src={localWeatherIcon}
+                          alt="Weather Icon"
+                          width={100}
+                          height={100}
+                        />
+                      </div>
+                      <p>{weather?.tempFahr}</p>
                     </div>
-                    <p>{weather?.tempFahr}</p>
-                  </div>
+                  )}
                 </div>
 
                 <div className="w-full mt-2 md:mt-0">

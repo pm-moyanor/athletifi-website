@@ -61,17 +61,19 @@ const LatestMatch: React.FC = () => {
                   <p className="text-center md:text-right">
                     {latestMatch?.location}
                   </p>
-                  <div className="flex items-center justify-center sm:justify-center md:justify-end">
-                    <div className=" w-6 text-center mr-1">
-                      <Image
-                        src={localWeatherIcon}
-                        alt="Weather Icon"
-                        width={100}
-                        height={100}
-                      />
+                  {weatherIcon && (
+                    <div className="flex items-center justify-center sm:justify-center md:justify-end">
+                      <div className=" w-6 text-center mr-1">
+                        <Image
+                          src={localWeatherIcon}
+                          alt="Weather Icon"
+                          width={100}
+                          height={100}
+                        />
+                      </div>
+                      <p className="">{latestMatch?.weather?.tempFahr}&deg;F</p>
                     </div>
-                    <p className="">{latestMatch?.weather?.tempFahr}&deg;F</p>
-                  </div>
+                  )}
                 </div>
               </div>
 
