@@ -29,15 +29,17 @@ const Teammates: React.FC = () => {
                     className="rounded-full bg-slate-500 mb-3 lg:mb-0"
                   />
                 ) : (
-                  <></>
+                  <div className="w-[76px] h-[76px] rounded-full  bg-slate-700 opacity-75 mb-3 lg:mb-0"></div>
                 )}
                 <div className="md:ml-0 lg:ml-4 mt-2 md:mt-0 flex flex-col items-center lg:items-start">
                   <p className="text-base text-center text-primary">
                     {teammate.name}
                   </p>
-                  <p className="text-center inline-block max-w-full text-sm text-offwhite">
-                    #{teammate.number}
-                  </p>
+                  {teammate.number && (
+                    <p className="text-center inline-block max-w-full text-sm text-offwhite">
+                      #{teammate.number}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
