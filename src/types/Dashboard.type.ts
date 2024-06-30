@@ -229,6 +229,7 @@ export interface IMatchDataExtended extends IMatchDataWithWeather {
   playback_id: string | null;
   video_key?: string | null;
   highlights: IHighlight[] | null;
+  match_summary?: string | null;
 }
 
 export const emptyMatchData: IMatchDataExtended = {

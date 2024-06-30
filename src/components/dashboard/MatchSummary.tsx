@@ -43,6 +43,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
     weather,
     playback_id,
     highlights,
+    match_summary,
   } = matchData;
 
   const [currentItem, setCurrentItem] = useState<number>(-1);
@@ -308,7 +309,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
             </div>
             <div className=" w-full max-w-[1030px] my-4 md:my-8 border-t border-opacity-50 border-partnersBorders"></div>
             <div className="relative flex flex-col pb-4  lg:max-w-[1030px] items-center justify-center w-full">
-              <div className="mb-12 mx-2  flex flex-col md:flex-row gap-4">
+              <div className="mb-12 mx-2  flex flex-col md:flex-row gap-4 w-full">
                 <div className="text-base text-primary min-w-[280px] w-[280px]">
                   <p className="pb-[2px]">{datetime}hs</p>
                   <p className="pb-[2px]">{location}</p>
@@ -326,18 +327,13 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
                 </div>
 
                 <div className="w-full mt-2 md:mt-0">
-                  <h3 className="font-semibold text-[18px] mb-2">Title</h3>
-                  {/* define generated text */}
-                  <p className="text-base tracking-wide font-light">
-                    In a gripping showdown, the Villanova Soccer Academy 2009s
-                    faced off against Stellar FC 2009s, concluding in a 2-0
-                    victory for Stellar. he match saw Stellar dominate early,
-                    securing a lead with two quick goals in the first half, a
-                    margin they maintained throughout the game. While Villanova
-                    struggled to find the back of the net, Vidals efforts on the
-                    field were a silver lining, as he orchestrated several
-                    promising attacks and demonstrated strong defensive prowess.
-                  </p>
+                  {match_summary && (
+                    <div className="w-full mt-2 md:mt-0">
+                      <p className="text-base tracking-wide font-light">
+                        {match_summary}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
 
