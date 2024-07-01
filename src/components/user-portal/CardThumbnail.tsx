@@ -283,9 +283,11 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                   <p className="pb-1 leading-4 text-primary opacity-80 relative">
                     {team}
                   </p>
-                  <p className="leading-4 text-primary opacity-80 lg:max-w-769 relative">
-                    #{number}
-                  </p>
+                  {number && (
+                    <p className="leading-4 text-primary opacity-80 lg:max-w-769 relative">
+                      #{number}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -497,11 +499,13 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                   <div className="gap-1 flex flex-col text-sm">
                     <p className={`text-primary opacity-80 relative`}>{club}</p>
                     <p className={`text-primary opacity-80 relative`}>{team}</p>
-                    <p
-                      className={`text-primary opacity-80 lg:max-w-769 relative`}
-                    >
-                      #{number}
-                    </p>
+                    {number && (
+                      <p
+                        className={`text-primary opacity-80 lg:max-w-769 relative`}
+                      >
+                        #{number}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -635,9 +639,11 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                 <p className="pb-1 leading-4 text-primary opacity-80 relative">
                   {team}
                 </p>
-                <p className="leading-4 text-primary opacity-80 lg:max-w-769 relative">
-                  #{number}
-                </p>
+                {number && (
+                  <p className="leading-4 text-primary opacity-80 lg:max-w-769 relative">
+                    #{number}
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -699,11 +705,13 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
               >
                 {team}
               </p>
-              <p
-                className={`${sourceSans3.className} text-sm md:text-base leading-5 text-start text-primary opacity-80 lg:max-w-769 relative`}
-              >
-                #{number}
-              </p>
+              {number && (
+                <p
+                  className={`${sourceSans3.className} text-sm md:text-base leading-5 text-start text-primary opacity-80 lg:max-w-769 relative`}
+                >
+                  #{number}
+                </p>
+              )}
             </div>
             <div className="-mt-0 md:-mt-6 w-full md:w-1/2 h-56 md:h-36 relative">
               {card_url ? (

@@ -15,7 +15,7 @@ const ActionReel: React.FC<IActionReel> = ({
   away_club_logo,
 }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-
+  console.log(description);
   return (
     <div className="flex my-2 justify-start">
       <div className="relative w-full max-w-[230px] min-w-[180px] h-[120px] sm:h-[120px] md:h-[130px]">

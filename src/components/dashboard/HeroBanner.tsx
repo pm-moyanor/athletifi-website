@@ -12,6 +12,7 @@ import FlipCard from '@/components/dashboard/FlipCard';
 import { useDashboardData } from '@/states/dashboardStore';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+//import { profile } from 'console';
 
 const HeroBanner: React.FC = () => {
   const { cardId } = useParams();
@@ -87,9 +88,11 @@ const HeroBanner: React.FC = () => {
               <p className="text-base leading-4 text-start text-primary opacity-80 lg:max-w-769 relative ">
                 {`team ${playerProfile?.team}`}
               </p>
-              <p className="text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative ">
-                {`#${playerProfile?.number}`}
-              </p>
+              {playerProfile.number && (
+                <p className="text-base leading-6 text-start text-primary opacity-80 lg:max-w-769 relative ">
+                  {`#${playerProfile?.number}`}
+                </p>
+              )}
               <span className="hidden md:block h-px w-full my-2 bg-partnersBorders" />
             </div>
           </motion.div>
