@@ -283,9 +283,11 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                   <p className="pb-1 leading-4 text-primary opacity-80 relative">
                     {team}
                   </p>
-                  <p className="leading-4 text-primary opacity-80 lg:max-w-769 relative">
-                    #{number}
-                  </p>
+                  {number && (
+                    <p className="leading-4 text-primary opacity-80 lg:max-w-769 relative">
+                      #{number}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -497,11 +499,13 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                   <div className="gap-1 flex flex-col text-sm">
                     <p className={`text-primary opacity-80 relative`}>{club}</p>
                     <p className={`text-primary opacity-80 relative`}>{team}</p>
-                    <p
-                      className={`text-primary opacity-80 lg:max-w-769 relative`}
-                    >
-                      #{number}
-                    </p>
+                    {number && (
+                      <p
+                        className={`text-primary opacity-80 lg:max-w-769 relative`}
+                      >
+                        #{number}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -609,7 +613,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
         )
       ) : inSettings ? (
         // render guest card in settings
-        <div className="rounded bg-cardsDark p-4 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-2 md:gap-4">
+        <div className="rounded bg-cardsDark p-2 md:py-8 mb-4 shadow-portalNav flex flex-col md:flex-row content-start md:flex-nowrap justify-around items-start gap-2 md:gap-4">
           <div className="flex justify-start items-start min-w-[250px]">
             <div
               className="relative w-24 h-28 justify-end cursor-pointer"
@@ -635,9 +639,11 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                 <p className="pb-1 leading-4 text-primary opacity-80 relative">
                   {team}
                 </p>
-                <p className="leading-4 text-primary opacity-80 lg:max-w-769 relative">
-                  #{number}
-                </p>
+                {number && (
+                  <p className="leading-4 text-primary opacity-80 lg:max-w-769 relative">
+                    #{number}
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -681,7 +687,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
         </div>
       ) : (
         // render guest card in profile page
-        <div className="flex flex-col bg-cardsBackground min-w-[250px] w-full max-w-[280px] md:w-[350px] lg:w-[320px] min-h-[200px] rounded-lg justify-between p-0 my-6 shadow-lg">
+        <div className="flex flex-col bg-cardsBackground min-w-[280px] w-full md:w-[350px] lg:w-[320px] min-h-[200px] rounded-lg justify-between p-0 my-6 shadow-lg">
           <div className="flex flex-col-reverse md:flex-row justify-between min-h-[160px] mx-4 md:mx-0">
             <div className="flex flex-col justify-start ml-[4px] md:ml-3 w-full md:w-1/2 mr-auto mb-2 mt-4 md:mt-8">
               <h2
@@ -699,11 +705,13 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
               >
                 {team}
               </p>
-              <p
-                className={`${sourceSans3.className} text-sm md:text-base leading-5 text-start text-primary opacity-80 lg:max-w-769 relative`}
-              >
-                #{number}
-              </p>
+              {number && (
+                <p
+                  className={`${sourceSans3.className} text-sm md:text-base leading-5 text-start text-primary opacity-80 lg:max-w-769 relative`}
+                >
+                  #{number}
+                </p>
+              )}
             </div>
             <div className="-mt-0 md:-mt-6 w-full md:w-1/2 h-56 md:h-36 relative">
               {card_url ? (
