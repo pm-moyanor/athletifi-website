@@ -60,9 +60,8 @@ const filterAndKeepBestInvite = (
   cardId: string | null,
 ): Invites[] => {
   if (!cardId) return [];
-
+  console.log('line 63', invites);
   const inviteMap: { [email: string]: Invites } = {};
-
   invites
     .filter((invite) => invite.card_image_id === cardId)
     .forEach((invite) => {
@@ -88,9 +87,12 @@ const getFilteredInvites = (
   invites: Invites[],
   cardData: ICardData,
 ): Invites[] => {
+  const typeOwnerInvitationFilter = invites.filter(
+    (invitation) => invitation.inviter_email !== invitation.guest_email,
+  );
   const cardId = cardData.ownedCardInfo?.card_id;
   if (cardId) {
-    return filterAndKeepBestInvite(invites, cardId);
+    return filterAndKeepBestInvite(typeOwnerInvitationFilter, cardId);
   }
   return [];
 };

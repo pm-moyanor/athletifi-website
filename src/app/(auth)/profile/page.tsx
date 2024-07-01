@@ -92,6 +92,10 @@ const Profile = () => {
         inviteTitle = 'Invitation Success';
         inviteMessage =
           'You have successfully accepted the invitation to access this card. You can now view and manage this card from your dashboard.';
+      } else if (inviteData.invitation.invite_status === 'SUCCESS_OWNER_SET') {
+        inviteTitle = 'Registration Success';
+        inviteMessage =
+          'Thank you for registering! You have successfully claimed your card. You can now view and manage it from your dashboard. If you have any questions, feel free to contact our support team.';
       }
 
       // Set the invite status state with the title and message
