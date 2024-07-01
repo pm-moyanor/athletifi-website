@@ -310,7 +310,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
             </div>
             <div className=" w-full max-w-[1030px] my-4 md:my-8 border-t border-opacity-50 border-partnersBorders"></div>
             <div className="relative flex flex-col pb-4  lg:max-w-[1030px] items-center justify-center w-full">
-              <div className="mb-12 mx-2  flex flex-col md:flex-row gap-4 w-full">
+              <div className="mb-4 mx-2  flex flex-col md:flex-row gap-4 w-full">
                 <div className="text-base text-primary min-w-[280px] w-[280px]">
                   <p className="pb-[2px]">{datetime}hs</p>
                   <p className="pb-[2px]">{location}</p>
@@ -329,9 +329,9 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
                   )}
                 </div>
 
-                <div className="w-full mt-2 md:mt-0">
+                <div className="w-full md:mt-0">
                   {match_summary && (
-                    <div className="w-full mt-2 md:mt-0">
+                    <div className="w-full mt-12 md:mt-0">
                       <p className="text-base tracking-wide font-light">
                         {match_summary}
                       </p>
