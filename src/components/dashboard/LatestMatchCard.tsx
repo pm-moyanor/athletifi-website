@@ -128,7 +128,7 @@ const LatestMatch: React.FC = () => {
               </div>
             </>
           )}
-          {latestPlayerRatings && latestPlayerRatings.length > 0 ? (
+          {latestPlayerRatings && latestPlayerRatings.length > 0 && (
             <div className="flex justify-around items-center mt-10 md:mt-6">
               {latestPlayerRatings.map((rating, idx) => (
                 <RatingBox
@@ -137,11 +137,6 @@ const LatestMatch: React.FC = () => {
                   rating={rating}
                 />
               ))}
-            </div>
-          ) : (
-            <div className="flex text-gray-500 justify-center items-center">
-              We are currently working on getting more data. Please come back
-              soon.
             </div>
           )}
         </div>
