@@ -54,7 +54,7 @@ const LatestMatch: React.FC = () => {
             <>
               <div className=" flex flex-col md:flex-row justify-between">
                 <h1 className="text-[24px] font-semibold">Latest Match</h1>
-                <div className="flex flex-col justify-between h-[68px] items-center md:items-end mt-4 md:mt-0 text-sm font-light">
+                <div className="flex flex-col justify-start gap-[3px] items-center md:items-end mt-4 md:mt-0 text-sm font-light">
                   <p className="text-center md:text-right">
                     {latestMatch?.datetime}
                   </p>
@@ -123,20 +123,20 @@ const LatestMatch: React.FC = () => {
               </div>
             </>
           )}
-          {latestPlayerRatings === null ? (
-            <div className="flex text-gray-500 justify-center items-center">
-              We are currently working on getting more data. Please come back
-              soon
-            </div>
-          ) : (
+          {latestPlayerRatings && latestPlayerRatings.length > 0 ? (
             <div className="flex justify-around items-center mt-10 md:mt-6">
-              {latestPlayerRatings?.map((rating, idx) => (
+              {latestPlayerRatings.map((rating, idx) => (
                 <RatingBox
                   key={idx}
                   isLast={idx === latestPlayerRatings.length - 1}
                   rating={rating}
                 />
               ))}
+            </div>
+          ) : (
+            <div className="flex text-gray-500 justify-center items-center">
+              We are currently working on getting more data. Please come back
+              soon.
             </div>
           )}
         </div>
