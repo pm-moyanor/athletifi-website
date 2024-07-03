@@ -95,14 +95,19 @@ const LatestMatch: React.FC = () => {
                       />
                     )}
                   </div>
-
-                  <p className="text-lg h-full md:items-center pt-2 lg:pt-0 px-2 md:px-4">{`${latestMatch?.home_score}`}</p>
                 </div>
-                <p className="px-2 h-full mt-4 md:mt-0 flex items-start md:items-center">
-                  -
-                </p>
+                <div className="flex items-center">
+                  {' '}
+                  <p className="text-lg h-full md:items-center pt-2 lg:pt-0 px-2 md:px-4">
+                    {`${latestMatch?.home_score}`}
+                  </p>
+                  <p className="px-2 h-full flex items-center justify-center">
+                    -
+                  </p>
+                  <p className="text-lg  h-full flex md:items-center pt-2 lg:pt-0 px-2 md:px-4">{`${latestMatch?.away_score}`}</p>
+                </div>
+
                 <div className="flex  md:items-center h-full w-1/2">
-                  <p className="text-lg  h-full flex md:items-center pt-2 lg:pt-0 px-2 md:px-4 ">{`${latestMatch?.away_score}`}</p>
                   <div className="flex flex-col w-full md:flex-row items-center">
                     {!!latestMatch?.away_club_logo && (
                       <Image
