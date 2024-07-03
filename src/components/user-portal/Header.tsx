@@ -5,16 +5,12 @@ import { faUser, faGear, faXmark } from '@fortawesome/free-solid-svg-icons';
 import PortalNav from './PortalNav';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUserData } from '@/states/userStore';
-const dummyDataUser = {
-  name: 'Daniel Carrillo',
-};
 
 interface HeaderProps {
   pageTitle: string;
 }
 
 const Header: FC<HeaderProps> = ({ pageTitle }) => {
-  const [user] = useState(dummyDataUser);
   const [isOpenSideNav, setIsOpenSideNav] = useState(false);
   const { userData } = useUserData();
   useEffect(() => {

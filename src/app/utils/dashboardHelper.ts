@@ -20,12 +20,11 @@ export const attributeConfigs: IAttributeConfig = {
   },
   mentality: {
     color: '#FC6713',
-    description: `The mentality rating evaluates the player's psychological strengths on the field. It looks at their assertiveness in making forward passes, their composure under pressure, and their ability to draw fouls from opponents. This rating is based on the player's success rate in attempting forward passes, the frequency of fouls they receive, and how well they maintain their composure throughout the game. A strong mentality rating suggests that the player is confident, makes bold decisions, and can handle the mental challenges of the game.`
+    description: `The mentality rating evaluates the player's psychological strengths on the field. It looks at their assertiveness in making forward passes, their composure under pressure, and their ability to draw fouls from opponents. This rating is based on the player's success rate in attempting forward passes, the frequency of fouls they receive, and how well they maintain their composure throughout the game. A strong mentality rating suggests that the player is confident, makes bold decisions, and can handle the mental challenges of the game.`,
   },
   defending: {
     color: '#5A54A2',
     description: `The defending rating assesses the player's contribution to the team's defense. It considers their ability to make successful clearances, interventions, tackles, and win ground duels against opponents. This rating is calculated based on the frequency and success rate of the player's defensive actions. A high defending rating indicates that the player is proactive in disrupting the opposition's attacks and is effective in regaining possession of the ball for their team.`,
-    
   },
 };
 
