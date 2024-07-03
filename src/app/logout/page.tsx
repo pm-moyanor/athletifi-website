@@ -11,7 +11,7 @@ const LogoutPage = () => {
 
   return (
     <>
-    <Header/>
+      <Header />
       <CommonHero hero={hero} />
       <LoggedOut />
       <Footer />

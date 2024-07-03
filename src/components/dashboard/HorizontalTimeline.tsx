@@ -5,7 +5,7 @@ interface HorizontalTimelineProps {
   currentItem: number;
   handlePlayClick: (index: number) => void;
   timestamps: string[];
-  convertToSeconds: (string) => void;
+  convertToSeconds: (timestamp: string) => number;
 }
 
 const HorizontalTimeline: React.FC<HorizontalTimelineProps> = ({
@@ -16,7 +16,7 @@ const HorizontalTimeline: React.FC<HorizontalTimelineProps> = ({
   timestamps,
 }) => {
   const timelineRef = useRef<HTMLDivElement>(null);
-  const [timelineWidth, setTimelineWidth] = useState(window.innerWidth);
+  const [, setTimelineWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     setTimelineWidth(timelineRef.current?.offsetWidth || 0);
@@ -38,7 +38,7 @@ const HorizontalTimeline: React.FC<HorizontalTimelineProps> = ({
     return (timeInSec / totalVideoDuration) * timelineWidth;
   };
 
-  const handleClick = (index: number, time: string) => {
+  const handleClick = (index: number) => {
     setCurrentItem(index);
   };
 
@@ -63,7 +63,7 @@ const HorizontalTimeline: React.FC<HorizontalTimelineProps> = ({
             <div
               onClick={() => {
                 handlePlayClick(index);
-                handleClick(index, time);
+                handleClick(index);
               }}
               className={`rounded-full cursor-pointer ${
                 currentItem === index ? 'bg-skyblue' : 'bg-gray-300'

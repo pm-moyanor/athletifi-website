@@ -48,7 +48,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
 
   const [currentItem, setCurrentItem] = useState<number>(-1);
   const [isHighlightPlaying, setIsHighlightPlaying] = useState(false);
-  const muxPlayerRef = useRef<MuxPlayer>(null);
+  const muxPlayerRef = useRef<typeof MuxPlayer>(null);
   const [highlightProgress, setHighlightProgress] = useState<number>(0); // State for highlight progress
   const intervalRef = useRef<NodeJS.Timeout | null>(null); // Ref to store interval ID
 
@@ -115,7 +115,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
 
       if (!muxPlayerRef.current.pauseListenerAdded) {
         muxPlayerRef.current.addEventListener('pause', handlePause);
-        (muxPlayerRef.current as any).pauseListenerAdded = true;
+        muxPlayerRef.current.pauseListenerAdded = true;
       }
     } else {
       console.warn("MuxPlayer element not found. Cue points can't be added.");
