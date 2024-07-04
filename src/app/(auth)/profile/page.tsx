@@ -16,7 +16,7 @@ import { useAtom } from 'jotai';
 import { postHelperResponseAtom } from '@/states/userStore';
 import AlertModal from '@/components/common/AlertModal';
 import { AlertModalType } from '@/types/AlertModalType';
-import { GuestCards, OwnedCards } from '@/types/User.type';
+import { GuestCards, invitationData, OwnedCards } from '@/types/User.type';
 import { IProfileProps } from '@/types/Dashboard.type';
 
 // import { userDataAtom } from '@/states/userStore';
@@ -53,6 +53,9 @@ const Profile = () => {
     (card) => card.guestCardInfo.status === 'accepted',
   );
 
+  const inviteDataInvitation: invitationData | null =
+    inviteData as invitationData | null;
+
   // This useEffect hook runs whenever the inviteData changes
   useEffect(() => {
     // Get the value of 'hasShownModal' from local storage
@@ -60,8 +63,8 @@ const Profile = () => {
     // If the modal has not been shown and there is valid invite data
     if (
       !hasShownModal &&
-      inviteData &&
-      inviteData.invitation.invite_id &&
+      inviteDataInvitation &&
+      inviteDataInvitation.invitation.invite_id &&
       hasSetState === false
       // inviteData.invitation.invite_status !== 'SUCCESS'
     ) {
@@ -69,30 +72,34 @@ const Profile = () => {
       let inviteMessage: null | string = null;
 
       // Set the invite message based on the invite status
-      if (inviteData.invitation.invite_status === 'REVOKED') {
+      if (inviteDataInvitation.invitation.invite_status === 'REVOKED') {
         inviteTitle = 'Card Access Revoked';
         inviteMessage =
           'We understand you were previously granted access to this card. However, the card owner has chosen to revoke your access privileges. We apologize for any inconvenience this may cause.';
-      } else if (inviteData.invitation.invite_status === 'EXPIRED') {
+      } else if (inviteDataInvitation.invitation.invite_status === 'EXPIRED') {
         inviteTitle = 'Invitation Expired';
         inviteMessage =
           'The access you were granted to this card has now expired. The card owner may choose to reinstate your access if they wish. Thank you for your understanding.';
       } else if (
-        inviteData.invitation.invite_status === 'UNEXPECTED_STATUS' ||
-        inviteData.invitation.invite_status === 'NOT_FOUND'
+        inviteDataInvitation.invitation.invite_status === 'UNEXPECTED_STATUS' ||
+        inviteDataInvitation.invitation.invite_status === 'NOT_FOUND'
       ) {
         inviteTitle = 'Invitation Error';
         inviteMessage =
           "Oops! We encountered an issue processing your invitation. It's possible the invitation doesn't exist or there was a problem on our end. Please double-check the invitation details or contact the card owner for assistance.";
-      } else if (inviteData.invitation.invite_status === 'ALREADY_ACCEPTED') {
+      } else if (
+        inviteDataInvitation.invitation.invite_status === 'ALREADY_ACCEPTED'
+      ) {
         inviteTitle = 'Invitation Already Accepted';
         inviteMessage =
           'This invitation has already been redeemed. If you believe this is an error, please contact our support team for assistance.';
-      } else if (inviteData.invitation.invite_status === 'SUCCESS') {
+      } else if (inviteDataInvitation.invitation.invite_status === 'SUCCESS') {
         inviteTitle = 'Invitation Success';
         inviteMessage =
           'You have successfully accepted the invitation to access this card. You can now view and manage this card from your dashboard.';
-      } else if (inviteData.invitation.invite_status === 'SUCCESS_OWNER_SET') {
+      } else if (
+        inviteDataInvitation.invitation.invite_status === 'SUCCESS_OWNER_SET'
+      ) {
         inviteTitle = 'Registration Success';
         inviteMessage =
           'Thank you for registering! You have successfully claimed your card. You can now view and manage it from your dashboard. If you have any questions, feel free to contact our support team.';
@@ -107,7 +114,7 @@ const Profile = () => {
       localStorage.setItem('hasShownModal', 'true');
       setHasSetState(true);
     }
-  }, [inviteData]); // This hook depends on the inviteData
+  }, [inviteDataInvitation]); // This hook depends on the inviteData
 
   // Function to close the modal by setting the invite status to null
   const closeModal = () => {

@@ -98,6 +98,20 @@ export type UserData = {
   invites: Invites | null;
 };
 
+export type invitationData = {
+  invitation: {
+    invite_id: string | null;
+    invite_status: string | null;
+  };
+  message: string | null;
+  user: {
+    amplify_id: string | null;
+    email: string | null;
+    id: string | null;
+    name: string | null;
+  };
+};
+
 export enum UpdatePwErrors {
   INVALIDPW = 'InvalidPasswordException',
   NOTAUTHORIZED = 'NotAuthorizedException',
