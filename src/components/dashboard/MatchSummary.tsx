@@ -175,7 +175,6 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
   const iconNameWithoutExtension = weather?.weatherIcon?.split('.')[0];
 
   const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
-  console.log(`weather 178 matchsummary.tsx`, localWeatherIcon);
 
   return (
     <div className="w-full flex-col justify-between items-center text-primary px-2">
