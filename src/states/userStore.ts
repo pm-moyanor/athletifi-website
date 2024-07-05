@@ -77,22 +77,15 @@ export let inviteIdAtom:
   | WritableAtom<string | null, [string | null], void>
   | PrimitiveAtom<string | null>;
 
-// Define `redirectUrlAtom` differently based on environment
-export let redirectAtom:
-  | WritableAtom<string | null, [string | null], void>
-  | PrimitiveAtom<string | null>;
-
 if (isBrowser()) {
   const expirationInMs = 5 * 60 * 60 * 1000; // 5 hours in milliseconds
   const storage = createStorageWithExpiration(localStorage, expirationInMs);
 
   // atomWithStorage accepts a storage interface and utilizes a tuple for updates
   inviteIdAtom = atomWithStorage<string | null>('inviteId', null, storage);
-  redirectAtom = atomWithStorage<string | null>('redirectUrl', null, storage);
 } else {
   // Simple atom that only stores a value without complex updates.
   inviteIdAtom = atom<string | null>(null);
-  redirectAtom = atom<string | null>(null);
 }
 
 function transformNotificationPreferences(dataArray: NotificationTypes[]) {

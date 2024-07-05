@@ -19,7 +19,6 @@ import { AlertModalType } from '@/types/AlertModalType';
 import { GuestCards, OwnedCards } from '@/types/User.type';
 import { IProfileProps } from '@/types/Dashboard.type';
 
-// import { userDataAtom } from '@/states/userStore';
 import { useAtomValue } from 'jotai';
 import {
   ownedCardsDataAtom,

@@ -1,4 +1,5 @@
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
+import Header from '@/components/common/Header';
 import { redirect } from 'next/navigation';
 
 export default async function DashboardLayout({
@@ -12,5 +13,10 @@ export default async function DashboardLayout({
   if (!isSignedIn)
     redirect(`/login?redirect=/dashboard/${params.cardId.join('/')}`);
 
-  return <>{children}</>;
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  );
 }

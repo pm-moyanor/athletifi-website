@@ -9,7 +9,7 @@ import {
 import { ComponentOverrides, FormFieldsOverrides } from './AuthOverrides';
 import { loginTheme, sourceSans3 } from './AuthTheme';
 import { useSearchParams } from 'next/navigation';
-import { inviteIdAtom, redirectAtom } from '@/states/userStore';
+import { inviteIdAtom } from '@/states/userStore';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -17,12 +17,17 @@ import { SignUpInput, signUp } from 'aws-amplify/auth';
 import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
 import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
 
-const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
+const AuthClient = ({
+  defaultScreen,
+  redirect,
+}: {
+  defaultScreen: string;
+  redirect: string | undefined;
+}) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const [inviteId, setInviteId] = useAtom(inviteIdAtom);
-  const [redirectUrl, setRedirectUrl] = useAtom(redirectAtom);
 
   useEffect(() => {
     const storedInviteId = searchParams.get('invite_id');
@@ -37,19 +42,14 @@ const AuthClient = ({ defaultScreen }: { defaultScreen: string }) => {
   ]);
 
   useEffect(() => {
-    const redirectPath = searchParams.get('redirect') || '/profile';
-    setRedirectUrl(redirectPath);
-  }, [searchParams, setRedirectUrl]);
-
-  useEffect(() => {
     if (route === 'authenticated') {
-      if (redirectUrl === null) {
-        router.push('/profile');
+      if (redirect) {
+        router.push(redirect);
       } else {
-        router.push(redirectUrl);
+        router.push('/profile');
       }
     }
-  }, [route, redirectUrl, router]);
+  }, [route, redirect, router]);
 
   const services = {
     async handleSignUp(formData: SignUpInput) {

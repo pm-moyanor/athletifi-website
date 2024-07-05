@@ -1,4 +1,5 @@
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
+import Header from '@/components/common/Header';
 import { redirect } from 'next/navigation';
 
 export default async function ProfileLayout({
@@ -9,5 +10,10 @@ export default async function ProfileLayout({
   const { isSignedIn } = await isAuthenticated();
   if (!isSignedIn) redirect('/login?redirect=/profile');
 
-  return <>{children}</>;
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  );
 }
