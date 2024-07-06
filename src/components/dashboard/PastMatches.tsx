@@ -21,7 +21,6 @@ const PastMatches: React.FC = () => {
   const cardIdValue = Array.isArray(cardId) ? cardId.join('/') : cardId;
   const { dashboardData } = useDashboardData(cardIdValue);
   const past_matches = dashboardData.data?.matchesList as IMatchDataExtended[];
-  console.log(past_matches);
   const today = new Date();
   const pastMatches =
     past_matches?.filter(
