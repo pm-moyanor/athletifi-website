@@ -104,3 +104,16 @@ export enum UpdatePwErrors {
   LIMITEXCEEDED = 'LimitExceededException',
   EMPTYPW = 'EmptyUpdatePassword',
 }
+export interface PostHelperResponse {
+  message: string;
+  user: {
+    id: string;
+    amplifyId: string;
+    email: string;
+    name: string;
+  };
+  invitation: {
+    invite_id: string | null;
+    invite_status: string | null;
+  };
+}
