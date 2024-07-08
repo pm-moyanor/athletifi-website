@@ -145,7 +145,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
     setShowRecap(true);
   };
   const dateTime = new Date(datetime as string);
-  const formattedDate = dateTime.toLocaleDateString('en-GB', {
+  const formattedDate = dateTime.toLocaleDateString('en-US', {
     weekday: 'long',
     day: '2-digit',
     month: 'short',
