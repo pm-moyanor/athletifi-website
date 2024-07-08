@@ -37,6 +37,15 @@ const LatestMatch: React.FC = () => {
   const iconNameWithoutExtension = weatherIcon?.split('.')[0];
   const localWeatherIcon = `/assets/weather-icons-webp/${iconNameWithoutExtension}.webp`;
 
+  function formatDate(datetime: string) {
+    return new Date(datetime).toLocaleDateString('en-US', {
+      weekday: 'long',
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    });
+  }
+
   return (
     <>
       {latestMatch?.datetime !== null && latestMatch?.datetime !== undefined ? (
@@ -56,7 +65,7 @@ const LatestMatch: React.FC = () => {
                 <h1 className="text-[24px] font-semibold">Latest Match</h1>
                 <div className="flex flex-col justify-start gap-[3px] items-center md:items-end mt-4 md:mt-0 text-sm font-light">
                   <p className="text-center md:text-right">
-                    {latestMatch?.datetime}
+                    {formatDate(latestMatch?.datetime)}
                   </p>
                   <p className="text-center md:text-right">
                     {latestMatch?.location}

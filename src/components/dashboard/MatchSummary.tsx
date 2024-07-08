@@ -310,7 +310,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
             <div className="relative flex flex-col pb-4  lg:max-w-[1030px] items-center justify-center w-full">
               <div className="mb-8 mx-2  flex flex-col md:flex-row gap-4 w-full">
                 <div className="text-base text-primary min-w-[280px] w-[280px]">
-                  <p className="pb-[2px]">{datetime}hs</p>
+                  <p className="pb-[2px]">{formattedDate}</p>
                   <p className="pb-[2px]">{location}</p>
                   {weather && (
                     <div className="flex  items-center justify-start">
