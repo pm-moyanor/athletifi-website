@@ -1,6 +1,6 @@
 'use client';
-import { OwnedCards, GuestCards } from '@/types/User.type';
-import { Source_Sans_3 } from 'next/font/google';
+
+import { OwnedCards, GuestCards, UserData } from '@/types/User.type';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
 import { useAtomValue } from 'jotai';
 import {
@@ -8,6 +8,7 @@ import {
   guestCardsDataAtom,
 } from '@/states/profileCardsDataStore';
 import { IProfileProps } from '@/types/Dashboard.type';
+import { sourceSans3 } from '@/app/utils/helpers';
 
 interface ICardData {
   result: IProfileProps;
@@ -15,14 +16,9 @@ interface ICardData {
   guestCardInfo: GuestCards;
 }
 
-const sourceSans3 = Source_Sans_3({
-  subsets: ['latin'],
-  display: 'swap',
-});
-
 //const card_url = '/assets/img/png/anderson-card-img.png';
 
-export default function ManageReferrals() {
+export default function ManageReferrals({ userData }: { userData: UserData }) {
   const ownedCardsData = useAtomValue(ownedCardsDataAtom) as ICardData[];
   const guestCardsData = useAtomValue(guestCardsDataAtom) as ICardData[];
 

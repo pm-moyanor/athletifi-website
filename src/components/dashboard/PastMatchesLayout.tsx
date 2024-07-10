@@ -7,16 +7,23 @@ const PastMatchesLayout: React.FC = () => {
   const pastMatchesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const updateHeight = () => {
-      if (pastMatchesRef.current) {
-        setHeight(pastMatchesRef.current.clientHeight);
+    const updateHeight = (entries: ResizeObserverEntry[]) => {
+      if (entries[0].contentRect) {
+        setHeight(entries[0].contentRect.height);
       }
     };
 
-    updateHeight();
-    window.addEventListener('resize', updateHeight);
+    const resizeObserver = new ResizeObserver(updateHeight);
 
-    return () => window.removeEventListener('resize', updateHeight);
+    if (pastMatchesRef.current) {
+      resizeObserver.observe(pastMatchesRef.current);
+    }
+
+    return () => {
+      if (pastMatchesRef.current) {
+        resizeObserver.unobserve(pastMatchesRef.current);
+      }
+    };
   }, []);
 
   return (

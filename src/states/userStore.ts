@@ -9,9 +9,8 @@ import {
   LatestChange,
   emptyLatestChange,
 } from '@/types/User.type';
-import { getCurrentUser } from 'aws-amplify/auth';
+import { fetchUserAttributes, getCurrentUser } from 'aws-amplify/auth';
 import { Hub } from '@aws-amplify/core';
-import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
 import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
 import {
   atom,
@@ -88,7 +87,9 @@ if (isBrowser()) {
   inviteIdAtom = atom<string | null>(null);
 }
 
-function transformNotificationPreferences(dataArray: NotificationTypes[]) {
+export function transformNotificationPreferences(
+  dataArray: NotificationTypes[],
+) {
   const tmp = { ...emptyNotifications };
   dataArray.map((item: keyof NotificationPreferences) => {
     tmp[item] = true;
@@ -105,15 +106,13 @@ async function fetchUserData(
   inviteId: string | null,
   setPostHelperResponse: (value: SetStateAction<UserState>) => void, // Specify the type of value as SetStateAction<UserState>
 ) {
-  let amplify_id, userAttributes, auth_method;
+  let amplify_id, userAttributes;
   if (currState.data) {
     // Use existing authenticated user details
     amplify_id = currState.data.amplify_id;
-    auth_method = currState.data.auth_method;
     userAttributes = {
       name: currState.data.name,
       email: currState.data.email,
-      email_verified: currState.data.email_verified,
     };
   } else {
     // Get authenticated user
@@ -121,17 +120,7 @@ async function fetchUserData(
       const user = await getCurrentUser();
       amplify_id = user.username;
 
-      if (
-        amplify_id.split('_').length > 1 &&
-        (amplify_id.split('_')[0] === 'google' ||
-          amplify_id.split('_')[0] === 'facebook')
-      ) {
-        auth_method = amplify_id.split('_')[0];
-      } else {
-        auth_method = 'email';
-      }
-
-      userAttributes = await handleFetchUserAttributes();
+      userAttributes = await fetchUserAttributes();
 
       const postData = await handlePostSignIn(userAttributes, inviteId);
       setPostHelperResponse(postData);
@@ -157,10 +146,8 @@ async function fetchUserData(
 
     const dataObject: UserData = {
       amplify_id: amplify_id,
-      auth_method: auth_method,
       name: userAttributes.name as string,
       email: userAttributes.email as string,
-      email_verified: userAttributes.email_verified as string,
       init_notifications: data.result.init_notifications,
       notifications:
         data.result.notifications_enabled.length > 0

@@ -8,7 +8,6 @@ import React, {
   useCallback,
 } from 'react';
 import Image from 'next/image';
-import { Source_Sans_3 } from 'next/font/google';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -19,11 +18,7 @@ import { useRouter } from 'next/navigation';
 import { IProfileProps } from '@/types/Dashboard.type';
 import { GuestCards, OwnedCards } from '@/types/User.type';
 import { Invites } from '@/types/User.type';
-
-const sourceSans3 = Source_Sans_3({
-  subsets: ['latin'],
-  display: 'swap',
-});
+import { sourceSans3 } from '@/app/utils/helpers';
 
 interface ICardData {
   result: IProfileProps;

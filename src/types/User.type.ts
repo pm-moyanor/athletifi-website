@@ -86,10 +86,8 @@ export type Invites = {
 
 export type UserData = {
   amplify_id: string | null;
-  auth_method: string | null;
   name: string | null;
   email: string | null;
-  email_verified: string | null;
   init_notifications: boolean | null;
   notifications: NotificationPreferences | null;
   user_delete_status: DeleteStatus | null;

@@ -7,15 +7,15 @@ import {
   useAuthenticator,
 } from '@aws-amplify/ui-react';
 import { ComponentOverrides, FormFieldsOverrides } from './AuthOverrides';
-import { loginTheme, sourceSans3 } from './AuthTheme';
+import { loginTheme } from './AuthTheme';
 import { useSearchParams } from 'next/navigation';
 import { inviteIdAtom } from '@/states/userStore';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { SignUpInput, signUp } from 'aws-amplify/auth';
-import handleFetchUserAttributes from '@/app/utils/auth/handleFetchUserAttributes';
+import { SignUpInput, fetchUserAttributes, signUp } from 'aws-amplify/auth';
 import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
+import { sourceSans3 } from '@/app/utils/helpers';
 
 const AuthClient = ({
   defaultScreen,
@@ -68,7 +68,7 @@ const AuthClient = ({
   // Listen for the sign-in event after user verifies their email and signs in
   useEffect(() => {
     if (user && route === 'authenticated') {
-      handleFetchUserAttributes()
+      fetchUserAttributes()
         .then((userAttributes) => {
           handlePostSignIn(userAttributes, inviteId).catch((err) => {
             console.error('Error in post sign-in:', err);

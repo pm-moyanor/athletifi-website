@@ -15,11 +15,8 @@ import {
   faPaperPlane,
   faMessage,
 } from '@fortawesome/free-solid-svg-icons';
-import { Source_Sans_3 } from 'next/font/google';
-const sourceSans3 = Source_Sans_3({
-  subsets: ['latin'],
-  display: 'swap',
-});
+import { sourceSans3 } from '@/app/utils/helpers';
+
 interface HelpPageProps {}
 
 const HelpPage: FC<HelpPageProps> = () => {

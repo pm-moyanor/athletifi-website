@@ -10,11 +10,14 @@ import {
 import handleFetchMFAPreference from '@/app/utils/auth/handleFetchMFAPreference';
 import { type FetchMFAPreferenceOutput } from 'aws-amplify/auth';
 import handleTOTPSetup from '@/app/utils/auth/handleTOTPSetup';
-import { useUserData } from '@/states/userStore';
 import RegisterMFA from '@/components/auth/RegisterMFA';
 import VerifyMFA from '@/components/auth/VerifyMFA';
 import EnabledMFAMessage from '@/components/auth/EnabledMFAMessage';
-import { ViewDeleteRequestState, DeleteStatus } from '@/types/User.type';
+import {
+  ViewDeleteRequestState,
+  DeleteStatus,
+  UserData,
+} from '@/types/User.type';
 import { UpdatePwErrors } from '@/types/User.type';
 import { updatePassword } from 'aws-amplify/auth';
 
@@ -32,8 +35,7 @@ interface UpdatePwFormElement extends HTMLFormElement {
 
 const MINLEN = 8;
 
-export default function AccountDetails() {
-  const { userData } = useUserData();
+export default function AccountDetails({ userData }: { userData: UserData }) {
   const [qrState, setQRState] = useState('off');
   const [qrSrc, setQRSrc] = useState<string | null | undefined>(null);
   const [qrKey, setQRKey] = useState<string>('');
@@ -165,8 +167,8 @@ export default function AccountDetails() {
   };
 
   async function handleDeleteRequest() {
-    if (userData.data?.amplify_id) {
-      await postHelper(userData.data.amplify_id);
+    if (userData.amplify_id) {
+      await postHelper(userData.amplify_id);
       setDeleteRequestState(ViewDeleteRequestState.CONFIRMED);
     }
   }
@@ -177,7 +179,7 @@ export default function AccountDetails() {
         Account Details
       </h2>
       <div className="flex justify-between items-center py-4 mx-2 md:mx-4 mt-4">
-        <div>{userData.data?.email}</div>
+        <div>{userData.email}</div>
       </div>
       <div className="flex justify-between items-center py-4 mx-2 md:mx-4 border-t border-t-partnersBorders border-opacity-50">
         <div>password: **********</div>
@@ -242,9 +244,7 @@ export default function AccountDetails() {
       )}
       <div className="flex justify-between items-center py-4 mx-2 md:mx-4 border-t border-t-partnersBorders border-opacity-50">
         <div>Two-factor authentication</div>
-        {userData.data?.auth_method !== 'email' ? (
-          <div>2FA is not compatible with social sign-in</div>
-        ) : currentMFA.enabled ? (
+        {currentMFA.enabled ? (
           <div
             className="flex items-center cursor-pointer"
             onClick={handleDisableTOTP}
@@ -281,8 +281,8 @@ export default function AccountDetails() {
       {qrState === 'enabled' && <EnabledMFAMessage />}
       <div className="flex justify-between items-center py-4 mx-2 md:mx-4 border-t border-t-partnersBorders border-opacity-50">
         <div className="text-sm">Delete Account</div>
-        {userData.data?.user_delete_status === DeleteStatus.PENDING ||
-        userData.data?.user_delete_status === DeleteStatus.COMPLETED ? (
+        {userData.user_delete_status === DeleteStatus.PENDING ||
+        userData.user_delete_status === DeleteStatus.COMPLETED ? (
           <div className="text-red-500 text-sm">
             Your delete request is in progress. Our team will confirm with you
             once completed.

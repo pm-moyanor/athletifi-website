@@ -1,3 +1,5 @@
+'use client';
+
 import { FC, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -5,6 +7,7 @@ import { faUser, faGear, faXmark } from '@fortawesome/free-solid-svg-icons';
 import PortalNav from './PortalNav';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUserData } from '@/states/userStore';
+import { sourceSans3 } from '@/app/utils/helpers';
 const dummyDataUser = {
   name: 'Daniel Carrillo',
 };
@@ -45,7 +48,12 @@ const Header: FC<HeaderProps> = ({ pageTitle }) => {
     },
   };
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className={sourceSans3.className}
+    >
       <AnimatePresence>
         {isOpenSideNav && (
           <motion.div
@@ -86,7 +94,7 @@ const Header: FC<HeaderProps> = ({ pageTitle }) => {
           {pageTitle}
         </motion.h1>
       </div>
-    </>
+    </motion.div>
   );
 };
 

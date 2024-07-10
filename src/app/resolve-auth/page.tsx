@@ -2,7 +2,7 @@ import CommonHero from '@/components/common/CommonHero';
 import { Hero } from '@/types/CommonHero.type';
 import ResolveAuth from '@/components/auth/ResolveAuth';
 import Footer from '@/components/common/Footer';
-import Navbar from '@/components/dashboard/Navbar';
+import Header from '@/components/common/Header';
 
 const hero: Hero = {
   heading: '',
@@ -12,7 +12,7 @@ const ResolveAuthPage = () => {
   return (
     <>
       <div>
-        <Navbar />
+        <Header />
         <CommonHero hero={hero} />
       </div>
       <ResolveAuth />

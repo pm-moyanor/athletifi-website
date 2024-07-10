@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useEffect, useRef, useState, startTransition } from 'react';
 import Link from 'next/link';
 import {
@@ -388,7 +389,10 @@ const Header: React.FC = () => {
       {userData.data &&
         userData.data.init_notifications === false &&
         !closedModal && (
-          <UserNotificationsModal setClosedModal={setClosedModal} />
+          <UserNotificationsModal
+            amplify_id={userData.data.amplify_id as string}
+            setClosedModal={setClosedModal}
+          />
         )}
     </header>
   );
