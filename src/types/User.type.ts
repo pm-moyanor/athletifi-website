@@ -60,20 +60,45 @@ export enum ViewDeleteRequestState {
   CONFIRMED = 'confirmed',
 }
 
-export type OwnedCards = {
+export interface ICards {
   card_id: string | null;
   card_image_url: string | null;
   dashboard_slug: string | null;
+  name: string | null;
+  number: number | null;
+  team: string | null;
+  club: string | null;
+  club_logo: string | null;
+  invite_id?: string | null;
+  status?: string | null;
+  inviter_email?: string | null;
+}
+
+export const emptyOwnedCard: ICards = {
+  card_id: null,
+  card_image_url: null,
+  dashboard_slug: null,
+  name: null,
+  number: null,
+  team: null,
+  club: null,
+  club_logo: null,
 };
 
-export type GuestCards = {
-  invite_id: string | null;
-  status: string | null;
-  card_id: string | null;
-  card_image_url: string | null;
-  dashboard_slug: string | null;
-  inviter_email: string | null;
+export const emptyGuestCard: ICards = {
+  invite_id: null,
+  status: null,
+  card_id: null,
+  card_image_url: null,
+  dashboard_slug: null,
+  inviter_email: null,
+  name: null,
+  number: null,
+  team: null,
+  club: null,
+  club_logo: null,
 };
+
 export type Invites = {
   invite_id: string | null;
   guest_email: string | null;
@@ -91,9 +116,9 @@ export type UserData = {
   init_notifications: boolean | null;
   notifications: NotificationPreferences | null;
   user_delete_status: DeleteStatus | null;
-  owned_cards: OwnedCards | null;
-  guest_cards: GuestCards | null;
-  invites: Invites | null;
+  owned_cards: ICards[] | null;
+  guest_cards: ICards[] | null;
+  invites: Invites[] | null;
 };
 
 export enum UpdatePwErrors {

@@ -4,7 +4,7 @@ import Footer from '@/components/common/Footer';
 import AccountDetails from '@/components/user-portal/AccountDetails';
 import Notifications from '@/components/user-portal/Notifications';
 import ManageReferrals from '@/components/user-portal/ManageReferrals';
-import Header from '@/components/user-portal/Header';
+import ProfileHeader from '@/components/user-portal/ProfileHeader';
 import { UserData } from '@/types/User.type';
 import { getUserData } from '@/actions/userDataActions';
 
@@ -14,7 +14,7 @@ export default async function SettingsPage() {
   return (
     <div className="overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground ">
       <main className="mx-4 md:mx-10 my-32 md:my-36 lg:my-48 text-sm md:text-base">
-        <Header pageTitle={'Settings'} />
+        <ProfileHeader pageTitle={'Settings'} userData={userData as UserData} />
         <div className="w-full lg:max-w-[880px] mx-auto gap-4">
           <AccountDetails userData={userData as UserData} />
           <Notifications userData={userData as UserData} />

@@ -3,22 +3,24 @@ import { Hero } from '@/types/CommonHero.type';
 import ResolveAuth from '@/components/auth/ResolveAuth';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
+import { getUserData } from '@/actions/userDataActions';
+import { UserData } from '@/types/User.type';
 
-const hero: Hero = {
-  heading: '',
-};
+export default async function ResolveAuthPage() {
+  const hero: Hero = {
+    heading: '',
+  };
 
-const ResolveAuthPage = () => {
+  const userData = await getUserData();
+
   return (
     <>
       <div>
-        <Header />
+        <Header userData={userData as UserData} />
         <CommonHero hero={hero} />
       </div>
       <ResolveAuth />
       <Footer />
     </>
   );
-};
-
-export default ResolveAuthPage;
+}

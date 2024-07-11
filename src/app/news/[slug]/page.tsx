@@ -8,6 +8,8 @@ import TargetArticleContent from '@/components/news-insights/TargetArticleConten
 import { filterTargetArticle } from '@/utils/helpers';
 import { getNewsList } from '@/app/utils/ApiHelper';
 import { NewsPageContext } from '@/types/News.type';
+import { getUserData } from '@/actions/userDataActions';
+import { UserData } from '@/types/User.type';
 
 async function getNewsArticle(slug: string) {
   const response = await fetch(
@@ -45,11 +47,13 @@ export default async function NewsArticleSlugPage({ params }: NewsPageContext) {
     title: 'News and Updates for AthletiFi Sports Cards',
   };
 
+  const userData = await getUserData();
+
   return (
     <>
       <div className="overflow-hidden">
         <div className="news-page__hero-bg bg-center bg-no-repeat bg-cover">
-          <Header />
+          <Header userData={userData as UserData} />
           <CommonHero hero={hero} />
         </div>
         <TargetArticleContent newsArticle={newsArticle} />
