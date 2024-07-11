@@ -48,7 +48,6 @@ const filterAndKeepBestInvite = (
   cardId: string | null,
 ): Invites[] => {
   if (!cardId) return [];
-  console.log('line 63', invites);
   const inviteMap: { [email: string]: Invites } = {};
   invites
     .filter((invite) => invite.card_image_id === cardId)

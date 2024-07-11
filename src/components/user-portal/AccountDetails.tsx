@@ -23,6 +23,7 @@ import { updatePassword } from 'aws-amplify/auth';
 
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { deleteUserRequest } from '@/actions/userDataActions';
 
 interface FormElements extends HTMLFormControlsCollection {
   currentPw: HTMLInputElement;
@@ -150,27 +151,9 @@ export default function AccountDetails({ userData }: { userData: UserData }) {
     }
   }
 
-  const baseURL = process.env.NEXT_PUBLIC_API_URL;
-
-  const postHelper = async (amplify_id: string) => {
-    const response = await fetch(`${baseURL}/deleteUserRequest`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        amplify_id: amplify_id,
-      }),
-    });
-    const data = await response.json();
-    return data;
-  };
-
-  async function handleDeleteRequest() {
-    if (userData.amplify_id) {
-      await postHelper(userData.amplify_id);
-      setDeleteRequestState(ViewDeleteRequestState.CONFIRMED);
-    }
+  async function handleDeleteRequest(amplifyId: string) {
+    const result = await deleteUserRequest(amplifyId);
+    if (result) setDeleteRequestState(ViewDeleteRequestState.CONFIRMED);
   }
 
   return (
@@ -303,7 +286,9 @@ export default function AccountDetails({ userData }: { userData: UserData }) {
                 </div>
                 <button
                   className="mx-3 hover:text-skyblue hover:underline"
-                  onClick={handleDeleteRequest}
+                  onClick={() =>
+                    handleDeleteRequest(userData.amplify_id as string)
+                  }
                 >
                   Yes
                 </button>

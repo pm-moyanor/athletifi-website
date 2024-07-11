@@ -12,10 +12,10 @@ export default async function DashboardLayout({
   params: { cardId: string[] };
 }) {
   const { isSignedIn } = await isAuthenticated();
-  if (!isSignedIn)
-    redirect(`/login?redirect=/dashboard/${params.cardId.join('/')}`);
-
   const userData = await getUserData();
+
+  if (!isSignedIn || !userData)
+    redirect(`/login?redirect=/dashboard/${params.cardId.join('/')}`);
 
   return (
     <>

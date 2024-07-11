@@ -7,10 +7,10 @@ import {
   emptyNotifications,
 } from '@/types/User.type';
 import { revalidateTag } from 'next/cache';
-import { notFound, redirect } from 'next/navigation';
 import { isAuthenticated } from '@/utils/auth/amplify-utils';
 
 const userDataUrl = `${process.env.NEXT_BACKEND_API_URL}/userData`;
+const deleteUserDataUrl = `${process.env.NEXT_BACKEND_API_URL}/purgeUserData`;
 
 function transformNotificationPreferences(dataArray: NotificationTypes[]) {
   const tmp = { ...emptyNotifications };
@@ -23,7 +23,7 @@ function transformNotificationPreferences(dataArray: NotificationTypes[]) {
 export async function getUserData() {
   try {
     const { userId, name, email } = await isAuthenticated();
-    if (!userId) redirect('/login');
+    if (!userId) return null;
 
     const fetchUrl = `${userDataUrl}?amplify_id=${userId}`;
     const response = await fetch(fetchUrl, {
@@ -37,11 +37,10 @@ export async function getUserData() {
 
     const responseJson = await response.json();
     if (responseJson.message !== 'Success') {
-      notFound();
+      return null;
     }
 
     const userData = responseJson.result;
-    console.log(userData);
 
     const dataObject: UserData = {
       amplify_id: userId,
@@ -60,7 +59,7 @@ export async function getUserData() {
 
     return dataObject;
   } catch (error) {
-    console.error('Data fetch error %s', error);
+    console.error('getUserData error: %s', error);
     return null;
   }
 }
@@ -137,6 +136,33 @@ export async function deleteNotification(
       : `('${notificationType}')`;
   try {
     await disableNotificationHelper(amplifyId, notification_types);
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+
+  revalidateTag('userData');
+  return true;
+}
+
+async function deleteUserHelper(amplify_id: string) {
+  const response = await fetch(deleteUserDataUrl, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: process.env.NEXT_PUBLIC_TEMP_API_AUTH,
+    },
+    body: JSON.stringify({
+      amplify_id: amplify_id,
+    }),
+  });
+  const data = await response.json();
+  return data;
+}
+
+export async function deleteUserRequest(amplify_id: string) {
+  try {
+    await deleteUserHelper(amplify_id);
   } catch (error) {
     console.error(error);
     return false;

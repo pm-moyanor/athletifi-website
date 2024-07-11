@@ -60,7 +60,7 @@ export enum ViewDeleteRequestState {
   CONFIRMED = 'confirmed',
 }
 
-export interface ICards {
+export type ICards = {
   card_id: string | null;
   card_image_url: string | null;
   dashboard_slug: string | null;
@@ -72,7 +72,7 @@ export interface ICards {
   invite_id?: string | null;
   status?: string | null;
   inviter_email?: string | null;
-}
+};
 
 export const emptyOwnedCard: ICards = {
   card_id: null,
