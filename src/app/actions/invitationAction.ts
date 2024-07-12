@@ -3,7 +3,7 @@
 //TODO: test invitation function
 import axiosClient from '@/utils/axiosClient';
 
-export async function testInvitation(
+export async function invitationAction(
   cardID: string | null,
   formData: FormData,
 ) {
