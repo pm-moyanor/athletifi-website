@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
 
-import { addNotification, deleteNotification } from '@/actions/userDataActions';
+import { addNotification, deleteNotification } from '@/app/actions/userDataActions';
 
 const DELAY_TIMEOUT = 3;
 

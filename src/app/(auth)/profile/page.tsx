@@ -1,4 +1,4 @@
-import { getUserData } from '@/actions/userDataActions';
+import { getUserData } from '@/app/actions/userDataActions';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 import Header from '@/components/common/Header';
 import Preloader from '@/components/common/Preloader';

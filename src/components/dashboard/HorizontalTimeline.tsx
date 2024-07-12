@@ -5,7 +5,7 @@ interface HorizontalTimelineProps {
   currentItem: number;
   handlePlayClick: (index: number) => void;
   timestamps: string[];
-  convertToSeconds: (string) => number;
+  convertToSeconds: (timestamp: string) => number;
 }
 
 const HorizontalTimeline: React.FC<HorizontalTimelineProps> = ({
@@ -63,7 +63,7 @@ const HorizontalTimeline: React.FC<HorizontalTimelineProps> = ({
             <div
               onClick={() => {
                 handlePlayClick(index);
-                handleClick(index, time);
+                handleClick(index);
               }}
               className={`rounded-full cursor-pointer ${
                 currentItem === index ? 'bg-skyblue' : 'bg-gray-300'

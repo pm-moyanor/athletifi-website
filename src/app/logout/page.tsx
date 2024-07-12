@@ -3,7 +3,7 @@ import { Hero } from '@/types/CommonHero.type';
 import LoggedOut from '@/components/auth/LoggedOut';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import { getUserData } from '@/actions/userDataActions';
+import { getUserData } from '@/app/actions/userDataActions';
 import { UserData } from '@/types/User.type';
 
 export default async function LogoutPage() {

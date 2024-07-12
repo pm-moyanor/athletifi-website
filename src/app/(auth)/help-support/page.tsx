@@ -5,7 +5,7 @@ import BackToTop from '@/components/common/BackToTop';
 import Footer from '@/components/common/Footer';
 import Accordion from '@/components/user-portal/FAQ';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
-import { getUserData } from '@/actions/userDataActions';
+import { getUserData } from '@/app/actions/userDataActions';
 import { UserData } from '@/types/User.type';
 import { redirect } from 'next/navigation';
 

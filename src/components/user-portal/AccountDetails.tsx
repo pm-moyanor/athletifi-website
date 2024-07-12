@@ -23,7 +23,7 @@ import { updatePassword } from 'aws-amplify/auth';
 
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { deleteUserRequest } from '@/actions/userDataActions';
+import { deleteUserRequest } from '@/app/actions/userDataActions';
 
 interface FormElements extends HTMLFormControlsCollection {
   currentPw: HTMLInputElement;
@@ -73,7 +73,10 @@ export default function AccountDetails({ userData }: { userData: UserData }) {
       toast.success('Password has been successfully updated!', toastOptions);
     } catch (err) {
       console.error(JSON.stringify(err));
-      const errMsg = renderErrorMessage(err.name);
+      let errMsg = 'An unknown error occurred';
+      if (err instanceof Error) {
+        errMsg = renderErrorMessage(err.name);
+      }
       toast.error(
         `We hit a snag trying to update your password: ${errMsg}`,
         toastOptions,
@@ -136,10 +139,10 @@ export default function AccountDetails({ userData }: { userData: UserData }) {
     handleFetchMFAPreference().then((data) => setCurrentMFA(data));
   }, [qrState]);
 
-  function renderErrorMessage(param: UpdatePwErrors) {
-    switch (param) {
+  function renderErrorMessage(param: string): string {
+    switch (param as UpdatePwErrors) {
       case UpdatePwErrors.INVALIDPW:
-        return 'Password needs to be atleast 8 characters';
+        return 'Password needs to be at least 8 characters';
       case UpdatePwErrors.NOTAUTHORIZED:
         return 'Your current password is incorrect';
       case UpdatePwErrors.LIMITEXCEEDED:
@@ -147,7 +150,7 @@ export default function AccountDetails({ userData }: { userData: UserData }) {
       case UpdatePwErrors.EMPTYPW:
         return 'New password is empty, please try again';
       default:
-        return `Error ${param}`;
+        return `Error: ${param}`;
     }
   }
 

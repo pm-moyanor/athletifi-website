@@ -11,13 +11,16 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { useAtomValue, useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { invitesDataAtom } from '@/states/invitesDataStore';
-import { inviteRevokeActionAtom } from '@/states/InviteRevokeStore';
+//import { inviteRevokeActionAtom } from '@/states/InviteRevokeStore';
 import { useRouter } from 'next/navigation';
 import { ICards } from '@/types/User.type';
 import { Invites } from '@/types/User.type';
 import { sourceSans3 } from '@/app/utils/helpers';
+import { invitationAction } from '@/app/actions/invitationAction';
+import { inviteRevokeAction } from '@/app/actions/inviteRevokeAction';
+import { inviteDeclineAction } from '@/app/actions/inviteDeclineAction';
 
 interface ICardThumbnailProps {
   cardData: ICards;
@@ -89,7 +92,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
   isOwned,
   inSettings,
 }) => {
-  const [, inviteRevokeAction] = useAtom(inviteRevokeActionAtom);
   const router = useRouter();
   const [refreshKey, setRefreshKey] = useState(0); // State to trigger re-render
   const [filteredInvites, setFilteredInvites] = useState<Invites[]>([]);
@@ -135,16 +137,66 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
       [name]: value,
     }));
   };
-  //when submit, action to "invite", render success message, clear from and close toggle
-  const emailSubmit = (e: FormEvent) => {
+
+  // when submit, action to "invite", render success message, clear from and close toggle
+  // const emailSubmit = (e: FormEvent) => {
+  //   e.preventDefault();
+  //   if (invitation.email) {
+  //     inviteRevokeAction({
+  //       action: 'invite', // TODO: action goes here
+  //       guest_email: invitation.email,
+  //       card_image_id: cardData.ownedCardInfo.card_id,
+  //     })
+  //       .then((response) => {
+  //         if (
+  //           response.message ===
+  //           'WARNING: Invite to the same guest is already pending. No changes made.'
+  //         ) {
+  //           setDupeInvite({
+  //             isDupe: true,
+  //             email: invitation.email,
+  //           });
+  //           setInvitation({ name: '', email: '' });
+
+  //           // Delay the toggle by 5 seconds
+  //           return new Promise<void>((resolve) => {
+  //             setTimeout(() => {
+  //               setDupeInvite({
+  //                 isDupe: false,
+  //                 email: '',
+  //               });
+  //               resolve();
+  //             }, 5000);
+  //           });
+  //         } else {
+  //           setEmailSubmitted(true);
+  //           setInvitation({ name: '', email: '' });
+
+  //           // Delay the toggle by 2 seconds
+  //           return new Promise<void>((resolve) => {
+  //             setTimeout(() => {
+  //               setIsToggle(false);
+  //               setEmailSubmitted(false);
+  //               setRefreshKey((prevKey) => prevKey + 1);
+  //               resolve();
+  //             }, 3000);
+  //           });
+  //         }
+  //       })
+  //       .catch((error) => console.error('Failed to send invitation', error));
+  //   } else {
+  //     console.warn('invalid email');
+  //   }
+  // };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (invitation.email) {
-      inviteRevokeAction({
-        action: 'invite',
-        guest_email: invitation.email,
-        card_image_id: cardData.card_id,
-      })
+    const formData = new FormData(e.currentTarget);
+    const cardID = cardData.ownedCardInfo.card_id;
+    if (formData.get('email') && cardID) {
+      invitationAction(cardID, formData)
         .then((response) => {
+          console.log('line 213', response);
           if (
             response.message ===
             'WARNING: Invite to the same guest is already pending. No changes made.'
@@ -186,15 +238,31 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
     }
   };
   /////////////////////// action to "revoke"
-  const triggerRevokeOrInvite = (
+  // const triggerRevoke = (
+  //   inviteId: string | null,
+  //   card_name?: string | null,
+  // ) => {
+  //   inviteRevokeAction({
+  //     //TODO: action goes here
+  //     action: 'revoke',
+  //     inviteId: inviteId,
+  //     card_name: card_name,
+  //   })
+  //     .then(() => {
+  //       setRevokeSubmittedId(inviteId);
+  //       setTimeout(() => {
+  //         setRevokeSubmittedId(null);
+  //         setRefreshKey((prevKey) => prevKey + 1);
+  //       }, 3000);
+  //     })
+  //     .catch((error) => console.error('Failed to revoke invitation', error));
+  // };
+
+  const triggerRevoke = (
     inviteId: string | null,
     card_name?: string | null,
   ) => {
-    inviteRevokeAction({
-      action: 'revoke',
-      inviteId: inviteId,
-      card_name: card_name,
-    })
+    inviteRevokeAction(inviteId, card_name)
       .then(() => {
         setRevokeSubmittedId(inviteId);
         setTimeout(() => {
@@ -207,17 +275,34 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
 
   ///////////////////////////////////////////////////////////////////////////////////
   //IN CASE THE LOGIC IS THE SAME, ADD ACTION DECLINE ?
+  // const triggerDecline = (
+  //   inviteId: string | null,
+  //   owner_email?: string | null,
+  //   card_name?: string | null,
+  // ) => {
+  //   inviteRevokeAction({
+  //     //TODO: action goes here
+  //     action: 'revoke',
+  //     inviteId: inviteId,
+  //     owner_email: owner_email,
+  //     card_name: card_name,
+  //   })
+  //     .then(() => {
+  //       setDeclinedInviteId(inviteId);
+  //       setTimeout(() => {
+  //         setRevokeSubmittedId(null);
+  //       }, 3000);
+  //       triggerReRender();
+  //     })
+  //     .catch((error) => console.error('Failed to decline invitation', error));
+  // };
+
   const triggerDecline = (
     inviteId: string | null,
     owner_email?: string | null,
     card_name?: string | null,
   ) => {
-    inviteRevokeAction({
-      action: 'revoke',
-      inviteId: inviteId,
-      owner_email: owner_email,
-      card_name: card_name,
-    })
+    inviteDeclineAction(inviteId, owner_email, card_name)
       .then(() => {
         setDeclinedInviteId(inviteId);
         setTimeout(() => {
@@ -242,6 +327,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
   const triggerReRender = useCallback(() => {
     setRefreshKey((prevKey) => prevKey + 1);
   }, []);
+
   return (
     <div ref={cardRef} className={`${isOwned || inSettings ? 'w-full' : ''}`}>
       {isOwned ? (
@@ -316,10 +402,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                           <div
                             className="flex items-center cursor-pointer justify-end"
                             onClick={() => {
-                              triggerRevokeOrInvite(
-                                invite.invite_id,
-                                cardData.name,
-                              );
+                              triggerRevoke(invite.invite_id, cardData.name);
                             }}
                           >
                             <div className={`mx-[6px] md:mx-4`}>revoke</div>
@@ -398,8 +481,10 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                         </p>
                         {!emailSubmitted && (
                           <form
+                            // action={testParams}
                             className="w-full flex flex-col gap-3 items-end"
-                            onSubmit={emailSubmit}
+                            // onSubmit={emailSubmit}
+                            onSubmit={handleSubmit}
                           >
                             <input
                               type="text"
@@ -549,7 +634,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                     {!emailSubmitted && (
                       <form
                         className="w-full flex flex-col md:flex-row gap-3 justify-end"
-                        onSubmit={emailSubmit}
+                        onSubmit={handleSubmit}
                       >
                         <input
                           type="text"

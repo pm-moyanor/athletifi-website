@@ -6,7 +6,7 @@ import {
   UserData,
 } from '@/types/User.type';
 
-import { addNotification, deleteNotification } from '@/actions/userDataActions';
+import { addNotification, deleteNotification } from '@/app/actions/userDataActions';
 import { ChangeEvent } from 'react';
 import UnsubscribeButton from './UnsubscribeButton';
 

@@ -5,7 +5,7 @@ import Header from '@/components/common/Header';
 import ContactUsForm from '@/components/contact-us/ContactUsForm';
 import { SEO_CONFIG } from '@/utils/seoConfig';
 import { Metadata } from 'next';
-import { getUserData } from '@/actions/userDataActions';
+import { getUserData } from '@/app/actions/userDataActions';
 import { UserData } from '@/types/User.type';
 
 export const metadata: Metadata = {

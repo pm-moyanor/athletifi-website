@@ -21,3 +21,4 @@ export const inviteRevokeActionAtom = atom(
     return data;
   },
 );
+// TODO: this si the atom that need to be replaces for a server action file. here all the logic of posting and refreshing should be kept.

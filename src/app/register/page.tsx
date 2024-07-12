@@ -1,4 +1,4 @@
-import { getUserData } from '@/actions/userDataActions';
+import { getUserData } from '@/app/actions/userDataActions';
 import AuthClient from '@/components/auth/AuthClient';
 import Header from '@/components/common/Header';
 import { UserData } from '@/types/User.type';

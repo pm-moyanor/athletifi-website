@@ -68,7 +68,9 @@ const createStorageWithExpiration = (storage: Storage, expiration: number) => ({
 //   (get) => get(postHelperResponseAtom),
 //   (get, set, update) => set(postHelperResponseAtom, update),
 // );
-export const postHelperResponseAtom = atom<any>(null);
+export const postHelperResponseAtom = atom<
+  ((value: SetStateAction<UserState>) => void) | null
+>(null);
 //TODO: replace the any type with the actual type of the response from the postHelper function
 // Define `inviteIdAtom` differently based on environment
 
@@ -212,7 +214,12 @@ export function useUserData() {
 
   // Fetch the user data whenever the amplify_id changes
   useEffect(() => {
-    fetchUserData(userData, setUserData, inviteId, setPostHelperResponse);
+    fetchUserData(
+      userData,
+      setUserData,
+      inviteId,
+      setPostHelperResponse as (value: SetStateAction<UserState>) => void,
+    );
   }, [isLoggedIn, inviteId]);
 
   useEffect(() => {
