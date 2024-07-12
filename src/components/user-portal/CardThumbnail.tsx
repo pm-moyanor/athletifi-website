@@ -5,25 +5,24 @@ import React, {
   FormEvent,
   useRef,
   useEffect,
-  useCallback,
 } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { useAtomValue } from 'jotai';
-import { invitesDataAtom } from '@/states/invitesDataStore';
-//import { inviteRevokeActionAtom } from '@/states/InviteRevokeStore';
 import { useRouter } from 'next/navigation';
 import { ICards } from '@/types/User.type';
 import { Invites } from '@/types/User.type';
 import { sourceSans3 } from '@/app/utils/helpers';
-import { invitationAction } from '@/app/actions/invitationAction';
-import { inviteRevokeAction } from '@/app/actions/inviteRevokeAction';
-import { inviteDeclineAction } from '@/app/actions/inviteDeclineAction';
+import {
+  invitationAction,
+  inviteRevokeAction,
+  inviteDeclineAction,
+} from '@/app/actions/invitationAction';
 
 interface ICardThumbnailProps {
   cardData: ICards;
+  allInvites: Invites[] | null;
   isOwned: boolean;
   inSettings: boolean;
 }
@@ -89,12 +88,14 @@ const getFilteredInvites = (
 
 const CardThumbnail: React.FC<ICardThumbnailProps> = ({
   cardData,
+  allInvites,
   isOwned,
   inSettings,
 }) => {
   const router = useRouter();
-  const [refreshKey, setRefreshKey] = useState(0); // State to trigger re-render
-  const [filteredInvites, setFilteredInvites] = useState<Invites[]>([]);
+  const filteredInvites = allInvites
+    ? getFilteredInvites(allInvites, cardData)
+    : [];
 
   const [isToggle, setIsToggle] = useState<boolean>(false);
   const [invitation, setInvitation] = useState<{ name: string; email: string }>( //stored data from form
@@ -121,14 +122,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
     router.push(`/dashboard/${slug}`);
   };
 
-  //atom to render the invites
-  const allInvites = useAtomValue(invitesDataAtom); // Fetch all invites
-  // Filter invites whenever refreshKey changes
-  useEffect(() => {
-    const filtered = getFilteredInvites(allInvites, cardData);
-    setFilteredInvites([...filtered]);
-  }, [allInvites, cardData, refreshKey]);
-
   ////////////////////////////////////////email invite
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -138,65 +131,13 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
     }));
   };
 
-  // when submit, action to "invite", render success message, clear from and close toggle
-  // const emailSubmit = (e: FormEvent) => {
-  //   e.preventDefault();
-  //   if (invitation.email) {
-  //     inviteRevokeAction({
-  //       action: 'invite', // TODO: action goes here
-  //       guest_email: invitation.email,
-  //       card_image_id: cardData.ownedCardInfo.card_id,
-  //     })
-  //       .then((response) => {
-  //         if (
-  //           response.message ===
-  //           'WARNING: Invite to the same guest is already pending. No changes made.'
-  //         ) {
-  //           setDupeInvite({
-  //             isDupe: true,
-  //             email: invitation.email,
-  //           });
-  //           setInvitation({ name: '', email: '' });
-
-  //           // Delay the toggle by 5 seconds
-  //           return new Promise<void>((resolve) => {
-  //             setTimeout(() => {
-  //               setDupeInvite({
-  //                 isDupe: false,
-  //                 email: '',
-  //               });
-  //               resolve();
-  //             }, 5000);
-  //           });
-  //         } else {
-  //           setEmailSubmitted(true);
-  //           setInvitation({ name: '', email: '' });
-
-  //           // Delay the toggle by 2 seconds
-  //           return new Promise<void>((resolve) => {
-  //             setTimeout(() => {
-  //               setIsToggle(false);
-  //               setEmailSubmitted(false);
-  //               setRefreshKey((prevKey) => prevKey + 1);
-  //               resolve();
-  //             }, 3000);
-  //           });
-  //         }
-  //       })
-  //       .catch((error) => console.error('Failed to send invitation', error));
-  //   } else {
-  //     console.warn('invalid email');
-  //   }
-  // };
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const cardID = cardData.ownedCardInfo.card_id;
+    const cardID = cardData.card_id;
     if (formData.get('email') && cardID) {
       invitationAction(cardID, formData)
         .then((response) => {
-          console.log('line 213', response);
           if (
             response.message ===
             'WARNING: Invite to the same guest is already pending. No changes made.'
@@ -226,7 +167,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
               setTimeout(() => {
                 setIsToggle(false);
                 setEmailSubmitted(false);
-                setRefreshKey((prevKey) => prevKey + 1);
                 resolve();
               }, 3000);
             });
@@ -237,26 +177,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
       console.warn('invalid email');
     }
   };
-  /////////////////////// action to "revoke"
-  // const triggerRevoke = (
-  //   inviteId: string | null,
-  //   card_name?: string | null,
-  // ) => {
-  //   inviteRevokeAction({
-  //     //TODO: action goes here
-  //     action: 'revoke',
-  //     inviteId: inviteId,
-  //     card_name: card_name,
-  //   })
-  //     .then(() => {
-  //       setRevokeSubmittedId(inviteId);
-  //       setTimeout(() => {
-  //         setRevokeSubmittedId(null);
-  //         setRefreshKey((prevKey) => prevKey + 1);
-  //       }, 3000);
-  //     })
-  //     .catch((error) => console.error('Failed to revoke invitation', error));
-  // };
 
   const triggerRevoke = (
     inviteId: string | null,
@@ -267,35 +187,10 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
         setRevokeSubmittedId(inviteId);
         setTimeout(() => {
           setRevokeSubmittedId(null);
-          setRefreshKey((prevKey) => prevKey + 1);
         }, 3000);
       })
       .catch((error) => console.error('Failed to revoke invitation', error));
   };
-
-  ///////////////////////////////////////////////////////////////////////////////////
-  //IN CASE THE LOGIC IS THE SAME, ADD ACTION DECLINE ?
-  // const triggerDecline = (
-  //   inviteId: string | null,
-  //   owner_email?: string | null,
-  //   card_name?: string | null,
-  // ) => {
-  //   inviteRevokeAction({
-  //     //TODO: action goes here
-  //     action: 'revoke',
-  //     inviteId: inviteId,
-  //     owner_email: owner_email,
-  //     card_name: card_name,
-  //   })
-  //     .then(() => {
-  //       setDeclinedInviteId(inviteId);
-  //       setTimeout(() => {
-  //         setRevokeSubmittedId(null);
-  //       }, 3000);
-  //       triggerReRender();
-  //     })
-  //     .catch((error) => console.error('Failed to decline invitation', error));
-  // };
 
   const triggerDecline = (
     inviteId: string | null,
@@ -308,7 +203,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
         setTimeout(() => {
           setRevokeSubmittedId(null);
         }, 3000);
-        triggerReRender();
+        // triggerReRender();
       })
       .catch((error) => console.error('Failed to decline invitation', error));
   };
@@ -324,9 +219,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
 
   const cardRef = useRef<HTMLDivElement>(null); //track element to click outside the form
   useOutsideClick(cardRef, () => setIsToggle(false));
-  const triggerReRender = useCallback(() => {
-    setRefreshKey((prevKey) => prevKey + 1);
-  }, []);
 
   return (
     <div ref={cardRef} className={`${isOwned || inSettings ? 'w-full' : ''}`}>
@@ -481,9 +373,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
                         </p>
                         {!emailSubmitted && (
                           <form
-                            // action={testParams}
                             className="w-full flex flex-col gap-3 items-end"
-                            // onSubmit={emailSubmit}
                             onSubmit={handleSubmit}
                           >
                             <input
@@ -534,7 +424,7 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
             </div>
           </div>
         ) : (
-          // render owend cards in profila page
+          // render owned cards in profile page
           <>
             <div className="flex justify-between flex-col md:flex-row items-center w-full">
               <div className="relative w-[300px] h-[350px] md:w-[160px] md:h-[210px]">
@@ -801,7 +691,6 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
           </div>
           <div className="w-full flex justify-end pb-4 pr-4">
             <button
-              // onClick={triggerRevokeOrInvite}
               onClick={() => handleGoToDashboard(cardData.dashboard_slug)}
               className="text-darkgray w-[130px] md:w-[160px] h-8 bg-skyblue text-sm rounded-full font-normal hover:opacity-90 transform hover:scale-95 ease-in-out"
             >
@@ -816,9 +705,10 @@ const CardThumbnail: React.FC<ICardThumbnailProps> = ({
 
 const RenderCardThumbnail: React.FC<{
   cardData: ICards | null | undefined;
+  allInvites: Invites[] | null;
   isOwned: boolean;
   inSettings: boolean;
-}> = ({ cardData, isOwned, inSettings }) => {
+}> = ({ cardData, allInvites, isOwned, inSettings }) => {
   if (!cardData) {
     return (
       <div className="card-thumbnail-error">Card data is not available.</div>
@@ -828,6 +718,7 @@ const RenderCardThumbnail: React.FC<{
   return (
     <CardThumbnail
       cardData={cardData}
+      allInvites={allInvites}
       isOwned={isOwned}
       inSettings={inSettings}
     />

@@ -59,6 +59,7 @@ export default function ManageReferrals({ userData }: { userData: UserData }) {
                   <RenderCardThumbnail
                     key={idx}
                     cardData={cardData}
+                    allInvites={userData.invites}
                     isOwned={true}
                     inSettings={true}
                   />
