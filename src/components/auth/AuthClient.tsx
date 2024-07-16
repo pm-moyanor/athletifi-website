@@ -13,8 +13,7 @@ import { inviteIdAtom } from '@/states/userStore';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { SignUpInput, fetchUserAttributes, signUp } from 'aws-amplify/auth';
-import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
+import { SignUpInput, signUp } from 'aws-amplify/auth';
 import { sourceSans3 } from '@/app/utils/helpers';
 
 const AuthClient = ({
@@ -27,7 +26,7 @@ const AuthClient = ({
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const [inviteId, setInviteId] = useAtom(inviteIdAtom);
+  const [, setInviteId] = useAtom(inviteIdAtom);
 
   useEffect(() => {
     const storedInviteId = searchParams.get('invite_id');
@@ -36,7 +35,7 @@ const AuthClient = ({
       setInviteId(storedInviteId);
     }
   }, [searchParams, setInviteId]);
-  const { user, route } = useAuthenticator((context) => [
+  const { route } = useAuthenticator((context) => [
     context.user,
     context.route,
   ]);
@@ -64,21 +63,6 @@ const AuthClient = ({
       }
     },
   };
-
-  // Listen for the sign-in event after user verifies their email and signs in
-  useEffect(() => {
-    if (user && route === 'authenticated') {
-      fetchUserAttributes()
-        .then((userAttributes) => {
-          handlePostSignIn(userAttributes, inviteId).catch((err) => {
-            console.error('Error in post sign-in:', err);
-          });
-        })
-        .catch((err) => {
-          console.error('Error fetching user attributes:', err);
-        });
-    }
-  }, [route, inviteId, user]);
 
   return (
     <div
