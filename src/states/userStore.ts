@@ -8,17 +8,12 @@ import {
   emptyNotifications,
   LatestChange,
   emptyLatestChange,
+  invitationData,
 } from '@/types/User.type';
 import { fetchUserAttributes, getCurrentUser } from 'aws-amplify/auth';
 import { Hub } from '@aws-amplify/core';
 import handlePostSignIn from '@/app/utils/auth/handlePostSignIn';
-import {
-  atom,
-  WritableAtom,
-  PrimitiveAtom,
-  useAtom,
-  SetStateAction,
-} from 'jotai';
+import { atom, WritableAtom, PrimitiveAtom, useAtom } from 'jotai';
 
 export interface UserState {
   data: UserData | null;
@@ -68,9 +63,7 @@ const createStorageWithExpiration = (storage: Storage, expiration: number) => ({
 //   (get) => get(postHelperResponseAtom),
 //   (get, set, update) => set(postHelperResponseAtom, update),
 // );
-export const postHelperResponseAtom = atom<
-  ((value: SetStateAction<UserState>) => void) | null
->(null);
+export const postHelperResponseAtom = atom<invitationData | null>(null);
 //TODO: replace the any type with the actual type of the response from the postHelper function
 // Define `inviteIdAtom` differently based on environment
 
@@ -106,7 +99,7 @@ async function fetchUserData(
   currState: UserState,
   set: (value: UserState) => void,
   inviteId: string | null,
-  setPostHelperResponse: (value: SetStateAction<UserState>) => void, // Specify the type of value as SetStateAction<UserState>
+  setPostHelperResponse: (value: invitationData) => void, // Specify the type of value as SetStateAction<UserState>
 ) {
   let amplify_id, userAttributes;
   if (currState.data) {
@@ -214,12 +207,7 @@ export function useUserData() {
 
   // Fetch the user data whenever the amplify_id changes
   useEffect(() => {
-    fetchUserData(
-      userData,
-      setUserData,
-      inviteId,
-      setPostHelperResponse as (value: SetStateAction<UserState>) => void,
-    );
+    fetchUserData(userData, setUserData, inviteId, setPostHelperResponse);
   }, [isLoggedIn, inviteId]);
 
   useEffect(() => {
