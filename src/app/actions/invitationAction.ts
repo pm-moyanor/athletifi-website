@@ -19,7 +19,7 @@ async function invitePostHelper(inviteParams: InviteAction) {
     headers: {
       'Content-type': 'application/json',
       Authorization: process.env.NEXT_PUBLIC_TEMP_API_AUTH,
-    },
+    } as HeadersInit,
     body: JSON.stringify(inviteParams),
   });
 

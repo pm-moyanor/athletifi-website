@@ -29,7 +29,7 @@ export async function getUserData() {
     const response = await fetch(fetchUrl, {
       headers: {
         Authorization: process.env.NEXT_PUBLIC_TEMP_API_AUTH,
-      },
+      } as HeadersInit,
       next: {
         tags: ['userData'],
       },
@@ -73,7 +73,7 @@ async function enableNotificationHelper(
     headers: {
       'Content-type': 'application/json',
       Authorization: process.env.NEXT_PUBLIC_TEMP_API_AUTH,
-    },
+    } as HeadersInit,
     body: JSON.stringify({
       amplify_id: amplifyId,
       notification_type: notificationType,
@@ -93,7 +93,7 @@ async function disableNotificationHelper(
     headers: {
       'Content-type': 'application/json',
       Authorization: process.env.NEXT_PUBLIC_TEMP_API_AUTH,
-    },
+    } as HeadersInit,
   });
   const data = await response.json();
   return data;
@@ -151,7 +151,7 @@ async function deleteUserHelper(amplify_id: string) {
     headers: {
       'Content-type': 'application/json',
       Authorization: process.env.NEXT_PUBLIC_TEMP_API_AUTH,
-    },
+    } as HeadersInit,
     body: JSON.stringify({
       amplify_id: amplify_id,
     }),

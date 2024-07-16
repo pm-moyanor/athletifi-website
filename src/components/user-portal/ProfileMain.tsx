@@ -159,6 +159,7 @@ export default function ProfileMain({ userData }: { userData: UserData }) {
                           <RenderCardThumbnail
                             key={idx}
                             cardData={cardData}
+                            allInvites={userData.invites}
                             isOwned={true}
                             inSettings={false}
                           />
@@ -191,6 +192,7 @@ export default function ProfileMain({ userData }: { userData: UserData }) {
                           <RenderCardThumbnail
                             key={idx}
                             cardData={cardData}
+                            allInvites={userData.invites}
                             isOwned={false}
                             inSettings={false}
                           />
