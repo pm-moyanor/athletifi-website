@@ -1,7 +1,8 @@
-import { getUserData } from '@/app/actions/userDataActions';
+import addUserPostSignIn, { getUserData } from '@/app/actions/userDataActions';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 import Header from '@/components/common/Header';
-import { UserData } from '@/types/User.type';
+import InviteModal from '@/components/common/InviteModal';
+import { invitationData, UserData } from '@/types/User.type';
 import { redirect } from 'next/navigation';
 
 export default async function DashboardLayout({
@@ -9,17 +10,24 @@ export default async function DashboardLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { cardId: string[] };
+  params: { cardId: string[]; invite_id: string | undefined };
 }) {
   const { isSignedIn } = await isAuthenticated();
-  const userData = await getUserData();
+  let userData = await getUserData();
 
   if (!isSignedIn || !userData)
     redirect(`/login?redirect=/dashboard/${params.cardId.join('/')}`);
 
+  let inviteData = undefined;
+  if (params?.invite_id) {
+    inviteData = await addUserPostSignIn(params.invite_id);
+    userData = await getUserData();
+  }
+
   return (
     <>
       <Header userData={userData as UserData} />
+      <InviteModal inviteData={inviteData as invitationData | undefined} />
       {children}
     </>
   );

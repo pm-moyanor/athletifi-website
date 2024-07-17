@@ -20,8 +20,6 @@ import { Hub } from 'aws-amplify/utils';
 
 import UserNotificationsModal from '@/components/user-portal/UserNotificationsModal';
 import { UserData } from '@/types/User.type';
-import { useAtom } from 'jotai';
-import { inviteIdAtom } from '@/states/userStore';
 
 const SCROLL_THRESHOLD: number = 200;
 
@@ -30,8 +28,6 @@ export default function Header({ userData }: { userData: UserData }) {
   const [path, setPath] = useState<string>('');
   const [showDropdown, setShowDropdown] = useState(false);
   const [closedModal, setClosedModal] = useState(false);
-
-  const [, setInviteId] = useAtom(inviteIdAtom);
 
   const dropdown = useRef<HTMLDivElement>(null);
 
@@ -47,7 +43,6 @@ export default function Header({ userData }: { userData: UserData }) {
           break;
         case 'signedOut':
           // setIsLoggedIn(false);
-          setInviteId(null);
           startTransition(() => router.push('/logout'));
           startTransition(() => router.refresh());
           break;

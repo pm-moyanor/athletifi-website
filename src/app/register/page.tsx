@@ -20,6 +20,7 @@ export default async function RegisterPage({
             <AuthClient
               defaultScreen={'signUp'}
               redirect={searchParams?.redirect}
+              inviteId={searchParams?.invite_id}
             />
             ;
           </Suspense>

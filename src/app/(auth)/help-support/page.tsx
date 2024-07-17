@@ -5,8 +5,8 @@ import BackToTop from '@/components/common/BackToTop';
 import Footer from '@/components/common/Footer';
 import Accordion from '@/components/user-portal/FAQ';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
-import { getUserData } from '@/app/actions/userDataActions';
-import { UserData } from '@/types/User.type';
+import addUserPostSignIn, { getUserData } from '@/app/actions/userDataActions';
+import { invitationData, UserData } from '@/types/User.type';
 import { redirect } from 'next/navigation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,16 +16,28 @@ import {
   faPaperPlane,
   faMessage,
 } from '@fortawesome/free-solid-svg-icons';
+import InviteModal from '@/components/common/InviteModal';
 
-export default async function HelpPage() {
+export default async function HelpPage({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | undefined };
+}) {
   const { isSignedIn } = await isAuthenticated();
-  const userData = await getUserData();
+  let userData = await getUserData();
 
   if (!isSignedIn || !userData) redirect('/login?redirect=/help-support');
+
+  let inviteData = undefined;
+  if (searchParams?.invite_id) {
+    inviteData = await addUserPostSignIn(searchParams.invite_id);
+    userData = await getUserData();
+  }
 
   return (
     <>
       <Header userData={userData as UserData} />
+      <InviteModal inviteData={inviteData as invitationData | undefined} />
       <main className="${sourceSans3.className} overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground w-full">
         {/* <motion.div
         initial={{ opacity: 0 }}

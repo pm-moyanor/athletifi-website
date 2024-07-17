@@ -10,6 +10,7 @@ import { revalidateTag } from 'next/cache';
 import { isAuthenticated } from '@/utils/auth/amplify-utils';
 
 const userDataUrl = `${process.env.NEXT_BACKEND_API_URL}/userData`;
+const addUserUrl = `${process.env.NEXT_BACKEND_API_URL}/addUser`;
 const deleteUserDataUrl = `${process.env.NEXT_BACKEND_API_URL}/purgeUserData`;
 
 function transformNotificationPreferences(dataArray: NotificationTypes[]) {
@@ -170,4 +171,42 @@ export async function deleteUserRequest(amplify_id: string) {
 
   revalidateTag('userData');
   return true;
+}
+
+async function addUserHelper(
+  email: string | undefined,
+  name: string | undefined,
+  amplifyId: string | undefined,
+  inviteId: string,
+) {
+  const response = await fetch(`${addUserUrl}`, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: process.env.NEXT_PUBLIC_TEMP_API_AUTH,
+    } as HeadersInit,
+    body: JSON.stringify({
+      amplify_id: amplifyId,
+      email: email,
+      name: name,
+      invite_id: inviteId,
+    }),
+  });
+
+  const data = await response.json();
+  return data;
+}
+
+export default async function addUserPostSignIn(inviteId: string) {
+  const { userId, name, email } = await isAuthenticated();
+
+  try {
+    const data = await addUserHelper(email, name, userId, inviteId);
+
+    revalidateTag('userData');
+    return data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 }

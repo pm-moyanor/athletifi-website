@@ -8,9 +8,6 @@ import {
 } from '@aws-amplify/ui-react';
 import { ComponentOverrides, FormFieldsOverrides } from './AuthOverrides';
 import { loginTheme } from './AuthTheme';
-import { useSearchParams } from 'next/navigation';
-import { inviteIdAtom } from '@/states/userStore';
-import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { SignUpInput, signUp } from 'aws-amplify/auth';
@@ -19,22 +16,14 @@ import { sourceSans3 } from '@/app/utils/helpers';
 const AuthClient = ({
   defaultScreen,
   redirect,
+  inviteId,
 }: {
   defaultScreen: string;
   redirect: string | undefined;
+  inviteId: string | undefined;
 }) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  const [, setInviteId] = useAtom(inviteIdAtom);
-
-  useEffect(() => {
-    const storedInviteId = searchParams.get('invite_id');
-
-    if (storedInviteId) {
-      setInviteId(storedInviteId);
-    }
-  }, [searchParams, setInviteId]);
   const { route } = useAuthenticator((context) => [
     context.user,
     context.route,
@@ -42,13 +31,14 @@ const AuthClient = ({
 
   useEffect(() => {
     if (route === 'authenticated') {
+      const inviteParam = inviteId ? `?invite_id=${inviteId}` : '';
       if (redirect) {
-        router.push(redirect);
+        router.push(redirect + inviteParam);
       } else {
-        router.push('/profile');
+        router.push(`/profile${inviteParam}`);
       }
     }
-  }, [route, redirect, router]);
+  }, [route, redirect, router, inviteId]);
 
   const services = {
     async handleSignUp(formData: SignUpInput) {
@@ -87,7 +77,6 @@ const AuthClient = ({
           initialState={
             defaultScreen as 'signIn' | 'signUp' | 'forgotPassword' | undefined
           }
-          // services={services}
         />
       </ThemeProvider>
     </div>
