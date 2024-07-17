@@ -8,7 +8,7 @@ import { Hero } from '@/types/CommonHero.type';
 import { filterTargetArticle } from '@/utils/helpers';
 import { getNewsList } from '@/utils/ApiHelper';
 import { Suspense } from 'react';
-import { getUserData } from '@/app/actions/userDataActions';
+import { getUserData } from '@/app/utils/fetchHelper';
 import { UserData } from '@/types/User.type';
 
 // import { SEO_CONFIG } from '@/utils/seoConfig';

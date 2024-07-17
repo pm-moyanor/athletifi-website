@@ -1,5 +1,6 @@
-import addUserPostSignIn, { getUserData } from '@/app/actions/userDataActions';
+import addUserPostSignIn from '@/app/actions/userDataActions';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
+import { getUserData } from '@/app/utils/fetchHelper';
 import Header from '@/components/common/Header';
 import InviteModal from '@/components/common/InviteModal';
 import { invitationData, UserData } from '@/types/User.type';

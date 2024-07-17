@@ -3,7 +3,7 @@ import { Hero } from '@/types/CommonHero.type';
 import ResolveAuth from '@/components/auth/ResolveAuth';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import { getUserData } from '@/app/actions/userDataActions';
+import { getUserData } from '@/app/utils/fetchHelper';
 import { UserData } from '@/types/User.type';
 
 export default async function ResolveAuthPage() {

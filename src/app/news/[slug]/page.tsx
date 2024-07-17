@@ -8,7 +8,7 @@ import TargetArticleContent from '@/components/news-insights/TargetArticleConten
 import { filterTargetArticle } from '@/utils/helpers';
 import { getNewsList } from '@/app/utils/ApiHelper';
 import { NewsPageContext } from '@/types/News.type';
-import { getUserData } from '@/app/actions/userDataActions';
+import { getUserData } from '@/app/utils/fetchHelper';
 import { UserData } from '@/types/User.type';
 
 async function getNewsArticle(slug: string) {

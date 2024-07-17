@@ -12,7 +12,7 @@ import PassiveEngagement from '@/components/home/PassiveEngagement';
 import BeyondNumbers from '@/components/home/BeyondNumbers';
 import HeroHomepage from '@/components/home/HeroHomepage';
 import { getNewsList } from '@/utils/ApiHelper';
-import { getUserData } from '@/app/actions/userDataActions';
+import { getUserData } from '@/app/utils/fetchHelper';
 import { UserData } from '@/types/User.type';
 
 const BackToTop = dynamic(() => import('@/components/common/BackToTop'), {
