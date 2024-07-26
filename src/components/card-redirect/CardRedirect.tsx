@@ -15,9 +15,16 @@ export default async function CardRedirect({ id }: { id: string }) {
   if (responseJson.message !== 'Success') {
     return null;
   }
-  const redirectUrl = responseJson.result.redirect_url;
+  const inviteId = responseJson.result.invite_id;
+  const dashboardSlug = responseJson.result.dashboard_slug;
 
-  redirect(redirectUrl);
+  if (inviteId === '') {
+    redirect(`/dashboard/${dashboardSlug}`);
+  } else {
+    redirect(
+      `/register?invite_id=${inviteId}&redirect=/dashboard/${dashboardSlug}`,
+    );
+  }
 
   return (
     <div>
