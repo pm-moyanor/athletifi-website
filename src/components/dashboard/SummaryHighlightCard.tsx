@@ -57,7 +57,7 @@ const SummaryHighlightCard: React.FC<SummaryHighlightCardProps> = ({
                   {highlight.start_timestamp}
                 </p>
                 <div className="flex flex-col">
-                  <h3 className="text-base mb-2">{`Highlight 0${index + 1}`}</h3>
+                  <h3 className="text-base mb-2">{`Highlight ${String(index + 1).padStart(2, '0')}`}</h3>
                   <p className="text-base font-light text-offwhitem-px">
                     {highlight.clip_description}
                   </p>

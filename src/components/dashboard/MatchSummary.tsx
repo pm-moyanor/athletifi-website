@@ -42,6 +42,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
     location,
     weather,
     playback_id,
+    duration,
     highlights,
     match_summary,
   } = matchData;
@@ -409,6 +410,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
                       handlePlayClick={handlePlayClick}
                       setCurrentItem={setCurrentItem}
                       convertToSeconds={convertToSeconds}
+                      videoDuration={duration}
                       timestamps={orderedHighlights.map(
                         ({ start_timestamp }) => start_timestamp,
                       )}
