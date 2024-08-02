@@ -36,6 +36,17 @@ export default function InviteModal({
         inviteTitle = 'Invitation Expired';
         inviteMessage =
           'The access you were granted to this card has now expired. The card owner may choose to reinstate your access if they wish. Thank you for your understanding.';
+      } else if (inviteData.invitation.invite_status === 'CARD_NOT_FOUND') {
+        inviteTitle = 'Invitation Card Not Found';
+        inviteMessage =
+          'We had trouble locating the intended player card. Please contact support@athleti.fi about this issue.';
+      } else if (
+        inviteData.invitation.invite_status ===
+        'REDEMPTION_BY_OWNER_NOT_ALLOWED'
+      ) {
+        inviteTitle = 'Invitation Redemption Error';
+        inviteMessage =
+          'You are already the card owner. Please share the card with family or friends instead.';
       } else if (
         inviteData.invitation.invite_status === 'UNEXPECTED_STATUS' ||
         inviteData.invitation.invite_status === 'NOT_FOUND'
