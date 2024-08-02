@@ -47,7 +47,7 @@ const MatchSummary: React.FC<MatchSummaryProps> = ({
     match_summary,
   } = matchData;
 
-  let orderedHighlights: IHighlight[] | null = null;
+  let orderedHighlights: IHighlight[] = [];
   if (highlights) {
     orderedHighlights = [...highlights].sort(
       (a, b) =>
