@@ -14,6 +14,7 @@ import HeroHomepage from '@/components/home/HeroHomepage';
 import { getNewsList } from '@/utils/ApiHelper';
 import { getUserData } from '@/app/utils/fetchHelper';
 import { UserData } from '@/types/User.type';
+import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 
 const BackToTop = dynamic(() => import('@/components/common/BackToTop'), {
   ssr: false,
@@ -32,7 +33,8 @@ export default async function Home() {
   if (allNewsListError) return <div>Failed to fetch news list.</div>;
   if (!allNewsList) return <div>Loading news list...</div>;
 
-  const userData = await getUserData();
+  const auth = await isAuthenticated();
+  const userData = auth.isSignedIn ? await getUserData(auth) : null;
 
   return (
     <>

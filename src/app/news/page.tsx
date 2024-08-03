@@ -10,6 +10,7 @@ import { getNewsList } from '@/utils/ApiHelper';
 import { Suspense } from 'react';
 import { getUserData } from '@/app/utils/fetchHelper';
 import { UserData } from '@/types/User.type';
+import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 
 // import { SEO_CONFIG } from '@/utils/seoConfig';
 
@@ -48,7 +49,8 @@ export default async function NewsPage() {
     heading: 'Latest Updates & Announcements',
   };
 
-  const userData = await getUserData();
+  const auth = await isAuthenticated();
+  const userData = auth.isSignedIn ? await getUserData(auth) : null;
 
   return (
     <>

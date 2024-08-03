@@ -10,6 +10,7 @@ import { getNewsList } from '@/app/utils/ApiHelper';
 import { NewsPageContext } from '@/types/News.type';
 import { getUserData } from '@/app/utils/fetchHelper';
 import { UserData } from '@/types/User.type';
+import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 
 async function getNewsArticle(slug: string) {
   console.log(
@@ -52,7 +53,8 @@ export default async function NewsArticleSlugPage({ params }: NewsPageContext) {
     title: 'News and Updates for AthletiFi Sports Cards',
   };
 
-  const userData = await getUserData();
+  const auth = await isAuthenticated();
+  const userData = auth.isSignedIn ? await getUserData(auth) : null;
 
   return (
     <>
