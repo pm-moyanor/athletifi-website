@@ -6,7 +6,7 @@ import {
   emptyNotifications,
 } from '@/types/User.type';
 
-const userDataUrl = `${process.env.NEXT_BACKEND_API_URL}/userData`;
+const userDataUrl = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/userData`;
 
 function transformNotificationPreferences(dataArray: NotificationTypes[]) {
   const tmp = { ...emptyNotifications };
