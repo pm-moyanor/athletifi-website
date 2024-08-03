@@ -3,21 +3,21 @@ import CommonHero from '@/components/common/CommonHero';
 import { Hero } from '@/types/CommonHero.type';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import NewsInsightsCards from '@/components/news-insights/NewsInsightsCards';
-import TargetArticleContent from '@/components/news-insights/TargetArticleContent';
+import BlogsInsightsCards from '@/components/blogs-insights/BlogsInsightsCards';
+import TargetArticleContent from '@/components/blogs-insights/TargetArticleContent';
 import { filterTargetArticle } from '@/utils/helpers';
-import { getNewsList } from '@/app/utils/ApiHelper';
-import { NewsPageContext } from '@/types/News.type';
+import { getBlogsList } from '@/app/utils/ApiHelper';
+import { BlogsPageContext } from '@/types/Blogs.type';
 import { getUserData } from '@/app/utils/fetchHelper';
 import { UserData } from '@/types/User.type';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 
-async function getNewsArticle(slug: string) {
+async function getBlogsArticle(slug: string) {
   console.log(
-    `getNewsArticle URL: ${process.env.NEXT_PUBLIC_API_URL}/news/${slug}`,
+    `getBlogsArticle URL: ${process.env.NEXT_PUBLIC_API_URL}/blogs/${slug}`,
   );
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/news/${slug}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/blogs/${slug}`,
   );
   console.log('response: %s', JSON.stringify(response));
   const data = await response.json();
@@ -25,23 +25,25 @@ async function getNewsArticle(slug: string) {
   return data;
 }
 
-// This is the main content of the news article page, which contains the news article itself and the sidebar with the other news articles.
-export default async function NewsArticleSlugPage({ params }: NewsPageContext) {
-  const newsArticle = await getNewsArticle(params.slug);
-  const { allNewsList: allNewsData, allNewsListError: listError } =
-    await getNewsList();
+// This is the main content of the blogs article page, which contains the blogs article itself and the sidebar with the other blogs articles.
+export default async function BlogsArticleSlugPage({
+  params,
+}: BlogsPageContext) {
+  const blogsArticle = await getBlogsArticle(params.slug);
+  const { allBlogsList: allBlogsData, allBlogsListError: listError } =
+    await getBlogsList();
 
   // Error handling and loading states
   // if (detailError || listError) return <div>Error: Data not available</div>;
   if (listError) return <div>Error: Data not available</div>;
-  if (!newsArticle || !allNewsData) return <div>Loading...</div>;
+  if (!blogsArticle || !allBlogsData) return <div>Loading...</div>;
 
-  const targetArticle = newsArticle?.data?.[0];
+  const targetArticle = blogsArticle?.data?.[0];
   if (!targetArticle) return <div>Error: Target article not found</div>;
 
-  // Filter out the target article from the allNewsList data
+  // Filter out the target article from the allBlogsList data
   const everyOtherArticle = filterTargetArticle(
-    allNewsData?.data,
+    allBlogsData?.data,
     targetArticle,
   );
 
@@ -49,8 +51,8 @@ export default async function NewsArticleSlugPage({ params }: NewsPageContext) {
   const hero: Hero = {
     heading: targetArticle?.title || `Article not found`,
     subtitle:
-      'Here you can find all the latest news and developments from AthletiFi!',
-    title: 'News and Updates for AthletiFi Sports Cards',
+      'Here you can find all the latest blogs and developments from AthletiFi!',
+    title: 'Blogs and Updates for AthletiFi Sports Cards',
   };
 
   const auth = await isAuthenticated();
@@ -59,12 +61,12 @@ export default async function NewsArticleSlugPage({ params }: NewsPageContext) {
   return (
     <>
       <div className="overflow-hidden">
-        <div className="news-page__hero-bg bg-center bg-no-repeat bg-cover">
+        <div className="blogs-page__hero-bg bg-center bg-no-repeat bg-cover">
           <Header userData={userData as UserData} />
           <CommonHero hero={hero} />
         </div>
-        <TargetArticleContent newsArticle={newsArticle} />
-        <NewsInsightsCards allNewsList={everyOtherArticle} />
+        <TargetArticleContent blogsArticle={blogsArticle} />
+        <BlogsInsightsCards allBlogsList={everyOtherArticle} />
         <Footer />
         <BackToTop />
       </div>
