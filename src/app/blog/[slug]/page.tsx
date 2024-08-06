@@ -6,28 +6,25 @@ import Header from '@/components/common/Header';
 import BlogInsightsCards from '@/components/blog-insights/BlogInsightsCards';
 import TargetArticleContent from '@/components/blog-insights/TargetArticleContent';
 import { filterTargetArticle } from '@/utils/helpers';
-import { getBlogList } from '@/app/utils/ApiHelper';
+import {
+  fetchRequest,
+  getBlogList,
+  RequestMethod,
+} from '@/app/utils/ApiHelper';
 import { BlogPageContext } from '@/types/Blog.type';
 import { getUserData } from '@/app/utils/fetchHelper';
 import { UserData } from '@/types/User.type';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 
-async function getBlogArticle(slug: string) {
-  console.log(
-    `getBlogArticle URL: ${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`,
-  );
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`,
-  );
-  console.log('response: %s', JSON.stringify(response));
-  const data = await response.json();
-  console.log('data: %s', JSON.stringify(data));
-  return data;
-}
-
 // This is the main content of the blog article page, which contains the blog article itself and the sidebar with the other blog articles.
 export default async function BlogArticleSlugPage({ params }: BlogPageContext) {
-  const blogArticle = await getBlogArticle(params.slug);
+  const blogListApiPath = `/news-lists/?populate=image&populate=content&filters[slug][$eq]=${params.slug}&populate=author`;
+  const blogArticle = await fetchRequest(
+    RequestMethod.GET,
+    blogListApiPath,
+    null,
+  );
+
   const { allBlogList: allBlogData, allBlogListError: listError } =
     await getBlogList();
 

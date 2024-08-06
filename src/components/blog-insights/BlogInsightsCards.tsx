@@ -103,11 +103,7 @@ const BlogInsightsCards = ({ allBlogList }: AllArticles) => {
                     {loading ? (
                       <BlogInsightsLoader />
                     ) : (
-                      <Link
-                        // href={`/blog/${item.slug}?page=${currentPage}`}
-                        href={`/blog/${item.slug}?page=1`}
-                        passHref
-                      >
+                      <Link href={`/blog/${item.slug}?page=1`} passHref>
                         <div
                           key={index}
                           className="flex md:flex-row flex-col lg:p-8 p-6 bg-darkgray lg:gap-x-12 sm:gap-7 gap-3 rounded-20 mb-6 sm:mt-30pixel"
