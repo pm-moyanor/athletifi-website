@@ -3,21 +3,21 @@ import CommonHero from '@/components/common/CommonHero';
 import { Hero } from '@/types/CommonHero.type';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import BlogsInsightsCards from '@/components/blogs-insights/BlogsInsightsCards';
-import TargetArticleContent from '@/components/blogs-insights/TargetArticleContent';
+import BlogInsightsCards from '@/components/blog-insights/BlogInsightsCards';
+import TargetArticleContent from '@/components/blog-insights/TargetArticleContent';
 import { filterTargetArticle } from '@/utils/helpers';
-import { getBlogsList } from '@/app/utils/ApiHelper';
-import { BlogsPageContext } from '@/types/Blogs.type';
+import { getBlogList } from '@/app/utils/ApiHelper';
+import { BlogPageContext } from '@/types/Blog.type';
 import { getUserData } from '@/app/utils/fetchHelper';
 import { UserData } from '@/types/User.type';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 
-async function getBlogsArticle(slug: string) {
+async function getBlogArticle(slug: string) {
   console.log(
-    `getBlogsArticle URL: ${process.env.NEXT_PUBLIC_API_URL}/blogs/${slug}`,
+    `getBlogArticle URL: ${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`,
   );
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/blogs/${slug}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`,
   );
   console.log('response: %s', JSON.stringify(response));
   const data = await response.json();
@@ -25,25 +25,23 @@ async function getBlogsArticle(slug: string) {
   return data;
 }
 
-// This is the main content of the blogs article page, which contains the blogs article itself and the sidebar with the other blogs articles.
-export default async function BlogsArticleSlugPage({
-  params,
-}: BlogsPageContext) {
-  const blogsArticle = await getBlogsArticle(params.slug);
-  const { allBlogsList: allBlogsData, allBlogsListError: listError } =
-    await getBlogsList();
+// This is the main content of the blog article page, which contains the blog article itself and the sidebar with the other blog articles.
+export default async function BlogArticleSlugPage({ params }: BlogPageContext) {
+  const blogArticle = await getBlogArticle(params.slug);
+  const { allBlogList: allBlogData, allBlogListError: listError } =
+    await getBlogList();
 
   // Error handling and loading states
   // if (detailError || listError) return <div>Error: Data not available</div>;
   if (listError) return <div>Error: Data not available</div>;
-  if (!blogsArticle || !allBlogsData) return <div>Loading...</div>;
+  if (!blogArticle || !allBlogData) return <div>Loading...</div>;
 
-  const targetArticle = blogsArticle?.data?.[0];
+  const targetArticle = blogArticle?.data?.[0];
   if (!targetArticle) return <div>Error: Target article not found</div>;
 
-  // Filter out the target article from the allBlogsList data
+  // Filter out the target article from the allBlogList data
   const everyOtherArticle = filterTargetArticle(
-    allBlogsData?.data,
+    allBlogData?.data,
     targetArticle,
   );
 
@@ -51,8 +49,8 @@ export default async function BlogsArticleSlugPage({
   const hero: Hero = {
     heading: targetArticle?.title || `Article not found`,
     subtitle:
-      'Here you can find all the latest blogs and developments from AthletiFi!',
-    title: 'Blogs and Updates for AthletiFi Sports Cards',
+      'Here you can find all the latest blog and developments from AthletiFi!',
+    title: 'Blog and Updates for AthletiFi Sports Cards',
   };
 
   const auth = await isAuthenticated();
@@ -61,12 +59,12 @@ export default async function BlogsArticleSlugPage({
   return (
     <>
       <div className="overflow-hidden">
-        <div className="blogs-page__hero-bg bg-center bg-no-repeat bg-cover">
+        <div className="blog-page__hero-bg bg-center bg-no-repeat bg-cover">
           <Header userData={userData as UserData} />
           <CommonHero hero={hero} />
         </div>
-        <TargetArticleContent blogsArticle={blogsArticle} />
-        <BlogsInsightsCards allBlogsList={everyOtherArticle} />
+        <TargetArticleContent blogArticle={blogArticle} />
+        <BlogInsightsCards allBlogList={everyOtherArticle} />
         <Footer />
         <BackToTop />
       </div>

@@ -6,8 +6,8 @@ export async function GET(
   { params }: { params: { slug: string } },
 ) {
   const { slug } = params;
-  const blogsListApiPath = `/news-lists/?populate=image&populate=content&filters[slug][$eq]=${slug}&populate=author`;
-  const data = await fetchRequest(RequestMethod.GET, blogsListApiPath, null);
+  const blogListApiPath = `/news-lists/?populate=image&populate=content&filters[slug][$eq]=${slug}&populate=author`;
+  const data = await fetchRequest(RequestMethod.GET, blogListApiPath, null);
 
   return NextResponse.json(data);
 }
