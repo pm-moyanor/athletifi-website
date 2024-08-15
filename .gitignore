@@ -73,3 +73,11 @@ amplifytools.xcconfig
 #amplify-do-not-edit-end
 
 codebase.md
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
