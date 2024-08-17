@@ -15,7 +15,6 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": ["@testing-library/jest-dom"],
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["./src/components/*"],
@@ -37,6 +36,7 @@
     "**/*.tsx",
     "src/pages/news/[news].js",
     "src/pages/news/index.tsx",
-    ".next/types/**/*.ts"  ],
+    ".next/types/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
