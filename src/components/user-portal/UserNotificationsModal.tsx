@@ -25,7 +25,6 @@ const UserNotificationsModal = ({
   amplify_id: string;
   setClosedModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  console.log('userData %s', JSON.stringify(userData));
   async function handleSubmit(amplify_id: string, action_type: ACTION_TYPE) {
     if (action_type === ACTION_TYPE.Delete) {
       await deleteNotification(amplify_id, 'All');
