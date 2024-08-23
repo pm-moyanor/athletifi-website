@@ -10,7 +10,7 @@
     "lint": "next lint",
     "test": "jest --testPathPattern=__tests__/",
     "test:watch": "jest --testPathPattern=__tests__/ --watch",
-    "test:e2e": "playwright test __e2etests_"
+    "test:e2e": "playwright test __e2etests_ --ui"
   },
   "repository": {
     "type": "git",
@@ -58,6 +58,7 @@
     "typescript": "5.5.4"
   },
   "devDependencies": {
+    "dotenv": "^16.4.5",
     "@playwright/test": "^1.46.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.8",

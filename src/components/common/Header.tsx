@@ -289,7 +289,7 @@ export default function Header({ userData }: { userData: UserData | null }) {
                       className="flex items-center cursor-pointer"
                       onClick={() => setShowDropdown(!showDropdown)}
                     >
-                      <p className="text-base px-2 ">{userData.name}</p>
+                      <p className="text-base px-2" data-testid="username">{userData.name}</p>
                       <FontAwesomeIcon icon={faChevronDown} />
                     </div>
                     {showDropdown && (
