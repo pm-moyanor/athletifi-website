@@ -8,7 +8,6 @@ import {
   addNotification,
   deleteNotification,
 } from '@/app/actions/userDataActions';
-import { UserData } from '@/types/User.type';
 
 const DELAY_TIMEOUT = 3;
 enum ACTION_TYPE {
@@ -17,11 +16,9 @@ enum ACTION_TYPE {
 }
 
 const UserNotificationsModal = ({
-  userData,
   amplify_id,
   setClosedModal,
 }: {
-  userData: UserData;
   amplify_id: string;
   setClosedModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
