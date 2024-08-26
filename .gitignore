@@ -73,6 +73,7 @@ amplifytools.xcconfig
 #amplify-do-not-edit-end
 
 codebase.md
+.aidigestignore
 /test-results/
 /playwright-report/
 /blob-report/

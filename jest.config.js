@@ -32,11 +32,11 @@ const config = {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    '^@/components/(.*)$': '<rootDir>/components/$1',
-    '^@/app/(.*)$': '<rootDir>/app/$1',
-    '^@/utils/(.*)$': '<rootDir>/utils/$1',
-    '^@/types/(.*)$': '<rootDir>/types/$1',
-    '^@/styles/(.*)$': '<rootDir>/styles/$1',
+    '^@/components/(.*)$': '<rootDir>/src/components/$1',
+    '^@/app/(.*)$': '<rootDir>/src/app/$1',
+    '^@/utils/(.*)$': '<rootDir>/src/app/utils/$1',
+    '^@/types/(.*)$': '<rootDir>/src/types/$1',
+    '^@/styles/(.*)$': '<rootDir>/src/styles/$1',
   },
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
