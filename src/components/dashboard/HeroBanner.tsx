@@ -49,7 +49,7 @@ export default function HeroBanner({
 
   return (
     <SkeletonTheme baseColor="#113448" highlightColor="#525252">
-      <section className="relative items-center md:items-start flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[420px] lg:h-[370px] w-full md:max-w-[860px] lg:max-w-[1130px] px-4 md:px-8">
+      <section className="relative items-center mt-45 md:mt-0 md:items-start flex flex-col-reverse md:flex-row justify-center md:justify-start h-dvh md:h-[420px] lg:h-[370px] w-full md:max-w-[860px] lg:max-w-[1130px] px-4 md:px-8">
         {profile?.club_logo ? (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
