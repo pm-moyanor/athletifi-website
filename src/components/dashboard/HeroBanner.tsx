@@ -96,10 +96,13 @@ export default function HeroBanner({
 
         {profile?.card_url ? (
           <div className="md:mt-20 lg:-mb-[255px]">
-            <FlipCard cardUrl={profile?.card_url} />
+            <FlipCard
+              data-testid="mock-flip-card"
+              cardUrl={profile?.card_url}
+            />
           </div>
         ) : (
-          <div className="mb-20 mt-100 lg:mt-150">
+          <div data-testid="skeleton" className="mb-20 mt-100 lg:mt-150">
             <div className="flex items-center">
               <Skeleton
                 className="min-w-[350px] min-h-[350px] md:min-w-[300px] md:min-h-[300px] lg:min-h-[380px] lg:min-w-[380px]"
