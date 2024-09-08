@@ -4,55 +4,55 @@ import Skeleton from 'react-loading-skeleton';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { IMatchDataExtended } from '@/types/Dashboard.type';
+import { formatDate } from '@/app/utils/formatDate';
 
-// const formatDate = (dateString: string) => new Date(dateString);
-const formatDate = (dateString: string): Date => {
-  // Remove extra spaces and split the string
-  const parts = dateString.replace(/\s+/g, ' ').split(' ');
+// const formatDate = (dateString: string): Date => {
+//   // Remove extra spaces and split the string
+//   const parts = dateString.replace(/\s+/g, ' ').split(' ');
 
-  if (parts.length !== 6) {
-    console.error('Unexpected date format:', dateString);
-    return new Date(NaN); // Invalid date
-  }
+//   if (parts.length !== 6) {
+//     console.error('Unexpected date format:', dateString);
+//     return new Date(NaN); // Invalid date
+//   }
 
-  const [dayOfWeek, day, month, year, _, time] = parts;
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-  const monthIndex = months.indexOf(month);
+//   const [dayOfWeek, day, month, year, _, time] = parts;
+//   const months = [
+//     'Jan',
+//     'Feb',
+//     'Mar',
+//     'Apr',
+//     'May',
+//     'Jun',
+//     'Jul',
+//     'Aug',
+//     'Sep',
+//     'Oct',
+//     'Nov',
+//     'Dec',
+//   ];
+//   const monthIndex = months.indexOf(month);
 
-  if (monthIndex === -1) {
-    console.error('Invalid month:', month);
-    return new Date(NaN); // Invalid date
-  }
+//   if (monthIndex === -1) {
+//     console.error('Invalid month:', month);
+//     return new Date(NaN); // Invalid date
+//   }
 
-  const [hours, minutes] = time.split(':');
-  const date = new Date(
-    parseInt(year),
-    monthIndex,
-    parseInt(day),
-    parseInt(hours),
-    parseInt(minutes),
-  );
+//   const [hours, minutes] = time.split(':');
+//   const date = new Date(
+//     parseInt(year),
+//     monthIndex,
+//     parseInt(day),
+//     parseInt(hours),
+//     parseInt(minutes),
+//   );
 
-  if (isNaN(date.getTime())) {
-    console.error('Invalid date:', dateString);
-    return new Date(); // Return current date instead of invalid date
-  } else {
-    return date;
-  }
-};
+//   if (isNaN(date.getTime())) {
+//     console.error('Invalid date:', dateString);
+//     return new Date(); // Return current date instead of invalid date
+//   } else {
+//     return date;
+//   }
+// };
 
 const isThisWeek = (date: Date) => {
   if (isNaN(date.getTime())) {
