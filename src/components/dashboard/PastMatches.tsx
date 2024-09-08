@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { IMatchDataExtended } from '@/types/Dashboard.type';
 
-// const parseDate = (dateString: string) => new Date(dateString);
-const parseDate = (dateString: string) => {
-  // Parse the custom date format
+// const formatDate = (dateString: string) => new Date(dateString);
+const formatDate = (dateString: string): Date => {
+  // Remove extra spaces and split the string
   const parts = dateString.replace(/\s+/g, ' ').split(' ');
 
   if (parts.length !== 6) {
@@ -38,21 +38,21 @@ const parseDate = (dateString: string) => {
   }
 
   const [hours, minutes] = time.split(':');
-  return new Date(
+  const date = new Date(
     parseInt(year),
     monthIndex,
     parseInt(day),
     parseInt(hours),
     parseInt(minutes),
   );
-};
 
-// const isThisWeek = (date: number | Date) => {
-//   const now = new Date();
-//   const startOfWeek = new Date(now.setDate(now.getDate() - now.getDay()));
-//   const endOfWeek = new Date(now.setDate(now.getDate() - now.getDay() + 6));
-//   return date >= startOfWeek && date <= endOfWeek;
-// };
+  if (isNaN(date.getTime())) {
+    console.error('Invalid date:', dateString);
+    return new Date(); // Return current date instead of invalid date
+  } else {
+    return date;
+  }
+};
 
 const isThisWeek = (date: Date) => {
   if (isNaN(date.getTime())) {
@@ -73,12 +73,12 @@ export default function PastMatches({
   const today = new Date();
   const pastMatches =
     matchList?.filter((match) => {
-      const matchDate = parseDate(match.datetime as string);
+      const matchDate = formatDate(match.datetime as string);
       return !isNaN(matchDate.getTime()) && matchDate < today;
     }) ?? [];
   const futureMatches =
     matchList?.filter((match) => {
-      const matchDate = parseDate(match.datetime as string);
+      const matchDate = formatDate(match.datetime as string);
       return !isNaN(matchDate.getTime()) && matchDate > today;
     }) ?? [];
 
@@ -122,7 +122,7 @@ export default function PastMatches({
                       matchData={match}
                       isFuture={true}
                       isThisWeek={isThisWeek(
-                        parseDate(match.datetime as string),
+                        formatDate(match.datetime as string),
                       )}
                     />
                   </motion.div>

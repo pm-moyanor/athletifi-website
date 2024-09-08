@@ -24,6 +24,53 @@ interface MatchSummaryProps {
   isFuture?: boolean;
   isThisWeek?: boolean;
 }
+const formatDate = (dateString: string): Date => {
+  // Remove extra spaces and split the string
+  const parts = dateString.replace(/\s+/g, ' ').split(' ');
+
+  if (parts.length !== 6) {
+    console.error('Unexpected date format:', dateString);
+    return new Date(NaN); // Invalid date
+  }
+
+  const [dayOfWeek, day, month, year, _, time] = parts;
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  const monthIndex = months.indexOf(month);
+
+  if (monthIndex === -1) {
+    console.error('Invalid month:', month);
+    return new Date(NaN); // Invalid date
+  }
+
+  const [hours, minutes] = time.split(':');
+  const date = new Date(
+    parseInt(year),
+    monthIndex,
+    parseInt(day),
+    parseInt(hours),
+    parseInt(minutes),
+  );
+
+  if (isNaN(date.getTime())) {
+    console.error('Invalid date:', dateString);
+    return new Date(); // Return current date instead of invalid date
+  } else {
+    return date;
+  }
+};
 
 export default function MatchSummary({
   matchData,
@@ -154,7 +201,9 @@ export default function MatchSummary({
   const handleSummaryClick = () => {
     setShowRecap(true);
   };
-  const dateTime = new Date(datetime as string);
+  // const dateTime = new Date(datetime as string);
+  const dateTime = formatDate(datetime as string);
+
   const formattedDate = dateTime.toLocaleDateString('en-US', {
     weekday: 'long',
     day: '2-digit',
