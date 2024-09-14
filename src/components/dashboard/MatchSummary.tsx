@@ -13,6 +13,8 @@ import MuxPlayer, { MuxPlayerRefAttributes } from '@mux/mux-player-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { formatDate } from '@/app/utils/formatDate';
 
+
+
 function convertToSeconds(timestamp: string): number {
   const [hours, minutes, seconds] = timestamp.split(':').map(Number);
   return hours * 3600 + minutes * 60 + seconds;
@@ -21,6 +23,7 @@ function convertToSeconds(timestamp: string): number {
 const accentColors = ['#FC6713', '#27B6BD', '#DA393B', '#B09E03', '#5A54A2'];
 
 interface MatchSummaryProps {
+  playerName?: string | null;
   matchData: IMatchDataExtended;
   isFuture?: boolean;
   isThisWeek?: boolean;
@@ -74,6 +77,7 @@ interface MatchSummaryProps {
 // };
 
 export default function MatchSummary({
+  playerName,
   matchData,
   isFuture,
   isThisWeek,
@@ -94,6 +98,10 @@ export default function MatchSummary({
     highlights,
     match_summary,
   } = matchData;
+
+  console.log('highlights..............', highlights)
+console.log('playerName..............', playerName)
+
 
   let orderedHighlights: IHighlight[] = [];
   if (highlights) {

@@ -12,7 +12,7 @@ export default function PastMatchesLayout({
 }) {
   const [height, setHeight] = useState(0);
   const pastMatchesRef = useRef<HTMLDivElement>(null);
-
+  
   useEffect(() => {
     const updateHeight = (entries: ResizeObserverEntry[]) => {
       if (entries[0].contentRect) {
@@ -33,6 +33,8 @@ export default function PastMatchesLayout({
     };
   }, []);
 
+  console.log('playerName in pastMatchesLayout', dashboardData.playerProfile?.name);
+
   return (
     <div className="flex flex-col w-full md:max-w-none lg:max-w-[1130px] md:px-2 md:mt-8">
       <div className="flex justify-between gap-8 pt-6">
@@ -45,7 +47,10 @@ export default function PastMatchesLayout({
       </div>
       <div className="flex flex-col lg:flex-row justify-between my-8 items-center md:items-start min-h-min gap-8 mb-12">
         <div ref={pastMatchesRef} className="w-full mb-12">
-          <PastMatches matchList={dashboardData.matchesList} />
+          <PastMatches
+            matchList={dashboardData.matchesList}
+            playerName={dashboardData.playerProfile?.name}
+          />
         </div>
         <div
           className="w-full lg:w-[350px] overflow-auto"
