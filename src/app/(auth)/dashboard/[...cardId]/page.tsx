@@ -7,6 +7,7 @@ import { invitationData, UserData } from '@/types/User.type';
 import { redirect } from 'next/navigation';
 import DashboardMain from '@/components/dashboard/DashboardMain';
 
+
 export default async function PlayerDashboardPage({
   params,
   searchParams,
@@ -15,9 +16,17 @@ export default async function PlayerDashboardPage({
   searchParams?: { [key: string]: string | undefined };
 }) {
   const cardId = params.cardId.join('/');
-
+  
+  const filteredSearchParams = Object.fromEntries(
+    Object.entries(searchParams || {}).filter(([_, v]) => v !== undefined)
+  ) as Record<string, string>;
+  const pathname = `/dashboard/${cardId}${Object.keys(filteredSearchParams).length ? '?' + new URLSearchParams(filteredSearchParams).toString() : ''}`;
+  console.log('pathname:.......', pathname); // Add this line
   const auth = await isAuthenticated();
-  if (!auth.isSignedIn) redirect('/login?redirect=/profile');
+  //if (!auth.isSignedIn) redirect('/login?redirect=/profile');
+  if (!auth.isSignedIn) {
+    redirect(`/login?redirect=${pathname}&intendedPath=${pathname}`); 
+  }
 
   const inviteData = await addUserPostSignIn(
     auth.email,
