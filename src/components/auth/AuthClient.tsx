@@ -26,9 +26,6 @@ const AuthClient = ({
   const searchParams = useSearchParams(); 
   const intendedPath = searchParams.get('intendedPath');
 
-  console.log('intendedPath:.......', intendedPath); // Add this line
-  console.log('searchParams:.......', searchParams); // Add this line
-
   const { route } = useAuthenticator((context) => [
     context.user,
     context.route,
