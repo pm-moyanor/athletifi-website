@@ -30,7 +30,7 @@ const SubmittedUrl: React.FC<SubmittedUrlProps> = ({ url, onRemove }) => {
       <p className="text-primary text-sm truncate flex-grow mx-2">{url}</p>
       <button
         onClick={() => onRemove(url)}
-        className="text-skyblue hover:text-primary mr-2"
+        className="text-skyblue hover:text-primary mr-4"
       >
         <FontAwesomeIcon
           icon={faTimes}

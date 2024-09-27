@@ -1,4 +1,5 @@
 const UploadProgressBar = () => {
+  // number here
   const circumference = 2 * Math.PI * 45;
   const strokeDashoffset = circumference - (80 / 100) * circumference; //need to replce for dinamic
 

@@ -1,6 +1,6 @@
 import SubmitFootage from '@/components/coach-portal/SubmitFootage';
 import { sourceSans3 } from '@/app/utils/helpers';
-import Team from '@/components/coach-portal/Team';
+import MyTeams from '@/components/coach-portal/MyTeams';
 
 const CoachProfilePage: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const CoachProfilePage: React.FC = () => {
       className={`bg-cardsBackground w-full h-full p-4 ${sourceSans3.className}`}
     >
       <SubmitFootage />
-      <Team />
+      <MyTeams />
     </div>
   );
 };

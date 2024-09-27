@@ -11,7 +11,7 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { motion } from 'framer-motion';
 
 interface FileWithPreview extends File {
-  preview: string;
+  generatedId: string;
   status: 'uploading' | 'success' | 'error';
 }
 
@@ -31,7 +31,8 @@ const DragDropUpload: React.FC = () => {
     ) => {
       const newFiles = acceptedFiles.map((file) =>
         Object.assign(file, {
-          preview: URL.createObjectURL(file),
+          generatedId: `${file.name}-${Date.now()}`, // Generate a unique ID using file name and current timestamp
+
           status: 'uploading' as const,
         }),
       );
@@ -57,6 +58,7 @@ const DragDropUpload: React.FC = () => {
     },
   });
 
+  ///to replace later whn check beackend
   const simulateFileUpload = (file: FileWithPreview) => {
     let progress = 0;
     const interval = setInterval(() => {
@@ -72,12 +74,15 @@ const DragDropUpload: React.FC = () => {
       }
     }, 500);
   };
+  ////
 
   const removeFile = (fileName: string) => {
     setFiles((prevFiles) => prevFiles.filter((file) => file.name !== fileName));
+    console.log();
     setUploadProgress((prev) => {
-      const { [fileName]: removed, ...rest } = prev;
-      return rest;
+      const newProgress = { ...prev };
+      delete newProgress[fileName];
+      return newProgress;
     });
   };
 
@@ -124,7 +129,7 @@ const DragDropUpload: React.FC = () => {
             animate={{ opacity: 1, height: 'auto', x: 0 }}
             exit={{ opacity: 0, height: 0, x: -20 }}
             transition={{ duration: 0.08 }}
-            key={file.name}
+            key={file.generatedId}
             className="flex items-center bg-cardsDark opacity-50 rounded-md mb-2 overflow-hidden"
           >
             <div
@@ -147,7 +152,7 @@ const DragDropUpload: React.FC = () => {
                   className="text-skyblue mr-4"
                 />
               )}
-              {file.status === 'success' && (
+              {file.status === 'error' && (
                 <button
                   onClick={() => retryUpload(file)}
                   className="text-primary opacity-80 hover:text-skyblue mr-6 flex items-center"
@@ -162,7 +167,10 @@ const DragDropUpload: React.FC = () => {
                 </button>
               )}
               <button
-                onClick={() => removeFile(file.name)}
+                onClick={() => {
+                  console.log(file, 'name', file.name);
+                  removeFile(file.name);
+                }}
                 className="text-red-500 hover:text-red-400 pr-4"
               >
                 <FontAwesomeIcon icon={faTimes as IconDefinition} />
