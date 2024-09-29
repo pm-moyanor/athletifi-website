@@ -101,7 +101,7 @@ export default function PastMatches({
       },
     },
   };
-  console.log('playerName in pastMatches', playerName);
+ 
   return (
     <>
       {matchList && matchList[0]?.home_club_logo ? (

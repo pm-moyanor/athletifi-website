@@ -97,9 +97,6 @@ export default function MatchSummary({
     match_summary,
   } = matchData;
 
-  console.log('highlights..............', highlights);
-  console.log('playerName..............', playerName);
-
   let orderedHighlights: IHighlight[] = [];
   if (highlights) {
     orderedHighlights = [...highlights].sort(
