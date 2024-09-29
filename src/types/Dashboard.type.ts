@@ -212,7 +212,7 @@ export const emptyVideoData: IVideo = {
 };
 
 export interface IHighlight {
-  clip_description: string;
+  static_description: string;
   duration: string;
   start_timestamp: string;
 }

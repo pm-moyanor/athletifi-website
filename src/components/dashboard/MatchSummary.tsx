@@ -13,8 +13,6 @@ import MuxPlayer, { MuxPlayerRefAttributes } from '@mux/mux-player-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { formatDate } from '@/app/utils/formatDate';
 
-
-
 function convertToSeconds(timestamp: string): number {
   const [hours, minutes, seconds] = timestamp.split(':').map(Number);
   return hours * 3600 + minutes * 60 + seconds;
@@ -99,9 +97,8 @@ export default function MatchSummary({
     match_summary,
   } = matchData;
 
-  console.log('highlights..............', highlights)
-console.log('playerName..............', playerName)
-
+  console.log('highlights..............', highlights);
+  console.log('playerName..............', playerName);
 
   let orderedHighlights: IHighlight[] = [];
   if (highlights) {
@@ -477,20 +474,20 @@ console.log('playerName..............', playerName)
                       {orderedHighlights?.map(
                         (
                           highlight: {
-                            clip_description: string;
+                            static_description: string;
                             duration: string;
                             start_timestamp: string;
                           },
                           index: number,
                         ) => (
                           <div
-                            key={`${highlight.clip_description}-${index}`}
+                            key={`${highlight.static_description}-${index}`}
                             className="flex flex-row sm:flex-row md:flex-col"
                           >
                             {playback_id && highlight.start_timestamp ? (
                               <>
                                 <SummaryHighlightCard
-                                  key={`${highlight.clip_description}-${index}`}
+                                  key={`${highlight.static_description}-${index}`}
                                   highlight={highlight}
                                   index={index}
                                   currentItem={currentItem}
@@ -501,6 +498,7 @@ console.log('playerName..............', playerName)
                                   accentColors={accentColors}
                                   convertToMilliseconds={convertToMilliseconds}
                                   highlightProgress={highlightProgress}
+                                  playerName={playerName ?? null}
                                 />
                               </>
                             ) : (
