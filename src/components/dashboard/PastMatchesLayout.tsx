@@ -33,8 +33,6 @@ export default function PastMatchesLayout({
     };
   }, []);
 
-  console.log('playerName in pastMatchesLayout', dashboardData.playerProfile?.name);
-
   return (
     <div className="flex flex-col w-full md:max-w-none lg:max-w-[1130px] md:px-2 md:mt-8">
       <div className="flex justify-between gap-8 pt-6">
