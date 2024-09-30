@@ -98,7 +98,7 @@ export interface IRatingProps {
 
 export interface IBarProps {
   click: Attributes | undefined | null;
-  hover: Attributes | undefined | null;
+  hover: string | Attributes | undefined | null;
 }
 
 export interface ILineProps {
