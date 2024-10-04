@@ -21,10 +21,10 @@ interface MatchDataUpload {
   main_team: string;
   opp_team: string;
   main_team_side: string;
-  roster: Player[];
+  roster: string;
   main_jersey_color: string;
   opp_jersey_color: string;
-  images: string;
+  images: File[];
 }
 
 interface UploadResponse {
@@ -55,7 +55,20 @@ async function uploadMatchDataHelper(
 }
 
 export async function uploadMatchData(formData: FormData) {
-  const matchUploadData: MatchDataUpload = {};
+  const teamImageFront = formData.get('team_image_front') as File;
+  const teamImageBack = formData.get('team_image_back') as File;
+
+  const matchUploadData: MatchDataUpload = {
+    date: formData.get('match_date') as string,
+    location: formData.get('location') as string,
+    main_team: formData.get('main_team') as string,
+    opp_team: formData.get('opposing_team') as string,
+    main_team_side: formData.get('home_away') as string,
+    roster: formData.get('roster') as string,
+    main_jersey_color: formData.get('main_jersey_color') as string,
+    opp_jersey_color: formData.get('opposing_jersey_color') as string,
+    images: [teamImageFront, teamImageBack],
+  };
 
   try {
     const response = await uploadMatchDataHelper(matchUploadData);
