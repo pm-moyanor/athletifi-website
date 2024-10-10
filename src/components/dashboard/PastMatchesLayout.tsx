@@ -4,13 +4,18 @@ import { DashboardData } from '@/types/Dashboard.type';
 import PastMatches from './PastMatches';
 import Teammates from './Teammates';
 import { useRef, useEffect, useState } from 'react';
+import { ICards } from '@/types/User.type';
 
 export default function PastMatchesLayout({
   dashboardData,
   userEmail,
+  ownedCards,
+  guestCards,
 }: {
   dashboardData: DashboardData;
   userEmail: string | null;
+  ownedCards: ICards[] | null;
+  guestCards: ICards[] | null;
 }) {
   const [height, setHeight] = useState(0);
   const pastMatchesRef = useRef<HTMLDivElement>(null);
@@ -55,6 +60,8 @@ export default function PastMatchesLayout({
           teammates={dashboardData.teammates}
           requesterEmail={userEmail}
           teamName={dashboardData.playerProfile?.team}
+          ownedCards={ownedCards}
+          guestCards={guestCards}
         />
       </div>
     </div>

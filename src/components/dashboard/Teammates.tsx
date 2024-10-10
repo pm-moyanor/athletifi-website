@@ -2,15 +2,20 @@ import Skeleton from 'react-loading-skeleton';
 import '@/styles/globals.css';
 import { ITeammate } from '@/types/Dashboard.type';
 import TeammateCard from './TeammateCard';
+import { ICards } from '@/types/User.type';
 
 export default function Teammates({
   teammates,
   requesterEmail,
   teamName,
+  ownedCards,
+  guestCards,
 }: {
   teammates: ITeammate[] | null | undefined;
   requesterEmail: string | null | undefined;
   teamName: string | null | undefined;
+  ownedCards: ICards[] | null;
+  guestCards: ICards[] | null;
 }) {
   return (
     <>
@@ -22,6 +27,8 @@ export default function Teammates({
                 teammate={teammate}
                 requesterEmail={requesterEmail}
                 teamName={teamName}
+                ownedCards={ownedCards}
+                guestCards={guestCards}
               />
             ))}
           </div>

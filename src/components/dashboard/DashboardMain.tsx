@@ -51,6 +51,8 @@ export default async function DashboardMain({
             <PastMatchesLayout
               dashboardData={dashboardData}
               userEmail={userData.email}
+              ownedCards={userData.owned_cards}
+              guestCards={userData.guest_cards}
             />
           </main>
           <BackToTop />
