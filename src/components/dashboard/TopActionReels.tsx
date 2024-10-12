@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import MuxPlayer, { MuxPlayerRefAttributes } from '@mux/mux-player-react';
-
+import { formatDate } from '@/app/utils/formatDate';
 import { IMatchDataExtended } from '@/types/Dashboard.type';
 import TopActionReelThumbnail from '@/components/dashboard/TopActionReelThumbnail';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -53,7 +53,8 @@ export function ActionReel({
   }, [isExpanded, start_timestamp]);
   /////////////////////////////////////////
 
-  const dateTime = datetime ? new Date(datetime) : null;
+  // const dateTime = datetime ? new Date(datetime) : null;
+  const dateTime = formatDate(datetime as string);
   const formattedDate = dateTime
     ? dateTime.toLocaleDateString('en-US', {
         weekday: 'long',
@@ -143,7 +144,7 @@ export function ActionReelList({
   const MAX_HIGHLIGHTS = 4;
   const selectedHighlights = matchesList
     ? getHighlights(matchesList, MAX_HIGHLIGHTS).filter(
-        (highlight) => highlight.playback_id && highlight.clip_description,
+        (highlight) => highlight.playback_id && highlight.static_description,
       )
     : [];
 
@@ -160,7 +161,7 @@ export function ActionReelList({
               home_club_logo={highlight.home_club_logo || null}
               away_club_logo={highlight.away_club_logo || null}
               playback_id={highlight.playback_id || null}
-              description={highlight.clip_description}
+              description={highlight.static_description}
               start_timestamp={highlight.start_timestamp}
               datetime={highlight.datetime || null}
             />
