@@ -11,6 +11,7 @@ import {
 import UploadProgressBar from './UploadProgressBar';
 import { motion } from 'framer-motion';
 import DragDropUpload from './DragDropUpload';
+import { FileWithPreview } from '@/types/CoachPortal.type';
 
 interface SubmittedUrlProps {
   url: string;
@@ -48,6 +49,7 @@ const SubmitFootage: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState<PlatformOption>('Veo');
   const [videoUrl, setVideoUrl] = useState<string>('');
   const [submittedUrls, setSubmittedUrls] = useState<string[]>([]);
+  const [files, setFiles] = useState<FileWithPreview[]>([]);
 
   const toggleDropdown = (): void => {
     setIsOpen(!isOpen);
@@ -150,8 +152,8 @@ const SubmitFootage: React.FC = () => {
 
           <div className="flex w-full h-px bg-partnersBorders opacity-50"></div>
         </div>
-        <DragDropUpload />
-        <UploadProgressBar />
+        <DragDropUpload files={files} setFiles={setFiles} />
+        <UploadProgressBar files={files} />
       </div>
     </div>
   );

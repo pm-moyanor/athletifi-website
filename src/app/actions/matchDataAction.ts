@@ -123,7 +123,7 @@ export async function uploadVideo(
     cookies().set('lastUploadedFile', result.fileKey);
 
     // Revalidate the page to reflect the new upload
-    revalidatePath('/');
+    revalidatePath('/coach-profile');
 
     return { success: true, fileKey: result.fileKey };
   } catch (error) {

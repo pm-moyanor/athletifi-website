@@ -1,7 +1,19 @@
-const UploadProgressBar = () => {
-  // number here
+import { FileWithPreview } from '@/types/CoachPortal.type';
+
+const UploadProgressBar = ({ files }: { files: FileWithPreview[] }) => {
+  const percentage =
+    files.length > 0
+      ? files.reduce((acc, cur) => {
+          if (cur.status === 'success') {
+            return acc + 1;
+          } else {
+            return acc;
+          }
+        }, 0) / files.length
+      : 0;
+  console.log(percentage);
   const circumference = 2 * Math.PI * 45;
-  const strokeDashoffset = circumference - (80 / 100) * circumference; //need to replce for dinamic
+  const strokeDashoffset = circumference - percentage * circumference;
 
   return (
     <div className="relative w-20 h-20">
@@ -29,7 +41,7 @@ const UploadProgressBar = () => {
         />
       </svg>
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-md text-primary">{`${60}%`}</span>
+        <span className="text-md text-primary">{`${percentage * 100}%`}</span>
       </div>
     </div>
   );
