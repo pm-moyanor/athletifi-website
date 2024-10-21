@@ -73,7 +73,7 @@ export default function TeammateCard({
           <div className="border-t border-t-offwhite mb-4"></div>
           {accessCard !== undefined ? (
             <Link
-              href={`/dashboard/${accessCard.dashboard_slug as string}`}
+              href={`/dashboard/${accessCard.dashboard_slug!}`}
               className="flex justify-center text-sm text-offwhite hover:text-white"
             >
               view dashboard
