@@ -143,8 +143,7 @@ export async function invitationRequestAction(
     if ('error' in data) {
       return {
         error:
-          (data.error as string) ||
-          'An error occurred during the invitation process.',
+          data.error || 'An error occurred during the invitation process.',
       };
     } else {
       revalidateTag('userData');
