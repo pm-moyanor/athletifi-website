@@ -9,20 +9,16 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { motion } from 'framer-motion';
+import { uploadVideo } from '@/app/actions/matchDataAction';
+import { FileWithPreview } from '@/types/CoachPortal.type';
 
-interface FileWithPreview extends File {
-  generatedId: string;
-  status: 'uploading' | 'success' | 'error';
-}
-
-interface UploadProgressState {
-  [key: string]: number;
-}
-
-const DragDropUpload: React.FC = () => {
-  const [files, setFiles] = useState<FileWithPreview[]>([]);
-  const [uploadProgress, setUploadProgress] = useState<UploadProgressState>({});
-
+const DragDropUpload = ({
+  files,
+  setFiles,
+}: {
+  files: FileWithPreview[];
+  setFiles: React.Dispatch<React.SetStateAction<FileWithPreview[]>>;
+}) => {
   const onDrop = useCallback(
     (
       acceptedFiles: File[],
@@ -32,14 +28,14 @@ const DragDropUpload: React.FC = () => {
       const newFiles = acceptedFiles.map((file) =>
         Object.assign(file, {
           generatedId: `${file.name}-${Date.now()}`, // Generate a unique ID using file name and current timestamp
-
+          fileName: file.name,
           status: 'uploading' as const,
         }),
       );
       setFiles((prevFiles) => [...prevFiles, ...newFiles]);
       // Simulate file upload
       newFiles.forEach((file) => {
-        simulateFileUpload(file);
+        handleFileUpload(file);
       });
     },
     [],
@@ -58,32 +54,43 @@ const DragDropUpload: React.FC = () => {
     },
   });
 
-  ///to replace later whn check beackend
-  const simulateFileUpload = (file: FileWithPreview) => {
-    let progress = 0;
-    const interval = setInterval(() => {
-      progress += 10;
-      setUploadProgress((prev) => ({ ...prev, [file.name]: progress }));
-      if (progress >= 100) {
-        clearInterval(interval);
+  async function handleFileUpload(file: FileWithPreview) {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const result = await uploadVideo(formData);
+      if (result.success) {
         setFiles((prevFiles) =>
           prevFiles.map((f) =>
-            f.name === file.name ? { ...f, status: 'success' as const } : f,
+            f.generatedId === file.generatedId
+              ? { ...f, status: 'success' as const }
+              : f,
+          ),
+        );
+      } else {
+        setFiles((prevFiles) =>
+          prevFiles.map((f) =>
+            f.generatedId === file.generatedId
+              ? { ...f, status: 'error' as const }
+              : f,
           ),
         );
       }
-    }, 500);
-  };
-  ////
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      setFiles((prevFiles) =>
+        prevFiles.map((f) =>
+          f.generatedId === file.generatedId
+            ? { ...f, status: 'error' as const }
+            : f,
+        ),
+      );
+    }
+  }
 
   const removeFile = (fileName: string) => {
     setFiles((prevFiles) => prevFiles.filter((file) => file.name !== fileName));
-    console.log();
-    setUploadProgress((prev) => {
-      const newProgress = { ...prev };
-      delete newProgress[fileName];
-      return newProgress;
-    });
   };
 
   const retryUpload = (file: FileWithPreview) => {
@@ -92,7 +99,7 @@ const DragDropUpload: React.FC = () => {
         f.name === file.name ? { ...f, status: 'uploading' as const } : f,
       ),
     );
-    simulateFileUpload(file);
+    handleFileUpload(file);
   };
 
   return (
@@ -142,7 +149,7 @@ const DragDropUpload: React.FC = () => {
               }`}
             ></div>
             <span className="flex-grow text-white truncate text-sm">
-              {file.name}
+              {file.fileName}
             </span>
             <div className="flex items-center">
               {file.status === 'uploading' && (
