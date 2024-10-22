@@ -65,12 +65,18 @@ const MultiStepForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-cardsBackground text-primary py-2 md:py-6 lg:py-8 max-w-[1030px] mx-auto">
+    <form
+      onSubmit={handleSubmit}
+      className="text-primary py-2 md:py-6 lg:py-8 max-w-[1030px] mx-auto "
+    >
+      <p className="text-l text-white flex items-center bg-cardsDark rounded-10 p-2">
+        Submit Information
+      </p>
       <ProgressIndicator activeStep={activeStep} />
 
       {renderStepContent()}
 
-      <div className="flex items-end justify-end gap-10">
+      <div className="flex items-end justify-end gap-10 bg-cardsDark rounded-b-10 p-10">
         {activeStep > 1 && (
           <button
             type="button"

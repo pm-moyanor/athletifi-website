@@ -11,7 +11,7 @@ interface ProgressIndicatorProps {
 
 const ProgressIndicator = ({ activeStep }: ProgressIndicatorProps) => {
   return (
-    <div className="flex items-center justify-center gap-40">
+    <div className="flex items-center justify-center gap-40 py-5">
       {steps.map((step, index) => (
         <div key={step.id} className="flex flex-col items-center justify-center gap-2">
           <div
