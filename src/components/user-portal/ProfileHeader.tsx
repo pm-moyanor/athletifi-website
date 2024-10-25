@@ -67,7 +67,7 @@ export default function ProfileHeader({
     
 
       <div className="max-w-[1030px] mx-auto mb-[72px]">
-        <div className='flex justify-between'>               
+        <div className='flex justify-between md:justify-end'>               
            {/* header submit footage CTA */}
         {pageTitle === "Coach Portal" &&    (  
   
@@ -80,7 +80,7 @@ export default function ProfileHeader({
         
         </div>
       </Link>)}
-        <div className="flex justify-between text-primary md:hidden pb-3">
+        <div className="flex justify-between text-primary md:hidden pb-3 ml-auto">
           <p className="text-base font-extralight px-2 md:px-4">
             {userData.name}
           </p>

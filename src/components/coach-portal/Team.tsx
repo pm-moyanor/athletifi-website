@@ -34,18 +34,18 @@ const Team: React.FC = () => {
   return (
     <div className="m-6 rounded-lg min-h-[250px] overflow-hidden bg-cardsBackground text-primary border border-darkerSkyBlue border-opacity-10 max-w-[1030px] mx-auto shadow-md">
       {/* Placeholder for the Club and Team */}
-      <div className="flex flex-col md:flex-row justify-evenly md:justify-between items-center border-b-[1px] border-darkerSkyBlue border-opacity-10 h-32 md:h-20">
-        <div className='flex items-center gap-2 ml-4 my-3 md:my-0 mr-auto h-full'> 
+      <div className="flex flex-col md:flex-row justify-evenly md:justify-between items-center border-b-[1px] border-darkerSkyBlue border-opacity-10 h-48 md:h-20">
+        <div className='flex items-center gap-2 ml-4 my-6 md:my-0 mr-auto h-full'> 
           <div className="w-12 h-12 bg-partnersBorders"></div>
-          <h2 className="text-sm">Villanova Soccer Academy</h2>
+          <h2 className="text-base">Villanova Soccer Academy</h2>
           </div>
        
             {/* Action buttons (Search, Submit Footage, Edit) */}
-            <motion.div className="flex  h-36 md:h-full w-full md:w-auto justify-between px-2 md:justify-end border-t md:border-t-0 border-darkerSkyBlue border-opacity-10">
+            <motion.div className="flex h-40 md:h-full w-full md:w-auto justify-between px-2 md:justify-end border-t md:border-t-0 border-darkerSkyBlue border-opacity-10">
         
-            <div className='w-1 h-full hidden md:block md:bg-darkerSkyBlue opacity-10 mr-10'></div>
+            <div className='w-1 h-full hidden md:block md:bg-darkerSkyBlue opacity-10 md:mr-10'></div>
             {/* Submit Footage Button */}
-            <div className="h-full flex gap-2 px-6 items-center font-light cursor-pointer">
+            <div className="h-full w-1/2 flex gap-2 justify-center px-6 items-center font-light cursor-pointer">
               <FontAwesomeIcon
                 icon={faCloudArrowUp}
                 size="lg"
@@ -57,7 +57,7 @@ const Team: React.FC = () => {
                {/* Search Input */}
              
               <div className="gap-[6px] flex items-center mx-auto md:mr-12">
-              <div className=" flex justify-center items-center -mb-[3px] ">
+              <div className=" w-1/2 flex justify-center items-center -mb-[3px] ">
                 <FontAwesomeIcon
                   icon={faMagnifyingGlass}
                   size="lg"
@@ -91,7 +91,7 @@ const Team: React.FC = () => {
       >
         {/* Placeholder for the Team and Card */}
         <div className="flex flex-col md:flex-row items-center gap-4 my-4 md:ml-4">
-          <div className="w-24 h-32 bg-gray-500 rounded-md">stack of cards</div>
+          <div className="w-40 h-48 bg-gray-500 rounded-md">stack of cards</div>
           <h2 className="text-basemd font-semibold">Team 2016</h2>
         </div>
         <div className="flex justify-end md:ml-6 gap-2 md:gap-4 mt-10 md:mt-auto">
