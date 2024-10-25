@@ -60,7 +60,7 @@ export default async function HelpPage({
                 </h2>
               </div>
               <div className="flex justify-center">
-                <Accordion faqData={[]} />
+                <Accordion userType="regular" faqData={[]} />
               </div>
               <div className="h-px w-full bg-partnersBorders opacity-20 my-12"></div>
               <div>

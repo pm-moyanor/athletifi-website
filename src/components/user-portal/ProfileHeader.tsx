@@ -44,6 +44,7 @@ export default function ProfileHeader({
       },
     },
   };
+  
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -86,7 +87,7 @@ export default function ProfileHeader({
           initial={{ y: -20 }}
           animate={{ y: 0 }}
           transition={{ ease: 'easeOut', duration: 0.5 }}
-          className="font-bold text-[48px] leading-10 md:leading-none md:text-[54px] text-white opacity-75 my-12"
+          className="font-bold text-[48px] leading-10 md:leading-none md:text-[54px] text-white opacity-75 my-6"
         >
           {pageTitle}
         </motion.h1>
