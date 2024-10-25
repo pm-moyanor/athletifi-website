@@ -1,105 +1,130 @@
 'use client';
+
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faChevronDown,
-  faChevronUp,
+
   faMagnifyingGlass,
   faPenToSquare,
+  faCloudArrowUp,  // Add this icon for Submit Footage
 } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 
 const Team: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [view, setView] = useState<'players' | 'matches'>('players');
+  const [isOpen, setIsOpen] = useState(true) // For expanding/collapsing
+  const [view, setView] = useState<'players' | 'matches'>('players'); // Default to 'players'
 
-  const toggleIsOpen = () => setIsOpen(!isOpen);
+
+  // Function to handle view change and toggle open/close
   const handleViewChange = (newView: 'players' | 'matches') => {
-    setView(newView);
+    if (view === newView && isOpen) {
+      setIsOpen(false); // If clicking the same button again, collapse
+    } else {
+      setView(newView); // Switch to the new view
+      setIsOpen(true); // the container opens when switching
+    }
   };
 
-  // Animation variants
+  // Animation variants for container expand/collapse
   const containerVariants = {
-    open: { opacity: 1, height: 'auto' },
-    collapsed: { opacity: 0, height: 0 },
-  };
-
-  const viewVariants = {
-    players: { x: 0, opacity: 1 },
-    matches: { x: 100, opacity: 0 },
+    open: { opacity: 1, height: 'auto', transition: { duration: 0.3 } },
+    collapsed: { opacity: 0, height: 0, transition: { duration: 0.3 } },
   };
 
   return (
-    <div className="m-6 rounded-lg overflow-hidden bg-cardsBackground text-primary border border-darkerSkyBlue border-opacity-10 max-w-[1030px] mx-auto shadow-md">
-      <div
-        className="flex justify-between items-center p-4 cursor-pointer"
-        onClick={toggleIsOpen}
-      >
-        <h2 className="text-[24px] font-semibold">Team 2013</h2>
-        <FontAwesomeIcon icon={isOpen ? faChevronUp : faChevronDown} />
-      </div>
-      <motion.div
-        initial={false}
-        animate={isOpen ? 'open' : 'collapsed'}
-        variants={containerVariants}
-        transition={{ duration: 0.3 }}
-        className="bg-cardsBackground border-t border-partnersBorders border-opacity-80"
-      >
-        <div className="flex p-4 justify-between my-2">
-          <div className="flex justify-start">
-            <button
-              className={`w-32 h-10 px-3 py-2 rounded-full text-sm ${view === 'players' ? 'border border-skyblue' : ''}`}
-              onClick={() => handleViewChange('players')}
-            >
-              Players
-            </button>
-            <button
-              className={`w-32 h-10 px-3 py-2 rounded-full text-sm ${view === 'matches' ? 'border border-skyblue' : ''}`}
-              onClick={() => handleViewChange('matches')}
-            >
-              Matches
-            </button>
+    <div className="m-6 rounded-lg min-h-[250px] overflow-hidden bg-cardsBackground text-primary border border-darkerSkyBlue border-opacity-10 max-w-[1030px] mx-auto shadow-md">
+      {/* Placeholder for the Club and Team */}
+      <div className="flex flex-col md:flex-row justify-evenly md:justify-between items-center border-b-[1px] border-darkerSkyBlue border-opacity-10 h-32 md:h-20">
+        <div className='flex items-center gap-2 ml-4 my-3 md:my-0 mr-auto h-full'> 
+          <div className="w-12 h-12 bg-partnersBorders"></div>
+          <h2 className="text-sm">Villanova Soccer Academy</h2>
           </div>
-          <motion.div
-            className="flex gap-10"
-            initial="collapsed"
-            animate={isOpen ? 'open' : 'collapsed'}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="relative flex items-center justify-between max-w-72 h-10 rounded-full bg-none border border-partnersBorders">
-              <input
-                type="search"
-                className="mr-10 w-full focus:outline-none focus:ring-0 p-4 rounded-full bg-transparent text-primary text-sm"
-                placeholder="Search"
+       
+            {/* Action buttons (Search, Submit Footage, Edit) */}
+            <motion.div className="flex h-32 md:h-full  w-full md:w-auto justify-end border-t md:border-t-0 border-darkerSkyBlue border-opacity-10">
+        
+            <div className='w-1 h-full md:bg-darkerSkyBlue opacity-10 mr-10'></div>
+            {/* Submit Footage Button */}
+            <div className="flex gap-2 items-center font-light cursor-pointer">
+              <FontAwesomeIcon
+                icon={faCloudArrowUp}
+                size="lg"
+                className="text-opacity-80"
               />
-              <div className="absolute right-2 w-8 h-8 flex justify-center items-center">
+              <p className="-ml-[2px] mt-[4px] text-sm">Submit Footage</p>
+            </div>
+            <div className='w-1 h-full bg-darkerSkyBlue opacity-10 mx-12'></div>
+               {/* Search Input */}
+             
+              <div className="gap-2 flex items-center  mr-12">
+              <div className=" flex justify-center items-center ">
                 <FontAwesomeIcon
                   icon={faMagnifyingGlass}
                   size="lg"
                   className="text-opacity-80"
                 />
               </div>
+              <p className='mt-[4px] text-sm font-light'>Search</p>
+              {/* <input
+                type="search"
+                className="border focus:outline-none focus:ring-0 p-4 rounded-full bg-transparent text-primary text-sm"
+                placeholder="Search"
+              /> */}
+           
             </div>
-            <div className="flex gap-2 items-center font-light mr-2">
+            {/* Edit Button
+            <div className="flex gap-2 items-center font-light mr-2 cursor-pointer">
               <FontAwesomeIcon
                 icon={faPenToSquare}
                 size="lg"
                 className="text-opacity-80"
               />
               <p className="-ml-[2px] mt-[4px]">Edit</p>
-            </div>
+            </div> */}
+          
+           
           </motion.div>
+      </div>
+
+      <div
+        className="flex justify-between items-center px-4 py-8 cursor-pointer"
+      >
+        {/* Placeholder for the Team and Card */}
+        <div className="flex items-center gap-4">
+          <div className="w-24 h-32 bg-gray-500 rounded-md">stack of cards</div>
+          <h2 className="text-basemd font-semibold">Team 2016</h2>
         </div>
-        <motion.div
-          key={view}
-          initial="collapsed"
-          animate="open"
-          variants={viewVariants}
-          transition={{ duration: 0.5 }}
-          className="flex justify-between items-center p-3 rounded bg-cardsDark"
-        >
-          {view === 'players' ? 'players' : 'matches'}
-        </motion.div>
+        <div className="flex flex-col md:flex-row ml-6 md:gap-4">
+            <button
+              className={`w-36 h-10 px-3 py-2 rounded-full text-sm ${view === 'players' ? 'border border-skyblue' : ''}`}
+              onClick={() => handleViewChange('players')}
+            >Players</button>
+            <button
+              className={`w-36 h-10 px-3 py-2 rounded-full text-sm ${view === 'matches' ? 'border border-skyblue' : ''}`}
+              onClick={() => handleViewChange('matches')}
+            >Matches</button>
+          </div>
+
+      </div>
+
+      {/* Container for the players/matches view */}
+      <motion.div
+        initial={false}
+        animate={isOpen ? 'open' : 'collapsed'}
+        variants={containerVariants}
+        className="bg-cardsBackground border-t border-partnersBorders border-opacity-10"
+      >
+        {isOpen && (
+          <motion.div
+            key={view}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex justify-between items-center p-3 rounded bg-cardsDark"
+          >
+            {view === 'players' ? 'Players view content here' : 'Matches view content here'}
+          </motion.div>
+        )}
       </motion.div>
     </div>
   );
