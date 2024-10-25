@@ -41,11 +41,11 @@ const Team: React.FC = () => {
           </div>
        
             {/* Action buttons (Search, Submit Footage, Edit) */}
-            <motion.div className="flex h-32 md:h-full  w-full md:w-auto justify-end border-t md:border-t-0 border-darkerSkyBlue border-opacity-10">
+            <motion.div className="flex  h-36 md:h-full w-full md:w-auto justify-between px-2 md:justify-end border-t md:border-t-0 border-darkerSkyBlue border-opacity-10">
         
-            <div className='w-1 h-full md:bg-darkerSkyBlue opacity-10 mr-10'></div>
+            <div className='w-1 h-full hidden md:block md:bg-darkerSkyBlue opacity-10 mr-10'></div>
             {/* Submit Footage Button */}
-            <div className="flex gap-2 items-center font-light cursor-pointer">
+            <div className="h-full flex gap-2 px-6 items-center font-light cursor-pointer">
               <FontAwesomeIcon
                 icon={faCloudArrowUp}
                 size="lg"
@@ -53,11 +53,11 @@ const Team: React.FC = () => {
               />
               <p className="-ml-[2px] mt-[4px] text-sm">Submit Footage</p>
             </div>
-            <div className='w-1 h-full bg-darkerSkyBlue opacity-10 mx-12'></div>
+            <div className='w-1 h-full bg-darkerSkyBlue opacity-10 mx-2 md:mx-12'></div>
                {/* Search Input */}
              
-              <div className="gap-2 flex items-center  mr-12">
-              <div className=" flex justify-center items-center ">
+              <div className="gap-[6px] flex items-center mx-auto md:mr-12">
+              <div className=" flex justify-center items-center -mb-[3px] ">
                 <FontAwesomeIcon
                   icon={faMagnifyingGlass}
                   size="lg"
@@ -72,7 +72,7 @@ const Team: React.FC = () => {
               /> */}
            
             </div>
-            {/* Edit Button
+            {/* Edit Button --DO WE NEED EDIT?
             <div className="flex gap-2 items-center font-light mr-2 cursor-pointer">
               <FontAwesomeIcon
                 icon={faPenToSquare}
@@ -87,20 +87,20 @@ const Team: React.FC = () => {
       </div>
 
       <div
-        className="flex justify-between items-center px-4 py-8 cursor-pointer"
+        className="flex justify-between flex-col md:flex-row md:items-center px-4 pt-8 pb-4 cursor-pointer"
       >
         {/* Placeholder for the Team and Card */}
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col md:flex-row items-center gap-4 my-4 md:ml-4">
           <div className="w-24 h-32 bg-gray-500 rounded-md">stack of cards</div>
           <h2 className="text-basemd font-semibold">Team 2016</h2>
         </div>
-        <div className="flex flex-col md:flex-row ml-6 md:gap-4">
+        <div className="flex justify-end md:ml-6 gap-2 md:gap-4 mt-10 md:mt-auto">
             <button
-              className={`w-36 h-10 px-3 py-2 rounded-full text-sm ${view === 'players' ? 'border border-skyblue' : ''}`}
+              className={`w-36 h-10 px-3 py-2 rounded-full text-sm ${view === 'players' ? 'border border-skyblue' :  'border border-skyblue border-opacity-10'}`}
               onClick={() => handleViewChange('players')}
             >Players</button>
             <button
-              className={`w-36 h-10 px-3 py-2 rounded-full text-sm ${view === 'matches' ? 'border border-skyblue' : ''}`}
+              className={`w-36 h-10 px-3 py-2 rounded-full text-sm ${view === 'matches' ? 'border border-skyblue' : 'border border-skyblue border-opacity-10'}`}
               onClick={() => handleViewChange('matches')}
             >Matches</button>
           </div>
@@ -120,9 +120,9 @@ const Team: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex justify-between items-center p-3 rounded bg-cardsDark"
+            className="flex justify-between items-center py-8 px-2 rounded bg-cardsDark"
           >
-            {view === 'players' ? 'Players view content here' : 'Matches view content here'}
+            {view === 'players' ? 'Players view' : 'Matches view'}
           </motion.div>
         )}
       </motion.div>

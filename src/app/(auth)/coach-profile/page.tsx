@@ -14,15 +14,17 @@ const CoachProfilePage: React.FC = () => {
       className={`bg-cardsBackground w-full h-full p-4 ${sourceSans3.className}`}
     >
     
-      <Link href="/coach-profile/match-upload-form">
-        <div className="flex items-center text-skyblue text-sm md:text-md  max-w-[1030px] mx-auto pb-3 pr-2">
+      {/* <Link href="/coach-profile/match-upload-form"> */}
+      
+      {/* header submit footage CTA */}
+        {/* <div className="flex items-center text-skyblue text-sm md:text-md  max-w-[1030px] mx-auto pb-3 pr-2">
           <div className='border border-skyblue rounded-full p-[4px] w-12 h-12 flex justify-center align-middle ml-auto'> 
              <FontAwesomeIcon icon={faCloudArrowUp} className="my-auto" />
              </div>
         <p className='ml-2 text-primary'>Submit footage</p>
         
         </div>
-      </Link>
+      </Link> */}
     
 
       <ProfileHeader pageTitle={'Coach Portal'} userData={{
