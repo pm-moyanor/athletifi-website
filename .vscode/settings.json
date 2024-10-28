@@ -3,5 +3,8 @@
     "explorer.fileNesting.patterns": {
         "*.ts": "${capture}.css",
         "*.tsx": "${capture}.css",
-    }
+    },
+    "jest.nodeEnv": {
+        "NODE_OPTIONS": "--experimental-vm-modules"
+    },
 }
