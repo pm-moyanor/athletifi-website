@@ -1,4 +1,4 @@
-import { Client, ClientConfig, Pool } from 'pg';
+import { ClientConfig, Pool } from 'pg';
 import {
   SecretsManagerClient,
   GetSecretValueCommand,
@@ -24,6 +24,8 @@ class SqlContext {
   }
 
   query(strings: TemplateStringsArray, ...args: any[]) {
+    // This is a templated string handler:
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
     let query = strings[0];
     const values: any[] = [];
     for (const [arg, str] of zip(args, strings.slice(1))) {
