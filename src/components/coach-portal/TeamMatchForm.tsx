@@ -91,11 +91,11 @@ const TeamMatchForm: React.FC<TeamMatchFormProps> = ({
             />
           </div>
           {isSelectorOpen && ( // Conditionally render the list
-            <ul className="absolute z-10 w-full bg-cardsBackground mt-1 shadow-md px-5 rounded-b-10">
+            <ul className="absolute z-10 w-full bg-cardsBackground mt-1 shadow-md rounded-b-10">
               {games.map((game) => (
                 <li
                   key={game}
-                  className="py-2 hover:bg-gray-700 cursor-pointer"
+                  className="py-2 px-5 hover:bg-cardsDark w-full cursor-pointer"
                   onClick={() => {
                     handleChange({
                       target: { name: 'team', value: game },
@@ -172,11 +172,11 @@ const TeamMatchForm: React.FC<TeamMatchFormProps> = ({
               />
             </div>
             {isExistingMatchSelectorOpen && ( // Conditionally render the list
-              <ul className="absolute z-10 w-full bg-cardsBackground mt-1 shadow-md px-5 rounded-b-10">
+              <ul className="absolute z-10 w-full bg-cardsBackground mt-1 shadow-md rounded-b-10">
                 {matches.map((match) => (
                   <li
                     key={match.id}
-                    className="py-2 hover:bg-gray-700 cursor-pointer"
+                    className="py-2 px-5 hover:bg-cardsDark w-full cursor-pointer"
                     onClick={() => {
                       handleChange({
                         target: { name: 'existingMatch', value: match.name }, // Access the 'name' property
@@ -232,7 +232,7 @@ const TeamMatchForm: React.FC<TeamMatchFormProps> = ({
                 name="matchDate" 
                 value={formData.matchDate || ''}
                 onChange={handleChange}
-                className="shadow appearance-none w-64 py-3 px-3 bg-cardsBackground rounded-10 leading-tight focus:outline-none focus:shadow-outline text-primary color"   
+                className="shadow appearance-none w-64 py-3 px-3 bg-cardsBackground rounded-10 leading-tight focus:outline-none focus:shadow-outline text-primary "   
  
               />
               <input

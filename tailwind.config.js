@@ -21,6 +21,7 @@ module.exports = {
         'stats-reimagined': "url('/assets/img/svg/bg_stats_reimagined.svg')",
         'strategic-advisor': "url('/assets/img/webp/our_strategic_bg.webp')",
       },
+     
       blur: {
         111: '111px',
         55: '55px',

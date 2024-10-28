@@ -10,7 +10,7 @@ import ReviewForm from './ReviewForm';
 const MultiStepForm = () => {
   const [activeStep, setActiveStep] = useState(3);
   const [formData, setFormData] = useState({});
-
+console.log('formData', formData)
   const handleNext = () => {
     setActiveStep((prevStep) => prevStep + 1);
   };
