@@ -73,7 +73,7 @@ const TeamMatchForm: React.FC<TeamMatchFormProps> = ({
       <div className="mb-4">
         <label
           htmlFor="team"
-          className="block text-primary text-sm font-bold mb-5 mt-10"
+          className="block text-primary text-base font-bold mb-5 mt-10"
         >
           Which team are you submitting for?
         </label>
@@ -115,7 +115,7 @@ const TeamMatchForm: React.FC<TeamMatchFormProps> = ({
       </div>
 
       <div className="mb-4">
-        <label className="block text-primary text-sm font-bold mb-5 mt-10">
+        <label className="block text-primary text-base font-bold mb-5 mt-10">
           Is this for an existing scheduled match or a new match entry?
         </label>
         <p className="text-gray-400 text-xs italic mb-2">
@@ -154,7 +154,7 @@ const TeamMatchForm: React.FC<TeamMatchFormProps> = ({
         <div className="mt-10">
           <label
             htmlFor="existingMatch"
-            className="block text-primary text-sm font-bold mb-5"
+            className="block text-primary text-base font-bold mb-5"
           >
             Which match are you submitting?
           </label>
@@ -201,7 +201,7 @@ const TeamMatchForm: React.FC<TeamMatchFormProps> = ({
           <div className="mt-10">
             <label
               htmlFor="opponentTeam"
-              className="block text-primary text-sm font-bold mb-5"
+              className="block text-primary text-base font-bold mb-5"
             >
               Who was the opposing team?
             </label>
@@ -219,7 +219,7 @@ const TeamMatchForm: React.FC<TeamMatchFormProps> = ({
             </p>
           </div>
           <div className="mt-10">
-            <label className="block text-primary text-sm font-bold mb-5">
+            <label className="block text-primary text-base font-bold mb-5">
               When did the match take place?
             </label>
             {/* You'll need to add input fields for date, time, and venue */}

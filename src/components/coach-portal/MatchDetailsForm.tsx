@@ -63,7 +63,7 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
       <div className="mb-4">
         <label
           htmlFor="matchType"
-          className="block text-primary text-sm font-bold mb-5 mt-10"
+          className="block text-primary text-base font-bold mb-5 mt-10"
         >
           What type of match was this?
         </label>
@@ -106,7 +106,7 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
       <div className="mb-4">
         <label
           htmlFor="venue"
-          className="block text-primary text-sm font-bold mb-5 mt-10"
+          className="block text-primary text-base font-bold mb-5 mt-10"
         >
           What venue was the match?
         </label>
@@ -124,9 +124,9 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
       </div>
 
       <div className="mb-4">
-        <label className="block text-primary text-sm font-bold mb-5 mt-10">
+        <h3 className="block text-primary text-base font-bold mb-5 mt-10">
           Was this a home or away game?
-        </label>
+        </h3>
         <p className="text-gray-400 text-xs italic mb-2">
           Choose if the match was played at home or away to track location-based
           performance.
@@ -154,9 +154,9 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
       </div>
 
       <div className="mb-4">
-        <label className="block text-primary text-sm font-bold mb-5 mt-10">
+        <h3 className="block text-primary text-base font-bold mb-5 mt-10">
           What colors did each team wear?
-        </label>
+        </h3>
         <p className="text-gray-400 text-xs italic mb-2">
           Enter the colors worn by both teams for easy identification.
         </p>
