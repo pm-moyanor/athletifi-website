@@ -31,13 +31,16 @@ const nextConfig = {
  * @type {import('@sentry/nextjs').SentryBuildOptions}
  */
 const sentryConfig = {
-  org: 'ethan-reesor',
-  project: 'athletifi-website',
+  org: 'athletifi',
+  project: 'website',
 
   release: {
     deploy: {
-      env: 'dev',
+      env: process.env.AWS_BRANCH ?? 'dev',
     },
+    setCommits: {
+      auto: true,
+    }
   },
 
   // Only print logs for uploading source maps in CI
