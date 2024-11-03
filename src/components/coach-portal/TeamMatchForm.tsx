@@ -5,7 +5,7 @@ import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 interface TeamMatchFormProps {
   formData: {
     team?: string;
-    matchType?: string;
+    newOrExistingMatch?: string;
     existingMatch?: string;
     opponentTeam?: string;
     matchDate?: string;
@@ -29,18 +29,18 @@ const TeamMatchForm: React.FC<TeamMatchFormProps> = ({
   const [showExistingMatchForm, setShowExistingMatchForm] = useState(false);
   const [showNewMatchForm, setShowNewMatchForm] = useState(false);
 
-  const handleMatchTypeChange = (matchType: string) => {
+  const handleMatchTypeChange = (newOrExistingMatch: string) => {
     // Create a synthetic event for handleChange
     const syntheticEvent = {
-      target: { name: 'matchType', value: matchType },
+      target: { name: 'newOrExistingMatch', value: newOrExistingMatch },
     } as React.ChangeEvent<HTMLInputElement>;
     handleChange(syntheticEvent);
 
     // Show the corresponding form
-    if (matchType === 'existing') {
+    if (newOrExistingMatch === 'existing') {
       setShowExistingMatchForm(true);
       setShowNewMatchForm(false);
-    } else if (matchType === 'new') {
+    } else if (newOrExistingMatch === 'new') {
       setShowExistingMatchForm(false);
       setShowNewMatchForm(true);
     }
@@ -124,11 +124,11 @@ const TeamMatchForm: React.FC<TeamMatchFormProps> = ({
         <div className="flex items-center gap-4">
           <button
             type="button"
-            name="matchType"
+            name="newOrExistingMatch"
             value="existing"
             onClick={() => handleMatchTypeChange('existing')}
             className={`w-4/12 border hover:border-gray-500 text-primary font-bold py-6 px-4 rounded-10 text-center ${
-              formData.matchType === 'existing'
+              formData.newOrExistingMatch === 'existing'
                 ? 'bg-skyblue'
                 : 'border-gray-300'
             }`}
@@ -137,11 +137,11 @@ const TeamMatchForm: React.FC<TeamMatchFormProps> = ({
           </button>
           <button
             type="button"
-            name="matchType"
+            name="newOrExistingMatch"
             value="new"
             onClick={() => handleMatchTypeChange('new')}
             className={`w-4/12 border hover:border-gray-500 text-primary font-bold py-6 px-4 rounded-10 text-center ${
-              formData.matchType === 'new' ? 'bg-skyblue' : 'border-gray-300'
+              formData.newOrExistingMatch === 'new' ? 'bg-skyblue' : 'border-gray-300'
             }`}
           >
             New match

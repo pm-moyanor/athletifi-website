@@ -257,9 +257,9 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
               className="flex items-center py-2 justify-between"
             >
               <p className="w-1/5"> {player.name}</p>
-//TODO: make the jersey number editable. it need to update the permanent roster as well.
+{/* TODO: make the jersey number editable. it need to update the permanent roster as well. */}
               <p className="px-2">jersey {player.jerseyNumber}</p>
-//TODO: make the add note button change when there is a note added. Also, make the note feature editable.
+{/* TODO: make the add note button change when there is a note added. Also, make the note feature editable. */}
               <div className="flex gap-10 pl-2">
                 <button
                   type="button"

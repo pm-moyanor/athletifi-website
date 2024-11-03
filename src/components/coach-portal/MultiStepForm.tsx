@@ -10,7 +10,7 @@ import ReviewForm from './ReviewForm';
 const MultiStepForm = () => {
   const [activeStep, setActiveStep] = useState(3);
   const [formData, setFormData] = useState({});
-console.log('formData', formData)
+  console.log('formData', formData);
   const handleNext = () => {
     setActiveStep((prevStep) => prevStep + 1);
   };
@@ -58,7 +58,7 @@ console.log('formData', formData)
           <TeamRoasterForm formData={formData} handleChange={handleChange} />
         );
       case 4:
-        return <ReviewForm formData={formData} handleSubmit={handleSubmit} />;
+        return <ReviewForm formData={formData} setActiveStep={setActiveStep}/>;
       default:
         return null;
     }
