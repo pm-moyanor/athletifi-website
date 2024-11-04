@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard, faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,13 +7,21 @@ interface Player {
   id: number;
   name: string;
   jerseyNumber: string;
+  note?: string
 }
+
 
 interface TeamRosterFormProps {
   formData: {
-    permanentRoster?: Player[];
-    matchRoster?: Player[];
-    // ... other form fields as needed
+    team?: string;
+    newOrExistingMatch?: string;
+    existingMatch?: string;
+    opponentTeam?: string;
+    matchDate?: string;
+    matchTime?: string;
+    permanentRoster: Player[];
+    matchRoster: Player[];
+    // ... other form fields from TeamMatchFormProps
   };
   handleChange: (
     event:
@@ -27,18 +35,14 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
   formData,
   handleChange,
 }) => {
-  const [permanentRoster, setPermanentRoster] = useState([
-    { id: 1, name: 'Anderson Rodriguez', jerseyNumber: '#08' },
-    { id: 2, name: 'Andrew Gilmore', jerseyNumber: '#06' },
-    { id: 3, name: 'Salvador Carrillo', jerseyNumber: '#10' },
-    { id: 4, name: 'Joseph Valdez', jerseyNumber: '#10' },
-    { id: 5, name: 'Andrew Guilmore', jerseyNumber: '#10' },
-    // ... more dummy data
-  ]);
 
-  const [matchRoster, setMatchRoster] = useState<
-    { id: number; name: string; jerseyNumber: string }[]
-  >([]);
+  const [permanentRoster, setPermanentRoster] = useState<Player[]>(
+    formData.permanentRoster,
+  );
+
+  const [matchRoster, setMatchRoster] = useState<Player[]>(
+    formData.matchRoster,
+  );
   const [newPlayerName, setNewPlayerName] = useState('');
   const [newPlayerJersey, setNewPlayerJersey] = useState('');
   const [addPlayerPermanently, setAddPlayerPermanently] = useState(false);
@@ -47,9 +51,15 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const [noteText, setNoteText] = useState('');
 
+  useEffect(() => {
+    setPermanentRoster(formData.permanentRoster);
+    setMatchRoster(formData.matchRoster);
+  }, [formData]);
+
   const handleAddNoteClick = (player: Player) => {
     setSelectedPlayer(player);
     setShowNoteModal(true);
+    setNoteText(player.note || ''); // Pre-fill note if it exists
   };
 
   const handleNoteChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -155,7 +165,8 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
 
   return (
     <div className="p-10 rounded-t-10 bg-cardsDark">
-      <h2 className="text-2xl font-bold text-primary mb-4">Team Roster</h2>
+      <h2 className="text-2xl font-bold text-primary">Team Roster</h2>
+      <div className="w-full h-1 bg-partnersBorders mt-2 mb-4"></div>
       <p className="text-base font-light max-w-[480px] mb-4">
         Who was in your starting lineup? Select players from the list or add new
         ones to complete your match roster. Ensure all participants are included
@@ -249,7 +260,8 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
 
       {/* Match Roster */}
       <div className="mt-8">
-        <h2 className="text-2xl font-bold text-primary mb-4">Match Roster</h2>
+        <h2 className="text-2xl font-bold text-primary">Match Roster</h2>
+        <div className="w-full h-1 bg-partnersBorders mt-2 mb-4"></div>
         <ul>
           {matchRoster.map((player) => (
             <li
@@ -259,7 +271,6 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
               <p className="w-1/5"> {player.name}</p>
 {/* TODO: make the jersey number editable. it need to update the permanent roster as well. */}
               <p className="px-2">jersey {player.jerseyNumber}</p>
-{/* TODO: make the add note button change when there is a note added. Also, make the note feature editable. */}
               <div className="flex gap-10 pl-2">
                 <button
                   type="button"
@@ -267,7 +278,7 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
                   onClick={() => handleAddNoteClick(player)}
                 >
                   <FontAwesomeIcon icon={faClipboard} className="mr-2" />
-                  add note
+                  {player.note ? 'Edit note' : 'Add note'}
                 </button>
                 <button
                   type="button"

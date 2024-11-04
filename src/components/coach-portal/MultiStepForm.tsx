@@ -7,9 +7,35 @@ import MatchDetailsForm from './MatchDetailsForm';
 import TeamRoasterForm from './TeamRoasterForm';
 import ReviewForm from './ReviewForm';
 
+interface FormData {
+  team?: string;
+  newOrExistingMatch?: string;
+  existingMatch?: string;
+  opponentTeam?: string;
+  matchDate?: string;
+  matchTime?: string;
+  matchType?: string;
+  venue?: string;
+  homeAway?: string;
+  yourTeamColors?: string;
+  opponentColors?: string;
+  permanentRoster: { id: number; name: string; jerseyNumber: string }[];
+  matchRoster: { id: number; name: string; jerseyNumber: string }[];
+}
+
 const MultiStepForm = () => {
-  const [activeStep, setActiveStep] = useState(3);
-  const [formData, setFormData] = useState({});
+  const [activeStep, setActiveStep] = useState(1);
+  const [formData, setFormData] = useState<FormData>({
+    permanentRoster: [
+      { id: 1, name: 'Anderson Rodriguez', jerseyNumber: '#08' },
+      { id: 2, name: 'Andrew Gilmore', jerseyNumber: '#06' },
+      { id: 3, name: 'Salvador Carrillo', jerseyNumber: '#10' },
+      { id: 4, name: 'Joseph Valdez', jerseyNumber: '#10' },
+      { id: 5, name: 'Andrew Guilmore', jerseyNumber: '#10' },
+      // ... more dummy data
+    ],
+    matchRoster: [], // Initialize matchRoster here
+  }); 
   console.log('formData', formData);
   const handleNext = () => {
     setActiveStep((prevStep) => prevStep + 1);
@@ -23,10 +49,23 @@ const MultiStepForm = () => {
     event.preventDefault();
     // Process the form data (e.g., send it to an API)
     console.log('Form Data:', formData);
+    alert('Form submitted successfully!');
   };
 
   interface FormData {
-    [key: string]: any;
+    team?: string;
+    newOrExistingMatch?: string;
+    existingMatch?: string;
+    opponentTeam?: string;
+    matchDate?: string;
+    matchTime?: string;
+    matchType?: string;
+    venue?: string;
+    homeAway?: string;
+    yourTeamColors?: string;
+    opponentColors?: string;
+    permanentRoster: { id: number; name: string; jerseyNumber: string }[];
+    matchRoster: { id: number; name: string; jerseyNumber: string }[];
   }
 
   interface Event {

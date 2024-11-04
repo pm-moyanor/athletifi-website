@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -69,8 +69,9 @@ const TeamMatchForm: React.FC<TeamMatchFormProps> = ({
 
   return (
     <div className="p-10 rounded-t-10 bg-cardsDark">
-      <h2 className="text-2xl font-bold text-primary mb-4">Team & Match</h2>
-      <div className="mb-4">
+      <h2 className="text-2xl font-bold text-primary">Team & Match</h2>
+      <div className="w-full h-1 bg-partnersBorders mt-2 mb-4"></div>
+      <div className="">
         <label
           htmlFor="team"
           className="block text-primary text-base font-bold mb-5 mt-10"
@@ -113,9 +114,9 @@ const TeamMatchForm: React.FC<TeamMatchFormProps> = ({
           If your team isn't listed, contact * to have it added.
         </p>
       </div>
-
-      <div className="mb-4">
-        <label className="block text-primary text-base font-bold mb-5 mt-10">
+      <div className="w-full h-1 bg-partnersBorders my-10"></div>
+      <div className="">
+        <label className="block text-primary text-base font-bold mb-5">
           Is this for an existing scheduled match or a new match entry?
         </label>
         <p className="text-gray-400 text-xs italic mb-2">

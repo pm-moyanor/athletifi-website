@@ -59,8 +59,9 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
 
   return (
     <div className="p-10 rounded-t-10 bg-cardsDark">
-      <h2 className="text-2xl font-bold text-primary mb-4">Match Setup</h2>
-      <div className="mb-4">
+      <h2 className="text-2xl font-bold text-primary">Match Setup</h2>
+      <div className="w-full h-1 bg-partnersBorders mt-2 mb-4"></div>
+      <div className="">
         <label
           htmlFor="matchType"
           className="block text-primary text-base font-bold mb-5 mt-10"
@@ -102,11 +103,11 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
           )}
         </div>
       </div>
-
+      <div className="w-full h-1 bg-partnersBorders my-10"></div>
       <div className="mb-4">
         <label
           htmlFor="venue"
-          className="block text-primary text-base font-bold mb-5 mt-10"
+          className="block text-primary text-base font-bold mb-5"
         >
           What venue was the match?
         </label>
