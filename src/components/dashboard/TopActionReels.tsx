@@ -119,7 +119,12 @@ function getHighlights(
   matchesList: IMatchDataExtended[],
   maxHighlights: number,
 ) {
-  const allHighlights = matchesList.flatMap(
+  const matchesWithHighlights = matchesList.filter(
+    (match) =>
+      match.highlights &&
+      (match.highlights.length > 1 || match.highlights[0].duration !== null),
+  );
+  const allHighlights = matchesWithHighlights.flatMap(
     (match) =>
       match.highlights?.map((highlight) => ({
         ...highlight,
@@ -129,6 +134,7 @@ function getHighlights(
         datetime: match.datetime,
       })) || [],
   );
+  console.log(allHighlights);
 
   return allHighlights.slice(0, maxHighlights);
 }
