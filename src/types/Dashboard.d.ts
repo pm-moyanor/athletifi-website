@@ -6,14 +6,7 @@ export type PlayerDashboardProps = {
   searchParams?: { [key: string]: string | string[] | undefined };
 };
 
-export enum Attributes {
-  Skill = 'skill',
-  Attacking = 'attacking',
-  Goalkeeping = 'goalkeeping',
-  Physical = 'physical',
-  Mentality = 'mentality',
-  Defending = 'defending',
-}
+export type Attributes = 'skill' | 'attacking' | 'goalkeeping' | 'physical' | 'mentality' | 'defending';
 
 export interface IAttributeConfig {
   skill: {

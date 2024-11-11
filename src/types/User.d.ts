@@ -1,9 +1,4 @@
-export enum NotificationTypes {
-  REFERRAL = 'referral_notifications',
-  ATHLETIFI = 'athletifi_updates',
-  GENERAL = 'general_highlights',
-  PLAYER = 'my_player_updates',
-}
+export type NotificationTypes = 'referral_notifications' | 'athletifi_updates' | 'general_highlights' | 'my_player_updates';
 
 export type NotificationPreferences = {
   referral_notifications: boolean;
@@ -16,18 +11,6 @@ export type LatestChange = {
   notification_types: string[] | null;
   value: boolean | null;
 };
-
-export enum DeleteStatus {
-  PENDING = 'pending',
-  COMPLETED = 'completed',
-  REJECTED = 'rejected',
-}
-
-export enum ViewDeleteRequestState {
-  INIT = 'init',
-  CHECK = 'check',
-  CONFIRMED = 'confirmed',
-}
 
 export type ICards = {
   card_id: string | null;
@@ -88,12 +71,6 @@ export type AuthData = {
   error?: string;
 };
 
-export enum UpdatePwErrors {
-  INVALIDPW = 'InvalidPasswordException',
-  NOTAUTHORIZED = 'NotAuthorizedException',
-  LIMITEXCEEDED = 'LimitExceededException',
-  EMPTYPW = 'EmptyUpdatePassword',
-}
 export interface PostHelperResponse {
   message: string;
   user: {

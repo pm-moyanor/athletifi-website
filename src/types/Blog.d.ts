@@ -2,12 +2,7 @@ export type BlogImage = {
   url: string;
 };
 
-export enum AuthorRoles {
-  'Sr. Chief Editor',
-  'Editor',
-  'Author',
-  'Founder',
-}
+export type AuthorRoles = 'Sr. Chief Editor' | 'Editor' | 'Author' | 'Founder';
 
 export type Author = {
   fullName: string;

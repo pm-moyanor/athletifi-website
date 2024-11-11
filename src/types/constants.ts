@@ -53,3 +53,22 @@ export const emptyLatestMatchData: IMatchDataWithWeather = {
   away_club_logo: null,
   away_score: null,
 };
+
+export enum DeleteStatus {
+  PENDING = 'pending',
+  COMPLETED = 'completed',
+  REJECTED = 'rejected',
+}
+
+export enum ViewDeleteRequestState {
+  INIT = 'init',
+  CHECK = 'check',
+  CONFIRMED = 'confirmed',
+}
+
+export enum UpdatePwErrors {
+  INVALIDPW = 'InvalidPasswordException',
+  NOTAUTHORIZED = 'NotAuthorizedException',
+  LIMITEXCEEDED = 'LimitExceededException',
+  EMPTYPW = 'EmptyUpdatePassword',
+}
