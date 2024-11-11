@@ -3,7 +3,7 @@ import MatchSummary from './MatchSummary';
 import Skeleton from 'react-loading-skeleton';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { IMatchDataExtended } from '@/types/Dashboard.type';
+import { IMatchDataExtended } from '@/types/Dashboard';
 import { formatDate } from '@/app/utils/formatDate';
 
 // const formatDate = (dateString: string): Date => {
@@ -101,7 +101,7 @@ export default function PastMatches({
       },
     },
   };
- 
+
   return (
     <>
       {matchList && matchList[0]?.home_club_logo ? (

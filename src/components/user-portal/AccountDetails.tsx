@@ -13,12 +13,8 @@ import handleTOTPSetup from '@/app/utils/auth/handleTOTPSetup';
 import RegisterMFA from '@/components/auth/RegisterMFA';
 import VerifyMFA from '@/components/auth/VerifyMFA';
 import EnabledMFAMessage from '@/components/auth/EnabledMFAMessage';
-import {
-  ViewDeleteRequestState,
-  DeleteStatus,
-  UserData,
-} from '@/types/User.type';
-import { UpdatePwErrors } from '@/types/User.type';
+import { ViewDeleteRequestState, DeleteStatus, UserData } from '@/types/User';
+import { UpdatePwErrors } from '@/types/User';
 import { updatePassword } from 'aws-amplify/auth';
 
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';

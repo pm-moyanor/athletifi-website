@@ -1,4 +1,4 @@
-import { PageSEO } from '@/types/Seo.type';
+import { PageSEO } from '@/types/Seo';
 
 export const BASEURL = 'https://www.athleti.fi';
 

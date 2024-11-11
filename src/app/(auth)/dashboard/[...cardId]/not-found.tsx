@@ -1,9 +1,9 @@
 import CommonHero from '@/components/common/CommonHero';
-import { Hero } from '@/types/CommonHero.type';
+import { Hero } from '@/types/CommonHero';
 import Dashboard404 from '@/components/common/Dashboard404';
 import Header from '@/components/common/Header';
 import { getUserData } from '@/app/utils/fetchHelper';
-import { UserData } from '@/types/User.type';
+import { UserData } from '@/types/User';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 import { addUserPostSignIn } from '@/app/actions/userDataActions';
 

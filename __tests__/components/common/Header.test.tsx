@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Header from '@/components/common/Header';
-import { NotificationPreferences, UserData } from '@/types/User.type';
+import { NotificationPreferences, UserData } from '@/types/User';
 import { useRouter } from 'next/navigation';
 import { signOut } from 'aws-amplify/auth';
 
@@ -28,7 +28,9 @@ jest.mock('aws-amplify/utils', () => ({
 
 jest.mock('next/link', () => {
   return ({ children, href }: { children: React.ReactNode; href: string }) => (
-    <a href={href} onClick={() => mockRouter.push(href)}>{children}</a>
+    <a href={href} onClick={() => mockRouter.push(href)}>
+      {children}
+    </a>
   );
 });
 
@@ -55,7 +57,9 @@ describe('Header Component', () => {
     expect(screen.getByRole('link', { name: /home/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /about us/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /blog/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /contact us/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /contact us/i }),
+    ).toBeInTheDocument();
   });
 
   it('navigates to the correct page when a link is clicked', () => {
@@ -80,15 +84,21 @@ describe('Header Component', () => {
     render(<Header userData={mockUserData} />);
 
     expect(screen.getByText('John Doe')).toBeInTheDocument();
-    
+
     await act(async () => {
       fireEvent.click(screen.getByText('John Doe'));
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
 
-    expect(screen.getAllByRole('link', { name: /my cards/i })[0]).toBeInTheDocument();
-    expect(screen.getAllByRole('link', { name: /settings/i })[0]).toBeInTheDocument();
-    expect(screen.getAllByRole('link', { name: /help & support/i })[0]).toBeInTheDocument();
+    expect(
+      screen.getAllByRole('link', { name: /my cards/i })[0],
+    ).toBeInTheDocument();
+    expect(
+      screen.getAllByRole('link', { name: /settings/i })[0],
+    ).toBeInTheDocument();
+    expect(
+      screen.getAllByRole('link', { name: /help & support/i })[0],
+    ).toBeInTheDocument();
     expect(screen.getAllByText(/logout/i)[0]).toBeInTheDocument();
   });
 
@@ -109,15 +119,23 @@ describe('Header Component', () => {
   it('renders login and signup buttons when user is not logged in', () => {
     render(<Header userData={null} />);
 
-    expect(screen.getAllByRole('button', { name: /log in/i })[0]).toBeInTheDocument();
-    expect(screen.getAllByRole('button', { name: /sign up/i })[0]).toBeInTheDocument();
+    expect(
+      screen.getAllByRole('button', { name: /log in/i })[0],
+    ).toBeInTheDocument();
+    expect(
+      screen.getAllByRole('button', { name: /sign up/i })[0],
+    ).toBeInTheDocument();
   });
 
   it('does not render login and signup buttons when user is logged in', () => {
     render(<Header userData={mockUserData} />);
 
-    expect(screen.queryByRole('button', { name: /log in/i })).not.toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: /sign up/i })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: /log in/i }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: /sign up/i }),
+    ).not.toBeInTheDocument();
   });
 
   it('renders user name when logged in', () => {
@@ -125,7 +143,7 @@ describe('Header Component', () => {
 
     expect(screen.getByText('John Doe')).toBeInTheDocument();
   });
-  
+
   it('toggles dropdown menu when user name is clicked', async () => {
     render(<Header userData={mockUserData} />);
 

@@ -57,21 +57,6 @@ export interface IProfileProps {
   card_url?: string | StaticImageData | null;
 }
 
-export const emptyProfileProps: IProfileProps = {
-  name: null,
-  number: null,
-  age: null,
-  club: null,
-  club_logo: null,
-  league: null,
-  team: null,
-  age_group: null,
-  gender: null,
-  coach: null,
-  bio: null,
-  card_url: null,
-};
-
 export interface IRatingRaw {
   rating_date: string;
   skill: string | number;
@@ -143,19 +128,6 @@ export interface ILatestMatchProps extends IMatchDataWithWeather {
   player_ratings: IRating[] | null;
 }
 
-export const emptyLatestMatchData: IMatchDataWithWeather = {
-  match_id: '',
-  datetime: null,
-  location: null,
-  weather: { tempFahr: null, tempCelc: null },
-  home_club: null,
-  home_club_logo: null,
-  home_score: null,
-  away_club: null,
-  away_club_logo: null,
-  away_score: null,
-};
-
 export interface IActionReel {
   playback_id: string | null;
   title: string | null;
@@ -164,25 +136,11 @@ export interface IActionReel {
   away_club_logo: string | null;
 }
 
-export const emptyActionReel: IActionReel = {
-  playback_id: null,
-  title: null,
-  description: null,
-  home_club_logo: null,
-  away_club_logo: null,
-};
-
 export interface ITeammate {
   name: string | null;
   number: number | null;
   avatar_url: string | null;
 }
-
-export const emptyTeammate: ITeammate = {
-  name: null,
-  number: null,
-  avatar_url: null,
-};
 
 export interface ITeammates {
   teammates: ITeammate[] | undefined;
@@ -203,13 +161,6 @@ export interface IVideo {
   thumbnail: string | null;
   description: string | null;
 }
-
-export const emptyVideoData: IVideo = {
-  title: null,
-  url: '',
-  thumbnail: null,
-  description: null,
-};
 
 export interface IHighlight {
   static_description: string;
@@ -233,22 +184,6 @@ export interface IMatchDataExtended extends IMatchDataWithWeather {
   match_summary?: string | null;
 }
 
-export const emptyMatchData: IMatchDataExtended = {
-  match_id: '',
-  home_club_logo: null,
-  away_club_logo: null,
-  home_club: null,
-  away_club: null,
-  home_score: null,
-  away_score: null,
-  datetime: null,
-  location: null,
-  weather: { tempFahr: null, tempCelc: null },
-  playback_id: null,
-  duration: null,
-  highlights: null,
-};
-
 export interface ILatestPlayerRatings {
   name: string | null;
   skill: string | null;
@@ -258,16 +193,6 @@ export interface ILatestPlayerRatings {
   mentality: string | null;
   defending: string | null;
 }
-
-export const emptyLatestPlayerRatings: ILatestPlayerRatings = {
-  name: '',
-  skill: null,
-  attacking: null,
-  goalkeeping: null,
-  physical: null,
-  mentality: null,
-  defending: null,
-};
 
 export interface DashboardData {
   latestMatch: IMatchDataWithWeather | null;
@@ -280,18 +205,6 @@ export interface DashboardData {
   seasonHighlights: string[] | null;
   topActionReels: IActionReel[] | null;
 }
-
-export const emptyDashboardData: DashboardData = {
-  latestMatch: null,
-  latestPlayerRating: null,
-  playerRatings: null,
-  matchesList: null,
-  playerProfile: null,
-  teammates: null,
-  isGoalkeeper: null,
-  seasonHighlights: null,
-  topActionReels: null,
-};
 
 export interface ISeasonHighlights {
   seasonHighlights: string[] | null;

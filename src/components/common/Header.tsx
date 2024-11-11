@@ -19,7 +19,7 @@ import { useRouter } from 'next/navigation';
 import { Hub } from 'aws-amplify/utils';
 
 import UserNotificationsModal from '@/components/user-portal/UserNotificationsModal';
-import { UserData } from '@/types/User.type';
+import { UserData } from '@/types/User';
 
 const SCROLL_THRESHOLD: number = 200;
 

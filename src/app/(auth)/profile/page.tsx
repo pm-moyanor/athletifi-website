@@ -5,7 +5,7 @@ import Header from '@/components/common/Header';
 import InviteModal from '@/components/common/InviteModal';
 import Preloader from '@/components/common/Preloader';
 import ProfileMain from '@/components/user-portal/ProfileMain';
-import { invitationData, UserData } from '@/types/User.type';
+import { invitationData, UserData } from '@/types/User';
 import { redirect } from 'next/navigation';
 
 export default async function Profile({

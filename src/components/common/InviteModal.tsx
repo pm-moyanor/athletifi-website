@@ -1,7 +1,7 @@
 'use client';
 
-import { AlertModalType } from '@/types/AlertModalType';
-import { invitationData } from '@/types/User.type';
+import { AlertModalType } from '@/types/AlertModal';
+import { invitationData } from '@/types/User';
 import { useState } from 'react';
 import AlertModal from '@/components/common/AlertModal';
 

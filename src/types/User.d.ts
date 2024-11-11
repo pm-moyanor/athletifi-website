@@ -5,13 +5,6 @@ export enum NotificationTypes {
   PLAYER = 'my_player_updates',
 }
 
-export const NotificationTitles = [
-  { name: 'Referral Notifications', value: 'referral_notifications' },
-  { name: 'AthletiFi Updates', value: 'athletifi_updates' },
-  { name: 'General Highlights', value: 'general_highlights' },
-  { name: 'My Player Updates', value: 'my_player_updates' },
-];
-
 export type NotificationPreferences = {
   referral_notifications: boolean;
   athletifi_updates: boolean;
@@ -19,33 +12,9 @@ export type NotificationPreferences = {
   my_player_updates: boolean;
 };
 
-export const emptyNotifications: NotificationPreferences = {
-  referral_notifications: false,
-  athletifi_updates: false,
-  general_highlights: false,
-  my_player_updates: false,
-};
-
-export const allNotificationsEnabled: NotificationPreferences = {
-  referral_notifications: true,
-  athletifi_updates: true,
-  general_highlights: true,
-  my_player_updates: true,
-};
-
 export type LatestChange = {
   notification_types: string[] | null;
   value: boolean | null;
-};
-
-export const emptyLatestChange: LatestChange = {
-  notification_types: [],
-  value: null,
-};
-
-export const allLatestChange: LatestChange = {
-  notification_types: Object.keys(emptyNotifications),
-  value: true,
 };
 
 export enum DeleteStatus {
@@ -74,31 +43,6 @@ export type ICards = {
   inviter_email?: string | null;
 };
 
-export const emptyOwnedCard: ICards = {
-  card_id: null,
-  card_image_url: null,
-  dashboard_slug: null,
-  name: null,
-  number: null,
-  team: null,
-  club: null,
-  club_logo: null,
-};
-
-export const emptyGuestCard: ICards = {
-  invite_id: null,
-  status: null,
-  card_id: null,
-  card_image_url: null,
-  dashboard_slug: null,
-  inviter_email: null,
-  name: null,
-  number: null,
-  team: null,
-  club: null,
-  club_logo: null,
-};
-
 export type Invites = {
   invite_id: string | null;
   guest_email: string | null;
@@ -119,18 +63,6 @@ export type UserData = {
   owned_cards: ICards[] | null;
   guest_cards: ICards[] | null;
   invites: Invites[] | null;
-};
-
-export const emptyUserData = {
-  amplify_id: null,
-  name: null,
-  email: null,
-  init_notifications: null,
-  notifications: null,
-  user_delete_status: null,
-  owned_cards: null,
-  guest_cards: null,
-  invites: null,
 };
 
 export type invitationData = {

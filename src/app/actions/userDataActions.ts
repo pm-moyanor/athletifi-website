@@ -1,6 +1,7 @@
 'use server';
 
-import { emptyNotifications, invitationData } from '@/types/User.type';
+import { invitationData } from '@/types/User';
+import { emptyNotifications } from '@/types/constants';
 import { revalidateTag } from 'next/cache';
 
 const userDataUrl = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/userData`;

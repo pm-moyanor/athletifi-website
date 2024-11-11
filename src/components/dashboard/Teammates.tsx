@@ -1,8 +1,8 @@
 import Skeleton from 'react-loading-skeleton';
 import '@/styles/globals.css';
-import { ITeammate } from '@/types/Dashboard.type';
+import { ITeammate } from '@/types/Dashboard';
 import TeammateCard from './TeammateCard';
-import { ICards } from '@/types/User.type';
+import { ICards } from '@/types/User';
 
 export default function Teammates({
   teammates,

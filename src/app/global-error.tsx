@@ -1,6 +1,6 @@
 'use client';
 
-import { Hero } from '@/types/CommonHero.type';
+import { Hero } from '@/types/CommonHero';
 import * as Sentry from '@sentry/nextjs';
 import NextError from 'next/error';
 import { useEffect } from 'react';

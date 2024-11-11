@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { DashboardData, IRating } from '@/types/Dashboard.type';
+import { DashboardData, IRating } from '@/types/Dashboard';
 import Skeleton from 'react-loading-skeleton';
 import { formatDate } from '@/app/utils/formatDate';
 

@@ -5,14 +5,10 @@ import {
   NotificationPreferences,
   NotificationTypes,
   UserData,
-  emptyNotifications,
-} from '@/types/User.type';
+} from '@/types/User';
+import { emptyActionReel, emptyLatestMatchData, emptyNotifications } from '@/types/constants';
 
-import {
-  DashboardData,
-  emptyActionReel,
-  emptyLatestMatchData,
-} from '@/types/Dashboard.type';
+import { DashboardData } from '@/types/Dashboard';
 import {
   filterRatingData,
   transformRatingData,

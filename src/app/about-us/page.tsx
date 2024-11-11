@@ -5,13 +5,13 @@ import OurMission from '@/components/about-us/OurMission';
 import LookingForward from '@/components/about-us/LookingForward';
 import BackToTop from '@/components/common/BackToTop';
 import CommonHero from '@/components/common/CommonHero';
-import { Hero } from '@/types/CommonHero.type';
+import { Hero } from '@/types/CommonHero';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import { SEO_CONFIG } from '@/utils/seoConfig';
 import { Metadata } from 'next';
 import { getUserData } from '@/app/utils/fetchHelper';
-import { UserData } from '@/types/User.type';
+import { UserData } from '@/types/User';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 import { addUserPostSignIn } from '@/app/actions/userDataActions';
 

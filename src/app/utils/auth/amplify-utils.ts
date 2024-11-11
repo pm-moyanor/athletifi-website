@@ -5,7 +5,7 @@ import config from '@/custom-aws-exports';
 import { cookies } from 'next/headers';
 import { getCurrentUser, fetchUserAttributes } from 'aws-amplify/auth/server';
 import { generateServerClientUsingCookies } from '@aws-amplify/adapter-nextjs/data';
-import { AuthData } from '@/types/User.type';
+import { AuthData } from '@/types/User';
 
 export const cookieBasedClient = generateServerClientUsingCookies({
   config,

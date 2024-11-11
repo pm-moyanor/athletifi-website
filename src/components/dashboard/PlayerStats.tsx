@@ -1,5 +1,5 @@
 import { UnderLineText } from '@/components/common/Icon';
-import type { PlayerStats } from '@/types/Player.type';
+import type { PlayerStats } from '@/types/Player';
 
 const playerStats: PlayerStats = {
   Attacking: 0,

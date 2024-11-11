@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { ButtonWhiteArrow, UnderLineText } from '@/components/common/Icon';
-import { ContactUs } from '@/types/ContactUs.type';
+import { ContactUs } from '@/types/ContactUs';
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addContactUs } from '@/app/actions/strapiAction';

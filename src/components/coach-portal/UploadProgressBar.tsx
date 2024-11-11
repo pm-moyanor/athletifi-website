@@ -1,4 +1,4 @@
-import { FileWithPreview } from '@/types/CoachPortal.type';
+import { FileWithPreview } from '@/types/CoachPortal';
 
 const UploadProgressBar = ({ files }: { files: FileWithPreview[] }) => {
   const percentage =

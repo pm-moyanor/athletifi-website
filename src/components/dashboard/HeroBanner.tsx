@@ -12,7 +12,7 @@ import {
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import FlipCard from '@/components/dashboard/FlipCard';
 import Link from 'next/link';
-import { IProfileProps } from '@/types/Dashboard.type';
+import { IProfileProps } from '@/types/Dashboard';
 
 export default function HeroBanner({
   profile,

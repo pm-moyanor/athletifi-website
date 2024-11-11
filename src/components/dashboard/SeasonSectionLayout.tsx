@@ -1,6 +1,6 @@
 import SeasonHighlights from '@/components/dashboard/SeasonHighlights';
 import { ActionReelList } from '@/components/dashboard/TopActionReels';
-import { DashboardData } from '@/types/Dashboard.type';
+import { DashboardData } from '@/types/Dashboard';
 
 export default function SeasonSection({
   dashboardData,
