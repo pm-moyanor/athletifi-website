@@ -1,41 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FormData } from '../../types/CoachesForm.type';
+import { FormEvent } from '../../types/CoachesForm.type';
+import { Player } from '../../types/CoachesForm.type';
 
-interface Player {
-  // Define the Player interface
-  id: number;
-  name: string;
-  jerseyNumber: string;
-  note?: string
-}
-
-
-interface TeamRosterFormProps {
-  formData: {
-    team?: string;
-    newOrExistingMatch?: string;
-    existingMatch?: string;
-    opponentTeam?: string;
-    matchDate?: string;
-    matchTime?: string;
-    permanentRoster: Player[];
-    matchRoster: Player[];
-    // ... other form fields from TeamMatchFormProps
-  };
-  handleChange: (
-    event:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLSelectElement>
-      | React.ChangeEvent<HTMLTextAreaElement>,
-  ) => void;
-}
-
-const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
+const TeamRosterForm = ({
   formData,
   handleChange,
+}: {
+  formData: FormData;
+  handleChange: (event: FormEvent) => void;
 }) => {
-
   const [permanentRoster, setPermanentRoster] = useState<Player[]>(
     formData.permanentRoster,
   );
@@ -75,7 +51,7 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
       setMatchRoster(updatedMatchRoster);
       handleChange({
         target: { name: 'matchRoster', value: updatedMatchRoster },
-      } as unknown as React.ChangeEvent<HTMLSelectElement>);
+      });
       // Clear the note and close the modal
       setNoteText('');
       setShowNoteModal(false);
@@ -94,13 +70,13 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
         setMatchRoster(updatedRoster);
         handleChange({
           target: { name: 'matchRoster', value: updatedRoster },
-        } as unknown as React.ChangeEvent<HTMLSelectElement>);
+        });
       } else {
         // Player is not in matchRoster, so add them
         setMatchRoster([...matchRoster, player]);
         handleChange({
           target: { name: 'matchRoster', value: [...matchRoster, player] },
-        } as unknown as React.ChangeEvent<HTMLSelectElement>);
+        });
       }
     }
   };
@@ -112,7 +88,7 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
         name: 'matchRoster',
         value: matchRoster.filter((p) => p.id !== playerId),
       },
-    } as unknown as React.ChangeEvent<HTMLSelectElement>);
+    });
   };
 
   const handleAddPlayer = () => {
@@ -127,7 +103,6 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
         (isGuest && addPlayerPermanently) ||
         (!isGuest && !addPlayerPermanently)
       ) {
-        alert('Please select only one option: Add permanently or as a guest');
         setNewPlayerName('');
         setNewPlayerJersey('');
         setAddPlayerPermanently(false);
@@ -142,7 +117,7 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
             name: 'permanentRoster',
             value: [...permanentRoster, newPlayer],
           },
-        } as unknown as React.ChangeEvent<HTMLSelectElement>);
+        });
       }
 
       if (isGuest) {
@@ -153,7 +128,7 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
             name: 'matchRoster',
             value: [...matchRoster, newPlayer],
           },
-        } as unknown as React.ChangeEvent<HTMLSelectElement>);
+        });
       }
 
       setNewPlayerName('');
@@ -164,7 +139,7 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
   };
 
   return (
-    <div className="p-10 rounded-t-10 bg-cardsDark">
+    <div className="py-10 px-5 rounded-t-10 bg-cardsDark">
       <h2 className="text-2xl font-bold text-primary">Team Roster</h2>
       <div className="w-full h-1 bg-partnersBorders mt-2 mb-4"></div>
       <p className="text-base font-light max-w-[480px] mb-4">
@@ -173,9 +148,9 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
         before continuing. You can add notes to give context or clarify details.
       </p>
 
-      <div className="flex gap-4">
+      <div className="flex flex-col md:flex-row items-center md:items-start gap-4 py-2 md:h-[377px]">
         {/* Permanent Roster */}
-        <div className="w-1/2 bg-cardsBackground p-5 py-10 rounded-10">
+        <div className="w-full md:w-1/2 h-full  bg-cardsBackground px-5 py-11 rounded-10">
           <h3 className="text-base font-bold text-primary mb-2">
             Permanent Roster
           </h3>
@@ -201,7 +176,7 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
         </div>
 
         {/* Add New Player */}
-        <div className="w-1/2  bg-cardsBackground p-10 rounded-10">
+        <div className="w-full md:w-1/2 h-full  bg-cardsBackground p-10 rounded-10">
           <h3 className="text-base font-bold text-primary mb-2">
             Add new player
           </h3>
@@ -225,7 +200,10 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
                 type="checkbox"
                 id="addPermanently"
                 checked={addPlayerPermanently}
-                onChange={(e) => setAddPlayerPermanently(e.target.checked)}
+                onChange={(e) => {
+                  setAddPlayerPermanently(e.target.checked);
+                  setIsGuest(false);
+                }}
               />
               <label
                 htmlFor="addPermanently"
@@ -239,7 +217,10 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
                 type="checkbox"
                 id="isGuest"
                 checked={isGuest}
-                onChange={(e) => setIsGuest(e.target.checked)}
+                onChange={(e) => {
+                  setIsGuest(e.target.checked);
+                  setAddPlayerPermanently(false);
+                }}
               />
               <label htmlFor="isGuest" className="ml-2 text-sm text-primary">
                 Guest
@@ -249,7 +230,7 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
               <button
                 type="button"
                 onClick={handleAddPlayer}
-                className="py-2 rounded-20 border text-primary hover:bg-skyblue shadow-md w-2/5"
+                className="p-2 rounded-20 border text-primary hover:bg-skyblue shadow-md md:w-2/5"
               >
                 add player
               </button>
@@ -268,27 +249,33 @@ const TeamRosterForm: React.FC<TeamRosterFormProps> = ({
               key={player.id}
               className="flex items-center py-2 justify-between"
             >
-              <p className="w-1/5"> {player.name}</p>
-{/* TODO: make the jersey number editable. it need to update the permanent roster as well. */}
-              <p className="px-2">jersey {player.jerseyNumber}</p>
-              <div className="flex gap-10 pl-2">
-                <button
-                  type="button"
-                  className="text-skyblue"
-                  onClick={() => handleAddNoteClick(player)}
-                >
-                  <FontAwesomeIcon icon={faClipboard} className="mr-2" />
-                  {player.note ? 'Edit note' : 'Add note'}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handlePlayerRemove(player.id)}
-                  className="text-chartRed hover:text-primary"
-                >
-                  {' '}
-                  <FontAwesomeIcon icon={faXmark} className="mr-2" />
-                  remove
-                </button>
+              <p className="mr-2 xm:mx-2"> {player.name}</p>
+              {/* TODO: make the jersey number editable. it need to update the permanent roster as well. */}
+              <p className="ml-2 xm:mx-2">jersey {player.jerseyNumber}</p>
+              <div className="flex gap-1 xs:gap-5 md:gap-10 ml-2 xm-m-0">
+                <div className='flex flex-col md:flex-row justify-center items-center pr-2'> 
+                  <FontAwesomeIcon icon={faClipboard} className="md:mr-2 text-skyblue" />
+                  <button
+                    type="button"
+                    className="text-skyblue"
+                    onClick={() => handleAddNoteClick(player)}
+                  >
+                   
+                    {player.note ? 'Edit note' : 'Add note'}
+                  </button>
+                </div>
+                <div className='flex flex-col md:flex-row  justify-center items-center'>
+                  <FontAwesomeIcon icon={faXmark} className="md:mr-2 text-chartRed" />
+                  <button
+                    type="button"
+                    onClick={() => handlePlayerRemove(player.id)}
+                    className="text-chartRed hover:text-primary"
+                  >
+                    {' '}
+                    
+                    remove
+                  </button>
+                </div>
               </div>
             </li>
           ))}

@@ -47,6 +47,7 @@
     "postcss": "8.4.41",
     "qrcode": "^1.5.3",
     "react": "^18.2.0",
+    "react-datepicker": "^7.5.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-intersection-observer": "^9.8.1",
@@ -62,7 +63,6 @@
     "typescript": "5.5.4"
   },
   "devDependencies": {
-    "dotenv": "^16.4.5",
     "@playwright/test": "^1.46.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.8",
@@ -74,6 +74,7 @@
     "@types/testing-library__jest-dom": "^6.0.0",
     "@typescript-eslint/eslint-plugin": "^8.0.1",
     "@typescript-eslint/parser": "^8.0.1",
+    "dotenv": "^16.4.5",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.1.0",
     "eslint-config-prettier": "^9.1.0",

@@ -1,26 +1,15 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { FormData } from '../../types/CoachesForm.type';
+import { FormEvent } from '../../types/CoachesForm.type';
 
-interface MatchDetailsFormProps {
-  formData: {
-    matchType?: string;
-    venue?: string;
-    homeAway?: string;
-    yourTeamColors?: string;
-    opponentColors?: string;
-    // ... other form fields as needed
-  };
-  handleChange: (
-    event:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLSelectElement>,
-  ) => void;
-}
-
-const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
+const MatchDetailsForm = ({
   formData,
   handleChange,
+}: {
+  formData: FormData;
+  handleChange: (event: FormEvent) => void;
 }) => {
   const [isMatchTypeSelectorOpen, setIsMatchTypeSelectorOpen] = useState(false);
   const [isYourTeamColorsSelectorOpen, setIsYourTeamColorsSelectorOpen] =
@@ -28,14 +17,14 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
   const [isOpponentColorsSelectorOpen, setIsOpponentColorsSelectorOpen] =
     useState(false);
 
-  const [matchTypes] = useState([
+  const matchTypes = [
     'Tournament',
     'Friendly',
     'League',
     // ... add more match types
-  ]);
+  ];
 
-  const [colors] = useState([
+  const colors = [
     'Red',
     'Blue',
     'Green',
@@ -43,7 +32,7 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
     'White',
     'Black',
     // ... add more colors
-  ]);
+  ];
 
   const handleMatchTypeClick = () => {
     setIsMatchTypeSelectorOpen(!isMatchTypeSelectorOpen);
@@ -72,7 +61,7 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
           Select the match type (tournament, friendly, etc.) for accurate
           categorization.
         </p>
-        <div className="shadow relative w-2/6 bg-cardsBackground rounded-10">
+        <div className="shadow relative w-full xs:w-3/4 md:w-1/2  bg-cardsBackground rounded-10">
           <div
             id="matchType"
             className={`appearance-none bg-cardsBackground py-5 text-primary leading-tight focus:outline-none focus:shadow-outline px-5 cursor-pointer flex justify-between items-center ${isMatchTypeSelectorOpen ? 'rounded-t-10' : 'rounded-10'}`}
@@ -92,7 +81,7 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
                   onClick={() => {
                     handleChange({
                       target: { name: 'matchType', value: type },
-                    } as React.ChangeEvent<HTMLSelectElement>);
+                    });
                     setIsMatchTypeSelectorOpen(false);
                   }}
                 >
@@ -111,7 +100,7 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
         >
           What venue was the match?
         </label>
-        <div className="shadow relative w-2/6 bg-cardsBackground rounded-10">
+        <div className="shadow relative w-full xs:w-3/4 md:w-1/2  bg-cardsBackground rounded-10">
           <input
             type="text"
             id="venue"
@@ -140,9 +129,7 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
               name="homeAway"
               value={option}
               onClick={() =>
-                handleChange({
-                  target: { name: 'homeAway', value: option },
-                } as React.ChangeEvent<HTMLInputElement>)
+                handleChange({ target: { name: 'homeAway', value: option } })
               }
               className={`w-4/12 border hover:border-gray-500 text-primary font-bold py-6 px-4 rounded-10 text-center ${
                 formData.homeAway === option ? 'bg-skyblue' : 'border-gray-300'
@@ -161,8 +148,8 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
         <p className="text-gray-400 text-xs italic mb-2">
           Enter the colors worn by both teams for easy identification.
         </p>
-        <div className="flex items-center gap-4">
-          <div className="shadow relative w-4/12 bg-cardsBackground rounded-10">
+        <div className="flex items-start sm:items-center flex-col sm:flex-row gap-4">
+          <div className="shadow relative w-full xs:w-3/4 md:w-4/12  bg-cardsBackground rounded-10">
             <div
               id="yourTeamColors"
               className={`appearance-none bg-cardsBackground py-5 text-primary leading-tight focus:outline-none focus:shadow-outline px-5 cursor-pointer flex justify-between items-center ${isYourTeamColorsSelectorOpen ? 'rounded-t-10' : 'rounded-10'}`}
@@ -184,7 +171,7 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
                     onClick={() => {
                       handleChange({
                         target: { name: 'yourTeamColors', value: color },
-                      } as React.ChangeEvent<HTMLSelectElement>);
+                      });
                       setIsYourTeamColorsSelectorOpen(false);
                     }}
                   >
@@ -195,7 +182,7 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
             )}
           </div>
 
-          <div className="shadow relative w-4/12 bg-cardsBackground rounded-10">
+          <div className="shadow relative w-full xs:w-3/4 md:w-4/12  bg-cardsBackground rounded-10">
             <div
               id="opponentColors"
               className={`appearance-none bg-cardsBackground py-5 text-primary leading-tight focus:outline-none focus:shadow-outline px-5 cursor-pointer flex justify-between items-center ${isOpponentColorsSelectorOpen ? 'rounded-t-10' : 'rounded-10'}`}
@@ -217,7 +204,7 @@ const MatchDetailsForm: React.FC<MatchDetailsFormProps> = ({
                     onClick={() => {
                       handleChange({
                         target: { name: 'opponentColors', value: color },
-                      } as React.ChangeEvent<HTMLSelectElement>);
+                      });
                       setIsOpponentColorsSelectorOpen(false);
                     }}
                   >

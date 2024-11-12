@@ -4,24 +4,12 @@ import React, { useState } from 'react';
 import ProgressIndicator from './ProgressIndicator';
 import TeamMatchForm from './TeamMatchForm';
 import MatchDetailsForm from './MatchDetailsForm';
-import TeamRoasterForm from './TeamRoasterForm';
+import TeamRosterForm from './TeamRosterForm';
 import ReviewForm from './ReviewForm';
-
-interface FormData {
-  team?: string;
-  newOrExistingMatch?: string;
-  existingMatch?: string;
-  opponentTeam?: string;
-  matchDate?: string;
-  matchTime?: string;
-  matchType?: string;
-  venue?: string;
-  homeAway?: string;
-  yourTeamColors?: string;
-  opponentColors?: string;
-  permanentRoster: { id: number; name: string; jerseyNumber: string }[];
-  matchRoster: { id: number; name: string; jerseyNumber: string }[];
-}
+import { FormData } from '../../types/CoachesForm.type';
+import { FormEvent } from '../../types/CoachesForm.type';
+import AlertModal from '../common/AlertModal';
+import { faTriangleExclamation, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 const MultiStepForm = () => {
   const [activeStep, setActiveStep] = useState(1);
@@ -35,7 +23,10 @@ const MultiStepForm = () => {
       // ... more dummy data
     ],
     matchRoster: [], // Initialize matchRoster here
-  }); 
+  });
+  const [alertModal, setAlertModal] = useState(false);
+  const [modalType, setModalType] = useState<'error' | 'success'>('error');
+
   console.log('formData', formData);
   const handleNext = () => {
     setActiveStep((prevStep) => prevStep + 1);
@@ -49,44 +40,57 @@ const MultiStepForm = () => {
     event.preventDefault();
     // Process the form data (e.g., send it to an API)
     console.log('Form Data:', formData);
-    alert('Form submitted successfully!');
+    const isMissingData = Object.values(formData).some((value) => {
+      return (
+        value === '' ||
+        value === undefined ||
+        value === null ||
+        (Array.isArray(value) && value.length === 0)
+      );
+    });
+    if (isMissingData) {
+      setAlertModal(true);
+      setModalType('error');
+      return;
+    } else {
+      setAlertModal(true);
+      setModalType('success');
+    }
   };
 
-  interface FormData {
-    team?: string;
-    newOrExistingMatch?: string;
-    existingMatch?: string;
-    opponentTeam?: string;
-    matchDate?: string;
-    matchTime?: string;
-    matchType?: string;
-    venue?: string;
-    homeAway?: string;
-    yourTeamColors?: string;
-    opponentColors?: string;
-    permanentRoster: { id: number; name: string; jerseyNumber: string }[];
-    matchRoster: { id: number; name: string; jerseyNumber: string }[];
-  }
-
-  interface Event {
-    target: {
-      name: string;
-      value: string;
-    };
-  }
-
-  const handleChange = (event: Event) => {
+  const handleChange = (event: FormEvent) => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
     });
   };
 
-  const renderStepContent = () => {
+  const handleChangeTeamMatch = (name: keyof FormData, value: string) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+      // Conditionally clear fields based on 'newOrExistingMatch'
+      ...(name === 'newOrExistingMatch' &&
+        value === 'existing' && {
+          opponentTeam: '',
+          matchDate: '',
+          matchTime: '',
+        }),
+      ...(name === 'newOrExistingMatch' &&
+        value === 'new' && {
+          existingMatch: '',
+        }),
+    }));
+  };
+
+  const StepContent = () => {
     switch (activeStep) {
       case 1:
         return (
-          <TeamMatchForm formData={formData} handleChange={handleChange} />
+          <TeamMatchForm
+            formData={formData}
+            handleChangeTeamMatch={handleChangeTeamMatch}
+          />
         );
       case 2:
         return (
@@ -94,13 +98,68 @@ const MultiStepForm = () => {
         );
       case 3:
         return (
-          <TeamRoasterForm formData={formData} handleChange={handleChange} />
+          <TeamRosterForm formData={formData} handleChange={handleChange} />
         );
       case 4:
-        return <ReviewForm formData={formData} setActiveStep={setActiveStep}/>;
+        return <ReviewForm formData={formData} setActiveStep={setActiveStep} />;
       default:
         return null;
     }
+  };
+
+  const StepButtons = () => {
+    return (
+      <>
+        {activeStep > 1 && (
+          <button
+            type="button"
+            onClick={handleBack}
+            className="border border-gray-300 hover:border-gray-500 text-gray-300 font-bold py-2 px-4 rounded-full w-24 text-center"
+          >
+            Back
+          </button>
+        )}
+        <div>
+          {(() => {
+            let buttonLabel, buttonType, buttonOnClick;
+
+            switch (activeStep) {
+              case 1:
+                buttonLabel = 'Continue';
+                buttonType = 'button';
+                buttonOnClick = handleNext;
+                break;
+              case 2:
+                buttonLabel = 'Continue';
+                buttonType = 'button';
+                buttonOnClick = handleNext;
+                break;
+              case 3:
+                buttonLabel = 'Review';
+                buttonType = 'button';
+                buttonOnClick = handleNext;
+                break;
+              case 4:
+                buttonLabel = 'Submit';
+                buttonType = 'submit';
+                break;
+              default:
+                return null; // No button for other steps
+            }
+
+            return (
+              <button
+                type={buttonType as 'button' | 'reset' | 'submit' | undefined}
+                onClick={buttonOnClick}
+                className="bg-skyblue hover:bg-extraDarkBlue text-primary font-bold py-2 px-4 rounded-full w-24 text-center"
+              >
+                {buttonLabel}
+              </button>
+            );
+          })()}
+        </div>
+      </>
+    );
   };
 
   return (
@@ -113,45 +172,23 @@ const MultiStepForm = () => {
       </p>
       <ProgressIndicator activeStep={activeStep} />
 
-      {renderStepContent()}
+      <StepContent />
 
       <div className="flex items-end justify-end gap-10 bg-cardsDark rounded-b-10 p-10">
-        {activeStep > 1 && (
-          <button
-            type="button"
-            onClick={handleBack}
-            className="border border-gray-300 hover:border-gray-500 text-gray-300 font-bold py-2 px-4 rounded-full w-24 text-center"
-          >
-            Back
-          </button>
-        )}
-        {activeStep < 3 && (
-          <button
-            type="button"
-            onClick={handleNext}
-            className="bg-skyblue hover:bg-extraDarkBlue text-primary font-bold py-2 px-4 rounded-full w-24 text-center"
-          >
-            Continue
-          </button>
-        )}
-        {activeStep === 3 && ( // "Review" button for the second-to-last step
-          <button
-            type="button"
-            onClick={handleNext}
-            className="bg-skyblue hover:bg-extraDarkBlue text-primary font-bold py-2 px-4 rounded-full w-24 text-center"
-          >
-            Review
-          </button>
-        )}
-        {activeStep === 4 && ( // "Submit" button only on the last step
-          <button
-            type="submit"
-            className="bg-skyblue hover:bg-extraDarkBlue text-primary font-bold py-2 px-4 rounded-full w-24 text-center"
-          >
-            Submit
-          </button>
-        )}
+        <StepButtons />
       </div>
+      {alertModal && (
+        <AlertModal
+          title={modalType === 'error' ? 'Missing Data' : 'Thanks You'}
+          textBody={
+            modalType === 'error'
+              ? 'Please fill out all fields before submitting.'
+              : 'Your data has been submitted successfully.'
+          }
+          icon={modalType === 'error' ? faTriangleExclamation : faCircleCheck} // Dynamic icon
+          onClose={() => setAlertModal(false)}
+        />
+      )}
     </form>
   );
 };

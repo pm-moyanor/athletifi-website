@@ -1,26 +1,14 @@
 import React from 'react';
+import type { FormData } from '../../types/CoachesForm.type';
 
-interface ReviewFormProps {
-  formData: {
-    team?: string;
-    newOrExistingMatch?: string;
-    existingMatch?: string;
-    opponentTeam?: string;
-    matchDate?: string;
-    matchTime?: string;
-    matchType?: string;
-    venue?: string;
-    homeAway?: string;
-    yourTeamColors?: string;
-    opponentColors?: string;
-    permanentRoster?: { id: number; name: string; jerseyNumber: string }[];
-    matchRoster?: { id: number; name: string; jerseyNumber: string }[];
-    // ... other form fields as needed
-  };
+const ReviewForm = ({
+  formData,
+  setActiveStep,
+}: {
+  formData: FormData;
   setActiveStep: (step: number) => void;
-}
-
-const ReviewForm: React.FC<ReviewFormProps> = ({ formData, setActiveStep }) => {
+}) => {
+ 
   const handleEditClick = (step: number) => {
     setActiveStep(step);
   };
@@ -41,8 +29,8 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, setActiveStep }) => {
           Team and match
         </h3>{' '}
         <div className="w-full h-1 bg-partnersBorders mt-2 mb-4"></div>
-        <div className="flex justify-between gap-4">
-          <div className="flex flex-col w-1/2 bg-cardsBackground p-4 rounded-10">
+        <div className="flex flex-col sm:flex-row justify-between gap-4">
+          <div className="flex flex-col w-full md:w-1/2  bg-cardsBackground p-4 rounded-10">
             <div className="flex justify-between items-center">
               <p className="my-2 text-base font-bold text-primary">Team</p>
               <div>
@@ -66,7 +54,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, setActiveStep }) => {
             </div>
           </div>
 
-          <div className="flex flex-col w-1/2 bg-cardsBackground p-4 rounded-10">
+          <div className="flex flex-col w-full md:w-1/2 bg-cardsBackground p-4 rounded-10">
             <div className="flex justify-between items-center">
               <p className="my-2 text-base font-bold text-primary">Match</p>
               <button
@@ -95,8 +83,8 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, setActiveStep }) => {
           Match Details
         </h3>{' '}
         <div className="w-full h-1 bg-partnersBorders mt-2 mb-4"></div>
-        <div className="flex justify-between gap-4">
-          <div className="flex flex-col w-1/2 bg-cardsBackground p-4 rounded-10">
+        <div className="flex flex-col sm:flex-row justify-between gap-4">
+          <div className="flex flex-col w-full md:w-1/2 bg-cardsBackground p-4 rounded-10">
             <div className="flex justify-between items-center">
               <p className="my-2 text-base font-bold text-primary">
                 Match Type
@@ -129,7 +117,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ formData, setActiveStep }) => {
             </div>
           </div>
 
-          <div className="flex flex-col w-1/2 bg-cardsBackground p-4 rounded-10">
+          <div className="flex flex-col w-full md:w-1/2 bg-cardsBackground p-4 rounded-10">
             <div className="flex justify-between items-center">
               <p className="my-2 text-base font-bold text-primary">
                 Jersey Colors
