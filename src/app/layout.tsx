@@ -9,6 +9,7 @@ import { Open_Sans } from 'next/font/google';
 import Auth from '@/components/auth/Auth';
 import { SEO_CONFIG, BASEURL } from '@/utils/seoConfig';
 import { Metadata } from 'next';
+import NextTopLoader from 'nextjs-toploader';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body>
         <GoogleAnalytics gaId={gaId as string} />
         <AOSInitializerWithNoSSR />
+        <NextTopLoader showSpinner={false} />
         <SkeletonTheme baseColor="#032436" highlightColor="#525252">
           <Auth>{children}</Auth>
         </SkeletonTheme>
