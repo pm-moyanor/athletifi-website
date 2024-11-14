@@ -1,3 +1,7 @@
 {
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "explorer.fileNesting.patterns": {
+        "*.ts": "${capture}.css",
+        "*.tsx": "${capture}.css",
+    }
 }
