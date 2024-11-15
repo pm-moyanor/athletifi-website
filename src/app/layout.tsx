@@ -10,6 +10,8 @@ import Auth from '@/components/auth/Auth';
 import { SEO_CONFIG, BASEURL } from '@/utils/seoConfig';
 import { Metadata } from 'next';
 import NextTopLoader from 'nextjs-toploader';
+import { Suspense } from 'react';
+import { PageLogo } from '@/components/common/Icon';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -31,6 +33,16 @@ export const metadata: Metadata = {
   },
 };
 
+function Fallback() {
+  return (
+    <div className="min-h-screen top-0 left-0 w-full z-50 flex justify-center items-center">
+      <span className="preloader__icon">
+        <PageLogo />
+      </span>
+    </div>
+  );
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -46,7 +58,9 @@ export default function RootLayout({
         <AOSInitializerWithNoSSR />
         <NextTopLoader showSpinner={false} />
         <SkeletonTheme baseColor="#032436" highlightColor="#525252">
-          <Auth>{children}</Auth>
+          <Suspense fallback={<Fallback />}>
+            <Auth>{children}</Auth>
+          </Suspense>
         </SkeletonTheme>
       </body>
     </html>
