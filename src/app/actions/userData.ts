@@ -1,13 +1,13 @@
 'use server';
 
 import { executeSql } from '@/lib/sql';
+import { emptyNotifications } from '@/types/constants';
 import {
   AuthData,
-  emptyNotifications,
   NotificationPreferences,
   NotificationTypes,
   UserData,
-} from '@/types/User.type';
+} from '@/types/User';
 
 export async function getUserData({
   userId,
