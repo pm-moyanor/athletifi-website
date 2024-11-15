@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { PaginationArrow } from '@/components/common/Icon';
 import BlogInsightsLoader from './BlogInsightsLoader';
-import { AllArticles, Category, BlogArticle } from '@/types/Blog.type';
+import { AllArticles, Category, BlogArticle } from '@/types/Blog';
 import { getBlogList } from '@/utils/ApiHelper';
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

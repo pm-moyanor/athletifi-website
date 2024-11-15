@@ -9,7 +9,7 @@ import {
   FieldPlayerRatings,
   GoalKeeperRatings,
 } from '@/app/utils/dashboardHelper';
-import { IRating, IRatingRaw } from '@/types/Dashboard.type';
+import { IRating, IRatingRaw } from '@/types/Dashboard';
 
 const StatsBarChartWithNoSSR = dynamic(
   () => import('@/components/dashboard/BarChart'),

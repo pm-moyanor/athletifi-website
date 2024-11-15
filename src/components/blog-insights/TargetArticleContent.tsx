@@ -8,7 +8,7 @@ import {
   WhiteTwitterIcon,
   WhiteWhatsAppIcon,
 } from '@/components/common/Icon';
-import { BlogContent, BlogArticle, BlogDetails } from '@/types/Blog.type';
+import { BlogContent, BlogArticle, BlogDetails } from '@/types/Blog';
 
 import Link from 'next/link';
 

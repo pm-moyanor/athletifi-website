@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import BlueButton from '@/components/common/BlueButton';
-import { BlogProps, BlogArticle, Category } from '@/types/Blog.type';
+import { BlogProps, BlogArticle, Category } from '@/types/Blog';
 
 const AOS_DURATION: number = 400;
 const AOS_DELAY: number = 100;

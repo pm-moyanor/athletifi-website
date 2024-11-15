@@ -10,7 +10,7 @@ import {
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { motion } from 'framer-motion';
 import { uploadVideo } from '@/app/actions/matchDataAction';
-import { FileWithPreview } from '@/types/CoachPortal.type';
+import { FileWithPreview } from '@/types/CoachPortal';
 
 const DragDropUpload = ({
   files,

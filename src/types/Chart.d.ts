@@ -1,4 +1,4 @@
-import { Attributes } from '@/types/Dashboard.type';
+import { Attributes } from '@/types/Dashboard';
 
 export interface LegendEventType extends EventTarget {
   textContent?: Attributes | undefined;

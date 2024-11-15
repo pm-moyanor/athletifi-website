@@ -1,6 +1,6 @@
 import BackToTop from '@/components/common/BackToTop';
 import CommonHero from '@/components/common/CommonHero';
-import { Hero } from '@/types/CommonHero.type';
+import { Hero } from '@/types/CommonHero';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import BlogInsightsCards from '@/components/blog-insights/BlogInsightsCards';
@@ -11,9 +11,9 @@ import {
   getBlogList,
   RequestMethod,
 } from '@/app/utils/ApiHelper';
-import { BlogPageContext } from '@/types/Blog.type';
+import { BlogPageContext } from '@/types/Blog';
 import { getUserData } from '@/app/utils/fetchHelper';
-import { UserData } from '@/types/User.type';
+import { UserData } from '@/types/User';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 import { addUserPostSignIn } from '@/app/actions/userDataActions';
 

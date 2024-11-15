@@ -1,10 +1,10 @@
 import CommonHero from '@/components/common/CommonHero';
-import { Hero } from '@/types/CommonHero.type';
+import { Hero } from '@/types/CommonHero';
 import LoggedOut from '@/components/auth/LoggedOut';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import { getUserData } from '@/app/utils/fetchHelper';
-import { UserData } from '@/types/User.type';
+import { UserData } from '@/types/User';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 
 export default async function LogoutPage() {

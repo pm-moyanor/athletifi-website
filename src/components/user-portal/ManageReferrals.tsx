@@ -1,13 +1,9 @@
 'use client';
 
-import {
-  ICards,
-  UserData,
-  emptyOwnedCard,
-  emptyGuestCard,
-} from '@/types/User.type';
+import { ICards, UserData } from '@/types/User';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
 import { sourceSans3 } from '@/app/utils/helpers';
+import { emptyGuestCard, emptyOwnedCard } from '@/types/constants';
 
 //const card_url = '/assets/img/png/anderson-card-img.png';
 

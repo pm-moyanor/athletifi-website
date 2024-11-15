@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import MuxPlayer, { MuxPlayerRefAttributes } from '@mux/mux-player-react';
 import { formatDate } from '@/app/utils/formatDate';
-import { IMatchDataExtended } from '@/types/Dashboard.type';
+import { IMatchDataExtended } from '@/types/Dashboard';
 import TopActionReelThumbnail from '@/components/dashboard/TopActionReelThumbnail';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';

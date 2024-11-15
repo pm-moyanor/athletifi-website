@@ -1,7 +1,7 @@
 'use client';
 
 import Skeleton from 'react-loading-skeleton';
-import { IProfileProps } from '@/types/Dashboard.type';
+import { IProfileProps } from '@/types/Dashboard';
 
 export default function Profile({
   profile,

@@ -10,9 +10,9 @@ import {
 } from 'recharts';
 import { useState } from 'react';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
-import { IAttributeConfig, IBarProps } from '@/types/Dashboard.type';
-import { LegendEventType, ILegendMouseEvent } from '@/types/Chart.type';
-import { IRatingProps } from '@/types/Dashboard.type';
+import { IAttributeConfig, IBarProps } from '@/types/Dashboard';
+import { LegendEventType, ILegendMouseEvent } from '@/types/Chart';
+import { IRatingProps } from '@/types/Dashboard';
 import { attributeConfigs } from '@/app/utils/dashboardHelper';
 
 const DEFAULT_COLOR = 'rgba(128, 128, 128, 0.15)';
@@ -153,16 +153,20 @@ const StatsBarChart: React.FC<IRatingProps> = ({
                   const isHovered = barProps.hover === d[xKey];
                   const isClicked = barProps.click === d[xKey];
                   return (
-                    <Cell 
+                    <Cell
                       key={d[xKey]}
                       fill={
                         attributeConfigs[d[xKey] as keyof IAttributeConfig]
                           .color
                       }
                       fillOpacity={
-                        isClicked || (!isMobile && isHovered) ? 1 : 0.6 
+                        isClicked || (!isMobile && isHovered) ? 1 : 0.6
                       }
-                      onClick={() => selectBar({ target: { textContent: d[xKey] } } as ILegendMouseEvent<LegendEventType>)}
+                      onClick={() =>
+                        selectBar({
+                          target: { textContent: d[xKey] },
+                        } as ILegendMouseEvent<LegendEventType>)
+                      }
                       onMouseEnter={() =>
                         !isMobile &&
                         setBarProps({ ...barProps, hover: d[xKey] })
