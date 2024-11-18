@@ -1,4 +1,7 @@
 import { withSentryConfig } from '@sentry/nextjs';
+import WebpackHookPlugin from 'webpack-hook-plugin';
+
+const isDev = process.env.NODE_ENV === 'development';
 
 /**
  * This is the configuration for Next.js. It sets up various settings for the Next.js application.
@@ -24,11 +27,23 @@ const nextConfig = {
     ],
   },
 
-  webpack: (config) => {
+  webpack: (
+    /**
+     * @type {import('webpack').Configuration}
+     */
+    config,
+  ) => {
     config.module.rules.push({
       test: /\.pem$/,
       type: 'asset/source',
-    })
+    });
+
+    config.plugins.push(
+      new WebpackHookPlugin({
+        onBuildStart: ['yarn run spotlight-sidecar'],
+      }),
+    );
+
     return config;
   },
 };
@@ -48,7 +63,7 @@ const sentryConfig = {
     },
     setCommits: {
       auto: true,
-    }
+    },
   },
 
   // Only print logs for uploading source maps in CI
@@ -74,8 +89,9 @@ const sentryConfig = {
   // Hides source maps from generated client bundles
   hideSourceMaps: true,
 
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
+  // Automatically tree-shake Sentry logger statements to reduce bundle size.
+  // Disable in development because `debug: true` doesn't work otherwise.
+  disableLogger: !isDev,
 
   // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
   // See the following for more information:

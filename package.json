@@ -4,9 +4,9 @@
   "description": "Official website for AthletiFi",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "lint": "next lint",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
@@ -40,6 +40,7 @@
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@types/react-slick": "^0.23.13",
+    "@types/webpack": "^5.28.5",
     "aos": "^2.3.4",
     "autoprefixer": "10.4.20",
     "aws-amplify": "^6.3.4",
@@ -49,6 +50,7 @@
     "next": "^14.2.5",
     "next-fonts": "^1.5.1",
     "nextjs-google-analytics": "^2.3.3",
+    "nextjs-toploader": "^3.7.15",
     "node-pg-migrate": "^7.7.1",
     "pg": "^8.13.0",
     "postcss": "8.4.41",
@@ -69,8 +71,9 @@
     "typescript": "5.5.4"
   },
   "devDependencies": {
-    "@electric-sql/pglite": "https://gitpkg.vercel.app/AthletiFi/pglite/packages/pglite?jest-dist",
+    "@electric-sql/pglite": "^0.2.13",
     "@playwright/test": "^1.46.1",
+    "@spotlightjs/spotlight": "^2.5.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
@@ -97,6 +100,7 @@
     "ts-jest": "^29.2.4",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
+    "webpack-hook-plugin": "^1.0.7",
     "whatwg-fetch": "^3.6.20"
   },
   "engines": {

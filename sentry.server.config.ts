@@ -3,10 +3,14 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import * as Sentry from '@sentry/nextjs';
-import { postgresIntegration } from '@sentry/node';
+import * as Node from '@sentry/node';
+
+const isDev = process.env.NODE_ENV === 'development';
 
 Sentry.init({
-  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  dsn: isDev ? undefined : process.env.NEXT_PUBLIC_SENTRY_DSN,
+
+  spotlight: isDev,
 
   // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
   tracesSampleRate: 1,
@@ -14,5 +18,5 @@ Sentry.init({
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
   debug: false,
 
-  integrations: [postgresIntegration()],
+  integrations: [Node.postgresIntegration()],
 });

@@ -12,6 +12,7 @@ import { Metadata } from 'next';
 import NextTopLoader from 'nextjs-toploader';
 import { Suspense } from 'react';
 import { PageLogo } from '@/components/common/Icon';
+import * as Sentry from '@sentry/nextjs';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -23,15 +24,24 @@ const AOSInitializerWithNoSSR = dynamic(
   { ssr: false },
 );
 
-export const metadata: Metadata = {
-  metadataBase: new URL(BASEURL),
-  keywords: ['AthletiFi', 'Club Soccer', 'Club Football'], // TODO: update keywords
-  title: SEO_CONFIG.home.title,
-  description: SEO_CONFIG.home.description,
-  openGraph: {
-    images: SEO_CONFIG.home.image,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const span = Sentry.getRootSpan(Sentry.getActiveSpan()!);
+  return {
+    metadataBase: new URL(BASEURL),
+    keywords: ['AthletiFi', 'Club Soccer', 'Club Football'], // TODO: update keywords
+    title: SEO_CONFIG.home.title,
+    description: SEO_CONFIG.home.description,
+    openGraph: {
+      images: SEO_CONFIG.home.image,
+    },
+
+    other: {
+      // NOTE: This does not work if the metadata is static
+      ['sentry-trace']: Sentry.spanToTraceHeader(span),
+      baggage: Sentry.spanToBaggageHeader(span) ?? '',
+    },
+  };
+}
 
 function Fallback() {
   return (

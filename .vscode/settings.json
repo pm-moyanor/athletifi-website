@@ -4,10 +4,19 @@
         "*.ts": "${capture}.css",
         "*.tsx": "${capture}.css",
     },
-    "jest.nodeEnv": {
-        "NODE_OPTIONS": "--experimental-vm-modules"
-    },
     "cSpell.words": [
         "Amplifi"
     ],
+    "[javascript]": {
+        "editor.formatOnSave": true
+    },
+    "[javascriptreact]": {
+        "editor.formatOnSave": true
+    },
+    "[typescript]": {
+        "editor.formatOnSave": true
+    },
+    "[typescriptreact]": {
+        "editor.formatOnSave": true
+    },
 }
