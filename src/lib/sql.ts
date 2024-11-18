@@ -1,18 +1,15 @@
 import { ClientConfig, Pool } from 'pg';
+import fs from 'node:fs/promises';
+import ini from 'ini';
+import os from 'node:os';
 import {
   SecretsManagerClient,
   GetSecretValueCommand,
+  SecretsManagerClientConfig,
 } from '@aws-sdk/client-secrets-manager';
 import cert from '@/lib/us-east-2-bundle.pem';
 import { SqlContext, SqlContextBase, SqlResult } from './sql-context';
-
-const secretsClient = new SecretsManagerClient({
-  region: 'us-east-2',
-  credentials: {
-    accessKeyId: process.env.NEXT_AWS_ACCESS_KEY_ID ?? '',
-    secretAccessKey: process.env.NEXT_AWS_SECRET_ACCESS_KEY ?? '',
-  },
-});
+import path from 'node:path';
 
 const sharedContext = getDBConfig().then((x) => new SqlContextImpl(x));
 
@@ -41,7 +38,34 @@ export async function executeSql<R>(
 }
 
 async function getDBConfig(): Promise<ClientConfig> {
-  const { SecretString } = await secretsClient.send(
+  const config: SecretsManagerClientConfig = {
+    region: process.env.NEXT_AWS_REGION || 'us-east-2',
+    credentials: {
+      accessKeyId: process.env.NEXT_AWS_ACCESS_KEY_ID ?? '',
+      secretAccessKey: process.env.NEXT_AWS_SECRET_ACCESS_KEY ?? '',
+    },
+  };
+
+  if (process.env.NEXT_AWS_PROFILE) {
+    const text = await fs.readFile(
+      path.join(os.homedir(), '.aws', 'credentials'),
+      { encoding: 'utf-8' },
+    );
+    const profile = process.env.NEXT_AWS_PROFILE;
+    const credentials = ini.parse(text);
+    if (!(profile in credentials)) {
+      throw new Error(
+        `~/.aws/credentials does not contain a profile named "${profile}"`,
+      );
+    }
+    config.credentials = {
+      accessKeyId: credentials[profile].aws_access_key_id ?? '',
+      secretAccessKey: credentials[profile].aws_secret_access_key ?? '',
+    };
+  }
+
+  const client = new SecretsManagerClient(config);
+  const { SecretString } = await client.send(
     new GetSecretValueCommand({
       SecretId: 'RDS_proxy_user',
     }),
