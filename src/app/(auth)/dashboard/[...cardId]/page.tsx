@@ -3,7 +3,7 @@ import { getUserData } from '@/app/utils/fetchHelper';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 import Header from '@/components/common/Header';
 import InviteModal from '@/components/common/InviteModal';
-import { invitationData, UserData } from '@/types/User.type';
+import { invitationData, UserData } from '@/types/User';
 import { redirect } from 'next/navigation';
 import DashboardMain from '@/components/dashboard/DashboardMain';
 
@@ -39,7 +39,7 @@ export default async function PlayerDashboardPage({
     <>
       <Header userData={userData as UserData} />
       <InviteModal inviteData={inviteData as invitationData | undefined} />
-      <DashboardMain cardId={cardId} />
+      <DashboardMain cardId={cardId} userData={userData as UserData} />
     </>
   );
 }

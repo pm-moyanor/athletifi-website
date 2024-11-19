@@ -1,7 +1,7 @@
 // helpers.test.ts
 
 import { filterTargetArticle } from '@/app/utils/helpers';
-import { BlogArticle } from '@/types/Blog.type';
+import { BlogArticle } from '@/types/Blog';
 
 describe('filterTargetArticle', () => {
   const mockArticles: BlogArticle[] = [

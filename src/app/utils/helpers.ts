@@ -1,4 +1,4 @@
-import { BlogArticle } from '@/types/Blog.type';
+import { BlogArticle } from '@/types/Blog';
 import { Source_Sans_3 } from 'next/font/google';
 
 export function filterTargetArticle(

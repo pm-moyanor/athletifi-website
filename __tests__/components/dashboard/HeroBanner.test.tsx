@@ -1,13 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import HeroBanner from '@/components/dashboard/HeroBanner';
-import { IProfileProps } from '@/types/Dashboard.type';
+import { IProfileProps } from '@/types/Dashboard';
 import '@testing-library/jest-dom';
 
 // Mock the useMediaQuery hook and the FlipCard component
 jest.mock('@/app/utils/useMediaQuery', () => ({
   useMediaQuery: jest.fn(),
 }));
-jest.mock('@/components/dashboard/FlipCard', () => () => <div data-testid="mock-flip-card" />);
+jest.mock('@/components/dashboard/FlipCard', () => () => (
+  <div data-testid="mock-flip-card" />
+));
 
 // Helper function for recursive decoding
 function decodeSrcRecursively(src: string): string {
@@ -32,12 +34,14 @@ describe('HeroBanner', () => {
   it('renders profile details and FlipCard when profile data is available', () => {
     render(<HeroBanner profile={mockProfile} />);
 
-    // Check if club logo is rendered 
+    // Check if club logo is rendered
     const logoImage = screen.getByAltText('club-logo');
     expect(logoImage).toBeInTheDocument();
 
     // Decode the 'src' attribute recursively before asserting
-    expect(decodeSrcRecursively(logoImage.getAttribute('src')!)).toContain(mockProfile.club_logo); 
+    expect(decodeSrcRecursively(logoImage.getAttribute('src')!)).toContain(
+      mockProfile.club_logo,
+    );
 
     // Check if profile details are rendered
     expect(screen.getByText(mockProfile.name as string)).toBeInTheDocument();
@@ -55,8 +59,8 @@ describe('HeroBanner', () => {
       card_url: null,
     };
     render(<HeroBanner profile={mockProfileWithNullCard} />);
-  
+
     // Check if skeleton loader is rendered
-    expect(screen.getByTestId('skeleton')).toBeInTheDocument(); 
+    expect(screen.getByTestId('skeleton')).toBeInTheDocument();
   });
 });

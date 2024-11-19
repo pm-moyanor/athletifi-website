@@ -23,7 +23,8 @@
       "@/utils/*": ["./src/app/utils/*"],
       "@/types/*": ["./src/types/*"],
       "@/styles/*": ["./src/styles/*"],
-      "@/*": ["src/*"]
+      "@/db/*": ["./db/*"],
+      "@/*": ["./src/*"]
     },
     "plugins": [
       {
@@ -37,7 +38,8 @@
     "**/*.tsx",
     "src/pages/news/[news].js",
     "src/pages/news/index.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "next.config.mjs"
   ],
   "exclude": ["node_modules"]
 }

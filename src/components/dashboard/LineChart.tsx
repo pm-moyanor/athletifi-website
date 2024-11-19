@@ -10,15 +10,15 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-import { IAttributeConfig, ILineProps } from '@/types/Dashboard.type';
-import { LegendEventType, ILegendMouseEvent } from '@/types/Chart.type';
+import { IAttributeConfig, ILineProps } from '@/types/Dashboard';
+import { LegendEventType, ILegendMouseEvent } from '@/types/Chart';
 import { useMediaQuery } from '@/app/utils/useMediaQuery';
 import { TooltipProps } from 'recharts';
 import {
   ValueType,
   NameType,
 } from 'recharts/types/component/DefaultTooltipContent';
-import { IRatingProps } from '@/types/Dashboard.type';
+import { IRatingProps } from '@/types/Dashboard';
 import { attributeConfigs } from '@/app/utils/dashboardHelper';
 
 const DEFAULT_COLOR = 'rgba(128, 128, 128, 0.15)';

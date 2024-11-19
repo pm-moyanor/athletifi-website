@@ -1,4 +1,4 @@
-import { PaginatedWorkflow } from '@/types/Blog.type';
+import { PaginatedWorkflow } from '@/types/Blog';
 export interface BlogApiResponse {
   res: PaginatedWorkflow;
   error: string | null | undefined;

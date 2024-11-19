@@ -2,13 +2,9 @@
 
 import { motion } from 'framer-motion';
 import RenderCardThumbnail from '@/components/user-portal/CardThumbnail';
-import {
-  ICards,
-  UserData,
-  emptyGuestCard,
-  emptyOwnedCard,
-} from '@/types/User.type';
+import { ICards, UserData } from '@/types/User';
 import ProfileHeader from '@/components/user-portal/ProfileHeader';
+import { emptyGuestCard, emptyOwnedCard } from '@/types/constants';
 
 //motion variants to animate the team bars
 const variants = {

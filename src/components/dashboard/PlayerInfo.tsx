@@ -1,5 +1,5 @@
 import { UnderLineText } from '@/components/common/Icon';
-import { Player } from '@/types/Player.type';
+import { Player } from '@/types/Player';
 
 const playerInformation: Player = {
   club: 'FC Barcelona',

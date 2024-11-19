@@ -1,4 +1,4 @@
-import { IActionReel, IMatchDataExtended } from '@/types/Dashboard.type';
+import { IActionReel, IMatchDataExtended } from '@/types/Dashboard';
 
 export const transformMatchesToActionReels = (
   matchesList: IMatchDataExtended[],
