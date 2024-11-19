@@ -1,10 +1,10 @@
 'use client';
 
-import { DashboardData } from '@/types/Dashboard.type';
+import { DashboardData } from '@/types/Dashboard';
 import PastMatches from './PastMatches';
 import Teammates from './Teammates';
 import { useRef, useEffect, useState } from 'react';
-import { ICards } from '@/types/User.type';
+import { ICards } from '@/types/User';
 
 export default function PastMatchesLayout({
   dashboardData,
@@ -19,7 +19,7 @@ export default function PastMatchesLayout({
 }) {
   const [height, setHeight] = useState(0);
   const pastMatchesRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     const updateHeight = (entries: ResizeObserverEntry[]) => {
       if (entries[0].contentRect) {

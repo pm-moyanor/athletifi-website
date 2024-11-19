@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'nextjs-toploader/app';
-import { ICards } from '@/types/User.type';
-import { Invites } from '@/types/User.type';
+import { ICards } from '@/types/User';
+import { Invites } from '@/types/User';
 import { sourceSans3 } from '@/app/utils/helpers';
 import {
   invitationAction,

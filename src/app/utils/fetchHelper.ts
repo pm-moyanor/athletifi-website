@@ -1,25 +1,16 @@
 import 'server-only';
 
-import {
-  AuthData,
-  NotificationPreferences,
-  NotificationTypes,
-  UserData,
-  emptyNotifications,
-} from '@/types/User.type';
+import { AuthData, UserData } from '@/types/User';
+import { emptyActionReel, emptyLatestMatchData } from '@/types/constants';
 
-import {
-  DashboardData,
-  emptyActionReel,
-  emptyLatestMatchData,
-} from '@/types/Dashboard.type';
+import { DashboardData } from '@/types/Dashboard';
 import {
   filterRatingData,
   transformRatingData,
 } from '@/app/utils/dashboardHelper';
 import { transformMatchesToActionReels } from '@/app/utils/transformMatchesToActionReels';
 
-import { getUserData as getUserData2 } from '@/app/actions/userData';
+import { getUserData as getUserData2 } from '@/app/actions/userDataActions';
 
 const dashboardDataUrl = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/dashboardData`;
 

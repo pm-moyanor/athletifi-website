@@ -1,5 +1,5 @@
 import { ArrowButton } from './Icon';
-import { BlueButtonProps } from '@/types/BlueButton.type';
+import { BlueButtonProps } from '@/types/BlueButton';
 
 const BlueButton = ({ text }: BlueButtonProps) => {
   return (

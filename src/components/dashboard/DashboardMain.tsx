@@ -10,7 +10,7 @@ import BackToTop from '@/components/common/BackToTop';
 import { sourceSans3 } from '@/app/utils/helpers';
 import DashboardFetchError from '@/components/dashboard/DashboardFetchError';
 import { getDashboardData } from '@/app/utils/fetchHelper';
-import { UserData } from '@/types/User.type';
+import { UserData } from '@/types/User';
 
 export default async function DashboardMain({
   cardId,

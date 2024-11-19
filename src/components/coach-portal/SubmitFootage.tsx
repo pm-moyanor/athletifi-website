@@ -11,7 +11,7 @@ import {
 import UploadProgressBar from './UploadProgressBar';
 import { motion } from 'framer-motion';
 import DragDropUpload from './DragDropUpload';
-import { FileWithPreview } from '@/types/CoachPortal.type';
+import { FileWithPreview } from '@/types/CoachPortal';
 
 interface SubmittedUrlProps {
   url: string;

@@ -7,7 +7,7 @@ import { faUser, faGear, faXmark } from '@fortawesome/free-solid-svg-icons';
 import PortalNav from './PortalNav';
 import { motion, AnimatePresence } from 'framer-motion';
 import { sourceSans3 } from '@/app/utils/helpers';
-import { UserData } from '@/types/User.type';
+import { UserData } from '@/types/User';
 
 export default function ProfileHeader({
   pageTitle,

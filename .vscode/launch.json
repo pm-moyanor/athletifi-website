@@ -31,6 +31,26 @@
         "uriFormat": "%s",
         "webRoot": "${workspaceFolder}"
       }
+    },
+    {
+      "type": "node",
+      "name": "vscode-jest-tests.v2.website",
+      "request": "launch",
+      "args": [
+        "./node_modules/.bin/jest",
+        "--runInBand",
+        "--watchAll=false",
+        "--testNamePattern",
+        "${jest.testNamePattern}",
+        "--runTestsByPath",
+        "${jest.testFile}"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "env": {
+        "NODE_OPTIONS": "--experimental-vm-modules"
+      }
     }
   ]
 }

@@ -4,7 +4,7 @@ import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 import Header from '@/components/common/Header';
 import InviteModal from '@/components/common/InviteModal';
 import ProfileMain from '@/components/user-portal/ProfileMain';
-import { invitationData, UserData } from '@/types/User.type';
+import { invitationData, UserData } from '@/types/User';
 import { redirect } from 'next/navigation';
 
 export default async function Profile({

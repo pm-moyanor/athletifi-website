@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { HeroProps } from '@/types/CommonHero.type';
+import { HeroProps } from '@/types/CommonHero';
 
 const HERO_SHADOW_IMAGE_WIDTH: number = 1494;
 const HERO_SHADOW_IMAGE_HEIGHT: number = 1494;

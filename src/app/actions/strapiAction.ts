@@ -1,8 +1,8 @@
 'use server';
 
 import { RequestMethod } from '@/app/utils/ApiHelper';
-import { ContactFormDetails } from '@/types/ContactUs.type';
-import { SignUpFormDetails } from '@/types/SignUp.type';
+import { ContactFormDetails } from '@/types/ContactUs';
+import { SignUpFormDetails } from '@/types/SignUp';
 
 const contactUsUrl = `${process.env.NEXT_PUBLIC_STRAPI_SERVER_URL}/contact-us-messages`;
 const newsletterSignupUrl = `${process.env.NEXT_PUBLIC_STRAPI_SERVER_URL}/join-newsletters`;
