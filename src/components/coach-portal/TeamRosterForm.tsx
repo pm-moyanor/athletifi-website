@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FormData } from '../../types/CoachesForm.type';
-import { FormEvent } from '../../types/CoachesForm.type';
-import { Player } from '../../types/CoachesForm.type';
+import { FormData } from '../../types/CoachesForm';
+import { FormEvent } from '../../types/CoachesForm';
+import { Player } from '../../types/CoachesForm';
 
 const TeamRosterForm = ({
   formData,
@@ -253,26 +253,30 @@ const TeamRosterForm = ({
               {/* TODO: make the jersey number editable. it need to update the permanent roster as well. */}
               <p className="ml-2 xm:mx-2">jersey {player.jerseyNumber}</p>
               <div className="flex gap-1 xs:gap-5 md:gap-10 ml-2 xm-m-0">
-                <div className='flex flex-col md:flex-row justify-center items-center pr-2'> 
-                  <FontAwesomeIcon icon={faClipboard} className="md:mr-2 text-skyblue" />
+                <div className="flex flex-col md:flex-row justify-center items-center pr-2">
+                  <FontAwesomeIcon
+                    icon={faClipboard}
+                    className="md:mr-2 text-skyblue"
+                  />
                   <button
                     type="button"
                     className="text-skyblue"
                     onClick={() => handleAddNoteClick(player)}
                   >
-                   
                     {player.note ? 'Edit note' : 'Add note'}
                   </button>
                 </div>
-                <div className='flex flex-col md:flex-row  justify-center items-center'>
-                  <FontAwesomeIcon icon={faXmark} className="md:mr-2 text-chartRed" />
+                <div className="flex flex-col md:flex-row  justify-center items-center">
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    className="md:mr-2 text-chartRed"
+                  />
                   <button
                     type="button"
                     onClick={() => handlePlayerRemove(player.id)}
                     className="text-chartRed hover:text-primary"
                   >
                     {' '}
-                    
                     remove
                   </button>
                 </div>

@@ -6,10 +6,13 @@ import TeamMatchForm from './TeamMatchForm';
 import MatchDetailsForm from './MatchDetailsForm';
 import TeamRosterForm from './TeamRosterForm';
 import ReviewForm from './ReviewForm';
-import { FormData } from '../../types/CoachesForm.type';
-import { FormEvent } from '../../types/CoachesForm.type';
+import { FormData } from '../../types/CoachesForm';
+import { FormEvent } from '../../types/CoachesForm';
 import AlertModal from '../common/AlertModal';
-import { faTriangleExclamation, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTriangleExclamation,
+  faCircleCheck,
+} from '@fortawesome/free-solid-svg-icons';
 
 const MultiStepForm = () => {
   const [activeStep, setActiveStep] = useState(1);

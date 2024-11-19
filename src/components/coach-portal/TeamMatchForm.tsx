@@ -6,7 +6,7 @@ import {
   faChevronUp,
   faClock,
 } from '@fortawesome/free-solid-svg-icons';
-import { FormData } from '../../types/CoachesForm.type';
+import { FormData } from '../../types/CoachesForm';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 

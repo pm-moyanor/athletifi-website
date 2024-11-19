@@ -1,5 +1,5 @@
 import React from 'react';
-import type { FormData } from '../../types/CoachesForm.type';
+import type { FormData } from '../../types/CoachesForm';
 
 const ReviewForm = ({
   formData,
@@ -8,7 +8,6 @@ const ReviewForm = ({
   formData: FormData;
   setActiveStep: (step: number) => void;
 }) => {
- 
   const handleEditClick = (step: number) => {
     setActiveStep(step);
   };

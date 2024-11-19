@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { FormData } from '../../types/CoachesForm.type';
-import { FormEvent } from '../../types/CoachesForm.type';
+import { FormData } from '../../types/CoachesForm';
+import { FormEvent } from '../../types/CoachesForm';
 
 const MatchDetailsForm = ({
   formData,
