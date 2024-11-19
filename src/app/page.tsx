@@ -20,9 +20,6 @@ import { addUserPostSignIn } from '@/app/actions/userDataActions';
 const BackToTop = dynamic(() => import('@/components/common/BackToTop'), {
   ssr: false,
 });
-const Preloader = dynamic(() => import('@/components/common/Preloader'), {
-  ssr: false,
-});
 
 const IMAGE_WIDTH_HERO_GRID = 700;
 const IMAGE_HEIGHT_HERO_GRID = 700;
@@ -51,7 +48,6 @@ export default async function Home({
 
   return (
     <>
-      <Preloader />
       <div className="overflow-hidden">
         <div className="home-page__hero-bg min-h-screen bg-no-repeat bg-cover flex flex-col justify-center bg-center">
           <Header userData={userData as UserData} />
