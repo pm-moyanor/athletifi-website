@@ -69,7 +69,6 @@
     "typescript": "5.5.4"
   },
   "devDependencies": {
-    "@aws-amplify/cli": "^12.13.0",
     "@electric-sql/pglite": "https://gitpkg.vercel.app/AthletiFi/pglite/packages/pglite?jest-dist",
     "@playwright/test": "^1.46.1",
     "@testing-library/dom": "^10.4.0",
