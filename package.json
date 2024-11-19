@@ -11,7 +11,7 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
     "test:e2e": "playwright test __e2etests_ --ui",
-    "migrate": "node-pg-migrate -f pgmconfig.json"
+    "migrate": "tsx ./db/bin/migrate.ts"
   },
   "repository": {
     "type": "git",
@@ -69,7 +69,6 @@
     "typescript": "5.5.4"
   },
   "devDependencies": {
-    "@aws-amplify/cli": "^12.13.0",
     "@electric-sql/pglite": "https://gitpkg.vercel.app/AthletiFi/pglite/packages/pglite?jest-dist",
     "@playwright/test": "^1.46.1",
     "@testing-library/dom": "^10.4.0",
@@ -94,6 +93,8 @@
     "prettier": "^3.2.5",
     "raw-loader": "^4.0.2",
     "ts-jest": "^29.2.4",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "whatwg-fetch": "^3.6.20"
   },
   "engines": {
