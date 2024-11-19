@@ -3,8 +3,8 @@ import {
   SecretsManagerClient,
   GetSecretValueCommand,
 } from '@aws-sdk/client-secrets-manager';
-import cert from './us-east-2-bundle.pem';
-import { zip } from './iterate';
+import cert from '@/lib/us-east-2-bundle.pem';
+import { SqlContext, SqlContextBase, SqlResult } from './sql-context';
 
 const secretsClient = new SecretsManagerClient({
   region: 'us-east-2',
@@ -14,30 +14,21 @@ const secretsClient = new SecretsManagerClient({
   },
 });
 
-const sharedContext = getDBConfig().then((x) => new SqlContext(x));
+const sharedContext = getDBConfig().then((x) => new SqlContextImpl(x));
 
-class SqlContext {
+class SqlContextImpl extends SqlContextBase {
   readonly #pool: Pool;
 
   constructor(cfg: ClientConfig) {
+    super();
     this.#pool = new Pool(cfg);
   }
 
-  query(strings: TemplateStringsArray, ...args: any[]) {
-    // This is a templated string handler:
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
-    let query = strings[0];
-    const values: any[] = [];
-    for (const [arg, str] of zip(args, strings.slice(1))) {
-      let i = values.indexOf(arg);
-      if (i < 0) {
-        i = values.length;
-        values.push(arg);
-      }
-      // TODO: Handle different types?
-      query += `$${i + 1}::text${str}`;
-    }
-    return this.#pool.query(query, values);
+  protected _query<R extends Record<string, any> = any>(
+    text: string,
+    values: any[],
+  ): Promise<SqlResult<R>> {
+    return this.#pool.query(text, values);
   }
 }
 
@@ -81,6 +72,13 @@ async function getDBConfig(): Promise<ClientConfig> {
     )
   ) {
     throw new Error('Malformed secret');
+  }
+
+  // If there's a problem with the loader/importer, this will alert us
+  // immediately, as opposed to getting strange errors when postgres attempts to
+  // connect.
+  if (typeof cert !== 'string') {
+    throw new Error('Cert loaded incorrectly');
   }
 
   return {

@@ -32,15 +32,19 @@ const config = {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    '^@/components/(.*)$': '<rootDir>/src/components/$1',
-    '^@/app/(.*)$': '<rootDir>/src/app/$1',
     '^@/utils/(.*)$': '<rootDir>/src/app/utils/$1',
-    '^@/types/(.*)$': '<rootDir>/src/types/$1',
-    '^@/styles/(.*)$': '<rootDir>/src/styles/$1',
+    '^@/db/(.*)$': '<rootDir>/db/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+
+  // Always list the files and tests
+  verbose: true,
+
+  // Only run .test.ts files, don't attempt to run plain .ts files as tests
+  testRegex: '.*\\.test\\.(ts|js)x?$',
 };
 
 module.exports = createJestConfig(config);

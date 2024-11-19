@@ -23,7 +23,8 @@
       "@/utils/*": ["./src/app/utils/*"],
       "@/types/*": ["./src/types/*"],
       "@/styles/*": ["./src/styles/*"],
-      "@/*": ["src/*"]
+      "@/db/*": ["./db/*"],
+      "@/*": ["./src/*"]
     },
     "plugins": [
       {
