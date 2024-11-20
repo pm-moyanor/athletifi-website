@@ -1,4 +1,4 @@
-import { sqlQuery as formatQuery, QueryArg } from '@/lib/sql-format';
+import { SqlValue, sqlQuery as formatQuery, QueryArg } from '@/lib/sql-format';
 
 export interface SqlResult<
   R extends Record<string, any> = Record<string, any>,
@@ -17,10 +17,10 @@ export interface SqlContext {
    */
   query<R extends Record<string, any> = any>(
     strings: TemplateStringsArray,
-    ...args: any[]
+    ...args: QueryArg[]
   ): Promise<SqlResult<R>>;
 
-  insert<V extends Record<string, any>>(
+  insert<V extends Record<string, SqlValue>>(
     table: string,
     ...values: V[]
   ): Promise<SqlResult<never>>;
