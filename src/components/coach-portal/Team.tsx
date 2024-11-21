@@ -13,7 +13,7 @@ const Team: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [view, setView] = useState<'players' | 'matches'>('players'); // Default to 'players'
 
-  // Function to handle view change and toggle open/close
+  // Toggle which view is open
   const handleViewChange = (newView: 'players' | 'matches') => {
     if (view === newView && isOpen) {
       setIsOpen(false);

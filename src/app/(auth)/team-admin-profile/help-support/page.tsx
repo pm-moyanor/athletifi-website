@@ -16,7 +16,7 @@ import {
   faFlag,
   faPaperPlane,
   faMessage,
-  faDownload
+  faDownload,
 } from '@fortawesome/free-solid-svg-icons';
 import InviteModal from '@/components/common/InviteModal';
 
@@ -25,22 +25,17 @@ export default async function CoachHelpPage({
 }: {
   searchParams?: { [key: string]: string | undefined };
 }) {
+  const auth = await isAuthenticated();
+  if (!auth.isSignedIn) redirect('/login?redirect=/help-support');
 
-    console.log('NEXT_PUBLIC_BACKEND_API_URL:', process.env.NEXT_PUBLIC_BACKEND_API_URL);
-    console.log('NEXT_PUBLIC_TEMP_API_AUTH:', process.env.NEXT_PUBLIC_TEMP_API_AUTH);
-    const auth = await isAuthenticated();
-    if (!auth.isSignedIn) redirect('/login?redirect=/help-support');
-  
-    const inviteData = await addUserPostSignIn(
-      auth.email,
-      auth.name,
-      auth.userId,
-      searchParams?.invite_id,
-    );
-  
-    const userData = await getUserData(auth);
-  
-    console.log("User data:", userData);
+  const inviteData = await addUserPostSignIn(
+    auth.email,
+    auth.name,
+    auth.userId,
+    searchParams?.invite_id,
+  );
+
+  const userData = await getUserData(auth);
 
   return (
     <>
@@ -60,36 +55,37 @@ export default async function CoachHelpPage({
           />
           <div className="flex justify-center">
             <div className="flex flex-col w-full justify-center max-w-[880px]">
-            <div className=" my-6">
- 
-  <div className="shadow-portalNav">
-                <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-2 md:px-4">
-                Camera Setup Guide
-                </h2>
+              <div className=" my-6">
+                <div className="shadow-portalNav">
+                  <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-2 md:px-4">
+                    Camera Setup Guide
+                  </h2>
+                </div>
+                <div className="flex justify-between items-start py-6 px-2">
+                  <p
+                    className="text-primary  text-sm md:text-base mb-6 max-w-1/2 leading-7
+                 "
+                  >
+                    Need help setting up your camera to record matches? Download
+                    our step-by-step guide
+                  </p>
+                  <a
+                    href="/dowehavethepdf"
+                    download
+                    className="text-skyblue text-sm md:text-base font-extralight flex items-center"
+                  >
+                    <FontAwesomeIcon icon={faDownload} className="mr-2" />
+                    Download PDF Instructions
+                  </a>
+                </div>
               </div>
-              <div className='flex justify-between items-start py-6 px-2'> 
-                 <p className="text-primary  text-sm md:text-base mb-6 max-w-1/2 leading-7
-                 ">
-              Need help setting up your camera to record matches? Download our step-by-step guide
-                </p> 
-                <a
-    href="/dowehavethepdf"
-    download
-    className="text-skyblue text-sm md:text-base font-extralight flex items-center"
-  >
-    <FontAwesomeIcon icon={faDownload} className="mr-2" />
-    Download PDF Instructions
-  </a></div>
-             
-
-</div>
               <div className="shadow-portalNav">
                 <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-2 md:px-4">
                   Frequently asked questions
                 </h2>
               </div>
               <div className="flex justify-center">
-              <Accordion userType="coach" faqData={[]} />
+                <Accordion userType="coach" faqData={[]} />
               </div>
               <div className="h-px w-full bg-partnersBorders opacity-20 my-12"></div>
               <div>
