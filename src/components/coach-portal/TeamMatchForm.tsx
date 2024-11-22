@@ -21,17 +21,20 @@ const TeamMatchForm = ({
   const [isExistingMatchSelectorOpen, setIsExistingMatchSelectorOpen] =
     useState(false);
 
-  const handleMatchTypeChange = (newOrExistingMatch: 'existing' | 'new') => {
-    if (newOrExistingMatch === 'existing') {
-      handleChangeTeamMatch('opponentTeam', '');
-      handleChangeTeamMatch('matchDate', '');
-      handleChangeTeamMatch('matchTime', '');
-      handleChangeTeamMatch('newOrExistingMatch', 'existing');
-    } else if (newOrExistingMatch === 'new') {
-      handleChangeTeamMatch('existingMatch', '');
-      handleChangeTeamMatch('newOrExistingMatch', 'new');
-    }
-  };
+    const handleMatchTypeChange = (newOrExistingMatch: 'existing' | 'new') => {
+      switch (newOrExistingMatch) {
+        case 'existing':
+          handleChangeTeamMatch('opponentTeam', '');
+          handleChangeTeamMatch('matchDate', '');
+          handleChangeTeamMatch('matchTime', '');
+          handleChangeTeamMatch('newOrExistingMatch', 'existing');
+          break;
+        case 'new':
+          handleChangeTeamMatch('existingMatch', '');
+          handleChangeTeamMatch('newOrExistingMatch', 'new');
+          break;
+      }
+    };
 
   const games = [
     'Team 2011',
