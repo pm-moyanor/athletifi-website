@@ -3,7 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faGear, faXmark } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUser,
+  faGear,
+  faXmark,
+  faCloudArrowUp,
+} from '@fortawesome/free-solid-svg-icons';
 import PortalNav from './PortalNav';
 import { motion, AnimatePresence } from 'framer-motion';
 import { sourceSans3 } from '@/app/utils/helpers';
@@ -44,6 +49,7 @@ export default function ProfileHeader({
       },
     },
   };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -63,30 +69,45 @@ export default function ProfileHeader({
           </motion.div>
         )}
       </AnimatePresence>
-      <div className="max-w-[1030px] mx-auto mb-[72px]">
-        <div className="flex justify-between text-primary md:hidden pb-3">
-          <p className="text-base font-extralight px-2 md:px-4">
-            {userData.name}
-          </p>
-          <div className="flex items-center w-12 justify-between cursor-pointer mx-3">
-            <Link href="/login">
-              <FontAwesomeIcon icon={faUser} className="text-skyblue mr-3 " />
-            </Link>
 
-            <FontAwesomeIcon
-              icon={isOpenSideNav ? faXmark : faGear}
-              size={isOpenSideNav ? 'lg' : '1x'}
-              className="text-skyblue mt-px"
-              onClick={() => setIsOpenSideNav(!isOpenSideNav)}
-            />
+      <div className="max-w-[1030px] mx-auto mb-[72px]">
+        <div className="flex justify-between md:justify-end">
+          {/* header submit footage CTA */}
+          {pageTitle === 'Coach Portal' && (
+            <Link href="/coach-profile/match-upload-form">
+              <div className=" flex items-center text-skyblue text-sm md:text-md  max-w-[1030px] mx-auto pb-3 pr-2">
+                <div className="border border-skyblue rounded-full p-[4px] w-12 h-12 flex justify-center align-middle ml-auto">
+                  <FontAwesomeIcon icon={faCloudArrowUp} className="my-auto" />
+                </div>
+                <p className="ml-2 text-primary">Submit footage</p>
+              </div>
+            </Link>
+          )}
+          <div className="flex justify-between text-primary md:hidden pb-3 ml-auto">
+            <p className="text-base font-extralight px-2 md:px-4">
+              {userData.name}
+            </p>
+            <div className="flex items-center w-12 justify-between cursor-pointer mx-3">
+              <Link href="/login">
+                <FontAwesomeIcon icon={faUser} className="text-skyblue mr-3 " />
+              </Link>
+
+              <FontAwesomeIcon
+                icon={isOpenSideNav ? faXmark : faGear}
+                size={isOpenSideNav ? 'lg' : '1x'}
+                className="text-skyblue mt-px"
+                onClick={() => setIsOpenSideNav(!isOpenSideNav)}
+              />
+            </div>
           </div>
         </div>
+
         <div className="flex h-px bg-partnersBorders"></div>
         <motion.h1
           initial={{ y: -20 }}
           animate={{ y: 0 }}
           transition={{ ease: 'easeOut', duration: 0.5 }}
-          className="font-bold text-[48px] leading-10 md:leading-none md:text-[54px] text-white opacity-75 my-12"
+          className="font-bold text-[48px] leading-10 md:leading-none md:text-[54px] text-white opacity-75 my-6"
         >
           {pageTitle}
         </motion.h1>

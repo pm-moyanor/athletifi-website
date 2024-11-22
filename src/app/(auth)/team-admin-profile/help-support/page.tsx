@@ -7,7 +7,7 @@ import Accordion from '@/components/user-portal/FAQ';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 import { addUserPostSignIn } from '@/app/actions/userDataActions';
 import { getUserData } from '@/app/utils/fetchHelper';
-import { invitationData, UserData } from '@/types/User';
+import { invitationData, UserData } from '@/types/User.type';
 import { redirect } from 'next/navigation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,10 +16,11 @@ import {
   faFlag,
   faPaperPlane,
   faMessage,
+  faDownload,
 } from '@fortawesome/free-solid-svg-icons';
 import InviteModal from '@/components/common/InviteModal';
 
-export default async function HelpPage({
+export default async function CoachHelpPage({
   searchParams,
 }: {
   searchParams?: { [key: string]: string | undefined };
@@ -39,7 +40,7 @@ export default async function HelpPage({
   return (
     <>
       <Header userData={userData as UserData} />
-      <InviteModal inviteData={inviteData as invitationData | undefined} />
+      {/* <InviteModal inviteData={inviteData as invitationData | undefined} /> */}
       <main className="${sourceSans3.className} overflow-hidden bg-gradient-to-r from-cardsDark2 to-cardsBackground w-full">
         {/* <motion.div
         initial={{ opacity: 0 }}
@@ -54,13 +55,37 @@ export default async function HelpPage({
           />
           <div className="flex justify-center">
             <div className="flex flex-col w-full justify-center max-w-[880px]">
+              <div className=" my-6">
+                <div className="shadow-portalNav">
+                  <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-2 md:px-4">
+                    Camera Setup Guide
+                  </h2>
+                </div>
+                <div className="flex justify-between items-start py-6 px-2">
+                  <p
+                    className="text-primary  text-sm md:text-base mb-6 max-w-1/2 leading-7
+                 "
+                  >
+                    Need help setting up your camera to record matches? Download
+                    our step-by-step guide
+                  </p>
+                  <a
+                    href="/dowehavethepdf"
+                    download
+                    className="text-skyblue text-sm md:text-base font-extralight flex items-center"
+                  >
+                    <FontAwesomeIcon icon={faDownload} className="mr-2" />
+                    Download PDF Instructions
+                  </a>
+                </div>
+              </div>
               <div className="shadow-portalNav">
                 <h2 className="rounded bg-cardsDark text-settingsGray py-2 px-2 md:px-4">
                   Frequently asked questions
                 </h2>
               </div>
               <div className="flex justify-center">
-                <Accordion userType="regular" faqData={[]} />
+                <Accordion userType="coach" faqData={[]} />
               </div>
               <div className="h-px w-full bg-partnersBorders opacity-20 my-12"></div>
               <div>
