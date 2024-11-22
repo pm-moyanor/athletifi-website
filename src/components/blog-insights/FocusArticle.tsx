@@ -3,7 +3,7 @@ import Link from 'next/link';
 import BlueButton from '@/components/common/BlueButton';
 import Image from 'next/image';
 import moment from 'moment';
-import { Articles, BlogArticle } from '@/types/Blog.type';
+import { Articles, BlogArticle } from '@/types/Blog';
 
 const IMAGE_WIDTH_GRID: number = 362;
 const IMAGE_HEIGHT_GRID: number = 241;

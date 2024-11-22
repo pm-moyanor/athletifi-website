@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { ButtonWhiteArrow, UnderLineText } from '@/components/common/Icon';
-import { SignUp } from '@/types/SignUp.type';
+import { SignUp } from '@/types/SignUp';
 import { ToastContainer, toast, ToastOptions } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addNewsletterSignUp } from '@/app/actions/strapiAction';

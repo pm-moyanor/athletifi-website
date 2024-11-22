@@ -6,7 +6,7 @@ import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { IHighlight, IMatchDataExtended } from '@/types/Dashboard.type';
+import { IHighlight, IMatchDataExtended } from '@/types/Dashboard';
 import HorizontalTimeline from './HorizontalTimeline';
 import SummaryHighlightCard from './SummaryHighlightCard';
 import MuxPlayer, { MuxPlayerRefAttributes } from '@mux/mux-player-react';

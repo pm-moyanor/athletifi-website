@@ -1,79 +1,21 @@
 import 'server-only';
 
-import {
-  AuthData,
-  NotificationPreferences,
-  NotificationTypes,
-  UserData,
-  emptyNotifications,
-} from '@/types/User.type';
+import { AuthData, UserData } from '@/types/User';
+import { emptyActionReel, emptyLatestMatchData } from '@/types/constants';
 
-import {
-  DashboardData,
-  emptyActionReel,
-  emptyLatestMatchData,
-} from '@/types/Dashboard.type';
+import { DashboardData } from '@/types/Dashboard';
 import {
   filterRatingData,
   transformRatingData,
 } from '@/app/utils/dashboardHelper';
 import { transformMatchesToActionReels } from '@/app/utils/transformMatchesToActionReels';
 
-const userDataUrl = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/userData`;
+import { getUserData as getUserData2 } from '@/app/actions/userDataActions';
+
 const dashboardDataUrl = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/dashboardData`;
 
-function transformNotificationPreferences(dataArray: NotificationTypes[]) {
-  const tmp = { ...emptyNotifications };
-  dataArray.map((item: keyof NotificationPreferences) => {
-    tmp[item] = true;
-  });
-  return tmp;
-}
-
-export async function getUserData({
-  userId,
-  name,
-  email,
-}: AuthData): Promise<UserData | null> {
-  try {
-    const fetchUrl = `${userDataUrl}?amplify_id=${userId}`;
-    const response = await fetch(fetchUrl, {
-      headers: {
-        Authorization: process.env.NEXT_PUBLIC_TEMP_API_AUTH,
-      } as HeadersInit,
-      next: {
-        tags: ['userData'],
-      },
-      cache: 'force-cache',
-    });
-
-    const responseJson = await response.json();
-    if (responseJson.message !== 'Success') {
-      return null;
-    }
-
-    const userData = responseJson.result;
-
-    const dataObject: UserData = {
-      amplify_id: userId,
-      name: name as string,
-      email: email as string,
-      init_notifications: userData.init_notifications,
-      notifications:
-        userData.notifications_enabled.length > 0
-          ? transformNotificationPreferences(userData.notifications_enabled)
-          : emptyNotifications,
-      user_delete_status: userData.delete_status,
-      owned_cards: userData.owned_cards,
-      guest_cards: userData.guest_cards,
-      invites: userData.invites,
-    };
-
-    return dataObject;
-  } catch (error) {
-    console.error('getUserData error: %s', error);
-    return null;
-  }
+export async function getUserData(x: AuthData): Promise<UserData | null> {
+  return getUserData2(x);
 }
 
 export async function getDashboardData(cardId: string) {

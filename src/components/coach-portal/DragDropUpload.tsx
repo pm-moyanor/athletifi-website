@@ -10,7 +10,7 @@ import {
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { motion } from 'framer-motion';
 import { uploadVideo } from '@/app/actions/matchDataAction';
-import { FileWithPreview } from '@/types/CoachPortal.type';
+import { FileWithPreview } from '@/types/CoachPortal';
 
 const DragDropUpload = ({
   files,
@@ -175,7 +175,6 @@ const DragDropUpload = ({
               )}
               <button
                 onClick={() => {
-                  console.log(file, 'name', file.name);
                   removeFile(file.name);
                 }}
                 className="text-red-500 hover:text-red-400 pr-4"

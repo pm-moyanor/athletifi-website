@@ -7,7 +7,7 @@ import Accordion from '@/components/user-portal/FAQ';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 import { addUserPostSignIn } from '@/app/actions/userDataActions';
 import { getUserData } from '@/app/utils/fetchHelper';
-import { invitationData, UserData } from '@/types/User.type';
+import { invitationData, UserData } from '@/types/User';
 import { redirect } from 'next/navigation';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

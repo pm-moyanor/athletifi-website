@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import MuxPlayer, { MuxPlayerRefAttributes } from '@mux/mux-player-react';
 import { formatDate } from '@/app/utils/formatDate';
-import { IMatchDataExtended } from '@/types/Dashboard.type';
+import { IMatchDataExtended } from '@/types/Dashboard';
 import TopActionReelThumbnail from '@/components/dashboard/TopActionReelThumbnail';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -16,6 +16,7 @@ interface IActionReelProps {
   description: string;
   start_timestamp: string;
   datetime: string | null;
+  playerName: string | null;
 }
 
 export function ActionReel({
@@ -25,6 +26,7 @@ export function ActionReel({
   description,
   start_timestamp,
   datetime,
+  playerName,
 }: IActionReelProps) {
   ////////////open/close hightlight video
   const [isExpanded, setIsExpanded] = useState(false);
@@ -79,7 +81,7 @@ export function ActionReel({
         </div>
         <div className="ml-2 flex flex-col justify-end w-full min-w-[130px] md:max-w-[230px]">
           <p className="text-sm text-primary font-extralight font-sourceSansPro">
-            {description}
+            {playerName} {description}
           </p>
           {datetime && (
             <p className="mt-2 text-sm text-offwhite font-extralight font-sourceSansPro">
@@ -102,7 +104,7 @@ export function ActionReel({
             />
             <div className="absolute bg-cardsBackground bg-opacity-50 rounded-[5px] top-0 z-10 flex w-full justify-between items-center px-4 py-2">
               <p className="max-w-[240px] py-4  text-sm text-primary font-extralight font-sourceSansPro">
-                {description}
+                {playerName} {description}
               </p>
               <button className="text-primary" onClick={handleClose}>
                 <FontAwesomeIcon icon={faXmark} size="2xl" />
@@ -119,7 +121,12 @@ function getHighlights(
   matchesList: IMatchDataExtended[],
   maxHighlights: number,
 ) {
-  const allHighlights = matchesList.flatMap(
+  const matchesWithHighlights = matchesList.filter(
+    (match) =>
+      match.highlights &&
+      (match.highlights.length > 1 || match.highlights[0].duration !== null),
+  );
+  const allHighlights = matchesWithHighlights.flatMap(
     (match) =>
       match.highlights?.map((highlight) => ({
         ...highlight,
@@ -135,8 +142,10 @@ function getHighlights(
 
 export function ActionReelList({
   matchesList,
+  playerName,
 }: {
   matchesList: IMatchDataExtended[] | null;
+  playerName: string | null | undefined;
 }) {
   ///////filter invalid highlights
   ///////render max of 4, in future randomly render for better UX
@@ -164,6 +173,7 @@ export function ActionReelList({
               description={highlight.static_description}
               start_timestamp={highlight.start_timestamp}
               datetime={highlight.datetime || null}
+              playerName={playerName ?? null}
             />
           ))}
         </div>

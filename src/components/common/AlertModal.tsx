@@ -3,7 +3,7 @@ import {
   faTriangleExclamation,
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
-import { AlertModalType } from '@/types/AlertModalType';
+import { AlertModalType } from '@/types/AlertModal';
 
 const AlertModal = ({
   title,

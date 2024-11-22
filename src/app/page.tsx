@@ -13,14 +13,11 @@ import BeyondNumbers from '@/components/home/BeyondNumbers';
 import HeroHomepage from '@/components/home/HeroHomepage';
 import { getBlogList } from '@/utils/ApiHelper';
 import { getUserData } from '@/app/utils/fetchHelper';
-import { UserData } from '@/types/User.type';
+import { UserData } from '@/types/User';
 import { isAuthenticated } from '@/app/utils/auth/amplify-utils';
 import { addUserPostSignIn } from '@/app/actions/userDataActions';
 
 const BackToTop = dynamic(() => import('@/components/common/BackToTop'), {
-  ssr: false,
-});
-const Preloader = dynamic(() => import('@/components/common/Preloader'), {
   ssr: false,
 });
 
@@ -51,7 +48,6 @@ export default async function Home({
 
   return (
     <>
-      <Preloader />
       <div className="overflow-hidden">
         <div className="home-page__hero-bg min-h-screen bg-no-repeat bg-cover flex flex-col justify-center bg-center">
           <Header userData={userData as UserData} />

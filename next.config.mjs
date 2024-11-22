@@ -23,6 +23,14 @@ const nextConfig = {
       },
     ],
   },
+
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.pem$/,
+      type: 'asset/source',
+    })
+    return config;
+  },
 };
 
 /**

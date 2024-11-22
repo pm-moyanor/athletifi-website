@@ -15,15 +15,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 //import Image from 'next/image';
 import { signOut } from 'aws-amplify/auth';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'nextjs-toploader/app';
 import { Hub } from 'aws-amplify/utils';
 
 import UserNotificationsModal from '@/components/user-portal/UserNotificationsModal';
-import { UserData } from '@/types/User.type';
+import { UserData } from '@/types/User';
 
 const SCROLL_THRESHOLD: number = 200;
 
-export default function Header({ userData }: { userData: UserData | null }) {
+export default function Header({
+  userData,
+  loading = false,
+}: {
+  userData: UserData | null;
+  loading?: boolean;
+}) {
   const [open, setOpen] = useState<boolean>(false);
   const [path, setPath] = useState<string>('');
   const [showDropdown, setShowDropdown] = useState(false);
@@ -224,7 +230,7 @@ export default function Header({ userData }: { userData: UserData | null }) {
                   </Link>
                 </li>
                 <div className="border-t border-t-partnersBorders opacity-75 w-1/3 md:hidden"></div>
-                {userData === null ? (
+                {loading ? null : userData === null ? (
                   <div className="flex flex-col items-center gap-2 md:hidden mt-6 md:mt-0">
                     <Link href="/login">
                       <button className="text-primary w-[100px] h-8 text-sm border border-offwhite rounded-full font-extralight hover:bg-skyblue hover:border-skyblue transform hover:scale-95 ease-in-out">
@@ -269,7 +275,7 @@ export default function Header({ userData }: { userData: UserData | null }) {
                     </div>
                   </div>
                 )}
-                {userData === null ? (
+                {loading ? null : userData === null ? (
                   <div className="items-center gap-2 md:ml-4 mt-6 md:mt-0 hidden md:flex">
                     <Link href="/login" onClick={() => setOpen(false)}>
                       <button

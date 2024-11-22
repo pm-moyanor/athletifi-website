@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  NotificationTitles,
-  NotificationPreferences,
-  UserData,
-} from '@/types/User.type';
+import { NotificationPreferences, UserData } from '@/types/User';
 
 import {
   addNotification,
@@ -12,6 +8,13 @@ import {
 } from '@/app/actions/userDataActions';
 import { ChangeEvent } from 'react';
 import UnsubscribeButton from './UnsubscribeButton';
+
+const NotificationTitles = [
+  { name: 'Referral Notifications', value: 'referral_notifications' },
+  { name: 'AthletiFi Updates', value: 'athletifi_updates' },
+  { name: 'General Highlights', value: 'general_highlights' },
+  { name: 'My Player Updates', value: 'my_player_updates' },
+];
 
 export default function Notifications({ userData }: { userData: UserData }) {
   async function handleChange(

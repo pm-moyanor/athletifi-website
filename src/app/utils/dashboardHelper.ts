@@ -1,4 +1,4 @@
-import { IAttributeConfig, IRatingRaw } from '@/types/Dashboard.type';
+import { IAttributeConfig, IRatingRaw } from '@/types/Dashboard';
 
 export const attributeConfigs: IAttributeConfig = {
   skill: {

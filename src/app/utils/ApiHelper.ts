@@ -1,4 +1,4 @@
-import { PostData, BlogListResult } from '@/types/Api.type';
+import { PostData, BlogListResult } from '@/types/Api';
 
 export enum RequestMethod {
   GET = 'GET',

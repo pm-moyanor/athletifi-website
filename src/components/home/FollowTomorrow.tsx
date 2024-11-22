@@ -2,7 +2,7 @@
 import Image from 'next/image';
 
 import Slider from 'react-slick';
-import { SliderSettings } from '@/types/Slider.type';
+import { SliderSettings } from '@/types/Slider';
 
 const AOS_DURATION: number[] = [500, 600];
 const AOS_DELAY: number[] = [200, 300, 400, 800, 1200];

@@ -1,6 +1,6 @@
 import { invitationRequestAction } from '@/app/actions/invitationAction';
-import { ITeammate } from '@/types/Dashboard.type';
-import { ICards } from '@/types/User.type';
+import { ITeammate } from '@/types/Dashboard';
+import { ICards } from '@/types/User';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
