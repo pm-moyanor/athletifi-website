@@ -110,28 +110,14 @@ const MultiStepForm = () => {
     }
   };
 
-  const StepButtons = () => {
+  const StepButton = () => {
     return (
       <>
-        {activeStep > 1 && (
-          <button
-            type="button"
-            onClick={handleBack}
-            className="border border-gray-300 hover:border-gray-500 text-gray-300 font-bold py-2 px-4 rounded-full w-24 text-center"
-          >
-            Back
-          </button>
-        )}
-        <div>
           {(() => {
             let buttonLabel, buttonType, buttonOnClick;
 
             switch (activeStep) {
               case 1:
-                buttonLabel = 'Continue';
-                buttonType = 'button';
-                buttonOnClick = handleNext;
-                break;
               case 2:
                 buttonLabel = 'Continue';
                 buttonType = 'button';
@@ -160,7 +146,6 @@ const MultiStepForm = () => {
               </button>
             );
           })()}
-        </div>
       </>
     );
   };
@@ -178,7 +163,16 @@ const MultiStepForm = () => {
       <StepContent />
 
       <div className="flex items-end justify-end gap-10 bg-cardsDark rounded-b-10 p-10">
-        <StepButtons />
+      {activeStep > 1 && (
+          <button
+            type="button"
+            onClick={handleBack}
+            className="border border-gray-300 hover:border-gray-500 text-gray-300 font-bold py-2 px-4 rounded-full w-24 text-center"
+          >
+            Back
+          </button>
+        )}
+        <StepButton />
       </div>
       {alertModal && (
         <AlertModal
