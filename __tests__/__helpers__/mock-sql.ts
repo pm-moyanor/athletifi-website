@@ -12,8 +12,6 @@ import type { PGlite, Results } from '@electric-sql/pglite';
 
 import buildSchema from 'node-pg-migrate';
 import config from '../../pgmconfig.json';
-import { config as migrationConfig } from '@/db/config';
-import { insertInitialRecords } from '@/db/migrations/1730410301688_initial_schema';
 import { SqlContext, SqlContextBase, SqlResult } from '@/lib/sql-context';
 
 export async function newSqlMock() {
@@ -27,9 +25,6 @@ export async function newSqlMock() {
   // called in a jsdom test
   const { PGlite } = await import('@electric-sql/pglite');
   const sql = new SqlContextImpl(new PGlite());
-
-  // Inform migrations that we're in a test
-  migrationConfig.testing = true;
 
   // Disable console messages
   const origInfo = console.info;
@@ -46,8 +41,7 @@ export async function newSqlMock() {
       createMigrationsSchema: true,
     });
 
-    // Insert initial data records
-    await insertInitialRecords(sql.client);
+    // Insert test data
     await insertTestingRecords(sql);
 
     return sql;

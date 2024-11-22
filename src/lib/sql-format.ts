@@ -1,5 +1,5 @@
 import type { Client, QueryResult, QueryResultRow } from 'pg';
-import { zip } from './iterate';
+import { zip } from './utils';
 
 export function formatterFor<R extends QueryResultRow = any>(db: {
   query(text: string, values: any[]): Promise<QueryResult<R>>;
