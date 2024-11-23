@@ -37,16 +37,18 @@ app.prepare().then(() => {
     } else {
       // If this request is a fresh page load or there is no sentry-trace
       // cookie, create a new span and add the sentry-trace cookie.
-      await Sentry.startSpan({ name: `GET ${req.url}` }, async (span) => {
-        const trace = Sentry.spanToTraceHeader(span);
-        const baggage = Sentry.spanToBaggageHeader(span);
-        res.setHeader('set-cookie', [
-          `sentry-trace=${trace}`,
-          `baggage=${baggage}`,
-        ]);
+      await Sentry.startNewTrace(async () => {
+        await Sentry.startSpan({ name: `GET ${req.url}` }, async (span) => {
+          const trace = Sentry.spanToTraceHeader(span);
+          const baggage = Sentry.spanToBaggageHeader(span);
+          res.setHeader('set-cookie', [
+            `sentry-trace=${trace}`,
+            `baggage=${baggage}`,
+          ]);
 
-        const parsedUrl = parse(req.url, true);
-        await handle(req, res, parsedUrl);
+          const parsedUrl = parse(req.url, true);
+          await handle(req, res, parsedUrl);
+        });
       });
     }
   }).listen(port);
