@@ -9,6 +9,11 @@ interface FAQData {
   question: string;
   answer: string;
 }
+
+interface AccordionProps {
+  faqData: FAQData[];
+  userType: 'coach' | 'regular';
+}
 const faqs = [
   {
     question: `What is the AthletiFi Dashboard, and who is it for?`,
@@ -72,17 +77,34 @@ const faqs = [
   },
 ];
 
-const Accordion: FC<{ faqData: FAQData[] }> = () => {
+
+const coachFaqs = [
+  {
+    question: `How can I track my players' progress on the dashboard?`,
+    answer: `As a coach, you can track all your players' progress through the dashboard by accessing their performance statistics, watching video highlights, and viewing data trends over time.`,
+  },
+  {
+    question: `Can I download the guide blabla?`,
+    answer: `Yes, AthletiFi allows coaches to download blabla.`,
+  },
+];
+
+
+
+
+const Accordion: FC<{ faqData: FAQData[]; userType: 'coach' | 'regular' }> = ({ userType }) => {
+
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   };
+  const currentFaqs = userType === 'coach' ? coachFaqs : faqs;
 
   return (
     <div className="w-full">
       <div className=" bg-cardsDark bg-opacity-70 mt-7 rounded-10 shadow-portalNav">
-        {faqs.map((faq, idx) => (
+        {currentFaqs.map((faq, idx) => (
           <div key={idx} className={`flex justify-between items-center px-4`}>
             <div className="flex flex-col text-primary text-base font-extralight w-full">
               <div
