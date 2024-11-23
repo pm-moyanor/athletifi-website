@@ -20,6 +20,11 @@ select:-webkit-autofill:focus {
 
 /* FONT-FAMILY HELVETICAMED */
 @layer base {
+  input[type='date']::-webkit-calendar-picker-indicator,
+  input[type='time']::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(1) saturate(100%);
+  }
+
   @font-face {
     font-family: 'HelveticaNeueMedium';
     src: url('../../public/assets/fonts/HelveticaMedExt.ttf');
