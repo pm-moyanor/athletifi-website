@@ -308,55 +308,66 @@ const TeamRosterForm = ({
         <div className="w-full h-1 bg-partnersBorders mt-2 mb-4"></div>
         <ul>
           {matchRoster.map((player) => (
-            <li
-              key={player.id}
-              className="flex items-center justify-between py-2 "
-            >
-              <p className="mr-2 xm:mx-2"> {player.name}</p>
-              {/* TODO: make the jersey number editable. it need to update the permanent roster as well. */}
-              <div className="flex gap-2">
-                <p className="ml-2 xm:mx-2">jersey {player.jerseyNumber}</p>
-                <button
-                  type="button"
-                  onClick={() => handleJerseyNumberChangeClick(player)}
-                >
-                  <FontAwesomeIcon
-                    icon={faPenToSquare}
-                    className="md:mr-2 text-skyblue"
-                  />
-                </button>
-              </div>
+            <>
+              <li
+                key={player.id}
+                className="flex items-center justify-between py-2 relative"
+              >
+                <div className="flex flex-col md:flex-row  justify-start md:justify-between w-1/2">
+                  <p className=""> {player.name}</p>
+                  <div className="flex gap-2">
+                    <p className="">jersey {player.jerseyNumber}</p>
+                    <button
+                      type="button"
+                      onClick={() => handleJerseyNumberChangeClick(player)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faPenToSquare}
+                        className="md:mr-2 text-skyblue"
+                      />
+                    </button>
+                  </div>
+                </div>
 
-              <div className="flex gap-1 xs:gap-5 md:gap-10 ml-2 xm-m-0">
-                <div className="flex flex-col md:flex-row justify-center items-center pr-2">
-                  <FontAwesomeIcon
-                    icon={faClipboard}
-                    className="md:mr-2 text-skyblue"
-                  />
-                  <button
-                    type="button"
-                    className="text-skyblue"
-                    onClick={() => handleAddNoteClick(player)}
-                  >
-                    {player.note ? 'Edit note' : 'Add note'}
-                  </button>
+                <div className="flex justify-end items-center gap-2 xs:gap-5 md:gap-10 ml-2 xm-m-0 w-1/2">
+                  <div className="">
+                    <button
+                      type="button"
+                      className="text-skyblue hover:text-primary"
+                      onClick={() => handleAddNoteClick(player)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faClipboard}
+                        className="mr-2 text-skyblue text-lg xs:text-base"
+                      />
+                      <span className="hidden xs:inline">
+                        {' '}
+                        {/* Hide text on xs screens */}
+                        {player.note ? 'Edit note' : 'Add note'}
+                      </span>
+                    </button>
+                  </div>
+                  <div className="">
+                    <button
+                      type="button"
+                      onClick={() => handlePlayerRemove(player.id)}
+                      className="text-chartRed hover:text-primary"
+                    >
+                      <FontAwesomeIcon
+                        icon={faXmark}
+                        className="mr-2 text-chartRed text-lg xs:text-base"
+                      />
+                      <span className="hidden xs:inline">
+                        {' '}
+                        {/* Hide text on xs screens */}
+                        Remove
+                      </span>
+                    </button>
+                  </div>
                 </div>
-                <div className="flex flex-col md:flex-row  justify-center items-center">
-                  <FontAwesomeIcon
-                    icon={faXmark}
-                    className="md:mr-2 text-chartRed"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => handlePlayerRemove(player.id)}
-                    className="text-chartRed hover:text-primary"
-                  >
-                    {' '}
-                    remove
-                  </button>
-                </div>
-              </div>
-            </li>
+              </li>
+              <div className="w-full h-1 bg-matchtitles mt-2 mb-4"></div>
+            </>
           ))}
         </ul>
       </div>
@@ -365,25 +376,32 @@ const TeamRosterForm = ({
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div
             ref={jerseyModalRef}
-            className="bg-cardsBackground p-8 rounded-10"
+            className="bg-cardsBackground p-8 rounded-10 flex flex-col items-center justify-center"
           >
-            <h3 className="text-lg font-bold text-primary mb-4">
+            <h3 className="text-base font-bold text-primary mb-4">
               Change Jersey Number
             </h3>
             <input
               type="text"
               value={newJerseyNumber}
               onChange={handleJerseyChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
-                "
+              className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+      ` text-center"
             />
-            <div className="flex justify-end mt-4">
+            <div className="flex justify-center mt-4 gap-2">
+              <button
+                type="button"
+                onClick={() => setJerseyChangeModal(false)}
+                className="w-24 py-2 rounded-20 border text-primary hover:bg-skyblue shadow-md px-4"
+              >
+                cancel
+              </button>
               <button
                 type="button"
                 onClick={handleJerseyNumberChange}
-                className="py-2 rounded-20 border text-primary hover:bg-skyblue shadow-md px-4"
+                className="w-24 py-2 rounded-20 border text-primary hover:bg-skyblue shadow-md px-4"
               >
-                Change Number
+                edit
               </button>
             </div>
           </div>
@@ -392,19 +410,29 @@ const TeamRosterForm = ({
       {/* Note Modal */}
       {showNoteModal && (
         <div className="fixed inset-0 z-50  flex items-center justify-center bg-black bg-opacity-50">
-          <div ref={noteModalRef} className="bg-cardsBackground p-8 rounded-10">
-            <h3 className="text-lg font-bold text-primary mb-4">Add note</h3>
+          <div
+            ref={noteModalRef}
+            className="w-5/6 md:w-5/12 bg-cardsBackground p-8 rounded-10"
+          >
+            <h3 className="text-base font-bold text-primary mb-4">Add note</h3>
             <textarea
               value={noteText}
               onChange={handleNoteChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline   
  h-32"
             />
-            <div className="flex justify-end mt-4">
+            <div className="flex justify-end mt-4 gap-2">
+              <button
+                type="button"
+                onClick={() => setShowNoteModal(false)}
+                className="w-24 py-2 rounded-20 border text-primary hover:bg-skyblue shadow-md px-4"
+              >
+                cancel
+              </button>
               <button
                 type="button"
                 onClick={handleAddNote}
-                className="py-2 rounded-20 border text-primary hover:bg-skyblue shadow-md px-4"
+                className="w-24 py-2 rounded-20 border text-primary hover:bg-skyblue shadow-md px-4"
               >
                 add note
               </button>

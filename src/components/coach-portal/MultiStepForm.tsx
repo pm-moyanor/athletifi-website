@@ -140,7 +140,7 @@ const MultiStepForm = () => {
               <button
                 type={buttonType as 'button' | 'reset' | 'submit' | undefined}
                 onClick={buttonOnClick}
-                className="bg-skyblue hover:bg-extraDarkBlue text-primary font-bold py-2 px-4 rounded-full w-24 text-center"
+                className="bg-skyblue hover:bg-extraDarkBlue text-primary font-bold py-2 px-4 rounded-full w-28 text-center"
               >
                 {buttonLabel}
               </button>
@@ -162,12 +162,12 @@ const MultiStepForm = () => {
 
       <StepContent />
 
-      <div className="flex items-end justify-end gap-10 bg-cardsDark rounded-b-10 p-10">
+      <div className="flex items-end justify-end gap-2 bg-cardsDark rounded-b-10 p-10">
       {activeStep > 1 && (
           <button
             type="button"
             onClick={handleBack}
-            className="border border-gray-300 hover:border-gray-500 text-gray-300 font-bold py-2 px-4 rounded-full w-24 text-center"
+            className="border border-gray-300 hover:border-gray-500 text-gray-300 font-bold py-2 px-4 rounded-full w-28 text-center"
           >
             Back
           </button>
