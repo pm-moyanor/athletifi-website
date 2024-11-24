@@ -51,6 +51,10 @@ const SubmitFootage: React.FC = () => {
   const [submittedUrls, setSubmittedUrls] = useState<string[]>([]);
   const [files, setFiles] = useState<FileWithPreview[]>([]);
 
+  console.log('submittedUrls from veo youtube and vimeo ', submittedUrls);
+  console.log('files drag and drop', files);  
+
+
   const toggleDropdown = (): void => {
     setIsOpen(!isOpen);
   };

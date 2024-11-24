@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClipboard, faXmark } from '@fortawesome/free-solid-svg-icons';
+import {
+  faClipboard,
+  faXmark,
+  faPenToSquare,
+} from '@fortawesome/free-solid-svg-icons';
 import { FormData } from '../../types/CoachesForm';
 import { FormEvent } from '../../types/CoachesForm';
 import { Player } from '../../types/CoachesForm';
+import { set } from 'react-datepicker/dist/date_utils';
 
 const TeamRosterForm = ({
   formData,
@@ -24,13 +29,71 @@ const TeamRosterForm = ({
   const [addPlayerPermanently, setAddPlayerPermanently] = useState(false);
   const [isGuest, setIsGuest] = useState(false);
   const [showNoteModal, setShowNoteModal] = useState(false);
+  const [jerseyChangeModal, setJerseyChangeModal] = useState(false);
+  const [newJerseyNumber, setNewJerseyNumber] = useState('');
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const [noteText, setNoteText] = useState('');
+
+  console.log('matchRoster.......', matchRoster);
+
+  const jerseyModalRef = useRef<HTMLDivElement>(null); // Ref for Jersey Modal
+  const noteModalRef = useRef<HTMLDivElement>(null); // Ref for Note Modal
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        jerseyModalRef.current &&
+        !jerseyModalRef.current.contains(event.target as Node) &&
+        jerseyChangeModal
+      ) {
+        setJerseyChangeModal(false);
+      }
+
+      if (
+        noteModalRef.current &&
+        !noteModalRef.current.contains(event.target as Node) &&
+        showNoteModal
+      ) {
+        setShowNoteModal(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [jerseyChangeModal, showNoteModal]);
 
   useEffect(() => {
     setPermanentRoster(formData.permanentRoster);
     setMatchRoster(formData.matchRoster);
   }, [formData]);
+
+  const handleJerseyNumberChangeClick = (player: Player) => {
+    setSelectedPlayer(player);
+    setNewJerseyNumber(player.jerseyNumber);
+    setJerseyChangeModal(true);
+    console.log('player', player);
+  };
+
+  const handleJerseyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewJerseyNumber(event.target.value);
+  };
+
+  const handleJerseyNumberChange = () => {
+    if (selectedPlayer) {
+      const updatedRoster = matchRoster.map((p) =>
+        p.id === selectedPlayer.id
+          ? { ...p, jerseyNumber: newJerseyNumber }
+          : p,
+      );
+      setMatchRoster(updatedRoster);
+      handleChange({
+        target: { name: 'matchRoster', value: updatedRoster },
+      });
+      setJerseyChangeModal(false);
+    }
+  };
 
   const handleAddNoteClick = (player: Player) => {
     setSelectedPlayer(player);
@@ -247,11 +310,23 @@ const TeamRosterForm = ({
           {matchRoster.map((player) => (
             <li
               key={player.id}
-              className="flex items-center py-2 justify-between"
+              className="flex items-center justify-between py-2 "
             >
               <p className="mr-2 xm:mx-2"> {player.name}</p>
               {/* TODO: make the jersey number editable. it need to update the permanent roster as well. */}
-              <p className="ml-2 xm:mx-2">jersey {player.jerseyNumber}</p>
+              <div className="flex gap-2">
+                <p className="ml-2 xm:mx-2">jersey {player.jerseyNumber}</p>
+                <button
+                  type="button"
+                  onClick={() => handleJerseyNumberChangeClick(player)}
+                >
+                  <FontAwesomeIcon
+                    icon={faPenToSquare}
+                    className="md:mr-2 text-skyblue"
+                  />
+                </button>
+              </div>
+
               <div className="flex gap-1 xs:gap-5 md:gap-10 ml-2 xm-m-0">
                 <div className="flex flex-col md:flex-row justify-center items-center pr-2">
                   <FontAwesomeIcon
@@ -285,10 +360,39 @@ const TeamRosterForm = ({
           ))}
         </ul>
       </div>
+      {/* Jersey Change Modal */}
+      {jerseyChangeModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div
+            ref={jerseyModalRef}
+            className="bg-cardsBackground p-8 rounded-10"
+          >
+            <h3 className="text-lg font-bold text-primary mb-4">
+              Change Jersey Number
+            </h3>
+            <input
+              type="text"
+              value={newJerseyNumber}
+              onChange={handleJerseyChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+                "
+            />
+            <div className="flex justify-end mt-4">
+              <button
+                type="button"
+                onClick={handleJerseyNumberChange}
+                className="py-2 rounded-20 border text-primary hover:bg-skyblue shadow-md px-4"
+              >
+                Change Number
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {/* Note Modal */}
       {showNoteModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-cardsBackground p-8 rounded-10">
+        <div className="fixed inset-0 z-50  flex items-center justify-center bg-black bg-opacity-50">
+          <div ref={noteModalRef} className="bg-cardsBackground p-8 rounded-10">
             <h3 className="text-lg font-bold text-primary mb-4">Add note</h3>
             <textarea
               value={noteText}
