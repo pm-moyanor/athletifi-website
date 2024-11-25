@@ -38,11 +38,13 @@ const nextConfig = {
       type: 'asset/source',
     });
 
-    config.plugins.push(
-      new WebpackHookPlugin({
-        onBuildStart: ['yarn run spotlight-sidecar'],
-      }),
-    );
+    if (isDev) {
+      config.plugins.push(
+        new WebpackHookPlugin({
+          onBuildStart: ['yarn run spotlight-sidecar'],
+        }),
+      );
+    }
 
     return config;
   },
