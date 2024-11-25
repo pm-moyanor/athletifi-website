@@ -51,6 +51,17 @@
       "env": {
         "NODE_OPTIONS": "--experimental-vm-modules"
       }
-    }
+    },
+    {
+      "name": "Run migrations",
+      "program": "${workspaceFolder}/db/bin/migrate.ts",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node",
+      "runtimeExecutable": "tsx",
+      "args": ["up", "--dry-run"]
+    },
   ]
 }
