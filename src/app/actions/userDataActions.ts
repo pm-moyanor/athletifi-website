@@ -8,6 +8,7 @@ const addUserUrl = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/addUser`;
 const deleteUserDataUrl = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/purgeUserData`;
 
 import { executeSql } from '@/lib/sql';
+import { SqlContext } from '@/lib/sql-context';
 import {
   AuthData,
   NotificationPreferences,
@@ -15,6 +16,7 @@ import {
   invitationData,
   UserData,
 } from '@/types/User';
+import { getNotificationID, getUserID } from './common';
 
 export async function getUserData({
   userId,
@@ -139,24 +141,6 @@ export async function getUserData({
     return null;
   }
 }
-async function enableNotificationHelper(
-  amplifyId: string,
-  notificationType: string,
-) {
-  await fetch(`${userDataUrl}`, {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: process.env.NEXT_PUBLIC_TEMP_API_AUTH,
-    } as HeadersInit,
-    body: JSON.stringify({
-      amplify_id: amplifyId,
-      notification_type: notificationType,
-    }),
-  });
-
-  return;
-}
 
 async function disableNotificationHelper(
   amplifyId: string,
@@ -184,7 +168,29 @@ export async function addNotification(
   //   if (userId === null) redirect('/login');
 
   try {
-    await enableNotificationHelper(amplifyId, notificationType);
+    await executeSql(async (db) => {
+      const userId = await getUserID(db, amplifyId);
+
+      if (notificationType === 'All') {
+        await db.query`
+          SELECT enable_notifications(${{ value: userId, as: 'uuid' }}, ARRAY(
+            SELECT type_id
+            FROM   missing_notifications(${userId})
+          ))`;
+
+        await db.query`
+          UPDATE users
+          SET    init_notifications = true
+          WHERE  amplify_id = ${amplifyId}`;
+      } else {
+        const noteId = await getNotificationID(db, notificationType);
+        await db.query`
+          SELECT enable_notifications(
+            ${{ value: userId, as: 'uuid' }},
+            ARRAY[${{ value: noteId, as: 'uuid' }}]
+          )`;
+      }
+    });
   } catch (error) {
     console.error(error);
     return false;

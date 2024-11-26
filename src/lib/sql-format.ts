@@ -12,13 +12,15 @@ export function formatterFor<R extends QueryResultRow = any>(db: {
 
 export type Arrayable<T> = Iterable<T> | ArrayLike<T>;
 
-type Literal = { literal: string };
-type BasicArg = string | number | null | Literal;
+export type Value = string | number | null;
+export type ValueAs = { value: Value; as: string };
+export type Literal = { literal: string };
+export type SqlValue = Value | ValueAs | Literal;
 
 export type QueryArg =
-  | BasicArg
-  | Arrayable<BasicArg>
-  | Arrayable<Arrayable<BasicArg>>;
+  | SqlValue
+  | Arrayable<SqlValue>
+  | Arrayable<Arrayable<SqlValue>>;
 
 type ValueAdder = (v: QueryArg) => number;
 
@@ -58,13 +60,23 @@ interface Formatter {
   format: (add: ValueAdder) => string;
 }
 
-const defaultFormatter = (v: BasicArg) =>
+const defaultFormatter = (v: SqlValue) =>
   ({
     type: 'default',
     format(add) {
       return `$${add(v)}`;
     },
   }) as const satisfies Formatter;
+
+const asFormatter = (v: ValueAs) => {
+  const f = defaultFormatter(v.value);
+  return {
+    type: 'default',
+    format(add) {
+      return `${f.format(add)}::${v.as}`;
+    },
+  } as const satisfies Formatter;
+};
 
 const literalFormatter = (v: Literal) =>
   ({
@@ -74,7 +86,7 @@ const literalFormatter = (v: Literal) =>
     },
   }) as const satisfies Formatter;
 
-const arrayFormatter = (v: Arrayable<BasicArg | Arrayable<BasicArg>>) => {
+const arrayFormatter = (v: Arrayable<SqlValue | Arrayable<SqlValue>>) => {
   const f = Array.from(v).map(valueFormatterFor);
   return {
     type: 'array',
@@ -98,6 +110,10 @@ function valueFormatterFor(value: QueryArg): Formatter {
 
   if ('literal' in value) {
     return literalFormatter(value);
+  }
+
+  if ('as' in value) {
+    return asFormatter(value);
   }
 
   return arrayFormatter(value);

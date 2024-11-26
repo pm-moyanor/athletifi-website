@@ -50,61 +50,69 @@ export async function newSqlMock() {
   }
 }
 
-async function insertTestingRecords(sql: SqlContext) {
-  const id = (type: number, id: number) => {
-    if (!type && !id) throw new Error('placeholder!');
-    return `00000000-0000-0000-${`${type}`.padStart(4, '0')}-${`${id}`.padStart(12, '0')}`;
+function makeID(type: number, id: number) {
+  if (!type && !id) throw new Error('placeholder!');
+  return {
+    value: `00000000-0000-0000-${`${type}`.padStart(4, '0')}-${`${id}`.padStart(12, '0')}`,
+    as: 'uuid',
   };
+}
 
-  const uAlice = id(0, 1);
-  const uBob = id(0, 2);
-  const uCharlie = id(0, 3);
+export const testID = {
+  user: {
+    Alice: makeID(0, 1),
+    Bob: makeID(0, 2),
+    Charlie: makeID(0, 3),
+  },
+};
+
+async function insertTestingRecords(sql: SqlContext) {
   await sql.insert(
     'users',
     {
-      user_id: uAlice,
+      user_id: testID.user.Alice,
       name: 'Alice',
       email: 'alice@example.com',
-      amplify_id: 'alice@example.com',
+      amplify_id: testID.user.Alice,
     },
     {
-      user_id: uBob,
+      user_id: testID.user.Bob,
       name: 'Bob',
       email: 'bob@example.com',
-      amplify_id: 'bob@example.com',
+      amplify_id: testID.user.Bob,
     },
     {
-      user_id: uCharlie,
+      user_id: testID.user.Charlie,
       name: 'Charlie',
       email: 'charlie@example.com',
-      amplify_id: 'charlie@example.com',
+      amplify_id: testID.user.Charlie,
     },
   );
 
-  const theCoach = id(1, 1);
+  const theCoach = makeID(1, 1);
   await sql.insert('coaches', {
     coach_id: theCoach,
     first_name: 'Daniel',
   });
 
-  const piBob = id(2, 2);
+  const piBob = makeID(2, 2);
   await sql.insert('player_identities', {
     id: piBob,
   });
 
-  const theClub = id(3, 1);
+  const theClub = makeID(3, 1);
   await sql.insert('clubs', {
     club_id: theClub,
     name: 'The Club',
     location: 'That Place',
   });
 
-  const theLeague = id(4, 1);
+  const theLeague = makeID(4, 1);
   await sql.insert('league', {
     league_id: theLeague,
   });
 
-  const theTeam = id(5, 1);
+  const theTeam = makeID(5, 1);
   await sql.insert('teams', {
     team_id: theTeam,
     club: theClub,
@@ -112,7 +120,7 @@ async function insertTestingRecords(sql: SqlContext) {
     head_coach: theCoach,
   });
 
-  const ptiBob = id(6, 2);
+  const ptiBob = makeID(6, 2);
   await sql.insert('players_team_info', {
     player_id: ptiBob,
     club_id: theClub,
@@ -120,23 +128,23 @@ async function insertTestingRecords(sql: SqlContext) {
     player_identity: piBob,
   });
 
-  const theCompetition = id(7, 1);
+  const theCompetition = makeID(7, 1);
   await sql.insert('competitions', {
     competition_id: theCompetition,
     name: 'The Competition',
     league: theLeague,
   });
 
-  const pciBob = id(8, 2);
+  const pciBob = makeID(8, 2);
   await sql.insert('player_card_images', {
     card_image_id: pciBob,
     player_id: ptiBob,
     competition_id: theCompetition,
-    owner: uAlice,
+    owner: testID.user.Alice,
   });
 
   await sql.insert('invitations', {
-    guest: uCharlie,
+    guest: testID.user.Charlie,
     guest_email: 'charlie@example.com',
     card: pciBob,
   });
