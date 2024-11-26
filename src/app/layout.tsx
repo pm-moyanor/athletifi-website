@@ -12,6 +12,7 @@ import { Metadata } from 'next';
 import NextTopLoader from 'nextjs-toploader';
 import { Suspense } from 'react';
 import { PageLogo } from '@/components/common/Icon';
+import * as Sentry from '@sentry/nextjs';
 
 const openSans = Open_Sans({
   subsets: ['latin'],
@@ -23,15 +24,33 @@ const AOSInitializerWithNoSSR = dynamic(
   { ssr: false },
 );
 
-export const metadata: Metadata = {
-  metadataBase: new URL(BASEURL),
-  keywords: ['AthletiFi', 'Club Soccer', 'Club Football'], // TODO: update keywords
-  title: SEO_CONFIG.home.title,
-  description: SEO_CONFIG.home.description,
-  openGraph: {
-    images: SEO_CONFIG.home.image,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  // Adding the sentry-trace and baggage meta tags to the response is what
+  // connects the pageload (client-side) trace to the GET (server-side) trace.
+  // This is supposed to happen automatically but it's broken for some reason so
+  // we're doing it manually.
+  //
+  // This does not work if metadata is static (i.e. export const metadata =
+  // {...}).
+  const span = Sentry.getRootSpan(Sentry.getActiveSpan()!);
+  const sentryMeta = {
+    ['sentry-trace']: Sentry.spanToTraceHeader(span),
+    baggage: Sentry.spanToBaggageHeader(span) ?? '',
+  };
+
+  return {
+    metadataBase: new URL(BASEURL),
+    keywords: ['AthletiFi', 'Club Soccer', 'Club Football'], // TODO: update keywords
+    title: SEO_CONFIG.home.title,
+    description: SEO_CONFIG.home.description,
+    openGraph: {
+      images: SEO_CONFIG.home.image,
+    },
+    other: {
+      ...sentryMeta,
+    },
+  };
+}
 
 function Fallback() {
   return (
