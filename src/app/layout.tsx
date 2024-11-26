@@ -25,7 +25,19 @@ const AOSInitializerWithNoSSR = dynamic(
 );
 
 export async function generateMetadata(): Promise<Metadata> {
+  // Adding the sentry-trace and baggage meta tags to the response is what
+  // connects the pageload (client-side) trace to the GET (server-side) trace.
+  // This is supposed to happen automatically but it's broken for some reason so
+  // we're doing it manually.
+  //
+  // This does not work if metadata is static (i.e. export const metadata =
+  // {...}).
   const span = Sentry.getRootSpan(Sentry.getActiveSpan()!);
+  const sentryMeta = {
+    ['sentry-trace']: Sentry.spanToTraceHeader(span),
+    baggage: Sentry.spanToBaggageHeader(span) ?? '',
+  };
+
   return {
     metadataBase: new URL(BASEURL),
     keywords: ['AthletiFi', 'Club Soccer', 'Club Football'], // TODO: update keywords
@@ -34,11 +46,8 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       images: SEO_CONFIG.home.image,
     },
-
     other: {
-      // NOTE: This does not work if the metadata is static
-      ['sentry-trace']: Sentry.spanToTraceHeader(span),
-      baggage: Sentry.spanToBaggageHeader(span) ?? '',
+      ...sentryMeta,
     },
   };
 }
