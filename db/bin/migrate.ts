@@ -1,28 +1,139 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import migrate from 'node-pg-migrate';
-import { Client } from 'pg';
+import migrate, { Migration } from 'node-pg-migrate';
+import { Client, ClientBase } from 'pg';
 import { config as dotenv } from 'dotenv';
-import { MigrationDirection } from 'node-pg-migrate/dist/types';
-import config from '../../pgmconfig.json';
+import type { RunnerOptionConfig } from 'node-pg-migrate/dist/types';
 import { getSecretWithShape } from '../../src/lib/secrets';
+import { parser } from './args';
+import { FilenameFormat } from 'node-pg-migrate/dist/migration';
 
-main(); // stupid node and it's stupid top-level await nonsense
+/**
+ * Hard-coded migration configuration
+ */
+const config = {
+  dir: path.join(__dirname, '..', 'migrations'),
+  migrationsTable: '__pgmigrations__',
+
+  // Create the schema and the migration table
+  schema: 'public',
+  createSchema: true,
+  createMigrationsSchema: true,
+} as const satisfies Omit<RunnerOptionConfig, 'direction'>;
+
+// stupid node and it's stupid top-level await nonsense
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
 
 async function main() {
+  // Read .env files
   dotenv({ path: ['.env.local', '.env'] });
-  switch (process.argv[2]) {
+  // dotenv-expand(result from previous line)?
+
+  // Parse flags
+  const args = await parser.parse();
+  if (args.help) {
+    parser.showHelp();
+    return;
+  }
+
+  // Add flags to the config
+  const options: Omit<RunnerOptionConfig, 'dbClient' | 'direction'> = {
+    ...config,
+    checkOrder: args.checkOrder,
+    verbose: args.verbose,
+    ignorePattern: args.ignorePattern,
+    decamelize: args.decamelize,
+    dryRun: args.dryRun,
+    fake: args.fake,
+    singleTransaction: args.singleTransaction,
+    noLock: !args.lock,
+  };
+
+  // What are we doing?
+  const direction = args._.shift();
+  switch (direction) {
     case 'up':
     case 'down':
-      await execute(process.argv[2]);
+    case 'redo':
+      if (args.dryRun) {
+        console.log('dry run');
+      }
+      if (args.fake) {
+        console.log('fake');
+      }
+      if (!args.lock) {
+        console.log('no lock');
+      }
+
+      // Redo = down + up
+      if (direction === 'redo') {
+        if (args._.length) {
+          console.error('redo does not take any arguments');
+          process.exit(1);
+        }
+        await executeWithDB(async (dbClient) => {
+          await migrate({ ...options, dbClient, direction: 'down' });
+          await migrate({ ...options, dbClient, direction: 'up' });
+        });
+
+        console.log('Migrations complete!');
+        return;
+      }
+
+      // This must be the name of a migration file without the path and
+      // extension, i.e. 1730410301688_initial_schema
+      let file = args._.shift();
+      if (file !== undefined && typeof file !== 'string') {
+        file = `${file}`;
+      }
+      if (args._.length) {
+        console.error('too many arguments');
+        process.exit(1);
+      }
+
+      // Execute the migration
+      await executeWithDB(async (dbClient) => {
+        await migrate({ ...options, dbClient, direction, file });
+      });
+
+      console.log('Migrations complete!');
       break;
+
+    case 'create':
+      if (!args._.length) {
+        parser.showHelp();
+        process.exit(1);
+      }
+
+      // Join all the arguments to make the name and replace spaces and dashes
+      // with underscores
+      const name = args._.join('_').replace(/[- ]+/g, '_');
+
+      // Create the migration
+      const migrationPath = await Migration.create(name, config.dir, {
+        filenameFormat: (args.migrationFilenameFormat ??
+          'timestamp') as FilenameFormat,
+        ...(args.templateFileName
+          ? { templateFileName: args.templateFileName }
+          : {
+              language: 'ts',
+              ignorePattern: args.ignorePattern,
+            }),
+      });
+
+      console.log(`Created migration -- ${migrationPath}`);
+      break;
+
     default:
-      console.log(`Usage: ${process.argv0} ${process.argv[1]} up|down`);
-      break;
+      parser.showHelp();
+      process.exit(1);
   }
 }
 
-async function execute(direction: MigrationDirection) {
+async function executeWithDB(fn: (_: ClientBase) => void | Promise<void>) {
   if (!process.env.NEXT_PG_DATABASE) {
     console.error('NEXT_PG_DATABASE must be specified');
     process.exit(1);
@@ -47,7 +158,7 @@ async function execute(direction: MigrationDirection) {
     path.join(__dirname, '../../src/lib/us-east-2-bundle.pem'),
   );
 
-  const dbClient = new Client({
+  const client = new Client({
     user: secret.username,
     host: connInfo.host,
     database: process.env.NEXT_PG_DATABASE,
@@ -60,19 +171,11 @@ async function execute(direction: MigrationDirection) {
     },
   });
 
-  await dbClient.connect();
+  await client.connect();
 
   try {
-    await migrate({
-      dbClient,
-      direction,
-      dir: config['migrations-dir'],
-      migrationsTable: config['migrations-table'],
-      createSchema: true,
-      createMigrationsSchema: true,
-      // dryRun: true,
-    });
+    await fn(client);
   } finally {
-    await dbClient.end();
+    await client.end();
   }
 }

@@ -1,7 +1,0 @@
-{
-  "envPath": ".env.local",
-  "tsconfig": "tsconfig.json",
-
-  "migrations-dir": "db/migrations",
-  "migrations-table": "__pgmigrations__"
-}
