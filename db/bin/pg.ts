@@ -15,7 +15,7 @@ newSqlMock().then((sql) => {
   const rs = repl.start({
     prompt: '> ',
     eval(cmd, context, file, cb) {
-      evalSql.call(this, sql, cmd, context, file).then(
+      evalSql.call(this, sql as unknown as SqlContext, cmd, context, file).then(
         (result) => cb(null, result),
         (error) => {
           // TODO: Detect incomplete SQL statements and mark them as recoverable.
