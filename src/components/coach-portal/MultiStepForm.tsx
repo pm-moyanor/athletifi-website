@@ -61,12 +61,34 @@ const MultiStepForm = () => {
     }
   };
 
+  // const handleChange = (event: FormEvent) => {
+  //   console.log('event', event);
+  //   const { name, value } = event.target;
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     [name]: value,
+  //   }));
+  // };
+
   const handleChange = (event: FormEvent) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
-    });
+    setFormData((prevData: FormData) => ({
+      ...prevData,
+      [event.target.name]: event.target.value
+    }));
   };
+
+  // const handleChange = (event: FormEvent) => {
+  //   const { name, value } = event.target;
+  //   console.log('Before update:', formData);
+  //   setFormData((prevData) => {
+  //     const newData = {
+  //       ...prevData,
+  //       [name]: value
+  //     };
+  //     console.log('After update:', newData);
+  //     return newData;
+  //   });
+  // };
 
   const handleChangeTeamMatch = (name: keyof FormData, value: string) => {
     setFormData((prevFormData) => ({
@@ -113,39 +135,39 @@ const MultiStepForm = () => {
   const StepButton = () => {
     return (
       <>
-          {(() => {
-            let buttonLabel, buttonType, buttonOnClick;
+        {(() => {
+          let buttonLabel, buttonType, buttonOnClick;
 
-            switch (activeStep) {
-              case 1:
-              case 2:
-                buttonLabel = 'Continue';
-                buttonType = 'button';
-                buttonOnClick = handleNext;
-                break;
-              case 3:
-                buttonLabel = 'Review';
-                buttonType = 'button';
-                buttonOnClick = handleNext;
-                break;
-              case 4:
-                buttonLabel = 'Submit';
-                buttonType = 'submit';
-                break;
-              default:
-                return null; // No button for other steps
-            }
+          switch (activeStep) {
+            case 1:
+            case 2:
+              buttonLabel = 'Continue';
+              buttonType = 'button';
+              buttonOnClick = handleNext;
+              break;
+            case 3:
+              buttonLabel = 'Review';
+              buttonType = 'button';
+              buttonOnClick = handleNext;
+              break;
+            case 4:
+              buttonLabel = 'Submit';
+              buttonType = 'submit';
+              break;
+            default:
+              return null; // No button for other steps
+          }
 
-            return (
-              <button
-                type={buttonType as 'button' | 'reset' | 'submit' | undefined}
-                onClick={buttonOnClick}
-                className="bg-skyblue hover:bg-extraDarkBlue text-primary font-bold py-2 px-4 rounded-full w-28 text-center"
-              >
-                {buttonLabel}
-              </button>
-            );
-          })()}
+          return (
+            <button
+              type={buttonType as 'button' | 'reset' | 'submit' | undefined}
+              onClick={buttonOnClick}
+              className="bg-skyblue hover:bg-extraDarkBlue text-primary font-bold py-2 px-4 rounded-full w-28 text-center"
+            >
+              {buttonLabel}
+            </button>
+          );
+        })()}
       </>
     );
   };
@@ -163,7 +185,7 @@ const MultiStepForm = () => {
       <StepContent />
 
       <div className="flex items-end justify-end gap-2 bg-cardsDark rounded-b-10 p-10">
-      {activeStep > 1 && (
+        {activeStep > 1 && (
           <button
             type="button"
             onClick={handleBack}
