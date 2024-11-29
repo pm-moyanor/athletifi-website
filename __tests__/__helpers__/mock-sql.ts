@@ -15,7 +15,7 @@ import buildSchema from 'node-pg-migrate';
 import { config } from '@/db/lib/config';
 import { SqlContext, SqlContextBase, SqlResult } from '@/lib/sql-context';
 
-export async function newSqlMock() {
+export async function newSqlMock(): Promise<SqlContext> {
   if ('window' in global) {
     throw new Error(
       'executeSql cannot be used in a browser. If this test should run in a server-side context, set @jest-environment node.',

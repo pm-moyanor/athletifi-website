@@ -11,7 +11,8 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
     "test:e2e": "playwright test __e2etests_ --ui",
-    "migrate": "tsx ./db/bin/migrate.ts"
+    "migrate": "tsx ./db/bin/migrate.ts",
+    "psql": "tsx ./db/bin/psql.ts"
   },
   "repository": {
     "type": "git",
