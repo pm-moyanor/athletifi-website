@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type {
   Client,
   FieldDef,
@@ -11,7 +12,7 @@ import type {
 import type { PGlite, Results } from '@electric-sql/pglite';
 
 import buildSchema from 'node-pg-migrate';
-import config from '../../pgmconfig.json';
+import { config } from '@/db/lib/config';
 import { SqlContext, SqlContextBase, SqlResult } from '@/lib/sql-context';
 
 export async function newSqlMock() {
@@ -33,12 +34,9 @@ export async function newSqlMock() {
   try {
     // Build the schema
     await buildSchema({
+      ...config,
       dbClient: sql.client,
-      dir: config['migrations-dir'],
-      migrationsTable: config['migrations-table'],
       direction: 'up',
-      createSchema: true,
-      createMigrationsSchema: true,
     });
 
     // Insert test data
@@ -205,6 +203,7 @@ class PgmClient implements Pick<Client, 'query'> {
     queryTextOrConfig: string | QueryConfig<I>,
     callback: (err: Error, result: QueryResult<R>) => void,
   ): void;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   query<R extends QueryResultRow = any, I extends any[] = any[]>(
     queryText: string,
     values: any[],
