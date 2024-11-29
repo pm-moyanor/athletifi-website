@@ -56,5 +56,14 @@ export async function down(pgm: MigrationBuilder): Promise<void> {
     { name: 'user_id', type: 'uuid' },
   ]);
 
-  pgm.dropFunction('enable_notifications', [{ name: 'user_id', type: 'uuid' }]);
+  pgm.dropFunction('enable_notifications', [
+    {
+      name: 'user_id',
+      type: 'uuid',
+    },
+    {
+      name: 'type_ids',
+      type: 'uuid[]',
+    },
+  ]);
 }
