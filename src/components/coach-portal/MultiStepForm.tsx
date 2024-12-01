@@ -73,7 +73,7 @@ const MultiStepForm = () => {
   const handleChange = (event: FormEvent) => {
     setFormData((prevData: FormData) => ({
       ...prevData,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     }));
   };
 
@@ -153,6 +153,7 @@ const MultiStepForm = () => {
             case 4:
               buttonLabel = 'Submit';
               buttonType = 'submit';
+              buttonOnClick = handleSubmit;
               break;
             default:
               return null; // No button for other steps

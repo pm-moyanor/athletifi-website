@@ -8,7 +8,6 @@ import {
 import { FormData } from '../../types/CoachesForm';
 import { FormEvent } from '../../types/CoachesForm';
 import { Player } from '../../types/CoachesForm';
-import { set } from 'react-datepicker/dist/date_utils';
 
 const TeamRosterForm = ({
   formData,

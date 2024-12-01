@@ -4,6 +4,7 @@ import {
   faCalendar,
   faChevronDown,
   faChevronUp,
+  faCheck,
   faClock,
 } from '@fortawesome/free-solid-svg-icons';
 import { FormData } from '../../types/CoachesForm';
@@ -20,21 +21,22 @@ const TeamMatchForm = ({
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const [isExistingMatchSelectorOpen, setIsExistingMatchSelectorOpen] =
     useState(false);
+  const [opponentTeam, setOpponentTeam] = useState('');
 
-    const handleMatchTypeChange = (newOrExistingMatch: 'existing' | 'new') => {
-      switch (newOrExistingMatch) {
-        case 'existing':
-          handleChangeTeamMatch('opponentTeam', '');
-          handleChangeTeamMatch('matchDate', '');
-          handleChangeTeamMatch('matchTime', '');
-          handleChangeTeamMatch('newOrExistingMatch', 'existing');
-          break;
-        case 'new':
-          handleChangeTeamMatch('existingMatch', '');
-          handleChangeTeamMatch('newOrExistingMatch', 'new');
-          break;
-      }
-    };
+  const handleMatchTypeChange = (newOrExistingMatch: 'existing' | 'new') => {
+    switch (newOrExistingMatch) {
+      case 'existing':
+        handleChangeTeamMatch('opponentTeam', '');
+        handleChangeTeamMatch('matchDate', '');
+        handleChangeTeamMatch('matchTime', '');
+        handleChangeTeamMatch('newOrExistingMatch', 'existing');
+        break;
+      case 'new':
+        handleChangeTeamMatch('existingMatch', '');
+        handleChangeTeamMatch('newOrExistingMatch', 'new');
+        break;
+    }
+  };
 
   const games = [
     'Team 2011',
@@ -55,6 +57,14 @@ const TeamMatchForm = ({
 
   const handleExistingMath = () => {
     setIsExistingMatchSelectorOpen(!isExistingMatchSelectorOpen);
+  };
+
+  const handleOpponent = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (opponentTeam.trim()) {
+      handleChangeTeamMatch('opponentTeam', opponentTeam);
+      setOpponentTeam('');
+    }
   };
 
   return (
@@ -99,7 +109,7 @@ const TeamMatchForm = ({
           )}
         </div>
         <p className="text-gray-400 text-xs italic my-2">
-          If your team isn't listed, contact * to have it added.
+          If your team isn&apos;t listed, contact * to have it added.
         </p>
       </div>
       <div className="w-full h-1 bg-partnersBorders my-10"></div>
@@ -180,7 +190,8 @@ const TeamMatchForm = ({
             )}
           </div>
           <p className="text-gray-400 text-xs italic mt-2">
-            If you don't see your match, try selecting "New Match" instead.
+            If you don&apos;t see your match, try selecting &quot;New
+            Match&quot; instead.
           </p>
         </div>
       )}
@@ -194,17 +205,29 @@ const TeamMatchForm = ({
             >
               Who was the opposing team?
             </label>
-            <input
-              type="text"
-              id="opponentTeam"
-              name="opponentTeam"
-              placeholder="Opponent team name"
-              value={formData.opponentTeam || ''}
-              onChange={(e) =>
-                handleChangeTeamMatch('opponentTeam', e.target.value)
-              }
-              className="shadow relative w-full xs:w-3/4 md:w-1/2  bg-cardsBackground rounded-10 p-5"
-            />
+            <div className="flex shadow relative w-full xs:w-3/4 md:w-1/2 bg-cardsBackground rounded-10">
+              <input
+                type="text"
+                id="opponentTeam"
+                name="opponentTeam"
+                placeholder={formData.opponentTeam || 'Opponent team name'}
+                value={opponentTeam}
+                onChange={(e) => setOpponentTeam(e.target.value)}
+                className="appearance-none w-full bg-cardsBackground rounded-10 py-5 px-3 text-primary leading-tight focus:outline-none focus:shadow-outline"
+              />
+              <button
+                type="button"
+                onClick={handleOpponent}
+                className={`${
+                  formData.opponentTeam && !opponentTeam
+                    ? 'text-black bg-green-500'
+                    : ''
+                } p-4 rounded-r-10 shadow focus:shadow-outline`}
+              >
+                <FontAwesomeIcon icon={faCheck} size="xl" />
+              </button>
+            </div>
+
             <p className="text-gray-400 text-xs italic mt-2">
               Enter the name of the opponent
             </p>
@@ -259,6 +282,7 @@ const TeamMatchForm = ({
                       return today;
                     } catch (error) {
                       // If parsing fails, return null
+                      console.log('Error parsing time:', error);
                       return null;
                     }
                   })()}
