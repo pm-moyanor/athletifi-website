@@ -8,7 +8,6 @@ const addUserUrl = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/addUser`;
 const deleteUserDataUrl = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/purgeUserData`;
 
 import { executeSql } from '@/lib/sql';
-import { SqlContext } from '@/lib/sql-context';
 import {
   AuthData,
   NotificationPreferences,

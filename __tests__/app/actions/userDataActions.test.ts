@@ -6,7 +6,6 @@ import type { SqlContext } from '@/lib/sql-context';
 import { addNotification, getUserData } from '@/app/actions/userDataActions';
 import { newSqlMock, testID } from '__tests__/__helpers__/mock-sql';
 import { executeSql } from '@/lib/sql';
-import { revalidateTag } from 'next/cache';
 import { ValueAs } from '@/lib/sql-format';
 
 let sql: SqlContext;
@@ -60,7 +59,7 @@ async function enabledNotifications(amplify_id: ValueAs) {
     (c) => c.query`
     SELECT type_id_notification_types
     FROM many_users_has_many_notification_types
-    WHERE user_id_users = ${testID.user.Alice}
+    WHERE user_id_users = ${amplify_id}
   `,
   );
   return rows;
