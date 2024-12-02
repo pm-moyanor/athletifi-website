@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SqlValue, sqlQuery as formatQuery, QueryArg } from '@/lib/sql-format';
 
 export interface SqlResult<

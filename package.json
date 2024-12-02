@@ -11,7 +11,9 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
     "test:e2e": "playwright test __e2etests_ --ui",
-    "migrate": "tsx ./db/bin/migrate.ts"
+    "migrate": "tsx ./db/bin/migrate.ts",
+    "pg": "tsx ./db/bin/pg.ts",
+    "web-pg": "node db/web-repl/server.mjs"
   },
   "repository": {
     "type": "git",
@@ -73,6 +75,7 @@
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.2.13",
+    "@electric-sql/pglite-repl": "^0.2.14",
     "@playwright/test": "^1.46.1",
     "@spotlightjs/spotlight": "^2.5.0",
     "@testing-library/dom": "^10.4.0",
@@ -87,6 +90,7 @@
     "@typescript-eslint/eslint-plugin": "^8.12.2",
     "@typescript-eslint/parser": "^8.12.2",
     "dotenv": "^16.4.5",
+    "esbuild": "^0.24.0",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.16",
     "eslint-config-prettier": "^9.1.0",

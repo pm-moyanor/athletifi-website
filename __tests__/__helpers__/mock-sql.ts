@@ -15,7 +15,10 @@ import buildSchema from 'node-pg-migrate';
 import { config } from '@/db/lib/config';
 import { SqlContext, SqlContextBase, SqlResult } from '@/lib/sql-context';
 
-export async function newSqlMock() {
+export async function newSqlMock({
+  log = false,
+  capture = false,
+}: Partial<Pick<SqlContextImpl, 'log' | 'capture'>> = {}) {
   if ('window' in global) {
     throw new Error(
       'executeSql cannot be used in a browser. If this test should run in a server-side context, set @jest-environment node.',
@@ -26,6 +29,8 @@ export async function newSqlMock() {
   // called in a jsdom test
   const { PGlite } = await import('@electric-sql/pglite');
   const sql = new SqlContextImpl(new PGlite());
+  sql.log = log;
+  sql.capture = capture;
 
   // Disable console messages
   const origInfo = console.info;
@@ -148,18 +153,25 @@ async function insertTestingRecords(sql: SqlContext) {
   });
 }
 
+interface SqlCall {
+  text: string;
+  values: any[];
+}
+
 /**
  * A {@link SqlContext} implementation using pg-mem.
  */
 class SqlContextImpl extends SqlContextBase {
-  readonly #db;
+  readonly db: PGlite;
   readonly client: Client;
+  readonly captured: SqlCall[] = [];
   log = false;
+  capture = false;
 
   constructor(db: PGlite) {
     super();
-    this.#db = db;
-    this.client = new PgmClient(this.#db) as unknown as Client;
+    this.db = db;
+    this.client = new PgmClient(this.db, this) as unknown as Client;
   }
 
   protected _query<R extends Record<string, any> = never>(
@@ -169,7 +181,10 @@ class SqlContextImpl extends SqlContextBase {
     if (this.log) {
       console.log(text, values);
     }
-    return this.#db.query(text, values);
+    if (this.capture) {
+      this.captured.push({ text, values });
+    }
+    return this.db.query(text, values);
   }
 }
 
@@ -178,9 +193,11 @@ class SqlContextImpl extends SqlContextBase {
  */
 class PgmClient implements Pick<Client, 'query'> {
   readonly #db: PGlite;
+  readonly #sql: SqlContextImpl;
 
-  constructor(db: PGlite) {
+  constructor(db: PGlite, sql: SqlContextImpl) {
     this.#db = db;
+    this.#sql = sql;
   }
 
   query<T extends Submittable>(queryStream: T): T;
@@ -250,6 +267,10 @@ class PgmClient implements Pick<Client, 'query'> {
         : typeof queryTextOrConfig === 'object'
           ? queryTextOrConfig.values
           : undefined) || ([] as unknown as I);
+
+    if (this.#sql.capture) {
+      this.#sql.captured.push({ text, values });
+    }
 
     if (
       typeof queryTextOrConfig !== 'string' &&
