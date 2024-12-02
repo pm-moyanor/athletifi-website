@@ -3,14 +3,10 @@
 import { Player } from '../../types/CoachesForm';
 import { revalidatePath } from 'next/cache';
 
-
 // const matchDataUploadUrl = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/matchDataUpload`;
 // const videoUploadUrl = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/videoUpload`;
 
-
-
 interface MatchDataUpload {
- 
   homeAway: string;
   newOrExistingMatch: string;
   matchDate: string;
@@ -70,7 +66,9 @@ export async function uploadMatchData(formData: FormData) {
     newOrExistingMatch: formData.get('newOrExistingMatch') as string,
     opponentColors: formData.get('opponentColors') as string,
     opponentTeam: formData.get('opponentTeam') as string,
-    permanentRoster: JSON.parse(formData.get('permanentRoster') as string || '[]') as Player[],
+    permanentRoster: JSON.parse(
+      (formData.get('permanentRoster') as string) || '[]',
+    ) as Player[],
     team: formData.get('team') as string,
     venue: formData.get('venue') as string,
     yourTeamColors: formData.get('yourTeamColors') as string,

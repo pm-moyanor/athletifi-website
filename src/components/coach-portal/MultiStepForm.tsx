@@ -14,7 +14,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { uploadMatchData } from '../../app/actions/matchDataAction';
 
-
 const MultiStepForm = () => {
   const [activeStep, setActiveStep] = useState(1);
   const [formData, setFormData] = useState<CoachFormData>({
@@ -77,7 +76,7 @@ const MultiStepForm = () => {
       'yourTeamColors',
       // ... other fields
     ];
-  
+
     fieldsToAppend.forEach((field) => {
       const value = formData[field as keyof CoachFormData];
       if (value !== undefined && value !== null) {
@@ -87,7 +86,7 @@ const MultiStepForm = () => {
         );
       }
     });
-  
+
     console.log('data', data);
     try {
       const response = await uploadMatchData(data);

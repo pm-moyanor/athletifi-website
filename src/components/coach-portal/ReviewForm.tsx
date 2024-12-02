@@ -1,11 +1,11 @@
 import React from 'react';
-import type { FormData } from '../../types/CoachesForm';
+import type { CoachFormData, Player } from '../../types/CoachesForm';
 
 const ReviewForm = ({
   formData,
   setActiveStep,
 }: {
-  formData: FormData;
+  formData: CoachFormData;
   setActiveStep: (step: number) => void;
 }) => {
   const handleEditClick = (step: number) => {
@@ -19,7 +19,7 @@ const ReviewForm = ({
       <p className="text-base font-light max-w-475 mb-4">
         <span className="font-semibold">Does everything look correct?</span>{' '}
         Take a moment to review all sections. You can edit any part by clicking
-        the "Edit" button next to each category.
+        the &quot;Edit&quot; button next to each category.
       </p>
 
       {/* Team and Match */}
@@ -65,9 +65,17 @@ const ReviewForm = ({
               </button>
             </div>
             <div>
-              <p className="text-sm">
-                {formData.existingMatch || 'Existing or new match'}
-              </p>
+              {formData.existingMatch !== 'N/A' ? (
+                <p className="text-sm">
+                  {formData.existingMatch || 'Existing or new match'}
+                </p>
+              ) : (
+                <p className="text-sm">
+                  {' '}
+                  {formData.team} vs {formData.opponentTeam}{' '}
+                </p>
+              )}
+
               <div className="w-full h-1 bg-partnersBorders my-2"></div>
               <p className="my-2 text-base font-bold text-primary">Date</p>
               <p className="text-sm">{formData.matchDate || 'Match Date'}</p>
@@ -159,9 +167,9 @@ const ReviewForm = ({
         <div className="flex flex-col w-full bg-cardsBackground p-4 rounded-10">
           <p className="my-2 text-base font-bold text-primary">Players</p>
           <ul>
-            {formData.matchRoster?.map((player: any) => (
-              <div>
-                <li key={player.id} className="flex justify-between">
+            {formData.matchRoster?.map((player: Player) => (
+              <div key={player.id}>
+                <li className="flex justify-between">
                   <p className="text-sm">{player.name}</p>
                   <p className="text-sm">jersey {player.jerseyNumber}</p>
                 </li>
