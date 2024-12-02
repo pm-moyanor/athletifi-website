@@ -1,7 +1,7 @@
-export interface FormData {
+export interface CoachFormData {
   team?: string;
   newOrExistingMatch?: 'existing' | 'new';
-  existingMatch?: string;
+  existingMatch?: string | null;
   opponentTeam?: string;
   matchDate?: string;
   matchTime?: string;

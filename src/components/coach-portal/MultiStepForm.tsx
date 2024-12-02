@@ -6,17 +6,18 @@ import TeamMatchForm from './TeamMatchForm';
 import MatchDetailsForm from './MatchDetailsForm';
 import TeamRosterForm from './TeamRosterForm';
 import ReviewForm from './ReviewForm';
-import { FormData } from '../../types/CoachesForm';
-import { FormEvent } from '../../types/CoachesForm';
+import { CoachFormData, FormEvent } from '../../types/CoachesForm';
 import AlertModal from '../common/AlertModal';
 import {
   faTriangleExclamation,
   faCircleCheck,
 } from '@fortawesome/free-solid-svg-icons';
+import { uploadMatchData } from '../../app/actions/matchDataAction';
+
 
 const MultiStepForm = () => {
   const [activeStep, setActiveStep] = useState(1);
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<CoachFormData>({
     permanentRoster: [
       { id: 1, name: 'Anderson Rodriguez', jerseyNumber: '#08' },
       { id: 2, name: 'Andrew Gilmore', jerseyNumber: '#06' },
@@ -31,6 +32,7 @@ const MultiStepForm = () => {
   const [modalType, setModalType] = useState<'error' | 'success'>('error');
 
   console.log('formData', formData);
+
   const handleNext = () => {
     setActiveStep((prevStep) => prevStep + 1);
   };
@@ -39,7 +41,7 @@ const MultiStepForm = () => {
     setActiveStep((prevStep) => prevStep - 1);
   };
 
-  const handleSubmit = (event: { preventDefault: () => void }) => {
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     // Process the form data (e.g., send it to an API)
     console.log('Form Data:', formData);
@@ -55,55 +57,78 @@ const MultiStepForm = () => {
       setAlertModal(true);
       setModalType('error');
       return;
-    } else {
+    }
+
+    const data = new FormData();
+
+    const fieldsToAppend = [
+      'existingMatch',
+      'homeAway',
+      'matchDate',
+      'matchRoster',
+      'matchTime',
+      'matchType',
+      'newOrExistingMatch',
+      'opponentColors',
+      'opponentTeam',
+      'permanentRoster',
+      'team',
+      'venue',
+      'yourTeamColors',
+      // ... other fields
+    ];
+  
+    fieldsToAppend.forEach((field) => {
+      const value = formData[field as keyof CoachFormData];
+      if (value !== undefined && value !== null) {
+        data.append(
+          field,
+          typeof value === 'string' ? value : JSON.stringify(value),
+        );
+      }
+    });
+  
+    console.log('data', data);
+    try {
+      const response = await uploadMatchData(data);
+      if (response.success) {
+        setAlertModal(true);
+        setModalType('success');
+      } else {
+        setAlertModal(true);
+        setModalType('error');
+      }
+    } catch (error) {
+      console.error('Failed to send coach form data', error);
       setAlertModal(true);
-      setModalType('success');
+      setModalType('error');
     }
   };
 
-  // const handleChange = (event: FormEvent) => {
-  //   console.log('event', event);
-  //   const { name, value } = event.target;
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [name]: value,
-  //   }));
-  // };
-
   const handleChange = (event: FormEvent) => {
-    setFormData((prevData: FormData) => ({
+    setFormData((prevData: CoachFormData) => ({
       ...prevData,
       [event.target.name]: event.target.value,
     }));
   };
 
-  // const handleChange = (event: FormEvent) => {
-  //   const { name, value } = event.target;
-  //   console.log('Before update:', formData);
-  //   setFormData((prevData) => {
-  //     const newData = {
-  //       ...prevData,
-  //       [name]: value
-  //     };
-  //     console.log('After update:', newData);
-  //     return newData;
-  //   });
-  // };
-
-  const handleChangeTeamMatch = (name: keyof FormData, value: string) => {
+  const handleChangeTeamMatch = (
+    name: keyof CoachFormData,
+    value: string | null,
+  ) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
       // Conditionally clear fields based on 'newOrExistingMatch'
       ...(name === 'newOrExistingMatch' &&
         value === 'existing' && {
-          opponentTeam: '',
-          matchDate: '',
-          matchTime: '',
+          opponentTeam: 'N/A',
+          matchDate: 'N/A',
+          matchTime: 'N/A',
         }),
       ...(name === 'newOrExistingMatch' &&
         value === 'new' && {
-          existingMatch: '',
+          existingMatch: 'N/A',
         }),
     }));
   };

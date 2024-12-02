@@ -5,14 +5,14 @@ import {
   faChevronUp,
   faCheck,
 } from '@fortawesome/free-solid-svg-icons';
-import { FormData } from '../../types/CoachesForm';
+import { CoachFormData } from '../../types/CoachesForm';
 import { FormEvent } from '../../types/CoachesForm';
 
 const MatchDetailsForm = ({
   formData,
   handleChange,
 }: {
-  formData: FormData;
+  formData: CoachFormData;
   handleChange: (event: FormEvent) => void;
 }) => {
   const [isMatchTypeSelectorOpen, setIsMatchTypeSelectorOpen] = useState(false);
@@ -141,7 +141,12 @@ const MatchDetailsForm = ({
               formData.venue && !location ? 'text-black bg-green-500' : ''
             } p-4 rounded-r-10 shadow focus:shadow-outline`}
           >
-            <FontAwesomeIcon icon={faCheck} size="xl" />
+            {/* <FontAwesomeIcon icon={faCheck} size="xl" /> */}
+            {formData.venue && !location ? (
+              <FontAwesomeIcon icon={faCheck} size="xl" />
+            ) : (
+              <span>Select</span>
+            )}
           </button>
         </div>
       </div>
@@ -218,7 +223,15 @@ const MatchDetailsForm = ({
                 : ''
             } p-4 rounded-10 shadow focus:shadow-outline bg-cardsBackground`}
           >
-            <FontAwesomeIcon icon={faCheck} size="xl" />
+            {/* <FontAwesomeIcon icon={faCheck} size="xl" /> */}
+            {formData.yourTeamColors &&
+            formData.opponentColors &&
+            !teamColors.yourTeam &&
+            !teamColors.opponent ? (
+              <FontAwesomeIcon icon={faCheck} size="xl" />
+            ) : (
+              <span>Select</span>
+            )}
           </button>
         </div>
       </div>

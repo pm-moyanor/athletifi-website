@@ -5,7 +5,7 @@ import {
   faXmark,
   faPenToSquare,
 } from '@fortawesome/free-solid-svg-icons';
-import { FormData } from '../../types/CoachesForm';
+import { CoachFormData } from '../../types/CoachesForm';
 import { FormEvent } from '../../types/CoachesForm';
 import { Player } from '../../types/CoachesForm';
 
@@ -13,7 +13,7 @@ const TeamRosterForm = ({
   formData,
   handleChange,
 }: {
-  formData: FormData;
+  formData: CoachFormData;
   handleChange: (event: FormEvent) => void;
 }) => {
   const [permanentRoster, setPermanentRoster] = useState<Player[]>(
@@ -32,8 +32,6 @@ const TeamRosterForm = ({
   const [newJerseyNumber, setNewJerseyNumber] = useState('');
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const [noteText, setNoteText] = useState('');
-
-  console.log('matchRoster.......', matchRoster);
 
   const jerseyModalRef = useRef<HTMLDivElement>(null); // Ref for Jersey Modal
   const noteModalRef = useRef<HTMLDivElement>(null); // Ref for Note Modal
