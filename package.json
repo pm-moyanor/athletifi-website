@@ -13,7 +13,10 @@
     "test:e2e": "playwright test __e2etests_ --ui",
     "migrate": "tsx ./db/bin/migrate.ts",
     "pg": "tsx ./db/bin/pg.ts",
-    "web-pg": "node db/web-repl/server.mjs"
+    "web-pg": "node db/web-repl/server.mjs",
+    "prettier": "prettier '{src,db,__tests__,__e2etests__}/**/*.{js,ts}{,x}'",
+    "prettier:check": "yarn prettier --check",
+    "prettier:format": "yarn prettier --write"
   },
   "repository": {
     "type": "git",

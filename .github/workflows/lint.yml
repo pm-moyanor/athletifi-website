@@ -1,0 +1,16 @@
+name: Lint
+
+on: [push]
+
+jobs:
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version: [20]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: yarn install
+      - run: yarn prettier:check
