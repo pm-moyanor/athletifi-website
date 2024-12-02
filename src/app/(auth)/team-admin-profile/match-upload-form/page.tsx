@@ -1,6 +1,7 @@
 import SubmitFootage from '@/components/coach-portal/SubmitFootage';
 import { sourceSans3 } from '@/app/utils/helpers';
 import ProfileHeader from '@/components/user-portal/ProfileHeader';
+import MultiStepForm from '@/components/coach-portal/MultiStepForm';
 
 const MatchUploadFormPage: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const MatchUploadFormPage: React.FC = () => {
       />
       <SubmitFootage />
       {/* form components */}
+      <MultiStepForm />
     </div>
   );
 };

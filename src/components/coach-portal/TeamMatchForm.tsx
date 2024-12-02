@@ -4,9 +4,10 @@ import {
   faCalendar,
   faChevronDown,
   faChevronUp,
+  faCheck,
   faClock,
 } from '@fortawesome/free-solid-svg-icons';
-import { FormData } from '../../types/CoachesForm';
+import { CoachFormData } from '../../types/CoachesForm';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -14,27 +15,32 @@ const TeamMatchForm = ({
   formData,
   handleChangeTeamMatch,
 }: {
-  formData: FormData;
-  handleChangeTeamMatch: (name: keyof FormData, value: string) => void;
+  formData: CoachFormData;
+  handleChangeTeamMatch: (name: keyof CoachFormData, value: string | null) => void;
 }) => {
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const [isExistingMatchSelectorOpen, setIsExistingMatchSelectorOpen] =
     useState(false);
+  const [opponentTeam, setOpponentTeam] = useState('');
 
-    const handleMatchTypeChange = (newOrExistingMatch: 'existing' | 'new') => {
-      switch (newOrExistingMatch) {
-        case 'existing':
-          handleChangeTeamMatch('opponentTeam', '');
-          handleChangeTeamMatch('matchDate', '');
-          handleChangeTeamMatch('matchTime', '');
-          handleChangeTeamMatch('newOrExistingMatch', 'existing');
-          break;
-        case 'new':
-          handleChangeTeamMatch('existingMatch', '');
-          handleChangeTeamMatch('newOrExistingMatch', 'new');
-          break;
-      }
-    };
+  const handleMatchTypeChange = (newOrExistingMatch: 'existing' | 'new') => {
+    switch (newOrExistingMatch) {
+      case 'existing':
+        handleChangeTeamMatch('opponentTeam', 'N/A');
+        handleChangeTeamMatch('matchDate', 'N/A');
+        handleChangeTeamMatch('matchTime', 'N/A');
+        handleChangeTeamMatch('newOrExistingMatch', 'existing');
+        handleChangeTeamMatch('existingMatch', '');
+        break;
+      case 'new':
+        // handleChangeTeamMatch('existingMatch', null);
+        handleChangeTeamMatch('newOrExistingMatch', 'new');
+        handleChangeTeamMatch('opponentTeam', '');
+        handleChangeTeamMatch('matchDate', '');
+        handleChangeTeamMatch('matchTime', '');
+        break;
+    }
+  };
 
   const games = [
     'Team 2011',
@@ -46,6 +52,10 @@ const TeamMatchForm = ({
     { id: 1, name: 'Chelsea vs Liverpool - 2024/08/24' },
     { id: 2, name: 'Manchester United vs Arsenal - 2024/08/23' },
     { id: 3, name: 'Tottenham vs Manchester City - 2024/08/22' },
+    {
+      id: 3,
+      name: 'AthletiFi select 2019 vs AthletiFi select 2013 - 2024/08/22 4:40 PM',
+    },
     // ... add more dummy matches
   ];
 
@@ -55,6 +65,14 @@ const TeamMatchForm = ({
 
   const handleExistingMath = () => {
     setIsExistingMatchSelectorOpen(!isExistingMatchSelectorOpen);
+  };
+
+  const handleOpponent = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (opponentTeam.trim()) {
+      handleChangeTeamMatch('opponentTeam', opponentTeam);
+      setOpponentTeam('');
+    }
   };
 
   return (
@@ -99,7 +117,7 @@ const TeamMatchForm = ({
           )}
         </div>
         <p className="text-gray-400 text-xs italic my-2">
-          If your team isn't listed, contact * to have it added.
+          If your team isn&apos;t listed, contact * to have it added.
         </p>
       </div>
       <div className="w-full h-1 bg-partnersBorders my-10"></div>
@@ -107,9 +125,9 @@ const TeamMatchForm = ({
         <label className="block text-primary text-base font-bold mb-5">
           Is this for an existing scheduled match or a new match entry?
         </label>
-        <p className="text-gray-400 text-xs italic mb-2">
+        {/* <p className="text-gray-400 text-xs italic mb-2">
           Select if this footage is for an existing match or a new one.
-        </p>
+        </p> */}
         <div className="flex flex-col xs:flex-row items-center gap-4 ">
           <button
             type="button"
@@ -180,7 +198,8 @@ const TeamMatchForm = ({
             )}
           </div>
           <p className="text-gray-400 text-xs italic mt-2">
-            If you don't see your match, try selecting "New Match" instead.
+            If you don&apos;t see your match, try selecting &quot;New
+            Match&quot; instead.
           </p>
         </div>
       )}
@@ -194,19 +213,36 @@ const TeamMatchForm = ({
             >
               Who was the opposing team?
             </label>
-            <input
-              type="text"
-              id="opponentTeam"
-              name="opponentTeam"
-              placeholder="Opponent team name"
-              value={formData.opponentTeam || ''}
-              onChange={(e) =>
-                handleChangeTeamMatch('opponentTeam', e.target.value)
-              }
-              className="shadow relative w-full xs:w-3/4 md:w-1/2  bg-cardsBackground rounded-10 p-5"
-            />
+            <div className="flex shadow relative w-full xs:w-3/4 md:w-1/2 bg-cardsBackground rounded-10">
+              <input
+                type="text"
+                id="opponentTeam"
+                name="opponentTeam"
+                placeholder={formData.opponentTeam || 'Opponent team name'}
+                value={opponentTeam}
+                onChange={(e) => setOpponentTeam(e.target.value)}
+                className="appearance-none w-full bg-cardsBackground rounded-10 py-5 px-3 text-primary leading-tight focus:outline-none focus:shadow-outline"
+              />
+              <button
+                type="button"
+                onClick={handleOpponent}
+                className={`${
+                  formData.opponentTeam && !opponentTeam
+                    ? 'text-black bg-green-500'
+                    : ''
+                } p-4 rounded-r-10 shadow focus:shadow-outline`}
+              >
+                {/* <FontAwesomeIcon icon={faCheck} size="xl" /> */}
+                {formData.opponentTeam && !opponentTeam ? (
+                  <FontAwesomeIcon icon={faCheck} size="xl" />
+                ) : (
+                  <span>Select</span>
+                )}
+              </button>
+            </div>
+
             <p className="text-gray-400 text-xs italic mt-2">
-              Enter the name of the opponent
+              Enter the name of the opponent and click select
             </p>
           </div>
           <div className="mt-10">
@@ -215,7 +251,7 @@ const TeamMatchForm = ({
             </label>
             {/* You'll need to add input fields for date, time, and venue */}
             <p className="text-gray-400 text-xs italic">
-              Provide the match date, time, and venue where it took place.
+              Provide the match date and time when it took place.
             </p>
             <div className="flex flex-col sm:flex-row justify-start sm:items-center gap-4 mt-2">
               <div className=" flex items-center justify-center shadow appearance-none w-64 py-3 px-3 bg-cardsBackground rounded-10 leading-tight focus:outline-none focus:shadow-outline">
@@ -259,6 +295,7 @@ const TeamMatchForm = ({
                       return today;
                     } catch (error) {
                       // If parsing fails, return null
+                      console.log('Error parsing time:', error);
                       return null;
                     }
                   })()}

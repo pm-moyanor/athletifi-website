@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClipboard, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FormData } from '../../types/CoachesForm';
+import {
+  faClipboard,
+  faXmark,
+  faPenToSquare,
+} from '@fortawesome/free-solid-svg-icons';
+import { CoachFormData } from '../../types/CoachesForm';
 import { FormEvent } from '../../types/CoachesForm';
 import { Player } from '../../types/CoachesForm';
 
@@ -9,7 +13,7 @@ const TeamRosterForm = ({
   formData,
   handleChange,
 }: {
-  formData: FormData;
+  formData: CoachFormData;
   handleChange: (event: FormEvent) => void;
 }) => {
   const [permanentRoster, setPermanentRoster] = useState<Player[]>(
@@ -24,13 +28,69 @@ const TeamRosterForm = ({
   const [addPlayerPermanently, setAddPlayerPermanently] = useState(false);
   const [isGuest, setIsGuest] = useState(false);
   const [showNoteModal, setShowNoteModal] = useState(false);
+  const [jerseyChangeModal, setJerseyChangeModal] = useState(false);
+  const [newJerseyNumber, setNewJerseyNumber] = useState('');
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const [noteText, setNoteText] = useState('');
+
+  const jerseyModalRef = useRef<HTMLDivElement>(null); // Ref for Jersey Modal
+  const noteModalRef = useRef<HTMLDivElement>(null); // Ref for Note Modal
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        jerseyModalRef.current &&
+        !jerseyModalRef.current.contains(event.target as Node) &&
+        jerseyChangeModal
+      ) {
+        setJerseyChangeModal(false);
+      }
+
+      if (
+        noteModalRef.current &&
+        !noteModalRef.current.contains(event.target as Node) &&
+        showNoteModal
+      ) {
+        setShowNoteModal(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [jerseyChangeModal, showNoteModal]);
 
   useEffect(() => {
     setPermanentRoster(formData.permanentRoster);
     setMatchRoster(formData.matchRoster);
   }, [formData]);
+
+  const handleJerseyNumberChangeClick = (player: Player) => {
+    setSelectedPlayer(player);
+    setNewJerseyNumber(player.jerseyNumber);
+    setJerseyChangeModal(true);
+    console.log('player', player);
+  };
+
+  const handleJerseyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewJerseyNumber(event.target.value);
+  };
+
+  const handleJerseyNumberChange = () => {
+    if (selectedPlayer) {
+      const updatedRoster = matchRoster.map((p) =>
+        p.id === selectedPlayer.id
+          ? { ...p, jerseyNumber: newJerseyNumber }
+          : p,
+      );
+      setMatchRoster(updatedRoster);
+      handleChange({
+        target: { name: 'matchRoster', value: updatedRoster },
+      });
+      setJerseyChangeModal(false);
+    }
+  };
 
   const handleAddNoteClick = (player: Player) => {
     setSelectedPlayer(player);
@@ -245,62 +305,131 @@ const TeamRosterForm = ({
         <div className="w-full h-1 bg-partnersBorders mt-2 mb-4"></div>
         <ul>
           {matchRoster.map((player) => (
-            <li
-              key={player.id}
-              className="flex items-center py-2 justify-between"
-            >
-              <p className="mr-2 xm:mx-2"> {player.name}</p>
-              {/* TODO: make the jersey number editable. it need to update the permanent roster as well. */}
-              <p className="ml-2 xm:mx-2">jersey {player.jerseyNumber}</p>
-              <div className="flex gap-1 xs:gap-5 md:gap-10 ml-2 xm-m-0">
-                <div className="flex flex-col md:flex-row justify-center items-center pr-2">
-                  <FontAwesomeIcon
-                    icon={faClipboard}
-                    className="md:mr-2 text-skyblue"
-                  />
-                  <button
-                    type="button"
-                    className="text-skyblue"
-                    onClick={() => handleAddNoteClick(player)}
-                  >
-                    {player.note ? 'Edit note' : 'Add note'}
-                  </button>
+            <>
+              <li
+                key={player.id}
+                className="flex items-center justify-between py-2 relative"
+              >
+                <div className="flex flex-col md:flex-row  justify-start md:justify-between w-1/2">
+                  <p className=""> {player.name}</p>
+                  <div className="flex gap-2">
+                    <p className="">jersey {player.jerseyNumber}</p>
+                    <button
+                      type="button"
+                      onClick={() => handleJerseyNumberChangeClick(player)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faPenToSquare}
+                        className="md:mr-2 text-skyblue"
+                      />
+                    </button>
+                  </div>
                 </div>
-                <div className="flex flex-col md:flex-row  justify-center items-center">
-                  <FontAwesomeIcon
-                    icon={faXmark}
-                    className="md:mr-2 text-chartRed"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => handlePlayerRemove(player.id)}
-                    className="text-chartRed hover:text-primary"
-                  >
-                    {' '}
-                    remove
-                  </button>
+
+                <div className="flex justify-end items-center gap-2 xs:gap-5 md:gap-10 ml-2 xm-m-0 w-1/2">
+                  <div className="">
+                    <button
+                      type="button"
+                      className="text-skyblue hover:text-primary"
+                      onClick={() => handleAddNoteClick(player)}
+                    >
+                      <FontAwesomeIcon
+                        icon={faClipboard}
+                        className="mr-2 text-skyblue text-lg xs:text-base"
+                      />
+                      <span className="hidden xs:inline">
+                        {' '}
+                        {/* Hide text on xs screens */}
+                        {player.note ? 'Edit note' : 'Add note'}
+                      </span>
+                    </button>
+                  </div>
+                  <div className="">
+                    <button
+                      type="button"
+                      onClick={() => handlePlayerRemove(player.id)}
+                      className="text-chartRed hover:text-primary"
+                    >
+                      <FontAwesomeIcon
+                        icon={faXmark}
+                        className="mr-2 text-chartRed text-lg xs:text-base"
+                      />
+                      <span className="hidden xs:inline">
+                        {' '}
+                        {/* Hide text on xs screens */}
+                        Remove
+                      </span>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </li>
+              </li>
+              <div className="w-full h-1 bg-matchtitles mt-2 mb-4"></div>
+            </>
           ))}
         </ul>
       </div>
+      {/* Jersey Change Modal */}
+      {jerseyChangeModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div
+            ref={jerseyModalRef}
+            className="bg-cardsBackground p-8 rounded-10 flex flex-col items-center justify-center"
+          >
+            <h3 className="text-base font-bold text-primary mb-4">
+              Change Jersey Number
+            </h3>
+            <input
+              type="text"
+              value={newJerseyNumber}
+              onChange={handleJerseyChange}
+              className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
+      ` text-center"
+            />
+            <div className="flex justify-center mt-4 gap-2">
+              <button
+                type="button"
+                onClick={() => setJerseyChangeModal(false)}
+                className="w-24 py-2 rounded-20 border text-primary hover:bg-skyblue shadow-md px-4"
+              >
+                cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleJerseyNumberChange}
+                className="w-24 py-2 rounded-20 border text-primary hover:bg-skyblue shadow-md px-4"
+              >
+                edit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {/* Note Modal */}
       {showNoteModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-cardsBackground p-8 rounded-10">
-            <h3 className="text-lg font-bold text-primary mb-4">Add note</h3>
+        <div className="fixed inset-0 z-50  flex items-center justify-center bg-black bg-opacity-50">
+          <div
+            ref={noteModalRef}
+            className="w-5/6 md:w-5/12 bg-cardsBackground p-8 rounded-10"
+          >
+            <h3 className="text-base font-bold text-primary mb-4">Add note</h3>
             <textarea
               value={noteText}
               onChange={handleNoteChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline   
  h-32"
             />
-            <div className="flex justify-end mt-4">
+            <div className="flex justify-end mt-4 gap-2">
+              <button
+                type="button"
+                onClick={() => setShowNoteModal(false)}
+                className="w-24 py-2 rounded-20 border text-primary hover:bg-skyblue shadow-md px-4"
+              >
+                cancel
+              </button>
               <button
                 type="button"
                 onClick={handleAddNote}
-                className="py-2 rounded-20 border text-primary hover:bg-skyblue shadow-md px-4"
+                className="w-24 py-2 rounded-20 border text-primary hover:bg-skyblue shadow-md px-4"
               >
                 add note
               </button>
