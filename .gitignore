@@ -15,6 +15,9 @@ package-lock.json
 /.next/
 /out/
 
+# Jest CI report
+/reports/jest-junit.xml
+
 # amplify
 amplify/.config/project-config.json
 amplify/backend/backend-config.json

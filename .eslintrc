@@ -14,8 +14,8 @@
   ],
   "rules": {
     "no-console": "off",
-    "prettier/prettier": ["error", {
-      // Add custom Prettier options here
-    }]
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-require-imports": "off",
+    "prettier/prettier": "error"
   }
 }
