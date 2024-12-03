@@ -46,14 +46,16 @@ describe('Home', () => {
       // ... your mock user data
     });
 
-    render(<Home searchParams={{}} />); 
+    render(<Home searchParams={{}} />);
 
     // Assert that the loading message is initially displayed
     expect(screen.getByText('Loading blog list...')).toBeInTheDocument();
 
     // Wait for the blog list to load and the loading message to disappear
     await waitFor(() =>
-      expect(screen.queryByText('Loading blog list...')).not.toBeInTheDocument()
+      expect(
+        screen.queryByText('Loading blog list...'),
+      ).not.toBeInTheDocument(),
     );
 
     // Assert that a blog title is displayed (using the mock data)

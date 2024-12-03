@@ -6,7 +6,13 @@ export type PlayerDashboardProps = {
   searchParams?: { [key: string]: string | string[] | undefined };
 };
 
-export type Attributes = 'skill' | 'attacking' | 'goalkeeping' | 'physical' | 'mentality' | 'defending';
+export type Attributes =
+  | 'skill'
+  | 'attacking'
+  | 'goalkeeping'
+  | 'physical'
+  | 'mentality'
+  | 'defending';
 
 export interface IAttributeConfig {
   skill: {

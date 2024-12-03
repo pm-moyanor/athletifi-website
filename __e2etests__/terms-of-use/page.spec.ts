@@ -63,6 +63,9 @@ test.describe('Terms of Use Page', () => {
   test('should have correct contact email', async ({ page }) => {
     const contactEmail = page.locator('text=support@athleti.fi');
     await expect(contactEmail).toBeVisible();
-    await expect(contactEmail).toHaveAttribute('href', 'mailto:support@athleti.fi');
+    await expect(contactEmail).toHaveAttribute(
+      'href',
+      'mailto:support@athleti.fi',
+    );
   });
 });

@@ -77,7 +77,6 @@ const faqs = [
   },
 ];
 
-
 const coachFaqs = [
   {
     question: `How can I track my players' progress on the dashboard?`,
@@ -89,11 +88,9 @@ const coachFaqs = [
   },
 ];
 
-
-
-
-const Accordion: FC<{ faqData: FAQData[]; userType: 'coach' | 'regular' }> = ({ userType }) => {
-
+const Accordion: FC<{ faqData: FAQData[]; userType: 'coach' | 'regular' }> = ({
+  userType,
+}) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {

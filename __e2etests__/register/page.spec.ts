@@ -17,7 +17,9 @@ test.describe('Register Page', () => {
 
     const signUpTab = page.getByRole('tab', { name: 'Create Account' });
     await expect(signUpTab).toBeVisible();
-    await expect(signUpTab).toHaveClass('amplify-tabs__item amplify-tabs__item--active');
+    await expect(signUpTab).toHaveClass(
+      'amplify-tabs__item amplify-tabs__item--active',
+    );
   });
 
   test('should have all form elements', async ({ page }) => {
@@ -31,5 +33,4 @@ test.describe('Register Page', () => {
     const signInButton = page.getByRole('button', { name: 'Create Account' });
     await expect(signInButton).toBeVisible();
   });
-
 });

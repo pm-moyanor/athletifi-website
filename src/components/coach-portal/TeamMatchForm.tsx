@@ -16,7 +16,10 @@ const TeamMatchForm = ({
   handleChangeTeamMatch,
 }: {
   formData: CoachFormData;
-  handleChangeTeamMatch: (name: keyof CoachFormData, value: string | null) => void;
+  handleChangeTeamMatch: (
+    name: keyof CoachFormData,
+    value: string | null,
+  ) => void;
 }) => {
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const [isExistingMatchSelectorOpen, setIsExistingMatchSelectorOpen] =

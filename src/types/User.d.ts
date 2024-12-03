@@ -1,4 +1,8 @@
-export type NotificationTypes = 'referral_notifications' | 'athletifi_updates' | 'general_highlights' | 'my_player_updates';
+export type NotificationTypes =
+  | 'referral_notifications'
+  | 'athletifi_updates'
+  | 'general_highlights'
+  | 'my_player_updates';
 
 export type NotificationPreferences = {
   referral_notifications: boolean;

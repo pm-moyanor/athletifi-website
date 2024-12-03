@@ -4,7 +4,10 @@ import '@testing-library/jest-dom';
 
 describe('BackToTop Component', () => {
   const scrollToMock = jest.fn();
-  Object.defineProperty(window, 'scrollTo', { value: scrollToMock, writable: true });
+  Object.defineProperty(window, 'scrollTo', {
+    value: scrollToMock,
+    writable: true,
+  });
 
   // Mock the 'scroll' event
   const scrollEvent = new Event('scroll');
@@ -66,7 +69,10 @@ describe('BackToTop Component', () => {
     unmount();
 
     // Expect removeEventListener to have been called with 'scroll' and the handleScroll function
-    expect(removeEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function)); 
+    expect(removeEventListenerSpy).toHaveBeenCalledWith(
+      'scroll',
+      expect.any(Function),
+    );
 
     // Restore the original removeEventListener
     removeEventListenerSpy.mockRestore();
