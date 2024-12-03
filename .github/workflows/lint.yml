@@ -7,9 +7,14 @@ jobs:
     name: Prettier
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 20
-      - run: yarn install
-      - run: yarn prettier:check
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install
+      - name: Validate formatting
+        run: yarn prettier:check
