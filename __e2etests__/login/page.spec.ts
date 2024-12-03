@@ -14,7 +14,9 @@ test.describe('Login Page', () => {
     // Check the tabs
     const signInTab = page.getByRole('tab', { name: 'Sign In' });
     await expect(signInTab).toBeVisible();
-    await expect(signInTab).toHaveClass('amplify-tabs__item amplify-tabs__item--active');
+    await expect(signInTab).toHaveClass(
+      'amplify-tabs__item amplify-tabs__item--active',
+    );
 
     const signUpTab = page.getByRole('tab', { name: 'Create Account' });
     await expect(signUpTab).toBeVisible();
@@ -33,12 +35,12 @@ test.describe('Login Page', () => {
   test('user can log in and view their profile', async ({ page }) => {
     const username = process.env.REACT_APP_PLAYWRIGHT_USERNAME;
     if (username === null || username === undefined) {
-        throw 'Username is not defined in environment file';
+      throw 'Username is not defined in environment file';
     }
-  
+
     const password = process.env.REACT_APP_PLAYWRIGHT_PASSWORD;
     if (password === null || password === undefined) {
-        throw 'Password is not defined in environment file';
+      throw 'Password is not defined in environment file';
     }
 
     // Fill in the login form
@@ -65,58 +67,58 @@ test.describe('Login Page', () => {
   });
 });
 
-  // test('should handle redirect parameter', async ({ page }) => {
-  //   // Navigate to login page with redirect parameter
-  //   await page.goto('http://localhost:3000/login?redirect=/dashboard');
+// test('should handle redirect parameter', async ({ page }) => {
+//   // Navigate to login page with redirect parameter
+//   await page.goto('http://localhost:3000/login?redirect=/dashboard');
 
-  //   // Fill in valid login details
-  //   await page.fill('input[name="email"]', 'valid@example.com');
-  //   await page.fill('input[name="password"]', 'validpassword');
+//   // Fill in valid login details
+//   await page.fill('input[name="email"]', 'valid@example.com');
+//   await page.fill('input[name="password"]', 'validpassword');
 
-  //   // Submit the form
-  //   await Promise.all([
-  //     page.waitForResponse(response => response.url().includes('/auth') && response.status() === 200),
-  //     page.click('button:has-text("Sign in")')
-  //   ]);
+//   // Submit the form
+//   await Promise.all([
+//     page.waitForResponse(response => response.url().includes('/auth') && response.status() === 200),
+//     page.click('button:has-text("Sign in")')
+//   ]);
 
-  //   // Check if redirected to the specified page
-  //   await expect(page).toHaveURL(/.*\/dashboard.*/);
-  // });
+//   // Check if redirected to the specified page
+//   await expect(page).toHaveURL(/.*\/dashboard.*/);
+// });
 
-  // test('should handle invite_id parameter', async ({ page }) => {
-  //   // Navigate to login page with invite_id
-  //   await page.goto('http://localhost:3000/login?invite_id=test123');
+// test('should handle invite_id parameter', async ({ page }) => {
+//   // Navigate to login page with invite_id
+//   await page.goto('http://localhost:3000/login?invite_id=test123');
 
-  //   // Fill in valid login details
-  //   await page.fill('input[name="email"]', 'valid@example.com');
-  //   await page.fill('input[name="password"]', 'validpassword');
+//   // Fill in valid login details
+//   await page.fill('input[name="email"]', 'valid@example.com');
+//   await page.fill('input[name="password"]', 'validpassword');
 
-  //   // Submit the form
-  //   await Promise.all([
-  //     page.waitForResponse(response => response.url().includes('/auth') && response.status() === 200),
-  //     page.click('button:has-text("Sign in")')
-  //   ]);
+//   // Submit the form
+//   await Promise.all([
+//     page.waitForResponse(response => response.url().includes('/auth') && response.status() === 200),
+//     page.click('button:has-text("Sign in")')
+//   ]);
 
-  //   // Check if the invite_id is handled correctly
-  //   // This might involve checking the URL or some visible confirmation on the page
-  //   // Adjust according to your application's behavior
-  //   await expect(page).toHaveURL(/.*invite_id=test123.*/);
-  // });
+//   // Check if the invite_id is handled correctly
+//   // This might involve checking the URL or some visible confirmation on the page
+//   // Adjust according to your application's behavior
+//   await expect(page).toHaveURL(/.*invite_id=test123.*/);
+// });
 
-  // test('should show error for invalid credentials', async ({ page }) => {
-  //   await page.fill('input[name="username"]', 'invalid@example.com');
-  //   await page.fill('input[name="password"]', 'invalidpassword');
-  //   await page.click('button:has-text("Sign in")');
+// test('should show error for invalid credentials', async ({ page }) => {
+//   await page.fill('input[name="username"]', 'invalid@example.com');
+//   await page.fill('input[name="password"]', 'invalidpassword');
+//   await page.click('button:has-text("Sign in")');
 
-  //   const errorMessage = page.locator('text=Invalid email or password');
-  //   await expect(errorMessage).toBeVisible();
-  // });
+//   const errorMessage = page.locator('text=Invalid email or password');
+//   await expect(errorMessage).toBeVisible();
+// });
 
-  // test('should maintain form state on navigation', async ({ page }) => {
-  //   await page.fill('input[name="email"]', 'test@example.com');
-  //   await page.click('text=About us');
-  //   await page.goBack();
+// test('should maintain form state on navigation', async ({ page }) => {
+//   await page.fill('input[name="email"]', 'test@example.com');
+//   await page.click('text=About us');
+//   await page.goBack();
 
-  //   const emailInput = page.locator('input[name="email"]');
-  //   await expect(emailInput).toHaveValue('test@example.com');
-  // });
+//   const emailInput = page.locator('input[name="email"]');
+//   await expect(emailInput).toHaveValue('test@example.com');
+// });

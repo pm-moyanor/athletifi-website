@@ -23,7 +23,7 @@ const AuthClient = ({
   inviteId: string | undefined;
 }) => {
   const router = useRouter();
-  const searchParams = useSearchParams(); 
+  const searchParams = useSearchParams();
   const intendedPath = searchParams.get('intendedPath');
 
   const { route } = useAuthenticator((context) => [
@@ -36,10 +36,10 @@ const AuthClient = ({
       const inviteParam = inviteId ? `?invite_id=${inviteId}` : '';
       if (redirect) {
         router.push(redirect + inviteParam);
-      } else { 
-        if(intendedPath) {
+      } else {
+        if (intendedPath) {
           router.push(intendedPath);
-        } else  {
+        } else {
           router.push(`/profile${inviteParam}`);
         }
       }

@@ -32,14 +32,20 @@ test.describe('Logout Page', () => {
     await expect(loginLink).toHaveAttribute('href', '/login');
   });
 
-  test('should navigate to home page when clicking home link', async ({ page }) => {
+  test('should navigate to home page when clicking home link', async ({
+    page,
+  }) => {
     await page.click('a:has-text("home page")');
     await expect(page).toHaveURL('http://localhost:3000/', { timeout: 10000 });
   });
 
-  test('should navigate to login page when clicking login link', async ({ page }) => {
+  test('should navigate to login page when clicking login link', async ({
+    page,
+  }) => {
     await page.click('a:has-text("log back in")');
-    await expect(page).toHaveURL('http://localhost:3000/login', { timeout: 10000 });
+    await expect(page).toHaveURL('http://localhost:3000/login', {
+      timeout: 10000,
+    });
   });
 
   test('should clear certain data from local storage', async ({ page }) => {
@@ -50,11 +56,15 @@ test.describe('Logout Page', () => {
 
     await page.reload();
 
-    const hasShownModal = await page.evaluate(() => localStorage.getItem('hasShownModal'));
+    const hasShownModal = await page.evaluate(() =>
+      localStorage.getItem('hasShownModal'),
+    );
     expect(hasShownModal).toBeNull();
   });
 
-  test('should have working navigation links in header and footer', async ({ page }) => {
+  test('should have working navigation links in header and footer', async ({
+    page,
+  }) => {
     // Check header links
     await page.click('header >> text=About us');
     await expect(page).toHaveURL('http://localhost:3000/about-us');

@@ -10,5 +10,4 @@ test.describe('QR Code Page', () => {
   });
 
   // Needs latest code update
-
 });

@@ -1,5 +1,5 @@
-import { ICards, NotificationPreferences } from "@/types/User";
-import { IActionReel, IMatchDataWithWeather } from "./Dashboard";
+import { ICards, NotificationPreferences } from '@/types/User';
+import { IActionReel, IMatchDataWithWeather } from './Dashboard';
 
 export const emptyNotifications: NotificationPreferences = {
   referral_notifications: false,

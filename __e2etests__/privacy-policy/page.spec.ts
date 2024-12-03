@@ -39,9 +39,10 @@ test.describe('Privacy Policy Page', () => {
       await expect(sectionHeading).toBeVisible();
     }
 
-    const additionalSectionHeading = page.getByRole('heading', { name: /Children.*Privacy$/ });
+    const additionalSectionHeading = page.getByRole('heading', {
+      name: /Children.*Privacy$/,
+    });
     await expect(additionalSectionHeading).toBeVisible();
-    
   });
 
   test('should have a visible footer', async ({ page }) => {
@@ -65,7 +66,10 @@ test.describe('Privacy Policy Page', () => {
   test('should have correct contact email', async ({ page }) => {
     const contactEmail = page.locator('text=support@athleti.fi');
     await expect(contactEmail).toBeVisible();
-    await expect(contactEmail).toHaveAttribute('href', 'mailto:support@athleti.fi');
+    await expect(contactEmail).toHaveAttribute(
+      'href',
+      'mailto:support@athleti.fi',
+    );
   });
 
   test('should have a section about user rights', async ({ page }) => {
@@ -75,7 +79,7 @@ test.describe('Privacy Policy Page', () => {
     const rights = [
       'Access the personal information we hold about you',
       'Request correction or deletion of your personal information',
-      'Object to or restrict our processing of your personal information'
+      'Object to or restrict our processing of your personal information',
     ];
 
     for (const right of rights) {
@@ -88,7 +92,9 @@ test.describe('Privacy Policy Page', () => {
     const securitySection = page.locator('h2:has-text("Data Security")');
     await expect(securitySection).toBeVisible();
 
-    const securityText = page.locator('text=implement appropriate technical and organizational measures');
+    const securityText = page.locator(
+      'text=implement appropriate technical and organizational measures',
+    );
     await expect(securityText).toBeVisible();
   });
 });

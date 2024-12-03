@@ -42,7 +42,9 @@ describe('Footer Component', () => {
   it('renders the copyright information correctly', () => {
     render(<Footer />);
 
-    const copyrightText = screen.getByText(/©\d{4} Athletifi\. All rights reserved/i);
+    const copyrightText = screen.getByText(
+      /©\d{4} Athletifi\. All rights reserved/i,
+    );
 
     expect(copyrightText).toBeInTheDocument();
   });
