@@ -88,3 +88,6 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+# certificates are used for accessing the server as localhost via https, which is required for Safari usage
+certificates/
