@@ -1,19 +1,17 @@
 import { ClientConfig, Pool } from 'pg';
-import fs from 'node:fs/promises';
-import ini from 'ini';
-import os from 'node:os';
-import {
-  SecretsManagerClient,
-  GetSecretValueCommand,
-  SecretsManagerClientConfig,
-} from '@aws-sdk/client-secrets-manager';
 import cert from '@/lib/us-east-2-bundle.pem';
-import { SqlContext, SqlContextBase, SqlResult } from './sql-context';
-import path from 'node:path';
-import { getSecret, getSecretWithShape } from './secrets';
-import { hasShape } from './utils';
+import { SqlContext, SqlContextBase, SqlResult } from '@/lib/sql-context';
+import { getSecretWithShape } from '@/lib/secrets';
 
-const sharedContext = getDBConfig().then((x) => new SqlContextImpl(x));
+const sharedContext = (async () => {
+  // This can cause a test failure even though it shouldn't be called, so return
+  // undefined if we're in a test.
+  if ('test' in global) {
+    return;
+  }
+  const config = await getDBConfig();
+  return new SqlContextImpl(config);
+})();
 
 class SqlContextImpl extends SqlContextBase {
   readonly #pool: Pool;
@@ -35,6 +33,14 @@ export async function executeSql<R>(
   fn: (c: SqlContext) => R | Promise<R>,
 ): Promise<R> {
   const pool = await sharedContext;
+  if (!pool) {
+    if ('test' in global) {
+      throw new Error(
+        'Attempted to use executeSql in a test without mocking it',
+      );
+    }
+    throw new Error('Internal error');
+  }
   const r = await fn(pool);
   return r;
 }

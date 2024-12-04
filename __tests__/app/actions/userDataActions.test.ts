@@ -8,6 +8,15 @@ import { newSqlMock, testID } from '__tests__/__helpers__/mock-sql';
 import { executeSql } from '@/lib/sql';
 import { ValueAs } from '@/lib/sql-format';
 
+jest.mock('@/lib/secrets', () => ({
+  getSecret: jest.fn(() => {
+    throw new Error('Tests should not be fetching secrets');
+  }),
+  getSecretWithShape: jest.fn(() => {
+    throw new Error('Tests should not be fetching secrets');
+  }),
+}));
+
 let sql: SqlContext;
 jest.mock('@/lib/sql', () => ({
   executeSql: jest.fn((fn) => fn(sql)),

@@ -1,0 +1,36 @@
+name: Tests
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+  actions: read
+  checks: write
+
+jobs:
+  prettier:
+    name: Jest
+    runs-on: ubuntu-22.04
+    env:
+      NODE_OPTIONS: --experimental-vm-modules
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run tests
+        run: yarn jest --ci --reporters=default --reporters=jest-junit
+
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    # run this step even if previous step failed
+        with:
+          name: Jest                  # Name of the check run which will be created
+          path: reports/jest-*.xml    # Path to test results
+          reporter: jest-junit        # Format of test results

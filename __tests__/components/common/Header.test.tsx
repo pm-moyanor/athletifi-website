@@ -1,16 +1,19 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Header from '@/components/common/Header';
 import { NotificationPreferences, UserData } from '@/types/User';
-import { useRouter } from 'next/navigation';
 import { signOut } from 'aws-amplify/auth';
 
 const mockRouter = {
   push: jest.fn(),
   refresh: jest.fn(),
 };
+
+jest.mock('nextjs-toploader/app', () => ({
+  useRouter: () => ({}), // fake router
+}));
 
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn(() => mockRouter),
@@ -27,6 +30,7 @@ jest.mock('aws-amplify/utils', () => ({
 }));
 
 jest.mock('next/link', () => {
+  // eslint-disable-next-line react/display-name
   return ({ children, href }: { children: React.ReactNode; href: string }) => (
     <a href={href} onClick={() => mockRouter.push(href)}>
       {children}
