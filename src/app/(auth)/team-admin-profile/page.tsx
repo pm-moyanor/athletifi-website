@@ -1,9 +1,6 @@
 import { sourceSans3 } from '@/app/utils/helpers';
 import MyTeams from '@/components/coach-portal/MyTeams';
 import ProfileHeader from '@/components/user-portal/ProfileHeader';
-import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 const CoachProfilePage: React.FC = () => {
   return (

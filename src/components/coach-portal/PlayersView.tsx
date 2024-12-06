@@ -110,7 +110,7 @@ const StatDisplay: React.FC<{ label: string; value: number }> = ({
 
 // Player Card Component
 const PlayerCard: React.FC<{ player: Player }> = ({ player }) => (
-  <div className=" border-t border-partnersBorders min-h-72 flex flex-col justify-between py-4 md:py-6 px-2">
+  <div className=" border-t border-partnersBorders flex flex-col justify-between py-4 px-2">
     <div className="flex items-center justify-between mb-4">
       <div className="flex w-full justify-between items-start flex-wrap-reverse gap-2">
         <div className="flex items-center flex-wrap gap-4 md:gap-3 mt-6 mb-8 md:mb-0 max-w-72">
@@ -140,7 +140,7 @@ const PlayerCard: React.FC<{ player: Player }> = ({ player }) => (
       </div>
     </div>
     <div className="flex justify-end flex-col items-end">
-      <div className="flex justify-between mb-8 w-full md:min-w-96 max-w-96">
+      <div className="flex justify-between mb-6 w-full md:min-w-96 max-w-96">
         <StatDisplay label="mentality" value={player.stats.mentality} />
         <StatDisplay label="attacking" value={player.stats.attacking} />
         <StatDisplay label="skill" value={player.stats.skill} />
