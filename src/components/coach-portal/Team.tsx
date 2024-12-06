@@ -8,7 +8,7 @@ import TeamDashboard from './PlayersView';
 import MatchesView from './MatchesView';
 
 const Team: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [view, setView] = useState<'players' | 'matches'>('players'); // Default to 'players'
 
   // Toggle which view is open
